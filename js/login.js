@@ -76,7 +76,7 @@ $(function(){
 				console.log("sendLoginHttp",data);
 				//保存数据
 				//Utils.offLineStore.set("userinfo_login",data);
-				var status = data.success || "false";
+				var status = data.success || false;
 				if(status){
 					//保存用户数据
 					//Utils.offLineStore.set("userinfo",JSON.stringify(data.result.profile),false);

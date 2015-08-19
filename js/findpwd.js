@@ -12,14 +12,16 @@ $(function(){
 	g.httpTip = new Utils.httpTip({});
 	g.pwdvalidater = "";
 	g.userName = "";
+	//手机校验信息
+	g.validInfo = {};
 
 	$("#inputphone").bind("blur",validPhone);
-	$("#inputpwd").bind("click",validPwd);
-	$("#inputcpwd").bind("click",validCPwd);
-
 	$("#getcodebtn").bind("click",getValidCode);
-	$("#nextbtn1").bind("click",validCode);
-	$("#nextbtn2").bind("click",changePwd);
+	$("#nextbtn").bind("click",validPhoneCode);
+
+	$("#inputpwd").bind("blur",validPwd);
+	$("#inputcpwd").bind("blur",validCPwd);
+	$("#changepwdbtn").bind("click",changePwd);
 
 	//$("#sendbtn2").bind("click",enterChangePwd);
 	//$("#resetbtn2").bind("click",resetPwdInfo);
@@ -40,7 +42,7 @@ $(function(){
 
 	//获取验证码
 	function getValidCode(evt){
-		var ele = evt.currentTarget;
+		//var ele = evt.currentTarget;
 		//$(ele).removeClass("curr");
 		//if(!this.moved){}
 
@@ -67,13 +69,13 @@ $(function(){
 	function resetGetValidCode(){
 		g.sendTime = g.sendTime - 1;
 		if(g.sendTime > 0){
-			$("#getcodebtn").html(g.sendTime + "秒后重新发送");
+			$("#getcodebtn").val(g.sendTime + "秒后重新发送");
 			setTimeout(function(){
 				resetGetValidCode();
 			},1000);
 		}
 		else{
-			$("#getcodebtn").html("重新发送");
+			$("#getcodebtn").val("重新发送");
 			g.sendTime = 60;
 			g.sendCode = false;
 
@@ -85,9 +87,9 @@ $(function(){
 	}
 	//请求验证码
 	function sendGetCodeHttp(){
-		var url = Base.serverUrl + "";
+		var url = Base.serverUrl + "message/sendValidateMessage";
 		var condi = {};
-		condi.mobile = g.phone;
+		condi.phone_number = g.phone;
 		//condi.captcha = imgCode;
 		g.httpTip.show();
 		$.ajax({
@@ -96,19 +98,22 @@ $(function(){
 			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
+			//要求为Boolean类型的参数，默认为true。表示是否触发全局ajax事件。设置为false将不会触发全局ajax事件，ajaxStart或ajaxStop可用于控制各种ajax事件。
+			//global:false,
 			success: function(data){
 				console.log("sendGetCodeHttp",data);
-				var status = data.status || "";
-				if(status == "OK"){
+				var status = data.success || false;
+				if(status){
+					Utils.alert("验证码已发送,请注意查收");
 					g.sendCode = true;
-					$("#getcodebtn").html("60秒后重新发送");
+					$("#getcodebtn").val("60秒后重新发送");
 					setTimeout(function(){
 						resetGetValidCode();
 					},1000);
 				}
 				else{
-					Utils.alert("验证码获取失败");
+					var msg = data.message || "验证码获取失败";
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -121,12 +126,12 @@ $(function(){
 
 
 	//验证短信验证码
-	function validCode(evt){
+	function validPhoneCode(evt){
 		var code = $("#inputcode").val() || "";
 		if(code !== ""){
 			var condi = {};
-			condi.phone = g.phone;
-			condi.code = code;
+			condi.phone_number = g.phone;
+			condi.validate_code = code;
 			sendValidCodeHttp(condi);
 		}
 		else{
@@ -136,7 +141,7 @@ $(function(){
 	}
 
 	function sendValidCodeHttp(condi){
-		var url = Base.serverUrl + "validcode.htm";
+		var url = Base.serverUrl + "user/updatePasswordPreController";
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -144,14 +149,16 @@ $(function(){
 			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
 			success: function(data){
-				console.log("sendGetCodeHttp",data);
-				var status = data.status || "";
-				if(status == "OK"){
+				console.log("sendValidCodeHttp",data);
+				var status = data.success || false;
+				if(status){
+					g.validInfo = data;
+					//显示第二步
 				}
 				else{
-					Utils.alert("验证码获取输入错误");
+					var msg = data.message || "验证码校验失败";
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -167,7 +174,7 @@ $(function(){
 	//验证密码6-16
 	function validPwd(){
 		var pwd = $("#inputpwd").val() || "";
-		if(pwd.length < 6 || pwd.length > 16){
+		if((pwd.length < 6 || pwd.length > 16) && pwd !== ""){
 			Utils.alert("密码输入错误:请输入字符6-16位");
 			$("#inputpwd").focus();
 		}
@@ -175,7 +182,7 @@ $(function(){
 
 	function validCPwd(){
 		var pwd = $("#inputcpwd").val() || "";
-		if(pwd.length < 6 || pwd.length > 16){
+		if((pwd.length < 6 || pwd.length > 16) && pwd !== ""){
 			Utils.alert("确认密码输入错误:请输入字符6-16位");
 			$("#inputcpwd").focus();
 		}
@@ -183,30 +190,24 @@ $(function(){
 			var pwd1 = $("#inputpwd").val() || "";
 			if(pwd !== pwd1){
 				Utils.alert("两次密码输入不一致.");
-				$("#inputcpwd").focus();
+				//$("#inputcpwd").focus();
 			}
 		}
 	}
 
-
+	//重置密码
 	function changePwd(evt){
 		var pwd1 = $("#inputpwd").val() || "";
 		var pwd2 = $("#inputcpwd").val() || "";
 		if(pwd1 !== ""){
 			if(pwd2 !== ""){
 				if(pwd1 === pwd2){
-					var code = $("#inputcode").val() || "";
-					if(code !== ""){
-						var condi = {};
-						condi.phone = g.phone;
-						condi.pwd = pwd2;
-						condi.code = code;
-						sendChangePwdHttp(condi);
-					}
-					else{
-						Utils.alert("请输入验证码");
-						$("#inputcode").focus();
-					}
+					var condi = {};
+					//{customer_id:string,token:string,password:string}
+					condi.customer_id = g.validInfo.obj.customerId;
+					condi.token = g.validInfo.token;
+					condi.password = pwd2;
+					sendChangePwdHttp(condi);
 				}
 				else{
 					Utils.alert("两次密码输入不一致");
@@ -226,7 +227,7 @@ $(function(){
 	}
 
 	function sendChangePwdHttp(condi){
-		var url = Base.serverUrl + "changepwd.htm";
+		var url = Base.serverUrl + "user/updatePasswordController";
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -234,14 +235,16 @@ $(function(){
 			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
 			success: function(data){
 				console.log("sendChangePwdHttp",data);
-				var status = data.status || "";
-				if(status == "OK"){
+				var status = data.success || false;
+				if(status){
+					//跳转到修改成功页面
+					Utils.alert("密码重置成功");
 				}
 				else{
-					Utils.alert("验证码输入错误");
+					var msg = data.message || "重置密码失败"
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -284,64 +287,6 @@ $(function(){
 		}
 	}
 
-	//获取验证码
-	function getValidCode(evt){
-		var ele = evt.currentTarget;
-		//$(ele).removeClass("curr");
-		//if(!this.moved){}
-		var p = $("#inputPhone3").val() || "";
-		var imgCode = $("#inputImgCode3").val() || "";
-		var username = $("#inputEmail3").val() || "";
-		if(username !== ""){
-			if(p !== ""){
-				var reg = /^1[3,5,7,8]\d{9}$/g;
-				if(reg.test(p)){
-					if(imgCode !== ""){
-						g.phone = p;
-						if(!g.sendCode){
-							sendGetCodeHttp(imgCode);
-						}
-					}
-					else{
-						Utils.alert("输入图形验证码");
-						$("#inputImgCode3").focus();
-					}
-				}
-				else{
-					Utils.alert("手机输入不合法");
-				}
-			}
-			else{
-				$("#inputPhone3").focus();
-			}
-		}
-		else{
-			Utils.alert("输入注册用户名");
-			$("#inputEmail3").focus();
-		}
-	}
-
-	//重新获取验证码
-	function resetGetValidCode(){
-		g.sendTime = g.sendTime - 1;
-		if(g.sendTime > 0){
-			$("#getcodebtn").html(g.sendTime + "秒后重新发送");
-			setTimeout(function(){
-				resetGetValidCode();
-			},1000);
-		}
-		else{
-			$("#getcodebtn").html("重新发送");
-			g.sendTime = 60;
-			g.sendCode = false;
-
-			//重新获取图形验证码,1分钟有效
-			getImgCode();
-			$("#inputImgCode3").val("");
-			$("#inputImgCode3").focus();
-		}
-	}
-
 	//重置信息
 	function resetUserInfo(evt){
 		$("#inputEmail3").val("");
@@ -381,41 +326,6 @@ $(function(){
 			//$("#pwdseconddiv").show();
 		}
 
-	}
-
-	//请求验证码
-	function sendGetCodeHttp(imgCode){
-		var url = Base.getCodeUrl;
-		var condi = {};
-		condi.mobile = g.phone;
-		condi.captcha = imgCode;
-		g.httpTip.show();
-		$.ajax({
-			url:url,
-			data:condi,
-			type:"POST",
-			dataType:"json",
-			context:this,
-			global:false,
-			success: function(data){
-				console.log(data);
-				var status = data.status || "";
-				if(status == "OK"){
-					g.sendCode = true;
-					$("#getcodebtn").html("60秒后重新发送");
-					setTimeout(function(){
-						resetGetValidCode();
-					},1000);
-				}
-				else{
-					alert("验证码获取失败");
-				}
-				g.httpTip.hide();
-			},
-			error:function(data){
-				g.httpTip.hide();
-			}
-		});
 	}
 
 	//申请忘记密码
