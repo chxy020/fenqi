@@ -53,17 +53,29 @@
             "type":"Wireframe",
             "url":"首页-未登录.html"},
 {
-            "pageName":"家装贷",
+            "pageName":"家装分期",
             "type":"Wireframe",
-            "url":"家装贷.html"},
+            "url":"家装分期.html"},
 {
-            "pageName":"生活家",
+            "pageName":"合作商家",
             "type":"Wireframe",
-            "url":"生活家.html"},
+            "url":"合作商家.html",
+            "children":[{
+                "pageName":"悦享家",
+                "type":"Wireframe",
+                "url":"悦享家.html"},
 {
-            "pageName":"朗润",
-            "type":"Wireframe",
-            "url":"朗润.html"}]},
+                "pageName":"尊享家",
+                "type":"Wireframe",
+                "url":"尊享家.html"},
+{
+                "pageName":"朗润",
+                "type":"Wireframe",
+                "url":"朗润.html"},
+{
+                "pageName":"在线预约",
+                "type":"Wireframe",
+                "url":"在线预约.html"}]}]},
 {
         "pageName":"我要分期-与合作商户签约",
         "type":"Wireframe",

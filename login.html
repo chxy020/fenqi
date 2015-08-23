@@ -1,15 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<title>安家吧</title>
+	<link href="css/base.css" rel="stylesheet">
+	<link href="css/login.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="head">
+		<div class="logo"><img src="images/logo.png" width="174" height="52" /></div>
+		<ul class="nav">
+			<li><a href="index.html" class="active">首页</a></li>
+			<li><a href="passenger.html">加装贷</a></li>
+			<li><a href="driver.html">家装产品</a></li>
+			<li><a href="info.html">我要分期</a></li>
+		</ul>
+	</div>
 
 
-<link href="css/base.css" rel="stylesheet">
+	<div class="page">
 
-<script src="libs/jquery/jquery-1.11.2.js"></script>
-<script src="libs/json.js"></script>
-<script src="libs/base.js"></script>
-<script src="libs/utils.js"></script>
-<script src="js/login.js"></script>
+		<div class="center">
+			<div class="leftad">
+				<img src="images/login-ad.png" width="552" height="317" />
+				<!--
+				<div class="adtext">
+					<p>大大大</p>
+				</div>
+				-->
+				<input type="button" value="立即购买" />
+			</div>
+			<div class="rightlogin">
+				<h2>用户登录</h2>
+				<div class="input">
+					<span>用户名</span>
+					<input id="inputphone" type="text" placeholder="手机号/用户名" />
+				</div>
+				<div class="input">
+					<span>密　码</span>
+					<input id="inputpwd" type="text" placeholder="请输入密码" />
+				</div>
+				<div class="checkbox">
 
+					<input id="chkphone" type="checkbox" style="vertical-align:middle;"/>
+					<label for="chkphone" style="vertical-align:middle;">记住用户名</label>
 
-手机号:<input id="inputphone" type="text" />
-密码:<input id="inputpwd" type="text" />
-<input id="loginbtn" type="button" value="登录" />
+					<a href="findpwd.html">忘记密码?</a>
+				</div>
+				<div class="logindiv">
+					<input id="loginbtn" type="button" value="马上登录" />
+				</div>
+				<p class="noid">没有帐号?<a href="reg.html">立即注册</a></p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="bottom">
+		<ul class="bottomnav">
+			<li><a href="javascript:void(0);" class="active">公司简介</a></li>
+			<li><a href="passenger.html">企业文化</a></li>
+			<li><a href="driver.html">设计知识</a></li>
+			<li><a href="info.html">家装攻略</a></li>
+			<li><a href="info.html">联系我们</a></li>
+		</ul>
+		<span class="info">©2015&nbsp;北京xxxxx有限公司&nbsp;&nbsp;京IPC备&nbsp;14046327号</span>
+	</div>
+
+	<script src="libs/jquery/jquery-1.11.2.js"></script>
+	<script src="libs/json.js"></script>
+	<script src="libs/base.js"></script>
+	<script src="libs/utils.js"></script>
+	<script src="js/login.js"></script>
+</body>
+</html>
 

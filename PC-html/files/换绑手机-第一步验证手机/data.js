@@ -1,6 +1,6 @@
 ﻿$axure.loadCurrentPage({
   "url":"换绑手机-第一步验证手机.html",
-  "generationDate":new Date(1439544793547.5),
+  "generationDate":new Date(1440075589959.91),
   "isCanvasEnabled":false,
   "variables":["OnLoadVariable"],
   "page":{

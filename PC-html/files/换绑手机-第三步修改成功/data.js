@@ -1,6 +1,6 @@
 ﻿$axure.loadCurrentPage({
   "url":"换绑手机-第三步修改成功.html",
-  "generationDate":new Date(1439544793877.52),
+  "generationDate":new Date(1440075590270.93),
   "isCanvasEnabled":false,
   "variables":["OnLoadVariable"],
   "page":{

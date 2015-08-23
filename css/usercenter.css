@@ -1,0 +1,112 @@
+@charset "utf-8";
+
+
+.center{
+	width:100%;
+	background:#f7f7f7;
+}
+
+.center-top{
+	margin-top: 10px;
+	background:#ffffff;
+}
+
+.center-info{
+	width:1200px;
+	margin:0 auto;
+	height:740px;
+}
+
+.center-info .head-u{
+	float: left;
+	margin: 35px 0px 0px 35px;
+	width: 225px;
+}
+
+.center-info .head-u .phone{
+	float: right;
+	position: relative;
+}
+
+.center-info .head-u .phone span{
+	display: block;
+	margin-left: 35px;
+	margin-top: 16px;
+	font-size: 16px;
+	color: #2b3a42;
+}
+
+.center-info .head-u .phone .img1{
+	margin: 16px 10px 0px 35px;
+}
+
+.center-info .select-status{
+	height: 150px;
+	float: right;
+	line-height: 150px;
+}
+.center-info .select-status span{
+	font-size: 18px;
+	margin-right: 12px;
+}
+.center-info .select-status select{
+	width: 370px;
+	height: 50px;
+	background: #ffffff;
+	border: 1px solid #eeeeee;
+	border-radius: 5px;
+	font-size: 18px;
+	color: #2b3a42;
+	padding-left: 15px;
+}
+
+.center-info .ordertable th{
+	background:#dff0d8;
+	color:#669900;
+	height: 40px;
+	line-height: 40px;
+}
+
+.center-info .ordertable td{
+	background: #ffffff;
+	color: #000000;
+	height: 80px;
+	line-height: 80px;
+	font-size: 16px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.center-info .tablepage{
+	text-align: center;
+}
+
+.center-info .tablepage img{
+	margin-top: 4px;
+}
+
+.center-info .tablepage span{
+	width: 30px;
+	height: 30px;
+	border: 1px solid #d9d8d8;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	margin-top: 60px;
+	line-height: 32px;
+}
+
+.center-info .tablepage span a{
+	  color: #89c997;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.center-info .tablepage span a:hover{
+	color:#ffffff;
+	background:#89c997;
+}
+
+

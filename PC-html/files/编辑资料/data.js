@@ -1,6 +1,6 @@
 ﻿$axure.loadCurrentPage({
   "url":"编辑资料.html",
-  "generationDate":new Date(1439544793369.49),
+  "generationDate":new Date(1440075589776.9),
   "isCanvasEnabled":false,
   "variables":["OnLoadVariable"],
   "page":{
@@ -506,7 +506,7 @@
               "adaptiveStyles":{
 }}],
           "images":{
-            "normal~":"images/首页-已登录/u84.png"}},
+            "normal~":"images/首页-已登录/u45.png"}},
 {
           "id":"e40efd22222040c285e06d5e55acff31",
           "label":"",
@@ -539,7 +539,7 @@
               "adaptiveStyles":{
 }}],
           "images":{
-            "normal~":"images/首页-已登录/u86.png"}},
+            "normal~":"images/首页-已登录/u47.png"}},
 {
           "id":"9456a84d4b5741baba931f10b757d413",
           "label":"",
@@ -1004,7 +1004,7 @@
                       "adaptiveStyles":{
 }}],
                   "images":{
-                    "normal~":"images/首页-已登录/u45.png"}},
+                    "normal~":"images/个人账户/u76.png"}},
 {
                   "id":"2f165a919dfc4396a75efad058cd7d04",
                   "label":"",
@@ -2008,7 +2008,7 @@
                               "showType":"none"}}}]}]}]}},
           "tabbable":true,
           "images":{
-            "normal~":"images/首页-已登录/u81.png"}},
+            "normal~":"images/个人账户/u112.png"}},
 {
           "id":"9a3bec165ef24e7a92aaaa9179b4d0be",
           "label":"",
@@ -2450,7 +2450,7 @@
                       "adaptiveStyles":{
 }}],
                   "images":{
-                    "normal~":"images/首页-已登录/u89.png"}},
+                    "normal~":"images/个人账户/u257.png"}},
 {
                   "id":"77d621752ea64c1284019a85156295d7",
                   "label":"",
@@ -2471,7 +2471,7 @@
                   "images":{
                     "start~":"resources/images/transparent.gif",
                     "end~":"resources/images/transparent.gif",
-                    "line~":"images/首页-已登录/u91_line.png"}},
+                    "line~":"images/个人账户/u259_line.png"}},
 {
                   "id":"296fedd924e04cca93cb1269db6c86a2",
                   "label":"",
