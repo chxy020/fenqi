@@ -118,6 +118,18 @@
 	color: #99bf38;
 }
 
+.leftreg .regdiv .regsuccess{
+	font-size: 20px;
+	display: block;
+	background: url(../images/reg-success.png) no-repeat 0px 0px;
+	margin-top: 110px;
+	margin-bottom: 50px;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 36px;
+	margin-left: 60px;
+}
+
 
 .rightad{
 	float: right;

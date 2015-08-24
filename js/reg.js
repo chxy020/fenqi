@@ -12,6 +12,12 @@ $(function(){
 	g.sendTime = 60;
 	g.httpTip = new Utils.httpTip({});
 
+	g.codeImg = $("#imgcodebtn")[0];
+	g.guid = Utils.getGuid();
+
+	//获取图形验证码
+	sendGetImgCodeHttp();
+
 	//g.httpTip.show();
 
 	$("#inputphone").bind("blur",validPhone);
@@ -20,6 +26,15 @@ $(function(){
 	$("#getcodebtn").bind("click",getValidCode);
 	$("#regbtn").bind("click",regUser);
 
+	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);
+
+	function sendGetImgCodeHttp(){
+		//URL:  http://www.partywo.com/imageValidate/getImageValidate
+		//参数: {image_key:string}
+		var url = Base.serverUrl + "imageValidate/getImageValidate";
+		url = url + "?image_key=" + g.guid + "&t=" + (new Date() - 0);
+		g.codeImg.src = url;
+	}
 
 	//验证手机号
 	function validPhone(){
@@ -64,13 +79,19 @@ $(function(){
 		//if(!this.moved){}
 
 		var p = $("#inputphone").val() || "";
-		//var imgCode = $("#inputImgCode3").val() || "";
+		var imgCode = $("#inputimgcode").val() || "";
 		if(p !== ""){
 			var reg = /^1[3,5,7,8]\d{9}$/g;
 			if(reg.test(p)){
 				g.phone = p;
-				if(!g.sendCode){
-					sendGetCodeHttp();
+				if(imgCode !== ""){
+					if(!g.sendCode){
+						sendGetCodeHttp(imgCode);
+					}
+				}
+				else{
+					Utils.alert("请输入图形验证码");
+					$("#inputimgcode").focus();
 				}
 			}
 			else{
@@ -103,11 +124,14 @@ $(function(){
 		}
 	}
 	//请求验证码
-	function sendGetCodeHttp(){
+	function sendGetCodeHttp(imgCode){
+		//{'phone_number':string,'validate_key':string,'validate_code':string}
 		var url = Base.serverUrl + "message/sendValidateMessage";
 		var condi = {};
 		condi.phone_number = g.phone;
-		//condi.captcha = imgCode;
+		condi.validate_key = g.guid;
+		condi.validate_code = imgCode;
+
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -131,6 +155,9 @@ $(function(){
 				else{
 					var msg = data.message || "验证码获取失败";
 					Utils.alert(msg);
+
+					//重新请求图形验证码
+					sendGetImgCodeHttp();
 				}
 				g.httpTip.hide();
 			},
@@ -212,6 +239,8 @@ $(function(){
 				console.log("sendRegHttp",data);
 				var status = data.success || false;
 				if(status){
+					$("#reginfodiv").hide();
+					$("#regsuccessdiv").show();
 					//var token = data.result || "";
 					//保存token,标识已登录
 					Utils.offLineStore.set("token",1,false);
