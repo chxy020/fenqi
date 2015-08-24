@@ -16,11 +16,14 @@
 	var eventDelay = 100;
 	//用户名
 	var userName = "";
+	//用户手机号
+	var phoneNumber = "";
 
 	//请求服务地址
 	var serverUrl = "http://www.partywo.com/";
 
 	Base.userName = userName;
+	Base.phoneNumber = phoneNumber;
 	Base.urlPort = urlPort;
 	Base.maskTimeOut = maskTimeOut;
 	Base.serverUrl = serverUrl;

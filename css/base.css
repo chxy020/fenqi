@@ -132,6 +132,10 @@ html,body{
 }
 
 .head-lg .head-tab span:first-child{
+	/*border-right:none;*/
+}
+
+.head-lg .head-tab span.login{
 	border-right:none;
 }
 

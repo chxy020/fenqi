@@ -25,6 +25,7 @@ $(function(){
 	$("#inputcpwd").bind("blur",validCPwd);
 	$("#getcodebtn").bind("click",getValidCode);
 	$("#regbtn").bind("click",regUser);
+	$("#gobtn").bind("click",gotoUserCenter);
 
 	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);
 
@@ -260,6 +261,10 @@ $(function(){
 		});
 	}
 
+	//进入个人中心
+	function gotoUserCenter(){
+		location.href = "usercenter.html";
+	}
 
 
 
@@ -270,6 +275,9 @@ $(function(){
 
 
 
+
+
+	//以下暂时无用.....................
 	//重置信息
 	function resetRegInfo(evt){
 		$("#inputEmail3").val("");

@@ -80,7 +80,7 @@ $(function(){
 					if(userInfo !== ""){
 						userInfo = JSON.stringify(userInfo);
 						//保存用户数据
-						Utils.offLineStore.set("userinfo",JSON.stringify(userInfo),false);
+						Utils.offLineStore.set("userinfo",userInfo,false);
 						location.href = "usercenter.html";
 					}
 

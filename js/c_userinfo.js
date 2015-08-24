@@ -4,6 +4,17 @@
 */
 //页面初始化
 $(function(){
+	if(typeof eui !== "undefined"){
+		var birthday = $('#birthday');
+		if(birthday.length > 0){
+			eui.calendar({
+				startYear: 1900,
+				input:birthday[0]
+			});
+		}
+	}
+
+
 	var g = {};
 	//g.token = Utils.getQueryString("token");
 	//g.page = Utils.getQueryString("p") - 0;
@@ -39,6 +50,7 @@ $(function(){
 		var info = Utils.offLineStore.get("userinfo",false) || "";
 		if(info !== ""){
 			var obj = JSON.parse(info) || {};
+			console.log("getUserInfo",obj);
 			setUserInfoHtml(obj);
 		}
 	}
@@ -59,6 +71,80 @@ $(function(){
 	}
 
 
+	/****保存个人资料 ******/
+	//更新个人资料
+	function saveBtnUp(){
+		var condi = {};
+		condi.token = g.token;
+		condi.username = g.username;
+		//昵称
+		condi.cnname = $("#nikename").val();
+		//真实姓名
+		condi.realName = $("#validname").val();
+		//英文名
+		condi.ename = $("#ename").val();
+		//个人简介
+		condi.intro = $("#message").val();
+		//电子邮箱
+		condi.email = $("#emailtext").val();
+		//手机号
+		//condi.phone = $("#phonetext").val();
+		//QQ号
+		//condi.qq = $("#qqtext").val();
+		//微信
+		//condi.weixin = $("#weixintext").val();
+		//生日
+		condi.birthDay = $("#birthday").val() || "";
+		//行业
+		condi.trade = $("#profession").val();
+		//现居住地
+		condi.address = $("#address").val();
+
+
+
+		//性别1男2女
+		condi.sexId = "404040e64dd26ab5014dd26ac61f0013";
+		var sexRadio = $("#inlineRadio2")[0].checked;
+		if(sexRadio){
+			//condi.sex = 2;
+			condi.sexId = "404040e64dd26ab5014dd26ac64e0014";
+		}
+		//血型
+		condi.bloodTypeId = $("#bloodgroup").val();
+		//星座
+		condi.constellationId = $("#constellation").val();
+		console.log(condi);
+		sendUpdateUserInfoHttp(condi);
+	}
+
+	//更新个人资料请求
+	function sendUpdateUserInfoHttp(obj){
+		g.httpTip.show();
+		var url = Base.profileUrl;
+		$.ajax({
+			url:url,
+			data:obj,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			global:false,
+			success: function(data){
+				console.log(data);
+				g.httpTip.hide();
+				var status = data.status || "";
+				if(status == "OK"){
+					Utils.offLineStore.set("login_userprofile",JSON.stringify(data.result),false);
+					alert("修改个人资料成功");
+				}
+				else{
+					alert("修改个人资料失败");
+				}
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
 
 
 

@@ -453,24 +453,24 @@ if(typeof console == "undefined"){
 		var info = offLineStore.get("userinfo",false) || "";
 		if(info !== ""){
 			var obj = JSON.parse(info) || {};
-			var userName = obj.cnname || "";
-			if(userName === ""){
-				userName = obj.username || "";
-			}
+			var phoneNumber = obj.phoneNumber || "";
 
-			Base.userName = userName;
+			//保存用户手机号
+			Base.phoneNumber = phoneNumber;
+
 			//已登录
 			var html = [];
-			var token = Utils.offLineStore.get("token",false) || "";
-			var str = "";
-			if(token !== ""){
-				str = "?token=" + token + "&p=0";
-			}
+			//var token = Utils.offLineStore.get("token",false) || "";
+			//var str = "";
+			//if(token !== ""){
+			//	str = "?token=" + token + "&p=0";
+			//}
 
-			html.push('<li style="padding-right:10px;"><i class="fa fa-user hui"></i>&nbsp&nbsp');
-			html.push('<span style="color:#aaa">' + userName + ',&nbsp您好！</span>');
-			html.push('<b style="border-right:1px solid #ddd;padding:0 10px;font-weight:normal"><a href="javascript:Utils.gotoCenter();" style="width:60px">会员中心</a></b>');
-			html.push('<b style="padding:0 10px;font-weight:normal"><a href="javascript:Utils.loginOut();" style="width:30px">退出</a></b></li>');
+			html.push('<span class="login">' + phoneNumber + ' 您好!</span>');
+			html.push('<span><a href="javascript:Utils.loginOut();">退出</a></span>');
+			html.push('<span><a href="myorder.html">我的订单</a></span>');
+			html.push('<span><a href="repayment.html">我要还款</a></span>');
+
 			if($("#loginstatus").length > 0){
 				$("#loginstatus")[0].innerHTML = html.join('');
 			}

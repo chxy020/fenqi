@@ -10,11 +10,11 @@
 
 <body>
 	<div class="head-lg">
-		<div class="head-tab">
-			<span>15810880522 您好!</span>
-			<span><a href="#">退出</a></span>
-			<span><a href="#">我的订单</a></span>
-			<span><a href="#">我要还款</a></span>
+		<div id="loginstatus" class="head-tab">
+			<span><a href="login.html">登录</a></span>
+			<span><a href="javascript:void(0);">退出</a></span>
+			<span><a href="login.html">我的订单</a></span>
+			<span><a href="login.html">我要还款</a></span>
 		</div>
 		<div class="logo">
 			<img src="images/logo-big.png" width="216" height="62" />
@@ -42,7 +42,7 @@
 					<div class="head-u">
 						<img src="images/center/usercenter1.png" width=89 height=89 />
 						<div class="phone">
-							<span>15810880522</span>
+							<span id="userphone">用户手机号</span>
 							<a href="#"><img class="img1" src="images/center/usercenter2.png" width=25 height=25 /></a>
 							<a href="userinfo.html"><img src="images/center/usercenter3.png" width=25 height=25 /></a>
 						</div>
@@ -50,7 +50,13 @@
 					<div class="select-status">
 						<span>我的订单:</span>
 						<select>
-							<option>全部状态</option>
+							<option value="0" >全部状态</option>
+							<option value="1" >未完成订单</option>
+							<option value="2" >审核中订单</option>
+							<option value="3" >审核不通过订单</option>
+							<option value="4" >待还款</option>
+							<option value="5" >还款中</option>
+							<option value="6" >已还清</option>
 						</select>
 					</div>
 				</div>
@@ -205,7 +211,7 @@
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
-	<script src="js/login.js"></script>
+	<script src="js/c_usercenter.js"></script>
 </body>
 </html>
 
