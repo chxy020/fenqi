@@ -25,15 +25,15 @@
 				<img src="images/center/findpwd1.png" width=36 height=31 alt="" />
 				<span class="a b">验证手机</span>
 			</div>
-			<img class="p-img" src ="images/center/findpwd4.png" width=240 height=4 alt="" />
+			<img id="progressimg1" class="p-img" src ="images/center/findpwd4.png" width=240 height=4 alt="" />
 			<div class="progress">
-				<img src="images/center/findpwd6.png" width=36 height=31 alt="" />
-				<span class="a" >修改密码</span>
+				<img id="setupimg1" src="images/center/findpwd6.png" width=36 height=31 alt="" />
+				<span id="setupspan1" class="a" >修改密码</span>
 			</div>
-			<img class="p-img" src ="images/center/findpwd4.png" width=240 height=4 alt="" />
+			<img id="progressimg2" class="p-img" src ="images/center/findpwd4.png" width=240 height=4 alt="" />
 			<div class="progress">
-				<img src="images/center/findpwd7.png" width=36 height=31 alt="" />
-				<span class="a" >完成</span>
+				<img id="setupimg2" src="images/center/findpwd7.png" width=36 height=31 alt="" />
+				<span id="setupspan2" class="a" >完成</span>
 			</div>
 		</div>
 	</div>
@@ -41,38 +41,43 @@
 	<div class="input-page">
 		<span class="title">您正在进行找回密码操作</span>
 
-		<div style="display:none1;">
+		<div id="setup1" style="display:none1;">
 			<span class="info">为了您的账户安全,请先验证手机</span>
 			<div class="input">
 				<span>请输入验证手机</span>
-				<input type="text" placeholder="请输入手机号" />
+				<input id="inputphone" type="text" maxlength=11 placeholder="请输入手机号" />
+			</div>
+			<div class="input code">
+				<span>　　　　验证码</span>
+				<input id="inputimgcode" type="text" style="width:140px" />
+				<img id="imgcodebtn" src="" class="imgcode" />
 			</div>
 			<div class="input">
-				<button class="codebtn">获取动态码</button>
+				<button id="getcodebtn" class="codebtn">获取动态码</button>
 				<span class="nocode">没有收到短信动态码?</span>
 			</div>
 			<div class="input">
 				<span>　　短信动态码</span>
-				<input type="text" placeholder="请输入短信动态吗" />
+				<input id="inputcode" type="text" placeholder="请输入短信动态吗" />
 			</div>
-			<button class="nextbtn">下一步</button>
+			<button id="nextbtn" class="nextbtn">下一步</button>
 		</div>
 
-		<div style="display:none;">
+		<div id="setup2" style="display:none;">
 			<span class="info a">您的验证已经成功通过,请修改您的密码</span>
 			<div class="input a">
 				<span>　　　　新密码</span>
-				<input type="text" placeholder="请输入新密码" />
+				<input id="inputpwd" type="password" placeholder="请输入新密码" />
 			</div>
 			<div class="input">
 				<span>　　确认新密码</span>
-				<input type="text" placeholder="请输入确认新密码" />
+				<input id="inputcpwd" type="password" placeholder="请输入确认新密码" />
 			</div>
-			<button class="nextbtn">下一步</button>
+			<button id="changepwdbtn" class="nextbtn">下一步</button>
 		</div>
 
 
-		<div style="display:none;">
+		<div id="setup3" style="display:none;">
 			<span class="info b">恭喜您,密码修改成功,请妥善保管</span>
 		</div>
 
@@ -93,7 +98,7 @@
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
-	<script src="js/login.js"></script>
+	<script src="js/findpwd.js"></script>
 </body>
 </html>
 

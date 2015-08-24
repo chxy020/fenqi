@@ -108,13 +108,13 @@ $(function(){
 	function resetGetValidCode(){
 		g.sendTime = g.sendTime - 1;
 		if(g.sendTime > 0){
-			$("#getcodebtn").val(g.sendTime + "秒后重新发送");
+			$("#getcodebtn").html(g.sendTime + "秒后重新发送");
 			setTimeout(function(){
 				resetGetValidCode();
 			},1000);
 		}
 		else{
-			$("#getcodebtn").val("重新发送");
+			$("#getcodebtn").html("重新发送");
 			g.sendTime = 60;
 			g.sendCode = false;
 
@@ -148,7 +148,7 @@ $(function(){
 				if(status){
 					Utils.alert("验证码已发送,请注意查收");
 					g.sendCode = true;
-					$("#getcodebtn").val("60秒后重新发送");
+					$("#getcodebtn").html("60秒后重新发送");
 					setTimeout(function(){
 						resetGetValidCode();
 					},1000);

@@ -96,6 +96,19 @@
 	padding-left: 15px;
 }
 
+.input-page .input .imgcode{
+	float: right;
+	margin-top: 6px;
+	margin-right: 6px;
+	width: 130px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	height: 36px;
+	font-size: 16px;
+	background: #dff0d8;
+	color: #5e7e0c;
+}
+
 .input-page .input .codebtn{
 	width: 110px;
 	height: 28px;

@@ -22,16 +22,11 @@ $(function(){
 
 
 	//保存个人资料
-	$("#savebtn").bind("click",saveBtnUp);
+	//$("#savebtn").bind("click",saveBtnUp);
 	//头像
 	//$("#avatarbtn").bind("click",avatarBtnUp);
 	$("#avatar").bind("change",avatarBtnUp);
 
-	//安全退出
-	function loginOut(){
-		Utils.offLineStore.remove("userinfo",false);
-		location.href = "login.html";
-	}
 
 
 	//获取个人资料

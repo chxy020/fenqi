@@ -10,6 +10,9 @@ $(function(){
 	g.tout = null;
 	g.httpTip = new Utils.httpTip({});
 
+	var userPhone = Utils.offLineStore.get("userphone_login",true) || "";
+	$("#inputphone").val(userPhone);
+
 	$("#inputphone").bind("blur",validPhone);
 	$("#inputpwd").bind("blur",validPwd);
 	$("#loginbtn").bind("click",loginBtnUp);
@@ -45,8 +48,10 @@ $(function(){
 		//var code = $("#inputCode3").val() || "";
 		if(phone !== ""){
 			if(pwd !== ""){
-				//var autoLogin = $("#autologin")[0].checked;
-				//var autoLogin = false;
+				var savePhone = $("#chkphone")[0].checked;
+				if(savePhone){
+					Utils.offLineStore.set("userphone_login",phone,true);
+				}
 				var condi = {};
 				condi.phone_number = phone;
 				condi.password = pwd;
@@ -81,6 +86,9 @@ $(function(){
 						userInfo = JSON.stringify(userInfo);
 						//保存用户数据
 						Utils.offLineStore.set("userinfo",userInfo,false);
+						var token = data.token || "";
+
+						Utils.offLineStore.set("token",token,false);
 						location.href = "usercenter.html";
 					}
 

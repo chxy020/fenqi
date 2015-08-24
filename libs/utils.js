@@ -451,7 +451,8 @@ if(typeof console == "undefined"){
 	//判断是否已登录
 	function getUserInfo(){
 		var info = offLineStore.get("userinfo",false) || "";
-		if(info !== ""){
+		var token = offLineStore.get("token",false) || "";
+		if(token !== "" && info !== ""){
 			var obj = JSON.parse(info) || {};
 			var phoneNumber = obj.phoneNumber || "";
 
@@ -468,8 +469,8 @@ if(typeof console == "undefined"){
 
 			html.push('<span class="login">' + phoneNumber + ' 您好!</span>');
 			html.push('<span><a href="javascript:Utils.loginOut();">退出</a></span>');
-			html.push('<span><a href="myorder.html">我的订单</a></span>');
-			html.push('<span><a href="repayment.html">我要还款</a></span>');
+			html.push('<span><a href="usercenter.html">我的订单</a></span>');
+			html.push('<span><a href="usercenter.html">我要还款</a></span>');
 
 			if($("#loginstatus").length > 0){
 				$("#loginstatus")[0].innerHTML = html.join('');
@@ -485,15 +486,14 @@ if(typeof console == "undefined"){
 	function loginOut(){
 		var token = Utils.offLineStore.get("token",false);
 		var condi = {};
-		condi.token = token;
-		var url = Base.serverUrl + "/api/logout";
+		condi.login_token = token;
+		var url = Base.serverUrl + "user/CustomerLoginOutController";
 		$.ajax({
 			url:url,
 			data:condi,
 			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
 			success: function(data){
 				console.log("loginout",data);
 			},
@@ -501,7 +501,10 @@ if(typeof console == "undefined"){
 			}
 		});
 		Utils.offLineStore.remove("userinfo",false);
-		Utils.offLineStore.remove("login_userprofile",false);
+		Utils.offLineStore.remove("token",false);
+		location.href = "index.html";
+		//Utils.offLineStore.remove("login_userprofile",false);
+		/*
 		var page = location.href.indexOf("/center/");
 		if(page > -1){
 			location.href = "../index.html";
@@ -509,7 +512,7 @@ if(typeof console == "undefined"){
 		else{
 			location.href = "index.html";
 		}
-
+		*/
 	}
 
 	function gotoCenter(){
