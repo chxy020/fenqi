@@ -1,7 +1,7 @@
 @charset "utf-8";
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, p, blockquote, th, td, img{margin:0;padding:0;border:0;outline:none;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-user-select:none;}
 input, button, textarea{margin:0;padding:0;border:0;outline:none;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
-body{font-size:15px;color:#181818;line-height:160%;font-family:Arial, sans-serif, Helvetica, "Microsoft YaHei", "SimHei";background:#fff;}
+body{font-size:15px;color:#181818;line-height:160%;font-family:"微软雅黑","Microsoft YaHei","SimHei",Arial, sans-serif, Helvetica;background:#fff;}
 input{-webkit-border-radius:0;/*-webkit-user-select:text;*/}
 ul, ol, li{list-style:none;}
 a{text-decoration:none;-webkit-touch-callout:none;color:#2b3a42;}

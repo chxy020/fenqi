@@ -23,7 +23,7 @@ $(function(){
 		var reg = /^1[3,5,7,8]\d{9}$/g;
 		if(phone !== ""){
 			if(!reg.test(phone)){
-				Utils.alert("手机号输入错误");
+				Utils.alert("用户名/手机号输入错误");
 				$("#inputphone").focus();
 			}
 		}
@@ -74,12 +74,16 @@ $(function(){
 			context:this,
 			success: function(data){
 				console.log("sendLoginHttp",data);
-				//保存数据
-				//Utils.offLineStore.set("userinfo_login",data);
 				var status = data.success || false;
 				if(status){
-					//保存用户数据
-					//Utils.offLineStore.set("userinfo",JSON.stringify(data.result.profile),false);
+					var userInfo = data.obj || "";
+					if(userInfo !== ""){
+						userInfo = JSON.stringify(userInfo);
+						//保存用户数据
+						Utils.offLineStore.set("userinfo",JSON.stringify(userInfo),false);
+						location.href = "usercenter.html";
+					}
+
 					//location.href = "center.html";
 					//var token = data.result.token || "";
 					//Utils.offLineStore.set("token",token,false);
@@ -91,7 +95,6 @@ $(function(){
 					alert(msg);
 					//getImgCode();
 				}
-
 				g.httpTip.hide();
 			},
 			error:function(data){
