@@ -111,7 +111,7 @@ $(function(){
 					if(data != null && data != ""){
 						try{
 							var obj = JSON.parse(data);
-							var src = obj.obj;
+							var src = obj.obj + "?t=" + (new Date() - 0);
 							$("#avatarimg").attr("src",src);
 							g.httpTip.hide();
 						}
