@@ -353,10 +353,16 @@ $(function(){
 				{
 					//{"success":true,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508240001.jpg","list":null,"message":null,"code":null,"token":null}
 					if(data != null && data != ""){
-						var obj = JSON.parse(data);
-						var src = obj.obj;
-						$("#avatarimg").attr("src",src);
-						g.httpTip.hide();
+						try{
+							var obj = JSON.parse(data);
+							var src = obj.obj;
+							$("#avatarimg").attr("src",src);
+							g.httpTip.hide();
+						}
+						catch(e){
+							Utils.alert("头像上传失败");
+							g.httpTip.hide();
+						}
 					}
 					//Utils.alert("头像上传成功");
 					//console.log("ajaxFileUpload",data,status);
