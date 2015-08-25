@@ -107,6 +107,7 @@ $(function(){
 				success: function (data, status)  //服务器成功响应处理函数
 				{
 					//{"success":true,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508240001.jpg","list":null,"message":null,"code":null,"token":null}
+					console.log("ajaxFileUpload",data);
 					if(data != null && data != ""){
 						try{
 							var obj = JSON.parse(data);
