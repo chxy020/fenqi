@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
 	<title>安家吧</title>
 	<link href="css/base.css" rel="stylesheet">
-	<link href="css/findpwd.css" rel="stylesheet">
+	<link href="css/changephone.css" rel="stylesheet">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 			<img id="progressimg1" class="p-img" src ="images/center/findpwd4.png" width=240 height=4 alt="" />
 			<div class="progress">
 				<img id="setupimg1" src="images/center/findpwd6.png" width=36 height=31 alt="" />
-				<span id="setupspan1" class="a" >修改密码</span>
+				<span id="setupspan1" class="a" >修改手机</span>
 			</div>
 			<img id="progressimg2" class="p-img" src ="images/center/findpwd4.png" width=240 height=4 alt="" />
 			<div class="progress">
@@ -39,7 +39,7 @@
 	</div>
 
 	<div class="input-page">
-		<span class="title">您正在进行找回密码操作</span>
+		<span class="title">您正在进行修改手机操作</span>
 
 		<div id="setup1" style="display:none1;">
 			<span class="info">为了您的账户安全,请先验证手机</span>
@@ -64,21 +64,30 @@
 		</div>
 
 		<div id="setup2" style="display:none;">
-			<span class="info a">您的验证已经成功通过,请修改您的密码</span>
-			<div class="input a">
-				<span>　　　　新密码</span>
-				<input id="inputpwd" type="password" placeholder="请输入新密码" />
+			<span class="info a">您的验证已经成功通过,请立刻修改您的绑定手机</span>
+			<div class="input">
+				<span>　请输入手手机</span>
+				<input id="inputphone_new" type="text" maxlength=11 placeholder="请输入新手机号" />
+			</div>
+			<div class="input code">
+				<span>　　　　验证码</span>
+				<input id="inputimgcode_new" type="text" style="width:140px" />
+				<img id="imgcodebtn_new" src="" class="imgcode" />
 			</div>
 			<div class="input">
-				<span>　　确认新密码</span>
-				<input id="inputcpwd" type="password" placeholder="请输入确认新密码" />
+				<button id="getcodebtn_new" class="codebtn">获取动态码</button>
+				<span class="nocode">没有收到短信动态码?</span>
 			</div>
-			<button id="changepwdbtn" class="nextbtn">下一步</button>
+			<div class="input">
+				<span>　　短信动态码</span>
+				<input id="inputcode_new" type="text" placeholder="请输入短信动态吗" />
+			</div>
+			<button id="changephonebtn" class="nextbtn">下一步</button>
 		</div>
 
 
 		<div id="setup3" style="display:none;">
-			<span class="info b">恭喜您,密码修改成功,请妥善保管</span>
+			<span class="info b">恭喜您,新的绑定手机号:15810880555</span>
 		</div>
 
 	</div>
@@ -98,7 +107,7 @@
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
-	<script src="js/findpwd.js"></script>
+	<script src="js/c_changphone.js"></script>
 </body>
 </html>
 
