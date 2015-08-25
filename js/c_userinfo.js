@@ -16,7 +16,9 @@ $(function(){
 
 
 	var g = {};
-	//g.token = Utils.getQueryString("token");
+	g.userInfoDic = {};
+	g.customerId = "";
+	g.login_token = Utils.offLineStore.get("token",false) || "";
 	//g.page = Utils.getQueryString("p") - 0;
 	g.httpTip = new Utils.httpTip({});
 
@@ -28,21 +30,16 @@ $(function(){
 	}
 	else{
 		getUserInfo();
-		//sendMyInfoCountsHttp();
+		sendGetUserInfoDicHttp();
 	}
 
 
-	//保存个人资料
-	$("#savebtn").bind("click",saveBtnUp);
+
 	//头像
 	//$("#avatarbtn").bind("click",avatarBtnUp);
 	$("#avatar").bind("change",avatarBtnUp);
-
-	//安全退出
-	function loginOut(){
-		Utils.offLineStore.remove("userinfo",false);
-		location.href = "login.html";
-	}
+	//保存个人资料
+	$("#savebtn").bind("click",saveBtnUp);
 
 
 	//获取个人资料
@@ -57,6 +54,9 @@ $(function(){
 	//修改个人资料
 	function setUserInfoHtml(data){
 		var obj = data || {};
+		//用户登录ID
+		g.customerId = obj.customerId || "";
+
 		var phoneNumber = obj.phoneNumber || "";
 		$("#userphone").html(phoneNumber);
 		/*
@@ -70,75 +70,39 @@ $(function(){
 		*/
 	}
 
-
-	/****保存个人资料 ******/
-	//更新个人资料
-	function saveBtnUp(){
-		var condi = {};
-		condi.token = g.token;
-		condi.username = g.username;
-		//昵称
-		condi.cnname = $("#nikename").val();
-		//真实姓名
-		condi.realName = $("#validname").val();
-		//英文名
-		condi.ename = $("#ename").val();
-		//个人简介
-		condi.intro = $("#message").val();
-		//电子邮箱
-		condi.email = $("#emailtext").val();
-		//手机号
-		//condi.phone = $("#phonetext").val();
-		//QQ号
-		//condi.qq = $("#qqtext").val();
-		//微信
-		//condi.weixin = $("#weixintext").val();
-		//生日
-		condi.birthDay = $("#birthday").val() || "";
-		//行业
-		condi.trade = $("#profession").val();
-		//现居住地
-		condi.address = $("#address").val();
-
-
-
-		//性别1男2女
-		condi.sexId = "404040e64dd26ab5014dd26ac61f0013";
-		var sexRadio = $("#inlineRadio2")[0].checked;
-		if(sexRadio){
-			//condi.sex = 2;
-			condi.sexId = "404040e64dd26ab5014dd26ac64e0014";
-		}
-		//血型
-		condi.bloodTypeId = $("#bloodgroup").val();
-		//星座
-		condi.constellationId = $("#constellation").val();
-		console.log(condi);
-		sendUpdateUserInfoHttp(condi);
-	}
-
-	//更新个人资料请求
-	function sendUpdateUserInfoHttp(obj){
+	//获取用户信息字典信息
+	function sendGetUserInfoDicHttp(){
 		g.httpTip.show();
-		var url = Base.profileUrl;
+		var url = Base.serverUrl + "baseCodeController/getBaseCodeByParents";
+		/*
+		性别：1001
+		身份：1002
+		婚姻状况：1003
+		爱好：1004
+		*/
+		var condi = {};
+		condi.parents = "1001,1002,1003,1004";
 		$.ajax({
 			url:url,
-			data:obj,
+			data:condi,
 			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
 			success: function(data){
-				console.log(data);
-				g.httpTip.hide();
-				var status = data.status || "";
-				if(status == "OK"){
-					Utils.offLineStore.set("login_userprofile",JSON.stringify(data.result),false);
-					alert("修改个人资料成功");
+				console.log("sendGetUserInfoDicHttp",data);
+				var status = data.success || false;
+				if(status){
+					var obj = data.obj || {};
+					g.userInfoDic = obj;
+					changeUserInfoDefaultHtml(obj);
+					//获取用户数据
+					sendGetUserInfoHttp();
 				}
 				else{
-					alert("修改个人资料失败");
+					var msg = data.message || "获取用户信息字典数据失败";
+					Utils.alert(msg);
 				}
+				g.httpTip.hide();
 			},
 			error:function(data){
 				g.httpTip.hide();
@@ -146,55 +110,31 @@ $(function(){
 		});
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//以下暂时无用...................................
-	//获取个人资料请求
-	function sendGetUserInfoHttp(token){
+	//获取用户信息
+	function sendGetUserInfoHttp(){
 		g.httpTip.show();
-		var url = Base.serverUrl + "userinfo.htm";
+		var url = Base.serverUrl + "user/getCustomerByCustomerIdController";
+		//参数: {customerId:string用户编号}
 		var condi = {};
-		condi.token = token;
+		condi.customerId = g.customerId;
 		$.ajax({
 			url:url,
 			data:condi,
-			type:"GET",
+			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
 			success: function(data){
 				console.log("sendGetUserInfoHttp",data);
-				g.httpTip.hide();
-				var status = data.status || "";
-				if(status == "OK"){
-					setUserInfoHtml(data.result);
-					Utils.offLineStore.set("login_userprofile",JSON.stringify(data.result.user),false);
+				var status = data.success || false;
+				if(status){
+					var obj = data.obj || {};
+					changeUserInfoHtml(obj);
 				}
 				else{
-					Utils.offLineStore.remove("userinfo",false);
-					Utils.offLineStore.remove("login_userprofile",false);
-					var msg = data.error || "";
-					alert("获取个人信息错误:" + msg);
-					location.href = "login.html";
+					var msg = data.message || "获取用户信息失败";
+					Utils.alert(msg);
 				}
+				g.httpTip.hide();
 			},
 			error:function(data){
 				g.httpTip.hide();
@@ -202,234 +142,156 @@ $(function(){
 		});
 	}
 
-	//获取图形验证码
-	function getImgCode(){
-		var img = $("#updatepwdcodeimg");
-		var tel = $("#phonetext").val();
-		var reg = /^1[3,5,7,8]\d{9}$/g;
-		if(img.length > 0 && reg.test(tel)){
-			g.codeId = tel;
-			console.log(tel);
-			//$("#updatepwdcodeimg").attr("src",Base.imgCodeUrl + "?id=" + g.codeId);
-			$("#updatepwdcodeimg").attr("src",Base.imgCodeUrl + "?id=" + g.codeId + "&t=" + (new Date() - 0));
-			clearTimeout(g.tout);
-			g.tout = setTimeout(function(){
-				getImgCode();
-			},60000);
+	//更新用户信息模板
+	function changeUserInfoDefaultHtml(obj){
+		var sex = obj["1001"] || [];
+		var identification = obj["1002"] || [];
+		var maritalStatus = obj["1003"] || [];
+		var interesting = obj["1004"] || [];
+
+		var sexHtml = [];
+		for(var k in sex){
+			sexHtml.push('<label><input type="radio" name="sexradio" id="' + k + '" value="' + k + '">' + sex[k] + '</label>');
+		}
+		var identificationHtml = [];
+		for(var k in identification){
+			identificationHtml.push('<label><input type="radio" name="idrodio" id="' + k + '" value="' + k + '">' + identification[k] + '</label>');
+		}
+		var maritalStatusHtml = [];
+		for(var k in maritalStatus){
+			maritalStatusHtml.push('<label><input type="radio" name="userstatus" id="' + k + '" value="' + k + '">' + maritalStatus[k] + '</label>');
+		}
+		var interestingHtml = [];
+		for(var k in interesting){
+			interestingHtml.push('<label><input type="checkbox" name="cklike" id="' + k + '" value="' + k + '">' + interesting[k] + '</label>');
+		}
+
+		$("#sexdiv").html(sexHtml.join(''));
+		$("#identificationdiv").html(identificationHtml.join(''));
+		$("#maritalStatusdiv").html(maritalStatusHtml.join(''));
+		$("#interestingdiv").html(interestingHtml.join(''));
+	}
+	//更新用户信息html
+	function changeUserInfoHtml(obj){
+		var sex = obj.sex || "";
+		var birthday = obj.birthday || "";
+		var identification = obj.identification || "";
+		var maritalStatus = obj.maritalStatus || "";
+		var interesting = obj.interesting || "";
+
+		if(sex !== ""){
+			$("#" + sex)[0].checked = true;
+		}
+		if(identification !== ""){
+			$("#" + identification)[0].checked = true;
+		}
+		if(maritalStatus !== ""){
+			$("#" + maritalStatus)[0].checked = true;
+		}
+		if(interesting !== ""){
+			var inter = interesting.split(",") || [];
+			for(var i = 0, len = inter.length; i < len; i++){
+				$("#" + inter[i])[0].checked = true;
+			}
+		}
+		if(birthday !== ""){
+			$("#birthday").val(birthday);
 		}
 	}
 
-	function getPhoneCode(){
-		var p = $("#phonetext").val() || "";
-		var imgCode = $("#phoneimgcode").val() || "";
-		if(p !== ""){
-			var reg = /^1[3,5,7,8]\d{9}$/g;
-			if(reg.test(p)){
-				if(imgCode !== ""){
-					g.phone = p;
-					if(!g.sendCode){
-						sendGetCodeHttp(imgCode);
-					}
-				}
-				else{
-					console.log("输入图形验证码");
-					$("#phoneimgcode").focus();
+
+	//保存用户信息
+	//更新个人资料
+	function saveBtnUp(){
+		//debugger
+		var sex = $("input[name='sexradio']:checked") || [];
+		var ids = $("input[name='idrodio']:checked") || [];
+		var status = $("input[name='userstatus']:checked") || [];
+		var likes = $("input[name='cklike']:checked") || [];
+
+		var birthday = $("#birthday").val() || "";
+
+		var cksex = "";
+		var ckid = "";
+		var ckstatus = "";
+		var cklikes = "";
+
+		if(sex.length > 0){
+			cksex = sex[0].value || "";
+		}
+		if(ids.length > 0){
+			ckid = ids[0].value || "";
+		}
+		if(status.length > 0){
+			ckstatus = status[0].value || "";
+		}
+		if(likes.length > 0){
+			var like = [];
+			for(var i = 0, len = likes.length; i < len; i++){
+				var v = likes[i].value || "";
+				if(v !== ""){
+					like.push(v);
 				}
 			}
-			else{
-				alert("手机输入不合法");
-				$("#phonetext").focus();
+			cklikes = like.join(',');
+		}
+
+		if(g.login_token !== "" && g.customerId !== ""){
+			var condi = {};
+			condi.login_token = g.login_token;
+			condi.customerId = g.customerId;
+			if(cksex !== ""){
+				condi.sex = cksex;
 			}
+			if(ckid !== ""){
+				condi.identification = ckid;
+			}
+			if(ckstatus !== ""){
+				condi.maritalStatus = ckstatus;
+			}
+			if(cklikes !== ""){
+				condi.interesting = cklikes;
+			}
+			if(birthday !== ""){
+				condi.birthday = birthday;
+			}
+
+			sendSetUserInfoHttp(condi);
 		}
 		else{
-			console.log("没填手机号");
-			$("#phonetext").focus();
+			Utils.alert("登录超时,请重新登录");
 		}
 	}
 
-	//请求验证码
-	function sendGetCodeHttp(imgCode){
+	//更新
+	function sendSetUserInfoHttp(condi){
 		g.httpTip.show();
-		var url = Base.getCodeUrl;
-		var condi = {};
-		condi.mobile = g.phone;
-		condi.captcha = imgCode;
+		/*
+		{"login_token":string登录标识,customerId:string用户编号,
+		sex用户性别:string,
+		identification:string用户身份,
+		maritalStatus:string用户婚姻状况,
+		interesting:string用户喜好,
+		birthday:string用户生日}
+		*/
+		var url = Base.serverUrl + "user/updateCustomerInfoController";
 		$.ajax({
 			url:url,
 			data:condi,
 			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
 			success: function(data){
-				console.log(data);
-				g.httpTip.hide();
-				var status = data.status || "";
-				if(status == "OK"){
-					g.sendCode = true;
-					$("#sendbtn").html("60秒后重新发送");
-					setTimeout(function(){
-						resetGetValidCode();
-					},1000);
+				console.log("sendSetUserInfoHttp",data);
+				var status = data.success || false;
+				if(status){
+					Utils.alert("用户信息更新成功");
 				}
 				else{
-					alert("验证码获取失败");
+					var msg = data.message || "获取用户信息失败";
+					Utils.alert(msg);
 				}
-			},
-			error:function(data){
 				g.httpTip.hide();
-			}
-		});
-	}
-
-	//重新获取验证码
-	function resetGetValidCode(){
-		g.sendTime = g.sendTime - 1;
-		if(g.sendTime > 0){
-			$("#sendbtn").html(g.sendTime + "秒后重新发送");
-			setTimeout(function(){
-				resetGetValidCode();
-			},1000);
-		}
-		else{
-			$("#sendbtn").html("重新发送");
-			g.sendTime = 60;
-			g.sendCode = false;
-
-			//重新获取图形验证码,1分钟有效
-			getImgCode();
-			$("#phoneimgcode").val("");
-			$("#phoneimgcode").focus();
-		}
-	}
-
-	//绑定手机号
-	function bindPhone(){
-		//token:用户凭据
-		//mobile：手机号码
-		//validater:短信验证码
-		var p = $("#phonetext").val() || "";
-		var bindcode = $("#bindcode").val() || "";
-		if(g.isBind){
-			if(p !== ""){
-				var reg = /^1[3,5,7,8]\d{9}$/g;
-				if(reg.test(p)){
-					if(bindcode !== ""){
-						sendBindPhoneHttp(p,bindcode);
-					}
-					else{
-						console.log("输入验证码");
-						$("#bindcode").focus();
-					}
-				}
-				else{
-					alert("手机输入不合法");
-					$("#phonetext").focus();
-				}
-			}
-			else{
-				console.log("没填手机号");
-				$("#phonetext").focus();
-			}
-		}
-		else{
-			alert("解绑没有接口");
-		}
-	}
-
-
-	function setPhoneHtml(tel){
-		var html = [];
-		html.push('<label>绑定手机号 *</label>');
-		html.push('<input id="phonetext" value="' + tel + '" type="text" readonly class="form-control" required="required">');
-		$("#phonediv").html(html.join(''));
-	}
-
-
-	function setUserFunHtml(obj){
-		//style="background:#b9090e;color:#fff;"
-		var h = 'style="background:#b9090e;color:#fff;"';
-		var comments = obj.comments || "";
-		var coupons = obj.coupons || "";
-		var messages = obj.messages || "";
-		var appoints = obj.appoints || "";
-		var collects = obj.collects || "";
-		var orders = obj.orders || "";
-
-		var html = [];
-		html.push('<ul class="blog_category">');
-		html.push('<li><a href="c_my.html?token=' + g.token + '&p=1" ' + (g.page == 1 ? h : "") + ' >个人信息 </a></li>');
-		html.push('<li><a href="c_safe.html?token=' + g.token + '&p=2" ' + (g.page == 2 ? h : "") + ' >安全设置 </a></li>');
-		html.push('<li><a href="c_home.html?token=' + g.token + '&p=3" ' + (g.page == 3 ? h : "") + '  >房屋信息 </a></li>');
-		html.push('<li><a href="c_ing.html?token=' + g.token + '&p=4" ' + (g.page == 4 ? h : "") + '  >家装进度 </a></li>');
-		html.push('<li><a href="c_message.html?token=' + g.token + '&p=5" ' + (g.page == 5 ? h : "") + '  >我的留言 <span class="badge">' + messages + '</span></a></li>');
-		html.push('<li><a href="c_sub.html?token=' + g.token + '&p=6" ' + (g.page == 6 ? h : "") + '  >我的预约 <span class="badge">' + appoints + '</span></a></li>');
-		html.push('<li><a href="c_order.html?token=' + g.token + '&p=7" ' + (g.page == 7 ? h : "") + '  >我的订单 <span class="badge">' + orders + '</span></a></li>');
-		html.push('<li><a href="c_comment.html?token=' + g.token + '&p=8" ' + (g.page == 8 ? h : "") + '  >我的评论 <span class="badge">' + comments + '</span></a></li>');
-		html.push('<li><a href="c_fav.html?token=' + g.token + '&p=9" ' + (g.page == 9 ? h : "") + '  >我的收藏 <span class="badge">' + collects + '</span></a></li>');
-		html.push('<li><a href="c_coupon.html?token=' + g.token + '&p=10" ' + (g.page == 10 ? h : "") + '  >我的优惠券 <span class="badge">' + coupons + '</span></a></li>');
-		html.push('</ul>');
-
-		$("#userfunul").html(html.join(''));
-	}
-
-
-	//注册
-	function regBtnUp(evt){
-		var userName = $("#inputEmail3").val() || "";
-		var usePwd = $("#inputPassword3").val() || "";
-		var phone = $("#inputPhone3").val() || "";
-		var imgCode = $("#inputImgCode3").val() || "";
-		var validCode = $("#inputCode3").val() || "";
-
-		var regEMail = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
-		var regPhone = /^1[3,5,7,8]\d{9}$/;
-		var regFont = /^([\u4E00-\u9FA5|\w\-])+$/;
-		if(regEMail.test(userName) || regPhone.test(userName) || regFont.test(userName)){
-			if(userName !== "" && usePwd !== "" && phone !== "" && imgCode !== "" && validCode !== ""){
-				sendRegHttp(userName,usePwd,validCode);
-				//http://101.200.229.135:8080/api/regist?username=ytm&password=123456&mobile=18612444099&validater=3967
-			}
-			else{
-				alert("账户信息未填");
-			}
-		}
-		else{
-			alert("用户名输入错误,请输入邮箱或者手机号");
-			$("#inputEmail3").focus();
-		}
-
-	}
-
-	//绑定手机号
-	function sendBindPhoneHttp(phone,code){
-		g.httpTip.show();
-		var url = Base.bindMobile;
-		//token:用户凭据
-		//mobile：手机号码
-		//validater:短信验证码
-		var condi = {};
-		condi.token = g.token;
-		condi.mobile = phone;
-		condi.validater = code;
-		$.ajax({
-			url:url,
-			data:condi,
-			type:"POST",
-			dataType:"json",
-			context:this,
-			global:false,
-			success: function(data){
-				console.log(data);
-				g.httpTip.hide();
-				var status = data.status || "";
-				if(status == "OK"){
-					alert("绑定手机成功");
-				}
-				else{
-					var msg = data.error;
-					alert("手机绑定错误:" + msg);
-				}
 			},
 			error:function(data){
 				g.httpTip.hide();
@@ -438,38 +300,20 @@ $(function(){
 	}
 
 
-	function sendMyInfoCountsHttp(){
-		g.httpTip.show();
-		var url = Base.unreads;
-		//token:用户凭据
-		var condi = {};
-		condi.token = g.token;
-		$.ajax({
-			url:url,
-			data:condi,
-			type:"GET",
-			dataType:"json",
-			context:this,
-			global:false,
-			success: function(data){
-				console.log(data);
-				g.httpTip.hide();
-				var status = data.status || "";
-				if(status == "OK"){
-					setUserFunHtml(data.result);
-				}
-				else{
-					var msg = data.error;
-					Utils.alert("获取未读消息错误:" + msg);
-				}
-			},
-			error:function(data){
-				g.httpTip.hide();
-			}
-		});
-	}
 
 
+
+
+
+
+
+
+
+
+
+
+
+	//暂时无用...........................
 	function avatarBtnUp(){
 		var avatar = $("#avatar").val() || "";
 		if(avatar !== ""){
