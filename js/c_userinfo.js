@@ -16,7 +16,7 @@ $(function(){
 
 
 	var g = {};
-	g.userInfoDic = {};
+	//g.userInfoDic = {};
 	g.customerId = "";
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	//g.page = Utils.getQueryString("p") - 0;
@@ -93,7 +93,7 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					var obj = data.obj || {};
-					g.userInfoDic = obj;
+					//g.userInfoDic = obj;
 					changeUserInfoDefaultHtml(obj);
 					//获取用户数据
 					sendGetUserInfoHttp();

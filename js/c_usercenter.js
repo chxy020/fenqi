@@ -5,7 +5,8 @@
 //页面初始化
 $(function(){
 	var g = {};
-	//g.token = Utils.getQueryString("token");
+	g.customerId = "";
+	g.login_token = Utils.offLineStore.get("token",false) || "";
 	//g.page = Utils.getQueryString("p") - 0;
 	g.httpTip = new Utils.httpTip({});
 
@@ -37,6 +38,9 @@ $(function(){
 	//修改个人资料
 	function setUserInfoHtml(data){
 		var obj = data || {};
+		//用户登录ID
+		g.customerId = obj.customerId || "";
+
 		var phoneNumber = obj.phoneNumber || "";
 		$("#userphone").html(phoneNumber);
 		/*
@@ -88,9 +92,11 @@ $(function(){
 	function uploadBtnUp(){
 		if(lastname()){
 			g.httpTip.show();
-			var url = Base.serverUrl + "/api/user/changeAvatar";
+			var url = Base.serverUrl + "user/uploadIcon";
 			var condi = {};
-			condi.token = g.token;
+			condi.login_token = g.login_token;
+			condi.customer_id = g.customerId;
+
 			$.ajaxFileUpload({
 				url: url, //用于文件上传的服务器端请求地址
 				data:condi,
@@ -100,9 +106,9 @@ $(function(){
 				success: function (data, status)  //服务器成功响应处理函数
 				{
 					g.httpTip.hide();
-					Utils.alert("头像上传成功");
-					console.log("ajaxFileUpload",data,status);
-					location.reload();
+					//Utils.alert("头像上传成功");
+					//console.log("ajaxFileUpload",data,status);
+					//location.reload();
 
 
 					/*
