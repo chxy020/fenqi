@@ -36,8 +36,7 @@ $(function(){
 
 
 	//头像
-	//$("#avatarbtn").bind("click",avatarBtnUp);
-	$("#avatar").bind("change",avatarBtnUp);
+	$(document).on("change","#avatar",avatarBtnUp);
 	//保存个人资料
 	$("#savebtn").bind("click",saveBtnUp);
 

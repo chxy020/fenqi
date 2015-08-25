@@ -22,8 +22,7 @@ $(function(){
 
 
 	//头像
-	//$("#avatarbtn").bind("click",avatarBtnUp);
-	$("#avatar").bind("change",avatarBtnUp);
+	$(document).on("change","#avatar",avatarBtnUp);
 
 
 
@@ -112,6 +111,7 @@ $(function(){
 					var src = data.obj;
 					$("#avatarimg").attr("src",src);
 					g.httpTip.hide();
+
 					//Utils.alert("头像上传成功");
 					//console.log("ajaxFileUpload",data,status);
 					//location.reload();
