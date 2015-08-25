@@ -29,6 +29,7 @@ $(function(){
 	//获取个人资料
 	function getUserInfo(){
 		var info = Utils.offLineStore.get("userinfo",false) || "";
+		console.log("getUserInfo",info);
 		if(info !== ""){
 			var obj = JSON.parse(info) || {};
 			setUserInfoHtml(obj);
@@ -42,15 +43,11 @@ $(function(){
 
 		var phoneNumber = obj.phoneNumber || "";
 		$("#userphone").html(phoneNumber);
-		/*
-		var avatar = obj.avatar || "";
-		if(avatar !== "" ){
-			avatar = avatar.url || "";
-		}
+
+		var avatar = obj.icon || "";
 		if(avatar !== ""){
-			$("#avatarbtn img").attr("src",avatar);
+			$("#avatarimg").attr("src",avatar);
 		}
-		*/
 	}
 
 
@@ -108,16 +105,15 @@ $(function(){
 				{
 					//{"success":true,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508240001.jpg","list":null,"message":null,"code":null,"token":null}
 					console.log("ajaxFileUpload",data);
+					g.httpTip.hide();
 					if(data != null && data != ""){
 						try{
 							var obj = JSON.parse(data);
 							var src = obj.obj + "?t=" + (new Date() - 0);
 							$("#avatarimg").attr("src",src);
-							g.httpTip.hide();
 						}
 						catch(e){
 							Utils.alert("头像上传失败");
-							g.httpTip.hide();
 						}
 					}
 					//Utils.alert("头像上传成功");
