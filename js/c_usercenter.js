@@ -54,6 +54,7 @@ $(function(){
 		*/
 	}
 
+
 	function avatarBtnUp(){
 		var avatar = $("#avatar").val() || "";
 		if(avatar !== ""){
@@ -97,6 +98,7 @@ $(function(){
 			condi.login_token = g.login_token;
 			condi.customer_id = g.customerId;
 
+			//document.domain = "partywo.com";
 			$.ajaxFileUpload({
 				url: url, //用于文件上传的服务器端请求地址
 				data:condi,
@@ -105,28 +107,19 @@ $(function(){
 				dataType: 'jsonp', //返回值类型 一般设置为json
 				success: function (data, status)  //服务器成功响应处理函数
 				{
+					//{"success":true,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508240001.jpg","list":null,"message":null,"code":null,"token":null}
+					var data = {"success":true,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508240001.jpg","list":null,"message":null,"code":null,"token":null};
+					var src = data.obj;
+					$("#avatarimg").attr("src",src);
 					g.httpTip.hide();
 					//Utils.alert("头像上传成功");
 					//console.log("ajaxFileUpload",data,status);
 					//location.reload();
-
-
-					/*
-					$("#img1").attr("src", data.imgurl);
-					if (typeof (data.error) != 'undefined') {
-						if (data.error != '') {
-							alert(data.error);
-						} else {
-							alert(data.msg);
-						}
-					}
-					*/
 				},
 				error: function (data, status, e)//服务器响应失败处理函数
 				{
 					Utils.alert("头像上传失败");
 					g.httpTip.hide();
-					//alert(e);
 				}
 			});
 			return false;
