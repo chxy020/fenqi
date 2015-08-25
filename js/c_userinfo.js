@@ -123,6 +123,10 @@ $(function(){
 				if(status){
 					var obj = data.obj || {};
 					changeUserInfoHtml(obj);
+
+					var userInfo = JSON.stringify(obj);
+					//保存用户数据
+					Utils.offLineStore.set("userinfo",userInfo,false);
 				}
 				else{
 					var msg = data.message || "获取用户信息失败";
@@ -172,6 +176,11 @@ $(function(){
 		var identification = obj.identification || "";
 		var maritalStatus = obj.maritalStatus || "";
 		var interesting = obj.interesting || "";
+
+		var avatar = obj.icon || "";
+		if(avatar !== ""){
+			$("#avatarimg").attr("src",avatar);
+		}
 
 		if(sex !== ""){
 			$("#" + sex)[0].checked = true;
