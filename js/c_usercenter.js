@@ -46,6 +46,7 @@ $(function(){
 
 		var avatar = obj.icon || "";
 		if(avatar !== ""){
+			avatar = avatar + "?t=" + (new Date() - 0);
 			$("#avatarimg").attr("src",avatar);
 		}
 	}
