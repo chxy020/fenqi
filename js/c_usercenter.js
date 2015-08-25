@@ -107,11 +107,12 @@ $(function(){
 				success: function (data, status)  //服务器成功响应处理函数
 				{
 					//{"success":true,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508240001.jpg","list":null,"message":null,"code":null,"token":null}
-					var data = {"success":true,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508240001.jpg","list":null,"message":null,"code":null,"token":null};
-					var src = data.obj;
-					$("#avatarimg").attr("src",src);
-					g.httpTip.hide();
-
+					if(data != null && data != ""){
+						var obj = JSON.parse(data);
+						var src = obj.obj;
+						$("#avatarimg").attr("src",src);
+						g.httpTip.hide();
+					}
 					//Utils.alert("头像上传成功");
 					//console.log("ajaxFileUpload",data,status);
 					//location.reload();
