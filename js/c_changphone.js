@@ -10,6 +10,7 @@ $(function(){
 	g.imgCodeId = "";
 	g.sendCode = false;
 	g.sendTime = 60;
+	g.tout = null;
 	g.httpTip = new Utils.httpTip({});
 
 	g.codeImg = $("#imgcodebtn")[0];
@@ -20,6 +21,17 @@ $(function(){
 	sendGetImgCodeHttp();
 	sendGetNewImgCodeHttp();
 
+	g.customerId = "";
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//验证登录状态
+	var loginStatus = Utils.getUserInfo();
+	if(!loginStatus){
+		//未登录
+		location.replace("login.html");
+	}
+	else{
+		getUserInfo();
+	}
 
 	$("#inputphone").bind("blur",validPhone);
 	$("#getcodebtn").bind("click",getValidCode);
@@ -34,12 +46,33 @@ $(function(){
 
 
 
+	//获取个人资料
+	function getUserInfo(){
+		var info = Utils.offLineStore.get("userinfo",false) || "";
+		console.log("getUserInfo",info);
+		if(info !== ""){
+			var obj = JSON.parse(info) || {};
+			setUserInfoHtml(obj);
+		}
+	}
+	//修改个人资料
+	function setUserInfoHtml(data){
+		var obj = data || {};
+		//用户登录ID
+		g.customerId = obj.customerId || "";
+
+		var phoneNumber = obj.phoneNumber || "";
+		$("#inputphone").val(phoneNumber);
+	}
+
 	function sendGetImgCodeHttp(){
 		//URL:  http://www.partywo.com/imageValidate/getImageValidate
 		//参数: {image_key:string}
 		var url = Base.serverUrl + "imageValidate/getImageValidate";
 		url = url + "?image_key=" + g.guid + "&t=" + (new Date() - 0);
 		g.codeImg.src = url;
+
+		$("#inputimgcode").val("");
 	}
 	function sendGetNewImgCodeHttp(){
 		//URL:  http://www.partywo.com/imageValidate/getImageValidate
@@ -47,6 +80,8 @@ $(function(){
 		var url = Base.serverUrl + "imageValidate/getImageValidate";
 		url = url + "?image_key=" + g.guidNew + "&t=" + (new Date() - 0);
 		g.codeNewImg.src = url;
+
+		$("#inputimgcode_new").val("");
 	}
 
 
@@ -98,7 +133,7 @@ $(function(){
 		g.sendTime = g.sendTime - 1;
 		if(g.sendTime > 0){
 			$("#getcodebtn").html(g.sendTime + "秒后重新发送");
-			setTimeout(function(){
+			g.tout = setTimeout(function(){
 				resetGetValidCode();
 			},1000);
 		}
@@ -108,9 +143,7 @@ $(function(){
 			g.sendCode = false;
 
 			//重新获取图形验证码,1分钟有效
-			//getImgCode();
-			//$("#inputImgCode3").val("");
-			//$("#inputImgCode3").focus();
+			sendGetImgCodeHttp();
 		}
 	}
 	//请求验证码
@@ -158,8 +191,6 @@ $(function(){
 		});
 	}
 
-
-
 	//验证短信验证码
 	function validPhoneCode(evt){
 		var code = $("#inputcode").val() || "";
@@ -176,7 +207,9 @@ $(function(){
 	}
 
 	function sendValidCodeHttp(condi){
-		var url = Base.serverUrl + "user/updatePasswordPreController";
+		//URL:  http://www.partywo.com/user/updatePhoneNumberPreController
+		//参数: {phone_number:string,validate_code:string}
+		var url = Base.serverUrl + "user/updatePhoneNumberPreController";
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -192,6 +225,7 @@ $(function(){
 
 					g.sendCode = false;
 					g.sendTime = 60;
+					clearTimeout(g.tout);
 					//显示第二步
 					$("#setup1").hide();
 					$("#setup2").show();
@@ -242,6 +276,8 @@ $(function(){
 				g.newPhone = p;
 				if(imgCode !== ""){
 					if(!g.sendCode){
+						g.sendTime = 60;
+
 						sendGetNewCodeHttp(imgCode);
 					}
 				}
@@ -265,7 +301,7 @@ $(function(){
 		if(g.sendTime > 0){
 			$("#getcodebtn_new").html(g.sendTime + "秒后重新发送");
 			setTimeout(function(){
-				resetGetValidCode();
+				resetGetNewValidCode();
 			},1000);
 		}
 		else{
@@ -274,9 +310,7 @@ $(function(){
 			g.sendCode = false;
 
 			//重新获取图形验证码,1分钟有效
-			//getImgCode();
-			//$("#inputImgCode3").val("");
-			//$("#inputImgCode3").focus();
+			sendGetNewImgCodeHttp();
 		}
 	}
 	//请求验证码
@@ -327,7 +361,9 @@ $(function(){
 		var code = $("#inputcode_new").val() || "";
 		if(code !== ""){
 			var condi = {};
-			condi.phone_number = g.newPhone;
+			condi.customer_id = g.customerId;
+			condi.token = g.login_token;
+			condi.phoneNumber = g.newPhone;
 			condi.validate_code = code;
 			sendNewValidCodeHttp(condi);
 		}
@@ -338,7 +374,9 @@ $(function(){
 	}
 
 	function sendNewValidCodeHttp(condi){
-		var url = Base.serverUrl + "user/updatePasswordPreController";
+		//URL:  http://www.partywo.com/user/updatePhoneNumberController
+		//参数: {customer_id:string,token:string,phoneNumber:string,validate_code:string}
+		var url = Base.serverUrl + "user/updatePhoneNumberController";
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -347,16 +385,19 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendValidCodeHttp",data);
+				console.log("sendNewValidCodeHttp",data);
 				var status = data.success || false;
 				if(status){
-					g.validInfo = data;
-					//显示第二步
+					//退出登录
+					Utils.loginOut(true);
+
+					//显示第三步
 					$("#setup2").hide();
 					$("#setup3").show();
 					$("#progressimg2").attr("src","images/center/findpwd5.png");
 					$("#setupimg2").attr("src","images/center/findpwd3.png");
 					$("#setupspan2").addClass("b");
+					$("#newphone").html("恭喜您,新的绑定手机号:" + g.newPhone);
 					setTimeout(function(){
 						location.href = "login.html";
 					},2000);
@@ -364,6 +405,11 @@ $(function(){
 				else{
 					var msg = data.message || "验证码校验失败";
 					Utils.alert(msg);
+
+					//重新获取图形验证码
+					//sendGetNewImgCodeHttp();
+					$("#inputimgcode_new").val("");
+					$("#inputcode_new").val("");
 				}
 				g.httpTip.hide();
 			},

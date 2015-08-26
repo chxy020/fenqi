@@ -483,7 +483,7 @@ if(typeof console == "undefined"){
 	}
 
 	//安全退出
-	function loginOut(){
+	function loginOut(isanon){
 		var token = Utils.offLineStore.get("token",false);
 		var condi = {};
 		condi.login_token = token;
@@ -502,7 +502,11 @@ if(typeof console == "undefined"){
 		});
 		Utils.offLineStore.remove("userinfo",false);
 		Utils.offLineStore.remove("token",false);
-		location.href = "index.html";
+
+		if(!isanon){
+			location.href = "index.html";
+		}
+
 		//Utils.offLineStore.remove("login_userprofile",false);
 		/*
 		var page = location.href.indexOf("/center/");

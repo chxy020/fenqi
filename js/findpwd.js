@@ -34,6 +34,8 @@ $(function(){
 		var url = Base.serverUrl + "imageValidate/getImageValidate";
 		url = url + "?image_key=" + g.guid + "&t=" + (new Date() - 0);
 		g.codeImg.src = url;
+
+		$("#inputimgcode").val("");
 	}
 
 	//验证手机号
@@ -94,8 +96,7 @@ $(function(){
 			g.sendCode = false;
 
 			//重新获取图形验证码,1分钟有效
-			//getImgCode();
-			//$("#inputImgCode3").val("");
+			sendGetImgCodeHttp();
 			//$("#inputImgCode3").focus();
 		}
 	}

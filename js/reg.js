@@ -35,6 +35,8 @@ $(function(){
 		var url = Base.serverUrl + "imageValidate/getImageValidate";
 		url = url + "?image_key=" + g.guid + "&t=" + (new Date() - 0);
 		g.codeImg.src = url;
+
+		$("#inputimgcode").val("");
 	}
 
 	//验证手机号
@@ -119,9 +121,8 @@ $(function(){
 			g.sendCode = false;
 
 			//重新获取图形验证码,1分钟有效
-			//getImgCode();
-			//$("#inputImgCode3").val("");
-			//$("#inputImgCode3").focus();
+			//重新获取图形验证码,1分钟有效
+			sendGetImgCodeHttp();
 		}
 	}
 	//请求验证码
@@ -241,14 +242,18 @@ $(function(){
 				console.log("sendRegHttp",data);
 				var status = data.success || false;
 				if(status){
-					$("#reginfodiv").hide();
-					$("#regsuccessdiv").show();
-					//var token = data.result || "";
-					//保存token,标识已登录
-					Utils.offLineStore.set("token",1,false);
-					//保存用户数据
-					//Utils.offLineStore.set("userinfo",JSON.stringify(condi),false);
-					//location.href = "center.html?token=" + token;
+					var userInfo = data.obj || "";
+					if(userInfo !== ""){
+						$("#reginfodiv").hide();
+						$("#regsuccessdiv").show();
+
+						userInfo = JSON.stringify(userInfo);
+						//保存用户数据
+						Utils.offLineStore.set("userinfo",userInfo,false);
+						var token = data.token || "";
+
+						Utils.offLineStore.set("token",token,false);
+					}
 				}
 				else{
 					var msg = data.message || "手机号注册失败";
