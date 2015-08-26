@@ -36,8 +36,7 @@ $(function(){
 
 
 	//头像
-	//$("#avatarbtn").bind("click",avatarBtnUp);
-	$("#avatar").bind("change",avatarBtnUp);
+	$(document).on("change","#avatar",avatarBtnUp);
 	//保存个人资料
 	$("#savebtn").bind("click",saveBtnUp);
 
@@ -59,15 +58,11 @@ $(function(){
 
 		var phoneNumber = obj.phoneNumber || "";
 		$("#userphone").html(phoneNumber);
-		/*
-		var avatar = obj.avatar || "";
-		if(avatar !== "" ){
-			avatar = avatar.url || "";
-		}
+		var avatar = obj.icon || "";
 		if(avatar !== ""){
-			$("#avatarbtn img").attr("src",avatar);
+			avatar = avatar + "?t=" + (new Date() - 0);
+			$("#avatarimg").attr("src",avatar);
 		}
-		*/
 	}
 
 	//获取用户信息字典信息
@@ -129,6 +124,10 @@ $(function(){
 				if(status){
 					var obj = data.obj || {};
 					changeUserInfoHtml(obj);
+
+					var userInfo = JSON.stringify(obj);
+					//保存用户数据
+					Utils.offLineStore.set("userinfo",userInfo,false);
 				}
 				else{
 					var msg = data.message || "获取用户信息失败";
@@ -178,6 +177,12 @@ $(function(){
 		var identification = obj.identification || "";
 		var maritalStatus = obj.maritalStatus || "";
 		var interesting = obj.interesting || "";
+
+		var avatar = obj.icon || "";
+		if(avatar !== ""){
+			avatar = avatar + "?t=" + (new Date() - 0);
+			$("#avatarimg").attr("src",avatar);
+		}
 
 		if(sex !== ""){
 			$("#" + sex)[0].checked = true;
@@ -300,20 +305,6 @@ $(function(){
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//暂时无用...........................
 	function avatarBtnUp(){
 		var avatar = $("#avatar").val() || "";
 		if(avatar !== ""){
@@ -352,9 +343,12 @@ $(function(){
 	function uploadBtnUp(){
 		if(lastname()){
 			g.httpTip.show();
-			var url = Base.serverUrl + "/api/user/changeAvatar";
+			var url = Base.serverUrl + "user/uploadIcon";
 			var condi = {};
-			condi.token = g.token;
+			condi.login_token = g.login_token;
+			condi.customer_id = g.customerId;
+
+			//document.domain = "partywo.com";
 			$.ajaxFileUpload({
 				url: url, //用于文件上传的服务器端请求地址
 				data:condi,
@@ -363,28 +357,27 @@ $(function(){
 				dataType: 'jsonp', //返回值类型 一般设置为json
 				success: function (data, status)  //服务器成功响应处理函数
 				{
+					//{"success":true,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508240001.jpg","list":null,"message":null,"code":null,"token":null}
+					console.log("ajaxFileUpload",data);
 					g.httpTip.hide();
-					Utils.alert("头像上传成功");
-					console.log("ajaxFileUpload",data,status);
-					location.reload();
-
-
-					/*
-					$("#img1").attr("src", data.imgurl);
-					if (typeof (data.error) != 'undefined') {
-						if (data.error != '') {
-							alert(data.error);
-						} else {
-							alert(data.msg);
+					if(data != null && data != ""){
+						try{
+							var obj = JSON.parse(data);
+							var src = obj.obj + "?t=" + (new Date() - 0);
+							$("#avatarimg").attr("src",src);
+						}
+						catch(e){
+							Utils.alert("头像上传失败");
 						}
 					}
-					*/
+					//Utils.alert("头像上传成功");
+					//console.log("ajaxFileUpload",data,status);
+					//location.reload();
 				},
 				error: function (data, status, e)//服务器响应失败处理函数
 				{
 					Utils.alert("头像上传失败");
 					g.httpTip.hide();
-					//alert(e);
 				}
 			});
 			return false;

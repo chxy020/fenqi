@@ -6,23 +6,84 @@
 $(function(){
 	var g = {};
 	g.phone = "";
+	g.newPhone = "";
 	g.imgCodeId = "";
 	g.sendCode = false;
 	g.sendTime = 60;
+	g.tout = null;
 	g.httpTip = new Utils.httpTip({});
-	g.pwdvalidater = "";
-	g.userName = "";
+
+	g.codeImg = $("#imgcodebtn")[0];
+	g.codeNewImg = $("#imgcodebtn_new")[0];
+	g.guid = Utils.getGuid();
+	g.guidNew = Utils.getGuid();
+	//获取图形验证码
+	sendGetImgCodeHttp();
+	sendGetNewImgCodeHttp();
+
+	g.customerId = "";
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+	//验证登录状态
+	var loginStatus = Utils.getUserInfo();
+	if(!loginStatus){
+		//未登录
+		location.replace("login.html");
+	}
+	else{
+		getUserInfo();
+	}
 
 	$("#inputphone").bind("blur",validPhone);
 	$("#getcodebtn").bind("click",getValidCode);
-	$("#nextbtn1").bind("click",validCode);
+	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);
+	$("#nextbtn").bind("click",validPhoneCode);
 
-	$("#inputphone2").bind("blur",validNewPhone);
-	$("#getcodebtn2").bind("click",getNewValidCode);
-	$("#nextbtn2").bind("click",validNewCode);
+	$("#inputphone_new").bind("blur",validNewPhone);
+	$("#getcodebtn_new").bind("click",getValidNewCode);
+	$("#imgcodebtn_new").bind("click",sendGetNewImgCodeHttp);
+	$("#changephonebtn").bind("click",validNewPhoneCode);
 
-	//$("#sendbtn2").bind("click",enterChangePwd);
-	//$("#resetbtn2").bind("click",resetPwdInfo);
+
+
+
+	//获取个人资料
+	function getUserInfo(){
+		var info = Utils.offLineStore.get("userinfo",false) || "";
+		console.log("getUserInfo",info);
+		if(info !== ""){
+			var obj = JSON.parse(info) || {};
+			setUserInfoHtml(obj);
+		}
+	}
+	//修改个人资料
+	function setUserInfoHtml(data){
+		var obj = data || {};
+		//用户登录ID
+		g.customerId = obj.customerId || "";
+
+		var phoneNumber = obj.phoneNumber || "";
+		$("#inputphone").val(phoneNumber);
+	}
+
+	function sendGetImgCodeHttp(){
+		//URL:  http://www.partywo.com/imageValidate/getImageValidate
+		//参数: {image_key:string}
+		var url = Base.serverUrl + "imageValidate/getImageValidate";
+		url = url + "?image_key=" + g.guid + "&t=" + (new Date() - 0);
+		g.codeImg.src = url;
+
+		$("#inputimgcode").val("");
+	}
+	function sendGetNewImgCodeHttp(){
+		//URL:  http://www.partywo.com/imageValidate/getImageValidate
+		//参数: {image_key:string}
+		var url = Base.serverUrl + "imageValidate/getImageValidate";
+		url = url + "?image_key=" + g.guidNew + "&t=" + (new Date() - 0);
+		g.codeNewImg.src = url;
+
+		$("#inputimgcode_new").val("");
+	}
+
 
 	//验证手机号
 	function validPhone(){
@@ -38,18 +99,24 @@ $(function(){
 
 	//获取验证码
 	function getValidCode(evt){
-		var ele = evt.currentTarget;
+		//var ele = evt.currentTarget;
 		//$(ele).removeClass("curr");
 		//if(!this.moved){}
 
 		var p = $("#inputphone").val() || "";
-		//var imgCode = $("#inputImgCode3").val() || "";
+		var imgCode = $("#inputimgcode").val() || "";
 		if(p !== ""){
 			var reg = /^1[3,5,7,8]\d{9}$/g;
 			if(reg.test(p)){
 				g.phone = p;
-				if(!g.sendCode){
-					sendGetCodeHttp();
+				if(imgCode !== ""){
+					if(!g.sendCode){
+						sendGetCodeHttp(imgCode);
+					}
+				}
+				else{
+					Utils.alert("请输入图形验证码");
+					$("#inputimgcode").focus();
 				}
 			}
 			else{
@@ -66,7 +133,7 @@ $(function(){
 		g.sendTime = g.sendTime - 1;
 		if(g.sendTime > 0){
 			$("#getcodebtn").html(g.sendTime + "秒后重新发送");
-			setTimeout(function(){
+			g.tout = setTimeout(function(){
 				resetGetValidCode();
 			},1000);
 		}
@@ -76,17 +143,18 @@ $(function(){
 			g.sendCode = false;
 
 			//重新获取图形验证码,1分钟有效
-			//getImgCode();
-			//$("#inputImgCode3").val("");
-			//$("#inputImgCode3").focus();
+			sendGetImgCodeHttp();
 		}
 	}
 	//请求验证码
-	function sendGetCodeHttp(){
-		var url = Base.serverUrl + "";
+	function sendGetCodeHttp(imgCode){
+		//{'phone_number':string,'validate_key':string,'validate_code':string}
+		var url = Base.serverUrl + "message/sendValidateMessage";
 		var condi = {};
-		condi.mobile = g.phone;
-		//condi.captcha = imgCode;
+		condi.phone_number = g.phone;
+		condi.validate_key = g.guid;
+		condi.validate_code = imgCode;
+
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -94,11 +162,14 @@ $(function(){
 			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
+			//要求为Boolean类型的参数，默认为true。表示是否触发全局ajax事件。设置为false将不会触发全局ajax事件，ajaxStart或ajaxStop可用于控制各种ajax事件。
+			//global:false,
 			success: function(data){
 				console.log("sendGetCodeHttp",data);
-				var status = data.status || "";
-				if(status == "OK"){
+				var status = data.success || false;
+				if(status){
+					alert("验证码:" + data.obj);
+					Utils.alert("验证码已发送,请注意查收");
 					g.sendCode = true;
 					$("#getcodebtn").html("60秒后重新发送");
 					setTimeout(function(){
@@ -106,7 +177,11 @@ $(function(){
 					},1000);
 				}
 				else{
-					Utils.alert("验证码获取失败");
+					var msg = data.message || "验证码获取失败";
+					Utils.alert(msg);
+
+					//重新请求图形验证码
+					sendGetImgCodeHttp();
 				}
 				g.httpTip.hide();
 			},
@@ -116,15 +191,13 @@ $(function(){
 		});
 	}
 
-
-
 	//验证短信验证码
-	function validCode(evt){
+	function validPhoneCode(evt){
 		var code = $("#inputcode").val() || "";
 		if(code !== ""){
 			var condi = {};
-			condi.phone = g.phone;
-			condi.code = code;
+			condi.phone_number = g.phone;
+			condi.validate_code = code;
 			sendValidCodeHttp(condi);
 		}
 		else{
@@ -134,7 +207,9 @@ $(function(){
 	}
 
 	function sendValidCodeHttp(condi){
-		var url = Base.serverUrl + "validcode.htm";
+		//URL:  http://www.partywo.com/user/updatePhoneNumberPreController
+		//参数: {phone_number:string,validate_code:string}
+		var url = Base.serverUrl + "user/updatePhoneNumberPreController";
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -142,14 +217,25 @@ $(function(){
 			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
 			success: function(data){
-				console.log("sendGetCodeHttp",data);
-				var status = data.status || "";
-				if(status == "OK"){
+				console.log("sendValidCodeHttp",data);
+				var status = data.success || false;
+				if(status){
+					g.validInfo = data;
+
+					g.sendCode = false;
+					g.sendTime = 60;
+					clearTimeout(g.tout);
+					//显示第二步
+					$("#setup1").hide();
+					$("#setup2").show();
+					$("#progressimg1").attr("src","images/center/findpwd5.png");
+					$("#setupimg1").attr("src","images/center/findpwd2.png");
+					$("#setupspan1").addClass("b");
 				}
 				else{
-					Utils.alert("验证码输入错误");
+					var msg = data.message || "验证码校验失败";
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -159,70 +245,83 @@ $(function(){
 		});
 	}
 
-	/*********新手机验证 **************/
+
+
+
+
+	//第二步
 	//验证手机号
 	function validNewPhone(){
-		var phone = $("#inputphone2").val() || "";
+		var phone = $("#inputphone_new").val() || "";
 		var reg = /^1[3,5,7,8]\d{9}$/g;
 		if(phone !== ""){
 			if(!reg.test(phone)){
 				Utils.alert("手机号输入错误");
-				$("#inputphone2").focus();
+				$("#inputphone_new").focus();
 			}
 		}
 	}
 
 	//获取验证码
-	function getNewValidCode(evt){
-		var ele = evt.currentTarget;
+	function getValidNewCode(evt){
+		//var ele = evt.currentTarget;
 		//$(ele).removeClass("curr");
 		//if(!this.moved){}
 
-		var p = $("#inputphone2").val() || "";
-		//var imgCode = $("#inputImgCode3").val() || "";
+		var p = $("#inputphone_new").val() || "";
+		var imgCode = $("#inputimgcode_new").val() || "";
 		if(p !== ""){
 			var reg = /^1[3,5,7,8]\d{9}$/g;
 			if(reg.test(p)){
-				g.phone = p;
-				if(!g.sendCode){
-					sendGetCodeHttp();
+				g.newPhone = p;
+				if(imgCode !== ""){
+					if(!g.sendCode){
+						g.sendTime = 60;
+
+						sendGetNewCodeHttp(imgCode);
+					}
+				}
+				else{
+					Utils.alert("请输入图形验证码");
+					$("#inputimgcode_new").focus();
 				}
 			}
 			else{
 				Utils.alert("手机号输入错误");
-				$("#inputphone2").focus();
+				$("#inputphone_new").focus();
 			}
 		}
 		else{
-			$("#inputphone2").focus();
+			$("#inputphone_new").focus();
 		}
 	}
 	//重新获取验证码
 	function resetGetNewValidCode(){
 		g.sendTime = g.sendTime - 1;
 		if(g.sendTime > 0){
-			$("#getcodebtn2").html(g.sendTime + "秒后重新发送");
+			$("#getcodebtn_new").html(g.sendTime + "秒后重新发送");
 			setTimeout(function(){
-				resetGetValidCode();
+				resetGetNewValidCode();
 			},1000);
 		}
 		else{
-			$("#getcodebtn2").html("重新发送");
+			$("#getcodebtn_new").html("重新发送");
 			g.sendTime = 60;
 			g.sendCode = false;
 
 			//重新获取图形验证码,1分钟有效
-			//getImgCode();
-			//$("#inputImgCode3").val("");
-			//$("#inputImgCode3").focus();
+			sendGetNewImgCodeHttp();
 		}
 	}
 	//请求验证码
-	function sendGetNewCodeHttp(){
-		var url = Base.serverUrl + "";
+	function sendGetNewCodeHttp(imgCode){
+		//{'phone_number':string,'validate_key':string,'validate_code':string}
+		var url = Base.serverUrl + "message/sendValidateMessage";
 		var condi = {};
-		condi.mobile = g.phone;
-		//condi.captcha = imgCode;
+		condi.phone_number = g.newPhone;
+		condi.validate_key = g.guidNew;
+		condi.validate_code = imgCode;
+
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -230,19 +329,24 @@ $(function(){
 			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
 			success: function(data){
 				console.log("sendGetNewCodeHttp",data);
-				var status = data.status || "";
-				if(status == "OK"){
+				var status = data.success || false;
+				if(status){
+					alert("验证码:" + data.obj);
+					Utils.alert("验证码已发送,请注意查收");
 					g.sendCode = true;
-					$("#getcodebtn2").html("60秒后重新发送");
+					$("#getcodebtn_new").html("60秒后重新发送");
 					setTimeout(function(){
 						resetGetNewValidCode();
 					},1000);
 				}
 				else{
-					Utils.alert("验证码获取失败");
+					var msg = data.message || "验证码获取失败";
+					Utils.alert(msg);
+
+					//重新请求图形验证码
+					sendGetNewImgCodeHttp();
 				}
 				g.httpTip.hide();
 			},
@@ -252,25 +356,27 @@ $(function(){
 		});
 	}
 
-
-
-	//验证短信验证码
-	function validNewCode(evt){
-		var code = $("#inputcode2").val() || "";
+	//重置手机
+	function validNewPhoneCode(evt){
+		var code = $("#inputcode_new").val() || "";
 		if(code !== ""){
 			var condi = {};
-			condi.phone = g.phone;
-			condi.code = code;
-			sendValidNewCodeHttp(condi);
+			condi.customer_id = g.customerId;
+			condi.token = g.login_token;
+			condi.phoneNumber = g.newPhone;
+			condi.validate_code = code;
+			sendNewValidCodeHttp(condi);
 		}
 		else{
 			Utils.alert("请输入验证码");
-			$("#inputcode2").focus();
+			$("#inputcode_new").focus();
 		}
 	}
 
-	function sendValidNewCodeHttp(condi){
-		var url = Base.serverUrl + "validcode.htm";
+	function sendNewValidCodeHttp(condi){
+		//URL:  http://www.partywo.com/user/updatePhoneNumberController
+		//参数: {customer_id:string,token:string,phoneNumber:string,validate_code:string}
+		var url = Base.serverUrl + "user/updatePhoneNumberController";
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -278,391 +384,34 @@ $(function(){
 			type:"POST",
 			dataType:"json",
 			context:this,
-			global:false,
 			success: function(data){
-				console.log("sendValidNewCodeHttp",data);
-				var status = data.status || "";
-				if(status == "OK"){
-				}
-				else{
-					Utils.alert("验证码输入错误");
-				}
-				g.httpTip.hide();
-			},
-			error:function(data){
-				g.httpTip.hide();
-			}
-		});
-	}
+				console.log("sendNewValidCodeHttp",data);
+				var status = data.success || false;
+				if(status){
+					//退出登录
+					Utils.loginOut(true);
 
-
-	//end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//修改密码
-	//验证密码6-16
-	function validPwd(){
-		var pwd = $("#inputpwd").val() || "";
-		if(pwd.length < 6 || pwd.length > 16){
-			Utils.alert("密码输入错误:请输入字符6-16位");
-			$("#inputpwd").focus();
-		}
-	}
-
-	function validCPwd(){
-		var pwd = $("#inputcpwd").val() || "";
-		if(pwd.length < 6 || pwd.length > 16){
-			Utils.alert("确认密码输入错误:请输入字符6-16位");
-			$("#inputcpwd").focus();
-		}
-		else{
-			var pwd1 = $("#inputpwd").val() || "";
-			if(pwd !== pwd1){
-				Utils.alert("两次密码输入不一致.");
-				$("#inputcpwd").focus();
-			}
-		}
-	}
-
-
-	function changePwd(evt){
-		var pwd1 = $("#inputpwd").val() || "";
-		var pwd2 = $("#inputcpwd").val() || "";
-		if(pwd1 !== ""){
-			if(pwd2 !== ""){
-				if(pwd1 === pwd2){
-					var code = $("#inputcode").val() || "";
-					if(code !== ""){
-						var condi = {};
-						condi.phone = g.phone;
-						condi.pwd = pwd2;
-						condi.code = code;
-						sendChangePwdHttp(condi);
-					}
-					else{
-						Utils.alert("请输入验证码");
-						$("#inputcode").focus();
-					}
-				}
-				else{
-					Utils.alert("两次密码输入不一致");
-					$("#inputcpwd").val("");
-					$("#inputcpwd").focus();
-				}
-			}
-			else{
-				Utils.alert("请输入确认密码");
-				$("#inputcpwd").focus();
-			}
-		}
-		else{
-			Utils.alert("请输入密码");
-			$("#inputpwd").focus();
-		}
-	}
-
-	function sendChangePwdHttp(condi){
-		var url = Base.serverUrl + "changepwd.htm";
-		g.httpTip.show();
-		$.ajax({
-			url:url,
-			data:condi,
-			type:"POST",
-			dataType:"json",
-			context:this,
-			global:false,
-			success: function(data){
-				console.log("sendChangePwdHttp",data);
-				var status = data.status || "";
-				if(status == "OK"){
-				}
-				else{
-					Utils.alert("验证码获取输入错误");
-				}
-				g.httpTip.hide();
-			},
-			error:function(data){
-				g.httpTip.hide();
-			}
-		});
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//获取图形验证码
-	function getImgCode(evt){
-		var phone = $("#inputPhone3").val() || "";
-		if(phone !== ""){
-			g.imgCodeId = phone;
-			//$("#imgcodebtn").attr("src",Base.imgCodeUrl + "?id=" + g.imgCodeId);
-			$("#imgcodebtn").attr("src",Base.imgCodeUrl + "?id=" + g.imgCodeId + "&t=" + (new Date() - 0));
-		}
-	}
-
-	//获取验证码
-	function getValidCode(evt){
-		var ele = evt.currentTarget;
-		//$(ele).removeClass("curr");
-		//if(!this.moved){}
-		var p = $("#inputPhone3").val() || "";
-		var imgCode = $("#inputImgCode3").val() || "";
-		var username = $("#inputEmail3").val() || "";
-		if(username !== ""){
-			if(p !== ""){
-				var reg = /^1[3,5,7,8]\d{9}$/g;
-				if(reg.test(p)){
-					if(imgCode !== ""){
-						g.phone = p;
-						if(!g.sendCode){
-							sendGetCodeHttp(imgCode);
-						}
-					}
-					else{
-						Utils.alert("输入图形验证码");
-						$("#inputImgCode3").focus();
-					}
-				}
-				else{
-					Utils.alert("手机输入不合法");
-				}
-			}
-			else{
-				$("#inputPhone3").focus();
-			}
-		}
-		else{
-			Utils.alert("输入注册用户名");
-			$("#inputEmail3").focus();
-		}
-	}
-
-	//重新获取验证码
-	function resetGetValidCode(){
-		g.sendTime = g.sendTime - 1;
-		if(g.sendTime > 0){
-			$("#getcodebtn").html(g.sendTime + "秒后重新发送");
-			setTimeout(function(){
-				resetGetValidCode();
-			},1000);
-		}
-		else{
-			$("#getcodebtn").html("重新发送");
-			g.sendTime = 60;
-			g.sendCode = false;
-
-			//重新获取图形验证码,1分钟有效
-			getImgCode();
-			$("#inputImgCode3").val("");
-			$("#inputImgCode3").focus();
-		}
-	}
-
-	//重置信息
-	function resetUserInfo(evt){
-		$("#inputEmail3").val("");
-		$("#inputPhone3").val("");
-		$("#inputImgCode3").val("");
-		$("#inputCode3").val("");
-	}
-	function resetPwdInfo(){
-		$("#inputPassword3").val("");
-		$("#inputPassword4").val("");
-	}
-
-	//下一步
-	function nextBtnUp(evt){
-		var userName = $("#inputEmail3").val() || "";
-		var phone = $("#inputPhone3").val() || "";
-		var imgCode = $("#inputImgCode3").val() || "";
-		var validCode = $("#inputCode3").val() || "";
-
-		var regEMail = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
-		var regPhone = /^1[3,5,7,8]\d{9}$/;
-		var regFont = /^([\u4E00-\u9FA5|\w\-])+$/;
-		if(regEMail.test(userName) || regPhone.test(userName) || regFont.test(userName)){
-			if(userName !== "" && phone !== "" && imgCode !== "" && validCode !== ""){
-				sendForgetPassWordHttp(userName,phone,imgCode,validCode);
-			}
-			else{
-				Utils.alert("用户信息未填");
-			}
-		}
-		else{
-			Utils.alert("用户名输入错误,请输入邮箱或者手机号");
-			$("#inputEmail3").focus();
-
-
-			//$("#pwdfirstdiv").hide();
-			//$("#pwdseconddiv").show();
-		}
-
-	}
-
-	//请求验证码
-	function sendGetCodeHttp(imgCode){
-		var url = Base.getCodeUrl;
-		var condi = {};
-		condi.mobile = g.phone;
-		condi.captcha = imgCode;
-		g.httpTip.show();
-		$.ajax({
-			url:url,
-			data:condi,
-			type:"POST",
-			dataType:"json",
-			context:this,
-			global:false,
-			success: function(data){
-				console.log(data);
-				var status = data.status || "";
-				if(status == "OK"){
-					g.sendCode = true;
-					$("#getcodebtn").html("60秒后重新发送");
+					//显示第三步
+					$("#setup2").hide();
+					$("#setup3").show();
+					$("#progressimg2").attr("src","images/center/findpwd5.png");
+					$("#setupimg2").attr("src","images/center/findpwd3.png");
+					$("#setupspan2").addClass("b");
+					$("#newphone").html("恭喜您,新的绑定手机号:" + g.newPhone);
 					setTimeout(function(){
-						resetGetValidCode();
-					},1000);
+						location.href = "login.html";
+					},2000);
 				}
 				else{
-					alert("验证码获取失败");
-				}
-				g.httpTip.hide();
-			},
-			error:function(data){
-				g.httpTip.hide();
-			}
-		});
-	}
-
-	//申请忘记密码
-	function sendForgetPassWordHttp(userName,phone,imgCode,validCode){
-		var url = Base.serverUrl + "/api/forgetPassword";
-		var condi = {};
-		condi.username = userName;
-		condi.telephone = phone;
-		//condi.captcha = imgCode;
-		condi.validater = validCode;
-		g.httpTip.show();
-		$.ajax({
-			url:url,
-			type:"POST",
-			data:condi,
-			dataType:"json",
-			context:this,
-			global:false,
-			success: function(data){
-				g.httpTip.hide();
-				console.log("sendForgetPassWordHttp",data);
-				var status = data.status || "";
-				if(status == "OK"){
-					var pwdvalidater = data.result || "";
-					g.pwdvalidater = pwdvalidater;
-					g.userName = userName;
-					$("#pwdfirstdiv").hide();
-					$("#pwdseconddiv").show();
-				}
-				else{
-					var msg = data.error + "," + data.errorDescription;
+					var msg = data.message || "验证码校验失败";
 					Utils.alert(msg);
 
-					resetUserInfo();
+					//重新获取图形验证码
+					//sendGetNewImgCodeHttp();
+					$("#inputimgcode_new").val("");
+					$("#inputcode_new").val("");
 				}
-			},
-			error:function(data){
 				g.httpTip.hide();
-			}
-		});
-	}
-
-
-	//重置密码
-	function enterChangePwd(){
-		var inputPassword3 = $("#inputPassword3").val() || "";
-		var inputPassword4 = $("#inputPassword4").val() || "";
-
-		if(inputPassword3 !== "" && inputPassword4 !== ""){
-			if(inputPassword3 == inputPassword4){
-				sendChangeForgetPassWordHttp(inputPassword4);
-			}
-			else{
-				Utils.alert("两次密码不一致");
-				 $("#inputPassword4").val("");
-				 $("#inputPassword4").focus();
-			}
-		}
-		else{
-			if(inputPassword3 === ""){
-				 $("#inputPassword3").focus();
-			}
-			else{
-				 $("#inputPassword4").focus();
-			}
-		}
-	}
-
-	//申请忘记密码
-	function sendChangeForgetPassWordHttp(password){
-		var url = Base.serverUrl + "/api/changeForgotPassword";
-		var condi = {};
-		condi.username = g.userName;
-		condi.validater = g.pwdvalidater;
-		condi.password = password;
-		g.httpTip.show();
-		$.ajax({
-			url:url,
-			type:"POST",
-			data:condi,
-			dataType:"json",
-			context:this,
-			global:false,
-			success: function(data){
-				g.httpTip.hide();
-				console.log("sendChangeForgetPassWordHttp",data);
-				var status = data.status || "";
-				if(status == "OK"){
-					Utils.alert("密码重置成功");
-					location.href = "login.html";
-				}
-				else{
-					var msg = data.error + "," + data.errorDescription;
-					Utils.alert(msg);
-				}
 			},
 			error:function(data){
 				g.httpTip.hide();

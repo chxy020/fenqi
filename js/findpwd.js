@@ -18,7 +18,6 @@ $(function(){
 	sendGetImgCodeHttp();
 
 
-
 	$("#inputphone").bind("blur",validPhone);
 	$("#getcodebtn").bind("click",getValidCode);
 	$("#nextbtn").bind("click",validPhoneCode);
@@ -35,6 +34,8 @@ $(function(){
 		var url = Base.serverUrl + "imageValidate/getImageValidate";
 		url = url + "?image_key=" + g.guid + "&t=" + (new Date() - 0);
 		g.codeImg.src = url;
+
+		$("#inputimgcode").val("");
 	}
 
 	//验证手机号
@@ -95,8 +96,7 @@ $(function(){
 			g.sendCode = false;
 
 			//重新获取图形验证码,1分钟有效
-			//getImgCode();
-			//$("#inputImgCode3").val("");
+			sendGetImgCodeHttp();
 			//$("#inputImgCode3").focus();
 		}
 	}
@@ -122,6 +122,7 @@ $(function(){
 				console.log("sendGetCodeHttp",data);
 				var status = data.success || false;
 				if(status){
+					alert("验证码:" + data.obj);
 					Utils.alert("验证码已发送,请注意查收");
 					g.sendCode = true;
 					$("#getcodebtn").html("60秒后重新发送");
@@ -132,6 +133,9 @@ $(function(){
 				else{
 					var msg = data.message || "验证码获取失败";
 					Utils.alert(msg);
+
+					//重新请求图形验证码
+					sendGetImgCodeHttp();
 				}
 				g.httpTip.hide();
 			},
