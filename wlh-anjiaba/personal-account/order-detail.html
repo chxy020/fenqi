@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<title>安家吧</title>
+	<link href="../res/css/common.css" rel="stylesheet">
+    <link href="../res/css/carouFredSel.css" rel="stylesheet">
+    <link href="../res/css/personal.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="ui-short-head">
+    	<div class="ui-wrap">
+        	<div class="head-box">
+            	<span>1524875415</span>&nbsp;&nbsp;您好！
+                <a class="header-log-out" href="###">退出</a>
+                <s class="header-line"></s>
+                <a href="###">我的订单</a>
+                <s class="header-line"></s>
+                <a href="###">我要还款</a>
+            </div>
+        </div>
+    </div>
+    <div class="ui-header">
+    	<div class="ui-wrap">
+        	<div class="ui-head-left f-left clearfix">
+        		<img class="ui-logo" src="../res/images/logo.png" />
+                <div class="ui-head-left-l f-left">
+                	<span class="cur-pos">成都</span>
+                	<a href="###" class="select-city-btn">切换城市</a>
+                </div>
+            </div>
+            <div class="ui-phone-service">
+                <p class="phone-service">全国统一免费咨询热线</p>
+                <img src="../res/images/phone-number.png" width="168" height="14">
+            </div>
+            <div class="ui-nav">
+            	<ul>
+                	<li><a href="###">首页</a></li>
+                    <li><a href="###">加装贷</a></li>
+                    <li><a href="###">家装产品</a></li>
+                    <li><a href="###" class="selected">我要分期</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="ui-personal-main">
+    	<div class="ui-wrap">
+        	<div class="personal-top clearfix">
+            	<div class="order-title clearfix">
+					<i class="common-ico ico-note"></i>订单详情
+					<a href="javascript:void(0)" onclick="showOrderPop('#orderPopBox')" class="show-detail-btn">查看<i class="common-ico ico-trig-right"></i></a>
+				</div>
+            	
+            </div>
+            <div class="ui-personal-box">
+            	<table class="order-table" cellpadding="0" cellspacing="0">
+                	<tr>
+                    	<th width="110">还款期数</th>
+                        <th width="120">还款本金</th>
+                        <th width="120">应还时间</th>
+                        <th width="130">预期天数</th>
+                        <th width="140">预期利息</th>
+                        <th width="150">应还金额</th>
+                        <th width="120">应还时间</th>
+                        <th width="80">状态</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                    	<td>手续费</td>
+                        <td>100元</td>
+                        <td>2015-08-15</td>
+                        <td>0天</td>
+                        <td>0.00元</td>
+                        <td>0.00元</td>
+                        <td>无</td>
+                        <td class="grey-color">待还款</td>
+                        <td class="grey-color">还款</td>
+                    </tr>
+                    <tr>
+                    	<td>1期</td>
+                        <td>100元</td>
+                        <td>2015-08-15</td>
+                        <td>0天</td>
+                        <td>0.00元</td>
+                        <td>0.00元</td>
+                        <td>无</td>
+                        <td>待还款</td>
+                        <td><a href="javascript:void(0)" onclick="showOrderPop('#payBackPop');">还款</a></td>
+                    </tr>
+                    <tr>
+                    	<td>2期</td>
+                        <td>100元</td>
+                        <td>2015-08-15</td>
+                        <td>0天</td>
+                        <td>0.00元</td>
+                        <td>0.00元</td>
+                        <td>无</td>
+                        <td>待还款</td>
+                        <td><a href="javascript:void(0)" onclick="showOrderPop('#payBackPop');">还款</a></td>
+                    </tr>
+                    <tr>
+                    	<td>3期</td>
+                        <td>100元</td>
+                        <td>2015-08-15</td>
+                        <td>0天</td>
+                        <td>0.00元</td>
+                        <td>0.00元</td>
+                        <td>无</td>
+                        <td>待还款</td>
+                        <td><a href="javascript:void(0)" onclick="showOrderPop('#payBackPop');">还款</a></td>
+                    </tr>
+                    <tr>
+                    	<td>4期</td>
+                        <td>100元</td>
+                        <td>2015-08-15</td>
+                        <td>0天</td>
+                        <td>0.00元</td>
+                        <td>0.00元</td>
+                        <td>无</td>
+                        <td>待还款</td>
+                        <td><a href="javascript:void(0)" onclick="showOrderPop('#payBackPop');">还款</a></td>
+                    </tr>
+                    <tr>
+                    	<td>5期</td>
+                        <td>100元</td>
+                        <td>2015-08-15</td>
+                        <td>0天</td>
+                        <td>0.00元</td>
+                        <td>0.00元</td>
+                        <td>无</td>
+                        <td>待还款</td>
+                        <td><a href="javascript:void(0)" onclick="showOrderPop('#payBackPop');">还款</a></td>
+                    </tr>
+                </table>
+                <div class="ui-pager">
+                	<a href="javascript:void(0)" class="page-pre-end">&nbsp;</a>
+                	<a href="javascript:void(0)" class="page-pre">&nbsp;</a>
+                	<a href="javascript:void(0)">1</a>
+                    <a href="javascript:void(0)">2</a>
+                    <a href="javascript:void(0)">3</a>
+                    <a href="javascript:void(0)">4</a>
+                    <a href="javascript:void(0)">5</a>
+                    <a href="javascript:void(0)">6</a>
+                    <a href="javascript:void(0)">...</a>
+                    <a href="javascript:void(0)">99</a>
+                    <a href="javascript:void(0)" class="page-next">&nbsp;</a>
+                    <a href="javascript:void(0)" class="page-next-end">&nbsp;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-bottom">
+        <div class="ui-wrap clearfix">
+            <div class="f-link">
+                <p>了解生活家</p>
+                <ul>
+                    <li><a href="#" class="active">公司简介</a></li>
+                    <li><a href="#">公司荣誉</a></li>
+                    <li><a href="#">发展历程</a></li>
+                    <li><a href="#">企业文化</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+
+            <div class="f-link">
+                <p>家装知识</p>
+                <ul class="">
+                    <li><a href="#" class="active">设计知识</a></li>
+                    <li><a href="#">家装风水</a></li>
+                    <li><a href="#">材料知识</a></li>
+                    <li><a href="#">家专攻略</a></li>
+                </ul>
+            </div>
+
+            <div class="f-link">
+                <p>热装小区</p>
+                <ul class="">
+                    <li><a href="#" class="active">热装小区</a></li>
+                    <li><a href="#">在建工地</a></li>
+                    <li><a href="#">客户见证</a></li>
+                </ul>
+            </div>
+
+            <div class="f-link">
+                <p>悦享家其他官方渠道</p>
+                <ul class="">
+                    <li><a class="weixin" href="#">悦享家官方微信</a></li>
+                    <li><a class="weibo" href="#">悦享家官方微播</a></li>
+                    <li><a class="tianmao" href="#">悦享家天猫旗舰店</a></li>
+                </ul>
+            </div>
+
+            <div class="f-phone">
+                <span class="a">全国统一免费咨询热线</span>
+                <img src="../res/images/phone-number.png" width="168" height="14">
+                <span class="b">总裁办投诉电话 400-402-000</span>
+            </div>
+        </div>
+    </div>
+	<!--还款弹窗-->
+	<div class="pop-main-box" id="payBackPop">
+		<div class="pop-box-inner" style="width:750px;">
+			<i class="common-ico ico-pop-close" onclick="hidePop()"></i>
+			<h1 class="pop-title">
+				<i class="common-ico ico-pay"></i>我要还款
+			</h1>
+			<div class="pop-box-detail">
+				<table class="common-table" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="150" class="odd">订单编号</td>
+						<td class="even">2015080123</td>
+					</tr>
+					<tr>
+						<td class="odd">合同编号</td>
+						<td class="even">wlh235231</td>
+					</tr>
+					<tr>
+						<td class="odd">套餐名称</td>
+						<td class="even">基础套餐</td>
+					</tr>
+					<tr>
+						<td class="odd">套餐金额</td>
+						<td class="even">6000元</td>
+					</tr>
+					<tr>
+						<td class="odd">分期月数</td>
+						<td class="even">6个月</td>
+					</tr>
+					<tr>
+						<td class="odd">服务费</td>
+						<td class="even">6元</td>
+					</tr>
+					<tr>
+						<td class="odd">每月还款本金</td>
+						<td class="even">100元</td>
+					</tr>
+					<tr>
+						<td class="odd">当前状态</td>
+						<td class="even">已还清</td>
+					</tr>
+					<tr>
+						<td class="odd">待还期数</td>
+						<td class="even">无</td>
+					</tr>
+					<tr>
+						<td class="odd">总还款金额</td>
+						<td class="even">70000元</td>
+					</tr>
+					<tr>
+						<td class="odd">待还金额</td>
+						<td class="even">5000元</td>
+					</tr>
+				</table>
+				<table class="common-table1" cellpadding="0" cellspacing="0" style="margin-top:25px;">
+					<tr>
+						<th>还款期数</th>
+						<th>还款本金</th>
+						<th>应还时间</th>
+						<th>逾期天数</th>
+						<th>逾期利息</th>
+						<th>应还金额</th>
+					</tr>
+					<tr>
+						<td>手续费</td>
+						<td>6.00元</td>
+						<td>2015/01/09</td>
+						<td>0天</td>
+						<td>0.00元</td>
+						<td>6.00元</td>
+					</tr>
+				</table>
+				<div class="btn-box">
+					<input type="button" class="common-btn btn-light-green" value="确认还款" />
+					<input type="button" class="common-btn btn-grey" value="取消" onclick="hidePop()" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--还款弹窗-->
+	<div class="pop-fade" id="commonPopFade"></div>
+	<!--查看订单详情弹窗-->
+	<div class="pop-main-box" id="orderPopBox">
+		<div class="pop-box-inner" style="width:510px;">
+			<i class="common-ico ico-pop-close" onclick="hidePop()"></i>
+			<h1 class="pop-title">
+				<i class="common-ico ico-pay"></i>订单详情
+			</h1>
+			<div class="pop-box-detail">
+				<table class="common-table" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="150" class="odd">订单编号</td>
+						<td class="even">2015080123</td>
+					</tr>
+					<tr>
+						<td class="odd">合同编号</td>
+						<td class="even">wlh235231</td>
+					</tr>
+					<tr>
+						<td class="odd">套餐名称</td>
+						<td class="even">基础套餐</td>
+					</tr>
+					<tr>
+						<td class="odd">套餐金额</td>
+						<td class="even">6000元</td>
+					</tr>
+					<tr>
+						<td class="odd">分期月数</td>
+						<td class="even">6个月</td>
+					</tr>
+					<tr>
+						<td class="odd">服务费</td>
+						<td class="even">6元</td>
+					</tr>
+					<tr>
+						<td class="odd">每月还款本金</td>
+						<td class="even">100元</td>
+					</tr>
+					<tr>
+						<td class="odd">当前状态</td>
+						<td class="even">已还清</td>
+					</tr>
+					<tr>
+						<td class="odd">待还期数</td>
+						<td class="even">无</td>
+					</tr>
+					<tr>
+						<td class="odd">总还款金额</td>
+						<td class="even">70000元</td>
+					</tr>
+					<tr>
+						<td class="odd">待还金额</td>
+						<td class="even">5000元</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../res/js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript">
+	//出现弹窗遮罩层
+	function showPopFade(){
+		var bodyHei = document.body.clientHeight;
+		if($('.pop-fade').size()<=0){
+			console.log('a');
+			$('body').append('<div class="pop-fade" id="commonPopFade"></div>');
+		}
+		$('#commonPopFade').css('height',parseInt(bodyHei)+'px');
+		$('#commonPopFade').fadeIn();
+	}
+	//还款弹窗出现方法
+	function showOrderPop(objId){
+		var $target = $(objId);
+		var popBoxWid = $target.width();
+		$target.css('left',($(window).width()-popBoxWid)/2);
+		$(window).bind('resize',function(){
+			var popBoxWid = $target.width();
+			$target.css('left',($(window).width()-popBoxWid)/2);
+		});
+		window.scrollTo(0,0);
+		showPopFade(100);
+		$target.fadeIn(100);
+		
+	}
+	function hidePop(){
+		$('.pop-fade').fadeOut(100);
+		$('.pop-main-box').fadeOut(100);
+	}
+</script>
+</html>
+

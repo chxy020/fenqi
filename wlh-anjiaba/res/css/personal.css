@@ -1,0 +1,248 @@
+@charset "UTF-8";
+/*personal*/
+.ui-personal-main{
+	margin-top:10px;
+	background:#fff;
+	padding-bottom:80px;
+}
+.personal-top{
+	padding:35px;
+}
+.personal-top .personal-inf .user-img{
+	float:left;
+	width:89px;
+	height:89px;
+}
+.personal-top .personal-inf .personal-inf-right{
+	margin-left:105px;
+	padding-top:5px;
+}
+.personal-top .personal-inf .user-phone{
+	font-size:16px;
+	color:#2b3a42;
+	margin:15px 0px 10px;
+}
+.personal-top .personal-inf .common-ico{
+	cursor:pointer;
+}
+.personal-top .personal-inf .ico-phone{
+	margin:0px 10px;
+}
+.my-order-select{
+	margin-top:25px;
+	font-size:14px;
+}
+.my-order-select .common-select{
+	margin-left:10px;
+}
+.order-table{
+	width:100%;
+}
+.order-table tr th{
+	height:40px;
+	padding:0px 5px;
+	background:#dff0d8;
+	color:#669900;
+	font-weight:bold;
+	text-align:center;
+	font-size:15px;
+}
+.order-table tr td{
+	height:80px;
+	border-bottom:1px solid #e6e6e6;
+	text-align:center;
+	font-size:16px;
+	color:#555;
+}
+.order-table tr td a{
+	color:#669900;
+	display:inline-block;
+	margin:0px 10px;
+}
+.order-table tr td.grey-color{
+	color:#999;
+}
+
+.order-title{
+	font-size:24px;
+	color:#333;
+	line-height:22px;
+}
+.order-title .ico-note{
+	float:left;
+	_margin-top:3px;
+	margin-right:10px;
+}
+.show-detail-btn{
+	font-size:14px;
+	color:#669900;
+	margin-left:15px;
+}
+.show-detail-btn .ico-trig-right{
+	margin-left:5px;
+	vertical-align:middle;
+}
+.back-go{
+	margin-top:35px;
+}
+.back-go a{
+	font-size:16px;
+	color:#9abd43;
+}
+.order-title-t{
+	height:35px;
+	line-height:35px;
+	background:#dff0d8;
+	padding:0px 15px;
+	color:#5e7e0c;
+	font-size:16px;
+	margin:15px 0px;
+}
+.edit-inf-box{
+	margin-top:45px;
+}
+.edit-inf-item{
+	margin:15px 0px;
+	font-size:16px;
+	line-height:35px;
+}
+.edit-inf-item label{
+	width:140px;
+	float:left;
+	text-align:right;
+}
+.edit-inf-item label em{
+	color:#e60012;
+	margin-right:3px;
+}
+.edit-inf-item .edit-right-cont{
+	margin-left:160px;
+}
+.edit-inf-item .edit-right-cont em{
+	margin:0px 10px;
+}
+.edit-inf-item .edit-right-cont p{
+	line-height:22px;
+	font-size:14px;
+}
+.edit-inf-item .edit-right-cont input,.edit-inf-item .edit-right-cont select{
+	vertical-align:middle;
+	margin-right:5px;
+}
+.edit-inf-item .edit-right-cont select{
+	_*margin:3px 5px 3px 0px;
+}
+.edit-inf-item .edit-right-cont input{
+	_*margin:10px 5px 10px 0px;
+}
+/*bind-step*/
+.bind-step-main{
+	padding:40px 0px 40px;
+	background:#f9f9f9;
+}
+.bind-step-box{
+	height:31px;
+	width:683px;
+	margin:0 auto;
+	background:url(../images/bind-step.jpg) left top no-repeat;
+}
+.bind-step-container.step1 .bind-step-box{
+	background-position:0px 0px;
+}
+.bind-step-container.step2 .bind-step-box{
+	background-position:0px -31px;
+}
+.bind-step-container.step3 .bind-step-box{
+	background-position:0px -62px;
+}
+.bind-step-container.step1 .bind-step-text .step-text1{
+	color:#99bf38;
+}
+.bind-step-container.step2 .bind-step-text .step-text1,.bind-step-container.step2 .bind-step-text .step-text2{
+	color:#99bf38;
+}
+.bind-step-container.step3 .bind-step-text .step-text1,.bind-step-container.step3 .bind-step-text .step-text2,.bind-step-container.step3 .bind-step-text .step-text3{
+	color:#99bf38;
+}
+.bind-step-text{
+	margin:15px auto 0px;
+	width:711px;
+}
+.bind-step-text p{
+	font-size:16px;
+	color:#d3d3d3;
+}
+.bind-step-text .step1-text{
+	float:left;
+	text-align:left;
+}
+.bind-step-text .step2-text{
+	margin:0px 120px;
+	text-align:center;
+}
+.bind-step-text .step3-text{
+	float:right;
+	text-align:right;
+	margin-right:17px;
+}
+.opreate-title-tip{
+	color:#999;
+	font-size:16px;
+	padding-top:25px;
+	margin-left:250px;
+}
+.opreate-title{
+	font-size:20px;
+	color:#111;
+	margin:25px 0px;
+	padding-left:93px;
+}
+.opreate-title .common-ico{
+	vertical-align:middle;
+	margin-right:15px;
+}
+.list-item-box{}
+.list-item-box .list-item-t{
+	line-height:45px;
+	margin:15px 0px;
+}
+.list-item-box .list-item-t label{
+	float:left;
+	width:140px;
+	font-size:16px;
+	text-align:right;
+	
+}
+.list-item-box .list-item-t .list-item-right{
+	margin-left:150px;
+}
+.list-item-box .list-item-t .list-item-right p{
+	line-height:22px;
+	margin-top:10px;
+}
+.vercode-img{
+	width:86px;
+	height:38px;
+	border:1px solid #99bf38;
+	vertical-align:middle;
+	margin:0px 10px;
+}
+.vercode-link{
+	font-size:14px;
+	color:#99bf38;
+}
+.bind-phone-main{
+	margin-left:320px;
+}
+.bind-result-box{
+	padding:160px 0px 160px;
+	text-align:center;
+	font-size:24px;
+	color:#333;
+}
+.bind-result-box .common-ico{
+	margin-right:15px;
+}
+.bind-result-box .highlight{
+	margin-left:15px;
+}
