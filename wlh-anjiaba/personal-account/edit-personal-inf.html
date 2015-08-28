@@ -37,10 +37,10 @@
             </div>
             <div class="ui-nav">
             	<ul>
-                	<li><a href="###">首页</a></li>
-                    <li><a href="###">加装贷</a></li>
-                    <li><a href="###">家装产品</a></li>
-                    <li><a href="###" class="selected">我要分期</a></li>
+                	<li><a href="../index/index-unlogin.html">首页</a></li>
+                    <li><a href="../improvement-stage/index.html">家装分期</a></li>
+                    <li><a href="../business-cooperation/index.html">合作商家</a></li>
+                    <li><a href="../business-sign/index.html">我要分期</a></li>
                 </ul>
             </div>
         </div>
@@ -68,8 +68,8 @@
 					<div class="edit-inf-item">
 						<label><em>*</em>性别</label>
 						<div class="edit-right-cont">
-							<input name="sex" type="radio" />男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="sex" type="radio" />女
+							<input name="sex" type="radio" class="common-radio" checked />男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="sex" type="radio" class="common-radio" />女
 						</div>
 					</div>
 					<div class="edit-inf-item">
@@ -92,32 +92,32 @@
 					<div class="edit-inf-item">
 						<label><em>*</em>身份</label>
 						<div class="edit-right-cont">
-							<input name="1" type="radio" />学生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="1" type="radio" />在职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="1" type="radio" />自由职业&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="1" type="radio" />其他
+							<input name="1" type="radio" class="common-radio" />学生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="1" type="radio" class="common-radio" />在职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="1" type="radio" class="common-radio" />自由职业&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="1" type="radio" class="common-radio" />其他
 						</div>
 					</div>
 					<div class="edit-inf-item">
 						<label><em>*</em>个人状况</label>
 						<div class="edit-right-cont">
-							<input name="2" type="radio" />单身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="2" type="radio" />恋爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="2" type="radio" />已婚&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="2" type="radio" />保密
+							<input name="2" type="radio" class="common-radio" />单身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="2" type="radio" class="common-radio" />恋爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="2" type="radio" class="common-radio" />已婚&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="2" type="radio" class="common-radio" />保密
 						</div>
 					</div>
 					<div class="edit-inf-item">
 						<label><em>*</em>兴趣爱好</label>
 						<div class="edit-right-cont">
-							<input name="3" type="checkbox" />美食&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" />电影&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" />酒店&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" />单身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" />丽人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" />旅游&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" />购物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" />休闲娱乐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="3" type="checkbox" class="common-checkbox" />美食&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="3" type="checkbox" class="common-checkbox" />电影&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="3" type="checkbox" class="common-checkbox" />酒店&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="3" type="checkbox" class="common-checkbox" />单身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="3" type="checkbox" class="common-checkbox" />丽人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="3" type="checkbox" class="common-checkbox" />旅游&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="3" type="checkbox" class="common-checkbox" />购物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="3" type="checkbox" class="common-checkbox" />休闲娱乐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						</div>
 					</div>
 					<div class="edit-inf-item">
@@ -146,7 +146,6 @@
                     <li><a href="#">联系我们</a></li>
                 </ul>
             </div>
-
             <div class="f-link">
                 <p>家装知识</p>
                 <ul class="">
@@ -184,22 +183,6 @@
     </div>
 </body>
 <script type="text/javascript" src="../res/js/jquery-1.6.4.min.js"></script>
-<script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>
-<script type="text/javascript">
-	$(function(){
-		//初始化
-		$('#bannerSlider').carouFredSel({
-			width: 1280,
-			height: 450,
-			prev: '#prev',
-			next: '#next',
-			pagination: "#pager",
-			swipe: {
-				onMouse: true,
-				onTouch: true
-			}
-		});
-	})
-</script>
+<script type="text/javascript" src="../res/js/ui.js"></script>
 </html>
 

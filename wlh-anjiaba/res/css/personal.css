@@ -132,7 +132,7 @@
 .edit-inf-item .edit-right-cont select{
 	_*margin:3px 5px 3px 0px;
 }
-.edit-inf-item .edit-right-cont input{
+.edit-inf-item .edit-right-cont .chk-bg,.edit-inf-item .edit-right-cont .radio-bg{
 	_*margin:10px 5px 10px 0px;
 }
 /*bind-step*/
@@ -219,17 +219,6 @@
 .list-item-box .list-item-t .list-item-right p{
 	line-height:22px;
 	margin-top:10px;
-}
-.vercode-img{
-	width:86px;
-	height:38px;
-	border:1px solid #99bf38;
-	vertical-align:middle;
-	margin:0px 10px;
-}
-.vercode-link{
-	font-size:14px;
-	color:#99bf38;
 }
 .bind-phone-main{
 	margin-left:320px;
