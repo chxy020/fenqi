@@ -100,10 +100,22 @@
 			});
 		}
 	});
+	$.fn.extend({
+		selectArea:function(){
+			$('.select-city-box').hover(function(){
+				$(this).find('.select-city-btn').addClass('active');
+				$(this).find('.select-city-area').show();
+			},function(){
+				$(this).find('.select-city-btn').removeClass('active');
+				$(this).find('.select-city-area').hide();
+			});
+		}	
+	});
 
 
 })(jQuery);
 $(function(){
+	$.fn.selectArea();
 	$('.common-radio').yyptRadio();
 	$('.common-checkbox').yyptCheckbox();
 })
