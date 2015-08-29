@@ -12,15 +12,15 @@
 <body>
 	<div class="ui-short-head">
     	<div class="ui-wrap">
-        	<div class="head-box">
-                <a href="../login/login.html">登录</a>
-                <s class="header-line"></s>
-                <a href="../login/regist.html">注册</a>
-                <s class="header-line"></s>
-                <a href="../personal-account/index.html">我的订单</a>
-                <s class="header-line"></s>
-                <a href="../personal-account/index.html">我要还款</a>
-            </div>
+        	<div id="loginstatus" class="head-box">
+				<a href="login.html">登录</a>
+				<s class="header-line"></s>
+				<a href="reg.html">注册</a>
+				<s class="header-line"></s>
+				<a href="login.html">我的订单</a>
+				<s class="header-line"></s>
+				<a href="login.html">我要还款</a>
+			</div>
         </div>
     </div>
     <div class="ui-header">
@@ -38,10 +38,10 @@
             </div>
             <div class="ui-nav">
             	<ul>
-                	<li><a href="../index/index-unlogin.html">首页</a></li>
-                    <li><a href="../improvement-stage/index.html">家装分期</a></li>
-                    <li><a href="../business-cooperation/index.html" class="selected">合作商家</a></li>
-                    <li><a href="../business-sign/index.html">我要分期</a></li>
+                	<li><a href="index.html" >首页</a></li>
+			<li><a href="staging.html">家装分期</a></li>
+			<li><a href="business.html" class="selected">合作商家</a></li>
+			<li><a href="mystaging.html">我要分期</a></li>
                 </ul>
             </div>
         </div>
@@ -59,10 +59,10 @@
                             <p class="a">舒适体验 健康生活</p>
                             <p class="b">悦享人生乐事</p>
                             <p>
-                            	<a href="../business-cooperation/cooperation-yxj.html" class=" common-btn btn-green-empty">了解悦享家</a>
+                            	<a href="business-yxj.html" class=" common-btn btn-green-empty">了解悦享家</a>
                             </p>
                             <p>
-                            	<a href="../business-cooperation/cooperation-yxj.html" class=" common-btn btn-green-empty">查看更多案例</a>
+                            	<a href="business-yxj.html" class=" common-btn btn-green-empty">查看更多案例</a>
                             </p>
                         </div>
                     </div>
@@ -72,10 +72,10 @@
                             <p class="a">舒适体验 健康生活</p>
                             <p class="b">尊享人生乐事</p>
                             <p>
-                            	<a href="../business-cooperation/cooperation-zxj.html" class=" common-btn btn-green-empty">了解尊享家</a>
+                            	<a href="business-zxj.html" class=" common-btn btn-green-empty">了解尊享家</a>
                             </p>
                             <p>
-                            	<a href="../business-cooperation/cooperation-zxj.html" class=" common-btn btn-green-empty">查看更多案例</a>
+                            	<a href="business-zxj.html" class=" common-btn btn-green-empty">查看更多案例</a>
                             </p>
                         </div>
                     </div>
@@ -197,11 +197,14 @@
             </div>
         </div>
     </div>
-</body>
-<script type="text/javascript" src="../res/js/jquery-1.6.4.min.js"></script>
-<script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>
-<script type="text/javascript" src="../res/js/ui.js"></script>
-<script type="text/javascript">
+
+	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>
+	<script type="text/javascript" src="../res/js/ui.js"></script>
+	<script src="libs/json.js"></script>
+	<script src="libs/base.js"></script>
+	<script src="libs/utils.js"></script>
+	<script type="text/javascript">
 	$(function(){
 		//初始化
 		$('#bannerSlider').carouFredSel({
@@ -216,6 +219,9 @@
 			}
 		});
 	})
-</script>
+	</script>
+
+</body>
+
 </html>
 
