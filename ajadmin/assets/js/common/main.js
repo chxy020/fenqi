@@ -2,7 +2,6 @@
 BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
   //定义全局命名空间
   var PageUtil = BUI.app('PageUtil');
-
   var CLS_SELECTE = 'dl-selected',//选中的模块样式
       CLS_HIDDEN = 'ks-hidden',//隐藏的模块样式
       CLS_LAST = 'dl-last',//最后一个元素
@@ -28,7 +27,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
   }
   //创建菜单和Tab，并绑定关联,是否收缩，是否有首页
   function tabNav(moduleId,tabConfig,menuConfig,collapsed,homePage){
-    
+
     var _self =this,
       menu = new Menu.SideMenu(menuConfig),
       tab = new Tab.NavTab(tabConfig),
@@ -52,16 +51,16 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
       if(item){
         _self.tab.addTab({id: item.get('id'), title: item.get('text'), href: item.get('href'),closeable : item.get('closeable')},true);
       }
-      
+
     });
 
     //选中的菜单发生改变后，更新链接上的页面编号
-    menu.on('itemselected',function(ev){   
-      var item = ev.item; 
+    menu.on('itemselected',function(ev){
+      var item = ev.item;
       if(item){
         setNavPosition(moduleId,item.get('id'));
-      }    
-      
+      }
+
     });
 
     //切换Tab激活菜单
@@ -72,7 +71,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
       }else{
         _self.menu.clearSelection();
       }
-      
+
     });
 
     _self.tab = tab;
@@ -80,7 +79,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
     _self.homePage = homePage;
     tab.render();
     menu.render();
-    
+
   }
 
   //更改地址栏连接
@@ -88,7 +87,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
     pageId = pageId||'';
 
     var str = '#'+moduleId;
-      
+
     if(pageId){
       str += '/'+pageId;
     }
@@ -104,7 +103,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
     if(!pos){
       return null;
     }
-      
+
     if(splitIndex >= 0){
       moduleIndex = pos.substring(1,splitIndex);
       pageId = pos.substring(splitIndex + 1);
@@ -156,7 +155,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
   function getAutoHeight(){
     var height = BUI.viewportHeight(),
       subHeight = 70;
-    return height - subHeight;  
+    return height - subHeight;
   }
 
   function findItem(element){
@@ -275,7 +274,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
         }else{
           tab.addTab({id: id, title: title, href: href, sourceId: sourceId,closeable: closeable},reload);
         }
-        
+
         if(isClose){
           curTabPage.close();
         }
@@ -344,7 +343,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
       {
         return;
       }
-      
+
       $('<div class="nav-item-mask"></div>').appendTo($(navItems));
 
       var count =  navItems.length,
@@ -357,7 +356,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
       if(totalWidth <= clientWidth){
         return;
       }
-      
+
       //初始化dataIndex
       $.each(navItems,function(index,item){
         $(item).attr(ATTTR_INDEX,index);
@@ -373,7 +372,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
       for(var i = showCount; i < count; i++){
         var itemEl = $(navItems[i]),
           cloneItme = null;
-        
+
         cloneItme = itemEl.clone()[0];
         hideItmes.push(cloneItme);
         itemEl.addClass(CLS_HIDDEN);
@@ -381,7 +380,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
       }
 
       _self._initHideList();
-      
+
     },
     _initHideList : function(){
       var _self = this,
@@ -391,7 +390,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
       if(hideList){
         return;
       }
-      
+
       var template = '<ul class="dl-hide-list ks-hidden"></ul>',
         hideListEl = $(template).appendTo('body');
       hideList = hideListEl;
@@ -408,7 +407,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
       if(hideList == null){
         return;
       }
-        
+
       hideList.on('mouseleave',function(){
         _self._hideHideList();
       });
@@ -481,7 +480,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
         if(el && el.hasClass(CLS_LAST) && hideList){
           offset = el.offset();
           offset.top += 37;
-                  
+
           offset.left += 2;
           _self._showHideList(offset);
         }
@@ -490,7 +489,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
         if(toElement && hideList && !$.contains(hideList[0],toElement) && toElement !== hideList[0]){
           _self._hideHideList();
         }
-        
+
       });
     },
     //初始化选中的模块和页面
@@ -586,7 +585,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
       if(lastShowItem === item){
         return;
       }
-      
+
       var appendNode = null,
         lastShowItemEl = $(lastShowItem);
         itemEl = $(item);
@@ -615,7 +614,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
           module = null,
           lastShowItem = _self.get('lastShowItem'),
           isCreated = true;//模块是否已经创建
-                    
+
         if(!_self._isModuleInitial(moduleId)){
           isCreated = false;
         }
@@ -623,7 +622,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
         module =  _self._getModule(moduleId);
 
 
-        sender = sender ||$(_self.get('navItems')[index]); 
+        sender = sender ||$(_self.get('navItems')[index]);
         //如果模块隐藏
         if(sender.hasClass(CLS_HIDDEN) && lastShowItem){
           _self._setLastItem(sender[0]);
@@ -633,12 +632,12 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
         sender.addClass(CLS_SELECTE);
         navTabs.addClass(CLS_HIDDEN);
         $(navTabs[index]).removeClass(CLS_HIDDEN);
-      
+
         currentModelIndex = index;
         _self.set('currentModelIndex',currentModelIndex);
         curPageId = _self._getCurrentPageId();
         setNavPosition(moduleId,curPageId);
-                
+
         if(!curPageId && module.homePage){
             _self._setPageSelected(index,module.homePage);
         }
@@ -715,7 +714,7 @@ BUI.use(['bui/menu','bui/tab'],function(Menu,Tab) {
       }
 
     }
-    
+
   });
   PageUtil.MainPage = mainPage;
 });
