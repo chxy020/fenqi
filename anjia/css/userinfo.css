@@ -1,0 +1,149 @@
+@charset "utf-8";
+
+
+.center{
+	width:100%;
+	background:#f7f7f7;
+}
+
+.center-top{
+	margin-top: 10px;
+	background:#ffffff;
+}
+
+.center-info{
+	width:1200px;
+	margin:0 auto;
+	height:740px;
+}
+
+.center-info .head-u{
+	float: left;
+	margin: 35px 0px 0px 35px;
+	width: 230px;
+}
+
+.center-info .head-u .phone{
+	float: right;
+	position: relative;
+}
+
+.center-info .head-u .phone span{
+	display: block;
+	margin-left: 35px;
+	margin-top: 16px;
+	font-size: 16px;
+	color: #2b3a42;
+}
+
+.center-info .head-u .phone .img1{
+	margin: 16px 10px 0px 35px;
+}
+
+.center-info .userinfo-back{
+	float: right;
+	margin-top: 90px;
+	font-size: 16px;
+	margin-right: 10px;
+}
+
+.center-info .userinfo-back a{
+	color: #89c997;
+}
+
+.center-info .u-title{
+	height: 32px;
+	background: #dff0d8;
+	line-height: 34px;
+}
+.center-info .u-title span{
+	margin-left: 50px;
+	color: #5e7e0c;
+	font-size: 16px;
+}
+
+.u-info{
+	height: 60px;
+	line-height: 60px;
+	margin-left: 90px;
+	font-size: 16px;
+	color: #2b3a42;
+}
+
+.u-info span{
+	margin-right: 30px;
+}
+
+.u-info label{
+	margin-right: 10px;
+}
+
+.u-info.a{
+	margin-top: 20px;
+}
+
+.u-info.b{
+	margin-left: 57px;
+}
+
+.u-info .birthday{
+	border: 1px solid #eeeeee;
+	width: 200px;
+	height: 34px;
+	border-radius: 5px;
+	font-size: 14px;
+	padding-left: 15px;
+}
+
+.xqtext{
+	font-size: 16px;
+	margin: 10px 0px 0px 160px;
+	color: #89c997;
+}
+
+.savebtn{
+	width: 190px;
+	height: 50px;
+	background: #89c997;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 900;
+	border-radius: 5px;
+	margin: 20px 0px 0px 160px;
+}
+
+.avatarfile-wrap{
+	position: relative;
+	float: left;
+	cursor: pointer;
+}
+.avatarfile-img{
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius:50%;
+	border:3px #f9f9f9 solid;
+	width:89px;
+	height:89px;
+	float: left;
+}
+
+.avatarfile-overlay{
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius:50%;
+	border:3px #f9f9f9 solid;
+	width:89px;
+	height:89px;
+	background:url(../images/center/usercenter1.png);
+}
+
+.avatarfile{
+	height: 89px;
+	filter: alpha(opacity:0);
+	opacity: 0;
+	width: 89px;
+	cursor: pointer;
+	position: absolute;
+	left: 0px;
+	margin-top: 0px;
+}
