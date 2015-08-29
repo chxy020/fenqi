@@ -480,7 +480,7 @@ if(typeof console == "undefined"){
 		else{
 			/*
 			html.push('<a href="login.html">登录</a><s class="header-line"></s>');
-			html.push('<a href="regist.html">注册</a><s class="header-line"></s>');
+			html.push('<a href="reg.html">注册</a><s class="header-line"></s>');
 			html.push('<a href="login.html">我的订单</a><s class="header-line"></s>');
 			html.push('<a href="login.html">我要还款</a>');
 
