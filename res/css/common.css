@@ -167,6 +167,16 @@ html{
 	color:#fff;
 	text-decoration:none;
 }
+.btn-dark{
+	background:#7d5645;
+	color:#fff;
+	text-align:center;
+}
+.btn-dark:hover{
+	background:#614336;
+	color:#fff;
+	text-decoration:none;
+}
 .btn-dark-green{
 	background:#5e7e0c;
 	color:#fff;
@@ -428,8 +438,8 @@ html{
 }
 .ui-header .ui-head-left .ui-logo{
 	float:left;
-	margin-top:39px;
-	margin-left:65px;
+	margin-top:40px;
+	margin-left:15px;
 }
 .ui-header .ui-head-left .ui-head-left-l{
 	margin-left:15px;
@@ -439,19 +449,53 @@ html{
 	font-size:14px;
 	color:#2b3a42;
 	display:block;
-	margin-bottom:6px;
-	margin-top:45px;
+	margin-bottom:7px;
+	margin-top:55px;
 }
-.ui-header .ui-head-left .select-city-btn{
+.select-city-box{
+	position:relative;
+}
+.select-city-btn{
+	position:relative;
+	z-index:14;
 	font-size:12px;
 	padding:2px 4px;
 	border:1px solid #bebebe;
 	color:#666666;
+	cursor:pointer;
+	height:19px;
+	line-height:19px;
+	overflow:hidden;
+	background:#fff;
 }
-.ui-header .ui-head-left a.select-city-btn:hover{
+.select-city-box .select-city-btn:hover,.select-city-box .select-city-btn.active{
 	color:#99bf38;
 	text-decoration:none;
 	border:1px solid #99bf38;
+	border-bottom:none;
+}
+.select-city-box .select-city-area{
+	position:absolute;
+	left:0px;
+	top:18px;
+	z-index:13;
+	background:#fff;
+	border:1px solid #99bf38;
+	width:150px;
+	padding:5px;
+	display:none;
+}
+.select-city-box .select-city-area-ul li{
+	float:left;
+	display:inline;
+	padding:3px;
+	margin:0px 10px;
+}
+.select-city-box .select-city-area-ul li a{
+	color:#555;
+}
+.select-city-box .select-city-area-ul li a:hover{
+	color:#99bf38;
 }
 .ui-phone-service{
 	float:right;
@@ -606,7 +650,7 @@ html{
 .ui-bottom .f-link{
 	width: 150px;
 	float:left;
-	margin: 60px 30px 0px 20px;
+	margin: 0px 30px 0px 20px;
 }
 .ui-bottom .f-link p{
 	font-size: 16px;
@@ -1010,12 +1054,13 @@ html{
 }
 
 
+
 /*----------chenxuanyu add -------------------*/
 /*-------------loading Cancel btn start-------------*/
 .prompt_mask { background-color:rgba(0, 0, 0, .5); position:fixed; top:0; left:0; right:0; bottom:0; height:100%; z-index:120; }
 .p_load { height:20px; width:20px; background:rgba(0, 0, 0, 0); position:absolute; left:50%; top:50%; margin-left:-10px; margin-top:-50px; }
 .loadimg { width:20px; height:20px; float:left; }
-.loadimg span { display:block; width:20px; height:20px; margin:0; background:url(../images/loading1.gif) no-repeat center top; -webkit-transform: rotate(0deg) translateZ(0); -webkit-transition-duration: 0ms; -webkit-animation-name: inpload; -webkit-animation-duration: 2.4s; -webkit-animation-iteration-count: infinite; -webkit-animation-timing-function: linear; }
+.loadimg span { display:block; width:20px; height:20px; margin:0; background:url(../images/loading1.gif) no-repeat center top; -webkit-transform: rotate(0deg) translateZ(0); -webkit-transition-duration: 0ms; -web
 .loadtext { width:99px; height:20px; line-height:20px; float:left; color:#fff; font-size:15px; }
 .loadqx { float:left; width:50px; height:50px; background-color:#ff5500; border-left:1px solid #999; background:url(../images/dpi2/ld.png) no-repeat 20px -30px; }
 @-webkit-keyframes inpload { 0% {
@@ -1030,9 +1075,9 @@ html{
 15% {
 -webkit-transform:rotate(54deg);
 }
-20% {
--webkit-transform:rotate(72deg);
-}
+-20% {
+--webkit-transform:rotate(72deg);
+-}
 25% {
 -webkit-transform:rotate(90deg);
 }
@@ -1085,23 +1130,23 @@ html{
 to{-webkit-transform:rotate(360deg) translateZ(0);}*/
 }
 .rp_tishi {
-	text-align: center;
-	z-index: 99;
-	margin: 0 auto;
-	width: 200px;
-	position: fixed;
-	left: 50%;
-	margin-left: -100px;
-	top: 70%;
+       text-align: center;
+       z-index: 99;
+       margin: 0 auto;
+       width: 200px;
+       position: fixed;
+       left: 50%;
+       margin-left: -100px;
+       top: 70%;
 }
 .rp_tishi span {
-	display: block;
-	background-color: rgba(0, 0, 0, 0.8);
-	color: #FFF;
-	padding: 6px 0px;
-	line-height: 30px;
-	white-space: pre-wrap;
-	word-wrap: break-word;
-	word-break: break-all;
-	font-size: 14px;
+       display: block;
+       background-color: rgba(0, 0, 0, 0.8);
+       color: #FFF;
+       padding: 6px 0px;
+       line-height: 30px;
+       white-space: pre-wrap;
+       word-wrap: break-word;
+       word-break: break-all;
+       font-size: 14px;
 }

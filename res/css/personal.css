@@ -12,6 +12,7 @@
 	float:left;
 	width:89px;
 	height:89px;
+	cursor:pointer;
 }
 .personal-top .personal-inf .personal-inf-right{
 	margin-left:105px;
