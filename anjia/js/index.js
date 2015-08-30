@@ -35,8 +35,8 @@ $(function(){
 		var mouthprice = allprice / numarr[time];
 		var obj = {};
 		obj.all = all;
-		obj.mouth = mouthprice.toFixed(3);
-		obj.rate = rate;
+		obj.mouth = mouthprice.toFixed(2);
+		obj.rate = rate.toFixed(2);
 		return obj;
 	}
 
