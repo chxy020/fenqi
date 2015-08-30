@@ -594,6 +594,8 @@ $(function(){
 		$("#step31").hide();
 		$("#step32").show();
 		$("#step33").hide();
+
+		window.scrollTo(0,950);
 	}
 
 
@@ -643,6 +645,8 @@ $(function(){
 		$("#step31").hide();
 		$("#step32").hide();
 		$("#step33").show();
+
+		window.scrollTo(0,950);
 	}
 
 
@@ -756,7 +760,7 @@ $(function(){
 				dataType: 'jsonp', //返回值类型 一般设置为json
 				success: function (data, status)  //服务器成功响应处理函数
 				{
-					data = '{"success":true,"message":1111,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508300051/100701.jpg","list":null,"code":null,"token":null}';
+					//data = '{"success":true,"message":1111,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508300051/100701.jpg","list":null,"code":null,"token":null}';
 					console.log("ajaxFileUpload",data);
 					g.httpTip.hide();
 					if(data != null && data != ""){
