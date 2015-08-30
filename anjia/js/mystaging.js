@@ -897,6 +897,9 @@ $(function(){
 					//显示第5步
 					$("#step4").hide();
 					$("#step5").show();
+					setTimeout(function(){
+						location.href = "usercenter.html";
+					},5000);
 				}
 				else{
 					//var msg = data.error || "";
