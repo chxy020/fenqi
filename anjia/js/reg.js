@@ -273,7 +273,7 @@ $(function(){
 
 	//进入个人中心
 	function gotoUserCenter(){
-		location.href = "usercenter.html";
+		location.href = "/anjia/usercenter.html";
 	}
 
 

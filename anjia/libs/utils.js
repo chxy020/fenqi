@@ -469,8 +469,8 @@ if(typeof console == "undefined"){
 
 			html.push('<span >' + phoneNumber + '&nbsp;&nbsp;您好!</span>');
 			html.push('<a class="header-log-out" href="javascript:Utils.loginOut();">退出</a><s class="header-line"></s>');
-			html.push('<a href="usercenter.html">我的订单</a><s class="header-line"></s>');
-			html.push('<a href="usercenter.html">我要还款</a>');
+			html.push('<a href="/anjia/usercenter.html">我的订单</a><s class="header-line"></s>');
+			html.push('<a href="/anjia/usercenter.html">我要还款</a>');
 
 			if($("#loginstatus").length > 0){
 				$("#loginstatus")[0].innerHTML = html.join('');
@@ -479,10 +479,10 @@ if(typeof console == "undefined"){
 		}
 		else{
 			/*
-			html.push('<a href="login.html">登录</a><s class="header-line"></s>');
-			html.push('<a href="reg.html">注册</a><s class="header-line"></s>');
-			html.push('<a href="login.html">我的订单</a><s class="header-line"></s>');
-			html.push('<a href="login.html">我要还款</a>');
+			html.push('<a href="/anjia/login.html">登录</a><s class="header-line"></s>');
+			html.push('<a href="/anjia/reg.html">注册</a><s class="header-line"></s>');
+			html.push('<a href="/anjia/login.html">我的订单</a><s class="header-line"></s>');
+			html.push('<a href="/anjia/login.html">我要还款</a>');
 
 			if($("#loginstatus").length > 0){
 				$("#loginstatus")[0].innerHTML = html.join('');
@@ -514,7 +514,7 @@ if(typeof console == "undefined"){
 		Utils.offLineStore.remove("token",false);
 
 		if(!isanon){
-			location.href = "index.html";
+			location.href = "/anjia/index.html";
 		}
 
 		//Utils.offLineStore.remove("login_userprofile",false);

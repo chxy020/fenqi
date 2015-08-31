@@ -356,7 +356,7 @@ $(function(){
 			sendGetOrderIdHttp();
 		}
 		else{
-			location.href = "login.html";
+			location.href = "/anjia/login.html";
 		}
 	}
 
@@ -898,7 +898,7 @@ $(function(){
 					$("#step4").hide();
 					$("#step5").show();
 					setTimeout(function(){
-						location.href = "usercenter.html";
+						location.href = "/anjia/usercenter.html";
 					},5000);
 				}
 				else{

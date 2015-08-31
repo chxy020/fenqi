@@ -27,7 +27,7 @@ $(function(){
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
 		//未登录
-		location.replace("login.html");
+		location.replace("/anjia/login.html");
 	}
 	else{
 		getUserInfo();
@@ -399,7 +399,7 @@ $(function(){
 					$("#setupspan2").addClass("b");
 					$("#newphone").html("恭喜您,新的绑定手机号:" + g.newPhone);
 					setTimeout(function(){
-						location.href = "login.html";
+						location.href = "/anjia/login.html";
 					},2000);
 				}
 				else{

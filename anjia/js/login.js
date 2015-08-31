@@ -89,7 +89,7 @@ $(function(){
 						var token = data.token || "";
 
 						Utils.offLineStore.set("token",token,false);
-						location.href = "usercenter.html";
+						location.href = "/anjia/usercenter.html";
 					}
 
 					//location.href = "center.html";
@@ -126,7 +126,7 @@ $(function(){
 
 
 	function findPwdPage(){
-		location.href = "findpwd.html";
+		location.href = "/anjia/findpwd.html";
 	}
 
 	setTimeout(function(){
@@ -166,6 +166,6 @@ $(function(){
 
 	//打开注册用户页面
 	function openRegPage(evt){
-		window.open("reg.html");
+		window.open("/anjia/reg.html");
 	}
 });

@@ -26,7 +26,7 @@ $(function(){
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
 		//未登录
-		location.replace("login.html");
+		location.replace("/anjia/login.html");
 	}
 	else{
 		getUserInfo();

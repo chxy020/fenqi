@@ -274,7 +274,7 @@ $(function(){
 					$("#setupimg2").attr("src","images/center/findpwd3.png");
 					$("#setupspan2").addClass("b");
 					setTimeout(function(){
-						location.href = "login.html";
+						location.href = "/anjia/login.html";
 					},2000);
 				}
 				else{
