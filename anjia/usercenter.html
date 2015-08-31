@@ -51,8 +51,8 @@
         	<div class="personal-top clearfix">
             	<div class="my-order-select f-right">
                 	<label>我的订单</label>
-                    <select class="common-select" style="width:380px">
-                    	<option>全部订单</option>
+                    <select id="orderstatus" class="common-select" style="width:380px">
+                    	<option value="">全部订单</option>
                     </select>
                 </div>
             	<div class="personal-inf">
@@ -67,7 +67,16 @@
                     </div>
                 </div>
             </div>
-            <div class="ui-personal-box">
+            <div id="orderlist" class="ui-personal-box" style="min-height:300px;">
+		<!--
+		<div class="ui-wrap">
+			<div class="bind-result-box">
+				<i class="common-ico ico-sucessed"></i>工作人员将对您的订单进行审核，请耐心等待！
+			</div>
+		</div>
+		-->
+
+
             	<table class="order-table" cellpadding="0" cellspacing="0">
                 	<tr>
                     	<th width="160">订单编号</th>
@@ -79,6 +88,8 @@
                         <th width="80">总期数</th>
                         <th>操作</th>
                     </tr>
+
+                    <!--
                     <tr>
                     	<td>20150811110 </td>
                         <td>0150811100 </td>
@@ -149,7 +160,9 @@
                         <td>36期</td>
                         <td><a href="javascript:void(0)">编辑</a><a href="javascript:void(0)">删除</a></td>
                     </tr>
+                    -->
                 </table>
+                <!--
                 <div class="ui-pager">
                 	<a href="javascript:void(0)" class="page-pre-end">&nbsp;</a>
                 	<a href="javascript:void(0)" class="page-pre">&nbsp;</a>
@@ -164,6 +177,8 @@
                     <a href="javascript:void(0)" class="page-next">&nbsp;</a>
                     <a href="javascript:void(0)" class="page-next-end">&nbsp;</a>
                 </div>
+		-->
+
             </div>
         </div>
     </div>

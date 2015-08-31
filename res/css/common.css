@@ -1060,7 +1060,7 @@ html{
 .prompt_mask { background-color:rgba(0, 0, 0, .5); position:fixed; top:0; left:0; right:0; bottom:0; height:100%; z-index:120; }
 .p_load { height:20px; width:20px; background:rgba(0, 0, 0, 0); position:absolute; left:50%; top:50%; margin-left:-10px; margin-top:-50px; }
 .loadimg { width:20px; height:20px; float:left; }
-.loadimg span { display:block; width:20px; height:20px; margin:0; background:url(../images/loading1.gif) no-repeat center top; -webkit-transform: rotate(0deg) translateZ(0); -webkit-transition-duration: 0ms; -web
+.loadimg span { display:block; width:20px; height:20px; margin:0; background:url(../images/loading1.gif) no-repeat center top;  -webkit-transform: rotate(0deg) translateZ(0); -webkit-transition-duration: 0ms; -webkit-animation-name: inpload; -webkit-animation-duration: 2.4s; -webkit-animation-iteration-count: infinite; -webkit-animation-timing-function: linear; }
 .loadtext { width:99px; height:20px; line-height:20px; float:left; color:#fff; font-size:15px; }
 .loadqx { float:left; width:50px; height:50px; background-color:#ff5500; border-left:1px solid #999; background:url(../images/dpi2/ld.png) no-repeat 20px -30px; }
 @-webkit-keyframes inpload { 0% {
@@ -1076,8 +1076,8 @@ html{
 -webkit-transform:rotate(54deg);
 }
 -20% {
---webkit-transform:rotate(72deg);
--}
+-webkit-transform:rotate(72deg);
+}
 25% {
 -webkit-transform:rotate(90deg);
 }
