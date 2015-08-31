@@ -27,6 +27,29 @@
         </div>
     </div>
 
+	<div class="ui-personal-main" style="padding-bottom:0px;">
+		<div class="ui-wrap">
+			<div class="personal-top clearfix">
+				<div class="back-go f-right">
+					<a href="/anjia/usercenter.html">返回我的订单&gt;&gt;</a>
+				</div>
+				<div class="personal-inf">
+					<img id="avatarimg" src="../res/images/usercenter1.png" class="user-img" onclick="document.getElementById('avatar').click()" />
+					<input type="file" id="avatar" name="avatar" style="display:none;" />
+					<div class="personal-inf-right">
+						<p id="userphone" class="user-phone" style="margin-left:10px;">手机号码</p>
+						<p class="user-edit-area">
+							<a class="common-ico ico-phone" href="/anjia/changephone.html"></a>
+							<a class="common-ico ico-setting" title="编辑" href="/anjia/userinfo.html"></a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
 	<div class="progress-page">
 		<div class="progress-center">
 			<div class="progress">
@@ -115,6 +138,7 @@
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
+	<script src="libs/ajaxfileupload.js"></script>
 	<script src="js/c_changphone.js"></script>
 </body>
 </html>

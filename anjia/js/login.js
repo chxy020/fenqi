@@ -91,7 +91,6 @@ $(function(){
 						Utils.offLineStore.set("token",token,false);
 						location.href = "/anjia/usercenter.html";
 					}
-
 					//location.href = "center.html";
 					//var token = data.result.token || "";
 					//Utils.offLineStore.set("token",token,false);

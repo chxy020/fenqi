@@ -32,7 +32,7 @@ $(function(){
 
 	//头像
 	$(document).on("change","#avatar",avatarBtnUp);
-
+	$("#orderstatus").bind("change",changeOrderStatus);
 
 
 	//获取个人资料
@@ -215,6 +215,11 @@ $(function(){
 		}
 	}
 
+	function changeOrderStatus(){
+		g.currentPage = 1;
+		getUserOrderList();
+	}
+
 	function getUserOrderList(){
 		var condi = {};
 		condi.login_token = g.login_token;
@@ -289,7 +294,7 @@ $(function(){
 			html.push('<td>' + fenQiTimes + '</td>');
 			html.push('<td>' + noRepaymentTimes + '期</td>');
 			if(status == "100501"){
-				html.push('<td><a href="/anjia/mystaging.html?id=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else{
 				html.push('<td><a href="/anjia/order-detail.html">查看</a></td>');
@@ -299,8 +304,11 @@ $(function(){
 		html.push('</table>');
 
 		var pobj = data.obj || {};
-		var page = countListPage(pobj);
-		html.push(page);
+
+		if(obj.length > 0){
+			var page = countListPage(pobj);
+			html.push(page);
+		}
 
 		$("#orderlist").html(html.join(''));
 

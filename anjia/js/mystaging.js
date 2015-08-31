@@ -14,9 +14,10 @@ $(function(){
 	g.customerId = "";
 	g.userPhone = "";
 
-	g.orderId = "";
+	g.orderId = Utils.getQueryString("orderid") || "";
 	g.poundage = 0;
 	g.moneyMonth = 0;
+	g.stagnum = 0;
 	g.repaymentType = "";
 	g.orderUserInfo = {};
 
@@ -24,6 +25,8 @@ $(function(){
 	g.uploadIndex = 0;
 	g.uploadMark = [0,0,0,0,0,0];
 
+	//编辑订单
+	//g.editOrderId = Utils.getQueryString("orderid") || "";
 
 	g.httpTip = new Utils.httpTip({});
 
@@ -273,6 +276,15 @@ $(function(){
 				if(status){
 					var obj = data.obj || {};
 					changeSelectHtml(obj);
+
+					//判断是否是编辑状态
+					if(g.orderId !== ""){
+						$("#step1").hide();
+						$("#step2").show();
+						//获取订单信息
+
+						sendGetOrderInfoHttp();
+					}
 				}
 				else{
 					var msg = data.message || "获取字典数据失败";
@@ -331,6 +343,7 @@ $(function(){
 		obj.all = all;
 		obj.mouth = mouthprice.toFixed(2);
 		obj.rate = rate.toFixed(2);
+		obj.stagnum = numarr[time];
 		return obj;
 	}
 
@@ -400,6 +413,7 @@ $(function(){
 
 			g.poundage = obj.rate + "";
 			g.moneyMonth = obj.mouth + "";
+			g.stagnum = obj.stagnum;
 		}
 	}
 
@@ -423,7 +437,7 @@ $(function(){
 						condi.packageName = packageName;
 						condi.packageType = packageType;
 						condi.packageMoney = packageMoney;
-						condi.fenQiTimes = fenQiTimes;
+						condi.fenQiTimes = g.stagnum;
 						condi.poundage =  g.poundage;;
 						condi.repaymentType = g.repaymentType;
 						condi.moneyMonth = g.moneyMonth;
@@ -942,6 +956,193 @@ $(function(){
 			return false;
 		}
 	}
+
+
+
+	//以下为订单编辑
+	function sendGetOrderInfoHttp(){
+		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = g.orderId;
+
+		g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetOrderInfoHttp",data);
+				var status = data.success || false;
+				if(status){
+					changeOrderInfoHtml(data);
+				}
+				else{
+					//var msg = data.error || "";
+					var msg = data.message || "获取订单信息失败";
+					alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+
+
+	function changeOrderInfoHtml(data){
+		var obj = data.obj || {};
+		//第二步数据,套餐信息
+		var contractNo = obj.contractNo || "";
+		var packageType = obj.packageType || "";
+		var packageMoney = obj.packageMoney || "";
+		var fenQiTimes = obj.fenQiTimes || "";
+		var poundage = obj.poundage || "0";
+		var moneyMonth = obj.moneyMonth || "0";
+
+		g.stagnum = fenQiTimes;
+		g.poundage = poundage;
+		g.moneyMonth = moneyMonth;
+
+		var fenarr = {"3":0,"6":1,"9":2,"12":3,"18":4,"24":5,"36":6};
+		fenQiTimes = fenarr[(fenQiTimes + "")];
+
+		$("#contractNo").val(contractNo);
+		$("#packageType").val(packageType);
+		$("#packageMoney").val(packageMoney);
+		$("#fenQiTimes").val(fenQiTimes);
+		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元")));
+		$("#moneyMonth").html((moneyMonth + "元"));
+		$("#agreeck").attr("checked",true);
+		$($("#agreeck").parent()).addClass("chk-bg-checked");
+
+		//第三步数据,个人信息
+		//3.1
+		var applicantName = obj.applicantName || "";
+		var applicantAge = obj.applicantAge || "";
+		var applicantSex = obj.applicantSex || "";
+		var applicantIdentity = obj.applicantIdentity || "";
+		var applicantMarital = obj.applicantMarital || "";
+		var applicantAddress = obj.applicantAddress || "";
+		var applicantStudyStatus = obj.applicantStudyStatus || "";
+		var applicantSchool = obj.applicantSchool || "";
+		var applicantMajor = obj.applicantMajor || "";
+		var applicantAsset = obj.applicantAsset || "";
+
+		var applicantJobNature = obj.applicantJobNature || "";
+		var applicantCompany = obj.applicantCompany || "";
+		var applicantCompanyNature = obj.applicantCompanyNature || "";
+		var applicantCompanyIndustry = obj.applicantCompanyIndustry || "";
+		var applicantDuties = obj.applicantDuties || "";
+		var applicantWorkYears = obj.applicantWorkYears || "";
+		var applicantCompanyAddress = obj.applicantCompanyAddress || "";
+		var applicantCompanyPhone = obj.applicantCompanyPhone || "";
+		var applicantWages = obj.applicantWages || "";
+
+
+		$("#applicantName").val(applicantName);
+		$("#applicantAge").val(applicantAge);
+		if(applicantSex == "100102"){
+			$("#applicantSex").attr("checked",true);
+			$($("#r_100101").parent()).removeClass("radio-bg-checked");
+			$($("#applicantSex").parent()).addClass("radio-bg-checked");
+		}
+		$("#applicantIdentity").val(applicantIdentity);
+		$("#applicantMarital").val(applicantMarital);
+		$("#applicantAddress").val(applicantAddress);
+		$("#applicantStudyStatus").val(applicantStudyStatus);
+		$("#applicantSchool").val(applicantSchool);
+		$("#applicantMajor").val(applicantMajor);
+
+		$("#r_" + applicantAsset).attr("checked",true);
+		$($("#r_101001").parent()).removeClass("radio-bg-checked");
+		$($("#r_" + applicantAsset).parent()).addClass("radio-bg-checked");
+
+		$("#r_" + applicantJobNature).attr("checked",true);
+		$($("#r_101101").parent()).removeClass("radio-bg-checked");
+		$($("#r_" + applicantJobNature).parent()).addClass("radio-bg-checked");
+		$("#applicantCompany").val(applicantCompany);
+		$("#applicantCompanyNature").val(applicantCompanyNature);
+		$("#applicantCompanyIndustry").val(applicantCompanyIndustry);
+		$("#applicantDuties").val(applicantDuties);
+		$("#applicantWorkYears").val(applicantWorkYears);
+		$("#applicantCompanyAddress").val(applicantCompanyAddress);
+		$("#applicantCompanyPhone").val(applicantCompanyPhone);
+		$("#applicantWages").val(applicantWages);
+
+		//3.2
+		var familyName = obj.familyName || "";
+		var familyPhone = obj.familyPhone || "";
+		var familyRelation = obj.familyRelation || "";
+		var friendName = obj.friendName || "";
+		var friendPhone = obj.friendPhone || "";
+
+		$("#familyName").val(familyName);
+		$("#familyPhone").val(familyPhone);
+		$("#familyRelation").val(familyRelation);
+		$("#friendName").val(friendName);
+		$("#friendPhone").val(friendPhone);
+
+		//3.3
+		var liableName = obj.liableName || "";
+		var liablePhone = obj.liablePhone || "";
+		var liableIdentity = obj.liableIdentity || "";
+		var liableRelation = obj.liableRelation || "";
+		var liableAddress = obj.liableAddress || "";
+
+		$("#liableName").val(liableName);
+		$("#liablePhone").val(liablePhone);
+		$("#liableIdentity").val(liableIdentity);
+		$("#liableRelation").val(liableRelation);
+		$("#liableAddress").val(liableAddress);
+
+		var imglist = data.list || [];
+		imgUploadEdit(imglist);
+	}
+
+	function imgUploadEdit(list){
+		for(var i = 0, len = list.length; i < len; i++){
+			var data = list[i] || {};
+
+			var src = data.orderMaterialUrl + "?t=" + (new Date() - 0);
+			var id = data.orderMaterialId || "";
+			var orderMaterialType = data.orderMaterialType || "";
+			var slen = orderMaterialType.length - 1;
+			if(len > 9){
+				slen = orderMaterialType.length - 2;
+			}
+			var uploadIndex = orderMaterialType.substring(slen) - 1;
+			var html = [];
+			html.push('<div id="img_' + id + '" class="upload-img-item">');
+			html.push('<div class="upload-inf-img">');
+			html.push('<img src="' + src + '" width=230 height=130 />');
+			html.push('</div>');
+			html.push('<div class="upload-img-edit">');
+			//html.push('<a href="javascript:void(0)" onclick="" class="common-ico ico-edit"></a>
+			html.push('<a href="javascript:deleteUploadImg(\'' + id + '\',\'' + uploadIndex + '\')" class="common-ico ico-rubbish"></a>');
+			html.push('</div>');
+			html.push('</div>');
+
+			$("#imgdiv_" + uploadIndex).append(html.join(''));
+
+			if(uploadIndex == 0){
+				var fm = g.uploadMark[0];
+				if(fm === 1){
+					g.uploadMark[uploadIndex + 1] = 1;
+				}
+				else{
+					g.uploadMark[uploadIndex] = 1;
+				}
+			}
+			else{
+				g.uploadMark[uploadIndex + 1] = 1;
+			}
+		}
+	}
+
 
 	window.deleteUploadImg = deleteUploadImg;
 });
