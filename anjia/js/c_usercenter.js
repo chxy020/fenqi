@@ -309,6 +309,9 @@ $(function(){
 			var page = countListPage(pobj);
 			html.push(page);
 		}
+		else{
+			Utils.alert("没有订单数据");
+		}
 
 		$("#orderlist").html(html.join(''));
 

@@ -1042,7 +1042,6 @@ $(function(){
 		var applicantCompanyPhone = obj.applicantCompanyPhone || "";
 		var applicantWages = obj.applicantWages || "";
 
-
 		$("#applicantName").val(applicantName);
 		$("#applicantAge").val(applicantAge);
 		if(applicantSex == "100102"){
