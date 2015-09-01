@@ -150,19 +150,19 @@ $(function(){
 
 		var sexHtml = [];
 		for(var k in sex){
-			sexHtml.push('<input type="radio" name="sexradio" class="common-radio" id="' + k + '" value="' + k + '">' + sex[k] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+			sexHtml.push('<input type="radio" name="sexradio" class="common-radio" id="' + k + '" value="' + k + '"><label for="' + k + '" style="float:none;">' + sex[k] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
 		}
 		var identificationHtml = [];
 		for(var k in identification){
-			identificationHtml.push('<input type="radio" class="common-radio" name="idrodio" id="' + k + '" value="' + k + '">' + identification[k] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+			identificationHtml.push('<input type="radio" class="common-radio" name="idrodio" id="' + k + '" value="' + k + '"><label for="' + k + '" style="float:none;">' + identification[k] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
 		}
 		var maritalStatusHtml = [];
 		for(var k in maritalStatus){
-			maritalStatusHtml.push('<input type="radio" class="common-radio" name="userstatus" id="' + k + '" value="' + k + '">' + maritalStatus[k] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+			maritalStatusHtml.push('<input type="radio" class="common-radio" name="userstatus" id="' + k + '" value="' + k + '"><label for="' + k + '" style="float:none;">' + maritalStatus[k] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
 		}
 		var interestingHtml = [];
 		for(var k in interesting){
-			interestingHtml.push('<input type="checkbox" class="common-radio" name="cklike" id="' + k + '" value="' + k + '">' + interesting[k] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+			interestingHtml.push('<input type="checkbox" class="common-radio" name="cklike" id="' + k + '" value="' + k + '"><label for="' + k + '" style="float:none;">' + interesting[k] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
 		}
 
 		$("#sexdiv").html(sexHtml.join(''));
