@@ -32,7 +32,7 @@ $(function(){
 	$("#querybtn").bind("click",queryOrderList);
 
 	function queryOrderList(){
-		sendGetCompanyInfoHttp();
+		sendQueryOrderListHttp();
 	}
 
 	function sendGetCompanyInfoHttp(){
