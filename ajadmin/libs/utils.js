@@ -454,26 +454,14 @@ if(typeof console == "undefined"){
 		var token = offLineStore.get("token",false) || "";
 		if(token !== "" && info !== ""){
 			var obj = JSON.parse(info) || {};
-			var phoneNumber = obj.phoneNumber || "";
-
+			var phoneNumber = obj.usersPhone || "";
+			var usersName = obj.usersName || "";
 			//保存用户手机号
 			Base.phoneNumber = phoneNumber;
 
-			//已登录
-			var html = [];
-			//var token = Utils.offLineStore.get("token",false) || "";
-			//var str = "";
-			//if(token !== ""){
-			//	str = "?token=" + token + "&p=0";
-			//}
 
-			html.push('<span class="login">' + phoneNumber + ' 您好!</span>');
-			html.push('<span><a href="javascript:Utils.loginOut();">退出</a></span>');
-			html.push('<span><a href="usercenter.html">我的订单</a></span>');
-			html.push('<span><a href="usercenter.html">我要还款</a></span>');
-
-			if($("#loginstatus").length > 0){
-				$("#loginstatus")[0].innerHTML = html.join('');
+			if($("#username_index").length > 0){
+				$("#username_index").html(usersName);
 			}
 			return true;
 		}
@@ -502,7 +490,7 @@ if(typeof console == "undefined"){
 		});
 		Utils.offLineStore.remove("userinfo",false);
 		Utils.offLineStore.remove("token",false);
-		location.href = "index.html";
+		location.href = "Public/login.html";
 		//Utils.offLineStore.remove("login_userprofile",false);
 		/*
 		var page = location.href.indexOf("/center/");
