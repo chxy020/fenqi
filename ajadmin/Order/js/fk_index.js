@@ -52,7 +52,7 @@ $(function(){
 					var obj = data.list || [];
 					changeSelectHtml(obj);
 
-					sendQueryOrderListHttp();
+					sendQueryRiskOrderListHttp();
 				}
 				else{
 					var msg = data.message || "获取公司信息字典数据失败";
@@ -84,9 +84,9 @@ $(function(){
 	}
 
 
-	function sendQueryOrderListHttp(){
+	function sendQueryRiskOrderListHttp(){
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/querySellerApproveOrdersController";
+		var url = Base.serverUrl + "order/queryRiskManagementApproveOrdersController";
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.status = "";
@@ -99,7 +99,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendQueryOrderListHttp",data);
+				console.log("sendQueryRiskOrderListHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeOrderListHtml(data);
@@ -156,10 +156,11 @@ $(function(){
 			}
 			else if(status == "100502"){
 				//100502: "商家审核中"
-				html.push('<td><a href="detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="seller.html?orderid=' + orderId + '">审批</a></td>');
+				//html.push('<td><a href="detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="seller.html?orderid=' + orderId + '">审批</a></td>');
 			}
 			else if(status == "100503"){
 				//100503: "风控审核中
+				html.push('<td><a href="detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="fk_seller.html?orderid=' + orderId + '">审批</a></td>');
 			}
 			else if(status == "100504" || status == "100508" || status == "100509"){
 				//html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
