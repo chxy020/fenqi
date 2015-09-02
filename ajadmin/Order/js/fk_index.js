@@ -160,7 +160,7 @@ $(function(){
 			}
 			else if(status == "100503"){
 				//100503: "风控审核中
-				html.push('<td><a href="detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="fk_seller.html?orderid=' + orderId + '">审批</a></td>');
+				html.push('<td><a href="fk_detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="fk_seller.html?orderid=' + orderId + '">审批</a></td>');
 			}
 			else if(status == "100504" || status == "100508" || status == "100509"){
 				//html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');

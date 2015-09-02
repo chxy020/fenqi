@@ -306,10 +306,10 @@ $(function(){
 		$("#orderinfotable").html(html.join(''));
 
 		$('#backid').click(function(){
-			window.location.href="index.html";
+			window.location.href="fk_index.html";
 		});
 		$('#sellerbtn').click(function(){
-			window.location.href="seller.html?orderid=" + g.orderId;
+			window.location.href="fk_seller.html?orderid=" + g.orderId;
 		});
 	}
 

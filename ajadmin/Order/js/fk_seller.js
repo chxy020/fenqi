@@ -36,7 +36,7 @@ $(function(){
 	$("#sellerbtn").bind("click",fkSellerBtnUp);
 
 	$('#backid').click(function(){
-		window.location.href="index.html";
+		window.location.href="fk_index.html";
 	});
 
 	function fkSellerBtnUp(id){
