@@ -37,11 +37,9 @@
 						if(a.attr("checked")) {
 							a.removeAttr("checked");
 							b.removeClass("radio-bg-checked");
-							a[0].checked = false;
 						}else{
 							b.addClass("radio-bg-checked");
 							a.attr("checked",'true');
-							a[0].checked = true;
 						}
 						eval(a.attr("onclick"));
 					});
@@ -79,18 +77,15 @@
 								if(a.attr("checked")) {
 									a.removeAttr("checked");
 									b.removeClass("chk-bg-checked");
-									a[0].checked = false;
 								}else{
 									b.addClass("chk-bg-checked");
 									a.attr("checked",'true');
-									a[0].checked = true;
 								}
 							}else if(a.attr("type")=="radio"){
 								$("[name="+a.attr("name")+"]").removeAttr("checked");
 								$("[name="+a.attr("name")+"]").parents(".chk-bg").removeClass("chk-bg-checked");
 								b.addClass("chk-bg-checked");
 								a.attr("checked",'true');
-								a[0].checked = true;
 							}
 							eval(a.attr("onclick"));
 						}
@@ -114,7 +109,7 @@
 				$(this).find('.select-city-btn').removeClass('active');
 				$(this).find('.select-city-area').hide();
 			});
-		}
+		}	
 	});
 
 

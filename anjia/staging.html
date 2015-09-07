@@ -22,13 +22,32 @@
 			</div>
 		</div>
 	</div>
-    <div class="ui-header">
+
+	<div class="ui-header">
     	<div class="ui-wrap">
         	<div class="ui-head-left f-left clearfix">
         		<img class="ui-logo" src="../res/images/logo.png" />
                 <div class="ui-head-left-l f-left">
                 	<span class="cur-pos">成都</span>
-                	<a href="###" class="select-city-btn">切换城市</a>
+                	<div class="select-city-box">
+                    	<a href="javascript" class="select-city-btn">切换城市</a>
+                        <div class="select-city-area">
+                        	<ul class="select-city-area-ul clearfix">
+                            	<li>
+                                	<a href="###">北京</a>
+                                </li>
+                                <li>
+                                	<a href="###">上海</a>
+                                </li>
+                                <li>
+                                	<a href="###">成都</a>
+                                </li>
+                                <li>
+                                	<a href="###">福建</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="ui-phone-service">
@@ -40,51 +59,65 @@
                 	<li><a href="/anjia/index.html">首页</a></li>
 			<li><a href="/anjia/staging.html" class="selected">家装分期</a></li>
 			<li><a href="/anjia/business.html">合作商家</a></li>
-			<li><a href="/anjia/mystaging.html">我要分期</a></li>
+			<li><a href="/anjia/about.html">关于我们</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="sub-page-banner">
+    <div class="sub-page-banner improve-banner">
     	<div class="ui-wrap">
-            <div class="slide-right-part">
-            	<div class="slide-right-title">燕子安家</div>
-                <div class="slide-right-summary">文案介绍文案介绍文案介<br />绍文案介绍文案介绍文案介绍</div>
-                <div class="slide-btn-box">
-                	<p><a href="/anjia/business.html" class="view-slide-btn"><i class="common-ico ico-viewgoods"></i>查看商品</a></p>
-                    <p><a href="/anjia/mystaging.html" class="view-slide-btn"><i class="common-ico ico-staging-w"></i>我要分期</a></p>
+            <div class="slide-right-part" style="background:none;">
+                <div class="slide-btn-box" style="margin-top:290px;">
+                    <p><a href="../business-sign/index.html" title="我要分期" class="improve-btn">我要分期</a></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="staging-step-main">
+    <div class="improvement-cal-main">
     	<div class="ui-wrap">
-        	<div class="staging-step-box clearfix">
-            	<div class="staging-step-item">
-                	<i class="staging-ico staging-ico1"></i>
-                    <p class="highlight staging-step-title">低门槛</p>
-                    <p>装修人人可分期，免抵押、免担保</p>
+        	<h1 class="imp-title">其实不用算</h1>
+            <div class="improvement-cal-box clearfix">
+            	<div class="improvement-box-left">
+                	<div class="imp-sec-title">￥手续费每天低至100元</div>
+                	<div class="improvement-item-box">
+                    	<div class="improvement-item">
+                        	<label>贷款金额</label>
+                            <div class="imp-right-cont">
+                            	<div class="count-unit-box clearfix">
+                            		<div class="count-unit">元</div>
+                            		<input type="text" class="common-input-text unit-input-text" value="111111" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="improvement-item clearfix">
+                        	<label>贷款周期</label>
+                            <div class="imp-right-cont">
+                            	<select class="common-select" style="width:349px;">
+                                    <option>3个月</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="improvement-item clearfix" style="margin-top:25px;">
+                        	<label>&nbsp;</label>
+                            <div class="imp-right-cont">
+                            	<input type="button" class="common-btn btn-green" value="计算还款金额" style="width:349px;font-size:16px;" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="staging-step-item">
-                	<i class="staging-ico staging-ico2"></i>
-                    <p class="highlight staging-step-title">申请快捷</p>
-                    <p>申请分期在线操作</p>
-                </div>
-                <div class="staging-step-item">
-                	<i class="staging-ico staging-ico3"></i>
-                    <p class="highlight staging-step-title">更低手续费</p>
-                    <p>最高享0元手续费</p>
-                </div>
-                <div class="staging-step-item">
-                	<i class="staging-ico staging-ico4"></i>
-                    <p class="highlight staging-step-title">人性化付款</p>
-                    <p>支付手续费即可开始家装</p>
+                <div class="improvement-box-right">
+                	<div class="i-r-l">每月还款<em class="highlight">0.00</em>元</div>
+                    <div class="i-r-r">
+                    	<p>贷款金额：<em>0</em> 元</p>
+                        <p>贷款周期：<em>0</em> 期</p>
+                        <p>本息合计：<em>0</em> 元</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="staging-detai-main">
-        <div class="staging-phone-btn">咨询热线：4008-122-100</div>
+        <a href="../business-sign/index.html" class="staging-phone-btn">我要分期</a>
     </div>
     <div class="staging-rate-main">
     	<div class="ui-wrap">
@@ -92,13 +125,13 @@
             <table class="staging-rate-tab">
             	<tr>
                 	<td width="208" class="fir-td">期限</td>
-                    <td width="112">3个月</td>
-                    <td width="112">6个月</td>
-                    <td width="112">9个月</td>
-                    <td width="112">12个月</td>
-                    <td width="112">18个月</td>
-                    <td width="112">24个月</td>
-                    <td width="112">36个月</td>
+                    <td width="142">3个月</td>
+                    <td width="142">6个月</td>
+                    <td width="142">9个月</td>
+                    <td width="142">12个月</td>
+                    <td width="142">18个月</td>
+                    <td width="142">24个月</td>
+                    <td width="">36个月</td>
                 </tr>
                 <tr>
                 	<td class="fir-td">一次性收取服务费用</td>

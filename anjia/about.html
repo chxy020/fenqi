@@ -6,7 +6,7 @@
 	<title>安家吧</title>
 	<link href="../res/css/common.css" rel="stylesheet">
     <link href="../res/css/carouFredSel.css" rel="stylesheet">
-    <link href="../res/css/personal.css" rel="stylesheet">
+    <link href="../res/css/index.css" rel="stylesheet">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
         	<div id="loginstatus" class="head-box">
 				<a href="/anjia/login.html">登录</a>
 				<s class="header-line"></s>
-				<a href="/anjia/regist.html">注册</a>
+				<a href="/anjia/reg.html">注册</a>
 				<s class="header-line"></s>
 				<a href="/anjia/login.html">我的订单</a>
 				<s class="header-line"></s>
@@ -59,32 +59,32 @@
                 	<li><a href="/anjia/index.html">首页</a></li>
 			<li><a href="/anjia/staging.html">家装分期</a></li>
 			<li><a href="/anjia/business.html">合作商家</a></li>
-			<li><a href="/anjia/about.html">关于我们</a></li>
+			<li><a href="/anjia/about.html" class="selected">关于我们</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="ui-personal-main">
-	    <div class="personal-top clearfix">
-            	<div class="back-go f-right">
-                	<a href="/anjia/usercenter.html">返回我的订单&gt;&gt;</a>
-                </div>
-            	<div class="personal-inf">
-                	<img id="avatarimg" src="../res/images/usercenter1.png" class="user-img" onclick="document.getElementById('avatar').click()" />
-                    <input type="file" id="avatar" name="avatar" style="display:none;" />
-                    <div class="personal-inf-right">
-                    	<p id="userphone" class="user-phone" style="margin-left:10px;">手机号码</p>
-                       <p class="user-edit-area">
-                        	<a class="common-ico ico-phone" href="/anjia/changephone.html"></a>
-                            <a class="common-ico ico-setting" title="编辑" href="/anjia/userinfo.html"></a>
-                        </p>
-                    </div>
-                </div>
+    <div class="sub-main">
+    	<div class="ui-wrap clearfix">
+            <div class="sub-left-nav">
+                <ul>
+                    <li class="selected">
+                        <a href="javascript:void(0)">德维简介</a>
+                        <i class="common-ico ico-green-trig"></i>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">燕子安家简介</a>
+                        <i class="common-ico ico-green-trig"></i>
+                    </li>
+                </ul>
             </div>
-
-    	<div class="ui-wrap">
-        	<div class="bind-result-box">
-                <i class="common-ico ico-sucessed"></i>工作人员将对您的订单进行审核，请耐心等待！
+            <div class="sub-right-cont">
+            	<h1 class="sub-right-title">燕子安家简介</h1>
+                <div class="sub-right-box">
+                	<p>这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章</p>
+                    <p>这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章</p>
+                    <p>这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章这是文章</p>
+                </div>
             </div>
         </div>
     </div>
@@ -136,15 +136,25 @@
             </div>
         </div>
     </div>
-
-	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="../res/js/ui.js"></script>
-	<script src="libs/json.js"></script>
-	<script src="libs/base.js"></script>
-	<script src="libs/utils.js"></script>
-	<script src="libs/calendar.js"></script>
-	<script src="libs/ajaxfileupload.js"></script>
-	<script src="js/c_orderaudit.js"></script>
 </body>
+<script type="text/javascript" src="../res/js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>
+<script type="text/javascript" src="../res/js/ui.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//初始化
+		$('#bannerSlider').carouFredSel({
+			width: '100%',
+			height: 450,
+			prev: '#prev',
+			next: '#next',
+			pagination: "#pager",
+			swipe: {
+				onMouse: true,
+				onTouch: true
+			}
+		});
+	})
+</script>
 </html>
 
