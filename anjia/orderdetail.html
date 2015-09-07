@@ -49,9 +49,12 @@
 					<i class="common-ico ico-note"></i>订单详情
 					<a href="javascript:void(0)" onclick="showOrderPop('#orderPopBox')" class="show-detail-btn">查看<i class="common-ico ico-trig-right"></i></a>
 				</div>
-
+			<div class="back-go f-right" style="margin-top: -20px;">
+				<a href="/anjia/usercenter.html">返回我的订单&gt;&gt;</a>
+			</div>
             </div>
-            <div class="ui-personal-box">
+            <div id="orderstaginglist" class="ui-personal-box">
+		    <!--
             	<table class="order-table" cellpadding="0" cellspacing="0">
                 	<tr>
                     	<th width="110">还款期数</th>
@@ -145,6 +148,7 @@
                     <a href="javascript:void(0)" class="page-next">&nbsp;</a>
                     <a href="javascript:void(0)" class="page-next-end">&nbsp;</a>
                 </div>
+                -->
             </div>
         </div>
     </div>
@@ -275,6 +279,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!--还款弹窗-->
 	<div class="pop-fade" id="commonPopFade"></div>
 	<!--查看订单详情弹窗-->
@@ -340,6 +345,7 @@
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
+	<script src="js/c_orderdetail.js"></script>
 	<script type="text/javascript">
 		//出现弹窗遮罩层
 		function showPopFade(){

@@ -10,11 +10,12 @@ $(function(){
 	g.tout = null;
 	g.httpTip = new Utils.httpTip({});
 
-	var userPhone = Utils.offLineStore.get("userphone_login",true) || "";
-	$("#inputphone").val(userPhone);
+	//var userPhone = Utils.offLineStore.get("userphone_login",true) || "";
+	//$("#inputphone").val(userPhone);
 
-	$("#inputphone").bind("blur",validPhone);
-	$("#inputpwd").bind("blur",validPwd);
+	//$("#inputphone").bind("blur",validPhone);
+	//$("#inputpwd").bind("keyword",validPwd);
+	$("#inputpwd").bind("keydown",keyWordUp);
 	$("#loginbtn").bind("click",loginBtnUp);
 	//找回密码
 	//$("#findpwd").bind("click",findPwdPage);
@@ -41,6 +42,11 @@ $(function(){
 		}
 	}
 
+	function keyWordUp(evt){
+		if(evt.keyCode == 13){
+			loginBtnUp();
+		}
+	}
 
 	function loginBtnUp(evt){
 		var phone = $("#inputphone").val() || "";
@@ -48,12 +54,8 @@ $(function(){
 		//var code = $("#inputCode3").val() || "";
 		if(phone !== ""){
 			if(pwd !== ""){
-				var savePhone = $("#chkphone")[0].checked;
-				if(savePhone){
-					Utils.offLineStore.set("userphone_login",phone,true);
-				}
 				var condi = {};
-				condi.phone_number = phone;
+				condi.usersPhone = phone;
 				condi.password = pwd;
 				sendLoginHttp(condi);
 			}
@@ -69,7 +71,7 @@ $(function(){
 	}
 
 	function sendLoginHttp(condi){
-		var url = Base.serverUrl + "user/CustomerLoginController";
+		var url = Base.serverUrl + "user/UsersLoginController";
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -83,19 +85,18 @@ $(function(){
 				if(status){
 					var userInfo = data.obj || "";
 					if(userInfo !== ""){
+						Utils.offLineStore.set("user_phoneNumber",userInfo.usersPhone,false);
+						Utils.offLineStore.set("user_usersName",userInfo.usersName,false);
+						Utils.offLineStore.set("user_usersId",userInfo.usersId,false);
+
 						userInfo = JSON.stringify(userInfo);
 						//保存用户数据
 						Utils.offLineStore.set("userinfo",userInfo,false);
 						var token = data.token || "";
 
 						Utils.offLineStore.set("token",token,false);
-						location.href = "usercenter.html";
+						location.href = "../index.html";
 					}
-
-					//location.href = "center.html";
-					//var token = data.result.token || "";
-					//Utils.offLineStore.set("token",token,false);
-					//location.href = "center.html?token=" + token + "&p=0";
 				}
 				else{
 					//var msg = data.error || "";
@@ -117,55 +118,4 @@ $(function(){
 
 
 
-
-
-
-
-
-
-
-
-	function findPwdPage(){
-		location.href = "findpwd.html";
-	}
-
-	setTimeout(function(){
-		getImgCode();
-	},2000);
-	//换一组图片
-	function getImgCode(evt){
-		var userName = $("#inputEmail3").val() || "";
-		if(userName !== ""){
-			g.codeId = userName;
-			//console.log(g.codeId);
-			$("#updatecodebtn").attr("src",Base.imgCodeUrl + "?id=" + g.codeId + "&t=" + (new Date() - 0));
-			clearTimeout(g.tout);
-			g.tout = setTimeout(function(){
-				getImgCode();
-			},60000);
-		}
-	}
-
-	//重置信息
-	function resetRegInfo(evt){
-		$("#inputEmail3").val("");
-		$("#inputPassword3").val("");
-		$("#inputPhone3").val("");
-		$("#inputImgCode3").val("");
-		$("#inputCode3").val("");
-		$("#password").val("");
-	}
-
-	function codeKeyDown(evt){
-		evt = evt || event;
-		if(evt.keyCode == 13){
-			//
-			$("#loginbtn").trigger("click");
-		}
-	}
-
-	//打开注册用户页面
-	function openRegPage(evt){
-		window.open("reg.html");
-	}
 });

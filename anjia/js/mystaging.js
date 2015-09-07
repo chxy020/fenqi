@@ -37,6 +37,7 @@ $(function(){
 	}
 	else{
 		getUserInfo();
+		sendGetProductHttp();
 		sendGetDicHttp();
 	}
 
@@ -255,15 +256,42 @@ $(function(){
 		return b;
 	}
 
+	//获取产品信息
+	function sendGetProductHttp(){
+		g.httpTip.show();
+		var url = Base.serverUrl + "order/queryProductController";
+		var condi = {};
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			async: false,
+			success: function(data){
+				console.log("sendGetProductHttp",data);
+				var status = data.success || false;
+				if(status){
+					changeProductSelectHtml(data);
+				}
+				else{
+					var msg = data.message || "获取产品数据失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+
 	//获取字典信息
 	function sendGetDicHttp(){
 		g.httpTip.show();
 		var url = Base.serverUrl + "baseCodeController/getBaseCodeByParents";
-		/*
-		套餐类别：1006
-		*/
 		var condi = {};
-		condi.parents = "1003,1006,1008,1009,1012,1013,1014,1015,1016";
+		condi.parents = "1003,1008,1009,1012,1013,1014,1015,1016";
 		$.ajax({
 			url:url,
 			data:condi,
@@ -304,8 +332,8 @@ $(function(){
 			g.repaymentType = k;
 		}
 
-		var parents = ["1003","1006","1009","1012","1013","1014","1015","1016","1016"];
-		var ids = ["applicantMarital","packageType","applicantStudyStatus","applicantCompanyNature","applicantCompanyIndustry",
+		var parents = ["1003","1009","1012","1013","1014","1015","1016","1016"];
+		var ids = ["applicantMarital","applicantStudyStatus","applicantCompanyNature","applicantCompanyIndustry",
 			"applicantDuties","applicantWorkYears","familyRelation","liableRelation"];
 
 		for(var i = 0,len = parents.length; i < len; i++){
@@ -319,6 +347,21 @@ $(function(){
 			$("#" + ids[i]).html(option.join(''));
 		}
 	}
+
+	function changeProductSelectHtml(obj){
+		var data = obj.list || [];
+		var option = [];
+		for(var i = 0,len = data.length; i < len; i++){
+			var d = data[i];
+			var id = d.productId || "";
+			var cid = d.companyId || "";
+			var name = d.productName || "";
+			id = id + "_" + cid;
+			option.push('<option value="' + id + '">' + name + '</option>');
+		}
+		$("#packageType").html(option.join(''));
+	}
+
 
 	//获取个人资料
 	function getUserInfo(){
@@ -424,6 +467,9 @@ $(function(){
 		var packageMoney = $("#packageMoney").val() || "";
 		var fenQiTimes = $("#fenQiTimes").val() || "";
 		var agreeck = $("#agreeck")[0].checked || false;
+		ptype = packageType.split("_");
+		packageType = ptype[0] || "";
+		var companyId = ptype[1] || "";
 
 		if(sendValidNoEmpty(contractNo,$("#contractNo"))){
 			if(sendValidNoEmpty(packageMoney,$("#packageMoney"))){
@@ -436,6 +482,7 @@ $(function(){
 						condi.contractNo = contractNo;
 						condi.packageName = packageName;
 						condi.packageType = packageType;
+						condi.companyId = companyId;
 						condi.packageMoney = packageMoney;
 						condi.fenQiTimes = g.stagnum;
 						condi.poundage =  g.poundage;;
@@ -998,6 +1045,7 @@ $(function(){
 		//第二步数据,套餐信息
 		var contractNo = obj.contractNo || "";
 		var packageType = obj.packageType || "";
+		var companyId = obj.companyId || "";
 		var packageMoney = obj.packageMoney || "";
 		var fenQiTimes = obj.fenQiTimes || "";
 		var poundage = obj.poundage || "0";
@@ -1011,7 +1059,7 @@ $(function(){
 		fenQiTimes = fenarr[(fenQiTimes + "")];
 
 		$("#contractNo").val(contractNo);
-		$("#packageType").val(packageType);
+		$("#packageType").val((packageType + "_" + companyId));
 		$("#packageMoney").val(packageMoney);
 		$("#fenQiTimes").val(fenQiTimes);
 		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元")));
@@ -1041,7 +1089,6 @@ $(function(){
 		var applicantCompanyAddress = obj.applicantCompanyAddress || "";
 		var applicantCompanyPhone = obj.applicantCompanyPhone || "";
 		var applicantWages = obj.applicantWages || "";
-
 
 		$("#applicantName").val(applicantName);
 		$("#applicantAge").val(applicantAge);

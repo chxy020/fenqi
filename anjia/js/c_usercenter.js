@@ -279,7 +279,7 @@ $(function(){
 			var orderId = d.orderId || "";
 			var contractNo = d.contractNo || "";
 			var packageName = d.packageName || "";
-			var packageMoney = d.packageMoney || "";
+			var packageMoney = d.packageMoney || 0;
 			var statusDes = d.statusDes || "";
 			var status = d.status || "";
 			var fenQiTimes = d.fenQiTimes || 0;
@@ -296,8 +296,28 @@ $(function(){
 			if(status == "100501"){
 				html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
-			else{
-				html.push('<td><a href="/anjia/order-detail.html">查看</a></td>');
+			else if(status == "100502"){
+				//100502: "商家审核中"
+				html.push('<td><a href="/anjia/orderaudit.html">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+			}
+			else if(status == "100503"){
+				//100503: "风控审核中
+				html.push('<td><a href="/anjia/orderaudit.html">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+			}
+			else if(status == "100504" || status == "100508" || status == "100509"){
+				html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+			}
+			else if(status == "100505"){
+				//100505: "待缴手续费"
+				html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
+			}
+			else if(status == "100506"){
+				//100506: "待放款"
+				html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
+			}
+			else if(status == "100507"){
+				//100506: "待放款"
+				html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
 			}
 			html.push('</tr>');
 		}
@@ -308,6 +328,9 @@ $(function(){
 		if(obj.length > 0){
 			var page = countListPage(pobj);
 			html.push(page);
+		}
+		else{
+			Utils.alert("没有订单数据");
 		}
 
 		$("#orderlist").html(html.join(''));
@@ -434,44 +457,41 @@ $(function(){
 	}
 
 	function deleteOrderById(id){
-		g.httpTip.show();
-		var condi = {};
-		condi.orderId = id;
-		var url = Base.serverUrl + "order/queryOrdersController";
-		$.ajax({
-			url:url,
-			data:condi,
-			type:"POST",
-			dataType:"json",
-			context:this,
-			success: function(data){
-				console.log("deleteOrderById",data);
-				var status = data.success || false;
-				if(status){
+		if(confirm("你确认要删除订单吗?")){
+			g.httpTip.show();
+			var condi = {};
+			condi.orderId = id;
+			condi.login_token = g.login_token;
+
+			var url = Base.serverUrl + "order/deleteOrderByOrderIdController";
+			$.ajax({
+				url:url,
+				data:condi,
+				type:"POST",
+				dataType:"json",
+				context:this,
+				success: function(data){
+					console.log("deleteOrderById",data);
+					var status = data.success || false;
+					if(status){
+						getUserOrderList();
+					}
+					else{
+						var msg = data.message || "删除订单数据失败";
+						Utils.alert(msg);
+					}
+					g.httpTip.hide();
+				},
+				error:function(data){
+					g.httpTip.hide();
 				}
-				else{
-					var msg = data.message || "删除订单数据失败";
-					Utils.alert(msg);
-				}
-				g.httpTip.hide();
-			},
-			error:function(data){
-				g.httpTip.hide();
-			}
-		});
+			});
+		}
 	}
 
 
 	window.deleteOrderById = deleteOrderById;
 });
-
-
-
-
-
-
-
-
 
 
 
