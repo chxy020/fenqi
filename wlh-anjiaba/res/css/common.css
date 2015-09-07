@@ -414,6 +414,11 @@ html{
 	height:22px;
 	background-position:-166px -78px;
 }
+.common-ico.ico-green-trig{
+	width:6px;
+	height:13px;
+	background-position:-185px -7px;
+}
 .form-validate-tip{
 	font-size:14px;
 	line-height:18px;
@@ -1116,4 +1121,69 @@ a.improve-btn:hover{
 }
 .slide-btn-box p{
 	margin:20px 0px;
+}
+/*sub-main*/
+.sub-main{
+	margin:20px 0px;
+}
+.sub-right-cont{
+	margin-left:251px;
+	background:#fff;
+	border:1px solid #efefef;
+	height:auto!important;
+	height:600px;
+	min-height:600px;
+}
+.sub-left-nav{
+	width:250px;
+	border:1px solid #efefef;
+	border-bottom:none;
+	float:left;
+}
+.sub-left-nav ul li{
+	position:relative;
+	height:48px;
+	overflow:hidden;
+	font-size:0px;
+}
+.sub-left-nav ul li a{
+	display:block;
+	height:48px;
+	line-height:48px;
+	background:#fff;
+	border-bottom:1px solid #efefef;
+	padding-left:20px;
+	font-size:16px;
+	color:#666666;
+	border-left:4px solid #fff;
+}
+.sub-left-nav ul li a:hover,.sub-left-nav ul li.selected a{
+	border-left:4px solid #99bf38;
+	text-decoration:none;
+}
+.sub-left-nav ul li .ico-green-trig{
+	display:none;
+	position:absolute;
+	right:15px;
+	top:19px;
+}
+.sub-left-nav ul li.selected .ico-green-trig{
+	display:block;
+}
+.sub-right-cont .sub-right-title{
+	height:48px;
+	line-height:48px;
+	border-bottom:1px solid #efefef;
+	padding:0px 25px;
+	font-size:18px;
+	color:#111;
+}
+.sub-right-cont .sub-right-box{
+	padding:15px 25px;
+}
+.sub-right-cont .sub-right-box p{
+	font-size:16px;
+	color:#333;
+	margin:15px 0px;
+	text-indent:2em;
 }
