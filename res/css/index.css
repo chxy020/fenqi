@@ -467,6 +467,10 @@
 	color:#fff;
 	border:1px solid #fff;
 }
+.staging-phone-btn:hover{
+	color:#fff;
+	text-decoration:none;
+}
 .staging-rate-main{
 	padding:30px 0px;
 }
