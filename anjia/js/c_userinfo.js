@@ -170,6 +170,8 @@ $(function(){
 		$("#maritalStatusdiv").html(maritalStatusHtml.join(''));
 		$("#interestingdiv").html(interestingHtml.join(''));
 		$("#edit-inf-box").css("visibility","visible");
+		$('.common-radio').yyptRadio();
+		$('.common-checkbox').yyptCheckbox();
 	}
 	//更新用户信息html
 	function changeUserInfoHtml(obj){
