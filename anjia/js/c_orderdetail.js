@@ -10,6 +10,17 @@ $(function(){
 	g.orderId = Utils.getQueryString("orderId");
 	g.httpTip = new Utils.httpTip({});
 
+	g.orderDetailInfo = {};
+
+	g.orderInfo = Utils.offLineStore.get("userorderinfo_list",false) || "";
+	if(g.orderInfo != ""){
+		changeOrderInfoHtml(g.orderInfo);
+	}
+	else{
+		alert("数据错误");
+		history.go(-1);
+	}
+
 	g.totalPage = 1;
 	g.currentPage = 1;
 	g.pageSize = 10;
@@ -217,12 +228,60 @@ $(function(){
 		}
 	}
 
-
-
 	function changeOrderStatus(){
 		g.currentPage = 1;
 		getUserOrderList();
 	}
+
+	//--------------------------------------------------
+
+
+
+
+
+
+
+	function changeOrderInfoHtml(data){
+		var d = JSON.parse(data) || {};
+		var orderId = d.orderId || "";
+		var contractNo = d.contractNo || "";
+		var packageName = d.packageName || "";
+		var packageMoney = d.packageMoney - 0 || 0;
+		var statusDes = d.statusDes || "";
+		var status = d.status || "";
+		var fenQiTimes = d.fenQiTimes || 0;
+		var poundage = d.poundage - 0 || 0;
+		var moneyMonth = d.moneyMonth - 0 || 0;
+		var noRepaymentTimes = d.noRepaymentTimes || 0;
+
+		var html = [];
+		html.push('<tr><td width="150" class="odd">订单编号</td>');
+		html.push('<td class="even">' + orderId + '</td></tr>');
+		html.push('<tr><td class="odd">合同编号</td>');
+		html.push('<td class="even">' + contractNo + '</td></tr>');
+		html.push('<tr><td class="odd">套餐名称</td>');
+		html.push('<td class="even">' + packageName + '</td></tr>');
+		html.push('<tr><td class="odd">套餐金额</td>');
+		html.push('<td class="even">' + packageMoney + '元</td></tr>');
+		html.push('<tr><td class="odd">分期月数</td>');
+		html.push('<td class="even">' + fenQiTimes + '个月</td></tr>');
+		html.push('<tr><td class="odd">服务费</td>');
+		html.push('<td class="even">' + poundage + '元</td></tr>');
+		html.push('<tr><td class="odd">每月还款本金</td>');
+		html.push('<td class="even">' + moneyMonth + '元</td></tr>');
+		html.push('<tr><td class="odd">当前状态</td>');
+		html.push('<td class="even">' + statusDes + '</td></tr>');
+		html.push('<tr><td class="odd">待还期数</td>');
+		html.push('<td class="even">' + noRepaymentTimes + '期</td></tr>');
+		html.push('<tr><td class="odd">总还款金额</td>');
+		html.push('<td class="even">' + (packageMoney + poundage) + '元</td></tr>');
+		html.push('<tr><td class="odd">待还金额</td>');
+		html.push('<td class="even">' + moneyMonth + '元</td></tr>');
+
+		$("#orderinfodiv").html(html.join(''));
+	}
+
+
 
 	function getUserOrderStagingList(){
 		var condi = {};
@@ -285,7 +344,7 @@ $(function(){
 			var expectRepaymentTime = d.expectRepaymentTime || "";
 			var overdueTime = d.overdueTime || 0;
 			var overdueInterest = d.overdueInterest || 0;
-			var yinghuanjine = "应还金额";
+			var yinghuanjine = repaymentPrincipal  + overdueInterest;
 			var realRepaymentTime = d.realRepaymentTime || "无";
 
 			var status = d.status || "";
@@ -299,6 +358,7 @@ $(function(){
 			html.push('<td>' + yinghuanjine + '</td>');
 			html.push('<td>' + realRepaymentTime + '</td>');
 			if(status == "101901"){
+				g.orderDetailInfo[repaymentRecordId] = d;
 				html.push('<td>还款中</td>');
 				html.push('<td><a href="javascript:repayment(\'' + repaymentRecordId + '\')">还款</a></td>');
 			}
@@ -443,7 +503,102 @@ $(function(){
 		}
 	}
 
+
 	function repayment(id){
+		var d = g.orderDetailInfo[id];
+		var orderId = d.orderId || "";
+		var repaymentRecordId = d.repaymentRecordId || "主键";
+		var repaymentTypeDesc = d.repaymentTypeDesc || "";
+		var repaymentPrincipal = d.repaymentPrincipal || 0;
+		var expectRepaymentTime = d.expectRepaymentTime || "";
+		var overdueTime = d.overdueTime || 0;
+		var overdueInterest = d.overdueInterest || 0;
+		var yinghuanjine = repaymentPrincipal  + overdueInterest ;
+		var realRepaymentTime = d.realRepaymentTime || "无";
+
+		var dd = JSON.parse(g.orderInfo) || {};
+		var orderId = dd.orderId || "";
+		var contractNo = dd.contractNo || "";
+		var packageName = dd.packageName || "";
+		var packageMoney = dd.packageMoney - 0 || 0;
+		var statusDes = dd.statusDes || "";
+		var status = dd.status || "";
+		var fenQiTimes = dd.fenQiTimes || 0;
+		var poundage = dd.poundage - 0 || 0;
+		var moneyMonth = dd.moneyMonth - 0 || 0;
+		var noRepaymentTimes = dd.noRepaymentTimes || 0;
+
+		var html = [];
+		html.push('<table class="common-table" cellpadding="0" cellspacing="0">');
+		html.push('<tr>');
+		html.push('<td width="150" class="odd">订单编号</td>');
+		html.push('<td class="even">' + orderId + '</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td class="odd">合同编号</td>');
+		html.push('<td class="even">' + contractNo + '</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td class="odd">套餐名称</td>');
+		html.push('<td class="even">' + packageName + '</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td class="odd">套餐金额</td>');
+		html.push('<td class="even">' + packageMoney + '元</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td class="odd">分期月数</td>');
+		html.push('<td class="even">' + fenQiTimes + '个月</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td class="odd">服务费</td>');
+		html.push('<td class="even">' + poundage + '元</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td class="odd">每月还款本金</td>');
+		html.push('<td class="even">' + moneyMonth + '元</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td class="odd">当前状态</td>');
+		html.push('<td class="even">' + statusDes + '</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td class="odd">待还期数</td>');
+		html.push('<td class="even">' + noRepaymentTimes + '期</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td class="odd">总还款金额</td>');
+		html.push('<td class="even">' + (packageMoney + poundage) + '元</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td class="odd">待还金额</td>');
+		html.push('<td class="even">' + moneyMonth + '元</td>');
+		html.push('</tr>');
+		html.push('</table>');
+		html.push('<table class="common-table1" cellpadding="0" cellspacing="0" style="margin-top:25px;">');
+		html.push('<tr>');
+		html.push('<th>还款期数</th>');
+		html.push('<th>还款本金</th>');
+		html.push('<th>应还时间</th>');
+		html.push('<th>逾期天数</th>');
+		html.push('<th>逾期利息</th>');
+		html.push('<th>应还金额</th>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td>' +repaymentTypeDesc + '</td>');
+		html.push('<td>' + repaymentPrincipal + '元</td>');
+		html.push('<td>' + expectRepaymentTime + '</td>');
+		html.push('<td>' + overdueTime + '天</td>');
+		html.push('<td>' + overdueInterest + '元</td>');
+		html.push('<td>' + yinghuanjine + '元</td>');
+		html.push('</tr>');
+		html.push('</table>');
+		html.push('<div class="btn-box">');
+		html.push('<input type="button" class="common-btn btn-light-green" value="确认还款" />');
+		html.push('<input type="button" class="common-btn btn-grey" value="取消" onclick="hidePop()" />');
+		html.push('</div>');
+
+		$("#detailinfodiv").html(html.join(''));
 		showOrderPop('#payBackPop');
 	}
 

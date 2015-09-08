@@ -485,7 +485,7 @@ $(function(){
 						condi.companyId = companyId;
 						condi.packageMoney = packageMoney;
 						condi.fenQiTimes = g.stagnum;
-						condi.poundage =  g.poundage;;
+						condi.poundage =  g.poundage;
 						condi.repaymentType = g.repaymentType;
 						condi.moneyMonth = g.moneyMonth;
 						sendSetOrderPackageHttp(condi);

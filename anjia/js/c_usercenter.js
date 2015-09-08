@@ -14,6 +14,8 @@ $(function(){
 	g.currentPage = 1;
 	g.pageSize = 10;
 
+	g.orderInfo = {};
+
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -308,8 +310,10 @@ $(function(){
 				html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else if(status == "100505"){
-				//100505: "待缴手续费"
-				html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
+				//100505: "待缴手续费"showOrderDetail
+				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\')">查看</a></td>');
+				g.orderInfo[orderId] = d;
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
@@ -489,7 +493,14 @@ $(function(){
 		}
 	}
 
+	function showOrderDetail(orderId){
+		var info = g.orderInfo[orderId] || "";
+		info = JSON.stringify(info);
+		Utils.offLineStore.set("userorderinfo_list",info,false);
+		location.href = "/anjia/orderdetail.html?orderId=" + orderId ;
+	}
 
+	window.showOrderDetail = showOrderDetail;
 	window.deleteOrderById = deleteOrderById;
 });
 
