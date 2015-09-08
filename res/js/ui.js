@@ -109,6 +109,12 @@
 				$(this).find('.select-city-btn').removeClass('active');
 				$(this).find('.select-city-area').hide();
 			});
+		},
+		insertBottomHtml:function(){
+			$('.ui-bottom').empty().load('/anjia/footer.html',function(){});
+		},
+		insertBottomTypeHtml:function(){
+			$('.ui-bottom-type').empty().load('/anjia/footer-type.html',function(){});
 		}	
 	});
 
@@ -116,6 +122,8 @@
 })(jQuery);
 $(function(){
 	$.fn.selectArea();
+	$.fn.insertBottomHtml();
+	$.fn.insertBottomTypeHtml();
 	$('.common-radio').yyptRadio();
 	$('.common-checkbox').yyptCheckbox();
 })
