@@ -91,7 +91,7 @@ $(function(){
 
 						userInfo = JSON.stringify(userInfo);
 						//保存用户数据
-						Utils.offLineStore.set("userinfo",userInfo,false);
+						Utils.offLineStore.set("userinfo_admin",userInfo,false);
 						var token = data.token || "";
 
 						Utils.offLineStore.set("token",token,false);

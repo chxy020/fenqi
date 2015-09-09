@@ -32,7 +32,7 @@ $(function(){
 	$("#querybtn").bind("click",queryOrderList);
 
 	function queryOrderList(){
-		sendQueryRiskOrderListHttp();
+		sendQueryWaitingForPayOrderListHttp();
 	}
 
 	function sendGetCompanyInfoHttp(){
@@ -52,7 +52,7 @@ $(function(){
 					var obj = data.list || [];
 					changeSelectHtml(obj);
 
-					sendQueryRiskOrderListHttp();
+					sendQueryWaitingForPayOrderListHttp();
 				}
 				else{
 					var msg = data.message || "获取公司信息字典数据失败";
@@ -84,14 +84,15 @@ $(function(){
 	}
 
 
-	function sendQueryRiskOrderListHttp(){
+	function sendQueryWaitingForPayOrderListHttp(){
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/queryRiskManagementApproveOrdersController";
+		var url = Base.serverUrl + "order/queryWaitingForPayOrdersController";
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.status = "";
 		condi.currentPageNum = g.currentPage;
 		condi.companyId = $("#company").val() || "";
+
 		$.ajax({
 			url:url,
 			data:condi,
@@ -99,7 +100,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendQueryRiskOrderListHttp",data);
+				console.log("sendQueryWaitingForPayOrderListHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeOrderListHtml(data);
@@ -160,7 +161,7 @@ $(function(){
 			}
 			else if(status == "100503"){
 				//100503: "风控审核中
-				html.push('<td><a href="fk_detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="fk_seller.html?orderid=' + orderId + '">审批</a></td>');
+				//html.push('<td><a href="fk_detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="fk_seller.html?orderid=' + orderId + '">审批</a></td>');
 			}
 			else if(status == "100504" || status == "100508" || status == "100509"){
 				//html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
@@ -172,6 +173,7 @@ $(function(){
 			else if(status == "100506"){
 				//100506: "待放款"
 				//html.push('<td><a href="/anjia/orderdetail.html">查看</a></td>');
+				html.push('<td><a href="fkuan_detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="fkuan_loan.html?orderid=' + orderId + '">放款</a></td>');
 			}
 			else if(status == "100507"){
 				//100506: "待放款"

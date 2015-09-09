@@ -295,6 +295,9 @@ $(function(){
 			html.push('<td>' + statusDes + '</td>');
 			html.push('<td>' + fenQiTimes + '</td>');
 			html.push('<td>' + noRepaymentTimes + '期</td>');
+
+			g.orderInfo[orderId] = d;
+
 			if(status == "100501"){
 				html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
@@ -313,15 +316,14 @@ $(function(){
 				//100505: "待缴手续费"showOrderDetail
 				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
 				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\')">查看</a></td>');
-				g.orderInfo[orderId] = d;
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
-				html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\')">查看</a></td>');
 			}
 			else if(status == "100507"){
 				//100506: "待放款"
-				html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\')">查看</a></td>');
 			}
 			html.push('</tr>');
 		}

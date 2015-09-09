@@ -450,7 +450,7 @@ if(typeof console == "undefined"){
 
 	//判断是否已登录
 	function getUserInfo(){
-		var info = offLineStore.get("userinfo",false) || "";
+		var info = offLineStore.get("userinfo_admin",false) || "";
 		var token = offLineStore.get("token",false) || "";
 		if(token !== "" && info !== ""){
 			var obj = JSON.parse(info) || {};
@@ -488,7 +488,7 @@ if(typeof console == "undefined"){
 			error:function(data){
 			}
 		});
-		Utils.offLineStore.remove("userinfo",false);
+		Utils.offLineStore.remove("userinfo_admin",false);
 		Utils.offLineStore.remove("token",false);
 		location.href = "Public/login.html";
 		//Utils.offLineStore.remove("login_userprofile",false);
@@ -504,7 +504,7 @@ if(typeof console == "undefined"){
 	}
 
 	function gotoCenter(){
-		var info = offLineStore.get("userinfo",false) || "";
+		var info = offLineStore.get("userinfo_admin",false) || "";
 		if(info !== ""){
 			var token = Utils.offLineStore.get("token",false) || "";
 			var str = "";
