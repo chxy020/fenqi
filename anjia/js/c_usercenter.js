@@ -269,7 +269,7 @@ $(function(){
 		html.push('<th width="160">订单编号</th>');
 		html.push('<th width="129">合同编号</th>');
 		html.push('<th width="180">套餐名称</th>');
-		html.push('<th width="130">价格</th>');
+		html.push('<th width="130">贷款金额</th>');
 		html.push('<th width="140">订单状态</th>');
 		html.push('<th width="150">最近待还</th>');
 		html.push('<th width="80">总期数</th>');
@@ -293,7 +293,7 @@ $(function(){
 			html.push('<td>' + packageName + '</td>');
 			html.push('<td>' + packageMoney + '元</td>');
 			html.push('<td>' + statusDes + '</td>');
-			html.push('<td>' + fenQiTimes + '</td>');
+			html.push('<td>' + fenQiTimes + '期</td>');
 			html.push('<td>' + noRepaymentTimes + '期</td>');
 
 			g.orderInfo[orderId] = d;
