@@ -60,7 +60,65 @@
 	float: left;
 	margin:20px 40px 0px 40px;
 }
-.cooperative-business-main{}
+.cooperative-business{
+	margin-bottom:60px;
+}
+.cooperative-business-box{}
+.cooperative-part{
+	position:relative;
+	width:560px;
+	height:300px;
+	overflow:hidden;
+	background:#fff;
+	border:1px solid #efefef;
+	cursor:pointer;
+}
+.cooperative-part .cooperative-part-logo{
+	width:362px;
+	height:84px;
+	display:block;
+	margin:0px auto;
+	margin-top:109px;
+}
+.cooperative-part .cooperative-example{
+	position:absolute;
+	top:300px;
+	height:188px;
+	width:560px;
+}
+.cooperative-part .cooperative-example .cooperative-example-part,.cooperative-part .cooperative-example .cooperative-example-part-two{
+	position:relative;
+	float:left;
+	width:280px;
+	height:188px;
+	overflow:hidden;
+}
+.cooperative-part .cooperative-example .cooperative-example-part-two{
+	width:560px;
+}
+.cooperative-part .cooperative-example .cooperative-example-part .c-example-img,.cooperative-part .cooperative-example .cooperative-example-part-two .c-example-img{
+	width:280px;
+	height:188px;
+	-webkit-transition:all 1.5s ease-in-out 0s;
+	transition:all 1.5s ease-in-out 0s;
+	cursor:pointer;
+}
+.cooperative-part .cooperative-example .cooperative-example-part-two .c-example-img{
+	width:560px;
+}
+.cooperative-part .cooperative-example .cooperative-example-part:hover .c-example-img{
+	-webkit-transform:scale(1.2,1.2);
+	transform:scale(1.2,1.2);
+}
+.cooperative-part .cooperative-example .cooperative-example-part .c-example-box{
+	position:absolute;
+	top:55px;
+	width:100%;
+	text-align:center;
+}
+.cooperative-part .cooperative-example .cooperative-example-part .c-example-box p{
+	margin-top:10px;
+}
 .business-cooperation-list{
 	padding-bottom:60px;
 }

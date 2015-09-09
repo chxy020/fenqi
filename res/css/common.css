@@ -211,6 +211,23 @@ html{
 	color:#99bf38;
 	text-align:center;
 }
+.btn-green-full{
+	display:inline-block;
+	height:36px;
+	line-height:36px;
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+	width:140px;
+	border-radius:36px;
+	background:#99bf38;
+	overflow:hidden;
+}
+.btn-green-full:hover{
+	background:#88ab2e;
+	color:#fff;
+	text-decoration:none;
+}
 .btn-green-empty-b{
 	border:2px solid #6abf7e;
 	height:48px;
@@ -697,7 +714,7 @@ html{
 /*bottom*/
 .ui-bottom{
 	background:#2b3a42;
-	padding:60px 0px;
+	padding:60px 0px 0px;
 }
 .ui-bottom .f-link{
 	width: 166px;
@@ -763,6 +780,15 @@ html{
 	display: block;
 	color: #708997;
 	font-size: 14px;
+}
+.ui-bottom-nav{
+	margin-top:60px;
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	color:#2b3a42;
+	font-size:12px;
+	background:#e7e7e7;
 }
 /*common-table*/
 .common-table{
