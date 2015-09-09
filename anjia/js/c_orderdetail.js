@@ -335,6 +335,9 @@ $(function(){
 		html.push('<th>操作</th>');
 		html.push('</tr>');
 		var obj = data.list || [];
+
+		var showRepay = true;
+
 		for(var i = 0,len = obj.length; i < len; i++){
 			var d = obj[i];
 			var orderId = d.orderId || "";
@@ -348,6 +351,7 @@ $(function(){
 			var realRepaymentTime = d.realRepaymentTime || "无";
 
 			var status = d.status || "";
+			var repaymentType = d.repaymentType || "";
 
 			html.push('<tr>');
 			html.push('<td>' + repaymentTypeDesc + '</td>');
@@ -360,11 +364,17 @@ $(function(){
 			if(status == "101901"){
 				g.orderDetailInfo[repaymentRecordId] = d;
 				html.push('<td>还款中</td>');
-				html.push('<td><a href="javascript:repayment(\'' + repaymentRecordId + '\')">还款</a></td>');
+				if(showRepay){
+					showRepay = false;
+					html.push('<td><a href="javascript:repayment(\'' + repaymentRecordId + '\')">还款</a></td>');
+				}
+				else{
+					html.push('<td><a href="javascript:void(0)"></a></td>');
+				}
 			}
 			else if(status == "101902"){
 				html.push('<td>已还款</td>');
-				html.push('<td><a href="javascript:void(0)">查看</a></td>');
+				html.push('<td><a href="javascript:void(0)"></a></td>');
 			}
 			html.push('</tr>');
 		}
@@ -594,7 +604,7 @@ $(function(){
 		html.push('</tr>');
 		html.push('</table>');
 		html.push('<div class="btn-box">');
-		html.push('<input type="button" class="common-btn btn-light-green" value="确认还款" />');
+		html.push('<input type="button" class="common-btn btn-light-green" value="确认还款" onclick="confirmRepayment(\'' + repaymentRecordId + '\')" />');
 		html.push('<input type="button" class="common-btn btn-grey" value="取消" onclick="hidePop()" />');
 		html.push('</div>');
 
@@ -602,7 +612,40 @@ $(function(){
 		showOrderPop('#payBackPop');
 	}
 
+	function confirmRepayment(repaymentRecordId){
+		g.httpTip.show();
+		var url = Base.serverUrl + "order/repaymentDoneByRepaymentRecordId";
+		var condi = {};
+		condi.repaymentRecordId = repaymentRecordId;
+		condi.login_token = g.login_token;
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("confirmRepayment",data);
+				var status = data.success || false;
+				if(status){
+					hidePop();
+					Utils.alert("还款成功");
+					getUserOrderStagingList();
+					//changeOrderStagingListHtml(data);
+				}
+				else{
+					var msg = data.message || "还款失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
 
+	window.confirmRepayment = confirmRepayment;
 	window.repayment = repayment;
 });
 
