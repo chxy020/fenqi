@@ -115,6 +115,7 @@
 	top:55px;
 	width:100%;
 	text-align:center;
+	z-index:5;
 }
 .cooperative-part .cooperative-example .cooperative-example-part .c-example-box p{
 	margin-top:10px;
