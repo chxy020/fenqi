@@ -261,7 +261,7 @@ $(function(){
 		html.push('<td class="even">' + contractNo + '</td></tr>');
 		html.push('<tr><td class="odd">套餐名称</td>');
 		html.push('<td class="even">' + packageName + '</td></tr>');
-		html.push('<tr><td class="odd">套餐金额</td>');
+		html.push('<tr><td class="odd">贷款金额</td>');
 		html.push('<td class="even">' + packageMoney + '元</td></tr>');
 		html.push('<tr><td class="odd">分期月数</td>');
 		html.push('<td class="even">' + fenQiTimes + '个月</td></tr>');
@@ -359,7 +359,7 @@ $(function(){
 			html.push('<td>' + expectRepaymentTime + '</td>');
 			html.push('<td>' + overdueTime + '天</td>');
 			html.push('<td>' + overdueInterest + '元</td>');
-			html.push('<td>' + yinghuanjine + '</td>');
+			html.push('<td>' + yinghuanjine + '元</td>');
 			html.push('<td>' + realRepaymentTime + '</td>');
 			if(status == "101901"){
 				g.orderDetailInfo[repaymentRecordId] = d;
@@ -553,7 +553,7 @@ $(function(){
 		html.push('<td class="even">' + packageName + '</td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td class="odd">套餐金额</td>');
+		html.push('<td class="odd">贷款金额</td>');
 		html.push('<td class="even">' + packageMoney + '元</td>');
 		html.push('</tr>');
 		html.push('<tr>');
