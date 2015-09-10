@@ -96,17 +96,33 @@ $(function(){
 	$("#familyName").bind("blur",validNoEmpty);
 	$("#familyPhone").bind("blur",validNoEmpty);
 	$("#familyPhone").bind("blur",validIsPhone);
+	$("#familyTwoName").bind("blur",validNoEmpty);
+	$("#familyTwoPhone").bind("blur",validNoEmpty);
+	$("#familyTwoPhone").bind("blur",validIsPhone);
+
 	$("#friendName").bind("blur",validNoEmpty);
 	$("#friendPhone").bind("blur",validNoEmpty);
 	$("#friendPhone").bind("blur",validIsPhone);
+	$("#friendTwoName").bind("blur",validNoEmpty);
+	$("#friendTwoPhone").bind("blur",validNoEmpty);
+	$("#friendTwoPhone").bind("blur",validIsPhone);
 
+
+	$("#workmateName").bind("blur",validNoEmpty);
+	$("#workmatePhone").bind("blur",validNoEmpty);
+	$("#workmatePhone").bind("blur",validIsPhone);
+	$("#workmateTwoName").bind("blur",validNoEmpty);
+	$("#workmateTwoPhone").bind("blur",validNoEmpty);
+	$("#workmateTwoPhone").bind("blur",validIsPhone);
+
+	/*
 	$("#liableName").bind("blur",validNoEmpty);
 	$("#liablePhone").bind("blur",validNoEmpty);
 	$("#liablePhone").bind("blur",validIsPhone);
 	$("#liableIdentity").bind("blur",validNoEmpty);
 	$("#liableIdentity").bind("blur",validIsIdentity);
 	$("#liableAddress").bind("blur",validNoEmpty);
-
+	*/
 
 	function validNoEmpty(evt){
 		var t = $(this).val() || "";
@@ -332,9 +348,9 @@ $(function(){
 			g.repaymentType = k;
 		}
 
-		var parents = ["1003","1009","1012","1013","1014","1015","1016","1016"];
+		var parents = ["1003","1009","1012","1013","1014","1015","1016","1016","1016"];
 		var ids = ["applicantMarital","applicantStudyStatus","applicantCompanyNature","applicantCompanyIndustry",
-			"applicantDuties","applicantWorkYears","familyRelation","liableRelation"];
+			"applicantDuties","applicantWorkYears","familyRelation","familyTwoRelation","liableRelation"];
 
 		for(var i = 0,len = parents.length; i < len; i++){
 			var data = obj[parents[i]] || {};
@@ -672,8 +688,19 @@ $(function(){
 		var familyName = $("#familyName").val() || "";
 		var familyPhone = $("#familyPhone").val() || "";
 		var familyRelation = $("#familyRelation").val() || "";
+		var familyTwoName = $("#familyTwoName").val() || "";
+		var familyTwoPhone = $("#familyTwoPhone").val() || "";
+		var familyTwoRelation = $("#familyTwoRelation").val() || "";
+
 		var friendName = $("#friendName").val() || "";
 		var friendPhone = $("#friendPhone").val() || "";
+		var friendTwoName = $("#friendTwoName").val() || "";
+		var friendTwoPhone = $("#friendTwoPhone").val() || "";
+
+		var workmateName = $("#workmateName").val() || "";
+		var workmatePhone = $("#workmatePhone").val() || "";
+		var workmateTwoName = $("#workmateTwoName").val() || "";
+		var workmateTwoPhone = $("#workmateTwoPhone").val() || "";
 
 		if(!sendValidNoEmpty(familyName,$("#familyName"))){
 			return;
@@ -684,6 +711,16 @@ $(function(){
 		if(!sendValidIsPhone(familyPhone,$("#familyPhone"))){
 			return;
 		}
+		if(!sendValidNoEmpty(familyTwoName,$("#familyTwoName"))){
+			return;
+		}
+		if(!sendValidNoEmpty(familyTwoPhone,$("#familyTwoPhone"))){
+			return;
+		}
+		if(!sendValidIsPhone(familyTwoPhone,$("#familyTwoPhone"))){
+			return;
+		}
+
 		if(!sendValidNoEmpty(friendName,$("#friendName"))){
 			return;
 		}
@@ -693,20 +730,64 @@ $(function(){
 		if(!sendValidIsPhone(friendPhone,$("#friendPhone"))){
 			return;
 		}
+		if(!sendValidNoEmpty(friendTwoName,$("#friendTwoName"))){
+			return;
+		}
+		if(!sendValidNoEmpty(friendTwoPhone,$("#friendTwoPhone"))){
+			return;
+		}
+		if(!sendValidIsPhone(friendTwoPhone,$("#friendTwoPhone"))){
+			return;
+		}
+
+		if(!sendValidNoEmpty(workmateName,$("#workmateName"))){
+			return;
+		}
+		if(!sendValidNoEmpty(workmatePhone,$("#workmatePhone"))){
+			return;
+		}
+		if(!sendValidIsPhone(workmatePhone,$("#workmatePhone"))){
+			return;
+		}
+		if(!sendValidNoEmpty(workmateTwoName,$("#workmateTwoName"))){
+			return;
+		}
+		if(!sendValidNoEmpty(workmateTwoPhone,$("#workmateTwoPhone"))){
+			return;
+		}
+		if(!sendValidIsPhone(workmateTwoPhone,$("#workmateTwoPhone"))){
+			return;
+		}
 
 		g.orderUserInfo.familyName = familyName;
 		g.orderUserInfo.familyPhone = familyPhone;
 		g.orderUserInfo.familyRelation = familyRelation;
+		g.orderUserInfo.familyTwoName = familyTwoName;
+		g.orderUserInfo.familyTwoPhone = familyTwoPhone;
+		g.orderUserInfo.familyTwoRelation = familyTwoRelation;
+
 		g.orderUserInfo.friendName = friendName;
 		g.orderUserInfo.friendPhone = friendPhone;
+		g.orderUserInfo.friendTwoName = friendTwoName;
+		g.orderUserInfo.friendTwoPhone = friendTwoPhone;
+
+		g.orderUserInfo.workmateName = workmateName;
+		g.orderUserInfo.workmatePhone = workmatePhone;
+		g.orderUserInfo.workmateTwoName = workmateTwoName;
+		g.orderUserInfo.workmateTwoPhone = workmateTwoPhone;
 
 		//显示三步,里面的第三步
-		$("#userinfotab li").removeClass("selected");
-		$("#tab2").addClass("selected");
-		$("#step31").hide();
-		$("#step32").hide();
-		$("#step33").show();
+		//~ $("#userinfotab li").removeClass("selected");
+		//~ $("#tab2").addClass("selected");
+		//~ $("#step31").hide();
+		//~ $("#step32").hide();
+		//~ $("#step33").show();
 
+
+		g.orderUserInfo.login_token = g.login_token;
+		g.orderUserInfo.orderId = g.orderId;
+
+		sendSetCustomerInfoHttp(g.orderUserInfo);
 		window.scrollTo(0,950);
 	}
 
@@ -754,7 +835,7 @@ $(function(){
 		g.orderUserInfo.login_token = g.login_token;
 		g.orderUserInfo.orderId = g.orderId;
 
-		sendSetCustomerInfoHttp(g.orderUserInfo);
+		//sendSetCustomerInfoHttp(g.orderUserInfo);
 	}
 
 	function sendSetCustomerInfoHttp(condi){
@@ -1124,27 +1205,49 @@ $(function(){
 		var familyName = obj.familyName || "";
 		var familyPhone = obj.familyPhone || "";
 		var familyRelation = obj.familyRelation || "";
+		var familyTwoName = obj.familyTwoName || "";
+		var familyTwoPhone = obj.familyTwoPhone || "";
+		var familyTwoRelation = obj.familyTwoRelation || "";
+
 		var friendName = obj.friendName || "";
 		var friendPhone = obj.friendPhone || "";
+		var friendTwoName = obj.friendTwoName || "";
+		var friendTwoPhone = obj.friendTwoPhone || "";
+
+		var workmateName = obj.workmateName || "";
+		var workmatePhone = obj.workmatePhone || "";
+		var workmateTwoName = obj.workmateTwoName || "";
+		var workmateTwoPhone = obj.workmateTwoPhone || "";
 
 		$("#familyName").val(familyName);
 		$("#familyPhone").val(familyPhone);
 		$("#familyRelation").val(familyRelation);
+		$("#familyTwoName").val(familyTwoName);
+		$("#familyTwoPhone").val(familyTwoPhone);
+		$("#familyTwoRelation").val(familyTwoRelation);
+
 		$("#friendName").val(friendName);
 		$("#friendPhone").val(friendPhone);
+		$("#friendTwoName").val(friendTwoName);
+		$("#friendTwoPhone").val(friendTwoPhone);
+
+		$("#workmateName").val(workmateName);
+		$("#workmatePhone").val(workmatePhone);
+		$("#workmateTwoName").val(workmateTwoName);
+		$("#workmateTwoPhone").val(workmateTwoPhone);
 
 		//3.3
-		var liableName = obj.liableName || "";
-		var liablePhone = obj.liablePhone || "";
-		var liableIdentity = obj.liableIdentity || "";
-		var liableRelation = obj.liableRelation || "";
-		var liableAddress = obj.liableAddress || "";
+		//~ var liableName = obj.liableName || "";
+		//~ var liablePhone = obj.liablePhone || "";
+		//~ var liableIdentity = obj.liableIdentity || "";
+		//~ var liableRelation = obj.liableRelation || "";
+		//~ var liableAddress = obj.liableAddress || "";
 
-		$("#liableName").val(liableName);
-		$("#liablePhone").val(liablePhone);
-		$("#liableIdentity").val(liableIdentity);
-		$("#liableRelation").val(liableRelation);
-		$("#liableAddress").val(liableAddress);
+		//~ $("#liableName").val(liableName);
+		//~ $("#liablePhone").val(liablePhone);
+		//~ $("#liableIdentity").val(liableIdentity);
+		//~ $("#liableRelation").val(liableRelation);
+		//~ $("#liableAddress").val(liableAddress);
 
 		var imglist = data.list || [];
 		imgUploadEdit(imglist);

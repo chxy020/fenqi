@@ -176,7 +176,7 @@ $(function(){
 				console.log("sendGetCodeHttp",data);
 				var status = data.success || false;
 				if(status){
-					alert("验证码:" + data.obj);
+					//alert("验证码:" + data.obj);
 					Utils.alert("验证码已发送,请注意查收");
 					g.sendCode = true;
 					$("#getcodebtn").html("60秒后重新发送");
@@ -341,7 +341,7 @@ $(function(){
 				console.log("sendGetNewCodeHttp",data);
 				var status = data.success || false;
 				if(status){
-					alert("验证码:" + data.obj);
+					//alert("验证码:" + data.obj);
 					Utils.alert("验证码已发送,请注意查收");
 					g.sendCode = true;
 					$("#getcodebtn_new").html("60秒后重新发送");
