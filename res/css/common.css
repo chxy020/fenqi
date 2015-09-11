@@ -43,6 +43,12 @@ html{
 	background:#f7f7f7;
 }
 /*common-color*/
+.common-tip{
+	font-size:16px;
+	color:#666;
+	margin-bottom:15px;
+	line-height:22px;
+}
 .light-green{
 	color:#89c997;
 }

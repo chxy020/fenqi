@@ -58,7 +58,7 @@
                             <div class="c-example-box">
                             	<img src="../res/images/example-logo3.png" class="c-example-logo">
                                 <p>
-                                	<a href="###" class="btn-green-full">查看更多案例</a>
+                                	<a href="http://www.cdlrzs.com/" target="_blank" class="btn-green-full">了解朗润</a>
                                 </p>
                             </div>
                         </div>
@@ -72,16 +72,16 @@
                             <div class="c-example-box">
                             	<img src="../res/images/example-logo1.png" class="c-example-logo">
                                 <p>
-                                	<a href="###" class="btn-green-full">查看更多案例</a>
+                                	<a href="http://www.shj.cn/" target="_blank" class="btn-green-full">了解悦享家</a>
                                 </p>
                             </div>
                         </div>
                         <div class="cooperative-example-part">
-                        	<img src="../res/images/example-img1.jpg" class="c-example-img hover-img" />
+                        	<img src="../res/images/example-img3.jpg" class="c-example-img hover-img" />
                             <div class="c-example-box">
                             	<img src="../res/images/example-logo2.png" class="c-example-logo">
                                 <p>
-                                	<a href="###" class="btn-green-full">查看更多案例</a>
+                                	<a href="http://www.shj.cn/" target="_blank" class="btn-green-full">了解尊享家</a>
                                 </p>
                             </div>
                         </div>
@@ -148,21 +148,8 @@
 <script src="libs/utils.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('.cooperative-part').hover(function(){
-			$(this).find('.cooperative-part-logo').stop().animate({
-				'margin-top':'20px'
-			});
-			$(this).find('.cooperative-example').stop().animate({
-				'top':'112px'
-			});
-		},function(){
-			$(this).find('.cooperative-part-logo').stop().animate({
-				'margin-top':'109px'
-			});
-			$(this).find('.cooperative-example').stop().animate({
-				'top':'300px'
-			});
-		});
+		//合作商家经过效果
+		$.fn.businessHoverFun();
 	})
 </script>
 </body>
