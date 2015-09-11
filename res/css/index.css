@@ -60,6 +60,9 @@
 	float: left;
 	margin:20px 40px 0px 40px;
 }
+.cooperative-business-main{
+	padding-bottom:60px;
+}
 .cooperative-business{
 	margin-bottom:60px;
 }
@@ -510,7 +513,7 @@
 .staging-detai-main{
 	position:relative;
 	height:400px;
-	background:url(../images/staging-img.jpg) #4ecdc4 center top no-repeat;
+	background:url(../images/staging-img.jpg?12) #4ecdc4 center top no-repeat;
 }
 .staging-phone-btn{
 	position:absolute;
