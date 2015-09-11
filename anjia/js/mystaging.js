@@ -23,7 +23,7 @@ $(function(){
 
 	g.uploadImgType = ["100701","100702","100703","100704","100705","100706","100707","100708","100709","100710","100711"];
 	g.uploadIndex = 0;
-	g.uploadMark = [0,0,0,0,0,0];
+	g.uploadMark = [0,0,0,0,0,0,0];
 
 	//编辑订单
 	//g.editOrderId = Utils.getQueryString("orderid") || "";
@@ -103,16 +103,16 @@ $(function(){
 	$("#friendName").bind("blur",validNoEmpty);
 	$("#friendPhone").bind("blur",validNoEmpty);
 	$("#friendPhone").bind("blur",validIsPhone);
-	$("#friendTwoName").bind("blur",validNoEmpty);
-	$("#friendTwoPhone").bind("blur",validNoEmpty);
+	//$("#friendTwoName").bind("blur",validNoEmpty);
+	//$("#friendTwoPhone").bind("blur",validNoEmpty);
 	$("#friendTwoPhone").bind("blur",validIsPhone);
 
 
 	$("#workmateName").bind("blur",validNoEmpty);
 	$("#workmatePhone").bind("blur",validNoEmpty);
 	$("#workmatePhone").bind("blur",validIsPhone);
-	$("#workmateTwoName").bind("blur",validNoEmpty);
-	$("#workmateTwoPhone").bind("blur",validNoEmpty);
+	//$("#workmateTwoName").bind("blur",validNoEmpty);
+	//$("#workmateTwoPhone").bind("blur",validNoEmpty);
 	$("#workmateTwoPhone").bind("blur",validIsPhone);
 
 	/*
@@ -164,17 +164,22 @@ $(function(){
 		var t = $(this).val() || "";
 		var reg = /^1[3,5,7,8]\d{9}$/;
 		var next = $(this).next();
-		if(reg.test(t)){
-			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
-			$(next).removeClass("validate-error");
-			$(next).addClass("validate-success");
-			$(next).show();
+		if(t !== ""){
+			if(reg.test(t)){
+				$(next).html('<i class="common-ico validate-ico"></i>填写正确');
+				$(next).removeClass("validate-error");
+				$(next).addClass("validate-success");
+				$(next).show();
+			}
+			else{
+				$(next).html('<i class="common-ico validate-ico"></i>手机号码输入错误');
+				$(next).removeClass("validate-success");
+				$(next).addClass("validate-error");
+				$(next).show();
+			}
 		}
 		else{
-			$(next).html('<i class="common-ico validate-ico"></i>手机号码输入错误');
-			$(next).removeClass("validate-success");
-			$(next).addClass("validate-error");
-			$(next).show();
+			$(next).hide();
 		}
 	}
 
@@ -530,6 +535,8 @@ $(function(){
 					//显示第二步
 					$("#step2").hide();
 					$("#step3").show();
+
+					window.scrollTo(0,200);
 				}
 				else{
 					//var msg = data.error || "";
@@ -672,7 +679,7 @@ $(function(){
 		$("#step32").show();
 		$("#step33").hide();
 
-		window.scrollTo(0,950);
+		window.scrollTo(0,200);
 	}
 
 
@@ -730,14 +737,16 @@ $(function(){
 		if(!sendValidIsPhone(friendPhone,$("#friendPhone"))){
 			return;
 		}
-		if(!sendValidNoEmpty(friendTwoName,$("#friendTwoName"))){
-			return;
-		}
-		if(!sendValidNoEmpty(friendTwoPhone,$("#friendTwoPhone"))){
-			return;
-		}
-		if(!sendValidIsPhone(friendTwoPhone,$("#friendTwoPhone"))){
-			return;
+		//~ if(!sendValidNoEmpty(friendTwoName,$("#friendTwoName"))){
+			//~ return;
+		//~ }
+		//~ if(!sendValidNoEmpty(friendTwoPhone,$("#friendTwoPhone"))){
+			//~ return;
+		//~ }
+		if(friendTwoPhone !== ""){
+			if(!sendValidIsPhone(friendTwoPhone,$("#friendTwoPhone"))){
+				return;
+			}
 		}
 
 		if(!sendValidNoEmpty(workmateName,$("#workmateName"))){
@@ -749,14 +758,16 @@ $(function(){
 		if(!sendValidIsPhone(workmatePhone,$("#workmatePhone"))){
 			return;
 		}
-		if(!sendValidNoEmpty(workmateTwoName,$("#workmateTwoName"))){
-			return;
-		}
-		if(!sendValidNoEmpty(workmateTwoPhone,$("#workmateTwoPhone"))){
-			return;
-		}
-		if(!sendValidIsPhone(workmateTwoPhone,$("#workmateTwoPhone"))){
-			return;
+		//~ if(!sendValidNoEmpty(workmateTwoName,$("#workmateTwoName"))){
+			//~ return;
+		//~ }
+		//~ if(!sendValidNoEmpty(workmateTwoPhone,$("#workmateTwoPhone"))){
+			//~ return;
+		//~ }
+		if(workmateTwoPhone !== ""){
+			if(!sendValidIsPhone(workmateTwoPhone,$("#workmateTwoPhone"))){
+				return;
+			}
 		}
 
 		g.orderUserInfo.familyName = familyName;
@@ -788,7 +799,7 @@ $(function(){
 		g.orderUserInfo.orderId = g.orderId;
 
 		sendSetCustomerInfoHttp(g.orderUserInfo);
-		window.scrollTo(0,950);
+		window.scrollTo(0,200);
 	}
 
 
@@ -949,7 +960,13 @@ $(function(){
 		if(g.uploadIndex == 0){
 			var fm = g.uploadMark[0];
 			if(fm === 1){
-				g.uploadMark[g.uploadIndex + 1] = 1;
+				var fm1 = g.uploadMark[1];
+				if(fm1 === 1){
+					g.uploadMark[g.uploadIndex + 2] = 1;
+				}
+				else{
+					g.uploadMark[g.uploadIndex + 1] = 1;
+				}
 			}
 			else{
 				g.uploadMark[g.uploadIndex] = 1;
@@ -980,12 +997,18 @@ $(function(){
 					$("#img_" + id).hide();
 					index = index - 0;
 					if(index == 0){
-						var fm = g.uploadMark[1];
+						var fm = g.uploadMark[2];
 						if(fm === 1){
-							g.uploadMark[1] = 0;
+							g.uploadMark[2] = 0;
 						}
 						else{
-							g.uploadMark[0] = 0;
+							var fm1 = g.uploadMark[1];
+							if(fm1 === 1){
+								g.uploadMark[1] = 0;
+							}
+							else{
+								g.uploadMark[0] = 0;
+							}
 						}
 					}
 					else{
@@ -1013,7 +1036,7 @@ $(function(){
 			sendSetOrderCompleteHttp(condi);
 		}
 		else{
-			var msg = ["身份证未上传","身份证需要上传正反面","个人征兴报告未上传","户口本未上传","流水证明未上传","在职证明未上传"];
+			var msg = ["身份证未上传","身份证需要上传正反面","身份证需要上传手持身份证照片","房产证明未上传","现住址证明未上传","工作证明未上传","收入证明未上传"];
 			for(var i = 0,len = g.uploadMark.length; i < len; i++){
 				var m = g.uploadMark[i];
 				if(m === 0){
@@ -1281,7 +1304,13 @@ $(function(){
 			if(uploadIndex == 0){
 				var fm = g.uploadMark[0];
 				if(fm === 1){
-					g.uploadMark[uploadIndex + 1] = 1;
+					var fm1 = g.uploadMark[1];
+					if(fm1 === 1){
+						g.uploadMark[uploadIndex + 2] = 1;
+					}
+					else{
+						g.uploadMark[uploadIndex + 1] = 1;
+					}
 				}
 				else{
 					g.uploadMark[uploadIndex] = 1;

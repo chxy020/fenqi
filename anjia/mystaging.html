@@ -225,9 +225,16 @@
                         </div>
                     </div>
                     <div class="sign-item clearfix">
+                        <label><em>*</em>合同总金额</label>
+                        <div class="sign-right-cont">
+                            <input id="packageMoney2" type="text" placeholder="请输入合同总金额" class="common-input-text" style="width:380px;" />
+                            <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
+                        </div>
+                    </div>
+                    <div class="sign-item clearfix">
                         <label><em>*</em>分期金额</label>
                         <div class="sign-right-cont">
-                            <input id="packageMoney" type="text" placeholder="请输入贷款金额" class="common-input-text" style="width:380px;" />
+                            <input id="packageMoney" type="text" placeholder="请输入分期金额" class="common-input-text" style="width:380px;" />
                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
                         </div>
                     </div>
@@ -469,7 +476,7 @@
                                         <div class="sign-right-cont">
                                             <input id="applicantWages" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">&nbsp;&nbsp;<span>元</span>
                                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="sign-item clearfix" style="margin-top:35px;">
@@ -571,14 +578,14 @@
                             <div class="common-tap-box">
                                 <div class="sign-item-box">
                                     <div class="sign-item clearfix">
-                                        <label><em>*</em>姓名</label>
+                                        <label><em></em>姓名</label>
                                         <div class="sign-right-cont">
                                             <input id="friendTwoName" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">
                                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
                                         </div>
                                     </div>
                                     <div class="sign-item clearfix">
-                                        <label><em>*</em>手机号码</label>
+                                        <label><em></em>手机号码</label>
                                         <div class="sign-right-cont">
                                             <input id="friendTwoPhone" type="text" maxLength=11 class="common-input-text" style="width:380px;vertical-align:middle;">
                                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
@@ -632,14 +639,14 @@
                             <div class="common-tap-box">
                                 <div class="sign-item-box">
                                     <div class="sign-item clearfix">
-                                        <label><em>*</em>姓名</label>
+                                        <label><em></em>姓名</label>
                                         <div class="sign-right-cont">
                                             <input id="workmateTwoName" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">
                                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
                                         </div>
                                     </div>
                                     <div class="sign-item clearfix">
-                                        <label><em>*</em>手机号码</label>
+                                        <label><em></em>手机号码</label>
                                         <div class="sign-right-cont">
                                             <input id="workmateTwoPhone" type="text" maxLength=11 class="common-input-text" style="width:380px;vertical-align:middle;">
                                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
@@ -772,7 +779,7 @@
                                 </div>
                             </li>
                             <li>
-                            	<h1 class="upload-inf-title"><em>*</em>2.个人征兴报告</h1>
+                            	<h1 class="upload-inf-title"><em>*</em>2.房产证明<span>(房产证名字需与借款人名字一致（如房产证名字是申请人爱人，需要提供结婚证明）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
                                     	<a id="img_1" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
@@ -793,7 +800,12 @@
                                 </div>
                             </li>
                             <li>
-                            	<h1 class="upload-inf-title"><em>*</em>3.户口本<span>（户主和单人页，不超过4张）</span></h1>
+                            	<h1 class="upload-inf-title"><em>*</em>3.现住址证明<span>（任选其一）</span></h1>
+                            	<p style="margin-bottom:20px;">
+				（1）房产登记证明/房产使用权证明/（房屋抵押合同+还贷流水）/（购房合同+购房发票）<br/ >
+				（2）水/电/气/有线电视/固定电话的缴费详单（近6 个月）。<br/ >
+				（3）居委会/街道办/派出所开具的居住证明。<br/ >
+                            	</p>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
                                     	<a id="img_2" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
@@ -803,7 +815,7 @@
                                 </div>
                             </li>
                             <li>
-                            	<h1 class="upload-inf-title"><em>*</em>4.流水证明</h1>
+                            	<h1 class="upload-inf-title"><em>*</em>4.工作证明<span>（人事部门开具的在职证明+社保卡）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
                                     	<a id="img_3" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
@@ -813,7 +825,7 @@
                                 </div>
                             </li>
                             <li>
-                            	<h1 class="upload-inf-title"><em>*</em>5.在职证明（不超过3张）</h1>
+                            	<h1 class="upload-inf-title"><em>*</em>5.收入证明<span>（近6个月与工资收入相关的银行流水+银行卡正反面照片）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
                                     	<a id="img_4" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
