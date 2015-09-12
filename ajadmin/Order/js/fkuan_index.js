@@ -125,8 +125,8 @@ $(function(){
 		html.push('<tr>');
 		html.push('<th>订单编号</th>');
 		html.push('<th>合同编号</th>');
-		html.push('<th>套餐名称</th>');
-		html.push('<th>价格</th>');
+		html.push('<th>产品名称</th>');
+		html.push('<th>分期金额</th>');
 		html.push('<th>订单状态</th>');
 		html.push('<th>最近待还</th>');
 		html.push('<th>总期数</th>');
@@ -150,7 +150,7 @@ $(function(){
 			html.push('<td>' + packageName + '</td>');
 			html.push('<td>' + packageMoney + '元</td>');
 			html.push('<td>' + statusDes + '</td>');
-			html.push('<td>' + fenQiTimes + '</td>');
+			html.push('<td>' + fenQiTimes + '期</td>');
 			html.push('<td>' + noRepaymentTimes + '期</td>');
 			if(status == "100501"){
 				//html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');

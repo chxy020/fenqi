@@ -151,6 +151,7 @@ $(function(){
 			}
 		}
 		var companyId = obj.companyId || "";
+		var contractMoney = obj.contractMoney || "";
 		var packageMoney = obj.packageMoney || "";
 		var fenQiTimes = obj.fenQiTimes || "";
 		var poundage = obj.poundage || "0";
@@ -164,10 +165,12 @@ $(function(){
 		var html = [];
 		html.push('<tr><td width="16%" class="tableleft">合同编号</td>');
 		html.push('<td>' + contractNo + '</td></tr>');
-		html.push('<tr><td class="tableleft">套餐类型</td>');
+		html.push('<tr><td class="tableleft">产品类型</td>');
 		html.push('<td>' + packageType + '</td></tr>');
-		html.push('<tr><td class="tableleft">套餐金额</td>');
-		html.push('<td>' + packageMoney + '</td></tr>');
+		html.push('<tr><td class="tableleft">合同总金额</td>');
+		html.push('<td>' + contractMoney + '元</td></tr>');
+		html.push('<tr><td class="tableleft">分期金额</td>');
+		html.push('<td>' + packageMoney + '元</td></tr>');
 		html.push('<tr><td class="tableleft">分期方式</td>');
 		html.push('<td>' + fenQiTimes + '期</td></tr>');
 		html.push('<tr><td class="tableleft">服务手续费</td>');
@@ -258,38 +261,71 @@ $(function(){
 		var familyPhone = obj.familyPhone || "";
 		var familyRelation = obj.familyRelation || "";
 		familyRelation = g.selectDic["1016"][familyRelation];
+
+		var familyTwoName = obj.familyTwoName || "";
+		var familyTwoPhone = obj.familyTwoPhone || "";
+		var familyTwoRelation = obj.familyTwoRelation || "";
+		familyTwoRelation = g.selectDic["1016"][familyTwoRelation];
+
 		var friendName = obj.friendName || "";
 		var friendPhone = obj.friendPhone || "";
+		var friendTwoName = obj.friendTwoName || "";
+		var friendTwoPhone = obj.friendTwoPhone || "";
 
-		html.push('<tr><td class="tableleft">亲属姓名</td>');
+		var workmateName = obj.workmateName || "";
+		var workmatePhone = obj.workmatePhone || "";
+		var workmateTwoName = obj.workmateTwoName || "";
+		var workmateTwoPhone = obj.workmateTwoPhone || "";
+
+		html.push('<tr><td class="tableleft">亲属一姓名</td>');
 		html.push('<td>' + familyName + '</td></tr>');
-		html.push('<tr><td class="tableleft">亲属手机号码</td>');
+		html.push('<tr><td class="tableleft">亲属一手机号码</td>');
 		html.push('<td>' + familyPhone + '</td></tr>');
-		html.push('<tr><td class="tableleft">亲属关系</td>');
+		html.push('<tr><td class="tableleft">亲属一关系</td>');
 		html.push('<td>' + familyRelation + '</td></tr>');
-		html.push('<tr><td class="tableleft">朋友姓名</td>');
+		html.push('<tr><td class="tableleft">亲属二姓名</td>');
+		html.push('<td>' + familyTwoName + '</td></tr>');
+		html.push('<tr><td class="tableleft">亲属二手机号码</td>');
+		html.push('<td>' + familyTwoPhone + '</td></tr>');
+		html.push('<tr><td class="tableleft">亲属二关系</td>');
+		html.push('<td>' + familyTwoRelation + '</td></tr>');
+
+		html.push('<tr><td class="tableleft">朋友一姓名</td>');
 		html.push('<td>' + friendName + '</td></tr>');
-		html.push('<tr><td class="tableleft">朋友手机号码</td>');
+		html.push('<tr><td class="tableleft">朋友一手机号码</td>');
 		html.push('<td>' + friendPhone + '</td></tr>');
+		html.push('<tr><td class="tableleft">朋友二姓名</td>');
+		html.push('<td>' + friendTwoName + '</td></tr>');
+		html.push('<tr><td class="tableleft">朋友二手机号码</td>');
+		html.push('<td>' + friendTwoPhone + '</td></tr>');
+
+		html.push('<tr><td class="tableleft">同事一姓名</td>');
+		html.push('<td>' + workmateName + '</td></tr>');
+		html.push('<tr><td class="tableleft">同事一手机号码</td>');
+		html.push('<td>' + workmatePhone + '</td></tr>');
+		html.push('<tr><td class="tableleft">同事二姓名</td>');
+		html.push('<td>' + workmateTwoName + '</td></tr>');
+		html.push('<tr><td class="tableleft">同事二手机号码</td>');
+		html.push('<td>' + workmateTwoPhone + '</td></tr>');
 
 		//3.3
-		var liableName = obj.liableName || "";
-		var liablePhone = obj.liablePhone || "";
-		var liableIdentity = obj.liableIdentity || "";
-		var liableRelation = obj.liableRelation || "";
-		liableRelation = g.selectDic["1016"][liableRelation];
-		var liableAddress = obj.liableAddress || "";
+		//~ var liableName = obj.liableName || "";
+		//~ var liablePhone = obj.liablePhone || "";
+		//~ var liableIdentity = obj.liableIdentity || "";
+		//~ var liableRelation = obj.liableRelation || "";
+		//~ liableRelation = g.selectDic["1016"][liableRelation];
+		//~ var liableAddress = obj.liableAddress || "";
 
-		html.push('<tr><td class="tableleft">连带人姓名</td>');
-		html.push('<td>' + liableName + '</td></tr>');
-		html.push('<tr><td class="tableleft">连带人手机号码</td>');
-		html.push('<td>' + liablePhone + '</td></tr>');
-		html.push('<tr><td class="tableleft">连带人身份证号码</td>');
-		html.push('<td>' + liableIdentity + '</td></tr>');
-		html.push('<tr><td class="tableleft">连带人关系</td>');
-		html.push('<td>' + liableRelation + '</td></tr>');
-		html.push('<tr><td class="tableleft">连带人住址</td>');
-		html.push('<td>' + liableAddress + '</td></tr>');
+		//~ html.push('<tr><td class="tableleft">连带人姓名</td>');
+		//~ html.push('<td>' + liableName + '</td></tr>');
+		//~ html.push('<tr><td class="tableleft">连带人手机号码</td>');
+		//~ html.push('<td>' + liablePhone + '</td></tr>');
+		//~ html.push('<tr><td class="tableleft">连带人身份证号码</td>');
+		//~ html.push('<td>' + liableIdentity + '</td></tr>');
+		//~ html.push('<tr><td class="tableleft">连带人关系</td>');
+		//~ html.push('<td>' + liableRelation + '</td></tr>');
+		//~ html.push('<tr><td class="tableleft">连带人住址</td>');
+		//~ html.push('<td>' + liableAddress + '</td></tr>');
 
 		var imglist = data.list || [];
 		var imghtml = imgUploadEdit(imglist);
@@ -326,10 +362,10 @@ $(function(){
 			if(isdelete === 0){
 				var imgtitle = {
 					"100701":"身份证",
-					"100702":"个人征兴报告",
-					"100703":"户口本",
-					"100704":"流水证明",
-					"100705":"在职证明",
+					"100702":"房产证明",
+					"100703":"现住址证明",
+					"100704":"工作证明",
+					"100705":"收入证明",
 					"100706":"结婚证/单身证明",
 					"100707":"连带责任人身份证照片",
 					"100708":"企业用户营业执照照片",
