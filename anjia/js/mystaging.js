@@ -76,6 +76,9 @@ $(function(){
 
 
 	$("#contractNo").bind("blur",validNoEmpty);
+	$("#contractMoney").bind("blur",validNoEmpty);
+	$("#contractMoney").bind("blur",validIsNumber);
+
 	$("#packageMoney").bind("blur",validNoEmpty);
 	$("#packageMoney").bind("blur",validIsNumber);
 
@@ -485,6 +488,7 @@ $(function(){
 		var contractNo = $("#contractNo").val() || "";
 		var packageName = $("#packageType")[0].options[$("#packageType")[0].selectedIndex].text;
 		var packageType = $("#packageType").val() || "";
+		var contractMoney = $("#contractMoney").val() || "";
 		var packageMoney = $("#packageMoney").val() || "";
 		var fenQiTimes = $("#fenQiTimes").val() || "";
 		var agreeck = $("#agreeck")[0].checked || false;
@@ -493,6 +497,21 @@ $(function(){
 		var companyId = ptype[1] || "";
 
 		if(sendValidNoEmpty(contractNo,$("#contractNo"))){
+			if(!sendValidNoEmpty(contractMoney,$("#contractMoney"))){
+				return;
+			}
+			if(!sendValidIsNumber(contractMoney,$("#contractMoney"))){
+				return;
+			}
+			if((packageMoney - 0) > (contractMoney - 0)){
+				var next = $("#packageMoney").next();
+				$(next).html('<i class="common-ico validate-ico"></i>分期金额必须小于总金额');
+				$(next).removeClass("validate-success");
+				$(next).addClass("validate-error");
+				$(next).show();
+				return;
+			}
+
 			if(sendValidNoEmpty(packageMoney,$("#packageMoney"))){
 				if(sendValidIsNumber(packageMoney,$("#packageMoney"))){
 					if(agreeck){
@@ -504,6 +523,7 @@ $(function(){
 						condi.packageName = packageName;
 						condi.packageType = packageType;
 						condi.companyId = companyId;
+						condi.contractMoney = contractMoney;
 						condi.packageMoney = packageMoney;
 						condi.fenQiTimes = g.stagnum;
 						condi.poundage =  g.poundage;
@@ -1150,6 +1170,7 @@ $(function(){
 		var contractNo = obj.contractNo || "";
 		var packageType = obj.packageType || "";
 		var companyId = obj.companyId || "";
+		var contractMoney = obj.contractMoney || "";
 		var packageMoney = obj.packageMoney || "";
 		var fenQiTimes = obj.fenQiTimes || "";
 		var poundage = obj.poundage || "0";
@@ -1164,6 +1185,7 @@ $(function(){
 
 		$("#contractNo").val(contractNo);
 		$("#packageType").val((packageType + "_" + companyId));
+		$("#contractMoney").val(contractMoney);
 		$("#packageMoney").val(packageMoney);
 		$("#fenQiTimes").val(fenQiTimes);
 		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元")));

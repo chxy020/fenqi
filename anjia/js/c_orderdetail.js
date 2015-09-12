@@ -259,9 +259,9 @@ $(function(){
 		html.push('<td class="even">' + orderId + '</td></tr>');
 		html.push('<tr><td class="odd">合同编号</td>');
 		html.push('<td class="even">' + contractNo + '</td></tr>');
-		html.push('<tr><td class="odd">套餐名称</td>');
+		html.push('<tr><td class="odd">产品名称</td>');
 		html.push('<td class="even">' + packageName + '</td></tr>');
-		html.push('<tr><td class="odd">贷款金额</td>');
+		html.push('<tr><td class="odd">分期金额</td>');
 		html.push('<td class="even">' + packageMoney + '元</td></tr>');
 		html.push('<tr><td class="odd">分期月数</td>');
 		html.push('<td class="even">' + fenQiTimes + '个月</td></tr>');
@@ -549,7 +549,7 @@ $(function(){
 		html.push('<td class="even">' + contractNo + '</td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td class="odd">套餐名称</td>');
+		html.push('<td class="odd">产品名称</td>');
 		html.push('<td class="even">' + packageName + '</td>');
 		html.push('</tr>');
 		html.push('<tr>');

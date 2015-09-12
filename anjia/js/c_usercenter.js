@@ -268,8 +268,8 @@ $(function(){
 		html.push('<tr>');
 		html.push('<th width="160">订单编号</th>');
 		html.push('<th width="129">合同编号</th>');
-		html.push('<th width="180">套餐名称</th>');
-		html.push('<th width="130">贷款金额</th>');
+		html.push('<th width="180">产品名称</th>');
+		html.push('<th width="130">分期金额</th>');
 		html.push('<th width="140">订单状态</th>');
 		html.push('<th width="150">最近待还</th>');
 		html.push('<th width="80">总期数</th>');
