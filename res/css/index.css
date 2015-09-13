@@ -2,26 +2,9 @@
 /*index-main*/
 .index-main1{
 	background:#fff;
-	padding:60px 0px;
+	padding:0px 0px 60px;
 }
-.i-part-r{
-	width:590px;
-}
-.i-part-l{
-	margin-left:65px;
-}
-.i-part-r p{
-	text-align:center;
-}
-.i-part-r .i-part-r-t{
-	font-size:46px;
-	height:50px;
-	line-height:50px;
-	color:#666666;
-	text-align:center;
-	margin-bottom:30px;
-	margin-top:48px;
-}
+
 /*service-step*/
 .service-step{
 	background:#fff;
@@ -61,10 +44,10 @@
 	margin:20px 40px 0px 40px;
 }
 .cooperative-business-main{
-	padding-bottom:60px;
+	padding-bottom:100px;
 }
 .cooperative-business{
-	margin-bottom:60px;
+	margin-bottom:100px;
 }
 .cooperative-business-box{}
 .cooperative-part{
@@ -73,12 +56,12 @@
 	height:300px;
 	overflow:hidden;
 	background:#fff;
-	border:1px solid #efefef;
+	border:1px solid #d8d8d8;
 	cursor:pointer;
 }
 .cooperative-part .cooperative-part-logo{
-	width:362px;
-	height:84px;
+	width:320px;
+	height:76px;
 	display:block;
 	margin:0px auto;
 	margin-top:109px;
@@ -469,30 +452,24 @@
 }
 .staging-ico{
 	display:inline-block;
+	width:165px;
+	height:187px;
 	background:url(../images/staging-step-bg.png) left top no-repeat;
 }
 .staging-ico.staging-ico1{
-	width:126px;
-	height:112px;
-	background-position:0px 0px;
+	background-position:-24px -6px;
 }
 .staging-ico.staging-ico2{
-	width:140px;
-	height:119px;
-	background-position:-130px 0px;
+	background-position:-192px -6px;
 }
 .staging-ico.staging-ico3{
-	width:126px;
-	height:119px;
-	background-position:-275px 0px;
+	background-position:-360px -6px;
 }
 .staging-ico.staging-ico4{
-	width:134px;
-	height:119px;
-	background-position:-411px 0px;
+	background-position:-527px -6px;
 }
 .staging-step-main{
-	padding:0px 0px 60px;
+	padding:0px 0px 90px;
 }
 .staging-step-box{
 	width:1200px;
@@ -504,11 +481,13 @@
 	float:left;
 }
 .staging-step-box .staging-step-item .staging-step-title{
-	font-size:22px;
-	margin:15px 0px 15px;
+	font-size:18px;
+	margin:40px 0px 15px;
+	color:#666;
 }
 .staging-step-box .staging-step-item p{
 	font-size:15px;
+	color:#666;
 }
 .staging-detai-main{
 	position:relative;

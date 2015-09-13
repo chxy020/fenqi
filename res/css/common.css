@@ -6,12 +6,6 @@ input{-webkit-border-radius:0;/*-webkit-user-select:text;*/}
 ul, ol, li{list-style:none;}
 a{text-decoration:none;-webkit-touch-callout:none;color:#2b3a42;}
 a:hover{text-decoration:underline;}
-a {
-	color:#5e5652;
-	text-decoration:none;
-	cursor:pointer;
-
-}
 em,h1{
 	font-style:inherit;
 	font-style:normal;
@@ -40,7 +34,7 @@ body, button, input, select, textarea, code {
 	color: #444;
 }
 html{
-	background:#f7f7f7;
+	background:#f9f9f9;
 }
 /*common-color*/
 .common-tip{
@@ -323,9 +317,15 @@ html{
 }
 .common-title1{
 	font-size:24px;
-	color:#929292;
+	color:#454646;
 	text-align:center;
-	padding:48px 0px;
+	padding:52px 0px;
+}
+.common-title1 p{
+	font-size:14px;
+	color:#AAA;
+	text-align:center;
+	margin-top:12px;
 }
 .hover-img-box{
 	position:relative;
@@ -442,6 +442,13 @@ html{
 	height:13px;
 	background-position:-185px -7px;
 }
+.common-ico.ico-position{
+	width:12px;
+	height:16px;
+	background-position:-81px -37px;
+	margin-right:5px;
+	margin-bottom:4px;
+}
 .form-validate-tip{
 	font-size:14px;
 	line-height:18px;
@@ -487,12 +494,15 @@ html{
 .ui-short-head{
 	height:20px;
 	line-height:20px;
-	padding:5px 0px;
+	padding:6px 0px;
 	background:#f0f0f0;
 }
 .ui-short-head .head-box{
 	float:right;
 	color:#5e5652;
+}
+.ui-short-head .head-box a{
+
 }
 .header-line{
 	font-size:0px;
@@ -500,6 +510,7 @@ html{
 	display:inline-block;
 	width:1px;
 	vertical-align:middle;
+	_vertical-align:text-bottom;
 	background:#cecece;
 	margin:0px 10px;
 }
@@ -507,7 +518,7 @@ html{
 	margin:0px 5px;
 }
 .ui-header{
-	height:140px;
+	height:130px;
 	background:#fff;
 	border-bottom:1px solid #e9e9e9;
 }
@@ -518,30 +529,34 @@ html{
 }
 .ui-header .ui-head-left .ui-head-left-l{
 	margin-left:15px;
-	height:91px;
+	width:150px;
+	margin-top:55px;
 }
 .ui-header .ui-head-left .cur-pos{
-	font-size:14px;
+	float:left;
+	font-size:16px;
 	color:#2b3a42;
 	display:block;
-	margin-bottom:7px;
-	margin-top:55px;
+	margin-right:2px;
 }
 .select-city-box{
 	position:relative;
+	float:left;
+	margin-left:3px;
+	margin-top:2px;
 }
 .select-city-btn{
 	position:relative;
 	z-index:14;
 	font-size:12px;
 	padding:2px 4px;
-	border:1px solid #bebebe;
 	color:#666666;
 	cursor:pointer;
 	height:19px;
 	line-height:19px;
 	overflow:hidden;
 	background:#fff;
+	border:1px solid #fff;
 }
 .select-city-box .select-city-btn:hover,.select-city-box .select-city-btn.active{
 	color:#99bf38;
@@ -576,6 +591,10 @@ html{
 	float:right;
 	margin-right:0px;
 	margin-top:46px;
+	display:none;
+}
+.index-slide{
+	height:450px;
 }
 .ui-phone-service .phone-service{
 	background: url(../images/phone.png) no-repeat left center;
@@ -586,8 +605,8 @@ html{
 }
 .ui-nav{
 	float:right;
-	margin-right:65px;
-	margin-top:60px;
+	margin-right:0px;
+	margin-top:57px;
 }
 .ui-nav li{
 	float:left;
@@ -719,22 +738,22 @@ html{
 }
 /*bottom*/
 .ui-bottom{
-	background:#2b3a42;
+	background:#f5f5f5;
 	padding:60px 0px 0px;
 }
 .ui-bottom .f-link{
 	width: 166px;
-	float:left;
+	float:right;
 	margin: 0px 30px 0px 20px;
 }
 .ui-bottom .f-link p{
 	font-size: 16px;
-	color: #99bf38;
-	margin-bottom: 30px;
+	color: #539d34;
+	margin-bottom: 15px;
 }
 
 .ui-bottom .f-link a{
-	color: #708997;
+	color: #454646;
 	line-height: 30px;
 	font-size: 14px;
 }
@@ -763,9 +782,14 @@ html{
 	display: block;
 	line-height: 30px;
 }
-
+.ui-bottom .f-logo{
+	width:148px;
+	height:104px;
+	float:left;
+	margin:25px 60px 0px 20px;
+}
 .ui-bottom .f-phone{
-	float: right;
+	float: left;
 	width: 200px;
 	margin: 0;
 	margin-right: 30px;
@@ -774,17 +798,19 @@ html{
 
 .ui-bottom .f-phone .a{
 	background: url(../images/phone.png) no-repeat left center;
-	padding-left: 20px;
+	padding-left: 30px;
 	display: inline-block;
-	height: 22px;
+	height: 24px;
+	line-height:24px;
 	margin-bottom:10px;
-	color: #ffffff;
+	color: #454646;
+	font-size:14px
 }
 
 .ui-bottom .f-phone .b{
 	margin-top:5px;
 	display: block;
-	color: #708997;
+	color: #539d34;
 	font-size: 14px;
 }
 .ui-bottom-nav{
@@ -792,9 +818,9 @@ html{
 	height:35px;
 	line-height:35px;
 	text-align:center;
-	color:#2b3a42;
+	color:#999999;
 	font-size:12px;
-	background:#e7e7e7;
+	background:#2e2e2e;
 }
 /*common-table*/
 .common-table{
@@ -834,6 +860,9 @@ html{
 }
 .common-table1 td{
 	color:#333;
+}
+.common-img{
+	text-align:center;
 }
 /*pager*/
 .ui-pager{
@@ -1220,8 +1249,8 @@ a.improve-btn:hover{
 	line-height:26px;
 }
 .ercode-img img{
-	width:150px;
-	height:150px;
+	width:120px;
+	height:120px;
 }
 
 

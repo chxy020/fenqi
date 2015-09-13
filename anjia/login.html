@@ -6,6 +6,7 @@
 	<title>安家吧</title>
 	<link href="../res/css/common.css" rel="stylesheet">
 	<link href="../res/css/login.css" rel="stylesheet">
+    <link href="../res/css/carouFredSel.css" rel="stylesheet">
 </head>
 
 <body>
@@ -60,9 +61,18 @@
 				</div>
 			</div>
 			<div class="goods-adver-part f-left" style="margin:12px 0px 0px 110px;">
-				<a href="###">
-					<img src="../res/images/goods-ad-img.jpg" />
-				</a>
+                <div class="ui-slide">
+                    <div class="ui-wrap" style="width:100%">
+                        <div class="ui-slider">
+                            <ul class="list_pro_carousel" id="productAdSlider">
+                                <li><a href="###"><img src="../res/images/goods-ad-img.jpg" /></a></li>
+                                <li><a href="###"><img src="../res/images/goods-ad-img.jpg" /></a></li>
+                                <li><a href="###"><img src="../res/images/goods-ad-img.jpg" /></a></li>
+                            </ul>
+                            <ul id="pager" class="pager"></ul>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -84,11 +94,30 @@
     </div>
 
 	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>	
 	<script type="text/javascript" src="../res/js/ui.js"></script>
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
 	<script src="js/login.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//初始化
+			$('#productAdSlider').carouFredSel({
+				width: 552,
+				height: 317,
+				prev: '#prev',
+				next: '#next',
+				pagination: "#pager",
+				swipe: {
+					onMouse: true,
+					onTouch: true
+				}
+			});
+			//合作商家经过效果
+			$.fn.businessHoverFun();
+		})
+	</script>
 </body>
 
 </html>

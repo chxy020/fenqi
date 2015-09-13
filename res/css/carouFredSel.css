@@ -4,7 +4,19 @@
 	height:450px;
 	overflow:hidden;
 }
+.list_pro_carousel{
+	position:relative;
+	width:552px;
+	height:317px;
+	overflow:hidden;
+}
 .list_carousel ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+}
+.list_pro_carousel ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -22,10 +34,28 @@
 	overflow:hidden;
 	
 }
+.list_pro_carousel li {
+	font-size: 40px;
+	text-align: center;
+	background-color: #eee;
+	width: 552px;
+	height: 317px;
+	padding: 0;
+	display: block;
+	float: left;
+	overflow:hidden;
+	
+}
 .list_carousel li a{
 	display:block;
 	width:100%;
 	height:450px;
+	
+}
+.list_pro_carousel li a{
+	display:block;
+	width:552px;
+	height:317px;
 	
 }
 .list_carousel.responsive {

@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
 	<title>安家吧</title>
 	<link href="../res/css/common.css" rel="stylesheet">
+    <link href="../res/css/carouFredSel.css" rel="stylesheet">
     <link href="../res/css/login.css" rel="stylesheet">
     <style type="text/css">
 	.codebtn{
@@ -40,9 +41,18 @@
 	<div class="login-main ">
 		<div class="ui-wrap clearfix">
 			<div class="goods-adver-part f-right" style="margin:70px 110px 0px 0px;">
-				<a href="###">
-					<img src="../res/images/goods-ad-img.jpg" />
-				</a>
+				<div class="ui-slide">
+                    <div class="ui-wrap" style="width:100%">
+                        <div class="ui-slider">
+                            <ul class="list_pro_carousel" id="productAdSlider">
+                                <li><a href="###"><img src="../res/images/goods-ad-img.jpg" /></a></li>
+                                <li><a href="###"><img src="../res/images/goods-ad-img.jpg" /></a></li>
+                                <li><a href="###"><img src="../res/images/goods-ad-img.jpg" /></a></li>
+                            </ul>
+                            <ul id="pager" class="pager"></ul>
+                        </div>
+                    </div>
+                </div>
 			</div>
 			<div id="reginfodiv" class="user-login-part f-left" style="margin-left:110px;">
 				<div class="login-title-part">
@@ -127,11 +137,31 @@
         </div>
     </div>
 	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>	
 	<script type="text/javascript" src="../res/js/ui.js"></script>
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
 	<script src="js/reg.js"></script>
+	<script src="js/login.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//初始化
+			$('#productAdSlider').carouFredSel({
+				width: 552,
+				height: 317,
+				prev: '#prev',
+				next: '#next',
+				pagination: "#pager",
+				swipe: {
+					onMouse: true,
+					onTouch: true
+				}
+			});
+			//合作商家经过效果
+			$.fn.businessHoverFun();
+		})
+	</script>    
 </body>
 
 </html>
