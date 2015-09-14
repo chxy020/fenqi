@@ -12,7 +12,7 @@ em,h1{
 	font-weight:inherit;
 }
 a:hover {
-	color:#99bf38;
+	color:#539d34;
 	text-decoration:underline;
 }
 .clearfix:after, .central:after, .widget ul:after, .paging:after, .pagenav:after, .base-tit:after {
@@ -161,7 +161,7 @@ html{
 	font-size:16px;
 }
 .btn-green{
-	background:#99bf38;
+	background:#539d34;
 	color:#fff;
 	text-align:center;
 }
@@ -202,13 +202,13 @@ html{
 }
 .btn-white{
 	background:#fff;
-	color:#99bf38;
+	color:#539d34;
 	text-align:center;
 	border:1px solid #ddd;
 }
 .btn-white:hover{
 	background:#efefef;
-	color:#99bf38;
+	color:#539d34;
 	text-align:center;
 }
 .btn-green-full{
@@ -220,7 +220,7 @@ html{
 	text-align:center;
 	width:140px;
 	border-radius:36px;
-	background:#99bf38;
+	background:#539d34;
 	overflow:hidden;
 }
 .btn-green-full:hover{
@@ -249,7 +249,7 @@ html{
 }
 .btn-green-empty-s{
 	display:inline-block;
-	border:1px solid #99bf38;
+	border:1px solid #539d34;
 	height:30px;
 	line-height:30px;
 	background:#fff;
@@ -263,14 +263,14 @@ html{
 	transition:all ease-in-out 0.2s 0s;
 }
 .btn-green-empty-s:hover{
-	background:#99bf38;
+	background:#539d34;
 	color:#fff;
 	text-decoration:none;
 }
 .btn-green-empty{
 	font-size:14px;
-	border:1px solid #99bf38;
-	color:#99bf38;
+	border:1px solid #539d34;
+	color:#539d34;
 	line-height:24px;
 	height:24px;
 	padding:0px 10px;
@@ -282,8 +282,8 @@ html{
 }
 .btn-green-empty-f{
 	font-size:14px;
-	border:1px solid #99bf38;
-	color:#99bf38;
+	border:1px solid #539d34;
+	color:#539d34;
 	background:#dff0d8;
 	line-height:24px;
 	height:24px;
@@ -311,7 +311,7 @@ html{
 }
 .common-title{
 	font-size:24px;
-	color:#99bf38;
+	color:#539d34;
 	text-align:center;
 	padding:48px 0px;
 }
@@ -323,7 +323,7 @@ html{
 }
 .common-title1 p{
 	font-size:14px;
-	color:#AAA;
+	color:#999;
 	text-align:center;
 	margin-top:12px;
 }
@@ -488,7 +488,7 @@ html{
 .w1000{
 	width:1000px;
 }
-.ui-short-head,.ui-header,.index-main1,.staging-step-main,.cooperative-business-main,.ui-bottom,.sub-page-banner,.improvement-cal-main,.staging-detai-main,.staging-rate-main,.staging-compare-main,.staging-ask-main,.ui-main,.ui-count-part,.service-step,.login-main,.ui-bottom-type{
+.ui-short-head,.ui-header,.index-main1,.staging-step-main,.cooperative-business-main,.ui-bottom,.sub-page-banner,.improvement-cal-main,.staging-detai-main,.staging-rate-main,.staging-compare-main,.staging-ask-main,.ui-main,.ui-count-part,.service-step,.login-main,.ui-bottom-type,.index-slide{
 	min-width:1200px;
 }
 .ui-short-head{
@@ -559,9 +559,9 @@ html{
 	border:1px solid #fff;
 }
 .select-city-box .select-city-btn:hover,.select-city-box .select-city-btn.active{
-	color:#99bf38;
+	color:#539d34;
 	text-decoration:none;
-	border:1px solid #99bf38;
+	border:1px solid #539d34;
 	border-bottom:none;
 }
 .select-city-box .select-city-area{
@@ -570,7 +570,7 @@ html{
 	top:18px;
 	z-index:13;
 	background:#fff;
-	border:1px solid #99bf38;
+	border:1px solid #539d34;
 	width:150px;
 	padding:5px;
 	display:none;
@@ -585,7 +585,7 @@ html{
 	color:#555;
 }
 .select-city-box .select-city-area-ul li a:hover{
-	color:#99bf38;
+	color:#539d34;
 }
 .ui-phone-service{
 	float:right;
@@ -610,14 +610,18 @@ html{
 }
 .ui-nav li{
 	float:left;
-	margin:0px 25px;
+	padding:0px 25px;
+	border-right:1px solid #e4e4e4;
+}
+.ui-nav li.no-right-border{
+	border-right:none;
 }
 .ui-nav li a{
 	font-size:17px;
 	color:#2b3a42;
 }
 .ui-nav li a:hover,.ui-nav li a.selected{
-	color:#99bf38;
+	color:#539d34;
 	text-decoration:none;
 	transition:all ease-in-out 0.1s 0s;
 }
@@ -628,7 +632,7 @@ html{
 .ui-count-part .ui-count-left{
 	width:340px;
 	height:360px;
-	background:#99bf38;
+	background:#539d34;
 	float:left;
 }
 .ui-count-part .ui-count-right{
@@ -699,7 +703,7 @@ html{
 .interest-rate .interest-title{
 	height:48px;
 	line-height:48px;
-	background:#99bf38;
+	background:#539d34;
 	text-align:center;
 	color:#fff;
 	font-weight:bold;
@@ -718,7 +722,7 @@ html{
 	font-size:14px;
 	float:left;
 	line-height:45px;
-	color:#99bf38;
+	color:#539d34;
 }
 .interest-rate-ul{
 	background:#fff;
@@ -758,7 +762,7 @@ html{
 	font-size: 14px;
 }
 .ui-bottom .f-link a:hover{
-	color: #99bf38;
+	color: #539d34;
 }
 .ui-bottom .f-link .weixin{
 	background: url(../images/footer1.png) no-repeat center left;
@@ -792,10 +796,20 @@ html{
 	float: left;
 	width: 200px;
 	margin: 0;
-	margin-right: 30px;
+	padding-right: 60px;
 	margin-top: 38px;
 }
-
+.bottom-left{
+	border-right:1px solid #e7e7e7;
+	float:left;
+	height:160px;
+}
+.bottom-right{
+	border-left:1px solid #fff;
+	padding-left:60px;
+	float:left;
+	height:160px;
+}
 .ui-bottom .f-phone .a{
 	background: url(../images/phone.png) no-repeat left center;
 	padding-left: 30px;
@@ -863,6 +877,41 @@ html{
 }
 .common-img{
 	text-align:center;
+}
+.loan-img{
+	position:relative;
+	width:895px;
+	height:435px;
+	margin:0 auto;
+	background:url(../images/decoration-loan-img.jpg) left top no-repeat;
+}
+.loan-img .loan-btn{
+	position:absolute;
+	width:214px;
+	height:212px;
+	left:332px;
+	top:93px;
+	background:url(../images/loan-circle.gif) left top no-repeat;
+}
+.loan-img .loan-btn:hover{
+	background:url(../images/loan-circle-hover.gif) left top no-repeat;
+}
+.loan-img .loan-btn h1{
+	font-size:26px;
+	color:#fff;
+	text-align:center;
+	margin-top:80px;
+	height:35px;
+	line-height:35px;
+	margin-bottom:5px;
+}
+.loan-img .loan-btn p{
+	font-size:12px;
+	color:#fff;
+	text-align:center;
+}
+.loan-img .loan-btn:hover{
+	text-decoration:none;
 }
 /*pager*/
 .ui-pager{
@@ -991,7 +1040,7 @@ html{
 	text-decoration:none;
 }
 .highlight{
-	color:#99bf38;
+	color:#539d34;
 }
 .common-tap{
 	height:45px;
@@ -1010,8 +1059,8 @@ html{
 	font-size:16px;
 }
 .common-tap-ul li.selected a{
-	color:#99bf38;
-	border-bottom:2px solid #99bf38;
+	color:#539d34;
+	border-bottom:2px solid #539d34;
 }
 .common-tap-ul li a:hover{
 	text-decoration:none;
@@ -1083,13 +1132,13 @@ html{
 .vercode-img{
 	width:86px;
 	height:38px;
-	border:1px solid #99bf38;
+	border:1px solid #539d34;
 	vertical-align:middle;
 	margin:0px 10px;
 }
 .vercode-link{
 	font-size:14px;
-	color:#99bf38;
+	color:#539d34;
 }
 .sub-page-banner{
 	height:450px;
@@ -1143,8 +1192,8 @@ html{
 	width:100%;
 	height:58px;
 	line-height:58px;
-	background:#99bf38;
-	border:1px solid #99bf38;
+	background:#539d34;
+	border:1px solid #539d34;
 	color:#fff;
 	font-size:26px;
 	text-align:center;
@@ -1219,7 +1268,7 @@ a.improve-btn:hover{
 	border-left:4px solid #fff;
 }
 .sub-left-nav ul li a:hover,.sub-left-nav ul li.selected a{
-	border-left:4px solid #99bf38;
+	border-left:4px solid #539d34;
 	text-decoration:none;
 }
 .sub-left-nav ul li .ico-green-trig{
