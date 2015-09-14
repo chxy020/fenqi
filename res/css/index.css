@@ -12,7 +12,7 @@
 }
 .service-step .ptitle{
 	font-size: 24px;
-	color: #99bf38;
+	color: #539d34;
 	text-align:center;
 	margin-bottom: 40px;
 }
@@ -47,7 +47,7 @@
 	padding-bottom:100px;
 }
 .cooperative-business{
-	margin-bottom:100px;
+	padding-bottom:100px;
 }
 .cooperative-business-box{}
 .cooperative-part{
@@ -145,7 +145,7 @@
 	width: 368px;
 	height: 565px;
 	border: 1px solid #ccc;
-	border-top: 5px solid #99bf38;
+	border-top: 5px solid #539d34;
 }
 .business-left .b-logo-img{
 	margin-top: 60px;
@@ -158,7 +158,7 @@
 	padding-left: 35px;
 	line-height: 32px;
 	font-size: 22px;
-	color: #99bf38;
+	color: #539d34;
 	margin-left: 80px;
 	margin-top: 16px;
 	letter-spacing: 1px;
@@ -231,7 +231,7 @@
 }
 .business-left-type{
 	border:none;
-	border-top:5px solid #99bf38;
+	border-top:5px solid #539d34;
 }
 
 /*sign-step*/
@@ -486,8 +486,8 @@
 	color:#666;
 }
 .staging-step-box .staging-step-item p{
-	font-size:15px;
-	color:#666;
+	font-size:16px;
+	color:#999;
 }
 .staging-detai-main{
 	position:relative;
@@ -536,7 +536,7 @@
 	border-bottom:1px dashed #e1e1e1;
 }
 .staging-rate-tab td.fir-td{
-	color:#99bf38;
+	color:#539d34;
 	border-right:1px dashed #e1e1e1;
 }
 .staging-compare-main{
@@ -613,7 +613,7 @@
 	float:left;
 	width:271px;
 	height:318px;
-	background:#99bf38;
+	background:#539d34;
 }
 .business-inf-main .business-inf-middle{
 	float:left;
@@ -756,7 +756,7 @@
 }
 .imp-sec-title{
 	font-size:24px;
-	color:#99bf38;
+	color:#539d34;
 	margin-bottom:25px;
 	height:25px;
 	line-height:25px;

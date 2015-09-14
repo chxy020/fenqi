@@ -60,7 +60,7 @@
                 	<li><a href="/anjia/index.html" class="selected">首页</a></li>
 			<li><a href="/anjia/staging.html">家装分期</a></li>
 			<li><a href="/anjia/business.html">合作商家</a></li>
-			<li><a href="/anjia/about.html">关于我们</a></li>
+			<li class="no-right-border"><a href="/anjia/about.html">关于我们</a></li>
                 </ul>
             </div>
         </div>
@@ -73,7 +73,11 @@
                     <li style="background:url(../res/images/banner.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li>
                     <li style="background:url(../res/images/banner.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li>
                 </ul>
-                <ul id="pager" class="pager"></ul>
+                <div class="ui-wrap">
+                	<ul id="pager" class="pager"></ul>
+                </div>
+                <div class="prev" id="prev"></div>
+                <div class="next" id="next"></div>
             </div>
         </div>
     </div>
@@ -83,8 +87,11 @@
             	家装贷款
                 <p>DECORATION LOAN</p>
             </div>
-            <div class="common-img">
-            	<img src="../res/images/decoration-loan-img.jpg" />
+            <div class="loan-img">
+            	<a href="/anjia/staging.html" title="我要分期" class="loan-btn">
+                	<h1>我要分期</h1>
+                    <p>点击了解详情</p>
+                </a>
             </div>
         </div>
     </div>
