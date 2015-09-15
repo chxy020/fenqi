@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
-	<title>安家吧</title>
+	<title>燕子安家</title>
 	<link href="../res/css/common.css" rel="stylesheet">
 	<link href="../res/css/index.css" rel="stylesheet">
 </head>
@@ -28,7 +28,7 @@
         	<div class="ui-head-left f-left clearfix">
         		<img class="ui-logo" src="../res/images/logo.png" />
                 <div class="ui-head-left-l f-left">
-                    <span class="cur-pos"><i class="common-ico ico-position"></i>成都</span>
+                    <span class="cur-pos"><i class="common-ico ico-position"></i><em id="curCity">&nbsp;&nbsp;&nbsp;&nbsp;</em></span>
                     <div class="select-city-box">
                         <a href="javascript" class="select-city-btn">[切换]</a>
                         <div class="select-city-area">
@@ -279,6 +279,17 @@
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
+    <!--BAIDU定位JS 开始--> 
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script> 
+    <script type="text/javascript">
+        // 百度地图API功能
+        function myFun(result){
+            var cityName = result.name;
+            $("#curCity").html(cityName);
+        }
+        var myCity = new BMap.LocalCity();
+        myCity.get(myFun);
+    </script>
 </body>
 
 </html>

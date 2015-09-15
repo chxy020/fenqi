@@ -316,7 +316,7 @@ html{
 	padding:48px 0px;
 }
 .common-title1{
-	font-size:24px;
+	font-size:26px;
 	color:#454646;
 	text-align:center;
 	padding:52px 0px;
@@ -325,7 +325,7 @@ html{
 	font-size:14px;
 	color:#999;
 	text-align:center;
-	margin-top:12px;
+	margin-top:15px;
 }
 .hover-img-box{
 	position:relative;
@@ -894,7 +894,7 @@ html{
 	background:url(../images/loan-circle.gif) left top no-repeat;
 }
 .loan-img .loan-btn:hover{
-	background:url(../images/loan-circle-hover.gif) left top no-repeat;
+	background-position:0px -212px;
 }
 .loan-img .loan-btn h1{
 	font-size:26px;
