@@ -1,0 +1,51 @@
+/**
+ * 通用头部
+*/
+
+//var __Tel__ = "400-968-9088";
+var __html__ = [];
+__html__.push('<div class="ui-header">');
+__html__.push('<div class="ui-wrap">');
+__html__.push('<div class="ui-head-left f-left clearfix">');
+__html__.push('<img class="ui-logo" src="../res/images/logo.png" />');
+__html__.push('<div class="ui-head-left-l f-left">');
+__html__.push('<span class="cur-pos"><i class="common-ico ico-position"></i>成都</span>');
+__html__.push('<div class="select-city-box">');
+__html__.push('<a href="javascript" class="select-city-btn">[切换]</a>');
+__html__.push('<div class="select-city-area">');
+__html__.push('<ul class="select-city-area-ul clearfix">');
+__html__.push('<li>');
+__html__.push('<a href="###">北京</a>');
+__html__.push('</li>');
+__html__.push('<li>');
+__html__.push('<a href="###">上海</a>');
+__html__.push('</li>');
+__html__.push('<li>');
+__html__.push('<a href="###">成都</a>');
+__html__.push('</li>');
+__html__.push('<li>');
+__html__.push('<a href="###">福建</a>');
+__html__.push('</li>');
+__html__.push('</ul>');
+__html__.push('</div>');
+__html__.push('</div>');
+__html__.push('</div>');
+__html__.push('</div>');
+__html__.push('<div class="ui-phone-service">');
+__html__.push('<p class="phone-service">全国统一免费咨询热线</p>');
+__html__.push('<img src="../res/images/phone-number.png" width="168" height="14">');
+__html__.push('</div>');
+__html__.push('<div class="ui-nav">');
+__html__.push('<ul>');
+//通过url参数,判断selected应该加在哪
+__html__.push('<li><a href="/anjia/index.html" class="selected">首页</a></li>');
+__html__.push('<li><a href="/anjia/staging.html">家装分期</a></li>');
+__html__.push('<li><a href="/anjia/business.html">合作商家</a></li>');
+__html__.push('<li class="no-right-border"><a href="/anjia/about.html">关于我们</a></li>');
+__html__.push('</ul>');
+__html__.push('</div>');
+__html__.push('</div>');
+__html__.push('</div>');
+document.write(__html__.join(''));
+
+
