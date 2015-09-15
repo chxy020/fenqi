@@ -9,7 +9,7 @@ __html__.push('<div class="ui-wrap">');
 __html__.push('<div class="ui-head-left f-left clearfix">');
 __html__.push('<img class="ui-logo" src="../res/images/logo.png" />');
 __html__.push('<div class="ui-head-left-l f-left">');
-__html__.push('<span class="cur-pos"><i class="common-ico ico-position"></i>成都</span>');
+__html__.push('<span class="cur-pos"><i class="common-ico ico-position"></i><em id="curCity">&nbsp;&nbsp;&nbsp;&nbsp;</em></span>');
 __html__.push('<div class="select-city-box">');
 __html__.push('<a href="javascript" class="select-city-btn">[切换]</a>');
 __html__.push('<div class="select-city-area">');
