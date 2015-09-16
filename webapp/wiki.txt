@@ -1,0 +1,415 @@
+﻿<b>1:发送验证码</b><br/>
+
+    URL:http://www.partywo.com/message/sendValidateMessage
+    参数:{'phone_number':string,'validate_key':string,'validate_code':string}
+    返回值:{"success":true|false,"obj":null,"list":null,
+           "message":"短信发送成功|失败","code":null}
+
+<b>2:用户注册</b><br/>
+
+    URL:http://www.partywo.com/user/registerCustomerController
+    参数:{phone_number:string,password:string,validate_code:string}
+    返回值:{"success":true|false,"obj":null,"list":null,
+           "message":"用户注册成功!|失败","code":null,
+           "token":用户登录标志}
+
+<b>3:用户登录</b><br/>
+
+    URL:http://www.partywo.com/user/CustomerLoginController
+    参数:{phone_number:string,password:string}
+    返回值:{"success":true|false,"obj":{用户信息}},"list":null,
+           "message":"登录成功!|失败","code":null,
+           "token":用户登录标志}
+
+<b>4:更新用户密码第一步</b><br/>
+
+    URL:http://www.partywo.com/user/updatePasswordPreController
+    参数:{phone_number:string,validate_code:string}
+    返回值:{"success":true,"obj":{"customerId":"201508160007",
+           "phoneNumber":"15210193304","name":null,
+           "password":"0D52774B1A780ABFA327B72F9CD4317F",
+           "passwordMd5":null,"provinceCode":null,
+           "cityCode":null,"attention":null,"createTime":null,
+           "icon":null},"list":null,"message":null,
+           "code":null,"token":"8C01D2FEFD69916D9137CC813FCB5400"}
+
+<b>5:更新用户密码</b><br/>
+
+    URL:http://www.partywo.com/user/updatePasswordController
+    参数:{customer_id:string,token:string,password:string}
+    返回值:{"success":true,"obj":null,"list":null,
+           "message":"密码更新成功!","code":null,"token":null}
+
+<b>6:更新用户信息</b><br/>
+
+    URL:http://www.partywo.com/user/updateCustomerInfoController
+    参数:{"login_token":string登录标识,customerId:string用户编号,
+         sex用户性别:string,
+         identification:string用户身份,
+         maritalStatus:string用户婚姻状况,
+         interesting:string用户喜好,
+         birthday:string用户生日}
+    返回值:{"success":true,"obj":null,"list":null,
+           "message":"用户信息更新成功!","code":null,
+           "token":null}
+
+<b>7:分居用户编号获得用户信息</b><br/>
+
+    URL:http://www.partywo.com/user/getCustomerByCustomerIdController
+    参数:{customerId:string用户编号}
+    返回值:{"success":true,"obj":{"customerId":"201508230001",
+           "phoneNumber":"15210193304","name":null,
+           "password":"0D52774B1A780ABFA327B72F9CD4317F",
+           "passwordMd5":null,"provinceCode":null,
+           "cityCode":null,"attention":null,"createTime":null,
+           "icon":null,"sex":"100101","sexDes":"男",
+           "identification":"100202","identificationDes":"在职",
+           "maritalStatus":"100302",
+           "maritalStatusDes":"恋爱中","interesting":"100401,100404,100405",
+           "interestingDesc":"美食 休闲娱乐 丽人 "},"list":null,
+           "message":null,"code":null,"token":null}
+
+<b>8:获取基本信息代码</b><br/>
+
+    URL:http://www.partywo.com/baseCodeController/getBaseCodeByParents
+    参数:{parents:string}//请求多个基本代码时用,分割
+    返回值:{"success":true,"obj":{"1001":{"100102":"女","100101":"男"},
+           "1002":{"100202":"在职","100201":"学生","100204":"其他",
+           "100203":"自由职业"}},
+           "list":null,"message":null,"code":null,"token":null}
+
+
+    性别:1001
+    身份:1002
+    婚姻状况:1003
+    爱好:1004
+
+
+<b>9:图片验证请求</b><br/>
+
+    URL:http://www.partywo.com/imageValidate/getImageValidate
+    参数:{image_key:string}
+    返回值:返回Image流
+
+<b>10:用户登录注销</b><br/>
+
+    URL:http://www.partywo.com/user/CustomerLoginOutController
+    参数:{login_token:string}
+    返回值:{"success":true|false,"obj":null,"list":null,
+           "message":"注销登录成功!|失败","code":null}
+
+<b>11:更新用户手机第一步</b><br/>
+
+    URL:http://www.partywo.com/user/updatePhoneNumberPreController
+    参数:{phone_number:string,validate_code:string}
+    返回值:{"success":true,"obj":{"customerId":"201508160007",
+           "phoneNumber":"15210193304","name":null,
+           "password":"0D52774B1A780ABFA327B72F9CD4317F","passwordMd5":null,
+           "provinceCode":null,
+           "cityCode":null,"attention":null,"createTime":null,"icon":null},
+           "list":null,"message":null,
+           "code":null,"token":"8C01D2FEFD69916D9137CC813FCB5400"}
+
+<b>12:更新用户手机</b><br/>
+
+    URL:http://www.partywo.com/user/updatePhoneNumberController
+    参数:{customer_id:string,token:string,phoneNumber:string,
+         validate_code:string}
+    返回值:{"success":true,"obj":null,"list":null,
+           "message":"密码更新成功!","code":null,"token":null}
+
+<b>13:获取订单编号</b><br/>
+
+    URL:http://www.partywo.com/order/getOrderIdController
+    参数:
+    返回值:{"success":true,"obj":"订单编号","list":null,"message":"",
+           "code":null,"token":null}
+
+<b>14:编辑订单套餐信息</b><br/>
+
+    URL:http://www.partywo.com/order/editOrderPackageController
+    参数:login_token:string,customerId 用户编号, 
+         套餐编辑页信息(orderId不可缺)
+    返回值:{"success":true,"obj":"订单编号","list":null,"message":"",
+           "code":null,"token":"token code"}
+
+<b>15:编辑订单用户信息</b><br/>
+
+    URL:http://www.partywo.com/order/editOrderCustomerInfoController
+    参数:login_token:string,token:string,用户编辑页信息(orderId不可缺)
+    返回值:{"success":true,"obj":"订单编号","list":null,"message":"",
+           "code":null,"token":"token code"}
+
+<b>16:编辑订单完结</b><br/>
+
+    URL:http://www.partywo.com/order/editOrderCompleteController
+    参数:login_token:string,token:string,orderId:string订单编号不可或缺
+    返回值:{"success":true,"obj":"","list":null,"message":"",
+           "code":null,"token":""}
+
+
+<b>17:上传图片接口</b><br/>
+
+    URL:http://www.partywo.com/order/uploadOrderMaterial
+    参数:login_token:string,customerId:string,orderId:string订单编号不可或缺
+    返回值:{"success":true,"obj":"","list":null,"message":资源编号,
+           "code":null,"token":""}
+
+
+<b>18:删除图片接口</b><br/>
+
+    URL:http://www.partywo.com/order/deleteOrderMaterial
+    参数:login_token:string,orderMaterialId:string
+    返回值:{"success":true,"obj":"","list":null,"message":"","code":null,
+           "token":""}
+
+<b>19:订单列表</b><br/>
+
+    URL:http://www.partywo.com/order/queryOrdersController
+    参数:login_token:string,customerId:string|null,status:string|null,
+         currentPageNum:int
+    返回值:{"success":true,"obj":分页对象,"list":订单对象,"message":"",
+           "code":null,"token":""}
+
+<b>20:根据订单编号获取订单信息</b><br/>
+
+    URL:http://www.partywo.com/order/queryOrdersByOrderIdController
+    参数:login_token:string,orderId:string
+    返回值:{"success":true,"obj":订单对象,"list":订单资料对象,"message":"",
+           "code":null,"token":""}
+
+<b>21:根据订单编号删除订单</b><br/>
+
+    URL:http://www.partywo.com/order/deleteOrderByOrderIdController
+    参数:login_token:string,orderId:string
+    返回值:{"success":true,"obj":null,"list":null,"message":"","code":null,
+           "token":""}
+
+
+<b>22:获取产品列表</b><br/>
+
+    URL:http://www.partywo.com/order/queryProductController
+    参数:无
+    返回值:{"success":true,"obj":null,"list":[{"productId":"201509010001",
+           "productName":"悦享家",
+           "companyId":"201509010001","deleted":0,"createTime":"2015-09-01"},
+           {"productId":"201509010002",
+           "productName":"尊享家","companyId":"201509010001","deleted":0,
+           "createTime":"2015-09-01"}],
+           "message":null,"code":null,"token":null}
+
+
+<b>23:后台用户注册</b><br/>
+
+    URL:http://www.partywo.com/user/registerUsersController
+    参数:{usersPhone:string,password:string,usersName:string,
+         companyId:string,sex:string}
+    返回值:{"success":true|false,"obj":null,"list":null,
+           "message":"用户注册成功!|失败","code":null,"token":null}
+
+<b>24:用户登录</b><br/>
+
+    URL:http://www.partywo.com/user/UsersLoginController
+    参数:{usersPhone:string,password:string}
+    返回值:{"success":true|false,"obj":{用户信息}},"list":null,
+           "message":"登录成功!|失败","code":null,
+           "token":用户登录标志}
+
+
+<b>25:获取公司列表</b><br/>
+
+    URL:http://www.partywo.com/order/queryCompanyController
+    参数:无
+    返回值:{"success":true,"obj":null,"list":[{"companyId":"201509010001",
+           "companyName":"生活家",
+           "createTime":"2015-09-01","deleted":0}],"message":null,
+           "code":null,"token":null}
+
+
+<b>26:获取商家审批订单列表</b><br/>
+
+    URL:http://www.partywo.com/order/querySellerApproveOrdersController
+    参数:login_token:string,status:string|null,currentPageNum:int,
+         companyId:string
+    返回值:{"success":true,"obj":分页对象,"list":订单对象,"message":"",
+           "code":null,"token":""}
+
+
+<b>27:商家审批订单</b><br/>
+
+    URL:http://www.partywo.com/order/sellerApproveOrderController
+    参数:login_token:string,orderId:string,approvePerson:登录用户ID,
+         approveName:登录用户姓名,
+         approveResult:是否通过 true|false,approveRemarks:审批意见
+    返回值:{"success":true,"obj":null,"list":null,"message":"",
+           "code":null,"token":""}
+
+<b>28:获取风控审批订单列表</b><br/>
+
+    URL:http://www.partywo.com/order/queryRiskManagementApproveOrdersController
+    参数:login_token:string,status:string|null,currentPageNum:int,
+         companyId:string
+    返回值:{"success":true,"obj":分页对象,"list":订单对象,"message":"",
+           "code":null,"token":""}
+
+
+<b>29:风控审批订单</b><br/>
+
+    URL:http://www.partywo.com/order/riskManagementApproveOrderController
+    参数:login_token:string,orderId:string,approvePerson:登录用户ID,
+         approveName:登录用户姓名,
+         approveResult:是否通过 true|false,approveRemarks:审批意见
+    返回值:{"success":true,"obj":null,"list":null,"message":"",
+           "code":null,"token":""}
+
+<b>30:等待放款订单</b><br/>
+
+    URL:http://www.partywo.com/order/queryWaitingForPayOrdersController
+    参数:login_token:string,currentPageNum:int,companyId:string
+    返回值:{"success":true,"obj":分页对象,"list":订单对象,"message":"",
+           "code":null,"token":""}
+
+
+<b>31:根据订单ID获取还款记录</b><br/>
+
+    URL:http://www.partywo.com/order/getRepaymentRecordByOrderId
+    参数:login_token:string,orderId:string
+    返回值:{"success":true,"obj":null,"list":订单对象,"message":"",
+           "code":null,"token":""}
+
+<b>32:根据还款记录编号获取还款记录</b><br/>
+
+    URL:http://www.partywo.com/order/getRepaymentRecordByRepaymentRecordId
+    参数:login_token:string,repaymentRecordId:string
+    返回值:{"success":true,"obj":还款对象,"list":null,"message":"",
+           "code":null,"token":""}
+
+<b>33:根据订单ID获取审批记录</b><br/>
+
+    URL:http://www.partywo.com/order/getApproveRecordsByOrderId
+    参数:login_token:string,orderId:string
+    返回值:{"success":true,"obj":null,"list":审批记录列表,"message":"",
+           "code":null,"token":""}
+
+<b>34:根据订单编号放款</b><br/>
+
+    URL:http://www.partywo.com/order/loanByOrderId
+    参数:login_token:string,orderId:string
+    返回值:{"success":true,"obj":null,"list":null,"message":"放款成功|失败",
+           "code":null,"token":""}
+
+
+<b>35:根据还款编号还款</b><br/>
+
+    URL:http://www.partywo.com/order/repaymentDoneByRepaymentRecordId
+    参数:repaymentRecordId:string
+    备注:改接口提供给第三方支付平台调用,支付完成后支付平台将调用该接口,
+         若还款成功则修改当前还款记录状态,更新订单下次还款时间、还款金额、
+         未还款次数,若已还完所有还款记录则修改订单状态为已还清,并添加资
+         金收付流水以供公司核算当天收入情况。
+
+
+/**支付流程**/
+
+
+    1:首先调用接口36 判断用户是否绑定银行卡
+
+    2:绑定银行卡
+    	2.1:如果没有绑定银行卡,跳转绑定银行卡页面
+    		2.1.1:调用接口37获?蠖ㄒ锌ㄖ骷?
+    		2.1.2:调用获取图形码请求获取图形验证码
+    		2.1.3:获取图形验证码后,输入图形验证码以及银行卡信息后点击发送短信,
+    		      调用接口38发起绑定银行卡请求,易宝会向用户发送验证短信,展示返
+    		      回对象message,如银行卡信息错误将会提示
+    		2.1.4:输入手机验证码,调用接口39 确认绑定银行卡信息,注意待2.1.3返回
+    		      为true时方可执行
+    	2.2:如果用户已经绑定银行卡,则跳转至支付页面
+    3:还款支付
+    	3.1:调用接口40获取用户绑定银行卡列表
+    	3.2:点击绑定银行卡单?磁?触发支付请求 调用接口41,支付平台将会对银行卡
+    	    进行判断
+    	3.3:调用获取图形码请求获取图形验证码
+    	3.4:获取图形验证码后并待3.2返回成功后,点击发送短信验证码 调用接口42,
+    	    支付平台将发送短信验证码到用户预留手机,展现返回对象message对象内容信息
+    	3.5:待用户输入手机验证码后,点击支付按钮 调用接口43 确认支付,此时返回
+    	    结果只代表支付平台接口是否调用成功,并不代表是否支付成功,展示返回对象
+    	    message对象内容信息,提醒用户及时关注还款记录状态变换。
+    	    支付平台将异步发送支付结果,我此时才会更新还款记录状态及记录公司及个人收付流水。
+    4:调用接口44,获取银行编码
+
+
+<b>36:判断用户是否绑定银行卡</b><br/>
+
+    URL:http://www.partywo.com/payPc/isExistBindBankCard
+    参数:login_token:string,customerId:string
+    返回值:{"success":true|false}
+
+<b>37:获取绑定银行卡主键</b><br/>
+
+    URL:http://www.partywo.com/payPc/getBindBankCardId
+    参数:login_token:string
+    返回值:{"success":true|false,"obj":string}
+
+<b>38:发起绑定银行卡请求</b><br/>
+
+    URL:http://www.partywo.com/payPc/invokeBindBanCard
+    参数:login_token:string,img_validate_key:string,
+         img_validate_code:string图形验证码,
+         bindBankCardId:string绑定银行卡编号,customerId:string,
+         cardno:string用户卡号,
+         idcardno:string用户身份证,
+		     username:string持卡人姓名,phone:string银行预留电话
+    返回值:{"success":true,"obj":null,"list":null,"message":"",
+           "code":null,"token":""}
+
+<b>39:确认绑定银行卡</b><br/>
+
+    URL:http://www.partywo.com/payPc/confirmBindBankcard
+    参数:login_token:string,validate_code:string手机验证码,
+         bindBankCardId:string绑定银行卡编号,
+         customerId:string用户编号,cardno:string银行卡号,
+         bankCode:string银行编号
+    返回值:{"success":true,"obj":null,"list":null,"message":"",
+           "code":null,"token":""}
+
+<b>40:获取用户绑定银行卡列表</b><br/>
+
+    URL:http://www.partywo.com/payPc/getBindBankCardByCustomerId
+    参数:login_token:string,customerId:string
+    返回值:{"success":true,"obj":{},"list":[{"bbcId":string绑定银行编号,
+           "bankCard":"银行卡号",
+           "bankType":银行编号,"bankTypeDesc":"银行名称"}],"message":"",
+           "code":null,"token":""}
+
+<b>41:支付请求</b><br/>
+
+    URL:http://www.partywo.com/payPc/sendBindRequest
+    参数:login_token:string,customerId:string用户编号,
+         repaymentRecordId:还款记录编号,
+         bindBankCardId绑定银行卡编号
+    返回值:{"success":true,"obj":{},"list":null,"message":"","code":null,
+           "token":""}
+
+<b>42:发送支付短信验证码</b><br/>
+
+    URL:http://www.partywo.com/payPc/sendSmsByRepaymentRecordId
+    参数:login_token:string,img_validate_key:string,
+         img_validate_code:string图形验证码,
+         repaymentRecordId:string还款记录编号
+    返回值:{"success":true,"obj":{},"list":null,"message":"返回信息",
+           "code":null,"token":""}
+
+<b>43:发送支付短信验证码</b><br/>
+
+    URL:http://www.partywo.com/payPc/smsConfirm
+    参数:login_token:string,validate_code:string短信验证码,
+         repaymentRecordId:string还款记录编号
+    返回值:{"success":true,"obj":{},"list":null,
+           "message":"支付完成,请及时关注还款记录状态!","code":null,"token":""}
+
+<b>44:获取银行编码</b><br/>
+
+    URL:http://www.partywo.com/baseCodeController/getBankCode
+    参数:
+    返回值:{"success":true,"obj":{银行编码,银行名称},"list":null,
+           "message":"支付完成,请及时关注还款记录状态!","code":null,"token":""}
