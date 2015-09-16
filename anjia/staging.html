@@ -67,7 +67,7 @@
     <div class="sub-page-banner improve-banner">
     	<div class="ui-wrap">
             <div class="slide-right-part" style="background:none;">
-                <div class="slide-btn-box" style="margin-top:290px;">
+                <div class="slide-btn-box" style="margin-top:210px;">
                     <p><a href="/anjia/mystaging.html" title="我要分期" class="improve-btn">我要分期</a></p>
                 </div>
             </div>
@@ -75,125 +75,111 @@
     </div>
     <div class="improvement-cal-main">
     	<div class="ui-wrap">
-        	<h1 class="imp-title">其实不用算</h1>
+			<div class="common-title1">
+				其实不用算
+				<p>￥手续费每天低至58.3元</p>
+			</div>
             <div class="improvement-cal-box clearfix">
-            	<div class="improvement-box-left">
-                	<div class="imp-sec-title">￥手续费每天低至58.3元</div>
-                	<div class="improvement-item-box">
-                    	<div class="improvement-item">
-                        	<label>分期金额</label>
-                            <div class="imp-right-cont">
-                            	<div class="count-unit-box clearfix">
-                            		<div class="count-unit">元</div>
-                            		<input type="text" class="common-input-text unit-input-text" value="111111" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="improvement-item clearfix">
-                        	<label>分期周期</label>
-                            <div class="imp-right-cont">
-                            	<select class="common-select" style="width:349px;">
-                                    <option>3个月</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="improvement-item clearfix" style="margin-top:25px;">
-                        	<label>&nbsp;</label>
-                            <div class="imp-right-cont">
-                            	<input type="button" class="common-btn btn-green" value="计算还款金额" style="width:349px;font-size:16px;" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="improvement-box-right">
-                	<div class="i-r-l">每月还款<em class="highlight">0.00</em>元</div>
-                    <div class="i-r-r">
-                    	<p>分期金额：<em>0</em> 元</p>
-                        <p>分期周期：<em>0</em> 期</p>
-                        <p>本息合计：<em>0</em> 元</p>
-                    </div>
-                </div>
+				<!--计算器输入框-->
+            	<div class="improvement-cal-input-box">
+					<div class="improvement-cal-left">
+						<label class="f-left">分期金额：</label>
+						<input type="text" class="improvement-cal-input f-left" />
+						<label class="f-left">元</label>
+					</div>
+					<div class="cal-btn">计算</div>
+				</div>
+				<!--选择分期期数-->
+				<div class="selection-period-box">
+					<ul class="selection-period-ul clearfix">
+						<li class="selected">
+							<a href="javascript:void(0)">3期</a>
+							<div class="rate-period" style="display:block"><i class="common-ico ico-white-trig"></i>免费</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)">6期</a>
+							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率1%</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)">9期</a>
+							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率4%</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)">12期</a>
+							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率7%</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)">18期</a>
+							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率10%</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)">24期</a>
+							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率13%</div>
+						</li>
+						<li>
+							<a href="javascript:void(0)">36期</a>
+							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率16%</div>
+						</li>
+					</ul>
+				</div>
+				<!--分期明细-->
+				<div class="staging-detail">
+					<div class="common-title" style="text-align:left;padding:35px 0px 15px 0px;">分期明细</div>
+					<div class="staging-detail-box">
+						<div class="staging-detail-item imp-item clearfix">
+							<label>每月还款</label>
+							<div class="staging-item-right">
+								<em class="highlight">000000.00</em>元
+							</div>
+						</div>
+						<div class="staging-detail-item clearfix">
+							<label>分期金额</label>
+							<div class="staging-item-right">
+								<em class="">000000.00</em>元
+							</div>
+						</div>
+						<div class="staging-detail-item clearfix">
+							<label>分期周期</label>
+							<div class="staging-item-right">
+								<em class="">000000.00</em>期
+							</div>
+						</div>
+						<div class="staging-detail-item clearfix">
+							<label>本息合计</label>
+							<div class="staging-item-right">
+								<em class="">0</em>元
+							</div>
+						</div>
+					</div>
+				</div>
+				
             </div>
         </div>
     </div>
     <div class="staging-detai-main">
-        <a href="/anjia/mystaging.html" class="staging-phone-btn">我要分期</a>
-    </div>
-    <div class="staging-rate-main">
-    	<div class="ui-wrap">
-    		<h1 class="page-title">家装利率表</h1>
-            <table class="staging-rate-tab">
-            	<tr>
-                	<td width="208" class="fir-td">期限</td>
-                    <td width="142">3个月</td>
-                    <td width="142">6个月</td>
-                    <td width="142">9个月</td>
-                    <td width="142">12个月</td>
-                    <td width="142">18个月</td>
-                    <td width="142">24个月</td>
-                    <td width="">36个月</td>
-                </tr>
-                <tr>
-                	<td class="fir-td">一次性收取服务费用</td>
-                    <td>免费</td>
-                    <td>1%</td>
-                    <td>4%</td>
-                    <td>7%</td>
-                    <td>10%</td>
-                    <td>13%</td>
-                    <td>16%</td>
-                </tr>
-            </table>
-        </div>
+        <div class="ui-wrap">
+			<div class="common-title1">
+            	轻松分期，4步搞定
+                <p>无担保装修分期流程</p>
+            </div>
+			<div class="text-center">
+				<img src="../res/images/staging-step-img.jpg" />
+			</div>
+            <div class="btn-box text-center" style="margin:45px 0px 25px;">
+                <a href="/anjia/mystaging.html" class="common-btn common-btn-b btn-green">我要分期</a>
+            </div>
+		</div>
     </div>
     <div class="staging-compare-main">
     	<div class="ui-wrap clearfix">
-        	<div class="staging-compare-left"></div>
-            <div class="staging-compare-right">
-            	<table class="compare-tab">
-                	<tr>
-                    	<th width="50%">燕子安家家装分期</th>
-                        <th width="50%">其他贷款平台</th>
-                    </tr>
-                    <tr>
-                    	<td>
-                        	支付手续费即可开始装修<br />每期偿还本金
-                        </td>
-                        <td>
-                        	支付本金+手续费<br />第一期后开始装修
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td>
-                        	低至58.3元<br />（1万12期）
-                        </td>
-                        <td>
-                        	一般不低于100元<br />（1万12期）修
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td>
-                        	免抵押 免担保
-                        </td>
-                        <td>
-                        	需不动产抵押<br />需要上门面签
-                        </td>
-                    </tr>
-                    <tr>
-                    	<td>
-                        	多种周期选择<br />最长可达3年
-                        </td>
-                        <td>
-                        	周期选择有限<br />最长一般2年
-                        </td>
-                    </tr>
-                </table>
-            </div>
+			<div class="text-center">
+				<img src="../res/images/staging-compare-img.jpg" />
+			</div>
         </div>
     </div>
     <div class="staging-ask-main">
     	<div class="ui-wrap">
-            <h1 class="page-title">问与答，解答您心中疑惑</h1>
+            <h1 class="common-title1">问与答<p>解答您心中疑惑</p></h1>
             <div class="ask-list-box">
                 <div class="ask-list-item">
                     <div class="ask-title">问：燕子安家装修分期介绍</div>
@@ -279,6 +265,23 @@
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.selection-period-ul li').click(function(){
+				$('.selection-period-ul li').removeClass('selected');
+				$(this).siblings('li').find('.rate-period').fadeOut(100);
+				$(this).addClass('selected');
+				$(this).find('.rate-period').fadeIn(100);
+			});
+			$('.selection-period-ul li').hover(function(){
+				$(this).find('.rate-period').fadeIn(100);
+			},function(){
+				if(!$(this).hasClass('selected')){
+					$(this).find('.rate-period').fadeOut(100);
+				}
+			});
+		})
+	</script>
     <!--BAIDU定位JS 开始--> 
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script> 
     <script type="text/javascript">

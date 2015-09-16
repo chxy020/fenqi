@@ -490,95 +490,15 @@
 	color:#999;
 }
 .staging-detai-main{
-	position:relative;
-	height:400px;
-	background:url(../images/staging-img.jpg?12) #4ecdc4 center top no-repeat;
+	padding-bottom:40px;
 }
-.staging-phone-btn{
-	position:absolute;
-	bottom:50px;
-	left:50%;
-	margin-left:-100px;
-	font-size:22px;
-	font-weight:bold;
-	width:200px;
-	height:48px;
-	line-height:48px;
-	text-align:center;
-	color:#fff;
-	border:1px solid #fff;
-}
-.staging-phone-btn:hover{
-	color:#fff;
-	text-decoration:none;
-}
-.staging-rate-main{
-	padding:30px 0px;
-}
-.page-title{
-	font-size:28px;
-	color:#343644;
-	height:80px;
-	line-height:80px;
-}
-.staging-rate-tab{
-	width:100%;
-	border-top:1px dashed #e1e1e1;
-	font-size:14px;
-}
-.staging-rate-tab td{
-	height:54px;
-	text-align:center;
-	font-size:16px;
-	color:#999999;
-}
-.staging-rate-tab tr td{
-	border-bottom:1px dashed #e1e1e1;
-}
-.staging-rate-tab td.fir-td{
-	color:#539d34;
-	border-right:1px dashed #e1e1e1;
-}
+
 .staging-compare-main{
-	background:#f7f7f7;
+	background:#fff;
 	padding:40px 0px;
-}
-.staging-compare-left{
-	float:left;
-	display:inline;
-	width:86px;
-	height:486px;
-	font-size:0px;
-	margin-left:100px;
-	background:url(../images/staging-compare-bg.png) left top no-repeat;
-}
-.staging-compare-right{
-	float:left;
-	width:1000px;
-}
-.staging-compare-right .compare-tab{
-	width:100%;
-}
-.staging-compare-right .compare-tab tr{
-	background:url(../images/compare-bg.jpg) left bottom no-repeat;
-}
-.staging-compare-right .compare-tab th{
-	font-weight:bold;
-	font-size:22px;
-	text-align:center;
-	height:84px;
-}
-.staging-compare-right .compare-tab td{
-	font-size:16px;
-	text-align:center;
-	height:99px;
 }
 .staging-ask-main{
-	padding:40px 0px;
-	background:#fff;
-}
-.ask-list-box{
-	margin-top:15px;
+	padding:0px 0px 40px;
 }
 .ask-list-box .ask-list-item{
 	width:560px;
@@ -744,15 +664,8 @@
 	color:#828282;
 }
 .improvement-cal-main{
-	padding:70px 0px;
+	padding:0px 0px 40px;
 	background:#fff;
-}
-.imp-title{
-	font-size:30px;
-	color:#333;
-	margin-bottom:25px;
-	height:50px;
-	line-height:50px;
 }
 .imp-sec-title{
 	font-size:24px;
@@ -761,83 +674,134 @@
 	height:25px;
 	line-height:25px;
 }
-.improvement-item-box .improvement-item{
-	margin-bottom:15px;
-}
-.improvement-cal-box .improvement-box-left{
-	float:left;
-	height:240px;
-	width:445px;
-}
-.improvement-cal-box .improvement-box-right{
-	float:left;
-	margin-left:110px;
-	height:160px;
-	width:640px;
-	background:#fafafa;
-	padding:45px 0px;
-}
-.improvement-cal-box .improvement-box-right .i-r-l{
-	float:left;
-	width:370px;
-	border-right:1px solid #ddd;
-	text-align:center;
-	font-size:22px;
-	color:#333333;
-	height:160px;
-	line-height:160px;
-}
-.improvement-cal-box .improvement-box-right .i-r-r{
-	float:left;
-}
-.improvement-cal-box .improvement-box-right .i-r-r p{
-	font-size:20px;
-	margin:25px 0px;
-	color:#333333;
-	padding-left:30px;
-}
-.improvement-cal-box .improvement-box-right .i-r-l em{
-	font-size:36px;
-	padding:0px 5px;
-	height:50px;
-	line-height:50px;
-}
-.improvement-item-box .improvement-item label{
-	float:left;
-	text-align:right;
-	line-height:42px;
-	color:#111;
-	font-size:18px;
-	width:80px;
-	_*margin-right:10px;
-}
-.improvement-item-box .improvement-item .imp-right-cont{
-	_*display:inline;
-	margin-left:96px;
-}
-.improvement-item-box .improvement-item .imp-right-cont .count-unit-box{
+.improvement-cal-box .improvement-cal-input-box{
 	position:relative;
+	width:750px;
+	height:74px;
+	line-height:74px;
+	background:#fff;
+	border:1px solid #cdcdcd;
+	border-radius:74px;
+	overflow:hidden;
+	margin:0 auto;
 }
-.improvement-item-box .improvement-item .imp-right-cont .count-unit{
+.improvement-cal-input-box .cal-btn{
 	position:absolute;
 	right:0px;
 	top:0px;
-	*_top:2px;
-	border:1px solid #ddd;
-	border-top-right-radius:5px;
-	border-bottom-right-radius:5px;
-	font-size:16px;
-	color:#999999;
+	height:74px;
+	line-height:74px;
+	background:#63c686;
+	border-left:1px solid #e0e0e0;
+	padding:0px 55px 0px 42px;
+	font-size:24px;
+	color:#fff;
 	text-align:center;
-	width:40px;
-	height:40px;
-	overflow:hidden;
-	line-height:42px;
-	background:#f6f6f6;
-	float:right;
+	cursor:pointer;
+	-webkit-transition:all ease-in-out 0.1s 0s;
+	-ms-transition:all ease-in-out 0.1s 0s;
+	-o-transition:all ease-in-out 0.1s 0s;
+	transition:all ease-in-out 0.1s 0s;
 }
-.unit-input-text{
-	padding-right:52px;
-	width:279px;
-	border-right:none;
+.improvement-cal-input-box .cal-btn:hover{
+	background:#59b279;
+	color:#fff;
+}
+.improvement-cal-input-box .improvement-cal-left{
+	margin-right:146px;
+	padding-left:45px;
+	height:74px;
+	line-height:74px;
+	color:#999999;
+	font-size:24px;
+	
+}
+.improvement-cal-input-box .improvement-cal-left .improvement-cal-input{
+	height:74px;
+	line-height:74px\9;
+	vertical-align:middle;
+	width:370px;
+	font-size:24px;
+	color:#63c686;
+	padding-right:25px;
+}
+.selection-period-box{
+	width:752px;
+	margin:0 auto;
+	margin-top:15px;
+	height:70px;
+}
+.selection-period-box .selection-period-ul{
+	margin-left:45px;
+}
+.selection-period-box .selection-period-ul li{
+	position:relative;
+	float:left;
+	margin-right:15px;
+	display:inline;
+}
+.selection-period-box .selection-period-ul li .rate-period{
+	display:none;
+	position:absolute;
+	left:50%;
+	top:43px;
+	margin-left:-32px;
+	font-size:14px;
+	color:#666666;
+	text-align:center;
+	height:26px;
+	line-height:26px;
+	border:1px solid #e1e1e1;
+	width:64px;
+}
+.selection-period-box .selection-period-ul li .rate-period .ico-white-trig{
+	position:absolute;
+	left:27px;
+	top:-7px;
+}
+.selection-period-box .selection-period-ul li a{
+	display:inline-block;
+	background:#e1e5e7;
+	border-radius:32px;
+	height:32px;
+	line-height:32px;
+	color:#fff;
+	font-size:16px;
+	padding:0px 15px;
+}
+.selection-period-box .selection-period-ul li a:hover,.selection-period-box .selection-period-ul li.selected a{
+	text-decoration:none;
+	background:#63c686;
+	color:#fff;
+}
+.staging-detail{
+	width:678px;
+	margin:0 auto;
+}
+.staging-detail-box{
+	background:#fafafa;
+	padding:35px;
+}
+.staging-detail-item{
+	color:#333333;
+	font-size:18px;
+	margin:25px 0px;
+}
+.imp-item{
+	padding:30px 0px;
+	border-bottom:1px solid #e9e9e9;
+	margin:0px 0px 20px 0px;
+}
+.imp-item .highlight{
+	position:relative;
+	font-size:34px;
+	padding-right:15px;
+}
+.staging-detail-item label{
+	float:left;
+	width:105px;
+	text-align:center;
+}
+.staging-detail-item .staging-item-right{
+	margin-left:115px;
 }
