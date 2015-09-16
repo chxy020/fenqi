@@ -81,79 +81,84 @@
 			</div>
             <div class="improvement-cal-box clearfix">
 				<!--计算器输入框-->
-            	<div class="improvement-cal-input-box">
-					<div class="improvement-cal-left">
-						<label class="f-left">分期金额：</label>
-						<input type="text" class="improvement-cal-input f-left" />
-						<label class="f-left">元</label>
-					</div>
-					<div class="cal-btn">计算</div>
-				</div>
-				<!--选择分期期数-->
-				<div class="selection-period-box">
-					<ul class="selection-period-ul clearfix">
-						<li class="selected">
-							<a href="javascript:void(0)">3期</a>
-							<div class="rate-period" style="display:block"><i class="common-ico ico-white-trig"></i>免费</div>
-						</li>
-						<li>
-							<a href="javascript:void(0)">6期</a>
-							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率1%</div>
-						</li>
-						<li>
-							<a href="javascript:void(0)">9期</a>
-							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率4%</div>
-						</li>
-						<li>
-							<a href="javascript:void(0)">12期</a>
-							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率7%</div>
-						</li>
-						<li>
-							<a href="javascript:void(0)">18期</a>
-							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率10%</div>
-						</li>
-						<li>
-							<a href="javascript:void(0)">24期</a>
-							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率13%</div>
-						</li>
-						<li>
-							<a href="javascript:void(0)">36期</a>
-							<div class="rate-period"><i class="common-ico ico-white-trig"></i>利率16%</div>
-						</li>
-					</ul>
-				</div>
-				<!--分期明细-->
-				<div class="staging-detail">
-					<div class="common-title" style="text-align:left;padding:35px 0px 15px 0px;">分期明细</div>
-					<div class="staging-detail-box">
-						<div class="staging-detail-item imp-item clearfix">
-							<label>每月还款</label>
-							<div class="staging-item-right">
-								<em class="highlight">000000.00</em>元
-							</div>
-						</div>
-						<div class="staging-detail-item clearfix">
-							<label>分期金额</label>
-							<div class="staging-item-right">
-								<em class="">000000.00</em>元
-							</div>
-						</div>
-						<div class="staging-detail-item clearfix">
-							<label>分期周期</label>
-							<div class="staging-item-right">
-								<em class="">000000.00</em>期
-							</div>
-						</div>
-						<div class="staging-detail-item clearfix">
-							<label>本息合计</label>
-							<div class="staging-item-right">
-								<em class="">0</em>元
-							</div>
-						</div>
-					</div>
-				</div>
-				
-            </div>
+            	<div class="improvement-cal-box clearfix">
+                            <!--计算器输入框-->
+                            <div class="improvement-cal-input-box">
+                                <div class="improvement-cal-left">
+                                    <label class="f-left">分期金额：</label>
+                                    <input id="allprice" type="text" class="improvement-cal-input f-left" />
+                                    <label class="f-left">元</label>
+                                </div>
+                                <div id="countbtn" class="cal-btn">计算</div>
+                            </div>
+                            <!--选择分期期数-->
+                            <div class="selection-period-box">
+                                <ul id="stagingtime" class="selection-period-ul clearfix">
+                                    <li id="fq_0" class="selected">
+                                        <a href="javascript:void(0)">3期</a>
+                                        <div class="rate-period" style="display:block"><i class="common-ico ico-white-trig"></i>免费</div>
+                                    </li>
+                                    <li id="fq_1">
+                                        <a href="javascript:void(0)">6期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率1%</div>
+                                    </li>
+                                    <li id="fq_2">
+                                        <a href="javascript:void(0)">9期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率4%</div>
+                                    </li>
+                                    <li id="fq_3">
+                                        <a href="javascript:void(0)">12期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率7%</div>
+                                    </li>
+                                    <li id="fq_4">
+                                        <a href="javascript:void(0)">18期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率10%</div>
+                                    </li>
+                                    <li id="fq_5">
+                                        <a href="javascript:void(0)">24期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率13%</div>
+                                    </li>
+                                    <li id="fq_6">
+                                        <a href="javascript:void(0)">36期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率16%</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--分期明细-->
+                            <div class="staging-detail">
+                                <div class="common-title" style="text-align:left;padding:35px 0px 15px 0px;">分期明细</div>
+                                <div class="staging-detail-box">
+                                    <div class="staging-detail-item imp-item clearfix">
+                                        <label>每月还款</label>
+                                        <div class="staging-item-right">
+                                            <em id="mouthtext" class="highlight">000000.00</em>元
+                                        </div>
+                                    </div>
+                                    <div class="staging-detail-item clearfix">
+                                        <label>分期金额</label>
+                                        <div class="staging-item-right">
+                                            <em id="capitaltext" class="">000000.00</em>元
+                                        </div>
+                                    </div>
+                                    <div class="staging-detail-item clearfix">
+                                        <label>　服务费</label>
+                                        <div class="staging-item-right">
+                                            <em id="feetext" class="">000000.00</em>元
+                                        </div>
+                                    </div>
+                                    <div class="staging-detail-item clearfix">
+                                        <label>本息合计</label>
+                                        <div class="staging-item-right">
+                                            <em id="alltext" class="">0</em>元
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
         </div>
     </div>
     <div class="staging-detai-main">
@@ -265,6 +270,7 @@
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
+	<script src="js/staging.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('.selection-period-ul li').click(function(){
@@ -282,8 +288,8 @@
 			});
 		})
 	</script>
-    <!--BAIDU定位JS 开始--> 
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script> 
+    <!--BAIDU定位JS 开始-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
     <script type="text/javascript">
         // 百度地图API功能
         function myFun(result){

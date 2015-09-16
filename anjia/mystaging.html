@@ -28,7 +28,7 @@
         	<div class="ui-head-left f-left clearfix">
         		<img class="ui-logo" src="../res/images/logo.png" />
                 <div class="ui-head-left-l f-left">
-                	<span class="cur-pos">成都</span>
+                	<span id="curCity" class="cur-pos">成都</span>
                 	<a href="###" class="select-city-btn">切换城市</a>
                 </div>
             </div>
@@ -63,39 +63,39 @@
                             <div class="improvement-cal-input-box">
                                 <div class="improvement-cal-left">
                                     <label class="f-left">分期金额：</label>
-                                    <input type="text" class="improvement-cal-input f-left" />
+                                    <input id="allprice" type="text" class="improvement-cal-input f-left" />
                                     <label class="f-left">元</label>
                                 </div>
-                                <div class="cal-btn">计算</div>
+                                <div id="countbtn" class="cal-btn">计算</div>
                             </div>
                             <!--选择分期期数-->
                             <div class="selection-period-box">
-                                <ul class="selection-period-ul clearfix">
-                                    <li class="selected">
+                                <ul id="stagingtime" class="selection-period-ul clearfix">
+                                    <li id="fq_0" class="selected">
                                         <a href="javascript:void(0)">3期</a>
                                         <div class="rate-period" style="display:block"><i class="common-ico ico-white-trig"></i>免费</div>
                                     </li>
-                                    <li>
+                                    <li id="fq_1">
                                         <a href="javascript:void(0)">6期</a>
                                         <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率1%</div>
                                     </li>
-                                    <li>
+                                    <li id="fq_2">
                                         <a href="javascript:void(0)">9期</a>
                                         <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率4%</div>
                                     </li>
-                                    <li>
+                                    <li id="fq_3">
                                         <a href="javascript:void(0)">12期</a>
                                         <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率7%</div>
                                     </li>
-                                    <li>
+                                    <li id="fq_4">
                                         <a href="javascript:void(0)">18期</a>
                                         <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率10%</div>
                                     </li>
-                                    <li>
+                                    <li id="fq_5">
                                         <a href="javascript:void(0)">24期</a>
                                         <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率13%</div>
                                     </li>
-                                    <li>
+                                    <li id="fq_6">
                                         <a href="javascript:void(0)">36期</a>
                                         <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率16%</div>
                                     </li>
@@ -108,31 +108,33 @@
                                     <div class="staging-detail-item imp-item clearfix">
                                         <label>每月还款</label>
                                         <div class="staging-item-right">
-                                            <em class="highlight">000000.00</em>元
+                                            <em id="mouthtext" class="highlight">000000.00</em>元
                                         </div>
                                     </div>
                                     <div class="staging-detail-item clearfix">
                                         <label>分期金额</label>
                                         <div class="staging-item-right">
-                                            <em class="">000000.00</em>元
+                                            <em id="capitaltext" class="">000000.00</em>元
                                         </div>
                                     </div>
                                     <div class="staging-detail-item clearfix">
-                                        <label>分期周期</label>
+                                        <label>　服务费</label>
                                         <div class="staging-item-right">
-                                            <em class="">000000.00</em>期
+                                            <em id="feetext" class="">000000.00</em>元
                                         </div>
                                     </div>
                                     <div class="staging-detail-item clearfix">
                                         <label>本息合计</label>
                                         <div class="staging-item-right">
-                                            <em class="">0</em>元
+                                            <em id="alltext" class="">0</em>元
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
+
+
+
                     </dd>
                 </dl>
             </div>
@@ -155,18 +157,18 @@
                         </ul>
                     </div>
                 </div>
-                <div class="select-brand-box">
-                    <a class="select-brand-item selected" href="javascript:void(0)">
+                <div id="companydiv" class="select-brand-box">
+                    <a id="20150901000001" class="select-brand-item selected" href="javascript:void(0)">
                     	<img src="../res/images/business-logo1.png" class="brand-logo" />
                         <div class="brand-selected-ico"></div>
                     </a>
-                    <a class="select-brand-item" href="javascript:void(0)">
+                    <a id="20150901000002" class="select-brand-item" href="javascript:void(0)">
                     	<img src="../res/images/business-logo2.png" class="brand-logo" />
                         <div class="brand-selected-ico"></div>
                     </a>
                 </div>
                 <div class="btn-box text-center">
-                	<a href="###" class="common-btn common-btn-m btn-green">下一步</a>
+                	<a id="nextbtn1" href="javascript:void(0)" class="common-btn common-btn-m btn-green">下一步</a>
                 </div>
             </div>
         </div>
@@ -254,7 +256,7 @@
                     <div class="sign-item clearfix" style="margin-top:35px;">
                         <label>&nbsp;</label>
                         <div class="sign-right-cont">
-                        	 <a id="" href="javascript:void(0);" class="common-btn common-btn-m btn-orange" style="width:250px;margin-right:35px;">上一步</a>
+                        	 <a id="perbtn1" href="javascript:void(0);" class="common-btn common-btn-m btn-orange" style="width:250px;margin-right:35px;">上一步</a>
                              <a id="nextbtn3" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:250px;">下一步</a>
                         </div>
                     </div>
@@ -382,6 +384,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--
                             <div class="common-tap-title">工作信息<em>（本申请表所填写的各项信息是能否获批分期及核定金额的重要依据，务必仔细，严谨，如实填写。）</em></div>
                             <div class="common-tap-box">
                                 <div class="sign-item-box">
@@ -461,6 +464,7 @@
 
                                         </div>
                                     </div>
+                                    -->
                                     <div class="sign-item clearfix" style="margin-top:35px;">
                                         <label>&nbsp;</label>
                                         <div class="sign-right-cont">
@@ -470,11 +474,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
 
-			<div id="step32" class="common-tap-detail" style="display:none;">
+				<div id="step32" class="common-tap-detail" style="display:none;">
             			<div class="common-tip">您填写的联系人信息越全面，越快审批。</div>
                         <div class="common-tap-item" id="contact-person-inf">
                             <div class="common-tap-title">亲属一</div>
@@ -646,6 +648,14 @@
 
                         </div>
                     </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
 
 			<!--第三步3-->
 			<div id="step33" class="common-tap-detail" style="display:none;">
@@ -1008,6 +1018,17 @@
 			})
 		})
 	</script>
+	<!--BAIDU定位JS 开始-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+    <script type="text/javascript">
+        // 百度地图API功能
+        function myFun(result){
+            var cityName = result.name;
+            $("#curCity").html(cityName);
+        }
+        var myCity = new BMap.LocalCity();
+        myCity.get(myFun);
+    </script>
 </body>
 </html>
 

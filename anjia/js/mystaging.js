@@ -21,6 +21,9 @@ $(function(){
 	g.repaymentType = "";
 	g.orderUserInfo = {};
 
+	g.packageType = "";
+	g.companyId = "";
+
 	g.uploadImgType = ["100701","100702","100703","100704","100705","100706","100707","100708","100709","100710","100711"];
 	g.uploadIndex = 0;
 	g.uploadMark = [0,0,0,0,0,0,0];
@@ -37,12 +40,14 @@ $(function(){
 	}
 	else{
 		getUserInfo();
-		sendGetProductHttp();
+		//sendGetProductHttp();
 		sendGetDicHttp();
 	}
 
 	//获取图形验证码
 	//sendGetImgCodeHttp();
+
+	$("#nextbtn1").bind("click",nextBtnUp1);
 
 	//g.httpTip.show();
 	$("#countbtn").bind("click",countBtnUp);
@@ -50,6 +55,8 @@ $(function(){
 
 	$("#packageMoney").bind("blur",fenQiTimesChange);
 	$("#fenQiTimes").bind("change",fenQiTimesChange);
+
+	$("#perbtn1").bind("click",preBtnUp1);
 	$("#nextbtn3").bind("click",nextBtnUp3);
 
 	$("#contractNo").bind("blur",validNoEmpty);
@@ -90,11 +97,11 @@ $(function(){
 	$("#applicantAddress").bind("blur",validNoEmpty);
 	$("#applicantSchool").bind("blur",validNoEmpty);
 	$("#applicantMajor").bind("blur",validNoEmpty);
-	$("#applicantCompany").bind("blur",validNoEmpty);
-	$("#applicantCompanyAddress").bind("blur",validNoEmpty);
-	$("#applicantCompanyPhone").bind("blur",validNoEmpty);
-	$("#applicantWages").bind("blur",validNoEmpty);
-	$("#applicantWages").bind("blur",validIsNumber);
+	//$("#applicantCompany").bind("blur",validNoEmpty);
+	//$("#applicantCompanyAddress").bind("blur",validNoEmpty);
+	//$("#applicantCompanyPhone").bind("blur",validNoEmpty);
+	//$("#applicantWages").bind("blur",validNoEmpty);
+	//$("#applicantWages").bind("blur",validIsNumber);
 
 	$("#familyName").bind("blur",validNoEmpty);
 	$("#familyPhone").bind("blur",validNoEmpty);
@@ -281,10 +288,11 @@ $(function(){
 	}
 
 	//获取产品信息
-	function sendGetProductHttp(){
+	function sendGetProductHttp(companyId){
 		g.httpTip.show();
 		var url = Base.serverUrl + "order/queryProductController";
 		var condi = {};
+		condi.companyId = companyId;
 		$.ajax({
 			url:url,
 			data:condi,
@@ -331,10 +339,10 @@ $(function(){
 
 					//判断是否是编辑状态
 					if(g.orderId !== ""){
-						$("#step1").hide();
-						$("#step2").show();
-						//获取订单信息
+						//$("#step1").hide();
+						//$("#step2").show();
 
+						//获取订单信息
 						sendGetOrderInfoHttp();
 					}
 				}
@@ -384,6 +392,10 @@ $(function(){
 			option.push('<option value="' + id + '">' + name + '</option>');
 		}
 		$("#packageType").html(option.join(''));
+
+		if(g.packageType != "" && g.companyId != ""){
+			$("#packageType").val((g.packageType + "_" + g.companyId));
+		}
 	}
 
 
@@ -398,6 +410,28 @@ $(function(){
 		}
 	}
 
+
+	function nextBtnUp1(){
+		var companyId = $("#companydiv .selected").attr("id");
+		g.companyId = companyId;
+
+
+		if(g.loginStatus){
+			//显示第二步
+			$("#step1").hide();
+			$("#step2").show();
+
+			if(g.orderId == ""){
+				sendGetProductHttp(companyId);
+				//获取订单编号
+				sendGetOrderIdHttp();
+			}
+			window.scrollTo(0,830);
+		}
+		else{
+			location.href = "/anjia/login.html";
+		}
+	}
 
 	function countFee(allprice,time){
 		var numarr = [3,6,9,12,18,24,36];
@@ -416,11 +450,12 @@ $(function(){
 
 	function countBtnUp(){
 		var allprice = $("#allprice").val() - 0 || 0;
-		var time = $("#stagingtime").val() - 0 || 0;
+		var time = $("#stagingtime .selected").attr("id").split("_")[1] - 0;
 
 		if(allprice > 0){
 			var obj = countFee(allprice,time);
 
+			$("#capitaltext").html(allprice.toFixed(2));
 			$("#alltext").html(obj.all);
 			$("#feetext").html(obj.rate);
 			$("#mouthtext").html(obj.mouth);
@@ -438,6 +473,11 @@ $(function(){
 		else{
 			location.href = "/anjia/login.html";
 		}
+	}
+
+	function preBtnUp1(){
+		$("#step2").hide();
+		$("#step1").show();
 	}
 
 	//获取订单编号
@@ -486,6 +526,11 @@ $(function(){
 
 	function nextBtnUp3(){
 		var contractNo = $("#contractNo").val() || "";
+
+		if($("#packageType")[0].selectedIndex == - 1){
+			Utils.alert("请选择产品类型");
+			return;
+		}
 		var packageName = $("#packageType")[0].options[$("#packageType")[0].selectedIndex].text;
 		var packageType = $("#packageType").val() || "";
 		var contractMoney = $("#contractMoney").val() || "";
@@ -556,7 +601,7 @@ $(function(){
 					$("#step2").hide();
 					$("#step3").show();
 
-					window.scrollTo(0,200);
+					window.scrollTo(0,830);
 				}
 				else{
 					//var msg = data.error || "";
@@ -595,6 +640,7 @@ $(function(){
 		}
 	}
 
+
 	function preBtnUp2(){
 		//显示第二步
 		$("#step2").show();
@@ -613,15 +659,15 @@ $(function(){
 		var applicantMajor = $("#applicantMajor").val() || "";
 		var applicantAsset = $("[name='zcradio']:checked").val() || "";
 
-		var applicantJobNature = $("[name='gzxzradio']:checked").val() || "";
-		var applicantCompany = $("#applicantCompany").val() || "";
-		var applicantCompanyNature = $("#applicantCompanyNature").val() || "";
-		var applicantCompanyIndustry = $("#applicantCompanyIndustry").val() || "";
-		var applicantDuties = $("#applicantDuties").val() || "";
-		var applicantWorkYears = $("#applicantWorkYears").val() || "";
-		var applicantCompanyAddress = $("#applicantCompanyAddress").val() || "";
-		var applicantCompanyPhone = $("#applicantCompanyPhone").val() || "";
-		var applicantWages = $("#applicantWages").val() || "";
+		//~ var applicantJobNature = $("[name='gzxzradio']:checked").val() || "";
+		//~ var applicantCompany = $("#applicantCompany").val() || "";
+		//~ var applicantCompanyNature = $("#applicantCompanyNature").val() || "";
+		//~ var applicantCompanyIndustry = $("#applicantCompanyIndustry").val() || "";
+		//~ var applicantDuties = $("#applicantDuties").val() || "";
+		//~ var applicantWorkYears = $("#applicantWorkYears").val() || "";
+		//~ var applicantCompanyAddress = $("#applicantCompanyAddress").val() || "";
+		//~ var applicantCompanyPhone = $("#applicantCompanyPhone").val() || "";
+		//~ var applicantWages = $("#applicantWages").val() || "";
 
 		if(!sendValidNoEmpty(applicantName,$("#applicantName"))){
 			return;
@@ -647,21 +693,21 @@ $(function(){
 		if(!sendValidNoEmpty(applicantMajor,$("#applicantMajor"))){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantCompany,$("#applicantCompany"))){
-			return;
-		}
-		if(!sendValidNoEmpty(applicantCompanyAddress,$("#applicantCompanyAddress"))){
-			return;
-		}
-		if(!sendValidNoEmpty(applicantCompanyPhone,$("#applicantCompanyPhone"))){
-			return;
-		}
-		if(!sendValidNoEmpty(applicantWages,$("#applicantWages"))){
-			return;
-		}
-		if(!sendValidIsNumber(applicantWages,$("#applicantWages"))){
-			return;
-		}
+		//~ if(!sendValidNoEmpty(applicantCompany,$("#applicantCompany"))){
+			//~ return;
+		//~ }
+		//~ if(!sendValidNoEmpty(applicantCompanyAddress,$("#applicantCompanyAddress"))){
+			//~ return;
+		//~ }
+		//~ if(!sendValidNoEmpty(applicantCompanyPhone,$("#applicantCompanyPhone"))){
+			//~ return;
+		//~ }
+		//~ if(!sendValidNoEmpty(applicantWages,$("#applicantWages"))){
+			//~ return;
+		//~ }
+		//~ if(!sendValidIsNumber(applicantWages,$("#applicantWages"))){
+			//~ return;
+		//~ }
 		var condi = {};
 		condi.applicantIdentity = applicantIdentity;
 		condi.applicantName = applicantName;
@@ -680,15 +726,15 @@ $(function(){
 		condi.applicantCarNumber = 0;
 		condi.applicantCarWorth = 0;
 
-		condi.applicantJobNature = applicantJobNature;
-		condi.applicantCompany = applicantCompany;
-		condi.applicantCompanyNature = applicantCompanyNature;
-		condi.applicantCompanyIndustry = applicantCompanyIndustry;
-		condi.applicantWorkYears = applicantWorkYears;
-		condi.applicantDuties = applicantDuties;
-		condi.applicantCompanyAddress = applicantCompanyAddress;
-		condi.applicantCompanyPhone = applicantCompanyPhone;
-		condi.applicantWages = applicantWages;
+		//~ condi.applicantJobNature = applicantJobNature;
+		//~ condi.applicantCompany = applicantCompany;
+		//~ condi.applicantCompanyNature = applicantCompanyNature;
+		//~ condi.applicantCompanyIndustry = applicantCompanyIndustry;
+		//~ condi.applicantWorkYears = applicantWorkYears;
+		//~ condi.applicantDuties = applicantDuties;
+		//~ condi.applicantCompanyAddress = applicantCompanyAddress;
+		//~ condi.applicantCompanyPhone = applicantCompanyPhone;
+		//~ condi.applicantWages = applicantWages;
 
 		g.orderUserInfo = condi;
 
@@ -699,7 +745,7 @@ $(function(){
 		$("#step32").show();
 		$("#step33").hide();
 
-		window.scrollTo(0,200);
+		window.scrollTo(0,830);
 	}
 
 
@@ -819,7 +865,7 @@ $(function(){
 		g.orderUserInfo.orderId = g.orderId;
 
 		sendSetCustomerInfoHttp(g.orderUserInfo);
-		window.scrollTo(0,200);
+		window.scrollTo(0,830);
 	}
 
 
@@ -1166,15 +1212,24 @@ $(function(){
 
 	function changeOrderInfoHtml(data){
 		var obj = data.obj || {};
+
+		//第一步
+		var companyId = obj.companyId || "";
+		g.companyId = companyId;
+		$("#companydiv .select-brand-item").removeClass("selected");
+		$("#" + companyId).addClass("selected");
+
 		//第二步数据,套餐信息
 		var contractNo = obj.contractNo || "";
 		var packageType = obj.packageType || "";
-		var companyId = obj.companyId || "";
+		//var companyId = obj.companyId || "";
 		var contractMoney = obj.contractMoney || "";
 		var packageMoney = obj.packageMoney || "";
 		var fenQiTimes = obj.fenQiTimes || "";
 		var poundage = obj.poundage || "0";
 		var moneyMonth = obj.moneyMonth || "0";
+
+		g.packageType = packageType;
 
 		g.stagnum = fenQiTimes;
 		g.poundage = poundage;
@@ -1182,6 +1237,8 @@ $(function(){
 
 		var fenarr = {"3":0,"6":1,"9":2,"12":3,"18":4,"24":5,"36":6};
 		fenQiTimes = fenarr[(fenQiTimes + "")];
+
+		sendGetProductHttp(companyId);
 
 		$("#contractNo").val(contractNo);
 		$("#packageType").val((packageType + "_" + companyId));
@@ -1206,15 +1263,15 @@ $(function(){
 		var applicantMajor = obj.applicantMajor || "";
 		var applicantAsset = obj.applicantAsset || "";
 
-		var applicantJobNature = obj.applicantJobNature || "";
-		var applicantCompany = obj.applicantCompany || "";
-		var applicantCompanyNature = obj.applicantCompanyNature || "";
-		var applicantCompanyIndustry = obj.applicantCompanyIndustry || "";
-		var applicantDuties = obj.applicantDuties || "";
-		var applicantWorkYears = obj.applicantWorkYears || "";
-		var applicantCompanyAddress = obj.applicantCompanyAddress || "";
-		var applicantCompanyPhone = obj.applicantCompanyPhone || "";
-		var applicantWages = obj.applicantWages || "";
+		//~ var applicantJobNature = obj.applicantJobNature || "";
+		//~ var applicantCompany = obj.applicantCompany || "";
+		//~ var applicantCompanyNature = obj.applicantCompanyNature || "";
+		//~ var applicantCompanyIndustry = obj.applicantCompanyIndustry || "";
+		//~ var applicantDuties = obj.applicantDuties || "";
+		//~ var applicantWorkYears = obj.applicantWorkYears || "";
+		//~ var applicantCompanyAddress = obj.applicantCompanyAddress || "";
+		//~ var applicantCompanyPhone = obj.applicantCompanyPhone || "";
+		//~ var applicantWages = obj.applicantWages || "";
 
 		$("#applicantName").val(applicantName);
 		$("#applicantAge").val(applicantAge);
@@ -1234,17 +1291,17 @@ $(function(){
 		$($("#r_101001").parent()).removeClass("radio-bg-checked");
 		$($("#r_" + applicantAsset).parent()).addClass("radio-bg-checked");
 
-		$("#r_" + applicantJobNature).attr("checked",true);
-		$($("#r_101101").parent()).removeClass("radio-bg-checked");
-		$($("#r_" + applicantJobNature).parent()).addClass("radio-bg-checked");
-		$("#applicantCompany").val(applicantCompany);
-		$("#applicantCompanyNature").val(applicantCompanyNature);
-		$("#applicantCompanyIndustry").val(applicantCompanyIndustry);
-		$("#applicantDuties").val(applicantDuties);
-		$("#applicantWorkYears").val(applicantWorkYears);
-		$("#applicantCompanyAddress").val(applicantCompanyAddress);
-		$("#applicantCompanyPhone").val(applicantCompanyPhone);
-		$("#applicantWages").val(applicantWages);
+		//~ $("#r_" + applicantJobNature).attr("checked",true);
+		//~ $($("#r_101101").parent()).removeClass("radio-bg-checked");
+		//~ $($("#r_" + applicantJobNature).parent()).addClass("radio-bg-checked");
+		//~ $("#applicantCompany").val(applicantCompany);
+		//~ $("#applicantCompanyNature").val(applicantCompanyNature);
+		//~ $("#applicantCompanyIndustry").val(applicantCompanyIndustry);
+		//~ $("#applicantDuties").val(applicantDuties);
+		//~ $("#applicantWorkYears").val(applicantWorkYears);
+		//~ $("#applicantCompanyAddress").val(applicantCompanyAddress);
+		//~ $("#applicantCompanyPhone").val(applicantCompanyPhone);
+		//~ $("#applicantWages").val(applicantWages);
 
 		//3.2
 		var familyName = obj.familyName || "";
