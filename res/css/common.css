@@ -155,6 +155,14 @@ html{
 	cursor:pointer;
 	padding:0px 15px;
 }
+.common-btn-m{
+	height:50px;
+	line-height:50px;
+	font-size:22px;
+	border-radius:50px;
+	width:300px;
+	text-align:center;
+}
 .common-btn-b{
 	height:60px;
 	line-height:60px;
@@ -164,12 +172,12 @@ html{
 	text-align:center;
 }
 .btn-green{
-	background:#63c686;
+	background:#539d34;
 	color:#fff;
 	text-align:center;
 }
 .btn-green:hover{
-	background:#3fad66;
+	background:#458a28;
 	color:#fff;
 	text-decoration:none;
 }
@@ -194,12 +202,12 @@ html{
 	text-decoration:none;
 }
 .btn-orange{
-	background:#ffc46a;
+	background:#ff8400;
 	color:#fff;
 	text-align:center;
 }
 .btn-orange:hover{
-	background:#dfa44a;
+	background:#e67802;
 	color:#fff;
 	text-decoration:none;
 }

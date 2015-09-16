@@ -85,8 +85,11 @@
 .cooperative-part .cooperative-example .cooperative-example-part .c-example-img,.cooperative-part .cooperative-example .cooperative-example-part-two .c-example-img{
 	width:280px;
 	height:188px;
-	-webkit-transition:all 1.5s ease-in-out 0s;
-	transition:all 1.5s ease-in-out 0s;
+	-webkit-transition:all ease-in-out 1.5s 0s;
+	-moz-transition:all ease-in-out 1.5s 0s;
+	-ms-transition:all ease-in-out 1.5s 0s;
+	-o-transition:all ease-in-out 1.5s 0s;
+	transition:all ease-in-out 1.5s 0s;
 	cursor:pointer;
 }
 .cooperative-part .cooperative-example .cooperative-example-part-two .c-example-img{
@@ -189,6 +192,10 @@
 }
 .business-left .business-part .r-text .common-btn{
 	width:90px;
+	-webkit-transition:all ease-in-out 0.1s 0s;
+	-moz-transition:all ease-in-out 0.1s 0s;
+	-ms-transition:all ease-in-out 0.1s 0s;
+	-o-transition:all ease-in-out 0.1s 0s;
 	transition:all ease-in-out 0.1s 0s;
 }
 .business-left .business-part .r-text a.common-btn:hover{
@@ -241,60 +248,41 @@
 	min-height:600px;
 }
 .sign-step-main{
-	width:1000px;
-	padding:70px 0px;
-	margin:0 auto;
+	margin-bottom:25px;
 }
 .sign-step-box{
-	width:1000px;
-	height:46px;
-	background:url(../images/sign-step-bg.png) left top no-repeat;
+	height:50px;
 }
-.sign-step-text{
-	margin-top:15px;
-}
-.sign-step-text .step-p{
+.sign-step-box .step-item{
 	float:left;
-	width:25%;
-	text-align:center;
-	font-size:16px;
+	font-size:18px;
 	color:#b1b1b1;
+	text-align:center;
+	width:306px;
+	height:50px;
+	line-height:50px;
+	margin-right:-8px;
+	background:url(../images/sign-step-bg.png) -999px -999px no-repeat;
+	background-position:-309px -50px;
 }
-.sign-step-text .step-p1{
-	width:30%;
+.sign-step-box .step-item.step-one{
+	background-position:0px -50px;
 }
-.sign-step-text .step-p2{
-	width:17%;
+.sign-step-main.sign-step1 .step-item.step-one{
+	background-position-y:0px;
+	color:#fff;
 }
-.sign-step-text .step-p3{
-	width:29%;
+.sign-step-main.sign-step2 .step-item.step-one,.sign-step-main.sign-step2 .step-item.step-two{
+	background-position-y:0px;
+	color:#fff;
 }
-.sign-step-text .step-p4{
-	width:18%;
+.sign-step-main.sign-step3 .step-item.step-one,.sign-step-main.sign-step3 .step-item.step-two,.sign-step-main.sign-step3 .step-item.step-three{
+	background-position-y:0px;
+	color:#fff;
 }
-.sign-step-main.sign-step1 .sign-step-box{
-	background-position:0px 0px;
-}
-.sign-step-main.sign-step2 .sign-step-box{
-	background-position:0px -46px;
-}
-.sign-step-main.sign-step3 .sign-step-box{
-	background-position:0px -92px;
-}
-.sign-step-main.sign-step4 .sign-step-box{
-	background-position:0px -138px;
-}
-.sign-step-main.sign-step1 .step-p1{
-	color:#4e915d;
-}
-.sign-step-main.sign-step2 .step-p1,.sign-step-main.sign-step2 .step-p2{
-	color:#4e915d;
-}
-.sign-step-main.sign-step3 .step-p1,.sign-step-main.sign-step3 .step-p2,.sign-step-main.sign-step3 .step-p3{
-	color:#4e915d;
-}
-.sign-step-main.sign-step4 .step-p1,.sign-step-main.sign-step4 .step-p2,.sign-step-main.sign-step4 .step-p3,.sign-step-main.sign-step4 .step-p4{
-	color:#4e915d;
+.sign-step-main.sign-step4 .step-item.step-one,.sign-step-main.sign-step4 .step-item.step-two,.sign-step-main.sign-step4 .step-item.step-three,.sign-step-main.sign-step4 .step-item.step-four{
+	background-position-y:0px;
+	color:#fff;
 }
 .sign-item-box{
 	margin-left:0px;
@@ -325,44 +313,42 @@
 .sign-item .sign-right-cont .common-checkbox{
 	margin-right:5px;
 }
-.sign-btn-box{
-	margin-top:60px;
+.select-brand-box{
+	padding:70px 0px;
 	text-align:center;
 }
-.view-goods-btn,.staging-btn{
+.select-brand-box .select-brand-item{
+	position:relative;
 	display:inline-block;
-	width:300px;
-	height:90px;
-	line-height:90px;
-	background:#89c997;
-	border:1px solid #89c997;
-	color:#fff;
-	font-size:26px;
-	text-align:center;
-	transition:all ease-in-out 0.1s 0s;
-	margin:0px 30px;
-}
-
-.staging-btn{
+	vertical-align:middle;
+	margin:0px 70px;
+	width:330px;
+	height:115px;
+	border:2px solid #eaeaea;
 	background:#fff;
-	color:#b1b1b1;
-	border:1px solid #b1b1b1;
 }
-.view-goods-btn .common-ico,.staging-btn .common-ico{
-	margin-right:10px;
-	margin-bottom:3px;
-	_margin:32px 15px 32px 0px;
-	_margin-bottom:35px;
+.select-brand-box .select-brand-item:hover,.select-brand-box .select-brand-item.selected{
+	border-color:#4dc41a;
 }
-.view-goods-btn:hover{
-	background:#6aae79;
-	color:#fff;
-	text-decoration:none;
+.select-brand-box .select-brand-item .brand-logo{
+	width:186px;
+	margin-top:35px;
 }
-.staging-btn:hover{
-	background:#efefef;
-	text-decoration:none;
-	color:#b1b1b1;
+.select-brand-box .select-brand-item .brand-selected-ico{
+	display:none;
+	position:absolute;
+	bottom:-26px;
+	left:50%;
+	margin-left:-26px;
+}
+.select-brand-box .select-brand-item.selected .brand-selected-ico{
+	display:block;
+}
+.brand-selected-ico{
+	font-size:0px;
+	width:52px;
+	height:52px;
+	background:url(../images/brand-select-tag.png) left top no-repeat;
 }
 .upload-inf-main{
 	margin-bottom:25px;
@@ -699,6 +685,7 @@
 	text-align:center;
 	cursor:pointer;
 	-webkit-transition:all ease-in-out 0.1s 0s;
+	-moz-transition:all ease-in-out 0.1s 0s;
 	-ms-transition:all ease-in-out 0.1s 0s;
 	-o-transition:all ease-in-out 0.1s 0s;
 	transition:all ease-in-out 0.1s 0s;
@@ -804,4 +791,42 @@
 }
 .staging-detail-item .staging-item-right{
 	margin-left:115px;
+}
+
+
+/*service-tap-main*/
+.service-tap-main{
+	padding:40px 0px 0px;
+	background:#fff;
+	border-bottom:1px solid #e9e9e9;
+}
+.service-tap-top{
+	text-align:center;
+	border-bottom:1px solid #e9e9e9;
+}
+.service-tap-top *.service-tap-item{
+	display:inline-block;
+	height:60px;
+	line-height:60px;
+	font-size:22px;
+	color:#666;
+	margin:0px 25px;
+	padding:0px 15px;
+	border-bottom:3px solid #fff;
+	-webkit-transition:all ease-in-out 0.1s 0s;
+	-moz-transition:all ease-in-out 0.1s 0s;
+	-ms-transition:all ease-in-out 0.1s 0s;
+	-o-transition:all ease-in-out 0.1s 0s;
+	transition:all ease-in-out 0.1s 0s;
+}
+.service-tap-top *.service-tap-item:hover,.service-tap-top *.service-tap-item.selected{
+	color:#539d34;
+	text-decoration:none;
+	border-bottom:3px solid #539d34;
+}
+.service-tap-box{
+	padding:40px 0px;
+}
+.service-tap-box dl dd{
+	display:none;
 }

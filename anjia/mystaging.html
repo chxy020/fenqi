@@ -45,166 +45,146 @@
                 </ul>
             </div>
         </div>
-    </div><!--
-    <div class="service-step">
-    	<div class="ui-wrap">
-			<p class="common-title">我们的服务流程</p>
-			<div class="pdiv clearfix">
-				<div class="process">
-					<img src="../res/images/process1.png" width="36" height="36">
-					<span>申请家装套餐</span>
-				</div>
-
-				<img class="pimg" src="../res/images/process0.png" width="51" height="14">
-
-				<div class="process">
-					<img src="../res/images/process2.png" width="36" height="36">
-					<span>签订装修合同</span>
-				</div>
-
-				<img class="pimg" src="../res/images/process0.png" width="51" height="14">
-
-				<div class="process">
-					<img src="../res/images/process3.png" width="36" height="36">
-					<span>申请分期</span>
-				</div>
-
-				<img class="pimg" src="../res/images/process0.png" width="51" height="14">
-
-				<div class="process">
-					<img src="../res/images/process4.png" width="36" height="36">
-					<span>审批通过</span>
-				</div>
-			</div>
-			<div class="pdiv">
-				<div class="process">
-					<img src="../res/images/process5.png" width="36" height="36">
-					<span>交付手续费</span>
-				</div>
-
-				<img class="pimg" src="../res/images/process0.png" width="51" height="14">
-
-				<div class="process">
-					<img src="../res/images/process6.png" width="36" height="36">
-					<span>施工安装</span>
-				</div>
-
-				<img class="pimg" src="../res/images/process0.png" width="51" height="14">
-
-				<div class="process">
-					<img src="../res/images/process7.png" width="36" height="36">
-					<span>每月还款</span>
-				</div>
-
-				<img class="pimg" src="../res/images/process0.png" width="51" height="14">
-
-				<div class="process">
-					<img src="../res/images/process8.png" width="36" height="36">
-					<span>后续服务</span>
-				</div>
-			</div>
-        </div>
     </div>
-    <div class="ui-count-part">
-    	<div class="ui-wrap">
-        	<div class="ui-count-left">
-            	<p><img class="pig-img" src="../res/images/count1.png" /></p>
-            	<p>快速计算分期费用</p>
-                <p>及时获取健康装修方案</p>
+	<div class="service-tap-main">
+        <div class="ui-wrap">
+            <div class="service-tap-top">
+                <a href="javascript:void(0)" class="service-tap-item selected" onclick="tabChangeClick(this,'#serviceItem')">服务流程</a>
+                <a href="javascript:void(0)" class="service-tap-item" onclick="tabChangeClick(this,'#serviceCalItem')">分期计算器</a>
             </div>
-            <div class="ui-count-middle">
-            	<div class="count-item clearfix">
-                	<label>套餐金额</label>
-                    <div class="count-item-right">
-                    	<input id="allprice" type="text" class="common-input-text" style="width:280px;" />
-                    </div>
-                </div>
-                <div class="count-item clearfix">
-                	<label>分期月数</label>
-                    <div class="count-item-right">
-                    	<select id="stagingtime" class="common-select" style="width:170px;margin-right:15px;">
-                        	<option value=0 >3</option>
-				<option value=1 >6</option>
-				<option value=2 >9</option>
-				<option value=3 >12</option>
-				<option value=4 >18</option>
-				<option value=5 >24</option>
-				<option value=6 >36</option>
-                        </select>
-                        <input id="countbtn" type="button" class="common-btn btn-green" value="计算费用" style="width:122px;" />
-                    </div>
-                </div>
-                <p class="middle-title">您的分期费用为</p>
-                <div class="staging-part">
-                	<div class="staging-part-item">
-                    	<label>总费用</label>
-                        <span id="alltext" class="staging-free">0</span>元
-                    </div>
-                    <div class="staging-part-item">
-                    	<label>服务费</label>
-                        <span id="feetext" class="staging-free">0</span>元
-                    </div>
-                    <div class="staging-part-item">
-                    	<label>月换本金</label>
-                        <span id="mouthtext" class="staging-free">0</span>元
-                    </div>
-                </div>
-            </div>
-            <div class="ui-count-right">
-            	<div class="interest-rate">
-                    <h1 class="interest-title">利率表</h1>
-                    <div class="table-head clearfix">
-                        <span class="time">期限</span>
-                        <span class="percentage">一次性收取服务费用</span>
-                    </div>
-                    <ul class="interest-rate-ul clearfix">
-                        <li class="clearfix"><span>3个月</span><span>免费</span></li>
-                        <li class="clearfix"><span>6个月</span><span>1%</span></li>
-                        <li class="clearfix"><span>9个月</span><span>4%</span></li>
-                        <li class="clearfix"><span>12个月</span><span>7%</span></li>
-                        <li class="clearfix"><span>18个月</span><span>10%</span></li>
-                        <li class="clearfix"><span>24个月</span><span>13%</span></li>
-                        <li class="clearfix"><span>36个月</span><span>16%</span></li>
-                    </ul>
-                </div>
+            <div class="service-tap-box">
+            	<dl>
+                	<dd id="serviceItem" class="text-center" style="display:block">
+                    	<img src="../res/images/service-process-img.jpg" />
+                    </dd>
+                    <dd id="serviceCalItem">
+                    	<div class="improvement-cal-box clearfix">
+                            <!--计算器输入框-->
+                            <div class="improvement-cal-input-box">
+                                <div class="improvement-cal-left">
+                                    <label class="f-left">分期金额：</label>
+                                    <input type="text" class="improvement-cal-input f-left" />
+                                    <label class="f-left">元</label>
+                                </div>
+                                <div class="cal-btn">计算</div>
+                            </div>
+                            <!--选择分期期数-->
+                            <div class="selection-period-box">
+                                <ul class="selection-period-ul clearfix">
+                                    <li class="selected">
+                                        <a href="javascript:void(0)">3期</a>
+                                        <div class="rate-period" style="display:block"><i class="common-ico ico-white-trig"></i>免费</div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">6期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率1%</div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">9期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率4%</div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">12期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率7%</div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">18期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率10%</div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">24期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率13%</div>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">36期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率16%</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--分期明细-->
+                            <div class="staging-detail">
+                                <div class="common-title" style="text-align:left;padding:35px 0px 15px 0px;">分期明细</div>
+                                <div class="staging-detail-box">
+                                    <div class="staging-detail-item imp-item clearfix">
+                                        <label>每月还款</label>
+                                        <div class="staging-item-right">
+                                            <em class="highlight">000000.00</em>元
+                                        </div>
+                                    </div>
+                                    <div class="staging-detail-item clearfix">
+                                        <label>分期金额</label>
+                                        <div class="staging-item-right">
+                                            <em class="">000000.00</em>元
+                                        </div>
+                                    </div>
+                                    <div class="staging-detail-item clearfix">
+                                        <label>分期周期</label>
+                                        <div class="staging-item-right">
+                                            <em class="">000000.00</em>期
+                                        </div>
+                                    </div>
+                                    <div class="staging-detail-item clearfix">
+                                        <label>本息合计</label>
+                                        <div class="staging-item-right">
+                                            <em class="">0</em>元
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </dd>
+                </dl>
             </div>
         </div>
-    </div>
--->
-
+	</div>
 	<!--第一步-->
 	<div id="step1" class="ui-main">
-	<div class="ui-wrap w1000">
-		<div class="sign-main-box">
-		<div class="sign-step-main sign-step1">
-		    <div class="sign-step-box"></div>
-		    <div class="sign-step-text clearfix">
-			<p class="step-p step-p1">与商户签约</p>
-			<p class="step-p step-p2">提交装修信息</p>
-			<p class="step-p step-p3">提交个人信息</p>
-			<p class="step-p step-p4">上传资料</p>
-		    </div>
-		</div>
-		<div class="sign-btn-box">
-		    <a href="/anjia/business.html" class="view-goods-btn"><i class="common-ico ico-viewgoods"></i>选择装修方案</a>
-		    <a id="nextbtn2" href="javascript:void(0);" class="staging-btn"><i class="common-ico ico-staging"></i>我已签约 开始分期</a>
-		</div>
-	    </div>
-	</div>
+        <div class="ui-wrap">
+        	<div class="common-title1">
+            	开始分期
+            </div>
+            <div class="sign-main-box">
+                <div class="sign-step-main sign-step1">
+                    <div class="sign-step-box">
+                    	<ul class="sign-step-ul clearfix">
+                        	<li class="step-item step-one">与合作客户签约</li>
+                            <li class="step-item step-two">提交套餐信息</li>
+                            <li class="step-item step-three">提交个人信息</li>
+                            <li class="step-item step-four">上传资料</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="select-brand-box">
+                    <a class="select-brand-item selected" href="javascript:void(0)">
+                    	<img src="../res/images/business-logo1.png" class="brand-logo" />
+                        <div class="brand-selected-ico"></div>
+                    </a>
+                    <a class="select-brand-item" href="javascript:void(0)">
+                    	<img src="../res/images/business-logo2.png" class="brand-logo" />
+                        <div class="brand-selected-ico"></div>
+                    </a>
+                </div>
+                <div class="btn-box text-center">
+                	<a href="###" class="common-btn common-btn-m btn-green">下一步</a>
+                </div>
+            </div>
+        </div>
 	</div>
 
 
 	<!--第二步-->
 	<div  id="step2" class="ui-main" style="display:none;">
-    	<div class="ui-wrap w1000">
+    	<div class="ui-wrap ">
         	<div class="sign-main-box">
                 <div class="sign-step-main sign-step2">
-                    <div class="sign-step-box"></div>
-                    <div class="sign-step-text clearfix">
-                        <p class="step-p step-p1">与商户合作</p>
-                        <p class="step-p step-p2">提交套餐信息</p>
-                        <p class="step-p step-p3">提交个人信息</p>
-                        <p class="step-p step-p4">上传资料</p>
+                    <div class="sign-step-box">
+                    	<ul class="sign-step-ul clearfix">
+                        	<li class="step-item step-one">与合作客户签约</li>
+                            <li class="step-item step-two">提交套餐信息</li>
+                            <li class="step-item step-three">提交个人信息</li>
+                            <li class="step-item step-four">上传资料</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="sign-item-box">
@@ -274,7 +254,8 @@
                     <div class="sign-item clearfix" style="margin-top:35px;">
                         <label>&nbsp;</label>
                         <div class="sign-right-cont">
-                             <a id="nextbtn3" href="javascript:void(0);" class="common-btn common-btn-b btn-light-green" style="width:190px;">下一步</a>
+                        	 <a id="" href="javascript:void(0);" class="common-btn common-btn-m btn-orange" style="width:250px;margin-right:35px;">上一步</a>
+                             <a id="nextbtn3" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:250px;">下一步</a>
                         </div>
                     </div>
                 </div>
@@ -284,15 +265,16 @@
 
 	<!--第三步-->
 	<div id="step3" class="ui-main" style="display:none;">
-    	<div class="ui-wrap w1000">
+    	<div class="ui-wrap ">
         	<div class="sign-main-box">
                 <div class="sign-step-main sign-step3">
-                    <div class="sign-step-box"></div>
-                    <div class="sign-step-text clearfix">
-                        <p class="step-p step-p1">与商户合作</p>
-                        <p class="step-p step-p2">提交套餐信息</p>
-                        <p class="step-p step-p3">提交个人信息</p>
-                        <p class="step-p step-p4">上传资料</p>
+                    <div class="sign-step-box">
+                    	<ul class="sign-step-ul clearfix">
+                        	<li class="step-item step-one">与合作客户签约</li>
+                            <li class="step-item step-two">提交套餐信息</li>
+                            <li class="step-item step-three">提交个人信息</li>
+                            <li class="step-item step-four">上传资料</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="commit-inf-box">
@@ -482,8 +464,8 @@
                                     <div class="sign-item clearfix" style="margin-top:35px;">
                                         <label>&nbsp;</label>
                                         <div class="sign-right-cont">
-                                            <a id="prebtn2" href="javascript:void(0);" class="common-btn common-btn-b btn-orange" style="width:190px;margin-right:35px;">上一步</a>
-                                            <a id="nextbtn32" href="javascript:void(0);" class="common-btn common-btn-b btn-light-green" style="width:190px;">下一步</a>
+                                            <a id="prebtn2" href="javascript:void(0);" class="common-btn common-btn-m btn-orange" style="width:250px;margin-right:35px;">上一步</a>
+                                            <a id="nextbtn32" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:250px;">下一步</a>
                                         </div>
                                     </div>
                                 </div>
@@ -596,7 +578,7 @@
                                         <label>&nbsp;</label>
                                         <div class="sign-right-cont">
                                             <a id="prebtn31" href="javascript:void(0);" class="common-btn common-btn-b btn-orange" style="width:190px;margin-right:35px;">上一步</a>
-                                            <a id="nextbtn33" href="javascript:void(0);" class="common-btn common-btn-b btn-light-green" style="width:190px;">下一步</a>
+                                            <a id="nextbtn33" href="javascript:void(0);" class="common-btn common-btn-b btn-green" style="width:190px;">下一步</a>
                                         </div>
                                     </div>
                                     -->
@@ -627,7 +609,7 @@
                                         <label>&nbsp;</label>
                                         <div class="sign-right-cont">
                                             <a id="prebtn31" href="javascript:void(0);" class="common-btn common-btn-b btn-orange" style="width:190px;margin-right:35px;">上一步</a>
-                                            <a id="nextbtn33" href="javascript:void(0);" class="common-btn common-btn-b btn-light-green" style="width:190px;">下一步</a>
+                                            <a id="nextbtn33" href="javascript:void(0);" class="common-btn common-btn-b btn-green" style="width:190px;">下一步</a>
                                         </div>
                                     </div>
                                     -->
@@ -655,8 +637,8 @@
                                     <div class="sign-item clearfix" style="margin-top:35px;">
                                         <label>&nbsp;</label>
                                         <div class="sign-right-cont">
-                                            <a id="prebtn31" href="javascript:void(0);" class="common-btn common-btn-b btn-orange" style="width:190px;margin-right:35px;">上一步</a>
-                                            <a id="nextbtn33" href="javascript:void(0);" class="common-btn common-btn-b btn-light-green" style="width:190px;">下一步</a>
+                                            <a id="prebtn31" href="javascript:void(0);" class="common-btn common-btn-m btn-orange" style="width:250px;margin-right:35px;">上一步</a>
+                                            <a id="nextbtn33" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:250px;">下一步</a>
                                         </div>
                                     </div>
                                 </div>
@@ -711,7 +693,7 @@
                                         <label>&nbsp;</label>
                                         <div class="sign-right-cont">
                                             <a id="prebtn32" href="javascript:void(0);" class="common-btn common-btn-b btn-orange" style="width:190px;margin-right:35px;">上一步</a>
-                                            <a id="nextbtn4" href="javascript:void(0);" class="common-btn common-btn-b btn-light-green" style="width:190px;">下一步</a>
+                                            <a id="nextbtn4" href="javascript:void(0);" class="common-btn common-btn-b btn-green" style="width:190px;">下一步</a>
                                         </div>
                                     </div>
                                 </div>
@@ -732,15 +714,16 @@
 
 	<!--第四步-->
 	<div id="step4" class="ui-main" style="display:none;">
-    	<div class="ui-wrap w1000">
+    	<div class="ui-wrap ">
         	<div class="sign-main-box">
                 <div class="sign-step-main sign-step4">
-                    <div class="sign-step-box"></div>
-                    <div class="sign-step-text clearfix">
-                        <p class="step-p step-p1">与商户合作</p>
-                        <p class="step-p step-p2">提交套餐信息</p>
-                        <p class="step-p step-p3">提交个人信息</p>
-                        <p class="step-p step-p4">上传资料</p>
+                    <div class="sign-step-box">
+                    	<ul class="sign-step-ul clearfix">
+                        	<li class="step-item step-one">与合作客户签约</li>
+                            <li class="step-item step-two">提交套餐信息</li>
+                            <li class="step-item step-three">提交个人信息</li>
+                            <li class="step-item step-four">上传资料</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="commit-inf-box">
@@ -751,7 +734,7 @@
                             	<h1 class="upload-inf-title"><em>*</em>1.身份证<span>(身份证正反面+手持身份证照片)</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a id="img_0" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a id="img_0" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
                                         <input type="file" style="display:none;" name="orderMaterialFile" id="orderMaterialFile" />
                                     </label>
                                     <div id="imgdiv_0" class="upload-inf-right">
@@ -782,7 +765,7 @@
                             	<h1 class="upload-inf-title"><em>*</em>2.房产证明<span>(房产证名字需与借款人名字一致（如房产证名字是申请人爱人，需要提供结婚证明）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a id="img_1" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a id="img_1" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
                                        </label>
                                     <div id="imgdiv_1" class="upload-inf-right">
 					    <!--
@@ -808,7 +791,7 @@
                             	</p>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a id="img_2" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a id="img_2" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
 
                                     </label>
                                     <div id="imgdiv_2" class="upload-inf-right"></div>
@@ -818,7 +801,7 @@
                             	<h1 class="upload-inf-title"><em>*</em>4.工作证明<span>（人事部门开具的在职证明+社保卡）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a id="img_3" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a id="img_3" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
 
                                     </label>
                                     <div id="imgdiv_3" class="upload-inf-right"></div>
@@ -828,7 +811,7 @@
                             	<h1 class="upload-inf-title"><em>*</em>5.收入证明<span>（近6个月与工资收入相关的银行流水+银行卡正反面照片）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a id="img_4" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a id="img_4" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
 
                                     </label>
                                     <div id="imgdiv_4" class="upload-inf-right"></div>
@@ -843,7 +826,7 @@
                             	<h1 class="upload-inf-title"><em>*</em>1.结婚证/单身证明<span>不超过5张</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a  id="img_5" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a  id="img_5" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
 
                                     </label>
                                     <div id="imgdiv_5" class="upload-inf-right"></div>
@@ -853,7 +836,7 @@
                             	<h1 class="upload-inf-title"><em>*</em>2.连带责任人身份证照片<span>（正反面）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a  id="img_6" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a  id="img_6" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
 
                                     </label>
                                     <div id="imgdiv_6" class="upload-inf-right"></div>
@@ -863,7 +846,7 @@
                             	<h1 class="upload-inf-title"><em>*</em>3.企业用户营业执照照片<span>（不超过5辆）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a  id="img_7" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a  id="img_7" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
 
                                     </label>
                                     <div id="imgdiv_7" class="upload-inf-right"></div>
@@ -873,7 +856,7 @@
                             	<h1 class="upload-inf-title"><em>*</em>4.企业用户组织结构代码证<span>（不超过5张）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a id="img_8"  href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a id="img_8"  href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
 
                                     </label>
                                     <div id="imgdiv_8" class="upload-inf-right"></div>
@@ -883,7 +866,7 @@
                             	<h1 class="upload-inf-title"><em>*</em>5.企业用户税务登记证<span>不超过5张</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a id="img_9" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a id="img_9" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
 
                                     </label>
                                     <div id="imgdiv_9" class="upload-inf-right"></div>
@@ -893,7 +876,7 @@
                             	<h1 class="upload-inf-title"><em>*</em>6.企业用户企业经营场所照片<span>不超过5张</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
-                                    	<a id="img_10" href="javascript:void(0)" onclick="" class="common-btn btn-light-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
+                                    	<a id="img_10" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
 
                                     </label>
                                     <div id="imgdiv_10" class="upload-inf-right"></div>
@@ -901,8 +884,8 @@
                             </li>
                         </ul>
                         <div class="btn-box" style="margin-top:35px">
-                        	<a id="prebtn3" href="javascript:void(0);" class="common-btn common-btn-b btn-orange" style="width:190px; margin-right:35px;">上一步</a>
-                            <a id="nextbtn5" href="javascript:void(0);" class="common-btn common-btn-b btn-green" style="width:190px;">确认提交</a>
+                        	<a id="prebtn3" href="javascript:void(0);" class="common-btn common-btn-b btn-orange" style="width:250px; margin-right:35px;">上一步</a>
+                            <a id="nextbtn5" href="javascript:void(0);" class="common-btn common-btn-b btn-green" style="width:250px;">确认提交</a>
                         </div>
                     </div>
                 </div>
@@ -912,7 +895,7 @@
 
 	<!--第五步-->
 	 <div id="step5" class="ui-main" style="display:none;">
-    	<div class="ui-wrap w1000">
+    	<div class="ui-wrap ">
         	<div class="sign-main-box">
                 <div class="sign-step-main sign-step4">
                     <div class="sign-step-box"></div>
@@ -994,6 +977,37 @@
 	<script src="libs/idcard.js"></script>
 	<script src="libs/ajaxfileupload.js"></script>
 	<script src="js/mystaging.js"></script>
+    <script type="text/javascript">
+    	function tabChangeClick(obj,targetId){
+			if(typeof obj === 'undefined' || typeof targetId === 'undefined') return;
+			if($(obj).hasClass('selected')) return;
+			$(obj).siblings('.service-tap-item').removeClass('selected').end().addClass('selected');
+			$('.service-tap-box dl dd').fadeOut(100);
+			$(targetId).fadeIn(100);
+		}
+    </script>
+    <script type="text/javascript">
+		//选择分期期数点击效果
+		$(function(){
+			$('.selection-period-ul li').click(function(){
+				$('.selection-period-ul li').removeClass('selected');
+				$(this).siblings('li').find('.rate-period').fadeOut(100);
+				$(this).addClass('selected');
+				$(this).find('.rate-period').fadeIn(100);
+			});
+			$('.selection-period-ul li').hover(function(){
+				$(this).find('.rate-period').fadeIn(100);
+			},function(){
+				if(!$(this).hasClass('selected')){
+					$(this).find('.rate-period').fadeOut(100);
+				}
+			});
+			//商标logo选择效果
+			$('.select-brand-box .select-brand-item').click(function(){
+				$(this).siblings('.select-brand-item').removeClass('selected').end().addClass('selected');
+			})
+		})
+	</script>
 </body>
 </html>
 
