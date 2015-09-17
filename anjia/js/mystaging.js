@@ -1039,7 +1039,7 @@ $(function(){
 			}
 		}
 		else{
-			g.uploadMark[g.uploadIndex + 1] = 1;
+			g.uploadMark[g.uploadIndex + 2] = 1;
 		}
 	}
 
@@ -1078,7 +1078,7 @@ $(function(){
 						}
 					}
 					else{
-						g.uploadMark[index + 1] = 0;
+						g.uploadMark[index + 2] = 0;
 					}
 				}
 				else{
@@ -1396,7 +1396,7 @@ $(function(){
 				}
 			}
 			else{
-				g.uploadMark[uploadIndex + 1] = 1;
+				g.uploadMark[uploadIndex + 2] = 1;
 			}
 		}
 	}
