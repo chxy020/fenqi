@@ -269,19 +269,23 @@
 	background-position:0px -50px;
 }
 .sign-step-main.sign-step1 .step-item.step-one{
-	background-position-y:0px;
+	background-position:0px 0px;
 	color:#fff;
 }
 .sign-step-main.sign-step2 .step-item.step-one,.sign-step-main.sign-step2 .step-item.step-two{
-	background-position-y:0px;
+	background-position:-309px 0px;
 	color:#fff;
 }
 .sign-step-main.sign-step3 .step-item.step-one,.sign-step-main.sign-step3 .step-item.step-two,.sign-step-main.sign-step3 .step-item.step-three{
-	background-position-y:0px;
+	background-position:-309px 0px;
 	color:#fff;
 }
 .sign-step-main.sign-step4 .step-item.step-one,.sign-step-main.sign-step4 .step-item.step-two,.sign-step-main.sign-step4 .step-item.step-three,.sign-step-main.sign-step4 .step-item.step-four{
-	background-position-y:0px;
+	background-position:-309px 0px;
+	color:#fff;
+}
+.sign-step-main.sign-step1 .step-item.step-one,.sign-step-main.sign-step2 .step-item.step-one,.sign-step-main.sign-step3 .step-item.step-one,.sign-step-main.sign-step4 .step-item.step-one{
+	background-position:0px 0px;
 	color:#fff;
 }
 .sign-item-box{
