@@ -71,58 +71,56 @@
 				<div class="sign-item clearfix">
 					<label><em>*</em>发卡银行</label>
 					<div class="sign-right-cont">
-						<select id="fenQiTimes" class="common-select" style="width:413px;">
+						<select id="bankCode" class="common-select" style="width:413px;">
 						   <option value=0 >请选择发卡银行</option>
-							<option value=1 >建设银行</option>
-							<option value=2 >招商银行</option>
-							<option value=3 >农业银行</option>
 						</select>
 					</div>
 				</div>
 				<div class="sign-item clearfix">
 					<label><em>*</em>姓名</label>
 					<div class="sign-right-cont">
-						<input id="contractNo" type="text" placeholder="请输入姓名" class="common-input-text" style="width:380px;vertical-align:middle;" />
+						<input id="username" type="text" placeholder="请输入姓名" class="common-input-text" style="width:380px;vertical-align:middle;" />
 						<span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
 					</div>
 				</div>
 				<div class="sign-item clearfix">
 					<label><em>*</em>身份证号</label>
 					<div class="sign-right-cont">
-						<input id="contractNo" type="text" placeholder="请输入姓名" class="common-input-text" style="width:380px;vertical-align:middle;" />
+						<input id="idcardno" type="text" placeholder="请输入姓名" class="common-input-text" style="width:380px;vertical-align:middle;" />
 						<span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
 					</div>
 				</div>
 				<div class="sign-item clearfix">
 					<label><em>*</em>银行卡号</label>
 					<div class="sign-right-cont">
-						<input id="contractNo" type="text" placeholder="请输入银行卡号" class="common-input-text" style="width:380px;vertical-align:middle;" />
+						<input id="cardno" type="text" placeholder="请输入银行卡号" class="common-input-text" style="width:380px;vertical-align:middle;" />
 						<span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
 					</div>
 				</div>
 				<div class="sign-item clearfix">
 					<label><em>*</em>预留手机号</label>
 					<div class="sign-right-cont">
-						<input id="contractNo" type="text" placeholder="请输入预留手机号" class="common-input-text" style="width:380px;vertical-align:middle;" />
+						<input id="inputphone" type="text" placeholder="请输入预留手机号" class="common-input-text" style="width:380px;vertical-align:middle;" />
 						<span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
 					</div>
 				</div>
 				<div class="sign-item clearfix">
 					<label><em>*</em>图形验证码</label>
 					<div class="sign-right-cont">
-						<input id="contractNo" type="text" placeholder="请输入图形验证码" class="common-input-text" style="width:120px;vertical-align:middle;" />
-						<img id="imgcodebtn" src="http://123.57.95.154/imageValidate/getImageValidate?image_key=90728bda-26cd-94b0-5343-ed82d2d98444&amp;t=1442417173549" class="codebtn">
-						<span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
+						<input id="inputimgcode" type="text" placeholder="请输入图形验证码" class="common-input-text" style="width:120px;vertical-align:middle;" />
+						<span class="form-validate-tip validate-error" style="display:none;margin-left: 140px;position: absolute;margin-top: 10px;"><i class="common-ico validate-ico"></i>不能为空</span>
+						<img id="imgcodebtn" src="" class="codebtn">
 					</div>
 				</div>
 				<div class="sign-item clearfix">
 					<label><em>*</em>短信验证码</label>
 					<div class="sign-right-cont">
-						<input id="contractNo" type="text" placeholder="请输入短信验证码" class="common-input-text" style="width:120px;vertical-align:middle;" />
+						<input id="validcode" type="text" placeholder="请输入短信验证码" class="common-input-text" style="width:120px;vertical-align:middle;" />
+						<span class="form-validate-tip validate-error" style="display:none;margin-left: 140px;position: absolute;margin-top: 10px;"><i class="common-ico validate-ico"></i>不能为空</span>
 						<input id="getcodebtn" type="button" class="common-btn btn-green" value="发送验证码" style="width:112px;margin-left:10px;">
 					</div>
 				</div>
-				<div class="sign-item clearfix">
+				<div class="sign-item clearfix" style="display:none;">
 					<label><em>*</em>燕子安家宝令</label>
 					<div class="sign-right-cont">
 						<input id="" type="text" placeholder="请输入宝令" class="common-input-text" style="width:380px;vertical-align:middle;" />
@@ -133,7 +131,7 @@
 				<div class="sign-item clearfix" style="margin-top:55px;">
 					<label>&nbsp;</label>
 					<div class="sign-right-cont">
-						 <a id="" href="card-pay.html" class="common-btn common-btn-m btn-green" style="width:250px;">同意协议并绑定</a>
+						 <a id="bindcardbtn" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:250px;">同意协议并绑定</a>
 					</div>
 				</div>
 			</div>
@@ -193,7 +191,20 @@
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
 	<script src="libs/idcard.js"></script>
-	<script src="libs/ajaxfileupload.js"></script>
+	<script src="js/bindcard.js"></script>
+	<!--BAIDU定位JS 开始-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+	<script type="text/javascript">
+	$(function(){
+		// 百度地图API功能
+		function myFun(result){
+			var cityName = result.name;
+			$("#curCity").html(cityName);
+		}
+		var myCity = new BMap.LocalCity();
+		myCity.get(myFun);
+	});
+	</script>
 </body>
 </html>
 

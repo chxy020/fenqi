@@ -69,7 +69,7 @@
         	<div class="sign-main-box">
                 <div class="commit-inf-box">
                 	<div class="result-box">
-                    	<i class="common-ico ico-sucessed"></i>恭喜您，操作成功
+                    	<i class="common-ico ico-sucessed"></i>恭喜您，支付成功
                         <p>5秒后自动返回账户页面</p>
                     </div>
                 </div>
@@ -130,7 +130,20 @@
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
 	<script src="libs/idcard.js"></script>
-	<script src="libs/ajaxfileupload.js"></script>
+	<script src="js/playresult.js"></script>
+	<!--BAIDU定位JS 开始-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+	<script type="text/javascript">
+	$(function(){
+		// 百度地图API功能
+		function myFun(result){
+			var cityName = result.name;
+			$("#curCity").html(cityName);
+		}
+		var myCity = new BMap.LocalCity();
+		myCity.get(myFun);
+	});
+	</script>
 </body>
 </html>
 

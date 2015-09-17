@@ -66,40 +66,62 @@
     </div>
 	<div class="bind-card-main">
 		<div class="ui-wrap">
-			<div class="common-block-tip tip-style-orange">
-				<label style="margin-right:100px;">本金偿还金额：<em class="highlight-red">10000.00</em> 元</label>
-				分期订单编号：<em class="highlight">00115689745</em>元
+			<div id="orderinfo" class="common-block-tip tip-style-orange">
+				<label style="margin-right:100px;">本金偿还金额：<em class="highlight-red">0.00</em> 元</label>
+				分期订单编号：<em class="highlight"></em>
 			</div>
 			<div class="sign-item-box" style="margin-top:45px;">
 				<div class="sign-item clearfix">
 					<label><em>*</em>发卡银行</label>
-					<div class="sign-right-cont">
-						<div class="bank-card-inf">
-							<span class="bank-card-inf-num">****  5436</span>
-							<img src="../res/images/bank-logo.jpg" class="bank-card-inf-logo">
-						</div>
+					<div class="choose-bank-list" style="margin-left: 160px;padding-left: 5px;">
+						<ul id="mycardlist">
+							<!--
+							<li style="height: 30px;">
+								<label style="width:300px;  text-align: left;">
+									<div class="bank-card-inf selected" style="margin-left:15px;">
+										<span class="bank-card-inf-num">****  5436</span>
+										<img src="../res/images/bank-logo.jpg" class="bank-card-inf-logo" />
+									</div>
+									<input type="radio" name="2" class="common-radio" checked="checked" />
+								</label>
+							</li>
+
+							<li>
+								<label style="width:300px;  text-align: left;">
+									<div class="bank-card-inf" style="margin-left:15px;">
+										<span class="bank-card-inf-num">****  5436</span>
+										<img src="../res/images/bank-logo.jpg" class="bank-card-inf-logo" />
+									</div>
+									<input type="radio" name="2" class="common-radio" />
+								</label>
+							</li>
+							-->
+						</ul>
+
+					</div>
+					<div class="sign-right-cont" style="margin-top: 15px;">
 						<a class="a-link" href="bind-card.html">更换支付方式</a>
 					</div>
 				</div>
 				<div class="sign-item clearfix">
 					<label><em>*</em>图形验证码</label>
 					<div class="sign-right-cont">
-						<input id="contractNo" type="text" placeholder="请输入图形验证码" class="common-input-text" style="width:206px;vertical-align:middle;" />
-						<img id="imgcodebtn" src="http://123.57.95.154/imageValidate/getImageValidate?image_key=90728bda-26cd-94b0-5343-ed82d2d98444&amp;t=1442417173549" class="codebtn">
+						<input id="inputimgcode" type="text" placeholder="请输入图形验证码" class="common-input-text" style="width:206px;vertical-align:middle;" />
+						<img id="imgcodebtn" src="" class="codebtn">
 						<span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
 					</div>
 				</div>
 				<div class="sign-item clearfix">
 					<label><em>*</em>短信验证码</label>
 					<div class="sign-right-cont">
-						<input id="contractNo" type="text" placeholder="请输入短信验证码" class="common-input-text" style="width:206px;vertical-align:middle;" />
+						<input id="validcode" type="text" placeholder="请输入短信验证码" class="common-input-text" style="width:206px;vertical-align:middle;" />
 						<input id="getcodebtn" type="button" class="common-btn btn-green" value="发送验证码" style="width:112px;margin-left:10px;">
 					</div>
 				</div>
 				<div class="sign-item clearfix" style="margin-top:55px;">
 					<label>&nbsp;</label>
 					<div class="sign-right-cont">
-						 <a id="nextbtn3" href="result-page.html" class="common-btn common-btn-m btn-green" style="width:200px;">确认支付</a>
+						 <a id="enterbtn" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:200px;">确认支付</a>
 					</div>
 				</div>
 			</div>
@@ -159,7 +181,20 @@
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
 	<script src="libs/idcard.js"></script>
-	<script src="libs/ajaxfileupload.js"></script>
+	<script src="js/cardplay.js"></script>
+	<!--BAIDU定位JS 开始-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+	<script type="text/javascript">
+	$(function(){
+		// 百度地图API功能
+		function myFun(result){
+			var cityName = result.name;
+			$("#curCity").html(cityName);
+		}
+		var myCity = new BMap.LocalCity();
+		myCity.get(myFun);
+	});
+	</script>
 </body>
 </html>
 

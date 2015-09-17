@@ -604,7 +604,7 @@ $(function(){
 		html.push('</tr>');
 		html.push('</table>');
 		html.push('<div class="btn-box">');
-		html.push('<input type="button" class="common-btn btn-light-green" value="确认还款" onclick="confirmRepayment(\'' + repaymentRecordId + '\')" />');
+		html.push('<input type="button" class="common-btn btn-light-green" value="确认还款" onclick="confirmRepayment(\'' + repaymentRecordId + '\',' + yinghuanjine + ')" />');
 		html.push('<input type="button" class="common-btn btn-grey" value="取消" onclick="hidePop()" />');
 		html.push('</div>');
 
@@ -612,12 +612,50 @@ $(function(){
 		showOrderPop('#payBackPop');
 	}
 
-	function confirmRepayment(repaymentRecordId){
+	function confirmRepayment(repaymentRecordId,yinghuanjine){
+		//先判断用户有没有判定银行卡
+		sendIsExistBindBankCardHttp(repaymentRecordId,yinghuanjine);
+
+		//~ g.httpTip.show();
+		//~ var url = Base.serverUrl + "order/repaymentDoneByRepaymentRecordId";
+		//~ var condi = {};
+		//~ condi.repaymentRecordId = repaymentRecordId;
+		//~ condi.login_token = g.login_token;
+		//~ $.ajax({
+			//~ url:url,
+			//~ data:condi,
+			//~ type:"POST",
+			//~ dataType:"json",
+			//~ context:this,
+			//~ success: function(data){
+				//~ console.log("confirmRepayment",data);
+				//~ var status = data.success || false;
+				//~ if(status){
+					//~ hidePop();
+					//~ Utils.alert("还款成功");
+					//~ getUserOrderStagingList();
+					//~ //changeOrderStagingListHtml(data);
+				//~ }
+				//~ else{
+					//~ var msg = data.message || "还款失败";
+					//~ Utils.alert(msg);
+				//~ }
+				//~ g.httpTip.hide();
+			//~ },
+			//~ error:function(data){
+				//~ g.httpTip.hide();
+			//~ }
+		//~ });
+	}
+
+
+	function sendIsExistBindBankCardHttp(repaymentRecordId,yinghuanjine){
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/repaymentDoneByRepaymentRecordId";
+		var url = Base.serverUrl + "payPc/isExistBindBankCard";
 		var condi = {};
-		condi.repaymentRecordId = repaymentRecordId;
+		condi.customerId = g.customerId;
 		condi.login_token = g.login_token;
+
 		$.ajax({
 			url:url,
 			data:condi,
@@ -625,17 +663,15 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("confirmRepayment",data);
+				console.log("sendIsExistBindBankCardHttp",data);
 				var status = data.success || false;
 				if(status){
-					hidePop();
-					Utils.alert("还款成功");
-					getUserOrderStagingList();
-					//changeOrderStagingListHtml(data);
+					//用户没有绑定银行卡
+					location.href = "/anjia/card-pay2.html?recordId=" + repaymentRecordId + "&p=" + yinghuanjine;
 				}
 				else{
-					var msg = data.message || "还款失败";
-					Utils.alert(msg);
+					//用户没有绑定银行卡
+					location.href = "/anjia/bind-card.html?recordId=" + repaymentRecordId + "&p=" + yinghuanjine;
 				}
 				g.httpTip.hide();
 			},
@@ -644,6 +680,7 @@ $(function(){
 			}
 		});
 	}
+
 
 	window.confirmRepayment = confirmRepayment;
 	window.repayment = repayment;
