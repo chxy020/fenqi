@@ -158,7 +158,7 @@ html{
 .common-btn-m{
 	height:50px;
 	line-height:50px;
-	font-size:22px;
+	font-size:18px;
 	border-radius:50px;
 	width:300px;
 	text-align:center;
@@ -464,6 +464,11 @@ html{
 	width:10px;
 	height:7px;
 	background-position:-106px -41px;
+}
+.common-ico.ico-green-pointer{
+	width:13px;
+	height:12px;
+	background-position:-132px -38px;
 }
 .form-validate-tip{
 	font-size:14px;
@@ -977,7 +982,29 @@ html{
 .ui-pager .pre-page{
 
 }
-
+.common-block-tip{
+	padding:20px 30px;
+	background:#f9f9f9;
+	font-size:16px;
+	color:999999;
+	line-height:24px;
+	text-align:left;
+	border:1px solid #efefef;
+}
+.common-block-tip.tip-style-orange{
+	background:#fffff5;
+	border:1px solid #fcf8b6;
+	color:#454646;
+}
+.common-block-tip em{
+	padding:0px 5px;
+}
+.common-block-tip .highlight{
+	color:#539d34;
+}
+.common-block-tip .highlight-red{
+	color:#ff503e;
+}
 /*弹窗遮罩层*/
 .pop-fade{
 	position:absolute;
@@ -1057,6 +1084,9 @@ html{
 }
 .highlight{
 	color:#539d34;
+}
+.highlight-red{
+	color:#ff503e;
 }
 .common-tap{
 	height:45px;
@@ -1316,7 +1346,7 @@ a.improve-btn:hover{
 	border-bottom:1px solid #eaeaea;
 	font-size:20px;
 	color:#454646;
-	padding:15px 0px 25px;
+	padding:15px 0px 20px;
 }
 .sub-right-cont .sub-right-text{
 	padding:15px 0px;

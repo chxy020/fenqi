@@ -248,7 +248,7 @@
 	min-height:600px;
 }
 .sign-step-main{
-	margin-bottom:25px;
+	margin-bottom:35px;
 }
 .sign-step-box{
 	height:50px;
@@ -309,6 +309,17 @@
 	font-size:16px;
 	line-height:42px;
 	padding-left:15px;
+}
+.sign-item .sign-right-cont .codebtn{
+	vertical-align:middle;
+	margin-left:10px;
+	width:112px;
+	height:40px;
+}
+.sign-item .sign-right-cont .a-link{
+	font-size:16px;
+	color:#22a6f1;
+	margin-left:20px;
 }
 .sign-item .sign-right-cont .common-checkbox{
 	margin-right:5px;
@@ -829,4 +840,79 @@
 }
 .service-tap-box dl dd{
 	display:none;
+}
+
+/*bind-card-main*/
+.bind-card-main{
+	padding:40px 0px;
+	background:#fff;
+}
+.card-pay-main{}
+.card-pay-title{
+	font-size:20px;
+	border-bottom:1px solid #e5e5e5;
+	padding-left:20px;
+	margin-top:30px;
+	height:50px;
+	line-height:50px;
+}
+.card-block-div{
+	padding:25px 30px ;
+	font-size:16px;
+	color:#454646;
+	background:#f9f9f9;
+	margin:25px 0px;
+}
+.card-block-div .card-block-item{
+	padding:15px 0px;
+	border-bottom:1px solid #e5e5e5;
+}
+.card-block-div .card-block-item h1{
+	font-size:18px;
+	color:#111;
+	margin:10px 0px 15px;
+}
+.card-block-div .card-block-item .card-block-part{
+	margin:25px 0px;
+}
+.other-btn{
+	display:inline-block;
+	height:42px;
+	line-height:42px;
+	border:1px dashed #c8c8c8;
+	width:170px;
+	text-align:center;
+	color:#4cc51a;
+	margin-left:45px;
+}
+.other-btn:hover{
+	border-color:#4cc51a;
+	text-decoration:none;
+}
+.other-btn .common-ico{
+	margin-left:5px;
+}
+.choose-bank-list ul li{
+	padding:15px 0px;
+}
+.bank-card-inf{
+	display:inline-block;
+	height:42px;
+	line-height:42px;
+	width:236px;
+	vertical-align:middle;
+	border:1px solid #ddd;
+}
+.bank-card-inf.selected{
+	border:1px solid #4cc51a;
+}
+.bank-card-inf .bank-card-inf-num{
+	float:right;
+	color:#484848;
+	font-size:14px;
+	margin-right:10px;
+}
+.bank-card-inf .bank-card-inf-logo{
+	height:42px;
+	width:auto;
 }
