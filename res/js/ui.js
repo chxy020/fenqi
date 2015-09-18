@@ -114,9 +114,6 @@
 		insertBottomHtml:function(){
 			$('.ui-bottom').empty().load('/anjia/footer.html',function(){});
 		},
-		insertBottomTypeHtml:function(){
-			$('.ui-bottom-type').empty().load('/anjia/footer-type.html',function(){});
-		},
 		//合作商家经过函数
 		businessHoverFun:function(){
 			$('.cooperative-part').hover(function(){

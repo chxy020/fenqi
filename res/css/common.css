@@ -509,7 +509,7 @@ html{
 .w1000{
 	width:1000px;
 }
-.ui-short-head,.ui-header,.index-main1,.staging-step-main,.cooperative-business-main,.ui-bottom,.sub-page-banner,.improvement-cal-main,.staging-detai-main,.staging-rate-main,.staging-compare-main,.staging-ask-main,.ui-main,.ui-count-part,.service-step,.login-main,.ui-bottom-type,.index-slide{
+.ui-short-head,.ui-header,.index-main1,.staging-step-main,.cooperative-business-main,.ui-bottom,.sub-page-banner,.improvement-cal-main,.staging-detai-main,.staging-rate-main,.staging-compare-main,.staging-ask-main,.ui-main,.ui-count-part,.service-step,.login-main,.ui-bottom,.index-slide{
 	min-width:1200px;
 }
 .ui-short-head{
@@ -1060,27 +1060,6 @@ html{
 	color:#333;
 	padding-bottom:15px;
 	border-bottom:1px solid #669900;
-}
-/*bottom-style1*/
-.ui-bottom-type{
-	padding:30px 0px 60px;
-	background:#ececec;
-	border-top:1px solid #d0d0d0;
-}
-.ui-bottom-type p{
-	margin:15px 0px;
-	text-align:center;
-	color:#72797d;
-	font-size:14px;
-}
-.ui-bottom-type p a{
-	color:#72797d;
-	font-size:14px;
-	margin:0px 15px;
-}
-.ui-bottom-type p a:hover{
-	color:#555;
-	text-decoration:none;
 }
 .highlight{
 	color:#539d34;
