@@ -22,6 +22,11 @@
 	border-left:1px solid #eaeaea;
 	padding-left:70px;
 }
+.bind-s-c{
+	padding:15px 15px 50px;
+	border:1px solid #eaeaea;
+	margin-top:35px;
+}
 /*end*/
 .personal-top{
 	padding:0px 15px 15px;
@@ -207,9 +212,9 @@
 }
 .opreate-title-tip{
 	color:#999;
-	font-size:16px;
-	padding-top:25px;
-	margin-left:250px;
+	font-size:14px;
+	margin-left:15px;
+	margin-bottom:55px;
 }
 .opreate-title{
 	font-size:20px;
@@ -241,7 +246,7 @@
 	margin-top:10px;
 }
 .bind-phone-main{
-	margin-left:100px;
+	margin-left:143px;
 }
 .bind-result-box{
 	padding:100px 0px 100px;
