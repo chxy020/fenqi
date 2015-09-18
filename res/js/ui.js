@@ -139,7 +139,6 @@
 $(function(){
 	$.fn.selectArea();
 	$.fn.insertBottomHtml();
-	$.fn.insertBottomTypeHtml();
 	$('.common-radio').yyptRadio();
 	$('.common-checkbox').yyptCheckbox();
 })
