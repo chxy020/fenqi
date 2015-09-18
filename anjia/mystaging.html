@@ -163,7 +163,7 @@
                     <div class="sign-step-box">
                     	<ul class="sign-step-ul clearfix">
                         	<li class="step-item step-one">与合作客户签约</li>
-                            <li class="step-item step-two">提交套餐信息</li>
+                            <li class="step-item step-two">提交装修信息</li>
                             <li class="step-item step-three">提交个人信息</li>
                             <li class="step-item step-four">上传资料</li>
                         </ul>
@@ -198,7 +198,7 @@
                     <div class="sign-step-box">
                     	<ul class="sign-step-ul clearfix">
                         	<li class="step-item step-one">与合作客户签约</li>
-                            <li class="step-item step-two">提交套餐信息</li>
+                            <li class="step-item step-two">提交装修信息</li>
                             <li class="step-item step-three">提交个人信息</li>
                             <li class="step-item step-four">上传资料</li>
                         </ul>
@@ -206,7 +206,7 @@
                 </div>
                 <div class="sign-item-box">
                     <div class="sign-item clearfix">
-                        <label><em>*</em>合同编号</label>
+                        <label>合同编号</label>
                         <div class="sign-right-cont">
                             <input id="contractNo" type="text" placeholder="请输入合同编号" class="common-input-text" style="width:380px;vertical-align:middle;" />
                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
@@ -224,14 +224,14 @@
                     <div class="sign-item clearfix">
                         <label><em>*</em>合同总金额</label>
                         <div class="sign-right-cont">
-                            <input id="contractMoney" type="text" placeholder="请输入合同总金额" class="common-input-text" style="width:380px;" />
+                            <input id="contractMoney" type="text" maxlength=7 placeholder="请输入合同总金额" class="common-input-text" style="width:380px;" />
                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
                         </div>
                     </div>
                     <div class="sign-item clearfix">
                         <label><em>*</em>分期金额</label>
                         <div class="sign-right-cont">
-                            <input id="packageMoney" type="text" placeholder="请输入分期金额" class="common-input-text" style="width:380px;" />
+                            <input id="packageMoney" type="text" maxlength=7 placeholder="请输入分期金额" class="common-input-text" style="width:380px;" />
                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
                         </div>
                     </div>
@@ -291,7 +291,7 @@
                     <div class="sign-step-box">
                     	<ul class="sign-step-ul clearfix">
                         	<li class="step-item step-one">与合作客户签约</li>
-                            <li class="step-item step-two">提交套餐信息</li>
+                            <li class="step-item step-two">提交装修信息</li>
                             <li class="step-item step-three">提交个人信息</li>
                             <li class="step-item step-four">上传资料</li>
                         </ul>
@@ -304,13 +304,11 @@
                                 <a href="javascript:void(0)">个人信息</a>
                             </li>
                             <li id="tab1">
+                                <a href="javascript:void(0)">工作信息</a>
+                            </li>
+                            <li id="tab2">
                                 <a href="javascript:void(0)">联系人信息</a>
                             </li>
-                            <!--
-                            <li id="tab2">
-                                <a href="javascript:void(0)">连带责任人信息</a>
-                            </li>
-                            -->
                         </ul>
                     </div>
 
@@ -402,8 +400,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--
-                            <div class="common-tap-title">工作信息<em>（本申请表所填写的各项信息是能否获批分期及核定金额的重要依据，务必仔细，严谨，如实填写。）</em></div>
+
+                                    <div class="sign-item clearfix" style="margin-top:35px;">
+                                        <label>&nbsp;</label>
+                                        <div class="sign-right-cont">
+                                            <a id="prebtn2" href="javascript:void(0);" class="common-btn common-btn-m btn-orange" style="width:250px;margin-right:35px;">上一步</a>
+                                            <a id="nextbtn32" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:250px;">下一步</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+				<div id="step32" class="common-tap-detail" style="display:none;">
+					  <div class="common-tap-title">工作信息<em>（本申请表所填写的各项信息是能否获批分期及核定金额的重要依据，务必仔细，严谨，如实填写。）</em></div>
                             <div class="common-tap-box">
                                 <div class="sign-item-box">
                                     <div class="sign-item clearfix">
@@ -477,25 +487,37 @@
                                     <div class="sign-item clearfix">
                                         <label><em>*</em>税后月收入</label>
                                         <div class="sign-right-cont">
-                                            <input id="applicantWages" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">&nbsp;&nbsp;<span>元</span>
-                                            <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
-
+                                            <input id="applicantWages" type="text" maxlength=7 class="common-input-text" style="width:380px;vertical-align:middle;">
+                                            <span class="form-validate-tip validate-error" style="display:none;  position: absolute;margin: 10px 0px 0px 30px;"><i class="common-ico validate-ico"></i>不能为空</span>
+						&nbsp;&nbsp;<span>元</span>
                                         </div>
                                     </div>
-                                    -->
-                                    <div class="sign-item clearfix" style="margin-top:35px;">
+
+				  <div class="sign-item clearfix" style="margin-top:35px;">
                                         <label>&nbsp;</label>
                                         <div class="sign-right-cont">
-                                            <a id="prebtn2" href="javascript:void(0);" class="common-btn common-btn-m btn-orange" style="width:250px;margin-right:35px;">上一步</a>
-                                            <a id="nextbtn32" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:250px;">下一步</a>
+                                            <a id="prebtn31" href="javascript:void(0);" class="common-btn common-btn-m btn-orange" style="width:250px;margin-right:35px;">上一步</a>
+                                            <a id="nextbtn33" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:250px;">下一步</a>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
 
-				<div id="step32" class="common-tap-detail" style="display:none;">
-            			<div class="common-tip">您填写的联系人信息越全面，越快审批。</div>
+
+
+
+                    </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+			<!--第三步3-->
+			<div id="step33" class="common-tap-detail" style="display:none;">
+				<div class="common-tip">您填写的联系人信息越全面，越快审批。</div>
                         <div class="common-tap-item" id="contact-person-inf">
                             <div class="common-tap-title">亲属一</div>
                             <div class="common-tap-box">
@@ -657,26 +679,17 @@
                                     <div class="sign-item clearfix" style="margin-top:35px;">
                                         <label>&nbsp;</label>
                                         <div class="sign-right-cont">
-                                            <a id="prebtn31" href="javascript:void(0);" class="common-btn common-btn-m btn-orange" style="width:250px;margin-right:35px;">上一步</a>
-                                            <a id="nextbtn33" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:250px;">下一步</a>
+                                            <a id="prebtn32" href="javascript:void(0);" class="common-btn common-btn-b btn-orange" style="width:190px;margin-right:35px;">上一步</a>
+                                            <a id="nextbtn4" href="javascript:void(0);" class="common-btn common-btn-b btn-green" style="width:190px;">下一步</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                    </div>
 
 
-
-                        </div>
-                    </div>
-
-
-
-
-			<!--第三步3-->
-			<div id="step33" class="common-tap-detail" style="display:none;">
+			<!--
                         <div class="common-tap-item" id="contact-person-inf">
                             <div class="common-tap-box">
                                 <div class="sign-item-box">
@@ -727,6 +740,9 @@
                                 </div>
                             </div>
                         </div>
+			-->
+
+
                     </div>
 
 
@@ -751,7 +767,7 @@
                     <div class="sign-step-box">
                     	<ul class="sign-step-ul clearfix">
                         	<li class="step-item step-one">与合作客户签约</li>
-                            <li class="step-item step-two">提交套餐信息</li>
+                            <li class="step-item step-two">提交装修信息</li>
                             <li class="step-item step-three">提交个人信息</li>
                             <li class="step-item step-four">上传资料</li>
                         </ul>
@@ -863,6 +879,7 @@
                                     <div id="imgdiv_5" class="upload-inf-right"></div>
                                 </div>
                             </li>
+                            <!--
                             <li>
                             	<h1 class="upload-inf-title">2.连带责任人身份证照片<span>（正反面）</span></h1>
                                 <div class="upload-inf-box clearfix">
@@ -873,8 +890,9 @@
                                     <div id="imgdiv_6" class="upload-inf-right"></div>
                                 </div>
                             </li>
+                            -->
                             <li>
-                            	<h1 class="upload-inf-title">3.企业用户营业执照照片<span>（不超过5辆）</span></h1>
+                            	<h1 class="upload-inf-title">2.企业用户营业执照照片<span>（不超过5辆）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
                                     	<a  id="img_7" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
@@ -884,7 +902,7 @@
                                 </div>
                             </li>
                             <li>
-                            	<h1 class="upload-inf-title">4.企业用户组织结构代码证<span>（不超过5张）</span></h1>
+                            	<h1 class="upload-inf-title">3.企业用户组织结构代码证<span>（不超过5张）</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
                                     	<a id="img_8"  href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
@@ -894,7 +912,7 @@
                                 </div>
                             </li>
                             <li>
-                            	<h1 class="upload-inf-title">5.企业用户税务登记证<span>不超过5张</span></h1>
+                            	<h1 class="upload-inf-title">4.企业用户税务登记证<span>不超过5张</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
                                     	<a id="img_9" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
@@ -904,7 +922,7 @@
                                 </div>
                             </li>
                             <li>
-                            	<h1 class="upload-inf-title">6.企业用户企业经营场所照片<span>不超过5张</span></h1>
+                            	<h1 class="upload-inf-title">5.企业用户企业经营场所照片<span>不超过5张</span></h1>
                                 <div class="upload-inf-box clearfix">
                                 	<label>
                                     	<a id="img_10" href="javascript:void(0)" onclick="" class="common-btn btn-green upload-btn"><i class="common-ico ico-upload"></i>上传</a>
@@ -932,7 +950,7 @@
                     <div class="sign-step-box">
                     	<ul class="sign-step-ul clearfix">
                         	<li class="step-item step-one">与合作客户签约</li>
-                            <li class="step-item step-two">提交套餐信息</li>
+                            <li class="step-item step-two">提交装修信息</li>
                             <li class="step-item step-three">提交个人信息</li>
                             <li class="step-item step-four">上传资料</li>
                         </ul>

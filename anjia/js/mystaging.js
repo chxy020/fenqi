@@ -59,8 +59,6 @@ $(function(){
 	$("#perbtn1").bind("click",preBtnUp1);
 	$("#nextbtn3").bind("click",nextBtnUp3);
 
-	$("#contractNo").bind("blur",validNoEmpty);
-
 	$("#userinfotab li").bind("click",userInfoTabChange);
 	$("#prebtn2").bind("click",preBtnUp2);
 	$("#nextbtn32").bind("click",nextBtnUp32);
@@ -82,7 +80,7 @@ $(function(){
 	});
 
 
-	$("#contractNo").bind("blur",validNoEmpty);
+	//$("#contractNo").bind("blur",validNoEmpty);
 	$("#contractMoney").bind("blur",validNoEmpty);
 	$("#contractMoney").bind("blur",validIsNumber);
 
@@ -97,11 +95,12 @@ $(function(){
 	$("#applicantAddress").bind("blur",validNoEmpty);
 	$("#applicantSchool").bind("blur",validNoEmpty);
 	$("#applicantMajor").bind("blur",validNoEmpty);
-	//$("#applicantCompany").bind("blur",validNoEmpty);
-	//$("#applicantCompanyAddress").bind("blur",validNoEmpty);
-	//$("#applicantCompanyPhone").bind("blur",validNoEmpty);
-	//$("#applicantWages").bind("blur",validNoEmpty);
-	//$("#applicantWages").bind("blur",validIsNumber);
+
+	$("#applicantCompany").bind("blur",validNoEmpty);
+	$("#applicantCompanyAddress").bind("blur",validNoEmpty);
+	$("#applicantCompanyPhone").bind("blur",validNoEmpty);
+	$("#applicantWages").bind("blur",validNoEmpty);
+	$("#applicantWages").bind("blur",validIsNumber);
 
 	$("#familyName").bind("blur",validNoEmpty);
 	$("#familyPhone").bind("blur",validNoEmpty);
@@ -426,7 +425,7 @@ $(function(){
 				//获取订单编号
 				sendGetOrderIdHttp();
 			}
-			window.scrollTo(0,830);
+			window.scrollTo(0,170);
 		}
 		else{
 			location.href = "/anjia/login.html";
@@ -541,47 +540,47 @@ $(function(){
 		packageType = ptype[0] || "";
 		var companyId = ptype[1] || "";
 
-		if(sendValidNoEmpty(contractNo,$("#contractNo"))){
-			if(!sendValidNoEmpty(contractMoney,$("#contractMoney"))){
-				return;
-			}
-			if(!sendValidIsNumber(contractMoney,$("#contractMoney"))){
-				return;
-			}
-			if((packageMoney - 0) > (contractMoney - 0)){
-				var next = $("#packageMoney").next();
-				$(next).html('<i class="common-ico validate-ico"></i>分期金额必须小于总金额');
-				$(next).removeClass("validate-success");
-				$(next).addClass("validate-error");
-				$(next).show();
-				return;
-			}
+		//if(sendValidNoEmpty(contractNo,$("#contractNo"))){}
+		if(!sendValidNoEmpty(contractMoney,$("#contractMoney"))){
+			return;
+		}
+		if(!sendValidIsNumber(contractMoney,$("#contractMoney"))){
+			return;
+		}
+		if((packageMoney - 0) > (contractMoney - 0)){
+			var next = $("#packageMoney").next();
+			$(next).html('<i class="common-ico validate-ico"></i>分期金额必须小于总金额');
+			$(next).removeClass("validate-success");
+			$(next).addClass("validate-error");
+			$(next).show();
+			return;
+		}
 
-			if(sendValidNoEmpty(packageMoney,$("#packageMoney"))){
-				if(sendValidIsNumber(packageMoney,$("#packageMoney"))){
-					if(agreeck){
-						var condi = {};
-						condi.login_token = g.login_token;
-						condi.customerId = g.customerId;
-						condi.orderId = g.orderId;
-						condi.contractNo = contractNo;
-						condi.packageName = packageName;
-						condi.packageType = packageType;
-						condi.companyId = companyId;
-						condi.contractMoney = contractMoney;
-						condi.packageMoney = packageMoney;
-						condi.fenQiTimes = g.stagnum;
-						condi.poundage =  g.poundage;
-						condi.repaymentType = g.repaymentType;
-						condi.moneyMonth = g.moneyMonth;
-						sendSetOrderPackageHttp(condi);
-					}
-					else{
-						Utils.alert("请勾选同意借款服务协议");
-					}
+		if(sendValidNoEmpty(packageMoney,$("#packageMoney"))){
+			if(sendValidIsNumber(packageMoney,$("#packageMoney"))){
+				if(agreeck){
+					var condi = {};
+					condi.login_token = g.login_token;
+					condi.customerId = g.customerId;
+					condi.orderId = g.orderId;
+					condi.contractNo = contractNo;
+					condi.packageName = packageName;
+					condi.packageType = packageType;
+					condi.companyId = companyId;
+					condi.contractMoney = contractMoney;
+					condi.packageMoney = packageMoney;
+					condi.fenQiTimes = g.stagnum;
+					condi.poundage =  g.poundage;
+					condi.repaymentType = g.repaymentType;
+					condi.moneyMonth = g.moneyMonth;
+					sendSetOrderPackageHttp(condi);
+				}
+				else{
+					Utils.alert("请勾选同意借款服务协议");
 				}
 			}
 		}
+
 	}
 
 	function sendSetOrderPackageHttp(condi){
@@ -601,7 +600,7 @@ $(function(){
 					$("#step2").hide();
 					$("#step3").show();
 
-					window.scrollTo(0,830);
+					window.scrollTo(0,170);
 				}
 				else{
 					//var msg = data.error || "";
@@ -659,16 +658,6 @@ $(function(){
 		var applicantMajor = $("#applicantMajor").val() || "";
 		var applicantAsset = $("[name='zcradio']:checked").val() || "";
 
-		//~ var applicantJobNature = $("[name='gzxzradio']:checked").val() || "";
-		//~ var applicantCompany = $("#applicantCompany").val() || "";
-		//~ var applicantCompanyNature = $("#applicantCompanyNature").val() || "";
-		//~ var applicantCompanyIndustry = $("#applicantCompanyIndustry").val() || "";
-		//~ var applicantDuties = $("#applicantDuties").val() || "";
-		//~ var applicantWorkYears = $("#applicantWorkYears").val() || "";
-		//~ var applicantCompanyAddress = $("#applicantCompanyAddress").val() || "";
-		//~ var applicantCompanyPhone = $("#applicantCompanyPhone").val() || "";
-		//~ var applicantWages = $("#applicantWages").val() || "";
-
 		if(!sendValidNoEmpty(applicantName,$("#applicantName"))){
 			return;
 		}
@@ -693,21 +682,7 @@ $(function(){
 		if(!sendValidNoEmpty(applicantMajor,$("#applicantMajor"))){
 			return;
 		}
-		//~ if(!sendValidNoEmpty(applicantCompany,$("#applicantCompany"))){
-			//~ return;
-		//~ }
-		//~ if(!sendValidNoEmpty(applicantCompanyAddress,$("#applicantCompanyAddress"))){
-			//~ return;
-		//~ }
-		//~ if(!sendValidNoEmpty(applicantCompanyPhone,$("#applicantCompanyPhone"))){
-			//~ return;
-		//~ }
-		//~ if(!sendValidNoEmpty(applicantWages,$("#applicantWages"))){
-			//~ return;
-		//~ }
-		//~ if(!sendValidIsNumber(applicantWages,$("#applicantWages"))){
-			//~ return;
-		//~ }
+
 		var condi = {};
 		condi.applicantIdentity = applicantIdentity;
 		condi.applicantName = applicantName;
@@ -726,16 +701,6 @@ $(function(){
 		condi.applicantCarNumber = 0;
 		condi.applicantCarWorth = 0;
 
-		//~ condi.applicantJobNature = applicantJobNature;
-		//~ condi.applicantCompany = applicantCompany;
-		//~ condi.applicantCompanyNature = applicantCompanyNature;
-		//~ condi.applicantCompanyIndustry = applicantCompanyIndustry;
-		//~ condi.applicantWorkYears = applicantWorkYears;
-		//~ condi.applicantDuties = applicantDuties;
-		//~ condi.applicantCompanyAddress = applicantCompanyAddress;
-		//~ condi.applicantCompanyPhone = applicantCompanyPhone;
-		//~ condi.applicantWages = applicantWages;
-
 		g.orderUserInfo = condi;
 
 		//显示三步,里面的第二步
@@ -745,7 +710,7 @@ $(function(){
 		$("#step32").show();
 		$("#step33").hide();
 
-		window.scrollTo(0,830);
+		window.scrollTo(0,170);
 	}
 
 
@@ -758,6 +723,102 @@ $(function(){
 	}
 
 	function nextBtnUp33(){
+		var applicantJobNature = $("[name='gzxzradio']:checked").val() || "";
+		var applicantCompany = $("#applicantCompany").val() || "";
+		var applicantCompanyNature = $("#applicantCompanyNature").val() || "";
+		var applicantCompanyIndustry = $("#applicantCompanyIndustry").val() || "";
+		var applicantDuties = $("#applicantDuties").val() || "";
+		var applicantWorkYears = $("#applicantWorkYears").val() || "";
+		var applicantCompanyAddress = $("#applicantCompanyAddress").val() || "";
+		var applicantCompanyPhone = $("#applicantCompanyPhone").val() || "";
+		var applicantWages = $("#applicantWages").val() || "";
+
+		if(!sendValidNoEmpty(applicantCompany,$("#applicantCompany"))){
+			return;
+		}
+		if(!sendValidNoEmpty(applicantCompanyAddress,$("#applicantCompanyAddress"))){
+			return;
+		}
+		if(!sendValidNoEmpty(applicantCompanyPhone,$("#applicantCompanyPhone"))){
+			return;
+		}
+		if(!sendValidNoEmpty(applicantWages,$("#applicantWages"))){
+			return;
+		}
+		if(!sendValidIsNumber(applicantWages,$("#applicantWages"))){
+			return;
+		}
+
+		var condi = g.orderUserInfo;
+		g.orderUserInfo.applicantJobNature = applicantJobNature;
+		g.orderUserInfo.applicantCompany = applicantCompany;
+		g.orderUserInfo.applicantCompanyNature = applicantCompanyNature;
+		g.orderUserInfo.applicantCompanyIndustry = applicantCompanyIndustry;
+		g.orderUserInfo.applicantWorkYears = applicantWorkYears;
+		g.orderUserInfo.applicantDuties = applicantDuties;
+		g.orderUserInfo.applicantCompanyAddress = applicantCompanyAddress;
+		g.orderUserInfo.applicantCompanyPhone = applicantCompanyPhone;
+		g.orderUserInfo.applicantWages = applicantWages;
+
+
+		//显示三步,里面的第三步
+		$("#userinfotab li").removeClass("selected");
+		$("#tab2").addClass("selected");
+		$("#step31").hide();
+		$("#step32").hide();
+		$("#step33").show();
+
+		window.scrollTo(0,170);
+	}
+
+
+	function preBtnUp32(){
+		$("#userinfotab li").removeClass("selected");
+		$("#tab1").addClass("selected");
+		$("#step31").hide();
+		$("#step33").hide();
+		$("#step32").show();
+	}
+
+	function nextBtnUp4_1(){
+		var liableName = $("#liableName").val() || "";
+		var liablePhone = $("#liablePhone").val() || "";
+		var liableIdentity = $("#liableIdentity").val() || "";
+		var liableRelation = $("#liableRelation").val() || "";
+		var liableAddress = $("#liableAddress").val() || "";
+
+		if(!sendValidNoEmpty(liableName,$("#liableName"))){
+			return;
+		}
+		if(!sendValidNoEmpty(liablePhone,$("#liablePhone"))){
+			return;
+		}
+		if(!sendValidIsPhone(liablePhone,$("#liablePhone"))){
+			return;
+		}
+		if(!sendValidNoEmpty(liableIdentity,$("#liableIdentity"))){
+			return;
+		}
+		if(!sendValidIsIdentity(liableIdentity,$("#liableIdentity"))){
+			return;
+		}
+		if(!sendValidNoEmpty(liableAddress,$("#liableAddress"))){
+			return;
+		}
+
+		g.orderUserInfo.liableName = liableName;
+		g.orderUserInfo.liablePhone = liablePhone;
+		g.orderUserInfo.liableIdentity = liableIdentity;
+		g.orderUserInfo.liableRelation = liableRelation;
+		g.orderUserInfo.liableAddress = liableAddress;
+
+		g.orderUserInfo.login_token = g.login_token;
+		g.orderUserInfo.orderId = g.orderId;
+
+		//sendSetCustomerInfoHttp(g.orderUserInfo);
+	}
+
+	function nextBtnUp4(){
 		var familyName = $("#familyName").val() || "";
 		var familyPhone = $("#familyPhone").val() || "";
 		var familyRelation = $("#familyRelation").val() || "";
@@ -865,54 +926,7 @@ $(function(){
 		g.orderUserInfo.orderId = g.orderId;
 
 		sendSetCustomerInfoHttp(g.orderUserInfo);
-		window.scrollTo(0,830);
-	}
-
-
-	function preBtnUp32(){
-		$("#userinfotab li").removeClass("selected");
-		$("#tab1").addClass("selected");
-		$("#step31").hide();
-		$("#step33").hide();
-		$("#step32").show();
-	}
-
-	function nextBtnUp4(){
-		var liableName = $("#liableName").val() || "";
-		var liablePhone = $("#liablePhone").val() || "";
-		var liableIdentity = $("#liableIdentity").val() || "";
-		var liableRelation = $("#liableRelation").val() || "";
-		var liableAddress = $("#liableAddress").val() || "";
-
-		if(!sendValidNoEmpty(liableName,$("#liableName"))){
-			return;
-		}
-		if(!sendValidNoEmpty(liablePhone,$("#liablePhone"))){
-			return;
-		}
-		if(!sendValidIsPhone(liablePhone,$("#liablePhone"))){
-			return;
-		}
-		if(!sendValidNoEmpty(liableIdentity,$("#liableIdentity"))){
-			return;
-		}
-		if(!sendValidIsIdentity(liableIdentity,$("#liableIdentity"))){
-			return;
-		}
-		if(!sendValidNoEmpty(liableAddress,$("#liableAddress"))){
-			return;
-		}
-
-		g.orderUserInfo.liableName = liableName;
-		g.orderUserInfo.liablePhone = liablePhone;
-		g.orderUserInfo.liableIdentity = liableIdentity;
-		g.orderUserInfo.liableRelation = liableRelation;
-		g.orderUserInfo.liableAddress = liableAddress;
-
-		g.orderUserInfo.login_token = g.login_token;
-		g.orderUserInfo.orderId = g.orderId;
-
-		//sendSetCustomerInfoHttp(g.orderUserInfo);
+		window.scrollTo(0,170);
 	}
 
 	function sendSetCustomerInfoHttp(condi){
@@ -1128,6 +1142,7 @@ $(function(){
 					//显示第5步
 					$("#step4").hide();
 					$("#step5").show();
+					window.scrollTo(0,170);
 					setTimeout(function(){
 						location.href = "/anjia/usercenter.html";
 					},5000);

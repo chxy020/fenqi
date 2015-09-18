@@ -21,6 +21,7 @@ $(function(){
 	g.customerId = "";
 	g.bindBankCardId = "";
 	g.playCondi = {};
+	g.payId = "";
 
 	//获取图形验证码
 	sendGetImgCodeHttp();
@@ -174,7 +175,8 @@ $(function(){
 				console.log("sendPlayBindRequest",data);
 				var status = data.success || false;
 				if(status){
-					//请求成功就完事
+					//请求成功
+					g.payId = data.obj || "";
 				}
 				else{
 					var msg = data.message || "支付请求失败";
@@ -188,10 +190,14 @@ $(function(){
 		});
 	}
 
-		//获取绑定验证码
+	//获取支付验证码
 	function getValidCode(){
 		var img_validate_code = $("#inputimgcode").val() || "";
 
+		if(g.payId == ""){
+			Utils.alert("正在创建支付订单ID...");
+			return;
+		}
 		if(img_validate_code == ""){
 			Utils.alert("请输入图形验证码");
 			return;
@@ -206,8 +212,8 @@ $(function(){
 		//condi.customerId = g.customerId;
 		//condi.bindBankCardId = g.bindBankCardId;
 		condi.img_validate_code = img_validate_code;
-		condi.repaymentRecordId = g.repaymentRecordId;
-
+		//condi.repaymentRecordId = g.repaymentRecordId;
+		condi.orderid = g.payId;
 		g.playCondi = condi;
 
 		sendSmsByRepaymentRecordIdHttp(condi);
@@ -294,8 +300,9 @@ $(function(){
 				console.log("sendConfirmPlayHttp",data);
 				var status = data.success || false;
 				if(status){
+					alert("支付成功");
 					//支付成功
-					location.href = "/anjia/result-page.html";
+					//location.href = "/anjia/result-page.html";
 				}
 				else{
 					var msg = data.message || "支付失败";
