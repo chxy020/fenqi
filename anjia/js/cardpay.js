@@ -118,14 +118,17 @@ $(function(){
 			for(var i = 0,len = list.length; i < len; i++){
 				var d = list[i] || {};
 				var bankType = d.bankType || "";
+				bankType = bankType.toLowerCase();
 				var bankCard = d.bankCard || "";
 				bankCard = "****" + bankCard.substring(bankCard.length - 4);
+
+				var logo = "../res/images/bank-logo/" + bankType + ".gif";
 				if(i == 0){
 					html.push('<li style="height: 30px;">');
-					html.push('<label style="width:300px;  text-align: left;">');
+					html.push('<label style="width:310px;  text-align: left;">');
 					html.push('<div class="bank-card-inf selected" style="margin:0px 15px;">');
 					html.push('<span class="bank-card-inf-num">' + bankCard + '</span>');
-					html.push('<img src="../res/images/bank-logo.jpg" class="bank-card-inf-logo" />');
+					html.push('<img src="' + logo + '" class="bank-card-inf-logo" />');
 					html.push('</div>');
 					html.push('<input type="radio" name="bindcardradio" class="common-radio" checked="checked" />');
 					html.push('</label>');
@@ -133,7 +136,7 @@ $(function(){
 				}
 				else{
 					html.push('<li style="height: 30px;">');
-					html.push('<label style="width:300px;  text-align: left;">');
+					html.push('<label style="width:310px;  text-align: left;">');
 					html.push('<div class="bank-card-inf" style="margin:0px 15px;">');
 					html.push('<span class="bank-card-inf-num">' + bankCard + '</span>');
 					html.push('<img src="../res/images/bank-logo.jpg" class="bank-card-inf-logo" />');
