@@ -65,91 +65,137 @@
     </div>
     <div class="ui-personal-main">
     	<div class="ui-wrap">
-        	<div class="personal-top clearfix">
-            	<div class="back-go f-right">
-                	<a href="order-detail.html">返回我的订单&gt;&gt;</a>
-                </div>
-            	<div class="personal-inf">
-                	<img src="../res/images/usercenter1.png" class="user-img" onclick="document.getElementById('userImgUploadFile').click()" />
-                    <input type="file" id="userImgUploadFile" style="display:none;" />
-                    <div class="personal-inf-right">
-                    	<p class="user-phone">15059994586</p>
-                        <p class="user-edit-area">
-                        	<a class="common-ico ico-phone" href="bind-phone.html"></a>
-                            <a class="common-ico ico-setting" title="编辑" href="edit-personal-inf.html"></a>
-                        </p>
-                    </div>
+        	<div class="personal-main-left">
+            	<div class="sub-left-nav">
+                    <ul>
+                        <li>
+                        	<div class="nav-main-item">
+                                <a href="index.html">个人账户</a>
+                                <i class="common-ico ico-selected-flag"></i>
+                            </div>
+                        </li>
+                        <li>
+                        	<div class="nav-main-item">
+                                <a href="order-list.html">我的订单</a>
+                                <i class="common-ico ico-selected-flag"></i>
+                            </div>
+                            <dl class="sub-left-sec-nav">
+                            	<dd>
+                                	<a href="order-detail.html">待还款</a>
+                            		<i class="common-ico ico-selected-flag"></i>
+                                </dd>
+                                <dd>
+                                	<a href="order-detail.html">还款中</a>
+                            		<i class="common-ico ico-selected-flag"></i>
+                                </dd>
+                                <dd>
+                                	<a href="order-detail.html">已还清</a>
+                            		<i class="common-ico ico-selected-flag"></i>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                        	<div class="nav-main-item selected">
+                                <a href="edit-personal-inf.html">编辑资料</a>
+                                <i class="common-ico ico-selected-flag"></i>
+                            </div>
+                        </li>
+                        <li>
+                        	<div class="nav-main-item">
+                                <a href="bind-phone.html">换绑手机</a>
+                                <i class="common-ico ico-selected-flag"></i>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="ui-personal-box">
-				<div class="order-title-t">编辑资料</div>
-            	<div class="edit-inf-box">
-					<div class="edit-inf-item">
-						<label><em>*</em>性别</label>
-						<div class="edit-right-cont">
-							<input name="sex" type="radio" class="common-radio" checked />男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="sex" type="radio" class="common-radio" />女
-						</div>
-					</div>
-					<div class="edit-inf-item">
-						<label><em>*</em>生日</label>
-						<div class="edit-right-cont">
-							<select class="common-select-s" style="width:100px;">
-								<option>1989</option>
-							</select>
-                            <em>年</em>
-							<select class="common-select-s" style="width:100px;">
-								<option>01</option>
-							</select>
-                            <em>月</em>
-							<select class="common-select-s" style="width:100px;">
-								<option>23</option>
-							</select>
-                            <em>日</em>
-						</div>
-					</div>
-					<div class="edit-inf-item">
-						<label><em>*</em>身份</label>
-						<div class="edit-right-cont">
-							<input name="1" type="radio" class="common-radio" />学生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="1" type="radio" class="common-radio" />在职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="1" type="radio" class="common-radio" />自由职业&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="1" type="radio" class="common-radio" />其他
-						</div>
-					</div>
-					<div class="edit-inf-item">
-						<label><em>*</em>个人状况</label>
-						<div class="edit-right-cont">
-							<input name="2" type="radio" class="common-radio" />单身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="2" type="radio" class="common-radio" />恋爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="2" type="radio" class="common-radio" />已婚&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="2" type="radio" class="common-radio" />保密
-						</div>
-					</div>
-					<div class="edit-inf-item">
-						<label><em>*</em>兴趣爱好</label>
-						<div class="edit-right-cont">
-							<input name="3" type="checkbox" class="common-checkbox" />美食&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" class="common-checkbox" />电影&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" class="common-checkbox" />酒店&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" class="common-checkbox" />单身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" class="common-checkbox" />丽人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" class="common-checkbox" />旅游&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" class="common-checkbox" />购物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="3" type="checkbox" class="common-checkbox" />休闲娱乐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</div>
-					</div>
-					<div class="edit-inf-item">
-						<label>&nbsp;</label>
-						<div class="edit-right-cont"><p class="light-green">选择您的兴趣爱好使你获得个性化的推荐哦！</p></div>
-					</div>
-					<div class="edit-inf-item" style="margin-top:35px;">
-						<label>&nbsp;</label>
-						<div class="edit-right-cont">
-                        	<a href="index.html" class="common-btn btn-green" style="width:120px;" />保存</a>
+            <div class="personal-main-right">
+                <div class="personal-top clearfix">
+                    <div class="back-go f-right">
+                        <a href="order-detail.html">返回我的订单&gt;&gt;</a>
+                    </div>
+                    <div class="personal-inf">
+                        <img src="../res/images/usercenter1.png" class="user-img" onclick="document.getElementById('userImgUploadFile').click()" />
+                        <input type="file" id="userImgUploadFile" style="display:none;" />
+                        <div class="personal-inf-right">
+                            <p class="user-phone">15059994586</p>
+                            <p class="user-edit-area">
+                                <a class="common-ico ico-phone" href="bind-phone.html"></a>
+                                <a class="common-ico ico-setting" title="编辑" href="edit-personal-inf.html"></a>
+                            </p>
                         </div>
-					</div>
-				</div>
+                    </div>
+                </div>
+                <div class="ui-personal-box">
+                    <div class="order-title-t">编辑资料</div>
+                    <div class="edit-inf-box">
+                        <div class="edit-inf-item">
+                            <label><em>*</em>性别</label>
+                            <div class="edit-right-cont">
+                                <input name="sex" type="radio" class="common-radio" checked />男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="sex" type="radio" class="common-radio" />女
+                            </div>
+                        </div>
+                        <div class="edit-inf-item">
+                            <label><em>*</em>生日</label>
+                            <div class="edit-right-cont">
+                                <select class="common-select-s" style="width:100px;">
+                                    <option>1989</option>
+                                </select>
+                                <em>年</em>
+                                <select class="common-select-s" style="width:100px;">
+                                    <option>01</option>
+                                </select>
+                                <em>月</em>
+                                <select class="common-select-s" style="width:100px;">
+                                    <option>23</option>
+                                </select>
+                                <em>日</em>
+                            </div>
+                        </div>
+                        <div class="edit-inf-item">
+                            <label><em>*</em>身份</label>
+                            <div class="edit-right-cont">
+                                <input name="1" type="radio" class="common-radio" />学生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="1" type="radio" class="common-radio" />在职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="1" type="radio" class="common-radio" />自由职业&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="1" type="radio" class="common-radio" />其他
+                            </div>
+                        </div>
+                        <div class="edit-inf-item">
+                            <label><em>*</em>个人状况</label>
+                            <div class="edit-right-cont">
+                                <input name="2" type="radio" class="common-radio" />单身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="2" type="radio" class="common-radio" />恋爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="2" type="radio" class="common-radio" />已婚&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="2" type="radio" class="common-radio" />保密
+                            </div>
+                        </div>
+                        <div class="edit-inf-item">
+                            <label><em>*</em>兴趣爱好</label>
+                            <div class="edit-right-cont">
+                                <input name="3" type="checkbox" class="common-checkbox" />美食&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="3" type="checkbox" class="common-checkbox" />电影&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="3" type="checkbox" class="common-checkbox" />酒店&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="3" type="checkbox" class="common-checkbox" />单身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="3" type="checkbox" class="common-checkbox" />丽人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="3" type="checkbox" class="common-checkbox" />旅游&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="3" type="checkbox" class="common-checkbox" />购物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="3" type="checkbox" class="common-checkbox" />休闲娱乐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </div>
+                        <div class="edit-inf-item">
+                            <label>&nbsp;</label>
+                            <div class="edit-right-cont"><p class="light-green">选择您的兴趣爱好使你获得个性化的推荐哦！</p></div>
+                        </div>
+                        <div class="edit-inf-item" style="margin-top:35px;">
+                            <label>&nbsp;</label>
+                            <div class="edit-right-cont">
+                                <a href="index.html" class="common-btn btn-green" style="width:120px;" />保存</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

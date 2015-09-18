@@ -1,12 +1,30 @@
 @charset "UTF-8";
 /*personal*/
 .ui-personal-main{
-	margin-top:10px;
+	padding:40px 0px;
 	background:#fff;
 	padding-bottom:80px;
 }
+/*personal-layout*/
+/*start*/
+.personal-main-left{
+	position:relative;
+	width:180px;
+	border-bottom:none;
+	float:left;
+}
+.personal-main-right{
+	margin-left:180px;
+	background:#fff;
+	height:auto!important;
+	height:600px;
+	min-height:600px;
+	border-left:1px solid #eaeaea;
+	padding-left:70px;
+}
+/*end*/
 .personal-top{
-	padding:35px;
+	padding:0px 15px 15px;
 }
 .personal-top .personal-inf .user-img{
 	float:left;
@@ -44,7 +62,7 @@
 	padding:0px 5px;
 	background:#dff0d8;
 	color:#669900;
-	font-weight:bold;
+	font-weight:inherit;
 	text-align:center;
 	font-size:15px;
 }
@@ -68,6 +86,7 @@
 	font-size:24px;
 	color:#333;
 	line-height:22px;
+	padding-top:15px;
 }
 .order-title .ico-note{
 	float:left;
@@ -139,7 +158,7 @@
 /*bind-step*/
 .bind-step-main{
 	padding:40px 0px 40px;
-	background:#f9f9f9;
+	background:#ffffff;
 }
 .bind-step-box{
 	height:31px;
@@ -222,10 +241,10 @@
 	margin-top:10px;
 }
 .bind-phone-main{
-	margin-left:320px;
+	margin-left:100px;
 }
 .bind-result-box{
-	padding:160px 0px 160px;
+	padding:100px 0px 100px;
 	text-align:center;
 	font-size:24px;
 	color:#333;
