@@ -302,7 +302,7 @@ $(function(){
 				if(status){
 					alert("支付成功");
 					//支付成功
-					location.href = "/anjia/result-page.html";
+					//location.href = "/anjia/result-page.html";
 				}
 				else{
 					var msg = data.message || "支付失败";
