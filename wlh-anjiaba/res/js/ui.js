@@ -112,7 +112,7 @@
 		},
 		//填充底部html
 		insertBottomHtml:function(){
-			$('.ui-bottom').empty().load('/anjia/footer.html',function(){});
+			$('.ui-bottom').empty().load('footer.html',function(){});
 		},
 		//合作商家经过函数
 		businessHoverFun:function(){

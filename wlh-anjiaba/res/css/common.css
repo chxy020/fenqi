@@ -1310,7 +1310,6 @@ a.improve-btn:hover{
 .sub-left-nav ul li .nav-main-item .ico-selected-flag{
 	position:absolute;
 	right:-6px;
-	_*right:-8px;
 	top:18px;
 	background-position:-51px -176px;
 }
