@@ -131,6 +131,30 @@
 					'top':'300px'
 				});
 			});
+		},
+		//@param String protocolPageUrl
+		//$.fn.showProtocolPop('../anjia/protocol/protocol-fenqi.html','分期付款协议');
+		//$.fn.showProtocolPop('../anjia/protocol/protocol-reg.html','燕子安家网站用户注册协议');
+ 		//$.fn.showProtocolPop('../anjia/protocol/protocol-authorization.html','个人征信等信息查询及使用授权书');
+		//$.fn.showProtocolPop('../anjia/protocol/protocol-customer-commitment.html','客户承诺函');
+		//$.fn.showProtocolPop('../anjia/protocol/protocol-credit-counseling.html','信用咨询及居间服务协议');
+		//$.fn.showProtocolPop('../anjia/protocol/protocol-credit-counseling.html','债权承诺回购函');
+		//$.fn.showProtocolPop('../anjia/protocol/protocol-transfer.html','债权转让协议');
+		showProtocolPop:function(protocolPageUrl,protocolTitle){
+			if(typeof protocolPageUrl === 'undefined') return;
+			var protocolTitle = protocolTitle || '协议';
+			layer.open({
+				type: 2,
+				title: protocolTitle,
+				shadeClose: true,
+				shade: 0.8,
+				area: ['1000px', ($(window).height() - 50) +'px'],
+				content: [protocolPageUrl],
+				btn: ['确定'],
+				yes: function(index, layero){
+					layer.close(index);
+				}
+			});
 		}	
 	});
 
