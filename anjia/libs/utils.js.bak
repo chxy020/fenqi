@@ -468,7 +468,7 @@ if(typeof console == "undefined"){
 			//}
 
 			html.push('<span >' + phoneNumber + '，您好！</span>');
-			html.push('<a class="header-log-out" href="javascript:Utils.loginOut();">［注销］</a><s class="header-line"></s>');
+			html.push('<a class="header-log-out" href="javascript:Utils.loginOut();">［安全退出］</a><s class="header-line"></s>');
 			html.push('<a href="/anjia/usercenter.html">我的订单</a><s class="header-line"></s>');
 			html.push('<a href="/anjia/usercenter.html">我要还款</a>');
 
