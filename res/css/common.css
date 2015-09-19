@@ -638,6 +638,7 @@ html{
 }
 .ui-nav li.no-right-border{
 	border-right:none;
+	padding-right:0;  /*haitao 20150920 1133 ----  insert*/
 }
 .ui-nav li a{
 	font-size:17px;

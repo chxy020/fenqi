@@ -337,7 +337,7 @@ html{
 	font-size:24px;  /*haitao 20150920 0906 ---- 21px*/
 	color:#909090;   /*haitao 20150920 0906 ---- #999*/
 	text-align:center;
-	margin-top:25px; /*haitao 20150920 0906 ---- 15px*/
+	margin-top:20px; /*haitao 20150920 0906 ---- 15px*/
 
 }
 .hover-img-box{
@@ -638,6 +638,7 @@ html{
 }
 .ui-nav li.no-right-border{
 	border-right:none;
+	padding-right:0;  /*haitao 20150920 0707 ----  insert*/
 }
 .ui-nav li a{
 	font-size:17px;
