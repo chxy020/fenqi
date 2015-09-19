@@ -16,6 +16,8 @@ $(function(){
 
 	g.orderInfo = {};
 
+	g.orderStatus = Utils.getQueryString("ostatus") || "";
+
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -25,7 +27,7 @@ $(function(){
 	else{
 		getUserInfo();
 		//获取订单列表
-		getUserOrderList();
+		getUserOrderList(true);
 
 		//获取订单状态
 		sendGetUserInfoDicHttp();
@@ -215,6 +217,9 @@ $(function(){
 			}
 			$("#" + ids[i]).html(option.join(''));
 		}
+		if(g.orderStatus !== ""){
+			$("#orderstatus").val(g.orderStatus);
+		}
 	}
 
 	function changeOrderStatus(){
@@ -222,11 +227,16 @@ $(function(){
 		getUserOrderList();
 	}
 
-	function getUserOrderList(){
+	function getUserOrderList(b){
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.customerId = g.customerId;
 		condi.status = $("#orderstatus").val() || "";
+		if(b){
+			if(g.orderStatus !== ""){
+				condi.status = g.orderStatus;
+			}
+		}
 		condi.currentPageNum = g.currentPage;
 		condi.pageSize = g.pageSize;
 
@@ -267,11 +277,11 @@ $(function(){
 		html.push('<table class="order-table" cellpadding="0" cellspacing="0">');
 		html.push('<tr>');
 		html.push('<th width="160">订单编号</th>');
-		html.push('<th width="129">合同编号</th>');
-		html.push('<th width="180">产品名称</th>');
-		html.push('<th width="130">分期金额</th>');
-		html.push('<th width="140">订单状态</th>');
-		html.push('<th width="150">最近待还</th>');
+		html.push('<th width="130">合同编号</th>');
+		html.push('<th width="110">产品名称</th>');
+		html.push('<th width="110">分期金额</th>');
+		html.push('<th width="100">订单状态</th>');
+		html.push('<th width="80">最近待还</th>');
 		html.push('<th width="80">总期数</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');

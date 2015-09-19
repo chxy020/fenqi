@@ -11,56 +11,38 @@
 
 <body>
 	<div class="ui-short-head">
-    	<div class="ui-wrap">
-        	<div id="loginstatus" class="head-box">
-			<a href="/anjia/login.html">登录</a>
-			<s class="header-line"></s>
-			<a href="/anjia/regist.html">注册</a>
-			<s class="header-line"></s>
-			<a href="/anjia/login.html">我的订单</a>
-			<s class="header-line"></s>
-			<a href="/anjia/login.html">我要还款</a>
+		<div class="ui-wrap">
+			<div id="loginstatus" class="head-box">
+				<a href="/anjia/login.html">登录</a>
+				<s class="header-line"></s>
+				<a href="/anjia/regist.html">注册</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">我的订单</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">我要还款</a>
+			</div>
 		</div>
-        </div>
-    </div>
-    <!--div class="ui-header">
-    	<div class="ui-wrap">
-        	<div class="ui-head-left f-left clearfix">
-        		<img class="ui-logo" src="../res/images/logo.png" />
-                <div class="ui-head-left-l f-left">
-                	<span class="cur-pos">成都</span>
-                	<a href="###" class="select-city-btn">切换城市</a>
-                </div>
-            </div>
-            <div class="ui-phone-service">
-                <p class="phone-service">全国统一免费咨询热线</p>
-                <img src="../res/images/phone-number.png" width="168" height="14">
-            </div>
-            <div class="ui-nav">
-            	<ul>
-                	<li><a href="/anjia/index.html">首页</a></li>
-			<li><a href="/anjia/staging.html">家装分期</a></li>
-			<li><a href="/anjia/business.html">合作商家</a></li>
-			<li class="no-right-border"><a href="/anjia/about.html">关于我们</a></li>
-                </ul>
-            </div>
-        </div>
-    </div-->
-    <script type="text/javascript" src="../anjia/js/head.js"></script>
+	</div>
+
+	<script type="text/javascript" src="../anjia/js/head.js"></script>
+
     <div class="ui-personal-main">
     	<div class="ui-wrap">
         	<div class="personal-main-left">
             	<div class="sub-left-nav">
+
+		<script type="text/javascript" src="../anjia/js/c_userleft.js"></script>
+		<!--
                     <ul>
                         <li>
                         	<div class="nav-main-item selected">
-                                <a href="index.html">个人账户</a>
+                                <a href="usercenter.html">个人账户</a>
                                 <i class="common-ico ico-selected-flag"></i>
                             </div>
                         </li>
                         <li>
                         	<div class="nav-main-item">
-                                <a href="order-list.html">我的订单</a>
+                                <a href="usercenter.html">我的订单</a>
                                 <i class="common-ico ico-selected-flag"></i>
                             </div>
                             <dl class="sub-left-sec-nav">
@@ -91,6 +73,7 @@
                             </div>
                         </li>
                     </ul>
+                    -->
                 </div>
             </div>
             <div class="personal-main-right">
@@ -114,19 +97,19 @@
                     </div>
                 </div>
                 <div id="orderlist" class="ui-personal-box" style="min-height:300px;">
-    
+
                     <table class="order-table" cellpadding="0" cellspacing="0">
                         <tr>
                             <th width="160">订单编号</th>
-                            <th width="129">合同编号</th>
-                            <th width="180">产品名称</th>
-                            <th width="130">分期金额</th>
-                            <th width="140">订单状态</th>
-                            <th width="150">最近待还</th>
+                            <th width="130">合同编号</th>
+                            <th width="110">产品名称</th>
+                            <th width="110">分期金额</th>
+                            <th width="100">订单状态</th>
+                            <th width="80">最近待还</th>
                             <th width="80">总期数</th>
                             <th>操作</th>
                         </tr>
-    
+
                         <!--
                         <tr>
                             <td>20150811110 </td>
@@ -216,7 +199,7 @@
                         <a href="javascript:void(0)" class="page-next-end">&nbsp;</a>
                     </div>
             -->
-    
+
                 </div>
             </div>
         </div>
@@ -269,30 +252,30 @@
                 <img src="../res/images/phone-number.png" width="168" height="14">
                 <span class="b">总裁办投诉电话 400-402-000</span>
             </div>
-        </div>
-    </div-->
+        </div-->
+    </div>
 
 	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>
+	<script type="text/javascript" src="../res/js/ui.js"></script>
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
 	<script src="libs/ajaxfileupload.js"></script>
 	<script src="js/c_usercenter.js"></script>
-	    <!--BAIDU定位JS 开始-->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
-    <script type="text/javascript">
-	$(function(){
-		// 百度地图API功能
-        function myFun(result){
-            var cityName = result.name;
-            $("#curCity").html(cityName);
-        }
-        var myCity = new BMap.LocalCity();
-        myCity.get(myFun);
-	})
-
-    </script>
+	<!--BAIDU定位JS 开始-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+	<script type="text/javascript">
+		$(function(){
+			// 百度地图API功能
+			function myFun(result){
+			var cityName = result.name;
+			$("#curCity").html(cityName);
+			}
+			var myCity = new BMap.LocalCity();
+			myCity.get(myFun);
+		})
+	</script>
 </body>
 
 </html>

@@ -66,10 +66,13 @@ $(function(){
 
 		var phoneNumber = obj.phoneNumber || "";
 		$("#userphone").html(phoneNumber);
+
+		$("#inputphone").val(phoneNumber);
+
 		var avatar = obj.icon || "";
 		if(avatar !== ""){
-			avatar = avatar + "?t=" + (new Date() - 0);
-			$("#avatarimg").attr("src",avatar);
+			//avatar = avatar + "?t=" + (new Date() - 0);
+			//$("#avatarimg").attr("src",avatar);
 		}
 	}
 
@@ -140,13 +143,13 @@ $(function(){
 	function resetGetValidCode(){
 		g.sendTime = g.sendTime - 1;
 		if(g.sendTime > 0){
-			$("#getcodebtn").html(g.sendTime + "秒后重新发送");
+			$("#getcodebtn").val(g.sendTime + "秒后重新发送");
 			g.tout = setTimeout(function(){
 				resetGetValidCode();
 			},1000);
 		}
 		else{
-			$("#getcodebtn").html("重新发送");
+			$("#getcodebtn").val("重新发送");
 			g.sendTime = 60;
 			g.sendCode = false;
 
@@ -179,7 +182,7 @@ $(function(){
 					//alert("验证码:" + data.obj);
 					Utils.alert("验证码已发送,请注意查收");
 					g.sendCode = true;
-					$("#getcodebtn").html("60秒后重新发送");
+					$("#getcodebtn").val("60秒后重新发送");
 					setTimeout(function(){
 						resetGetValidCode();
 					},1000);
@@ -234,12 +237,12 @@ $(function(){
 					g.sendCode = false;
 					g.sendTime = 60;
 					clearTimeout(g.tout);
+					$("#getcodebtn").val("获取动态码");
+
 					//显示第二步
 					$("#setup1").hide();
 					$("#setup2").show();
-					$("#progressimg1").attr("src","images/center/findpwd5.png");
-					$("#setupimg1").attr("src","images/center/findpwd2.png");
-					$("#setupspan1").addClass("b");
+					$("#progress").addClass("step2");
 				}
 				else{
 					var msg = data.message || "验证码校验失败";
@@ -307,13 +310,13 @@ $(function(){
 	function resetGetNewValidCode(){
 		g.sendTime = g.sendTime - 1;
 		if(g.sendTime > 0){
-			$("#getcodebtn_new").html(g.sendTime + "秒后重新发送");
+			$("#getcodebtn_new").val(g.sendTime + "秒后重新发送");
 			setTimeout(function(){
 				resetGetNewValidCode();
 			},1000);
 		}
 		else{
-			$("#getcodebtn_new").html("重新发送");
+			$("#getcodebtn_new").val("重新发送");
 			g.sendTime = 60;
 			g.sendCode = false;
 
@@ -344,7 +347,7 @@ $(function(){
 					//alert("验证码:" + data.obj);
 					Utils.alert("验证码已发送,请注意查收");
 					g.sendCode = true;
-					$("#getcodebtn_new").html("60秒后重新发送");
+					$("#getcodebtn_new").val("60秒后重新发送");
 					setTimeout(function(){
 						resetGetNewValidCode();
 					},1000);
@@ -402,10 +405,8 @@ $(function(){
 					//显示第三步
 					$("#setup2").hide();
 					$("#setup3").show();
-					$("#progressimg2").attr("src","images/center/findpwd5.png");
-					$("#setupimg2").attr("src","images/center/findpwd3.png");
-					$("#setupspan2").addClass("b");
-					$("#newphone").html("恭喜您,新的绑定手机号:" + g.newPhone);
+					$("#progress").addClass("step3");
+					$("#newphone").html(g.newPhone);
 					setTimeout(function(){
 						location.href = "/anjia/login.html";
 					},2000);

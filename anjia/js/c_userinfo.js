@@ -162,7 +162,7 @@ $(function(){
 		}
 		var interestingHtml = [];
 		for(var k in interesting){
-			interestingHtml.push('<input type="checkbox" class="common-radio" name="cklike" id="' + k + '" value="' + k + '"><label for="' + k + '" style="float:none;">' + interesting[k] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
+			interestingHtml.push('<input type="checkbox" class="common-checkbox" name="cklike" id="' + k + '" value="' + k + '"><label for="' + k + '" style="float:none;">' + interesting[k] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>');
 		}
 
 		$("#sexdiv").html(sexHtml.join(''));
@@ -189,17 +189,24 @@ $(function(){
 
 		if(sex !== ""){
 			$("#" + sex)[0].checked = true;
+			$($("#" + sex).parent()).removeClass("radio-bg-checked");
+			$($("#" + sex).parent()).addClass("radio-bg-checked");
 		}
 		if(identification !== ""){
 			$("#" + identification)[0].checked = true;
+			$($("#" + identification).parent()).removeClass("radio-bg-checked");
+			$($("#" + identification).parent()).addClass("radio-bg-checked");
 		}
 		if(maritalStatus !== ""){
 			$("#" + maritalStatus)[0].checked = true;
+			$($("#" + maritalStatus).parent()).removeClass("radio-bg-checked");
+			$($("#" + maritalStatus).parent()).addClass("radio-bg-checked");
 		}
 		if(interesting !== ""){
 			var inter = interesting.split(",") || [];
 			for(var i = 0, len = inter.length; i < len; i++){
 				$("#" + inter[i])[0].checked = true;
+				$($("#" + inter[i]).parent()).addClass("chk-bg-checked");
 			}
 		}
 		if(birthday !== ""){

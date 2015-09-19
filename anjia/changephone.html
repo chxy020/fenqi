@@ -8,25 +8,136 @@
 	<link href="css/changephone.css" rel="stylesheet">
 	<link href="../res/css/common.css" rel="stylesheet">
 	<link href="../res/css/personal.css" rel="stylesheet">
+	<style type="text/css">
+		.imgcode{
+			margin-top: 2px;
+			margin-left: 10px;
+			width: 138px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			height: 40px;
+			font-size: 16px;
+			background: #dff0d8;
+			color: #5e7e0c;
+			position: absolute;
+		}
+	</style>
 </head>
 
 <body>
-	<div class="ui-header">
-    	<div class="ui-wrap">
-        	<div class="ui-head-left f-left clearfix">
-        		<img class="ui-logo" src="../res/images/logo.png" />
-            </div>
-            <div class="ui-nav">
-            	<ul>
-                	<li><a href="/anjia/index.html">首页</a></li>
-			<li><a href="/anjia/staging.html">家装分期</a></li>
-			<li><a href="/anjia/business.html">合作商家</a></li>
-			<li class="no-right-border"><a href="/anjia/about.html">关于我们</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+	<div class="ui-short-head">
+		<div class="ui-wrap">
+			<div id="loginstatus" class="head-box">
+				<a href="/anjia/login.html">登录</a>
+				<s class="header-line"></s>
+				<a href="/anjia/regist.html">注册</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">我的订单</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">我要还款</a>
+			</div>
+		</div>
+	</div>
 
+	<script type="text/javascript" src="../anjia/js/head.js"></script>
+
+	<div class="bind-step-main">
+		<div class="ui-wrap">
+
+			<div class="personal-main-left">
+				<div class="sub-left-nav">
+					<script type="text/javascript" src="../anjia/js/c_userleft.js"></script>
+				</div>
+			</div>
+
+			<div class="personal-main-right">
+				<div id="progress" class="bind-step-container step1">
+					<div class="bind-step-box"></div>
+					<div class="bind-step-text clearfix">
+						<p class="step3-text step-text3">完成</p>
+						<p class="step1-text step-text1">验证手机</p>
+						<p class="step2-text step-text2">修改手机</p>
+					</div>
+				</div>
+
+				<div id="setup1" class="bind-s-c">
+					<div class="opreate-title-tip">你正在进行修改手机</div>
+					<div class="bind-phone-main">
+						<div class="opreate-title"><i class="common-ico ico-exclamation"></i>为了您的账户安全，请先验证手机</div>
+						<div class="list-item-box">
+							<div class="list-item-t clearfix">
+								<label>请输入验证手机</label>
+								<div class="list-item-right">
+									<input id="inputphone" type="text" maxlength=11 readonly placeholder="请输入手机号"   class="common-input-text" style="width:320px;" />
+								</div>
+							</div>
+							<div class="list-item-t clearfix">
+								<label>图形验证码</label>
+								<div class="list-item-right">
+									<input id="inputimgcode" type="text" class="common-input-text" style="width:170px;" />
+									<img id="imgcodebtn" src="" class="imgcode verification-code-img" />
+									<p><input id="getcodebtn" type="button" class="common-btn btn-green-empty-f" value="获取动态码">&nbsp;&nbsp;&nbsp;&nbsp;<a href="###">没收到短信动态码？</a></p>
+								</div>
+							</div>
+							<div class="list-item-t clearfix">
+								<label>短信动态码</label>
+								<div class="list-item-right">
+									<input id="inputcode" type="text" class="common-input-text" style="width:320px;" />
+								</div>
+							</div>
+							<div class="list-item-t clearfix" style="margin-top:35px;">
+								<label>&nbsp;</label>
+								<div class="list-item-right">
+									<a id="nextbtn" href="javascript:void(0);" class="common-btn btn-green" style="width:200px;" />下一步</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="setup2" class="bind-s-c" style="display:none;">
+					<div class="opreate-title-tip">你正在进行修改手机</div>
+					<div class="bind-phone-main">
+						<div class="opreate-title"><i class="common-ico ico-sucessed"></i>您的验证已经成功通过，请立即修改您的手机</div>
+						<div class="list-item-box">
+							<div class="list-item-t clearfix">
+								<label>请输入验证手机</label>
+								<div class="list-item-right">
+									<input id="inputphone_new" type="text" maxlength=11 placeholder="请输入手机号"   class="common-input-text" style="width:320px;" />
+								</div>
+							</div>
+							<div class="list-item-t clearfix">
+								<label>图形验证码</label>
+								<div class="list-item-right">
+									<input id="inputimgcode_new" type="text" class="common-input-text" style="width:170px;" />
+									<img id="imgcodebtn_new" src="" class="imgcode verification-code-img" />
+									<p><input id="getcodebtn_new" type="button" class="common-btn btn-green-empty-f" value="获取动态码">&nbsp;&nbsp;&nbsp;&nbsp;<a href="###">没收到短信动态码？</a></p>
+								</div>
+							</div>
+							<div class="list-item-t clearfix">
+								<label>短信动态码</label>
+								<div class="list-item-right">
+									<input id="inputcode_new" type="text" class="common-input-text" style="width:320px;" />
+								</div>
+							</div>
+							<div class="list-item-t clearfix" style="margin-top:35px;">
+								<label>&nbsp;</label>
+								<div class="list-item-right">
+									<a id="changephonebtn" href="javascript:void(0);" class="common-btn btn-green" style="width:200px;" />下一步</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="setup3" class="bind-s-c" style="display:none;">
+					<div class="bind-result-box">
+						<i class="common-ico ico-sucessed"></i>设置新手机成功，号码为<em class="highlight" id="newphone"></em>
+					</div>
+				</div>
+
+			</div>
+	<!--
 	<div class="ui-personal-main" style="padding-bottom:0px;">
 		<div class="ui-wrap">
 			<div class="personal-top clearfix">
@@ -122,17 +233,34 @@
 		</div>
 
 	</div>
+	-->
 
+		</div>
+	</div>
 
 	<div class="ui-bottom">
 	</div>
+
 	<script src="libs/jquery/jquery-1.11.2.js"></script>
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
-    <script type="text/javascript" src="../res/js/ui.js"></script>
+	<script type="text/javascript" src="../res/js/ui.js"></script>
 	<script src="libs/ajaxfileupload.js"></script>
 	<script src="js/c_changphone.js"></script>
+	<!--BAIDU定位JS 开始-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+	<script type="text/javascript">
+		$(function(){
+			// 百度地图API功能
+			function myFun(result){
+			var cityName = result.name;
+			$("#curCity").html(cityName);
+			}
+			var myCity = new BMap.LocalCity();
+			myCity.get(myFun);
+		})
+	</script>
 </body>
 </html>
 
