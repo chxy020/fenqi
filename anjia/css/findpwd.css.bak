@@ -1,17 +1,10 @@
 @charset "utf-8";
 
-/*haitao 20150920 0924 ---- insert start*/
-.progress-outside{
-	width: 100%;
-	background: #ffffff;
-}
-/*haitao 20150920 0924 ---- insert end*/
-
 .progress-center{
 	width: 720px;
 	margin: 0 auto;
 	height: 120px;
-	background-color:#fff; /*haitao 20150920 0924 ---- insert*/
+	background-color:#fff;
 }
 
 .progress-center .progress{
@@ -36,13 +29,11 @@
 	margin-top: 53px;
 }
 
-
-/*haitao 20150920 0924 ---- insert start*/
 .input-outside{
 	width: 100%;
 	background: #ffffff;
 }
-/*haitao 20150920 0924 ---- insert end*/
+
 
 .input-page{
 	width: 1080px; /*haitao 20150920 0924 ---- 1080px*/

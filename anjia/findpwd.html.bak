@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-	<div class="progress-outside">
+
 	<div class="progress-page">
 		<div class="progress-center">
 			<div class="progress">
@@ -57,7 +57,6 @@
 				<span id="setupspan2" class="a" >完成</span>
 			</div>
 		</div>
-	</div>
 	</div>
 	
 	<div class="input-outside">

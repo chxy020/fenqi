@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*personal*/
 .ui-personal-main{
-	margin-top:0px; /*haitao 20150920 1000 --- 10px*/
+	margin-top:10px;
 	background:#fff;
 	padding-bottom:80px;
 }

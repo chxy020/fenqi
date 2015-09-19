@@ -153,11 +153,6 @@
 				prev: '#prev',
 				next: '#next',
 				pagination: "#pager",
-				scroll:{
-            items: 1,
-            duration: 1000,
-            timeoutDuration: 6000
-				},				
 				swipe: {
 					onMouse: true,
 					onTouch: true

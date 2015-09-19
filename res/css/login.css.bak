@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .login-main{
-	margin-top:0px; /*haitao 20150920 0707 ----  15px*/
+	margin-top:15px;
 	background:#fff;
 	padding:100px 0px;
 }

@@ -9,7 +9,19 @@
 </head>
 
 <body>
-	
+	<div class="ui-short-head">
+		<div class="ui-wrap">
+			<div id="loginstatus" class="head-box">
+				<a href="/anjia/login.html">登录</a>
+				<s class="header-line"></s>
+				<a href="/anjia/reg.html">注册</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">我的订单</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">我要还款</a>
+			</div>
+		</div>
+	</div>	
 	<div class="head">
 		<div class="logo"><img src="images/logo.png" width="174" height="52" /></div>
 		<ul class="nav">
