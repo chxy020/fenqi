@@ -23,6 +23,7 @@ $(function(){
 	g.playCondi = {};
 	g.payId = "";
 
+
 	//获取图形验证码
 	sendGetImgCodeHttp();
 
@@ -39,8 +40,6 @@ $(function(){
 
 		sendGetBindBankCardByCustomerId();
 	}
-
-
 
 	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);
 	$("#getcodebtn").bind("click",getValidCode);
@@ -300,7 +299,7 @@ $(function(){
 				console.log("sendConfirmPlayHttp",data);
 				var status = data.success || false;
 				if(status){
-					alert("支付成功");
+					showPayTip();
 					//支付成功
 					//location.href = "/anjia/result-page.html";
 				}
@@ -317,8 +316,61 @@ $(function(){
 		});
 	}
 
+	function showPayTip(){
+		layer.alert('支付中...', {icon: 4,closeBtn: 0}, function(index){
+			layer.close(index);
+			location.href = "/anjia/usercenter.html";
+		});
+		$(".layui-layer-btn").hide();
 
+		sendGetPayStatus();
+	}
 
+	function sendGetPayStatus(){
+		var url = Base.serverUrl + "payPc/getPayRecordById";
+		g.httpTip.show();
+		var condi = {};
+		condi.orderid = g.payId;
+		$.ajax({
+			url:url,
+			type:"POST",
+			data:condi,
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetPayStatus",data);
+				var status = data.success || false;
+				if(status){
+					//{"success":true,"obj":{支付对象,status:0失败 1成功 2未处理 3处理中 ,errorcode:错误代码,errormsg:错误信息},"list":[],"message":"","code":null,"token":“”}
+					var status = data.obj.status - 0;
+					if(status == 1){
+						$(".layui-layer-btn").show();
+						$(".layui-layer-content").html('<i class="layui-layer-ico layui-layer-ico1"></i>支付成功');
+					}
+					else if(status == 0){
+						var errorcode = data.obj.errorcode || "";
+						var errormsg = data.obj.errormsg || "";
+
+						$(".layui-layer-btn").show();
+						$(".layui-layer-content").html('<i class="layui-layer-ico layui-layer-ico2"></i>' + errormsg + ':' + errorcode);
+					}
+					else{
+						setTimeout(function(){
+							sendGetPayStatus();
+						},300);
+					}
+				}
+				else{
+					var msg = data.message || "支付失败";
+					alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
 
 
 
