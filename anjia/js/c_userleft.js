@@ -15,6 +15,7 @@ function getQueryString(name) {
 }
 
 var __item__ = getQueryString("item") || "";
+var __ostatus__ = getQueryString("ostatus") || "";
 
 //var __Tel__ = "400-968-9088";
 var __html__ = [];
@@ -43,15 +44,33 @@ __html__.push('<a href="/anjia/usercenter.html?item=1">我的订单</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</div>');
 __html__.push('<dl class="sub-left-sec-nav">');
-__html__.push('<dd>');
+
+if(__ostatus__ == "100506"){
+	__html__.push('<dd class="selected">');
+}
+else{
+	__html__.push('<dd>');
+}
 __html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100506">待放款</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
-__html__.push('<dd>');
+
+if(__ostatus__ == "100507"){
+	__html__.push('<dd class="selected">');
+}
+else{
+	__html__.push('<dd>');
+}
 __html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100507">还款中</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
-__html__.push('<dd>');
+
+if(__ostatus__ == "100508"){
+	__html__.push('<dd class="selected">');
+}
+else{
+	__html__.push('<dd>');
+}
 __html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100508">已还清</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');

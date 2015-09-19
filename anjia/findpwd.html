@@ -16,7 +16,7 @@
 			<div id="loginstatus" class="head-box">
 				<a href="/anjia/login.html">登录</a>
 				<s class="header-line"></s>
-				<a href="/anjia/reg.html">注册</a>
+				<a href="/anjia/regist.html">注册</a>
 				<s class="header-line"></s>
 				<a href="/anjia/login.html">我的订单</a>
 				<s class="header-line"></s>
@@ -24,21 +24,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="ui-header">
-    	<div class="ui-wrap">
-        	<div class="ui-head-left f-left clearfix">
-        		<img class="ui-logo" src="../res/images/logo.png" />
-            </div>
-            <div class="ui-nav">
-            	<ul>
-                	<li><a href="/anjia/index.html">首页</a></li>
-			<li><a href="/anjia/staging.html">家装分期</a></li>
-			<li><a href="/anjia/business.html">合作商家</a></li>
-			<li class="no-right-border"><a href="/anjia/about.html">关于我们</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
+	<script type="text/javascript" src="../anjia/js/head.js"></script>
+
 	<div class="progress-outside">
 	<div class="progress-page">
 		<div class="progress-center">
@@ -108,12 +96,26 @@
 
 	<div class="ui-bottom">
 	</div>
+
 	<script src="libs/jquery/jquery-1.11.2.js"></script>
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
-    <script type="text/javascript" src="../res/js/ui.js"></script>
+	<script type="text/javascript" src="../res/js/ui.js"></script>
 	<script src="js/findpwd.js"></script>
+	<!--BAIDU定位JS 开始-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+	<script type="text/javascript">
+		$(function(){
+			// 百度地图API功能
+			function myFun(result){
+			var cityName = result.name;
+			$("#curCity").html(cityName);
+			}
+			var myCity = new BMap.LocalCity();
+			myCity.get(myFun);
+		})
+	</script>
 </body>
 </html>
 
