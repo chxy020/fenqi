@@ -68,13 +68,17 @@
     	<div class="ui-wrap clearfix">
             <div class="sub-left-nav">
                 <ul>
-                    <li class="selected" onclick="subLeftItemClick(this,'weide')">
-                        <a href="javascript:void(0)">德维简介</a>
-                        <i class="common-ico ico-selected-flag"></i>
+                    <li onclick="subLeftItemClick(this,'weide')">
+                    	<div class="nav-main-item selected">
+                            <a href="javascript:void(0)">德维简介</a>
+                            <i class="common-ico ico-selected-flag"></i>
+                        </div>
                     </li>
                     <li onclick="subLeftItemClick(this,'yanzianjia')">
-                        <a href="javascript:void(0)">燕子安家简介</a>
-                        <i class="common-ico ico-selected-flag"></i>
+                    	<div class="nav-main-item">
+                            <a href="javascript:void(0)">燕子安家简介</a>
+                            <i class="common-ico ico-selected-flag"></i>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -165,7 +169,8 @@
 	});
 	function subLeftItemClick(obj,targetId){
 		if(typeof targetId === 'undefined') return;
-		$(obj).siblings('li').removeClass('selected').end().addClass('selected');
+		$(obj).siblings('li').find('.nav-main-item ').removeClass('selected').end();
+		$(obj).children('.nav-main-item').addClass('selected');
 		var offsetTop = $('#'+targetId).offset().top;
 		$('body').animate({scrollTop:offsetTop-50},100);
 	}

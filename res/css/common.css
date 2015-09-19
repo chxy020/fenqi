@@ -1277,23 +1277,27 @@ a.improve-btn:hover{
 	padding-left:70px;
 }
 .sub-left-nav{
-	position:relative;
+	position:absolute;
+	left:0px;
+	top:0px;
 	width:180px;
 	border-bottom:none;
 	float:left;
 }
-.sub-left-nav-fixed{
-	position:fixed;
-	left:50%;
-	top:180px;
-	margin-left:-90px
-}
-.sub-left-nav ul li{
+.sub-left-nav ul li .nav-main-item{
 	position:relative;
-	height:49px;
-	font-size:0px;
 }
-.sub-left-nav ul li a{
+.sub-left-nav ul li .nav-main-item a{
+	display:block;
+	height:48px;
+	line-height:48px;
+	background:#fff;
+	font-size:16px;
+	color:#666666;
+	padding-right:50px;
+	text-align:right;
+}
+.sub-left-nav ul li .nav-main-item a{
 	display:block;
 	height:48px;
 	line-height:48px;
@@ -1302,17 +1306,17 @@ a.improve-btn:hover{
 	font-size:16px;
 	color:#666666;
 }
-.sub-left-nav ul li a:hover,.sub-left-nav ul li.selected a{
+.sub-left-nav ul li .nav-main-item a:hover,.sub-left-nav ul li .nav-main-item.selected a{
 	text-decoration:none;
+	color:#669900;
 }
-.sub-left-nav ul li .ico-selected-flag{
+.sub-left-nav ul li .nav-main-item .ico-selected-flag{
 	position:absolute;
 	right:-6px;
-	_*right:-8px;
 	top:18px;
 	background-position:-51px -176px;
 }
-.sub-left-nav ul li.selected .ico-selected-flag{
+.sub-left-nav ul li .nav-main-item.selected .ico-selected-flag{
 	display:block;
 	width:31px;
 	height:21px;
@@ -1321,6 +1325,42 @@ a.improve-btn:hover{
 	top:14px;
 	background-position:-7px -171px;
 }
+
+/*sub-left-sec-nav*/
+.sub-left-sec-nav dd{
+	position:relative;
+}
+.sub-left-sec-nav dd a{
+	display:block;
+	height:35px;
+	line-height:35px;
+	background:#fff;
+	font-size:14px;
+	color:#666666;
+	text-align:right;
+	padding-right:50px;
+}
+.sub-left-sec-nav dd a:hover,.sub-left-sec-nav dd.selected a{
+	text-decoration:none;
+	color:#669900;
+}
+.sub-left-sec-nav dd .ico-selected-flag{
+	position:absolute;
+	right:-6px;
+	_*right:-8px;
+	top:11px;
+	background-position:-51px -176px;
+}
+.sub-left-sec-nav dd.selected .ico-selected-flag{
+	display:block;
+	width:31px;
+	height:21px;
+	right:-11px;
+	_*right:-14px;
+	top:7px;
+	background-position:-7px -171px;
+}
+/*nav-end*/
 .sub-right-cont .sub-right-box{
 	margin-bottom:50px;
 }

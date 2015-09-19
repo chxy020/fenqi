@@ -49,129 +49,175 @@
     <script type="text/javascript" src="../anjia/js/head.js"></script>
     <div class="ui-personal-main">
     	<div class="ui-wrap">
-        	<div class="personal-top clearfix">
-            	<div class="my-order-select f-right">
-                	<label>我的订单</label>
-                    <select id="orderstatus" class="common-select" style="width:380px">
-                    	<option value="">全部订单</option>
-                    </select>
-                </div>
-            	<div class="personal-inf">
-                	<img id="avatarimg" src="../res/images/usercenter1.png" class="user-img" onclick="document.getElementById('avatar').click()" />
-                    <input type="file" id="avatar" name="avatar" style="display:none;" />
-                    <div class="personal-inf-right">
-                    	<p id="userphone" class="user-phone" style="margin-left:10px;">手机号码</p>
-                        <p class="user-edit-area">
-                        	<a class="common-ico ico-phone" href="/anjia/changephone.html"></a>
-                            <a class="common-ico ico-setting" title="编辑" href="/anjia/userinfo.html"></a>
-                        </p>
-                    </div>
+        	<div class="personal-main-left">
+            	<div class="sub-left-nav">
+                    <ul>
+                        <li>
+                        	<div class="nav-main-item selected">
+                                <a href="index.html">个人账户</a>
+                                <i class="common-ico ico-selected-flag"></i>
+                            </div>
+                        </li>
+                        <li>
+                        	<div class="nav-main-item">
+                                <a href="order-list.html">我的订单</a>
+                                <i class="common-ico ico-selected-flag"></i>
+                            </div>
+                            <dl class="sub-left-sec-nav">
+                            	<dd>
+                                	<a href="order-detail.html">待还款</a>
+                            		<i class="common-ico ico-selected-flag"></i>
+                                </dd>
+                                <dd>
+                                	<a href="order-detail.html">还款中</a>
+                            		<i class="common-ico ico-selected-flag"></i>
+                                </dd>
+                                <dd>
+                                	<a href="order-detail.html">已还清</a>
+                            		<i class="common-ico ico-selected-flag"></i>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                        	<div class="nav-main-item">
+                                <a href="edit-personal-inf.html">编辑资料</a>
+                                <i class="common-ico ico-selected-flag"></i>
+                            </div>
+                        </li>
+                        <li>
+                        	<div class="nav-main-item">
+                                <a href="bind-phone.html">换绑手机</a>
+                                <i class="common-ico ico-selected-flag"></i>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div id="orderlist" class="ui-personal-box" style="min-height:300px;">
-
-            	<table class="order-table" cellpadding="0" cellspacing="0">
-                	<tr>
-                    	<th width="160">订单编号</th>
-                        <th width="129">合同编号</th>
-                        <th width="180">产品名称</th>
-                        <th width="130">分期金额</th>
-                        <th width="140">订单状态</th>
-                        <th width="150">最近待还</th>
-                        <th width="80">总期数</th>
-                        <th>操作</th>
-                    </tr>
-
-                    <!--
-                    <tr>
-                    	<td>20150811110 </td>
-                        <td>0150811100 </td>
-                        <td>悦享家  </td>
-                        <td>2000.00元</td>
-                        <td>未完成</td>
-                        <td>无</td>
-                        <td>36期</td>
-                        <td><a href="javascript:void(0)">编辑</a><a href="javascript:void(0)">删除</a></td>
-                    </tr>
-                    <tr>
-                    	<td>20150811110 </td>
-                        <td>0150811100 </td>
-                        <td>悦享家  </td>
-                        <td>2000.00元</td>
-                        <td>未完成</td>
-                        <td>无</td>
-                        <td>36期</td>
-                        <td><a href="/anjia/order-detail.html">查看</a></td>
-                    </tr>
-                    <tr>
-                    	<td>20150811110 </td>
-                        <td>0150811100 </td>
-                        <td>悦享家  </td>
-                        <td>2000.00元</td>
-                        <td>未完成</td>
-                        <td>无</td>
-                        <td>36期</td>
-                        <td><a href="javascript:void(0)">编辑</a><a href="javascript:void(0)">删除</a></td>
-                    </tr>
-                    <tr>
-                    	<td>20150811110 </td>
-                        <td>0150811100 </td>
-                        <td>悦享家  </td>
-                        <td>2000.00元</td>
-                        <td>未完成</td>
-                        <td>无</td>
-                        <td>36期</td>
-                        <td><a href="/anjia/order-detail.html">查看</a></td>
-                    </tr>
-                    <tr>
-                    	<td>20150811110 </td>
-                        <td>0150811100 </td>
-                        <td>悦享家  </td>
-                        <td>2000.00元</td>
-                        <td>未完成</td>
-                        <td>无</td>
-                        <td>36期</td>
-                        <td><a href="javascript:void(0)">编辑</a><a href="javascript:void(0)">删除</a></td>
-                    </tr>
-                    <tr>
-                    	<td>20150811110 </td>
-                        <td>0150811100 </td>
-                        <td>悦享家  </td>
-                        <td>2000.00元</td>
-                        <td>未完成</td>
-                        <td>无</td>
-                        <td>36期</td>
-                        <td><a href="order-detail.html">查看</a></td>
-                    </tr>
-                    <tr>
-                    	<td>20150811110 </td>
-                        <td>0150811100 </td>
-                        <td>悦享家  </td>
-                        <td>2000.00元</td>
-                        <td>未完成</td>
-                        <td>无</td>
-                        <td>36期</td>
-                        <td><a href="javascript:void(0)">编辑</a><a href="javascript:void(0)">删除</a></td>
-                    </tr>
-                    -->
-                </table>
-                <!--
-                <div class="ui-pager">
-                	<a href="javascript:void(0)" class="page-pre-end">&nbsp;</a>
-                	<a href="javascript:void(0)" class="page-pre">&nbsp;</a>
-                	<a href="javascript:void(0)">1</a>
-                    <a href="javascript:void(0)">2</a>
-                    <a href="javascript:void(0)">3</a>
-                    <a href="javascript:void(0)">4</a>
-                    <a href="javascript:void(0)">5</a>
-                    <a href="javascript:void(0)">6</a>
-                    <a href="javascript:void(0)">...</a>
-                    <a href="javascript:void(0)">99</a>
-                    <a href="javascript:void(0)" class="page-next">&nbsp;</a>
-                    <a href="javascript:void(0)" class="page-next-end">&nbsp;</a>
+            <div class="personal-main-right">
+                <div class="personal-top clearfix">
+                    <div class="my-order-select f-right">
+                        <label>我的订单</label>
+                        <select id="orderstatus" class="common-select" style="width:380px">
+                            <option value="">全部订单</option>
+                        </select>
+                    </div>
+                    <div class="personal-inf">
+                        <img id="avatarimg" src="../res/images/usercenter1.png" class="user-img" onclick="document.getElementById('avatar').click()" />
+                        <input type="file" id="avatar" name="avatar" style="display:none;" />
+                        <div class="personal-inf-right">
+                            <p id="userphone" class="user-phone" style="margin-left:10px;">手机号码</p>
+                            <p class="user-edit-area">
+                                <a class="common-ico ico-phone" href="/anjia/changephone.html"></a>
+                                <a class="common-ico ico-setting" title="编辑" href="/anjia/userinfo.html"></a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-		-->
-
+                <div id="orderlist" class="ui-personal-box" style="min-height:300px;">
+    
+                    <table class="order-table" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th width="160">订单编号</th>
+                            <th width="129">合同编号</th>
+                            <th width="180">产品名称</th>
+                            <th width="130">分期金额</th>
+                            <th width="140">订单状态</th>
+                            <th width="150">最近待还</th>
+                            <th width="80">总期数</th>
+                            <th>操作</th>
+                        </tr>
+    
+                        <!--
+                        <tr>
+                            <td>20150811110 </td>
+                            <td>0150811100 </td>
+                            <td>悦享家  </td>
+                            <td>2000.00元</td>
+                            <td>未完成</td>
+                            <td>无</td>
+                            <td>36期</td>
+                            <td><a href="javascript:void(0)">编辑</a><a href="javascript:void(0)">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>20150811110 </td>
+                            <td>0150811100 </td>
+                            <td>悦享家  </td>
+                            <td>2000.00元</td>
+                            <td>未完成</td>
+                            <td>无</td>
+                            <td>36期</td>
+                            <td><a href="/anjia/order-detail.html">查看</a></td>
+                        </tr>
+                        <tr>
+                            <td>20150811110 </td>
+                            <td>0150811100 </td>
+                            <td>悦享家  </td>
+                            <td>2000.00元</td>
+                            <td>未完成</td>
+                            <td>无</td>
+                            <td>36期</td>
+                            <td><a href="javascript:void(0)">编辑</a><a href="javascript:void(0)">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>20150811110 </td>
+                            <td>0150811100 </td>
+                            <td>悦享家  </td>
+                            <td>2000.00元</td>
+                            <td>未完成</td>
+                            <td>无</td>
+                            <td>36期</td>
+                            <td><a href="/anjia/order-detail.html">查看</a></td>
+                        </tr>
+                        <tr>
+                            <td>20150811110 </td>
+                            <td>0150811100 </td>
+                            <td>悦享家  </td>
+                            <td>2000.00元</td>
+                            <td>未完成</td>
+                            <td>无</td>
+                            <td>36期</td>
+                            <td><a href="javascript:void(0)">编辑</a><a href="javascript:void(0)">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>20150811110 </td>
+                            <td>0150811100 </td>
+                            <td>悦享家  </td>
+                            <td>2000.00元</td>
+                            <td>未完成</td>
+                            <td>无</td>
+                            <td>36期</td>
+                            <td><a href="order-detail.html">查看</a></td>
+                        </tr>
+                        <tr>
+                            <td>20150811110 </td>
+                            <td>0150811100 </td>
+                            <td>悦享家  </td>
+                            <td>2000.00元</td>
+                            <td>未完成</td>
+                            <td>无</td>
+                            <td>36期</td>
+                            <td><a href="javascript:void(0)">编辑</a><a href="javascript:void(0)">删除</a></td>
+                        </tr>
+                        -->
+                    </table>
+                    <!--
+                    <div class="ui-pager">
+                        <a href="javascript:void(0)" class="page-pre-end">&nbsp;</a>
+                        <a href="javascript:void(0)" class="page-pre">&nbsp;</a>
+                        <a href="javascript:void(0)">1</a>
+                        <a href="javascript:void(0)">2</a>
+                        <a href="javascript:void(0)">3</a>
+                        <a href="javascript:void(0)">4</a>
+                        <a href="javascript:void(0)">5</a>
+                        <a href="javascript:void(0)">6</a>
+                        <a href="javascript:void(0)">...</a>
+                        <a href="javascript:void(0)">99</a>
+                        <a href="javascript:void(0)" class="page-next">&nbsp;</a>
+                        <a href="javascript:void(0)" class="page-next-end">&nbsp;</a>
+                    </div>
+            -->
+    
+                </div>
             </div>
         </div>
     </div>
@@ -233,22 +279,6 @@
 	<script src="libs/utils.js"></script>
 	<script src="libs/ajaxfileupload.js"></script>
 	<script src="js/c_usercenter.js"></script>
-	<script type="text/javascript">
-	$(function(){
-		//初始化
-		$('#bannerSlider').carouFredSel({
-			width: 1280,
-			height: 450,
-			prev: '#prev',
-			next: '#next',
-			pagination: "#pager",
-			swipe: {
-				onMouse: true,
-				onTouch: true
-			}
-		});
-	})
-	</script>
 	    <!--BAIDU定位JS 开始-->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
     <script type="text/javascript">

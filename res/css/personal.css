@@ -1,12 +1,35 @@
 @charset "UTF-8";
 /*personal*/
 .ui-personal-main{
-	margin-top:0px; /*haitao 20150920 1000 --- 10px*/
+	padding:40px 0px;
 	background:#fff;
 	padding-bottom:80px;
 }
+/*personal-layout*/
+/*start*/
+.personal-main-left{
+	position:relative;
+	width:180px;
+	border-bottom:none;
+	float:left;
+}
+.personal-main-right{
+	margin-left:180px;
+	background:#fff;
+	height:auto!important;
+	height:600px;
+	min-height:600px;
+	border-left:1px solid #eaeaea;
+	padding-left:70px;
+}
+.bind-s-c{
+	padding:15px 15px 50px;
+	border:1px solid #eaeaea;
+	margin-top:35px;
+}
+/*end*/
 .personal-top{
-	padding:35px;
+	padding:0px 15px 15px;
 }
 .personal-top .personal-inf .user-img{
 	float:left;
@@ -44,7 +67,7 @@
 	padding:0px 5px;
 	background:#dff0d8;
 	color:#669900;
-	font-weight:bold;
+	font-weight:inherit;
 	text-align:center;
 	font-size:15px;
 }
@@ -68,6 +91,7 @@
 	font-size:24px;
 	color:#333;
 	line-height:22px;
+	padding-top:15px;
 }
 .order-title .ico-note{
 	float:left;
@@ -139,22 +163,22 @@
 /*bind-step*/
 .bind-step-main{
 	padding:40px 0px 40px;
-	background:#f9f9f9;
+	background:#ffffff;
 }
 .bind-step-box{
-	height:31px;
+	height:35px;
 	width:683px;
 	margin:0 auto;
-	background:url(../images/bind-step.jpg) left top no-repeat;
+	background:url(../images/bind-step.png) left top no-repeat;
 }
 .bind-step-container.step1 .bind-step-box{
 	background-position:0px 0px;
 }
 .bind-step-container.step2 .bind-step-box{
-	background-position:0px -31px;
+	background-position:0px -34px;
 }
 .bind-step-container.step3 .bind-step-box{
-	background-position:0px -62px;
+	background-position:0px -69px;
 }
 .bind-step-container.step1 .bind-step-text .step-text1{
 	color:#99bf38;
@@ -188,9 +212,9 @@
 }
 .opreate-title-tip{
 	color:#999;
-	font-size:16px;
-	padding-top:25px;
-	margin-left:250px;
+	font-size:14px;
+	margin-left:15px;
+	margin-bottom:55px;
 }
 .opreate-title{
 	font-size:20px;
@@ -222,10 +246,10 @@
 	margin-top:10px;
 }
 .bind-phone-main{
-	margin-left:320px;
+	margin-left:143px;
 }
 .bind-result-box{
-	padding:160px 0px 160px;
+	padding:100px 0px 100px;
 	text-align:center;
 	font-size:24px;
 	color:#333;
