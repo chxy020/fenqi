@@ -17,6 +17,13 @@ $(function(){
 	//获取图形验证码
 	//sendGetImgCodeHttp();
 
+	//验证登录状态
+	var loginStatus = Utils.getUserInfo();
+	if(!loginStatus){
+		//未登录
+		//location.replace("/anjia/login.html");
+	}
+
 	//g.httpTip.show();
 	$("#countbtn").bind("click",countBtnUp);
 
