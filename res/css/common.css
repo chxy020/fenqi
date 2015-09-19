@@ -1388,7 +1388,14 @@ a.improve-btn:hover{
 	height:120px;
 }
 
-
+.verification-code-img{
+	height:40px;
+	width:112px;
+	border:1px solid #ddd;
+	border-radius:5px;
+	vertical-align:middle;
+	font-size:0px;
+}
 
 /*----------chenxuanyu add -------------------*/
 /*-------------loading Cancel btn start-------------*/
