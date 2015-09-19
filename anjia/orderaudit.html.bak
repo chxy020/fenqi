@@ -146,20 +146,6 @@
 	<script src="libs/calendar.js"></script>
 	<script src="libs/ajaxfileupload.js"></script>
 	<script src="js/c_orderaudit.js"></script>
-    <!--BAIDU定位JS 开始-->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
-    <script type="text/javascript">
-	$(function(){
-		// 百度地图API功能
-        function myFun(result){
-            var cityName = result.name;
-            $("#curCity").html(cityName);
-        }
-        var myCity = new BMap.LocalCity();
-        myCity.get(myFun);
-	})
-
-    </script>	
 </body>
 </html>
 
