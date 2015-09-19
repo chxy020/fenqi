@@ -178,7 +178,7 @@
 
 
     <div class="ui-bottom">
-        <div class="ui-wrap clearfix">
+        <!--div class="ui-wrap clearfix">
             <div class="f-link">
                 <p>了解生活家</p>
                 <ul>
@@ -224,7 +224,7 @@
                 <span class="b">总裁办投诉电话 400-402-000</span>
             </div>
         </div>
-    </div>
+    </div-->
 
 	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>
