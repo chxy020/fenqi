@@ -367,6 +367,14 @@ html{
 .hover-img-box-bot p{
 	margin-top:10px;
 }
+.verification-code-img{
+	height:40px;
+	width:112px;
+	border:1px solid #ddd;
+	border-radius:5px;
+	vertical-align:middle;
+	font-size:0px;
+}
 /*common-ico*/
 .common-ico{
 	display:inline-block;
