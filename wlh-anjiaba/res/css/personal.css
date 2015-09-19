@@ -166,19 +166,19 @@
 	background:#ffffff;
 }
 .bind-step-box{
-	height:31px;
+	height:35px;
 	width:683px;
 	margin:0 auto;
-	background:url(../images/bind-step.jpg) left top no-repeat;
+	background:url(../images/bind-step.png) left top no-repeat;
 }
 .bind-step-container.step1 .bind-step-box{
 	background-position:0px 0px;
 }
 .bind-step-container.step2 .bind-step-box{
-	background-position:0px -31px;
+	background-position:0px -34px;
 }
 .bind-step-container.step3 .bind-step-box{
-	background-position:0px -62px;
+	background-position:0px -69px;
 }
 .bind-step-container.step1 .bind-step-text .step-text1{
 	color:#99bf38;
