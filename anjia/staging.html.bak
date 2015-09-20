@@ -66,7 +66,7 @@
     </div>
     <div class="sub-page-banner improve-banner">
     	<div class="ui-wrap">
-            <div class="slide-right-part" style="background:none;">
+            <div class="slide-right-part" style="background:red;">
                 <!--div class="slide-btn-box" style="margin-top:210px;">
                     <p><a href="/anjia/mystaging.html" title="我要分期" class="improve-btn">我要分期</a></p>
                 </div-->
