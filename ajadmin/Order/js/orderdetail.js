@@ -42,6 +42,7 @@ $(function(){
 		g.httpTip.show();
 		var url = Base.serverUrl + "order/queryProductController";
 		var condi = {};
+		condi.companyId = "";
 		$.ajax({
 			url:url,
 			data:condi,
@@ -140,25 +141,6 @@ $(function(){
 
 	function changeOrderInfoHtml(data){
 		var obj = data.obj || {};
-
-		//风控审核意见
-		var approveRecords = obj.approveRecords || [];
-		approveRecords = approveRecords[0] || {};
-		var approveName = approveRecords.approveName || "";
-		var approveRemarks = approveRecords.approveRemarks || "";
-		var approveResult = approveRecords.approveResult || false;
-		approveResult = approveResult ? "通过" : "不通过";
-		var createTime = approveRecords.createTime || "";
-
-		//后台审核意见
-		var approveRecords2 = obj.approveRecords || [];
-		approveRecords2 = approveRecords2[1] || {};
-		var approveName2 = approveRecords2.approveName || "";
-		var approveRemarks2 = approveRecords2.approveRemarks || "";
-		var approveResult2 = approveRecords2.approveResult || false;
-		approveResult2 = approveResult2 ? "通过" : "不通过";
-		var createTime2 = approveRecords2.createTime || "";
-
 		//第二步数据,套餐信息
 		var contractNo = obj.contractNo || "";
 		var packageType = obj.packageType || "";
@@ -183,25 +165,7 @@ $(function(){
 
 
 		var html = [];
-		html.push('<tr><td width="16%" class="tableleft">风控审核人</td>');
-		html.push('<td>' + approveName + '</td></tr>');
-		html.push('<tr><td class="tableleft">风控审核结果</td>');
-		html.push('<td>' + approveResult + '</td></tr>');
-		html.push('<tr><td  class="tableleft">风控审核意见</td>');
-		html.push('<td>' + approveRemarks + '</td></tr>');
-		html.push('<tr><td class="tableleft">风控审核日期</td>');
-		html.push('<td>' + createTime + '</td></tr>');
-
-		html.push('<tr><td width="16%" class="tableleft">后台审核人</td>');
-		html.push('<td>' + approveName2 + '</td></tr>');
-		html.push('<tr><td class="tableleft">后台审核结果</td>');
-		html.push('<td>' + approveResult2 + '</td></tr>');
-		html.push('<tr><td  class="tableleft">后台审核意见</td>');
-		html.push('<td>' + approveRemarks2 + '</td></tr>');
-		html.push('<tr><td class="tableleft">后台审核日期</td>');
-		html.push('<td>' + createTime2 + '</td></tr>');
-
-		html.push('<tr><td class="tableleft">合同编号</td>');
+		html.push('<tr><td width="16%" class="tableleft">合同编号</td>');
 		html.push('<td>' + contractNo + '</td></tr>');
 		html.push('<tr><td class="tableleft">产品类型</td>');
 		html.push('<td>' + packageName + '</td></tr>');
@@ -373,18 +337,19 @@ $(function(){
 
 		html.push('<tr><td class="tableleft"></td>');
 		html.push('<td>');
-		html.push('<button id="sellerbtn" type="button" class="btn btn-primary" type="button">放款</button>&nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>');
+		//html.push('<button id="sellerbtn" type="button" class="btn btn-primary" type="button">审批</button>&nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>');
+		html.push('<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>');
 		html.push('</td>');
 		html.push('</tr>');
 
 		$("#orderinfotable").html(html.join(''));
 
 		$('#backid').click(function(){
-			window.location.href="fkuan_index.html";
+			window.location.href="orderquery.html";
 		});
-		$('#sellerbtn').click(function(){
-			window.location.href="fkuan_loan.html?orderid=" + g.orderId;
-		});
+		//~ $('#sellerbtn').click(function(){
+			//~ window.location.href="seller.html?orderid=" + g.orderId;
+		//~ });
 	}
 
 	function imgUploadEdit(list){

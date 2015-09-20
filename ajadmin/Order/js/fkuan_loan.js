@@ -63,8 +63,8 @@ $(function(){
 				console.log("loanBtnUp",data);
 				var status = data.success || false;
 				if(status){
-					Utils.alert("放款完成");
-					setTimeout(function(){window.location.href="index.html";},1000);
+					alert("放款完成");
+					window.location.href="fkuan_index.html";
 				}
 				else{
 					var msg = data.message || "放款失败";

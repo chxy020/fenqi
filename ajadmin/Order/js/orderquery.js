@@ -4,6 +4,19 @@
 
 //页面初始化
 $(function(){
+	if(typeof eui !== "undefined"){
+		eui.calendar({
+			startYear: 1900,
+			input: document.getElementById('createTimeBegin'),
+			id:"createTimeBegin"
+		});
+		eui.calendar({
+			startYear: 1900,
+			input: document.getElementById('createTimeEnd'),
+			id:"createTimeEnd"
+		});
+	}
+
 	var g = {};
 	g.phone = "";
 	g.imgCodeId = "";
@@ -26,7 +39,11 @@ $(function(){
 	}
 	else{
 		//获取公司信息
-		sendGetCompanyInfoHttp();
+		//sendGetCompanyInfoHttp();
+		//获取订单状态
+		sendGetUserInfoDicHttp();
+
+		queryOrderList();
 	}
 
 	$("#querybtn").bind("click",queryOrderList);
@@ -66,6 +83,7 @@ $(function(){
 		});
 	}
 
+	/*
 	function changeSelectHtml(obj){
 		var data = obj || {};
 		var option = [];
@@ -82,16 +100,75 @@ $(function(){
 		}
 		$("#company").html(option.join(''));
 	}
+	*/
+
+	//获取用户信息字典信息
+	function sendGetUserInfoDicHttp(){
+		g.httpTip.show();
+		var url = Base.serverUrl + "baseCodeController/getBaseCodeByParents";
+		var condi = {};
+		condi.parents = "1005";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetUserInfoDicHttp",data);
+				var status = data.success || false;
+				if(status){
+					var obj = data.obj || {};
+					changeSelectHtml(obj);
+				}
+				else{
+					var msg = data.message || "获取用户信息字典数据失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+
+	function changeSelectHtml(obj){
+		var parents = ["1005"];
+		var ids = ["status"];
+		for(var i = 0,len = parents.length; i < len; i++){
+			var data = obj[parents[i]] || {};
+			var option = [];
+			option.push('<option value="">全部订单</option>');
+			for(var k in data){
+				var id = k || "";
+				var name = data[k] || "";
+				option.push('<option value="' + id + '">' + name + '</option>');
+			}
+			$("#" + ids[i]).html(option.join(''));
+		}
+		if(g.orderStatus !== ""){
+			$("#orderstatus").val(g.orderStatus);
+		}
+	}
+
+
 
 
 	function sendQueryOrderListHttp(){
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/querySellerApproveOrdersController";
+		var url = Base.serverUrl + "order/queryOrdersController";
 		var condi = {};
 		condi.login_token = g.login_token;
-		condi.status = "";
+		condi.status = $("#status").val() || "";
 		condi.currentPageNum = g.currentPage;
-		condi.companyId = $("#company").val() || "";
+		condi.applicantName = $("#applicantName").val() || "";
+		condi.applicantPhone = $("#applicantPhone").val() || "";
+		condi.createTimeBegin = $("#createTimeBegin").val() || "";
+		condi.createTimeEnd = $("#createTimeEnd").val() || "";
+		condi.orderId = $("#orderId").val() || ""
+		//condi.companyId = $("#company").val() || "";
+
 		$.ajax({
 			url:url,
 			data:condi,
@@ -127,10 +204,8 @@ $(function(){
 		html.push('<th>产品名称</th>');
 		html.push('<th>分期金额</th>');
 		html.push('<th>订单状态</th>');
-
 		html.push('<th>真实姓名</th>');
 		html.push('<th>联系电话</th>');
-
 		html.push('<th>最近待还</th>');
 		html.push('<th>总期数</th>');
 		html.push('<th>操作</th>');
@@ -138,6 +213,10 @@ $(function(){
 		var obj = data.list || [];
 		for(var i = 0,len = obj.length; i < len; i++){
 			var d = obj[i];
+			var deleted = d.deleted - 0 || 0;
+
+			if(deleted !== 0){continue;}
+
 			var orderId = d.orderId || "";
 			var contractNo = d.contractNo || "";
 			var packageName = d.packageName || "";
@@ -163,12 +242,19 @@ $(function(){
 
 			html.push('<td>' + fenQiTimes + '期</td>');
 			html.push('<td>' + noRepaymentTimes + '期</td>');
+
+			if(status != "100504"){
+				html.push('<td><a href="orderdetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+			}
+			else{
+				html.push('<td><a href="orderdetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp</td>');
+			}
 			if(status == "100501"){
 				//html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else if(status == "100502"){
 				//100502: "商家审核中"
-				html.push('<td><a href="detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="seller.html?orderid=' + orderId + '">审批</a></td>');
+				//html.push('<td><a href="detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="seller.html?orderid=' + orderId + '">审批</a></td>');
 			}
 			else if(status == "100503"){
 				//100503: "风控审核中
@@ -324,8 +410,8 @@ $(function(){
 
 
 
-	function sellerOrderById(id){
-		if(confirm("你确认要审批通过该订单吗?")){
+	function deleteOrderById(id){
+		if(confirm("你确认要删除该订单吗?")){
 			g.httpTip.show();
 			var condi = {};
 			condi.orderId = id;
@@ -342,7 +428,7 @@ $(function(){
 					console.log("deleteOrderById",data);
 					var status = data.success || false;
 					if(status){
-						getUserOrderList();
+						queryOrderList();
 					}
 					else{
 						var msg = data.message || "删除订单数据失败";
@@ -358,6 +444,6 @@ $(function(){
 	}
 
 
-	window.sellerOrderById = sellerOrderById;
+	window.deleteOrderById = deleteOrderById;
 
 });

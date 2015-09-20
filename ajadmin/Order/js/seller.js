@@ -63,8 +63,8 @@ $(function(){
 				console.log("sellerBtnUp",data);
 				var status = data.success || false;
 				if(status){
-					Utils.alert("审批完成");
-					setTimeout(function(){window.location.href="index.html";},1000);
+					alert("后台审批完成");
+					window.location.href="index.html";
 				}
 				else{
 					var msg = data.message || "审批失败";

@@ -30,7 +30,7 @@ $(function(){
 	else{
 		//$("#usersId").val(g.usersId);
 		//$("#usersName").val(g.usersName);
-		sendGetProductHttp();
+		//sendGetProductHttp();
 		sendGetDicHttp();
 	}
 
@@ -140,16 +140,26 @@ $(function(){
 
 	function changeOrderInfoHtml(data){
 		var obj = data.obj || {};
+		//风控审核意见
+		var approveRecords = obj.approveRecords || [];
+		approveRecords = approveRecords[0] || {};
+		var approveName = approveRecords.approveName || "";
+		var approveRemarks = approveRecords.approveRemarks || "";
+		var approveResult = approveRecords.approveResult || false;
+		approveResult = approveResult ? "通过" : "不通过";
+		var createTime = approveRecords.createTime || "";
+
 		//第二步数据,套餐信息
 		var contractNo = obj.contractNo || "";
 		var packageType = obj.packageType || "";
-		for(var i = 0,len = g.productDic.length; i < len; i++){
-			var productId = g.productDic[i].productId;
-			if(productId == packageType){
-				packageType = g.productDic[i].productName;
-				break;
-			}
-		}
+		//~ for(var i = 0,len = g.productDic.length; i < len; i++){
+			//~ var productId = g.productDic[i].productId;
+			//~ if(productId == packageType){
+				//~ packageType = g.productDic[i].productName;
+				//~ break;
+			//~ }
+		//~ }
+		var packageName = obj.packageName || "";
 		var companyId = obj.companyId || "";
 		var contractMoney = obj.contractMoney || "";
 		var packageMoney = obj.packageMoney || "";
@@ -163,10 +173,19 @@ $(function(){
 
 
 		var html = [];
-		html.push('<tr><td width="16%" class="tableleft">合同编号</td>');
+		html.push('<tr><td width="16%" class="tableleft">风控审核人</td>');
+		html.push('<td>' + approveName + '</td></tr>');
+		html.push('<tr><td class="tableleft">风控审核结果</td>');
+		html.push('<td>' + approveResult + '</td></tr>');
+		html.push('<tr><td  class="tableleft">风控审核意见</td>');
+		html.push('<td>' + approveRemarks + '</td></tr>');
+		html.push('<tr><td class="tableleft">风控审核日期</td>');
+		html.push('<td>' + createTime + '</td></tr>');
+
+		html.push('<tr><td class="tableleft">合同编号</td>');
 		html.push('<td>' + contractNo + '</td></tr>');
 		html.push('<tr><td class="tableleft">产品类型</td>');
-		html.push('<td>' + packageType + '</td></tr>');
+		html.push('<td>' + packageName + '</td></tr>');
 		html.push('<tr><td class="tableleft">合同总金额</td>');
 		html.push('<td>' + contractMoney + '元</td></tr>');
 		html.push('<tr><td class="tableleft">分期金额</td>');
@@ -189,28 +208,28 @@ $(function(){
 		applicantSex = applicantSex == "100101" ? "男" : "女";
 		var applicantIdentity = obj.applicantIdentity || "";
 		var applicantMarital = obj.applicantMarital || "";
-		applicantMarital = g.selectDic["1003"][applicantMarital];
+		applicantMarital = g.selectDic["1003"][applicantMarital] || "";
 		var applicantAddress = obj.applicantAddress || "";
 		var applicantStudyStatus = obj.applicantStudyStatus || "";
-		applicantStudyStatus = g.selectDic["1009"][applicantStudyStatus];
+		applicantStudyStatus = g.selectDic["1009"][applicantStudyStatus] || "";
 		var applicantSchool = obj.applicantSchool || "";
 		var applicantMajor = obj.applicantMajor || "";
 		var applicantAsset = obj.applicantAsset || "";
 		var zcinfo = {"101001":"有房","101002":"有车","101004":"有房有车","101005":"无车无房"};
-		applicantAsset = zcinfo[applicantAsset];
+		applicantAsset = zcinfo[applicantAsset] || "";
 
 		var applicantJobNature = obj.applicantJobNature || "";
 		var gzxzinfo = {"101101":"工薪阶级","101102":"企业主","101103":"个体户","101104":"网商"};
-		applicantJobNature = gzxzinfo[applicantJobNature];
+		applicantJobNature = gzxzinfo[applicantJobNature] || "";
 		var applicantCompany = obj.applicantCompany || "";
 		var applicantCompanyNature = obj.applicantCompanyNature || "";
-		applicantCompanyNature = g.selectDic["1012"][applicantCompanyNature];
+		applicantCompanyNature = g.selectDic["1012"][applicantCompanyNature] || "";
 		var applicantCompanyIndustry = obj.applicantCompanyIndustry || "";
-		applicantCompanyIndustry = g.selectDic["1013"][applicantCompanyIndustry];
+		applicantCompanyIndustry = g.selectDic["1013"][applicantCompanyIndustry] || "";
 		var applicantDuties = obj.applicantDuties || "";
-		applicantDuties = g.selectDic["1014"][applicantDuties];
+		applicantDuties = g.selectDic["1014"][applicantDuties] || "";
 		var applicantWorkYears = obj.applicantWorkYears || "";
-		applicantWorkYears = g.selectDic["1015"][applicantWorkYears];
+		applicantWorkYears = g.selectDic["1015"][applicantWorkYears] || "";
 		var applicantCompanyAddress = obj.applicantCompanyAddress || "";
 		var applicantCompanyPhone = obj.applicantCompanyPhone || "";
 		var applicantWages = obj.applicantWages || "";
@@ -260,12 +279,12 @@ $(function(){
 		var familyName = obj.familyName || "";
 		var familyPhone = obj.familyPhone || "";
 		var familyRelation = obj.familyRelation || "";
-		familyRelation = g.selectDic["1016"][familyRelation];
+		familyRelation = g.selectDic["1016"][familyRelation] || "";
 
 		var familyTwoName = obj.familyTwoName || "";
 		var familyTwoPhone = obj.familyTwoPhone || "";
 		var familyTwoRelation = obj.familyTwoRelation || "";
-		familyTwoRelation = g.selectDic["1016"][familyTwoRelation];
+		familyTwoRelation = g.selectDic["1016"][familyTwoRelation] || "";
 
 		var friendName = obj.friendName || "";
 		var friendPhone = obj.friendPhone || "";
