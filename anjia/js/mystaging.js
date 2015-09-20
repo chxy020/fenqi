@@ -420,8 +420,9 @@ $(function(){
 			$("#step1").hide();
 			$("#step2").show();
 
+			sendGetProductHttp(companyId);
+
 			if(g.orderId == ""){
-				sendGetProductHttp(companyId);
 				//获取订单编号
 				sendGetOrderIdHttp();
 			}
@@ -1278,15 +1279,15 @@ $(function(){
 		var applicantMajor = obj.applicantMajor || "";
 		var applicantAsset = obj.applicantAsset || "";
 
-		//~ var applicantJobNature = obj.applicantJobNature || "";
-		//~ var applicantCompany = obj.applicantCompany || "";
-		//~ var applicantCompanyNature = obj.applicantCompanyNature || "";
-		//~ var applicantCompanyIndustry = obj.applicantCompanyIndustry || "";
-		//~ var applicantDuties = obj.applicantDuties || "";
-		//~ var applicantWorkYears = obj.applicantWorkYears || "";
-		//~ var applicantCompanyAddress = obj.applicantCompanyAddress || "";
-		//~ var applicantCompanyPhone = obj.applicantCompanyPhone || "";
-		//~ var applicantWages = obj.applicantWages || "";
+		var applicantJobNature = obj.applicantJobNature || "";
+		var applicantCompany = obj.applicantCompany || "";
+		var applicantCompanyNature = obj.applicantCompanyNature || "";
+		var applicantCompanyIndustry = obj.applicantCompanyIndustry || "";
+		var applicantDuties = obj.applicantDuties || "";
+		var applicantWorkYears = obj.applicantWorkYears || "";
+		var applicantCompanyAddress = obj.applicantCompanyAddress || "";
+		var applicantCompanyPhone = obj.applicantCompanyPhone || "";
+		var applicantWages = obj.applicantWages || "";
 
 		$("#applicantName").val(applicantName);
 		$("#applicantAge").val(applicantAge);
@@ -1306,17 +1307,17 @@ $(function(){
 		$($("#r_101001").parent()).removeClass("radio-bg-checked");
 		$($("#r_" + applicantAsset).parent()).addClass("radio-bg-checked");
 
-		//~ $("#r_" + applicantJobNature).attr("checked",true);
-		//~ $($("#r_101101").parent()).removeClass("radio-bg-checked");
-		//~ $($("#r_" + applicantJobNature).parent()).addClass("radio-bg-checked");
-		//~ $("#applicantCompany").val(applicantCompany);
-		//~ $("#applicantCompanyNature").val(applicantCompanyNature);
-		//~ $("#applicantCompanyIndustry").val(applicantCompanyIndustry);
-		//~ $("#applicantDuties").val(applicantDuties);
-		//~ $("#applicantWorkYears").val(applicantWorkYears);
-		//~ $("#applicantCompanyAddress").val(applicantCompanyAddress);
-		//~ $("#applicantCompanyPhone").val(applicantCompanyPhone);
-		//~ $("#applicantWages").val(applicantWages);
+		$("#r_" + applicantJobNature).attr("checked",true);
+		$($("#r_101101").parent()).removeClass("radio-bg-checked");
+		$($("#r_" + applicantJobNature).parent()).addClass("radio-bg-checked");
+		$("#applicantCompany").val(applicantCompany);
+		$("#applicantCompanyNature").val(applicantCompanyNature);
+		$("#applicantCompanyIndustry").val(applicantCompanyIndustry);
+		$("#applicantDuties").val(applicantDuties);
+		$("#applicantWorkYears").val(applicantWorkYears);
+		$("#applicantCompanyAddress").val(applicantCompanyAddress);
+		$("#applicantCompanyPhone").val(applicantCompanyPhone);
+		$("#applicantWages").val(applicantWages);
 
 		//3.2
 		var familyName = obj.familyName || "";
