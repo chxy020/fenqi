@@ -75,7 +75,7 @@
     	<div class="ui-wrap" style="width:100%">
         	<div class="ui-slider">
                 <ul class="list_carousel" id="bannerSlider">
-                    <li style="background:url(../res/images/banner10.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li>   
+                    <li style="background:url(../res/images/banner10.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li> /*haitao*/
                     <li style="background:url(../res/images/banner0.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li> 
                     <li style="background:url(../res/images/banner5.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li>
                 </ul>
