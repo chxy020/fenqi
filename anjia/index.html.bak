@@ -76,8 +76,8 @@
         	<div class="ui-slider">
                 <ul class="list_carousel" id="bannerSlider">
                     <li style="background:url(../res/images/banner.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li>
-                    <li style="background:url(../res/images/banner.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li>
-                    <li style="background:url(../res/images/banner.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li>
+                    <li style="background:url(../res/images/banner0.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li>
+                    <li style="background:url(../res/images/banner3.jpg) top center no-repeat"><a href="###"><div class="ui-wrap"></div></a></li>
                 </ul>
                 <div class="ui-wrap">
                 	<ul id="pager" class="pager"></ul>
@@ -91,7 +91,7 @@
     	<div class="ui-wrap">
         	<div class="common-title1">
             	家装分期
-                <p>Decoration Loan</p>
+                <p>Decoration loan</p>
             </div>
             <div class="loan-img">
             	<a href="/anjia/mystaging.html" title="我要分期" class="loan-btn">
@@ -105,7 +105,7 @@
     	<div class="ui-wrap">
         	<div class="common-title1">
             	平台优势
-                <p>Platform Advantage</p>
+                <p>Platform advantage</p>
             </div>
         	<div class="staging-step-box clearfix">
             	<div class="staging-step-item">
@@ -135,7 +135,7 @@
     	<div class="ui-wrap">
         	<div class="common-title1">
             	合作商家
-                <p>Cooperative Business</p>
+                <p>Cooperative business</p>
             </div>
             <div class="cooperative-business-box clearfix">
             	<div class="cooperative-part f-right">
