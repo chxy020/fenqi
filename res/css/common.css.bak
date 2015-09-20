@@ -551,7 +551,7 @@ html{
 	margin-left:15px;
 }
 .ui-header .ui-head-left .ui-head-left-l{
-	margin-left:35px;/*haitao 20150920 0707 ----  15px*/
+	margin-left:25px;/*haitao 20150920 0707 ----  15px*/
 	width:150px;
 	margin-top:50px;/*haitao 20150920 0707 ----  55px*/
 }

@@ -811,8 +811,8 @@ html{
 	line-height: 30px;
 }
 .ui-bottom .f-logo{
-	width:148px;
-	height:104px;
+	width:199px; /*haitao modify 20150920 1721 ---- 148px*/
+	height:140px; /*haitao modify 20150920 1721 ---- 104px*/
 	float:left;
 	margin:25px 60px 0px 20px;
 }
