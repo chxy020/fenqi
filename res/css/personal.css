@@ -36,6 +36,8 @@
 	width:89px;
 	height:89px;
 	cursor:pointer;
+	/*chenxy add 头像显示圆形*/
+	border-radius: 50%;
 }
 .personal-top .personal-inf .personal-inf-right{
 	margin-left:105px;
@@ -236,7 +238,7 @@
 	width:140px;
 	font-size:16px;
 	text-align:right;
-	
+
 }
 .list-item-box .list-item-t .list-item-right{
 	margin-left:150px;
