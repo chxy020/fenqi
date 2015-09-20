@@ -811,10 +811,10 @@ html{
 	line-height: 30px;
 }
 .ui-bottom .f-logo{
-	width:199px; /*haitao modify 20150920 1721 ---- 148px*/
-	height:140px; /*haitao modify 20150920 1721 ---- 104px*/
+	width:137px; /*haitao modify 20150920 1721 ---- 148px*/
+	height:131px; /*haitao modify 20150920 1721 ---- 104px*/
 	float:left;
-	margin:5px 0px 0px 0px;
+	margin:10px 40px 0px 0px;
 }
 .ui-bottom .f-phone{
 	float: left;
