@@ -21,19 +21,20 @@ var __ostatus__ = getQueryString("ostatus") || "";
 var __html__ = [];
 
 __html__.push('<ul>');
-__html__.push('<li>');
-if(__item__ == 0 || __item__ == ""){
-	__html__.push('<div class="nav-main-item selected">');
-}
-else{
-	__html__.push('<div class="nav-main-item">');
-}
-__html__.push('<a href="/anjia/usercenter.html?item=0">个人账户</a>');
-__html__.push('<i class="common-ico ico-selected-flag"></i>');
-__html__.push('</div>');
-__html__.push('</li>');
-__html__.push('<li>');
 
+//~ __html__.push('<li>');
+//~ if(__item__ == 0 || __item__ == ""){
+	//~ __html__.push('<div class="nav-main-item selected">');
+//~ }
+//~ else{
+	//~ __html__.push('<div class="nav-main-item">');
+//~ }
+//~ __html__.push('<a href="/anjia/usercenter.html?item=0">个人账户</a>');
+//~ __html__.push('<i class="common-ico ico-selected-flag"></i>');
+//~ __html__.push('</div>');
+//~ __html__.push('</li>');
+
+__html__.push('<li>');
 if(__item__ == 1){
 	__html__.push('<div class="nav-main-item selected">');
 }
