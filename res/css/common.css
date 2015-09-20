@@ -814,7 +814,7 @@ html{
 	width:199px; /*haitao modify 20150920 1721 ---- 148px*/
 	height:140px; /*haitao modify 20150920 1721 ---- 104px*/
 	float:left;
-	margin:25px 24px 0px 20px;
+	margin:25px 0px 0px 0px;
 }
 .ui-bottom .f-phone{
 	float: left;
