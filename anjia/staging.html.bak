@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<title>燕子安家</title>
+	<link href="../res/css/common.css" rel="stylesheet">
+	<link href="../res/css/index.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="ui-short-head">
+		<div class="ui-wrap">
+			<div id="loginstatus" class="head-box">
+				<a href="/anjia/login.html">登录</a>
+				<s class="header-line"></s>
+				<a href="/anjia/reg.html">注册</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">我的订单</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">我要还款</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui-header">
+    	<div class="ui-wrap">
+        	<div class="ui-head-left f-left clearfix">
+        		<img class="ui-logo" src="../res/images/logo.png" />
+                <div class="ui-head-left-l f-left">
+                    <span class="cur-pos"><i class="common-ico ico-position"></i><em id="curCity">&nbsp;&nbsp;&nbsp;&nbsp;</em></span>
+                    <div class="select-city-box">
+                        <a href="javascript" class="select-city-btn">[切换]</a>
+                        <div class="select-city-area">
+                            <ul class="select-city-area-ul clearfix">
+                                <li>
+                                    <a href="###">北京</a>
+                                </li>
+                                <li>
+                                    <a href="###">上海</a>
+                                </li>
+                                <li>
+                                    <a href="###">成都</a>
+                                </li>
+                                <li>
+                                    <a href="###">福建</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-phone-service">
+                <p class="phone-service">全国统一免费咨询热线</p>
+                <img src="../res/images/phone-number.png" width="168" height="14">
+            </div>
+            <div class="ui-nav">
+            	<ul>
+                	<li><a href="/anjia/index.html">首页</a></li>
+			<li><a href="/anjia/staging.html" class="selected">家装分期</a></li>
+			<li><a href="/anjia/business.html">合作商家</a></li>
+			<li class="no-right-border"><a href="/anjia/about.html">关于我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="sub-page-banner improve-banner">
+    	<div class="ui-wrap">
+            <div class="slide-right-part" style="background:none;">
+                <div class="slide-btn-box" style="margin-top:210px;">
+                    <p><a href="/anjia/mystaging.html" title="我要分期" class="improve-btn">我要分期</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="improvement-cal-main">
+    	<div class="ui-wrap">
+			<div class="common-title1">
+				其实不用算
+				<p style="font-size:18px">￥手续费每天低至58.3元</p>
+			</div>
+            <div class="improvement-cal-box clearfix">
+				<!--计算器输入框-->
+            	<div class="improvement-cal-box clearfix">
+                            <!--计算器输入框-->
+                            <div class="improvement-cal-input-box">
+                                <div class="improvement-cal-left">
+                                    <label class="f-left">分期金额：</label>
+                                    <input id="allprice" type="text" class="improvement-cal-input f-left" />
+                                    <label class="f-left">元</label>
+                                </div>
+                                <div id="countbtn" class="cal-btn">计算</div>
+                            </div>
+                            <!--选择分期期数-->
+                            <div class="selection-period-box">
+                                <ul id="stagingtime" class="selection-period-ul clearfix">
+                                    <li id="fq_0" class="selected">
+                                        <a href="javascript:void(0)">3期</a>
+                                        <div class="rate-period" style="display:block"><i class="common-ico ico-white-trig"></i>免费</div>
+                                    </li>
+                                    <li id="fq_1">
+                                        <a href="javascript:void(0)">6期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率1%</div>
+                                    </li>
+                                    <li id="fq_2">
+                                        <a href="javascript:void(0)">9期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率4%</div>
+                                    </li>
+                                    <li id="fq_3">
+                                        <a href="javascript:void(0)">12期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率7%</div>
+                                    </li>
+                                    <li id="fq_4">
+                                        <a href="javascript:void(0)">18期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率10%</div>
+                                    </li>
+                                    <li id="fq_5">
+                                        <a href="javascript:void(0)">24期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率13%</div>
+                                    </li>
+                                    <li id="fq_6">
+                                        <a href="javascript:void(0)">36期</a>
+                                        <div class="rate-period"><i class="common-ico ico-white-trig"></i>利率16%</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--分期明细-->
+                            <div class="staging-detail">
+                                <div class="common-title" style="text-align:left;padding:35px 0px 15px 0px;">分期明细</div>
+                                <div class="staging-detail-box">
+                                    <div class="staging-detail-item imp-item clearfix">
+                                        <label>每月还款</label>
+                                        <div class="staging-item-right">
+                                            <em id="mouthtext" class="highlight">000000.00</em>元
+                                        </div>
+                                    </div>
+                                    <div class="staging-detail-item clearfix">
+                                        <label>分期金额</label>
+                                        <div class="staging-item-right">
+                                            <em id="capitaltext" class="">000000.00</em>元
+                                        </div>
+                                    </div>
+                                    <div class="staging-detail-item clearfix">
+                                        <label>　服务费</label>
+                                        <div class="staging-item-right">
+                                            <em id="feetext" class="">000000.00</em>元
+                                        </div>
+                                    </div>
+                                    <div class="staging-detail-item clearfix">
+                                        <label>本息合计</label>
+                                        <div class="staging-item-right">
+                                            <em id="alltext" class="">0</em>元
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+       	</div>
+    </div>
+    <div class="staging-detai-main">
+        <div class="ui-wrap">
+			<div class="common-title1">
+            	轻松分期，4步搞定
+                <p>无担保装修分期流程</p>
+            </div>
+			<div class="text-center">
+				<img src="../res/images/staging-step-img.jpg" />
+			</div>
+            <div class="btn-box text-center" style="margin:45px 0px 25px;">
+                <a href="/anjia/mystaging.html" class="common-btn common-btn-b btn-green">我要分期</a>
+            </div>
+		</div>
+    </div>
+    <div class="staging-compare-main">
+    	<div class="ui-wrap clearfix">
+			<div class="text-center">
+				<img src="../res/images/staging-compare-img.jpg" />
+			</div>
+        </div>
+    </div>
+    <div class="staging-ask-main">
+    	<div class="ui-wrap">
+            <h1 class="common-title1">问与答<p>解答您心中疑惑</p></h1>
+            <div class="ask-list-box">
+                <div class="ask-list-item">
+                    <div class="ask-title">问：燕子安家装修分期介绍</div>
+                    <div class="answer-detail">答：您好，燕子安家装修分期是由北京德维投资管理有限公司和各大装修公司共同合作推出，是一款额度高、利率低、期限灵活、免担保抵押，专门为合作方装修业主解决装修资金需求的分期产品。</div>
+                </div>
+                <div class="ask-list-item">
+                    <div class="ask-title">问：燕子安家装修分期的申请条件？</div>
+                    <div class="answer-detail">答：您好，申请条件为：燕子安家注册用户，与已合作商家签约了装修正式合同，即可在线申请装修分期。</div>
+                </div>
+                <div class="ask-list-item">
+                    <div class="ask-title">问：如何申请燕子安家装修分期？</div>
+                    <div class="answer-detail">答：您好，在燕子安家家装分期页面点击申请即进入申请环节，根据系统提示填写和提交资料点击确认申请即可。</div>
+                </div>
+                <div class="ask-list-item">
+                    <div class="ask-title">问：申请家装分期需要准备什么材料？</div>
+                    <div class="answer-detail">答：您好，申请家装分期需要准备以下材料：身份证（正反面照片、本人持身份证照片）、房产证明、现住址证明、工作证明、收入证明等证明文件。</div>
+                </div>
+                <div class="ask-list-item">
+                    <div class="ask-title">问：燕子安家装修分期申请后多久可以获得额度？</div>
+                    <div class="answer-detail">答：您好，申请提交成功后，大概需要一个工作日时间完成审核，这段时间请保持电话畅通，审核结果会通过短信发送到您的手机上。</div>
+                </div>
+                <div class="ask-list-item">
+                    <div class="ask-title">燕子安家装修分期如何还款？</div>
+                    <div class="answer-detail">答：您好，装修分期支持第三方支付“易宝”绑定银行卡自动代扣及银联合作银行在线主动还款两种方式。自动代扣需在您申请时候设置开通，扣款卡为当时绑定银行卡；在线主动还款则需要到在还款期登录“燕子安家”官网或者关注“燕子安家”微信号主动还款。
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-bottom">
+	    <!--
+        <div class="ui-wrap clearfix">
+            <div class="f-link">
+                <p>了解生活家</p>
+                <ul>
+                    <li><a href="#" class="active">公司简介</a></li>
+                    <li><a href="#">公司荣誉</a></li>
+                    <li><a href="#">发展历程</a></li>
+                    <li><a href="#">企业文化</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+
+            <div class="f-link">
+                <p>家装知识</p>
+                <ul class="">
+                    <li><a href="#" class="active">设计知识</a></li>
+                    <li><a href="#">家装风水</a></li>
+                    <li><a href="#">材料知识</a></li>
+                    <li><a href="#">家专攻略</a></li>
+                </ul>
+            </div>
+
+            <div class="f-link">
+                <p>热装小区</p>
+                <ul class="">
+                    <li><a href="#" class="active">热装小区</a></li>
+                    <li><a href="#">在建工地</a></li>
+                    <li><a href="#">客户见证</a></li>
+                </ul>
+            </div>
+
+            <div class="f-link">
+                <p>悦享家其他官方渠道</p>
+                <ul class="">
+                    <li><a class="weixin" href="#">悦享家官方微信</a></li>
+                    <li><a class="weibo" href="#">悦享家官方微播</a></li>
+                    <li><a class="tianmao" href="#">悦享家天猫旗舰店</a></li>
+                </ul>
+            </div>
+
+            <div class="f-phone">
+                <span class="a">全国统一免费咨询热线</span>
+                <img src="../res/images/phone-number.png" width="168" height="14">
+                <span class="b">总裁办投诉电话 400-402-000</span>
+            </div>
+        </div>
+        -->
+    </div>
+
+	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../res/js/ui.js"></script>
+	<script src="libs/json.js"></script>
+	<script src="libs/base.js"></script>
+	<script src="libs/utils.js"></script>
+	<script src="js/staging.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.selection-period-ul li').click(function(){
+				$('.selection-period-ul li').removeClass('selected');
+				$(this).siblings('li').find('.rate-period').fadeOut(100);
+				$(this).addClass('selected');
+				$(this).find('.rate-period').fadeIn(100);
+			});
+			$('.selection-period-ul li').hover(function(){
+				$(this).find('.rate-period').fadeIn(100);
+			},function(){
+				if(!$(this).hasClass('selected')){
+					$(this).find('.rate-period').fadeOut(100);
+				}
+			});
+		})
+	</script>
+	<!--BAIDU定位JS 开始-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+	<script type="text/javascript">
+		// 百度地图API功能
+		function myFun(result){
+		var cityName = result.name;
+			$("#curCity").html(cityName);
+		}
+		var myCity = new BMap.LocalCity();
+		myCity.get(myFun);
+	</script>
+</body>
+
+</html>
+
