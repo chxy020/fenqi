@@ -128,6 +128,7 @@ $(function(){
 		html.push('<th>状态</th>');
 		html.push('<th>图片</th>');
 		html.push('<th>跳转地址</th>');
+		html.push('<th>排序</th>');
 		html.push('<th>添加人</th>');
 		html.push('<th>添加时间</th>');
 		html.push('<th>操作</th>');
@@ -150,6 +151,7 @@ $(function(){
 			var flag = usedFlag == 0 ? "停用" : "启用";
 			var bmUrl = d.bmUrl || "";
 			var bmClickUrl = d.bmClickUrl || "";
+			var orderNum = d.orderNum || "";
 			var createByName = d.createByName || "";
 			var createTime = d.createTime || "";
 
@@ -160,6 +162,7 @@ $(function(){
 			html.push('<td>' + flag + '</td>');
 			html.push('<td><img src="' + bmUrl + '" width="120px" onclick="showImgTip(\'' + bmUrl + '\');" style="cursor: pointer;"/></td>');
 			html.push('<td>' + bmClickUrl + '</td>');
+			html.push('<td>' + orderNum + '</td>');
 			html.push('<td>' + createByName + '</td>');
 			html.push('<td>' + createTime + '</td>');
 
