@@ -35,7 +35,7 @@ __html__.push('<ul>');
 //~ __html__.push('</li>');
 
 __html__.push('<li>');
-if(__item__ == 1){
+if(__item__ == 1 || __item__ == ""){
 	__html__.push('<div class="nav-main-item selected">');
 }
 else{

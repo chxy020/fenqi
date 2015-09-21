@@ -324,15 +324,15 @@ $(function(){
 
 		html.push('<table class="order-table" cellpadding="0" cellspacing="0">');
 		html.push('<tr>');
-		html.push('<th width="110">还款期数</th>');
-		html.push('<th width="120">还款本金</th>');
-		html.push('<th width="120">应还时间</th>');
-		html.push('<th width="130">逾期天数</th>');
-		html.push('<th width="140">逾期利息</th>');
-		html.push('<th width="150">应还金额</th>');
+		html.push('<th width="130">还款期数</th>');
+		html.push('<th width="100">还款本金</th>');
+		html.push('<th width="110">应还时间</th>');
+		html.push('<th width="90">逾期天数</th>');
+		html.push('<th width="90">逾期利息</th>');
+		html.push('<th width="100">应还金额</th>');
 		html.push('<th width="120">实还时间</th>');
 		html.push('<th width="80">状态</th>');
-		html.push('<th>操作</th>');
+		html.push('<th width="80">操作</th>');
 		html.push('</tr>');
 		var obj = data.list || [];
 
