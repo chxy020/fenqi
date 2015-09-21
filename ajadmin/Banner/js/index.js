@@ -167,10 +167,10 @@ $(function(){
 			html.push('<td>' + createTime + '</td>');
 
 			if(usedFlag == 0){
-				html.push('<td><a href="javascript:changeBannerUsedFlag(1,\'' + bmId + '\');">启用</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + bmId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:changeBannerUsedFlag(1,\'' + bmId + '\');">启用</a>&nbsp&nbsp<a href="javascript:editItem(\'' + bmId + '\');">编辑</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + bmId + '\')">删除</a></td>');
 			}
 			else{
-				html.push('<td><a href="javascript:changeBannerUsedFlag(0,\'' + bmId + '\');">停用</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + bmId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:changeBannerUsedFlag(0,\'' + bmId + '\');">停用</a>&nbsp&nbsp<a href="javascript:editItem(\'' + bmId + '\');">编辑</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + bmId + '\')">删除</a></td>');
 			}
 			html.push('</tr>');
 		}
@@ -356,6 +356,9 @@ $(function(){
 		}
 	}
 
+	function editItem(bmId){
+		location.href = "edit.html?bmId=" + bmId;
+	}
 
 	function deleteItem(bmId){
 		if(confirm("你确认删除该轮播图吗?")){
@@ -392,6 +395,7 @@ $(function(){
 
 	window.showImgTip = showImgTip;
 	window.changeBannerUsedFlag = changeBannerUsedFlag;
+	window.editItem = editItem;
 	window.deleteItem = deleteItem;
 
 });
