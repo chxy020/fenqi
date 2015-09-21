@@ -22,7 +22,8 @@
 			<div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
 			<ul id="J_Nav"  class="nav-list ks-clear">
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">账户管理</div></li>
-				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">订单审核</div></li>
+				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">订单管理</div></li>
+				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">轮播图管理</div></li>
 				<!--
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">账户管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">角色管理</div></li>
@@ -70,11 +71,22 @@
 							/*默认打开哪个页面*/
 							homePage : '1',
 							menu:[{
-								text:'订单审核',items:[
+								text:'订单管理',items:[
 									{id:'1',text:'订单查询',href:'Order/orderquery.html'},
 									{id:'2',text:'风控审核',href:'Order/fk_index.html'},
 									{id:'3',text:'后台审核',href:'Order/index.html'},
 									{id:'4',text:'等待放款订单',href:'Order/fkuan_index.html'}
+								]
+							}]
+						},
+						{
+							id:'3',
+							/*默认打开哪个页面*/
+							homePage : '1',
+							menu:[{
+								text:'轮播图管理',items:[
+									{id:'1',text:'轮播图查询',href:'Banner/index.html'},
+									{id:'2',text:'添加轮播图',href:'Banner/add.html'}
 								]
 							}]
 						}

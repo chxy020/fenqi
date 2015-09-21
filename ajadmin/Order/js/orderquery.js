@@ -49,6 +49,7 @@ $(function(){
 	$("#querybtn").bind("click",queryOrderList);
 
 	function queryOrderList(){
+		g.currentPage = 1;
 		sendQueryOrderListHttp();
 	}
 
@@ -401,7 +402,7 @@ $(function(){
 		}
 
 		if(g.currentPage <= g.totalPage){
-			queryOrderList();
+			sendQueryOrderListHttp();
 		}
 		else{
 			Utils.alert("当前是最后一页");
@@ -428,7 +429,7 @@ $(function(){
 					console.log("deleteOrderById",data);
 					var status = data.success || false;
 					if(status){
-						queryOrderList();
+						sendQueryOrderListHttp();
 					}
 					else{
 						var msg = data.message || "删除订单数据失败";

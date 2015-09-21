@@ -14,7 +14,10 @@ $(function(){
 
 	g.totalPage = 1;
 	g.currentPage = 1;
-	g.pageSize = 10;
+	g.pageSize = 5;
+
+	g.navigationKeyObj = {};
+
 
 
 	//验证登录状态
@@ -25,20 +28,20 @@ $(function(){
 		//window.parent.location.href = "../Public/login.html";
 	}
 	else{
-		//获取公司信息
-		sendGetCompanyInfoHttp();
+		//获取页面分类信息
+		sendGetNavigationKeyHttp();
 	}
 
-	$("#querybtn").bind("click",queryOrderList);
+	$("#querybtn").bind("click",queryList);
 
-	function queryOrderList(){
+	function queryList(){
 		g.currentPage = 1;
-		sendQueryWaitingForPayOrderListHttp();
+		sendQueryListHttp();
 	}
 
-	function sendGetCompanyInfoHttp(){
+	function sendGetNavigationKeyHttp(){
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/queryCompanyController";
+		var url = Base.serverUrl + "bannerImage/getNavigationKey";
 		var condi = {};
 		$.ajax({
 			url:url,
@@ -47,13 +50,12 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetCompanyInfoHttp",data);
+				console.log("sendGetNavigationKeyHttp",data);
 				var status = data.success || false;
 				if(status){
-					var obj = data.list || [];
-					changeSelectHtml(obj);
+					changeSelectHtml(data);
 
-					sendQueryWaitingForPayOrderListHttp();
+					sendQueryListHttp();
 				}
 				else{
 					var msg = data.message || "获取公司信息字典数据失败";
@@ -68,32 +70,28 @@ $(function(){
 	}
 
 	function changeSelectHtml(obj){
-		var data = obj || {};
+		var data = obj.obj || {};
+		g.navigationKeyObj = data;
 		var option = [];
-		for(var i = 0,len = data.length; i < len; i++){
-			var d = data[i];
-			var id = d.companyId || "";
-			//var cid = d.companyId || "";
-			var name = d.companyName || "";
-			var deleted = d.deleted;
-			if(deleted == 0){
-				//id = id + "_" + cid;
-				option.push('<option value="' + id + '">' + name + '</option>');
-			}
+		option.push('<option value="">全部</option>');
+		for(var k in data){
+			var name = data[k];
+			option.push('<option value="' + k + '">' + name + '</option>');
 		}
-		$("#company").html(option.join(''));
+		$("#navigationKey").html(option.join(''));
 	}
 
 
-	function sendQueryWaitingForPayOrderListHttp(){
+	function sendQueryListHttp(){
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/queryWaitingForPayOrdersController";
+		var url = Base.serverUrl + "bannerImage/queryBannerImageController";
 		var condi = {};
 		condi.login_token = g.login_token;
-		condi.status = "";
+		condi.pageSize = g.pageSize;
 		condi.currentPageNum = g.currentPage;
-		condi.companyId = $("#company").val() || "";
-
+		condi.bmTitle = $("#bmTitle").val() || "";
+		condi.navigationKey = $("#navigationKey").val() || "";
+		condi.usedFlag = $("#usedFlag").val() || "";
 		$.ajax({
 			url:url,
 			data:condi,
@@ -101,13 +99,13 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendQueryWaitingForPayOrderListHttp",data);
+				console.log("sendQueryListHttp",data);
 				var status = data.success || false;
 				if(status){
-					changeOrderListHtml(data);
+					changeListHtml(data);
 				}
 				else{
-					var msg = data.message || "获取订单列表数据失败";
+					var msg = data.message || "获取轮播图列表数据失败";
 					Utils.alert(msg);
 				}
 				g.httpTip.hide();
@@ -118,79 +116,58 @@ $(function(){
 		});
 	}
 
-	function changeOrderListHtml(data){
+	function changeListHtml(data){
 
 		var html = [];
 
 		html.push('<table class="table table-bordered table-hover definewidth m10" ><thead>');
 		html.push('<tr>');
-		html.push('<th>订单编号</th>');
-		html.push('<th>合同编号</th>');
-		html.push('<th>产品名称</th>');
-		html.push('<th>分期金额</th>');
-		html.push('<th>订单状态</th>');
-
-		html.push('<th>真实姓名</th>');
-		html.push('<th>联系电话</th>');
-
-		html.push('<th>最近待还</th>');
-		html.push('<th>总期数</th>');
+		html.push('<th>标题</th>');
+		html.push('<th>描述</th>');
+		html.push('<th>分类</th>');
+		html.push('<th>状态</th>');
+		html.push('<th>图片</th>');
+		html.push('<th>跳转地址</th>');
+		html.push('<th>添加人</th>');
+		html.push('<th>添加时间</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
+
 		var obj = data.list || [];
 		for(var i = 0,len = obj.length; i < len; i++){
 			var d = obj[i];
-			var orderId = d.orderId || "";
-			var contractNo = d.contractNo || "";
-			var packageName = d.packageName || "";
-			var packageMoney = d.packageMoney || 0;
-			var statusDes = d.statusDes || "";
-			var status = d.status || "";
 
-			var applicantName = d.applicantName || "";
-			var applicantPhone = d.applicantPhone || "";
-
-			var fenQiTimes = d.fenQiTimes || 0;
-			var noRepaymentTimes = d.noRepaymentTimes || 0;
+			var deleted = d.deleted || 0;
+			if(deleted === 1){
+				continue;
+			}
+			var bmId = d.bmId || "";
+			var bmTitle = d.bmTitle || "";
+			var bmTextDesc = d.bmTextDesc || "";
+			var navigationKey = d.navigationKey || "";
+			navigationKey = g.navigationKeyObj[navigationKey] || "";
+			var usedFlag = d.usedFlag || 0;
+			var flag = usedFlag == 0 ? "停用" : "启用";
+			var bmUrl = d.bmUrl || "";
+			var bmClickUrl = d.bmClickUrl || "";
+			var createByName = d.createByName || "";
+			var createTime = d.createTime || "";
 
 			html.push('<tr>');
-			html.push('<td>' + orderId + '</td>');
-			html.push('<td>' + contractNo + '</td>');
-			html.push('<td>' + packageName + '</td>');
-			html.push('<td>' + packageMoney + '元</td>');
-			html.push('<td>' + statusDes + '</td>');
+			html.push('<td>' + bmTitle + '</td>');
+			html.push('<td>' + bmTextDesc + '</td>');
+			html.push('<td>' + navigationKey + '</td>');
+			html.push('<td>' + flag + '</td>');
+			html.push('<td><img src="' + bmUrl + '" width="120px" onclick="showImgTip(\'' + bmUrl + '\');" style="cursor: pointer;"/></td>');
+			html.push('<td>' + bmClickUrl + '</td>');
+			html.push('<td>' + createByName + '</td>');
+			html.push('<td>' + createTime + '</td>');
 
-			html.push('<td>' + applicantName + '</td>');
-			html.push('<td>' + applicantPhone + '</td>');
-
-			html.push('<td>' + fenQiTimes + '期</td>');
-			html.push('<td>' + noRepaymentTimes + '期</td>');
-			if(status == "100501"){
-				//html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+			if(usedFlag == 0){
+				html.push('<td><a href="javascript:changeBannerUsedFlag(1,\'' + bmId + '\');">启用</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + bmId + '\')">删除</a></td>');
 			}
-			else if(status == "100502"){
-				//100502: "商家审核中"
-				//html.push('<td><a href="detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="seller.html?orderid=' + orderId + '">审批</a></td>');
-			}
-			else if(status == "100503"){
-				//100503: "风控审核中
-				//html.push('<td><a href="fk_detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="fk_seller.html?orderid=' + orderId + '">审批</a></td>');
-			}
-			else if(status == "100504" || status == "100508" || status == "100509"){
-				//html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
-			}
-			else if(status == "100505"){
-				//100505: "待缴手续费"
-				//html.push('<td><a href="/anjia/orderdetail.html">查看</a></td>');
-			}
-			else if(status == "100506"){
-				//100506: "待放款"
-				//html.push('<td><a href="/anjia/orderdetail.html">查看</a></td>');
-				html.push('<td><a href="fkuan_detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="fkuan_loan.html?orderid=' + orderId + '">放款</a></td>');
-			}
-			else if(status == "100507"){
-				//100506: "待放款"
-				//html.push('<td><a href="/anjia/orderdetail.html">查看</a></td>');
+			else{
+				html.push('<td><a href="javascript:changeBannerUsedFlag(0,\'' + bmId + '\');">停用</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + bmId + '\')">删除</a></td>');
 			}
 			html.push('</tr>');
 		}
@@ -206,9 +183,9 @@ $(function(){
 			Utils.alert("没有订单数据");
 		}
 
-		$("#orderlist").html(html.join(''));
+		$("#list").html(html.join(''));
 
-		$("#orderlistpage a").bind("click",pageClick);
+		$("#listpage a").bind("click",pageClick);
 	}
 
 	function countListPage(data){
@@ -216,7 +193,7 @@ $(function(){
 		g.totalPage = Math.ceil(data.totalRowNum / data.pageSize);
 		//g.totalPage = 1;
 		//g.currentPage = 1;
-		html.push('<div id="orderlistpage" class="inline pull-right page">');
+		html.push('<div id="listpage" class="inline pull-right page">');
 		html.push(data.totalRowNum + ' 条记录' + g.currentPage + '/' + g.totalPage + ' 页');
 		html.push('<a href="javascript:void(0);" class="page-next">下一页</a>');
 
@@ -319,23 +296,38 @@ $(function(){
 		}
 
 		if(g.currentPage <= g.totalPage){
-			sendQueryWaitingForPayOrderListHttp();
+			sendQueryListHttp();
 		}
 		else{
 			Utils.alert("当前是最后一页");
 		}
 	}
 
+	function showImgTip(src){
+		layer.open({
+			type: 1,
+			title: false,
+			area:"85%",
+			closeBtn: 1,
+			shadeClose: true,
+			content: '<img src="' + src + '" />'
+		});
+	}
 
-
-	function sellerOrderById(id){
-		if(confirm("你确认要审批通过该订单吗?")){
+	function changeBannerUsedFlag(status,bmId){
+		var msg = status == 0 ? "你确认停用该轮播图吗?" : "你确认启动该轮播图吗?";
+		if(confirm(msg)){
 			g.httpTip.show();
 			var condi = {};
-			condi.orderId = id;
+			condi.bmId = bmId;
 			condi.login_token = g.login_token;
 
-			var url = Base.serverUrl + "order/deleteOrderByOrderIdController";
+			if(status == 1){
+				var url = Base.serverUrl + "bannerImage/usedBannerImage";
+			}
+			else{
+				var url = Base.serverUrl + "bannerImage/stopBannerImage";
+			}
 			$.ajax({
 				url:url,
 				data:condi,
@@ -343,13 +335,13 @@ $(function(){
 				dataType:"json",
 				context:this,
 				success: function(data){
-					console.log("deleteOrderById",data);
+					console.log("changeBannerUsedFlag",data);
 					var status = data.success || false;
 					if(status){
-						sendQueryWaitingForPayOrderListHttp();
+						sendQueryListHttp();
 					}
 					else{
-						var msg = data.message || "删除订单数据失败";
+						var msg = data.message || "启用/停用轮播图失败";
 						Utils.alert(msg);
 					}
 					g.httpTip.hide();
@@ -362,6 +354,41 @@ $(function(){
 	}
 
 
-	window.sellerOrderById = sellerOrderById;
+	function deleteItem(bmId){
+		if(confirm("你确认删除该轮播图吗?")){
+			g.httpTip.show();
+			var condi = {};
+			condi.bmId = bmId;
+			condi.login_token = g.login_token;
+
+			var url = Base.serverUrl + "bannerImage/deleteBannerImage";
+			$.ajax({
+				url:url,
+				data:condi,
+				type:"POST",
+				dataType:"json",
+				context:this,
+				success: function(data){
+					console.log("deleteItem",data);
+					var status = data.success || false;
+					if(status){
+						sendQueryListHttp();
+					}
+					else{
+						var msg = data.message || "删除轮播图数据失败";
+						Utils.alert(msg);
+					}
+					g.httpTip.hide();
+				},
+				error:function(data){
+					g.httpTip.hide();
+				}
+			});
+		}
+	}
+
+	window.showImgTip = showImgTip;
+	window.changeBannerUsedFlag = changeBannerUsedFlag;
+	window.deleteItem = deleteItem;
 
 });

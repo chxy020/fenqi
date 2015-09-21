@@ -31,6 +31,7 @@ $(function(){
 	$("#querybtn").bind("click",queryOrderList);
 
 	function queryOrderList(){
+		g.currentPage = 1;
 		sendQueryRiskOrderListHttp();
 	}
 
@@ -313,7 +314,7 @@ $(function(){
 		}
 
 		if(g.currentPage <= g.totalPage){
-			queryOrderList();
+			sendQueryRiskOrderListHttp();
 		}
 		else{
 			Utils.alert("当前是最后一页");
@@ -340,7 +341,7 @@ $(function(){
 					console.log("deleteOrderById",data);
 					var status = data.success || false;
 					if(status){
-						getUserOrderList();
+						sendQueryRiskOrderListHttp();
 					}
 					else{
 						var msg = data.message || "删除订单数据失败";
