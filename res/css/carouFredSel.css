@@ -70,6 +70,7 @@
 	display: block;
 	width: 43px;
 	height: 156px;
+	z-index:5;
 }
 .index-slide .next {
 	background: url(../images/slider-pointer.png) no-repeat right top;
@@ -79,6 +80,7 @@
 	display: block;
 	width: 43px;
 	height: 156px;
+	z-index:5;
 }
 .index-slide .prev:hover,.index-slide .next:hover{
 	cursor:pointer;
@@ -90,6 +92,7 @@
 	width: 100%;
 	text-align: center;
 	padding-top: 10px;
+	z-index:5;
 }
 .ui-slider .pager a {
 	color: #fff;
