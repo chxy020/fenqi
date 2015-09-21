@@ -187,8 +187,13 @@ if(typeof console == "undefined"){
 		else{
 			return "";
 		}
-	}
-
+	};
+	function getQueryStringArr(urlString) {
+		var reg = /(?:\?|&)(.*?)=(.*?)(?=&|$)/g,
+			temp, args = {};
+		while ((temp = reg.exec(urlString)) != null) args[temp[1]] = decodeURIComponent(temp[2]);
+		return args;
+	};
 	function getScript(url,dom,callback,scope){
 		dom = dom || document.getElementsByTagName('head')[0];
 		if(typeof dom.appendChild != "function"){
@@ -560,6 +565,7 @@ if(typeof console == "undefined"){
 	Utils.secondToDate = secondToDate;
 	Utils.getScript = getScript;
 	Utils.getQueryString = getQueryString;
+	Utils.getQueryStringArr = getQueryStringArr;
 	Utils.param = param;
 	Utils.getGuid = getGuid;
 	Utils.httpTip = httpTip;
