@@ -44,7 +44,7 @@ html{
 	line-height:22px;
 }
 .light-green{
-	color:#89c997;
+	color:#669900;
 }
 .bg-color-white{
 	background:#fff;
@@ -305,7 +305,7 @@ html{
 	background:#75b55b;
 }
 .btn-light-green{
-	background:#89c997;
+	background:#669900;
 	color:#fff;
 }
 .btn-light-green:hover{
@@ -471,6 +471,11 @@ html{
 	width:13px;
 	height:12px;
 	background-position:-132px -38px;
+}
+.common-ico.ico-add-plus{
+	width:17px;
+	height:17px;
+	background-position:-160px -31px;
 }
 .form-validate-tip{
 	font-size:14px;
@@ -893,7 +898,7 @@ html{
 	padding:0px 15px;
 	text-align:center;
 	font-size:14px;
-	color:#89c997;
+	color:#669900;
 	font-weight:inherit;
 }
 .common-table1 td{
@@ -950,8 +955,8 @@ html{
 	line-height:30px;
 	font-size:16px;
 	margin:0px 3px;
-	border:1px solid #d9d8d8;
-	color:#89c997;
+	border:1px solid #ededed;
+	color:#669900;
 	transition:all ease-in 0.1s 0s;
 	overflow:hidden;
 	zoom:1;
@@ -977,8 +982,8 @@ html{
 	background-position:-90px 4px;
 }
 .ui-pager a:hover{
-	border:1px solid #89c997;
-	background:#89c997;
+	border:1px solid #669900;
+	background:#669900;
 	color:#fff;
 	text-decoration:none;
 }
@@ -1325,7 +1330,46 @@ a.improve-btn:hover{
 	top:14px;
 	background-position:-7px -171px;
 }
-
+.sign-item-box{
+	margin-left:0px;
+}
+.sign-item{
+	margin-bottom:15px;
+}
+.sign-item label{
+	float:left;
+	width:160px;
+	line-height:42px;
+	font-size:16px;
+	text-align:right;
+}
+.sign-item label em{
+	color:#e60012;
+	margin-right:5px;
+	color:#333l
+}
+.sign-item .sign-right-cont{
+	margin-left:180px;
+}
+.sign-item .sign-right-cont p{
+	font-size:16px;
+	line-height:42px;
+	padding-left:15px;
+}
+.sign-item .sign-right-cont .codebtn{
+	vertical-align:middle;
+	margin-left:10px;
+	width:112px;
+	height:40px;
+}
+.sign-item .sign-right-cont .a-link{
+	font-size:16px;
+	color:#22a6f1;
+	margin-left:20px;
+}
+.sign-item .sign-right-cont .common-checkbox{
+	margin-right:5px;
+}
 /*sub-left-sec-nav*/
 .sub-left-sec-nav dd{
 	position:relative;

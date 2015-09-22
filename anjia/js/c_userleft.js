@@ -101,6 +101,18 @@ __html__.push('<a href="/anjia/changephone.html?item=3">换绑手机</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</div>');
 __html__.push('</li>');
+__html__.push('<li>');
+
+if(__item__ == 4){
+	__html__.push('<div class="nav-main-item selected">');
+}
+else{
+	__html__.push('<div class="nav-main-item">');
+}
+__html__.push('<a href="/anjia/card-center.html?item=4">我的银行卡</a>');
+__html__.push('<i class="common-ico ico-selected-flag"></i>');
+__html__.push('</div>');
+__html__.push('</li>');
 __html__.push('</ul>');
 document.write(__html__.join(''));
 

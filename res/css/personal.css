@@ -29,7 +29,7 @@
 }
 /*end*/
 .personal-top{
-	padding:0px 15px 15px;
+	padding:0px 15px 20px;
 }
 .personal-top .personal-inf .user-img{
 	float:left;
@@ -50,6 +50,10 @@
 }
 .personal-top .personal-inf .common-ico{
 	cursor:pointer;
+}
+.personal-top .ico-add-plus{
+	margin-right:5px;
+	margin-bottom:3px;
 }
 .personal-top .personal-inf .ico-phone{
 	margin:0px 10px;
@@ -88,7 +92,15 @@
 .order-table tr td.grey-color{
 	color:#999;
 }
-
+.tab-bank-logo{
+	display:inline-block;
+	border:1px solid #dedede;
+	width:155px;
+}
+.tab-bank-logo img{
+	width:155px;
+	height:40px;
+}
 .order-title{
 	font-size:24px;
 	color:#333;
