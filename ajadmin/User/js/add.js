@@ -10,10 +10,10 @@ $(function(){
 	g.imgCodeId = "";
 	g.sendCode = false;
 	g.sendTime = 60;
+	g.login_token = Utils.offLineStore.get("token",false) || "";
+
 	g.httpTip = new Utils.httpTip({});
 
-	g.codeImg = $("#imgcodebtn")[0];
-	g.guid = Utils.getGuid();
 
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
@@ -142,6 +142,7 @@ $(function(){
 							if(usersName !== ""){
 								var companyId = $("#company").val() || "";
 								var condi = {};
+								condi.login_token = g.login_token;
 								condi.usersPhone = phone;
 								condi.password = pwd2;
 								condi.usersName = usersName;
