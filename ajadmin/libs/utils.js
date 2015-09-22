@@ -424,6 +424,11 @@ if(typeof console == "undefined"){
 	*/
 	var tout = null;
 	function alert(msg,b){
+		if(layer != null){
+			layer.msg(msg);
+			return;
+		}
+
 		var box = $("#message-alert");
 		if(box.length == 0){
 			box = $("<div id='message-alert' class='rp_tishi' ><span>"+msg+"</span></div>");
