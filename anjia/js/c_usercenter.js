@@ -313,11 +313,11 @@ $(function(){
 			}
 			else if(status == "100502"){
 				//100502: "商家审核中"
-				html.push('<td><a href="/anjia/orderaudit.html">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',1)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else if(status == "100503"){
 				//100503: "风控审核中
-				html.push('<td><a href="/anjia/orderaudit.html">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',1)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else if(status == "100504" || status == "100509"){
 				html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
@@ -325,18 +325,18 @@ $(function(){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
-				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\')">查看</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
-				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\')">查看</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
 			}
 			else if(status == "100507"){
 				//100506: "待放款"
-				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\')">查看</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
 			}
 			else if(status == "100508"){
-				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\')">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			html.push('</tr>');
 		}
@@ -508,11 +508,16 @@ $(function(){
 		}
 	}
 
-	function showOrderDetail(orderId){
+	function showOrderDetail(orderId,t){
 		var info = g.orderInfo[orderId] || "";
 		info = JSON.stringify(info);
 		Utils.offLineStore.set("userorderinfo_list",info,false);
-		location.href = "/anjia/orderdetail.html?orderId=" + orderId ;
+		if(t == 0){
+			location.href = "/anjia/orderdetail.html?orderId=" + orderId ;
+		}
+		else{
+			location.href = "/anjia/orderaudit.html?orderId=" + orderId ;
+		}
 	}
 
 	window.showOrderDetail = showOrderDetail;
