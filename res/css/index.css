@@ -288,46 +288,6 @@
 	background-position:0px 0px;
 	color:#fff;
 }
-.sign-item-box{
-	margin-left:0px;
-}
-.sign-item{
-	margin-bottom:15px;
-}
-.sign-item label{
-	float:left;
-	width:160px;
-	line-height:42px;
-	font-size:16px;
-	text-align:right;
-}
-.sign-item label em{
-	color:#e60012;
-	margin-right:5px;
-	color:#333l
-}
-.sign-item .sign-right-cont{
-	margin-left:180px;
-}
-.sign-item .sign-right-cont p{
-	font-size:16px;
-	line-height:42px;
-	padding-left:15px;
-}
-.sign-item .sign-right-cont .codebtn{
-	vertical-align:middle;
-	margin-left:10px;
-	width:112px;
-	height:40px;
-}
-.sign-item .sign-right-cont .a-link{
-	font-size:16px;
-	color:#22a6f1;
-	margin-left:20px;
-}
-.sign-item .sign-right-cont .common-checkbox{
-	margin-right:5px;
-}
 .select-brand-box{
 	padding:70px 0px;
 	text-align:center;
