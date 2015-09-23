@@ -278,7 +278,7 @@ $(function(){
 		html.push('<tr>');
 		html.push('<th width="160">订单编号</th>');
 		html.push('<th width="130">合同编号</th>');
-		html.push('<th width="110">产品名称</th>');
+		html.push('<th width="110">产品类型</th>');
 		html.push('<th width="110">分期金额</th>');
 		html.push('<th width="100">订单状态</th>');
 		html.push('<th width="80">最近待还</th>');
@@ -303,8 +303,8 @@ $(function(){
 			html.push('<td>' + packageName + '</td>');
 			html.push('<td>' + packageMoney + '元</td>');
 			html.push('<td>' + statusDes + '</td>');
-			html.push('<td>' + fenQiTimes + '期</td>');
 			html.push('<td>' + noRepaymentTimes + '期</td>');
+			html.push('<td>' + fenQiTimes + '期</td>');
 
 			g.orderInfo[orderId] = d;
 
