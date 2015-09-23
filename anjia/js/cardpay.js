@@ -114,6 +114,9 @@ $(function(){
 			var obj = list[0] || {};
 			var bbcId = obj.bbcId || "";
 
+			var bankCardTop = obj.bankCardTop || "";
+			var bankCardLast = obj.bankCardLast || "";
+
 			var html = [];
 			for(var i = 0,len = list.length; i < len; i++){
 				var d = list[i] || {};
@@ -151,19 +154,20 @@ $(function(){
 			$('.common-radio').yyptRadio();
 
 			//触发支付请求
-			sendPlayBindRequest(bbcId);
+			sendPlayBindRequest(bankCardTop,bankCardLast);
 		}
 	}
 
 	//请求支付
-	function sendPlayBindRequest(bbcId){
+	function sendPlayBindRequest(bankCardTop,bankCardLast){
 		var url = Base.serverUrl + "payPc/sendBindRequest";
 		g.httpTip.show();
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.customerId = g.customerId;
 		condi.repaymentRecordId = g.repaymentRecordId;
-		condi.bindBankCardId = bbcId;
+		condi.bankCardTop = bankCardTop;
+		condi.bankCardLast = bankCardLast;
 		$.ajax({
 			url:url,
 			type:"POST",

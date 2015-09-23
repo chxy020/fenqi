@@ -666,7 +666,7 @@ $(function(){
 				console.log("sendIsExistBindBankCardHttp",data);
 				var status = data.success || false;
 				if(status){
-					//用户没有绑定银行卡
+					//用户绑定银行卡
 					location.href = "/anjia/card-pay2.html?recordId=" + repaymentRecordId + "&p=" + yinghuanjine;
 				}
 				else{

@@ -13,6 +13,9 @@ $(function(){
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.httpTip = new Utils.httpTip({});
 
+	g.repaymentRecordId = Utils.getQueryString("recordId") || "";
+	g.price = Utils.getQueryString("p") - 0 || 0;
+
 	g.codeImg = $("#imgcodebtn")[0];
 	g.guid = Utils.getGuid();
 	g.customerId = "";
@@ -444,11 +447,18 @@ $(function(){
 				console.log("sendConfirmBindBankHttp",data);
 				var status = data.success || false;
 				if(status){
-					//绑定成功跳转到支付页面
+					if(g.repaymentRecordId == ""){
+						//没有订单id,因该是从银行卡中心跳转到绑定页面,回退到银行卡中心
+						history.go(-1);
+					}
+					else{
+						//绑定成功跳转到支付页面
+						location.href = "/anjia/card-pay2.html?recordId=" + g.repaymentRecordId + "&p=" + g.price;
+					}
 				}
 				else{
 					var msg = data.message || "银行卡绑定失败";
-					alert(msg);
+					layer.msg(msg);
 					$("#validcode").val("");
 				}
 				g.httpTip.hide();

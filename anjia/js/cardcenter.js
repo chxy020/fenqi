@@ -148,8 +148,8 @@ $(function(){
 				var bbcId = d.bbcId || "";
 				var bankType = d.bankType || "";
 				bankType = bankType.toLowerCase();
-				var bankCard = d.bankCard || "";
-				bankCard = "****" + bankCard.substring(bankCard.length - 4);
+				var bankCard = d.bankCardLast || "";
+				bankCard = "****" + bankCard;
 				var bankTypeDesc = d.bankTypeDesc || "";
 				var logo = "../res/images/bank-logo/" + bankType + ".gif";
 
@@ -167,7 +167,15 @@ $(function(){
 			$("#cardlist").html(html.join(''));
 		}
 		else{
-			layer.msg("你还没有绑定银行卡");
+			var html = [];
+			html.push('<tr>');
+			html.push('<th width="240">银行卡LOGO</th>');
+			html.push('<th width="240">发卡行名称</th>');
+			html.push('<th width="240">银行卡号</th>');
+			html.push('<th>操作</th>');
+			html.push('</tr>');
+			$("#cardlist").html(html.join(''));
+			//layer.msg("你还没有绑定银行卡");
 		}
 	}
 
@@ -289,7 +297,7 @@ $(function(){
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.customerId = g.customerId;
-		condi.bbcId = "7668284";
+		condi.bbcId = bbcId;
 
 		$.ajax({
 			url:url,
