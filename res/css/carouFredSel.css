@@ -85,6 +85,10 @@
 .index-slide .prev:hover,.index-slide .next:hover{
 	cursor:pointer;
 }
+.ui-slider{
+	position:relative;
+	z-index:2;
+}
 .ui-slide .pager {
 	position:absolute;
 	right:0px;
