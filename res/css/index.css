@@ -335,6 +335,11 @@
 .upload-inf-title{
 	font-size:16px;
 	color:#111;
+	margin-bottom:15px;
+}
+.upload-inf-tip{
+	font-size:14px;
+	color:#555;
 	margin-bottom:20px;
 }
 .upload-inf-title em{
@@ -695,12 +700,12 @@
 	height:70px;
 }
 .selection-period-box .selection-period-ul{
-	margin-left:45px;
+	margin-left:25px;
 }
 .selection-period-box .selection-period-ul li{
 	position:relative;
 	float:left;
-	margin-right:15px;
+	margin-right:20px;
 	display:inline;
 }
 .selection-period-box .selection-period-ul li .rate-period{
@@ -711,9 +716,9 @@
 	margin-left:-32px;
 	font-size:14px;
 	color:#666666;
+	padding:2px;
 	text-align:center;
-	height:26px;
-	line-height:26px;
+	line-height:20px;
 	border:1px solid #e1e1e1;
 	width:64px;
 }
@@ -744,6 +749,7 @@
 .staging-detail-box{
 	background:#fafafa;
 	padding:35px;
+	margin-top:10px;
 }
 .staging-detail-item{
 	color:#333333;

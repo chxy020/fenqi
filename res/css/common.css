@@ -546,6 +546,8 @@ html{
 	margin:0px 5px;
 }
 .ui-header{
+	position:relative;
+	z-index:5;
 	height:100px; /*haitao 20150920 0707 ----  130px*/
 	background:#fff;
 	border-bottom:1px solid #e9e9e9;
@@ -909,17 +911,17 @@ html{
 }
 .loan-img{
 	position:relative;
-	width:895px;
+	width:930px;
 	height:435px;
 	margin:0 auto;
-	background:url(../images/decoration-loan-img.jpg) left top no-repeat;
+	background:url(../images/decoration-loan-img.jpg?122) left top no-repeat;
 }
 .loan-img .loan-btn{
 	position:absolute;
 	width:214px;
 	height:212px;
-	left:332px;
-	top:93px;
+	left:359px;
+	top:94px;
 	background:url(../images/loan-circle.gif) left top no-repeat;
 }
 .loan-img .loan-btn:hover{
