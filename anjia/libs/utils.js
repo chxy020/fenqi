@@ -430,7 +430,7 @@ if(typeof console == "undefined"){
 	var tout = null;
 	function alert(msg,b){
 		//如果页面引入了layer,采用layer弹出提示
-		if(layer != null){
+		if(typeof(layer) != "undefined"){
 			layer.msg(msg);
 			return;
 		}

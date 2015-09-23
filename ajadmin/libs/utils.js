@@ -424,10 +424,11 @@ if(typeof console == "undefined"){
 	*/
 	var tout = null;
 	function alert(msg,b){
-		if(layer != null){
+		if(typeof(layer) != "undefined"){
 			layer.msg(msg);
 			return;
 		}
+
 
 		var box = $("#message-alert");
 		if(box.length == 0){

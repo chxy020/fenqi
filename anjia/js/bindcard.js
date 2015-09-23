@@ -61,7 +61,7 @@ $(function(){
 
 	$("#bindcardbtn").bind("click",bindUserCardBtnUp);
 
-	$("#gobtn").bind("click",gotoUserCenter);
+	//$("#gobtn").bind("click",gotoUserCenter);
 
 	//获取个人资料
 	function getUserInfo(){
