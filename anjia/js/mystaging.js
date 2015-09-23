@@ -81,6 +81,7 @@ $(function(){
 
 
 	//$("#contractNo").bind("blur",validNoEmpty);
+	$("#contractNo").bind("blur",validNoChinese);
 	$("#contractMoney").bind("blur",validNoEmpty);
 	$("#contractMoney").bind("blur",validIsNumber);
 
@@ -88,40 +89,54 @@ $(function(){
 	$("#packageMoney").bind("blur",validIsNumber);
 
 	$("#applicantName").bind("blur",validNoEmpty);
+	$("#applicantName").bind("blur",validChineseName);
+
 	$("#applicantAge").bind("blur",validNoEmpty);
 	$("#applicantAge").bind("blur",validIsNumber);
 	$("#applicantIdentity").bind("blur",validNoEmpty);
 	$("#applicantIdentity").bind("blur",validIsIdentity);
 	$("#applicantAddress").bind("blur",validNoEmpty);
+	$("#applicantAddress").bind("blur",validChineseName);
 	$("#applicantSchool").bind("blur",validNoEmpty);
+	$("#applicantSchool").bind("blur",validChineseName);
 	$("#applicantMajor").bind("blur",validNoEmpty);
+	$("#applicantMajor").bind("blur",validChineseName);
 
 	$("#applicantCompany").bind("blur",validNoEmpty);
+	$("#applicantCompany").bind("blur",validChineseName);
 	$("#applicantCompanyAddress").bind("blur",validNoEmpty);
+	$("#applicantCompanyAddress").bind("blur",validChineseName);
 	$("#applicantCompanyPhone").bind("blur",validNoEmpty);
+	$("#applicantCompanyPhone").bind("blur",validChineseTel);
 	$("#applicantWages").bind("blur",validNoEmpty);
 	$("#applicantWages").bind("blur",validIsNumber);
 
 	$("#familyName").bind("blur",validNoEmpty);
+	$("#familyName").bind("blur",validChineseName);
 	$("#familyPhone").bind("blur",validNoEmpty);
 	$("#familyPhone").bind("blur",validIsPhone);
 	$("#familyTwoName").bind("blur",validNoEmpty);
+	$("#familyTwoName").bind("blur",validChineseName);
 	$("#familyTwoPhone").bind("blur",validNoEmpty);
 	$("#familyTwoPhone").bind("blur",validIsPhone);
 
 	$("#friendName").bind("blur",validNoEmpty);
+	$("#friendName").bind("blur",validChineseName);
 	$("#friendPhone").bind("blur",validNoEmpty);
 	$("#friendPhone").bind("blur",validIsPhone);
 	//$("#friendTwoName").bind("blur",validNoEmpty);
 	//$("#friendTwoPhone").bind("blur",validNoEmpty);
+	$("#friendTwoName").bind("blur",validChineseName);
 	$("#friendTwoPhone").bind("blur",validIsPhone);
 
 
 	$("#workmateName").bind("blur",validNoEmpty);
+	$("#workmateName").bind("blur",validChineseName);
 	$("#workmatePhone").bind("blur",validNoEmpty);
 	$("#workmatePhone").bind("blur",validIsPhone);
 	//$("#workmateTwoName").bind("blur",validNoEmpty);
 	//$("#workmateTwoPhone").bind("blur",validNoEmpty);
+	$("#workmateTwoName").bind("blur",validChineseName);
 	$("#workmateTwoPhone").bind("blur",validIsPhone);
 
 	/*
@@ -211,6 +226,85 @@ $(function(){
 		}
 	}
 
+	function validNoChinese(evt){
+		var t = $(this).val() || "";
+		if(t == ""){
+			return;
+		}
+		var id = this.id || "";
+		var next = $(this).next();
+		var reg = /[\u4e00-\u9fa5]/gi;
+		var result = t.match(reg);
+		if(result == null || result.length == 0){
+			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			$(next).removeClass("validate-error");
+			$(next).addClass("validate-success");
+			$(next).show();
+		}
+		else{
+			$(next).html('<i class="common-ico validate-ico"></i>只能输入英文字符,数字,符号');
+			$(next).removeClass("validate-success");
+			$(next).addClass("validate-error");
+			$(next).show();
+		}
+	}
+
+	function validChineseName(evt){
+		var t = $(this).val() || "";
+		if(t == ""){
+			return;
+		}
+		var id = this.id || "";
+		var next = $(this).next();
+		var reg = /[\u4e00-\u9fa5]/gi;
+		var result = t.match(reg);
+		if(result != null && result.length > 0){
+			var reg2 = /\~\!\@\#\$\%\^\*\(\)\_\+\-\=/gi;
+			var result2 = t.match(reg2);
+			if(result2 == null || result2.length == 0){
+				$(next).html('<i class="common-ico validate-ico"></i>填写正确');
+				$(next).removeClass("validate-error");
+				$(next).addClass("validate-success");
+				$(next).show();
+			}
+			else{
+				$(next).html('<i class="common-ico validate-ico"></i>只能输入汉字或汉字+字符');
+				$(next).removeClass("validate-success");
+				$(next).addClass("validate-error");
+				$(next).show();
+			}
+		}
+		else{
+			$(next).html('<i class="common-ico validate-ico"></i>只能输入汉字或汉字+字符');
+			$(next).removeClass("validate-success");
+			$(next).addClass("validate-error");
+			$(next).show();
+		}
+	}
+
+	function validChineseTel(evt){
+		var t = $(this).val() || "";
+		if(t == ""){
+			return;
+		}
+		var id = this.id || "";
+		var next = $(this).next();
+		//var reg = /^(\d{3})?-?\d{8}|(\d{4})?-?\{7,8}&/gi;
+		var reg = /^(\d{3}-?\d{8}|\d{4}-?\d{7,8})$/g;
+		if(reg.test(t)){
+			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			$(next).removeClass("validate-error");
+			$(next).addClass("validate-success");
+			$(next).show();
+		}
+		else{
+			$(next).html('<i class="common-ico validate-ico"></i>只能输入010-12345678或0102345678');
+			$(next).removeClass("validate-success");
+			$(next).addClass("validate-error");
+			$(next).show();
+		}
+	}
+
 	function sendValidNoEmpty(txt,dom){
 		var b = false;
 		var next = dom.next();
@@ -282,6 +376,91 @@ $(function(){
 			$(next).removeClass("validate-success");
 			$(next).addClass("validate-error");
 			$(next).show();
+		}
+		return b;
+	}
+
+	function sendValidNoChinese(txt,dom){
+		var b = false;
+		if(txt == ""){
+			return true;
+		}
+		var reg = /[\u4e00-\u9fa5]/gi;
+		var next = dom.next();
+		var result = txt.match(reg);
+		if(result == null || result.length == 0){
+			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			$(next).removeClass("validate-error");
+			$(next).addClass("validate-success");
+			$(next).show();
+			b = true;
+		}
+		else{
+			$(next).html('<i class="common-ico validate-ico"></i>只能输入英文字符,数字,符号');
+			$(next).removeClass("validate-success");
+			$(next).addClass("validate-error");
+			$(next).show();
+			b = false;
+		}
+		return b;
+	}
+
+	function sendValidChineseName(txt,dom){
+		var b = false;
+		if(txt == ""){
+			return true;
+		}
+		var reg = /[\u4e00-\u9fa5]/gi;
+		var next = dom.next();
+		var result = txt.match(reg);
+		if(result != null && result.length > 0){
+			var reg2 = /\~\!\@\#\$\%\^\*\(\)\_\+\-\=/gi;
+			var result2 = txt.match(reg2);
+			if(result2 == null || result2.length == 0){
+				$(next).html('<i class="common-ico validate-ico"></i>填写正确');
+				$(next).removeClass("validate-error");
+				$(next).addClass("validate-success");
+				$(next).show();
+				b = true;
+			}
+			else{
+				$(next).html('<i class="common-ico validate-ico"></i>只能输入汉字或汉字+字符');
+				$(next).removeClass("validate-success");
+				$(next).addClass("validate-error");
+				$(next).show();
+				b = false;
+			}
+		}
+		else{
+			$(next).html('<i class="common-ico validate-ico"></i>只能输入汉字或汉字+字符');
+			$(next).removeClass("validate-success");
+			$(next).addClass("validate-error");
+			$(next).show();
+			b = false;
+		}
+		return b;
+	}
+
+	function sendValidChineseTel(txt,dom){
+		var b = false;
+		if(txt == ""){
+			return true;
+		}
+		var next = dom.next();
+		var reg = /^(\d{3}-?\d{8}|\d{4}-?\d{7,8})$/g;
+		if(reg.test(txt)){
+			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			$(next).removeClass("validate-error");
+			$(next).addClass("validate-success");
+			$(next).show();
+			b = true;
+		}
+		else{
+			$(next).html('<i class="common-ico validate-ico"></i>只能输入010-12345678或01012345678');
+			$(next).removeClass("validate-success");
+			$(next).addClass("validate-error");
+			$(next).show();
+			b = false;
 		}
 		return b;
 	}
@@ -541,7 +720,9 @@ $(function(){
 		packageType = ptype[0] || "";
 		var companyId = ptype[1] || "";
 
-		//if(sendValidNoEmpty(contractNo,$("#contractNo"))){}
+		if(!sendValidNoChinese(contractNo,$("#contractNo"))){
+			return;
+		}
 		if(!sendValidNoEmpty(contractMoney,$("#contractMoney"))){
 			return;
 		}
@@ -662,6 +843,9 @@ $(function(){
 		if(!sendValidNoEmpty(applicantName,$("#applicantName"))){
 			return;
 		}
+		if(!sendValidChineseName(applicantName,$("#applicantName"))){
+			return;
+		}
 		if(!sendValidNoEmpty(applicantAge,$("#applicantAge"))){
 			return;
 		}
@@ -677,10 +861,19 @@ $(function(){
 		if(!sendValidNoEmpty(applicantAddress,$("#applicantAddress"))){
 			return;
 		}
+		if(!sendValidChineseName(applicantAddress,$("#applicantAddress"))){
+			return;
+		}
 		if(!sendValidNoEmpty(applicantSchool,$("#applicantSchool"))){
 			return;
 		}
+		if(!sendValidChineseName(applicantSchool,$("#applicantSchool"))){
+			return;
+		}
 		if(!sendValidNoEmpty(applicantMajor,$("#applicantMajor"))){
+			return;
+		}
+		if(!sendValidChineseName(applicantMajor,$("#applicantMajor"))){
 			return;
 		}
 
@@ -737,10 +930,19 @@ $(function(){
 		if(!sendValidNoEmpty(applicantCompany,$("#applicantCompany"))){
 			return;
 		}
+		if(!sendValidChineseName(applicantCompany,$("#applicantCompany"))){
+			return;
+		}
 		if(!sendValidNoEmpty(applicantCompanyAddress,$("#applicantCompanyAddress"))){
 			return;
 		}
+		if(!sendValidChineseName(applicantCompanyAddress,$("#applicantCompanyAddress"))){
+			return;
+		}
 		if(!sendValidNoEmpty(applicantCompanyPhone,$("#applicantCompanyPhone"))){
+			return;
+		}
+		if(!sendValidChineseTel(applicantCompanyPhone,$("#applicantCompanyPhone"))){
 			return;
 		}
 		if(!sendValidNoEmpty(applicantWages,$("#applicantWages"))){
@@ -840,6 +1042,9 @@ $(function(){
 		if(!sendValidNoEmpty(familyName,$("#familyName"))){
 			return;
 		}
+		if(!sendValidChineseName(familyName,$("#familyName"))){
+			return;
+		}
 		if(!sendValidNoEmpty(familyPhone,$("#familyPhone"))){
 			return;
 		}
@@ -847,6 +1052,9 @@ $(function(){
 			return;
 		}
 		if(!sendValidNoEmpty(familyTwoName,$("#familyTwoName"))){
+			return;
+		}
+		if(!sendValidChineseName(familyTwoName,$("#familyTwoName"))){
 			return;
 		}
 		if(!sendValidNoEmpty(familyTwoPhone,$("#familyTwoPhone"))){
@@ -857,6 +1065,9 @@ $(function(){
 		}
 
 		if(!sendValidNoEmpty(friendName,$("#friendName"))){
+			return;
+		}
+		if(!sendValidChineseName(friendName,$("#friendName"))){
 			return;
 		}
 		if(!sendValidNoEmpty(friendPhone,$("#friendPhone"))){
@@ -871,6 +1082,9 @@ $(function(){
 		//~ if(!sendValidNoEmpty(friendTwoPhone,$("#friendTwoPhone"))){
 			//~ return;
 		//~ }
+		if(!sendValidChineseName(friendTwoName,$("#friendTwoName"))){
+			return;
+		}
 		if(friendTwoPhone !== ""){
 			if(!sendValidIsPhone(friendTwoPhone,$("#friendTwoPhone"))){
 				return;
@@ -878,6 +1092,9 @@ $(function(){
 		}
 
 		if(!sendValidNoEmpty(workmateName,$("#workmateName"))){
+			return;
+		}
+		if(!sendValidChineseName(workmateName,$("#workmateName"))){
 			return;
 		}
 		if(!sendValidNoEmpty(workmatePhone,$("#workmatePhone"))){
@@ -892,6 +1109,9 @@ $(function(){
 		//~ if(!sendValidNoEmpty(workmateTwoPhone,$("#workmateTwoPhone"))){
 			//~ return;
 		//~ }
+		if(!sendValidChineseName(workmateTwoName,$("#workmateTwoName"))){
+			return;
+		}
 		if(workmateTwoPhone !== ""){
 			if(!sendValidIsPhone(workmateTwoPhone,$("#workmateTwoPhone"))){
 				return;
@@ -1297,24 +1517,40 @@ $(function(){
 			$($("#applicantSex").parent()).addClass("radio-bg-checked");
 		}
 		$("#applicantIdentity").val(applicantIdentity);
-		$("#applicantMarital").val(applicantMarital);
+		if(applicantMarital !== ""){
+			$("#applicantMarital").val(applicantMarital);
+		}
 		$("#applicantAddress").val(applicantAddress);
-		$("#applicantStudyStatus").val(applicantStudyStatus);
+		if(applicantStudyStatus !== ""){
+			$("#applicantStudyStatus").val(applicantStudyStatus);
+		}
 		$("#applicantSchool").val(applicantSchool);
 		$("#applicantMajor").val(applicantMajor);
 
-		$("#r_" + applicantAsset).attr("checked",true);
-		$($("#r_101001").parent()).removeClass("radio-bg-checked");
-		$($("#r_" + applicantAsset).parent()).addClass("radio-bg-checked");
+		if(applicantAsset !== ""){
+			$("#r_" + applicantAsset).attr("checked",true);
+			$($("#r_101001").parent()).removeClass("radio-bg-checked");
+			$($("#r_" + applicantAsset).parent()).addClass("radio-bg-checked");
+		}
+		if(applicantJobNature !== ""){
+			$("#r_" + applicantJobNature).attr("checked",true);
+			$($("#r_101101").parent()).removeClass("radio-bg-checked");
+			$($("#r_" + applicantJobNature).parent()).addClass("radio-bg-checked");
+		}
 
-		$("#r_" + applicantJobNature).attr("checked",true);
-		$($("#r_101101").parent()).removeClass("radio-bg-checked");
-		$($("#r_" + applicantJobNature).parent()).addClass("radio-bg-checked");
 		$("#applicantCompany").val(applicantCompany);
-		$("#applicantCompanyNature").val(applicantCompanyNature);
-		$("#applicantCompanyIndustry").val(applicantCompanyIndustry);
-		$("#applicantDuties").val(applicantDuties);
-		$("#applicantWorkYears").val(applicantWorkYears);
+		if(applicantCompanyNature !== ""){
+			$("#applicantCompanyNature").val(applicantCompanyNature);
+		}
+		if(applicantCompanyIndustry !== ""){
+			$("#applicantCompanyIndustry").val(applicantCompanyIndustry);
+		}
+		if(applicantDuties !== ""){
+			$("#applicantDuties").val(applicantDuties);
+		}
+		if(applicantWorkYears !== ""){
+			$("#applicantWorkYears").val(applicantWorkYears);
+		}
 		$("#applicantCompanyAddress").val(applicantCompanyAddress);
 		$("#applicantCompanyPhone").val(applicantCompanyPhone);
 		$("#applicantWages").val(applicantWages);
@@ -1339,10 +1575,14 @@ $(function(){
 
 		$("#familyName").val(familyName);
 		$("#familyPhone").val(familyPhone);
-		$("#familyRelation").val(familyRelation);
+		if(familyRelation !== ""){
+			$("#familyRelation").val(familyRelation);
+		}
 		$("#familyTwoName").val(familyTwoName);
 		$("#familyTwoPhone").val(familyTwoPhone);
-		$("#familyTwoRelation").val(familyTwoRelation);
+		if(familyTwoRelation !== ""){
+			$("#familyTwoRelation").val(familyTwoRelation);
+		}
 
 		$("#friendName").val(friendName);
 		$("#friendPhone").val(friendPhone);
