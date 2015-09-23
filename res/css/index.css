@@ -83,6 +83,10 @@
 	width:560px;
 }
 .cooperative-part .cooperative-example .cooperative-example-part .c-example-img,.cooperative-part .cooperative-example .cooperative-example-part-two .c-example-img{
+	position:absolute;
+	z-index:1;
+	left:0px;
+	top:0px;
 	width:280px;
 	height:188px;
 	-webkit-transition:all ease-in-out 1.5s 0s;

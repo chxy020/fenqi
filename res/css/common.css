@@ -654,6 +654,7 @@ html{
 .ui-nav li a:hover,.ui-nav li a.selected{
 	color:#539d34;
 	text-decoration:none;
+	border:none;
 	transition:all ease-in-out 0.1s 0s;
 }
 .ui-count-part{
