@@ -614,7 +614,7 @@ $(function(){
 
 	function countFee(allprice,time){
 		var numarr = [3,6,9,12,18,24,36];
-		var ratearr = [0,0.01,0.04,0.07,0.1,0.13,0.16];
+		var ratearr = [0,0.04,0.04,0.07,0.1,0.13,0.16];
 
 		var rate = ratearr[time] * allprice;
 		var all = allprice + rate;
