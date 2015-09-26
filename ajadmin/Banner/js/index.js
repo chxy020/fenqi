@@ -150,6 +150,9 @@ $(function(){
 			var usedFlag = d.usedFlag || 0;
 			var flag = usedFlag == 0 ? "停用" : "启用";
 			var bmUrl = d.bmUrl || "";
+			if(bmUrl != ""){
+				bmUrl = bmUrl + "?t=" + (new Date() - 0);
+			}
 			var bmClickUrl = d.bmClickUrl || "";
 			var orderNum = d.orderNum || "";
 			var createByName = d.createByName || "";
