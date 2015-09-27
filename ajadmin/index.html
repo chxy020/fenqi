@@ -6,6 +6,7 @@
 	<link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/bui-min.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/main-min.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 	<div class="header">
@@ -25,6 +26,7 @@
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">订单管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">轮播图管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">用户管理</div></li>
+				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">文章管理</div></li>
 				<!--
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">账户管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">角色管理</div></li>
@@ -99,6 +101,17 @@
 							menu:[{
 								text:'注册用户管理',items:[
 									{id:'1',text:'注册用户列表',href:'RegUser/index.html'}
+								]
+							}]
+						},
+						{
+							id:'5',
+							/*默认打开哪个页面*/
+							homePage : '1',
+							menu:[{
+								text:'文章管理',items:[
+									{id:'1',text:'文章列表',href:'Article/index.html'},
+									{id:'2',text:'添加文章',href:'Article/add.html'}
 								]
 							}]
 						}
