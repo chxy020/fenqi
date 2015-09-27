@@ -14,10 +14,10 @@
 <body>
 	<div class="ui-main">
     	<div class="ui-header">
-        	<div class="ui-person-btn">
+        	<div id="person-btn" class="ui-person-btn">
             	<div class="person-btn-more"></div>
                 <div class="person-btn-userImg">
-                	<img src="../res/images/default-user-img.jpg" />
+                	<img id="avatarimg" src="../res/images/default-user-img.jpg" />
                 </div>
             </div>
         	燕子安家
@@ -84,44 +84,53 @@
     </div>
     <!--fixed-nav-->
     <div class="ui-nav">
-    	<ul class="ui-nav-ul clearfix">
-        	<li class="selected">
-            	<a href="###">
+    	<ul id="bottom-ul" class="ui-nav-ul clearfix">
+        	<li id="li_0" class="selected">
+            	<a href="javascript:void(0);">
                     <i class="nav-ico ico-home"></i>
                     <p>首页</p>
                 </a>
             </li>
-            <li>
-            	<a href="###">
+            <li id="li_1">
+            	<a href="javascript:void(0);">
                     <i class="nav-ico ico-order"></i>
                     <p>订单</p>
                 </a>
             </li>
-            <li class="nav-middle">
-            	<a href="###">
+            <li  id="li_2" class="nav-middle">
+            	<a href="javascript:void(0);">
                 	<i class="nav-ico ico-main"></i>
                 </a>
             </li>
-            <li>
-            	<a href="###">
+            <li id="li_3">
+            	<a href="javascript:void(0);">
                     <i class="nav-ico ico-back"></i>
                     <p>还款</p>
                 </a>
             </li>
-            <li>
-            	<a href="###">
+            <li  id="li_4">
+            	<a href="javascript:void(0);">
                     <i class="nav-ico ico-service"></i>
                     <p>客服</p>
                 </a>
             </li>
         </ul>
     </div>
+
+	<script type="text/javascript" src="../res/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../res/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="../res/js/layer.m.js"></script>
+	<script type="text/javascript" src="../res/js/common.js"></script>
+
+	<script type="text/javascript" src="../libs/json.js"></script>
+	<script type="text/javascript" src="../libs/base.js"></script>
+	<script type="text/javascript" src="../libs/utils.js"></script>
+	<script type="text/javascript" src="../js/index.js"></script>
+	<script type="text/javascript">
+	//COMMON_PLUGIN.COMMON.TOAST('这是toast弹窗',100);
+	</script>
+
+
 </body>
-<script type="text/javascript" src="../res/js/jquery.min.js"></script>
-<script type="text/javascript" src="../res/js/amazeui.min.js"></script>
-<script type="text/javascript" src="../res/js/layer.m.js"></script>
-<script type="text/javascript" src="../res/js/common.js"></script>
-<script type="text/javascript">
-	COMMON_PLUGIN.COMMON.TOAST('这是toast弹窗',100);
-</script>
+
 </html>

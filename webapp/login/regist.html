@@ -21,42 +21,47 @@
         <div class="sub-main">
             <div class="common-inp-cont">
             	<div class="inp-item">
-                	<input type="text" class="common-input-text input-type type-phone" placeholder="请输入手机号码" />
+                	<input id="inputphone" type="text" maxlength=11 class="common-input-text input-type type-phone" placeholder="请输入手机号码" />
                 </div>
                 <div class="inp-item">
-                	<input type="password" class="common-input-text input-type type-password" placeholder="请输入6-12位密码" />
+                	<input id="inputpwd" type="password" maxlength=12 class="common-input-text input-type type-password" placeholder="请输入6-12位密码" />
                 </div>
 				<div class="inp-item">
-                	<input type="password" class="common-input-text input-type type-password" placeholder="请再次输入密码" />
+                	<input id="inputcpwd" type="password" maxlength=12 class="common-input-text input-type type-password" placeholder="请再次输入密码" />
                 </div>
 				<div class="inp-item img-ver-item">
 					<div class="img-ver-img">
-						<img src="http://123.57.95.154/imageValidate/getImageValidate?image_key=2de27b3c-9fd4-d789-f372-7ca29e458556&t=1443287560230">
+						<img id="imgcodebtn" src="" />
 					</div>
 					<div class="img-ver-item-left">
-                		<input type="text" class="common-input-text input-type type-imgVer" placeholder="请输入图形验证码" />
+                		<input id="inputimgcode" type="text" class="common-input-text input-type type-imgVer" placeholder="请输入图形验证码" />
 					</div>
                 </div>
 				<div class="inp-item img-ver-item">
 					<div class="img-ver-btn">
-						<input type="button" class="common-btn btn-green" value="发送验证码" />
+						<input id="getcodebtn" type="button" class="common-btn btn-green" value="发送验证码" />
 					</div>
 					<div class="img-ver-item-left">
-                		<input type="text" class="common-input-text input-type type-smsVer" placeholder="请输短信验证码" />
+                		<input id="inputcode" type="text" class="common-input-text input-type type-smsVer" placeholder="请输短信验证码" />
 					</div>
                 </div>
             </div>
             <div class="block-tip high-light">
-            	<input type="checkbox" id="long-date1" class="ui-checkbox" name="long" style="margin-right:2px;margin-bottom:5px;" />				我同意<a href="###" class="high-light">《燕子安家网站用户注册协议》</a>
+            	<input type="checkbox" id="agressck" checked=true class="ui-checkbox" name="long" style="margin-right:2px;margin-bottom:5px;" />				我同意<a href="###" class="high-light">《燕子安家网站用户注册协议》</a>
             </div>
             <div class="btn-box">
-            	<p><a href="../login/regist-result.html" class="common-btn btn-green">马上注册</a></p>
+            	<p><a id="regbtn" href="javascript:void(0);" class="common-btn btn-green">马上注册</a></p>
                 <p><a href="../login/login.html" class="common-btn btn-white">已有账号？马上登录</a></p>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript" src="../res/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../res/js/layer.m.js"></script>
+	<script type="text/javascript" src="../res/js/common.js"></script>
+	<script type="text/javascript" src="../libs/json.js"></script>
+	<script type="text/javascript" src="../libs/base.js"></script>
+	<script type="text/javascript" src="../libs/utils.js"></script>
+	<script type="text/javascript" src="../js/reg.js"></script>
 </body>
-<script type="text/javascript" src="../res/js/jquery.min.js"></script>
-<script type="text/javascript" src="../res/js/layer.m.js"></script>
-<script type="text/javascript" src="../res/js/common.js"></script>
 </html>

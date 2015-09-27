@@ -13,7 +13,7 @@ COMMON_PLUGIN.namespace = function(str) {
 COMMON_PLUGIN.namespace("COMMON"); //定义命名空间
 
 COMMON_PLUGIN.COMMON.HOVER_MOBILE = function(){
-	document.body.addEventListener('touchstart', function () {}); 
+	document.body.addEventListener('touchstart', function () {});
 }
 COMMON_PLUGIN.COMMON.INIT = function(){
 	COMMON_PLUGIN.COMMON.HOVER_MOBILE();
@@ -112,10 +112,20 @@ COMMON_PLUGIN.COMMON.ALERT_DIALOG_TWO = function(showMsg,sureClickCallBack,cance
 						}
 					}
 				});
+
+				/*
 				if($this.prop("checked")) {
 					$thisCotain.addClass("chk-bg-checked");
 				}else{
 					$thisCotain.removeClass("chk-bg-checked");
+				}
+				*/
+
+				//貌似写反了 chenxy add
+				if($this.prop("checked")) {
+					$thisCotain.removeClass("chk-bg-checked");
+				}else{
+					$thisCotain.addClass("chk-bg-checked");
 				}
 				$this.hide();
 			}
@@ -168,12 +178,12 @@ COMMON_PLUGIN.COMMON.ALERT_DIALOG_TWO = function(showMsg,sureClickCallBack,cance
 				$this.hide();
 			}
 		});
-	}	
+	}
 })(jQuery);
 $(function(){
-	COMMON_PLUGIN.COMMON.INIT(); 
+	COMMON_PLUGIN.COMMON.INIT();
 	//初始化checkbox
-	$(".ui-checkbox").yyptCheckbox();		
+	$(".ui-checkbox").yyptCheckbox();
 	//初始化radiobox
 	$('.ui-radio').yyptRadio();
 });
