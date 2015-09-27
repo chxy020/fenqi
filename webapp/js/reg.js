@@ -46,7 +46,7 @@ $(function(){
 		if(phone !== ""){
 			if(!reg.test(phone)){
 				Utils.alert("手机号输入错误");
-				$("#inputphone").focus();
+				//$("#inputphone").focus();
 			}
 		}
 	}
@@ -56,7 +56,7 @@ $(function(){
 		var pwd = $("#inputpwd").val() || "";
 		if((pwd.length < 6 || pwd.length > 16) && pwd !== ""){
 			Utils.alert("密码输入错误:请输入字符6-16位");
-			$("#inputpwd").focus();
+			//$("#inputpwd").focus();
 		}
 	}
 
@@ -64,7 +64,7 @@ $(function(){
 		var pwd = $("#inputcpwd").val() || "";
 		if((pwd.length < 6 || pwd.length > 16) && pwd !== ""){
 			Utils.alert("确认密码输入错误:请输入字符6-16位");
-			$("#inputcpwd").focus();
+			//$("#inputcpwd").focus();
 		}
 		else{
 			var pwd1 = $("#inputpwd").val() || "";
@@ -94,16 +94,16 @@ $(function(){
 				}
 				else{
 					Utils.alert("请输入图形验证码");
-					$("#inputimgcode").focus();
+					//$("#inputimgcode").focus();
 				}
 			}
 			else{
 				Utils.alert("手机号输入错误");
-				$("#inputphone").focus();
+				//$("#inputphone").focus();
 			}
 		}
 		else{
-			$("#inputphone").focus();
+			//$("#inputphone").focus();
 		}
 	}
 	//重新获取验证码
@@ -198,33 +198,33 @@ $(function(){
 							}
 							else{
 								Utils.alert("请输入验证码");
-								$("#inputcode").focus();
+								//$("#inputcode").focus();
 							}
 						}
 						else{
 							Utils.alert("两次密码输入不一致");
 							$("#inputcpwd").val("");
-							$("#inputcpwd").focus();
+							//$("#inputcpwd").focus();
 						}
 					}
 					else{
 						Utils.alert("请输入确认密码");
-						$("#inputcpwd").focus();
+						//$("#inputcpwd").focus();
 					}
 				}
 				else{
 					Utils.alert("请输入密码");
-					$("#inputpwd").focus();
+					//$("#inputpwd").focus();
 				}
 			}
 			else{
 				Utils.alert("手机号输入错误");
-				$("#inputphone").focus();
+				//$("#inputphone").focus();
 			}
 		}
 		else{
 			Utils.alert("请输入手机号");
-			$("#inputphone").focus();
+			//$("#inputphone").focus();
 		}
 	}
 
@@ -319,7 +319,7 @@ $(function(){
 		}
 		else{
 			Utils.alert("用户名输入错误,请输入邮箱或者手机号");
-			$("#inputEmail3").focus();
+			//$("#inputEmail3").focus();
 		}
 
 	}

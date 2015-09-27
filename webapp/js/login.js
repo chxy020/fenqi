@@ -35,7 +35,7 @@ $(function(){
 		if(phone !== ""){
 			if(!reg.test(phone)){
 				Utils.alert("用户名/手机号输入错误");
-				$("#inputphone").focus();
+				//$("#inputphone").focus();
 			}
 		}
 	}
@@ -67,12 +67,12 @@ $(function(){
 			}
 			else{
 				Utils.alert("请输入密码");
-				$("#inputpwd").focus();
+				//$("#inputpwd").focus();
 			}
 		}
 		else{
 			Utils.alert("请输入手机号");
-			$("#inputphone").focus();
+			//$("#inputphone").focus();
 		}
 	}
 
