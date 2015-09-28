@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="../res/css/common.css?111233" />
+    <link rel="stylesheet" href="../res/css/core.css?55668" />
+	<title>燕子安家</title>
+</head>
+<body>
+	<div class="ui-main">
+        <div class="ui-header">
+        	<a class="ui-back" href="../mystaging/index.html">
+            	<i class="trigger"></i>
+            </a>
+        	贷款计算器
+        </div>
+        <div class="sub-main">
+        	<div class="common-inp-cont1">
+            	<div class="inp-item">
+                	<label>贷款总额</label>
+                    <input type="text" class="common-input-text" placeholder="请输入贷款总额" />
+                    <div class="unit-item">万元</div>
+                </div>
+                <div class="inp-item">
+                	<i class="trigger common-select-trigger"></i>
+                	<label>贷款期限</label>
+                    <select class="common-select">
+                    	<option>1</option>
+                    </select>
+                </div>
+                <div class="inp-item">
+                	<label>贷款年利率</label>
+                    <input type="text" class="common-input-text" placeholder="" readonly />
+                    <div class="unit-item">%</div>
+                </div>
+            </div>
+            <div class="btn-box">
+            	<a href="javascript:void(0)" class="common-btn btn-green">开始计算</a>
+            </div>
+            <div class="cal-result">
+            	<div class="common-title">
+                	分期明细
+                </div>
+                <div class="cal-result-box">
+                	<div class="cal-result-item clearfix">
+                    	<div class="cal-result-item-part">
+                        	每月还款（元）
+                        </div>
+                        <div class="cal-result-item-part">
+                        	<em class="">--</em>元
+                        </div>
+                    </div>
+                    <div class="cal-result-item clearfix">
+                    	<div class="cal-result-item-part">
+                        	分期金额（元）
+                        </div>
+                        <div class="cal-result-item-part">
+                        	<em>--</em>元
+                        </div>
+                    </div>
+                    <div class="cal-result-item clearfix">
+                    	<div class="cal-result-item-part">
+                        	服务费用（元）
+                        </div>
+                        <div class="cal-result-item-part">
+                        	<em>--</em>元
+                        </div>
+                    </div>
+                    <div class="cal-result-item clearfix">
+                    	<div class="cal-result-item-part">
+                        	本息合计（元）
+                        </div>
+                        <div class="cal-result-item-part">
+                        	<em>--</em>元
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-box" style="margin:15px 0px;">
+                    <a href="javascript:void(0)" class="common-btn btn-green">我要分期</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script type="text/javascript" src="../res/js/jquery.min.js"></script>
+<script type="text/javascript" src="../res/js/layer.m.js"></script>
+<script type="text/javascript" src="../res/js/common.js"></script>
+</html>
