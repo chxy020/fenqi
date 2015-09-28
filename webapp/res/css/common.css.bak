@@ -40,7 +40,7 @@ html{
 	background:#f8f8f8;
 }
 input,button,textarea,select,optgroup,option {
-  font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
+  font-family: inherit;
   font-size: inherit;
   font-style: inherit;
   font-weight: inherit;
