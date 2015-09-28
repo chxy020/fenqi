@@ -72,7 +72,7 @@ $(function(){
 				url = location.href = "../personal-center/index.html";
 			break;
 			case "li_2":
-				url = location.href = "../personal-center/index.html";
+				url = location.href = "../mystaging/index.html";
 			break;
 			case "li_3":
 				url = location.href = "../personal-center/index.html";

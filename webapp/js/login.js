@@ -97,7 +97,7 @@ $(function(){
 						var token = data.token || "";
 
 						Utils.offLineStore.set("token",token,false);
-						location.href = "../personal-center/index.html";
+						location.replace("../personal-center/index.html");
 					}
 					//location.href = "center.html";
 					//var token = data.result.token || "";
