@@ -38,6 +38,7 @@ sup {
 }
 html{
 	background:#f8f8f8;
+	font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
 }
 input,button,textarea,select,optgroup,option {
   font-family: inherit;
@@ -93,6 +94,9 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 }
 .high-light{
 	color:#61dd43!important;
+}
+.table-cell{
+	display:table-cell;
 }
 /*common*/
 .trigger{
@@ -179,6 +183,16 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	color:#4cc51a;
 	padding:10px 15px;
 	line-height:16px;
+}
+.common-title3{
+	font-size:16px;
+	height:35px;
+	line-height:35px;
+	color:#333;
+	padding:0px 15px;
+}
+.common-title3 .common-ico{
+	margin-right:5px;
 }
 .common-tip{
 	font-size:12px;
@@ -373,6 +387,13 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	height:35px;
 	background-position:-39px -40px;
 }
+.common-ico.coop-ico{
+	width:14px;
+	height:14px;
+	background:url(../images/icon.png) left top no-repeat;
+	background-position:0px -86px;
+	background-size:75px auto;
+}
 .nav-ico{
 	display:inline-block;
 	width:23px;
@@ -423,8 +444,9 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 }
 .ui-header .ui-back{
 	position:absolute;
-	left:18px;
+	left:0px;
 	top:0px;
+	padding:0px 18px;
 }
 .ui-header .ui-person-btn{
 	position:absolute;
