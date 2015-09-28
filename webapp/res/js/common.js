@@ -84,6 +84,49 @@ COMMON_PLUGIN.COMMON.ALERT_DIALOG_TWO = function(showMsg,sureClickCallBack,cance
 		}
 	});
 }
+COMMON_PLUGIN.COMMON.SLIDE_INIT = function (bannerImgInterface){
+		var imgInterface = bannerImgInterface || ''
+		var condi = {};
+		var slideHtml = []
+		condi.navigationKey = "INDEX";
+
+		var url = Base.serverUrl + imgInterface;
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var list = data.list;
+					for(var i = 0, len = list.length; i < len; i++){
+						var d = list[i] || {};
+						var deleted = d.deleted || 0;
+						if(deleted === 1){
+							continue;
+						}
+						var bmUrl = d.bmUrl || "";
+						var bmClickUrl = d.bmClickUrl || "javascript:void(0);";
+						if(bmUrl !== ""){
+							slideHtml.push('<li><a href="'+bmClickUrl+'"><img src="'+bmUrl+'" /></li>');
+						}
+					}
+					$('.am-slides').html(slideHtml.join(''));
+					$('.am-slider').flexslider();
+				}
+				else{
+					var msg = data.message || "获取首页轮播图数据失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data){
+				//g.httpTip.hide();
+			}
+		});	
+}
 ;(function($){
 /*
 	 //多选checkbox
