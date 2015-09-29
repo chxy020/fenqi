@@ -47,11 +47,11 @@ $(function(){
 	//获取图形验证码
 	//sendGetImgCodeHttp();
 
-	$("#nextbtn1").bind("click",nextBtnUp1);
-
 	//g.httpTip.show();
-	$("#countbtn").bind("click",countBtnUp);
-	$("#nextbtn2").bind("click",nextBtnUp2);
+	//$("#countbtn").bind("click",countBtnUp);
+	//$("#nextbtn2").bind("click",nextBtnUp2);
+
+	$("#nextbtn1").bind("click",nextBtnUp1);
 
 	$("#packageMoney").bind("blur",fenQiTimesChange);
 	$("#fenQiTimes").bind("change",fenQiTimesChange);
@@ -59,7 +59,7 @@ $(function(){
 	$("#perbtn1").bind("click",preBtnUp1);
 	$("#nextbtn3").bind("click",nextBtnUp3);
 
-	$("#userinfotab li").bind("click",userInfoTabChange);
+	$("#userinfotab > div").bind("click",userInfoTabChange);
 	$("#prebtn2").bind("click",preBtnUp2);
 	$("#nextbtn32").bind("click",nextBtnUp32);
 
@@ -74,14 +74,28 @@ $(function(){
 
 	//头像
 	$(document).on("change","#orderMaterialFile",orderMaterialFileBtnUp);
-	$(".upload-btn").bind("click",function(){
-		g.uploadIndex = this.id.split("_")[1] - 0;
+
+	//事件响应两次控制
+	g.clicktwo = false;
+	$(".upload-btn").bind("click",function(evt){
+		var index = this.id.split("_")[1] - 0;
+		if(index > 0){
+			g.uploadIndex = index;
+			g.clicktwo = false;
+		}
+		else{
+			if(g.clicktwo){
+				g.uploadIndex = index;
+			}
+			g.clicktwo = true;
+		}
 		document.getElementById('orderMaterialFile').click();
 	});
 
 	$("#person-btn").bind("click",personBtnUp);
 	$("#bottom-ul > li").bind("click",bottomBtnUp);
 
+	/*
 	//$("#contractNo").bind("blur",validNoEmpty);
 	$("#contractNo").bind("blur",validNoChinese);
 	$("#contractMoney").bind("blur",validNoEmpty);
@@ -126,8 +140,6 @@ $(function(){
 	$("#friendName").bind("blur",validChineseName);
 	$("#friendPhone").bind("blur",validNoEmpty);
 	$("#friendPhone").bind("blur",validIsPhone);
-	//$("#friendTwoName").bind("blur",validNoEmpty);
-	//$("#friendTwoPhone").bind("blur",validNoEmpty);
 	$("#friendTwoName").bind("blur",validChineseName);
 	$("#friendTwoPhone").bind("blur",validIsPhone);
 
@@ -136,10 +148,9 @@ $(function(){
 	$("#workmateName").bind("blur",validChineseName);
 	$("#workmatePhone").bind("blur",validNoEmpty);
 	$("#workmatePhone").bind("blur",validIsPhone);
-	//$("#workmateTwoName").bind("blur",validNoEmpty);
-	//$("#workmateTwoPhone").bind("blur",validNoEmpty);
 	$("#workmateTwoName").bind("blur",validChineseName);
 	$("#workmateTwoPhone").bind("blur",validIsPhone);
+	*/
 
 	/*
 	$("#liableName").bind("blur",validNoEmpty);
@@ -356,82 +367,88 @@ $(function(){
 		}
 	}
 
-	function sendValidNoEmpty(txt,dom){
+	function sendValidNoEmpty(txt,dom,msg){
 		var b = false;
 		var next = dom.next();
 		if(txt !== ""){
 			b = true;
-			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
-			$(next).removeClass("validate-error");
-			$(next).addClass("validate-success");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			//~ $(next).removeClass("validate-error");
+			//~ $(next).addClass("validate-success");
+			//~ $(next).show();
 		}
 		else{
-			$(next).html('<i class="common-ico validate-ico"></i>不能为空');
-			$(next).removeClass("validate-success");
-			$(next).addClass("validate-error");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>不能为空');
+			//~ $(next).removeClass("validate-success");
+			//~ $(next).addClass("validate-error");
+			//~ $(next).show();
+			Utils.alert(msg + "不能为空");
 		}
 		return b;
 	}
-	function sendValidIsNumber(txt,dom){
+	function sendValidIsNumber(txt,dom,msg){
 		var b = false;
 		var reg = /^\d+$/g;
 		var next = dom.next();
 		if(reg.test(txt)){
 			b = true;
-			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
-			$(next).removeClass("validate-error");
-			$(next).addClass("validate-success");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			//~ $(next).removeClass("validate-error");
+			//~ $(next).addClass("validate-success");
+			//~ $(next).show();
 		}
 		else{
-			$(next).html('<i class="common-ico validate-ico"></i>只能填写数字');
-			$(next).removeClass("validate-success");
-			$(next).addClass("validate-error");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>只能填写数字');
+			//~ $(next).removeClass("validate-success");
+			//~ $(next).addClass("validate-error");
+			//~ $(next).show();
+			Utils.alert(msg + "只能填写数字");
 		}
 		return b;
 	}
-	function sendValidIsPhone(txt,dom){
+	function sendValidIsPhone(txt,dom,msg){
 		var b = false;
 		var reg = /^1[3,5,7,8]\d{9}$/;
 		var next = dom.next();
 		if(reg.test(txt)){
 			b = true;
-			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
-			$(next).removeClass("validate-error");
-			$(next).addClass("validate-success");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			//~ $(next).removeClass("validate-error");
+			//~ $(next).addClass("validate-success");
+			//~ $(next).show();
 		}
 		else{
-			$(next).html('<i class="common-ico validate-ico"></i>手机号码输入错误');
-			$(next).removeClass("validate-success");
-			$(next).addClass("validate-error");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>手机号码输入错误');
+			//~ $(next).removeClass("validate-success");
+			//~ $(next).addClass("validate-error");
+			//~ $(next).show();
+
+			Utils.alert(msg + "手机号码输入错误");
 		}
 		return b;
 	}
-	function sendValidIsIdentity(txt,dom){
+	function sendValidIsIdentity(txt,dom,msg){
 		var valid = new ValidCard({txt:txt});
 		var b = valid.valid();
 		var next = dom.next();
 		if(b){
-			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
-			$(next).removeClass("validate-error");
-			$(next).addClass("validate-success");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			//~ $(next).removeClass("validate-error");
+			//~ $(next).addClass("validate-success");
+			//~ $(next).show();
 		}
 		else{
-			$(next).html('<i class="common-ico validate-ico"></i>身份证号码输入错误');
-			$(next).removeClass("validate-success");
-			$(next).addClass("validate-error");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>身份证号码输入错误');
+			//~ $(next).removeClass("validate-success");
+			//~ $(next).addClass("validate-error");
+			//~ $(next).show();
+
+			Utils.alert("身份证号码输入错误");
 		}
 		return b;
 	}
 
-	function sendValidNoChinese(txt,dom){
+	function sendValidNoChinese(txt,dom,msg){
 		var b = false;
 		if(txt == ""){
 			return true;
@@ -440,23 +457,25 @@ $(function(){
 		var next = dom.next();
 		var result = txt.match(reg);
 		if(result == null || result.length == 0){
-			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
-			$(next).removeClass("validate-error");
-			$(next).addClass("validate-success");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			//~ $(next).removeClass("validate-error");
+			//~ $(next).addClass("validate-success");
+			//~ $(next).show();
 			b = true;
 		}
 		else{
-			$(next).html('<i class="common-ico validate-ico"></i>只能输入英文字符,数字,符号');
-			$(next).removeClass("validate-success");
-			$(next).addClass("validate-error");
-			$(next).show();
-			b = false;
+			//~ $(next).html('<i class="common-ico validate-ico"></i>只能输入英文字符,数字,符号');
+			//~ $(next).removeClass("validate-success");
+			//~ $(next).addClass("validate-error");
+			//~ $(next).show();
+			//~ b = false;
+
+			Utils.alert(msg + "只能输入英文字符,数字,符号");
 		}
 		return b;
 	}
 
-	function sendValidChineseName(txt,dom){
+	function sendValidChineseName(txt,dom,msg){
 		var b = false;
 		if(txt == ""){
 			return true;
@@ -468,31 +487,35 @@ $(function(){
 			var reg2 = /\~\!\@\#\$\%\^\*\(\)\_\+\-\=/gi;
 			var result2 = txt.match(reg2);
 			if(result2 == null || result2.length == 0){
-				$(next).html('<i class="common-ico validate-ico"></i>填写正确');
-				$(next).removeClass("validate-error");
-				$(next).addClass("validate-success");
-				$(next).show();
+				//~ $(next).html('<i class="common-ico validate-ico"></i>填写正确');
+				//~ $(next).removeClass("validate-error");
+				//~ $(next).addClass("validate-success");
+				//~ $(next).show();
 				b = true;
 			}
 			else{
-				$(next).html('<i class="common-ico validate-ico"></i>只能输入汉字或汉字+字符');
-				$(next).removeClass("validate-success");
-				$(next).addClass("validate-error");
-				$(next).show();
+				//~ $(next).html('<i class="common-ico validate-ico"></i>只能输入汉字或汉字+字符');
+				//~ $(next).removeClass("validate-success");
+				//~ $(next).addClass("validate-error");
+				//~ $(next).show();
 				b = false;
+
+				Utils.alert(msg + "只能输入汉字或汉字+字符");
 			}
 		}
 		else{
-			$(next).html('<i class="common-ico validate-ico"></i>只能输入汉字或汉字+字符');
-			$(next).removeClass("validate-success");
-			$(next).addClass("validate-error");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>只能输入汉字或汉字+字符');
+			//~ $(next).removeClass("validate-success");
+			//~ $(next).addClass("validate-error");
+			//~ $(next).show();
 			b = false;
+
+			Utils.alert(msg + "只能输入汉字或汉字+字符");
 		}
 		return b;
 	}
 
-	function sendValidChineseTel(txt,dom){
+	function sendValidChineseTel(txt,dom,msg){
 		var b = false;
 		if(txt == ""){
 			return true;
@@ -500,18 +523,20 @@ $(function(){
 		var next = dom.next();
 		var reg = /^(\d{3}-?\d{8}|\d{4}-?\d{7,8})$/g;
 		if(reg.test(txt)){
-			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
-			$(next).removeClass("validate-error");
-			$(next).addClass("validate-success");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			//~ $(next).removeClass("validate-error");
+			//~ $(next).addClass("validate-success");
+			//~ $(next).show();
 			b = true;
 		}
 		else{
-			$(next).html('<i class="common-ico validate-ico"></i>只能输入010-12345678或01012345678');
-			$(next).removeClass("validate-success");
-			$(next).addClass("validate-error");
-			$(next).show();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>只能输入010-12345678或01012345678');
+			//~ $(next).removeClass("validate-success");
+			//~ $(next).addClass("validate-error");
+			//~ $(next).show();
 			b = false;
+
+			Utils.alert(msg + "只能输入010-12345678或01012345678");
 		}
 		return b;
 	}
@@ -645,6 +670,7 @@ $(function(){
 
 		//var phoneNumber = obj.phoneNumber || "";
 		//$("#userphone").html(phoneNumber);
+		g.userPhone = obj.phoneNumber || "";
 		var avatar = obj.icon || "";
 		if(avatar !== ""){
 			avatar = avatar + "?t=" + (new Date() - 0);
@@ -654,7 +680,7 @@ $(function(){
 
 
 	function nextBtnUp1(){
-		var companyId = $("#companydiv .selected").attr("id");
+		var companyId = $("#companydiv .active").attr("id");
 		g.companyId = companyId;
 
 
@@ -662,6 +688,9 @@ $(function(){
 			//显示第二步
 			$("#step1").hide();
 			$("#step2").show();
+			$("#pline").addClass("step2-1");
+			//$(".step-item").removeClass("active");
+			$("#pimg2").addClass("active");
 
 			sendGetProductHttp(companyId);
 
@@ -669,10 +698,10 @@ $(function(){
 				//获取订单编号
 				sendGetOrderIdHttp();
 			}
-			window.scrollTo(0,170);
+			//window.scrollTo(0,170);
 		}
 		else{
-			location.href = "/anjia/login.html";
+			location.href = "../login/login.html";
 		}
 	}
 
@@ -721,6 +750,10 @@ $(function(){
 	function preBtnUp1(){
 		$("#step2").hide();
 		$("#step1").show();
+
+		$("#pline").removeClass("step2-1");
+		//$(".step-item").removeClass("active");
+		$("#pimg2").removeClass("active");
 	}
 
 	//获取订单编号
@@ -759,7 +792,7 @@ $(function(){
 			var obj = countFee(packageMoney,time);
 
 			$("#poundage").html(obj.rate > 0 ? (obj.rate + "元") : "免费");
-			$("#moneyMonth").html(obj.mouth + "元");
+			$("#moneyMonth").html(obj.mouth);
 
 			g.poundage = obj.rate + "";
 			g.moneyMonth = obj.mouth + "";
@@ -779,32 +812,34 @@ $(function(){
 		var contractMoney = $("#contractMoney").val() || "";
 		var packageMoney = $("#packageMoney").val() || "";
 		var fenQiTimes = $("#fenQiTimes").val() || "";
-		var agreeck = $("#agreeck")[0].checked || false;
+		//var agreeck = $("#agreeck")[0].checked || false;
 		ptype = packageType.split("_");
 		packageType = ptype[0] || "";
 		var companyId = ptype[1] || "";
 
-		if(!sendValidNoChinese(contractNo,$("#contractNo"))){
+		if(!sendValidNoChinese(contractNo,$("#contractNo"),"合同编号")){
 			return;
 		}
-		if(!sendValidNoEmpty(contractMoney,$("#contractMoney"))){
+		if(!sendValidNoEmpty(contractMoney,$("#contractMoney"),"合同总金额")){
 			return;
 		}
-		if(!sendValidIsNumber(contractMoney,$("#contractMoney"))){
+		if(!sendValidIsNumber(contractMoney,$("#contractMoney"),"合同总金额")){
 			return;
 		}
 		if((packageMoney - 0) > (contractMoney - 0)){
-			var next = $("#packageMoney").next();
-			$(next).html('<i class="common-ico validate-ico"></i>分期金额必须小于总金额');
-			$(next).removeClass("validate-success");
-			$(next).addClass("validate-error");
-			$(next).show();
+			//~ var next = $("#packageMoney").next();
+			//~ $(next).html('<i class="common-ico validate-ico"></i>分期金额必须小于总金额');
+			//~ $(next).removeClass("validate-success");
+			//~ $(next).addClass("validate-error");
+			//~ $(next).show();
+
+			Utils.alert("分期金额必须小于总金额");
 			return;
 		}
 
-		if(sendValidNoEmpty(packageMoney,$("#packageMoney"))){
-			if(sendValidIsNumber(packageMoney,$("#packageMoney"))){
-				if(agreeck){
+		if(sendValidNoEmpty(packageMoney,$("#packageMoney"),"分期金额")){
+			if(sendValidIsNumber(packageMoney,$("#packageMoney"),"分期金额")){
+				//if(agreeck){
 					var condi = {};
 					condi.login_token = g.login_token;
 					condi.customerId = g.customerId;
@@ -820,10 +855,10 @@ $(function(){
 					condi.repaymentType = g.repaymentType;
 					condi.moneyMonth = g.moneyMonth;
 					sendSetOrderPackageHttp(condi);
-				}
-				else{
-					Utils.alert("请勾选同意借款服务协议");
-				}
+				//}
+				//else{
+					//~ Utils.alert("请勾选同意借款服务协议");
+				//}
 			}
 		}
 
@@ -846,7 +881,11 @@ $(function(){
 					$("#step2").hide();
 					$("#step3").show();
 
-					window.scrollTo(0,170);
+					$("#pline").addClass("step3-1");
+					//$(".step-item").removeClass("active");
+					$("#pimg3").addClass("active");
+
+					window.scrollTo(0,0);
 				}
 				else{
 					//var msg = data.error || "";
@@ -864,7 +903,7 @@ $(function(){
 
 	function userInfoTabChange(evt){
 		var id = this.id;
-		$("#userinfotab li").removeClass("selected");
+		$("#userinfotab > div").removeClass("selected");
 		$(this).addClass("selected");
 		switch(id){
 			case "tab0":
@@ -890,54 +929,58 @@ $(function(){
 		//显示第二步
 		$("#step2").show();
 		$("#step3").hide();
+
+		$("#pline").removeClass("step3-1");
+		//$(".step-item").removeClass("active");
+		$("#pimg3").removeClass("active");
 	}
 
 	function nextBtnUp32(){
 		var applicantName = $("#applicantName").val() || "";
 		var applicantAge = $("#applicantAge").val() || "";
-		var applicantSex = $("[name='rsex']:checked").val() || "";
+		var applicantSex = $("#applicantSex").val() || "";
 		var applicantIdentity = $("#applicantIdentity").val() || "";
 		var applicantMarital = $("#applicantMarital").val() || "";
 		var applicantAddress = $("#applicantAddress").val() || "";
 		var applicantStudyStatus = $("#applicantStudyStatus").val() || "";
 		var applicantSchool = $("#applicantSchool").val() || "";
 		var applicantMajor = $("#applicantMajor").val() || "";
-		var applicantAsset = $("[name='zcradio']:checked").val() || "";
+		var applicantAsset = $("#applicantAsset").val() || "";
 
-		if(!sendValidNoEmpty(applicantName,$("#applicantName"))){
+		if(!sendValidNoEmpty(applicantName,$("#applicantName"),"姓名")){
 			return;
 		}
-		if(!sendValidChineseName(applicantName,$("#applicantName"))){
+		if(!sendValidChineseName(applicantName,$("#applicantName"),"姓名")){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantAge,$("#applicantAge"))){
+		if(!sendValidNoEmpty(applicantAge,$("#applicantAge"),"年龄")){
 			return;
 		}
-		if(!sendValidIsNumber(applicantAge,$("#applicantAge"))){
+		if(!sendValidIsNumber(applicantAge,$("#applicantAge"),"年龄")){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantIdentity,$("#applicantIdentity"))){
+		if(!sendValidNoEmpty(applicantIdentity,$("#applicantIdentity"),"身份证")){
 			return;
 		}
-		if(!sendValidIsIdentity(applicantIdentity,$("#applicantIdentity"))){
+		if(!sendValidIsIdentity(applicantIdentity,$("#applicantIdentity"),"")){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantAddress,$("#applicantAddress"))){
+		if(!sendValidNoEmpty(applicantAddress,$("#applicantAddress"),"现居住地址")){
 			return;
 		}
-		if(!sendValidChineseName(applicantAddress,$("#applicantAddress"))){
+		if(!sendValidChineseName(applicantAddress,$("#applicantAddress"),"现居住地址")){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantSchool,$("#applicantSchool"))){
+		if(!sendValidNoEmpty(applicantSchool,$("#applicantSchool"),"学校名称")){
 			return;
 		}
-		if(!sendValidChineseName(applicantSchool,$("#applicantSchool"))){
+		if(!sendValidChineseName(applicantSchool,$("#applicantSchool"),"学校名称")){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantMajor,$("#applicantMajor"))){
+		if(!sendValidNoEmpty(applicantMajor,$("#applicantMajor"),"所学专业")){
 			return;
 		}
-		if(!sendValidChineseName(applicantMajor,$("#applicantMajor"))){
+		if(!sendValidChineseName(applicantMajor,$("#applicantMajor"),"所学专业")){
 			return;
 		}
 
@@ -962,13 +1005,13 @@ $(function(){
 		g.orderUserInfo = condi;
 
 		//显示三步,里面的第二步
-		$("#userinfotab li").removeClass("selected");
+		$("#userinfotab > div").removeClass("selected");
 		$("#tab1").addClass("selected");
 		$("#step31").hide();
 		$("#step32").show();
 		$("#step33").hide();
 
-		window.scrollTo(0,170);
+		window.scrollTo(0,0);
 	}
 
 
@@ -981,7 +1024,7 @@ $(function(){
 	}
 
 	function nextBtnUp33(){
-		var applicantJobNature = $("[name='gzxzradio']:checked").val() || "";
+		var applicantJobNature = $("#applicantJobNature").val() || "";
 		var applicantCompany = $("#applicantCompany").val() || "";
 		var applicantCompanyNature = $("#applicantCompanyNature").val() || "";
 		var applicantCompanyIndustry = $("#applicantCompanyIndustry").val() || "";
@@ -991,28 +1034,28 @@ $(function(){
 		var applicantCompanyPhone = $("#applicantCompanyPhone").val() || "";
 		var applicantWages = $("#applicantWages").val() || "";
 
-		if(!sendValidNoEmpty(applicantCompany,$("#applicantCompany"))){
+		if(!sendValidNoEmpty(applicantCompany,$("#applicantCompany"),"工作单位全称")){
 			return;
 		}
-		if(!sendValidChineseName(applicantCompany,$("#applicantCompany"))){
+		if(!sendValidChineseName(applicantCompany,$("#applicantCompany"),"工作单位全称")){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantCompanyAddress,$("#applicantCompanyAddress"))){
+		if(!sendValidNoEmpty(applicantCompanyAddress,$("#applicantCompanyAddress"),"公司地址")){
 			return;
 		}
-		if(!sendValidChineseName(applicantCompanyAddress,$("#applicantCompanyAddress"))){
+		if(!sendValidChineseName(applicantCompanyAddress,$("#applicantCompanyAddress"),"公司地址")){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantCompanyPhone,$("#applicantCompanyPhone"))){
+		if(!sendValidNoEmpty(applicantCompanyPhone,$("#applicantCompanyPhone"),"公司电话")){
 			return;
 		}
-		if(!sendValidChineseTel(applicantCompanyPhone,$("#applicantCompanyPhone"))){
+		if(!sendValidChineseTel(applicantCompanyPhone,$("#applicantCompanyPhone"),"公司电话")){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantWages,$("#applicantWages"))){
+		if(!sendValidNoEmpty(applicantWages,$("#applicantWages"),"税后月收入")){
 			return;
 		}
-		if(!sendValidIsNumber(applicantWages,$("#applicantWages"))){
+		if(!sendValidIsNumber(applicantWages,$("#applicantWages"),"税后月收入")){
 			return;
 		}
 
@@ -1029,18 +1072,18 @@ $(function(){
 
 
 		//显示三步,里面的第三步
-		$("#userinfotab li").removeClass("selected");
+		$("#userinfotab > div").removeClass("selected");
 		$("#tab2").addClass("selected");
 		$("#step31").hide();
 		$("#step32").hide();
 		$("#step33").show();
 
-		window.scrollTo(0,170);
+		window.scrollTo(0,0);
 	}
 
 
 	function preBtnUp32(){
-		$("#userinfotab li").removeClass("selected");
+		$("#userinfotab > div").removeClass("selected");
 		$("#tab1").addClass("selected");
 		$("#step31").hide();
 		$("#step33").hide();
@@ -1103,41 +1146,41 @@ $(function(){
 		var workmateTwoName = $("#workmateTwoName").val() || "";
 		var workmateTwoPhone = $("#workmateTwoPhone").val() || "";
 
-		if(!sendValidNoEmpty(familyName,$("#familyName"))){
+		if(!sendValidNoEmpty(familyName,$("#familyName"),"亲属一姓名")){
 			return;
 		}
-		if(!sendValidChineseName(familyName,$("#familyName"))){
+		if(!sendValidChineseName(familyName,$("#familyName"),"亲属一姓名")){
 			return;
 		}
-		if(!sendValidNoEmpty(familyPhone,$("#familyPhone"))){
+		if(!sendValidNoEmpty(familyPhone,$("#familyPhone"),"亲属一手机号")){
 			return;
 		}
-		if(!sendValidIsPhone(familyPhone,$("#familyPhone"))){
+		if(!sendValidIsPhone(familyPhone,$("#familyPhone"),"亲属一")){
 			return;
 		}
-		if(!sendValidNoEmpty(familyTwoName,$("#familyTwoName"))){
+		if(!sendValidNoEmpty(familyTwoName,$("#familyTwoName"),"亲属二姓名")){
 			return;
 		}
-		if(!sendValidChineseName(familyTwoName,$("#familyTwoName"))){
+		if(!sendValidChineseName(familyTwoName,$("#familyTwoName"),"亲属二姓名")){
 			return;
 		}
-		if(!sendValidNoEmpty(familyTwoPhone,$("#familyTwoPhone"))){
+		if(!sendValidNoEmpty(familyTwoPhone,$("#familyTwoPhone"),"亲属二手机号")){
 			return;
 		}
-		if(!sendValidIsPhone(familyTwoPhone,$("#familyTwoPhone"))){
+		if(!sendValidIsPhone(familyTwoPhone,$("#familyTwoPhone"),"亲属二")){
 			return;
 		}
 
-		if(!sendValidNoEmpty(friendName,$("#friendName"))){
+		if(!sendValidNoEmpty(friendName,$("#friendName"),"朋友一姓名")){
 			return;
 		}
-		if(!sendValidChineseName(friendName,$("#friendName"))){
+		if(!sendValidChineseName(friendName,$("#friendName"),"朋友一姓名")){
 			return;
 		}
-		if(!sendValidNoEmpty(friendPhone,$("#friendPhone"))){
+		if(!sendValidNoEmpty(friendPhone,$("#friendPhone"),"朋友一手机号")){
 			return;
 		}
-		if(!sendValidIsPhone(friendPhone,$("#friendPhone"))){
+		if(!sendValidIsPhone(friendPhone,$("#friendPhone"),"朋友一")){
 			return;
 		}
 		//~ if(!sendValidNoEmpty(friendTwoName,$("#friendTwoName"))){
@@ -1146,25 +1189,25 @@ $(function(){
 		//~ if(!sendValidNoEmpty(friendTwoPhone,$("#friendTwoPhone"))){
 			//~ return;
 		//~ }
-		if(!sendValidChineseName(friendTwoName,$("#friendTwoName"))){
+		if(!sendValidChineseName(friendTwoName,$("#friendTwoName"),"朋友二姓名")){
 			return;
 		}
 		if(friendTwoPhone !== ""){
-			if(!sendValidIsPhone(friendTwoPhone,$("#friendTwoPhone"))){
+			if(!sendValidIsPhone(friendTwoPhone,$("#friendTwoPhone"),"朋友二")){
 				return;
 			}
 		}
 
-		if(!sendValidNoEmpty(workmateName,$("#workmateName"))){
+		if(!sendValidNoEmpty(workmateName,$("#workmateName"),"同事一姓名")){
 			return;
 		}
-		if(!sendValidChineseName(workmateName,$("#workmateName"))){
+		if(!sendValidChineseName(workmateName,$("#workmateName"),"同事一姓名")){
 			return;
 		}
-		if(!sendValidNoEmpty(workmatePhone,$("#workmatePhone"))){
+		if(!sendValidNoEmpty(workmatePhone,$("#workmatePhone"),"同事一电话")){
 			return;
 		}
-		if(!sendValidIsPhone(workmatePhone,$("#workmatePhone"))){
+		if(!sendValidIsPhone(workmatePhone,$("#workmatePhone"),"同事一")){
 			return;
 		}
 		//~ if(!sendValidNoEmpty(workmateTwoName,$("#workmateTwoName"))){
@@ -1173,11 +1216,11 @@ $(function(){
 		//~ if(!sendValidNoEmpty(workmateTwoPhone,$("#workmateTwoPhone"))){
 			//~ return;
 		//~ }
-		if(!sendValidChineseName(workmateTwoName,$("#workmateTwoName"))){
+		if(!sendValidChineseName(workmateTwoName,$("#workmateTwoName"),"同事二姓名")){
 			return;
 		}
 		if(workmateTwoPhone !== ""){
-			if(!sendValidIsPhone(workmateTwoPhone,$("#workmateTwoPhone"))){
+			if(!sendValidIsPhone(workmateTwoPhone,$("#workmateTwoPhone"),"同事二")){
 				return;
 			}
 		}
@@ -1211,7 +1254,7 @@ $(function(){
 		g.orderUserInfo.orderId = g.orderId;
 
 		sendSetCustomerInfoHttp(g.orderUserInfo);
-		window.scrollTo(0,170);
+		window.scrollTo(0,0);
 	}
 
 	function sendSetCustomerInfoHttp(condi){
@@ -1230,11 +1273,15 @@ $(function(){
 					//显示第4步
 					$("#step3").hide();
 					$("#step4").show();
+
+					$("#pline").addClass("step3");
+					//$(".step-item").removeClass("active");
+					$("#pimg4").addClass("active");
 				}
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "提交订单用户信息失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1248,6 +1295,10 @@ $(function(){
 		//显示第三步
 		$("#step3").show();
 		$("#step4").hide();
+
+		$("#pline").removeClass("step3");
+		//$(".step-item").removeClass("active");
+		$("#pimg4").removeClass("active");
 	}
 
 	function orderMaterialFileBtnUp(){
@@ -1310,15 +1361,21 @@ $(function(){
 		var src = data.obj + "?t=" + (new Date() - 0);
 		var id = data.message || "";
 		var html = [];
-		html.push('<div id="img_' + id + '" class="upload-img-item">');
-		html.push('<div class="upload-inf-img">');
-		html.push('<img src="' + src + '" width=230 height=130 />');
-		html.push('</div>');
-		html.push('<div class="upload-img-edit">');
-		//html.push('<a href="javascript:void(0)" onclick="" class="common-ico ico-edit"></a>
-		html.push('<a href="javascript:deleteUploadImg(\'' + id + '\',\'' + g.uploadIndex + '\')" class="common-ico ico-rubbish"></a>');
-		html.push('</div>');
-		html.push('</div>');
+
+		//~ html.push('<div id="img_' + id + '" class="upload-img-item">');
+		//~ html.push('<div class="upload-inf-img">');
+		//~ html.push('<img src="' + src + '" width=230 height=130 />');
+		//~ html.push('</div>');
+		//~ html.push('<div class="upload-img-edit">');
+		//~ //html.push('<a href="javascript:void(0)" onclick="" class="common-ico ico-edit"></a>
+		//~ html.push('<a href="javascript:deleteUploadImg(\'' + id + '\',\'' + g.uploadIndex + '\')" class="common-ico ico-rubbish"></a>');
+		//~ html.push('</div>');
+		//~ html.push('</div>');
+
+		 html.push('<div id="img_' + id + '"  class="uploaded-img">');
+		 html.push('<i class="upload-img-close" onclick="deleteUploadImg(\'' + id + '\',\'' + g.uploadIndex + '\')" ></i>');
+		 html.push('<img src="' + src + '" width=60 height=60 />');
+		 html.push('</div>');
 
 		$("#imgdiv_" + g.uploadIndex).append(html.join(''));
 
@@ -1383,7 +1440,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "删除上传图片失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1427,15 +1484,15 @@ $(function(){
 					//显示第5步
 					$("#step4").hide();
 					$("#step5").show();
-					window.scrollTo(0,170);
+					window.scrollTo(0,0);
 					setTimeout(function(){
-						location.href = "/anjia/usercenter.html";
+						location.href = "../personal-center/index.html";
 					},5000);
 				}
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "提交订单用户信息失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1462,14 +1519,14 @@ $(function(){
 		//获取截取的最后一个字符串，即为后缀名
 		var last=three[three.length-1];
 		//添加需要判断的后缀名类型
-		var tp ="jpg,gif,bmp,JPG,GIF,BMP,png";
+		var tp ="jpg,gif,bmp,JPG,GIF,BMP,png,jpeg";
 		//返回符合条件的后缀名在字符串中的位置
 		var rs=tp.indexOf(last);
 		//如果返回的结果大于或等于0，说明包含允许上传的文件类型
 		if(rs>=0){
 			return true;
 		}else{
-			alert("您选择的上传文件不是有效的图片文件！");
+			Utils.alert("您选择的上传文件不是有效的图片文件！");
 			return false;
 		}
 	}
@@ -1499,7 +1556,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "获取订单信息失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1546,7 +1603,7 @@ $(function(){
 		$("#packageMoney").val(packageMoney);
 		$("#fenQiTimes").val(fenQiTimes);
 		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元")));
-		$("#moneyMonth").html((moneyMonth + "元"));
+		$("#moneyMonth").html((moneyMonth));
 		$("#agreeck").attr("checked",true);
 		$($("#agreeck").parent()).addClass("chk-bg-checked");
 

@@ -12,62 +12,637 @@
 </head>
 <body>
 	<div class="ui-main">
-        <div class="ui-header bd-bottom">
-        	<a class="ui-back" href="../mystaging/index.html">
-            	<i class="trigger"></i>
-            </a>
-        	开始分期
-        </div>
-        <div class="sub-main">
-        	<div class="f-g-step-box step-type1">
+		<div class="ui-header bd-bottom">
+			<a class="ui-back" href="javascript:history.go(-1);">
+				<i class="trigger"></i>
+			</a>
+			开始分期
+		</div>
+
+		<div class="sub-main">
+			<div class="f-g-step-box step-type1">
 				<div class="f-g-step-div">
 					<div class="step-line"></div>
-					<div class="step-line step1"></div>
-					<div class="step-item left active" style="left:-24px;">
+					<div id="pline" class="step-line step1"></div>
+					<!--
+					<div class="step-line step2-1"></div>
+					<div class="step-line step3-1"></div>
+					<div class="step-line step3"></div>
+					-->
+					<div id="pimg1" class="step-item left active" style="left:-24px;">
 						<i>1</i>
 						<p>与合作商家<br />签约</p>
 					</div>
-					<div class="step-item middle-left">
+					<div id="pimg2" class="step-item middle-left">
 						<i>2</i>
 						<p>提交装修<br />信息</p>
 					</div>
-					<div class="step-item middle-right">
+					<div id="pimg3" class="step-item middle-right">
 						<i>3</i>
 						<p>提交个人<br />信息</p>
 					</div>
-                    <div class="step-item right" style="right:-24px;">
+					<div id="pimg4" class="step-item right" style="right:-24px;">
 						<i>4</i>
 						<p>上传资料</p>
 					</div>
 				</div>
 			</div>
-            <div class="staging-main">
-            	<div class="choose-goods">
-                	<div class="choose-goods-item active">
-                    	<img src="../res/images/business-logo1.png" />
-                        <div class="select-tag"></div>
-                    </div>
-                    <div class="choose-goods-item">
-                    	<img src="../res/images/business-logo2.png" />
-                        <div class="select-tag"></div>
-                    </div>
-                </div>
-                <div class="btn-box" style="margin:35px 25px;">
-                	<a href="../mystaging/mystaging2.html" class="common-btn btn-green">下一步</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
+			<div id="step1" class="staging-main" style="display:block;">
+				<div id="companydiv" class="choose-goods">
+					<div id="20150901000001" class="choose-goods-item active">
+						<img src="../res/images/business-logo1.png" />
+						<div class="select-tag"></div>
+					</div>
+					<div id="20150901000002" class="choose-goods-item">
+						<img src="../res/images/business-logo2.png" />
+						<div class="select-tag"></div>
+					</div>
+				</div>
+				<div class="btn-box" style="margin:35px 25px;">
+					<a id="nextbtn1" href="javascript:void(0);" class="common-btn btn-green">下一步</a>
+				</div>
+			</div>
+
+			<!--装修信息-->
+			<div id="step2" class="staging-main" style="display:none;">
+				<div class="common-title2">套餐信息</div>
+				<div class="common-inp-cont1" style="margin-top:0px;">
+					<div class="inp-item">
+						<label><em>*</em>合同编号</label>
+						<input id="contractNo" type="text" class="common-input-text" placeholder="请输入合同编号" />
+					</div>
+					<div class="inp-item">
+						<i class="trigger common-select-trigger"></i>
+						<label><em>*</em>产品类型</label>
+						<select id="packageType" class="common-select">
+							<option>请选择</option>
+						</select>
+					</div>
+					<div class="inp-item">
+						<label><em>*</em>合同总金额</label>
+						<input id="contractMoney" maxlength=7 type="text" class="common-input-text" placeholder="请输入合同总金额" />
+						<div class="unit-item">元</div>
+					</div>
+					<div class="inp-item">
+						<label><em>*</em>分期金额</label>
+						<input id="packageMoney" maxlength=7 type="text" class="common-input-text" placeholder="请输入分期金额" />
+						<div class="unit-item">元</div>
+					</div>
+				</div>
+				<div class="common-inp-cont1">
+					<div class="inp-item">
+						<i class="trigger common-select-trigger"></i>
+						<label><em>*</em>分期时间</label>
+						<select id="fenQiTimes" class="common-select">
+							<option value=0 >3个月</option>
+							<option value=1 >6个月</option>
+							<!--<option value=2 >9个月</option>-->
+							<option value=3 >12个月</option>
+							<option value=4 >18个月</option>
+							<option value=5 >24个月</option>
+							<option value=6 >36个月</option>
+						</select>
+					</div>
+					<div class="inp-item">
+						<label><em>*</em>服务手续费</label>
+						<div id="poundage" class="common-text high-light">免费</div>
+					</div>
+					<div class="inp-item">
+						<label><em>*</em>月还款本金</label>
+						<div id="moneyMonth" class="common-text">0</div>
+						<div class="unit-item">元</div>
+					</div>
+				</div>
+				<div class="btn-box">
+					<p>
+						<a id="nextbtn3" href="javascript:void(0);" class="common-btn btn-green">下一步</a>
+					</p>
+					<p>
+						<a id="perbtn1" href="javascript:void(0);" class="common-btn btn-white">上一步</a>
+					</p>
+				</div>
+			</div>
+
+
+			<!--个人资料-->
+			<div id="step3" style="display:none;">
+				<div id="userinfotab" class="staging-tab clearfix">
+					<div id="tab0" class="staging-tab-item selected">个人信息</div>
+					<div id="tab1" class="staging-tab-item">工作信息</div>
+					<div id="tab2" class="staging-tab-item">联系人信息</div>
+				</div>
+				<!--个人信息-->
+				<div id="step31" class="staging-main">
+					<div class="common-title2">个人基本信息</div>
+					<div class="common-inp-cont1">
+						<div class="inp-item">
+							<label><em>*</em>姓名</label>
+							<input id="applicantName" type="text" class="common-input-text" placeholder="请输入姓名" />
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>年龄</label>
+							<input id="applicantAge" maxLength=2 type="text" class="common-input-text" placeholder="请输入年龄" />
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>性别</label>
+							<select id="applicantSex" class="common-select">
+								<option value="100101">男</option>
+								<option value="100102">女</option>
+							</select>
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>身份证号</label>
+							<input id="applicantIdentity" maxLength=18 type="text" class="common-input-text" placeholder="请输入身份证号" />
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>婚姻状况</label>
+							<select id="applicantMarital" class="common-select">
+								<option>请选择</option>
+							</select>
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>现居住地址</label>
+							<input id="applicantAddress" type="text" class="common-input-text" placeholder="请输入居住地址" />
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>最高学历</label>
+							<select id="applicantStudyStatus" class="common-select">
+								<option>请选择</option>
+							</select>
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>学校名称</label>
+							<input id="applicantSchool" type="text" class="common-input-text" placeholder="请输入学校名称" />
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>所学专业</label>
+							<input id="applicantMajor" type="text" class="common-input-text" placeholder="请输入专业名称" />
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>资产信息</label>
+							<select id="applicantAsset" class="common-select">
+								<option value="101001">有房</option>
+								<option value="101002">有车</option>
+								<option value="101004">有房有车</option>
+								<option value="101005">无房无车</option>
+							</select>
+						</div>
+					</div>
+					<div class="btn-box">
+						<p>
+							<a id="nextbtn32" href="javascript:void(0);" class="common-btn btn-green">下一步</a>
+						</p>
+						<p>
+							<a id="prebtn2" href="javascript:void(0);" class="common-btn btn-white">上一步</a>
+						</p>
+					</div>
+				</div>
+
+				<!--工作信息-->
+				<div id="step32" class="staging-main" style="display:none;">
+					<div class="common-tip">（本申请表所填写的各项信息是能否获批分期及核定金额的重要依据，务必仔细，严谨，如实填写。）</div>
+					<div class="common-title2">工作信息</div>
+					<div class="common-inp-cont1">
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>工作性质</label>
+							<select id="applicantJobNature" class="common-select">
+								<option value="101101">工薪阶级</option>
+								<option value="101102">企业主</option>
+								<option value="101103">个体户</option>
+								<option value="101104">网商</option>
+							</select>
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>工作单位全称</label>
+							<input id="applicantCompany" type="text" class="common-input-text" placeholder="请输入工作单位全称" />
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>工作单位性质</label>
+							<select id="applicantCompanyNature" class="common-select">
+								<option>请选择</option>
+							</select>
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>所属行业</label>
+							<select id="applicantCompanyIndustry" class="common-select">
+								<option>请选择</option>
+							</select>
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>担当职务</label>
+							<select id="applicantDuties" class="common-select">
+								<option>请选择</option>
+							</select>
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>工作年限</label>
+							<select id="applicantWorkYears" class="common-select">
+								<option>请选择</option>
+							</select>
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>公司地址</label>
+							<input id="applicantCompanyAddress" type="text" class="common-input-text" placeholder="请输入公司地址" />
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>单位电话</label>
+							<input id="applicantCompanyPhone" type="text" class="common-input-text" placeholder="请输入单位电话" />
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>税后月收入</label>
+							<input id="applicantWages" maxlength=7  type="text" class="common-input-text" placeholder="税后月收入" />
+							<div class="unit-item">元</div>
+						</div>
+					</div>
+					<div class="btn-box">
+						<p>
+							<a id="nextbtn33"  href="javascript:void(0);"  class="common-btn btn-green">下一步</a>
+						</p>
+						<p>
+							<a id="prebtn31" href="javascript:void(0);" class="common-btn btn-white">上一步</a>
+						</p>
+					</div>
+				</div>
+
+				<!--联系人信息-->
+				<div id="step33" class="staging-main" style="display:none;">
+					<div class="common-tip">您填写的联系人信息越全面，越快审批。</div>
+					<div class="common-title2">亲属一</div>
+					<div class="common-inp-cont1">
+						<div class="inp-item">
+							<label><em>*</em>姓名</label>
+							<input id="familyName" type="text" class="common-input-text" placeholder="请输入姓名" />
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>手机号码</label>
+							<input id="familyPhone" type="text" class="common-input-text" placeholder="请输入手机号码" />
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>关系</label>
+							<select id="familyRelation" class="common-select">
+								<option>请选择</option>
+							</select>
+						</div>
+					</div>
+					<div class="common-title2">亲属二</div>
+						<div class="common-inp-cont1">
+						<div class="inp-item">
+							<label><em>*</em>姓名</label>
+							<input id="familyTwoName"  type="text" class="common-input-text" placeholder="请输入姓名" />
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>手机号码</label>
+							<input id="familyTwoPhone" type="text" class="common-input-text" placeholder="请输入手机号码" />
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>关系</label>
+							<select id="familyTwoRelation" class="common-select">
+								<option>请选择</option>
+							</select>
+						</div>
+					</div>
+					<div class="common-title2">朋友一</div>
+					<div class="common-inp-cont1">
+						<div class="inp-item">
+							<label><em>*</em>姓名</label>
+							<input id="friendName" type="text" class="common-input-text" placeholder="请输入姓名" />
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>手机号码</label>
+							<input id="friendPhone" type="text" class="common-input-text" placeholder="请输入手机号码" />
+						</div>
+					</div>
+					<div class="common-title2">朋友二</div>
+					<div class="common-inp-cont1">
+						<div class="inp-item">
+							<label>姓名</label>
+							<input id="friendTwoName" type="text" class="common-input-text" placeholder="请输入姓名" />
+						</div>
+						<div class="inp-item">
+							<label>手机号码</label>
+							<input id="friendTwoPhone" type="text" class="common-input-text" placeholder="请输入手机号码" />
+						</div>
+					</div>
+					<div class="common-title2">同事一</div>
+					<div class="common-inp-cont1">
+						<div class="inp-item">
+							<label><em>*</em>姓名</label>
+							<input id="workmateName" type="text" class="common-input-text" placeholder="请输入姓名" />
+						</div>
+						<div class="inp-item">
+							<label><em>*</em>手机号码</label>
+							<input id="workmatePhone" type="text" class="common-input-text" placeholder="请输入手机号码" />
+						</div>
+					</div>
+					<div class="common-title2">同事二</div>
+					<div class="common-inp-cont1">
+						<div class="inp-item">
+							<label>姓名</label>
+							<input id="workmateTwoName" type="text" class="common-input-text" placeholder="请输入姓名" />
+						</div>
+						<div class="inp-item">
+							<label>手机号码</label>
+							<input id="workmateTwoPhone" type="text" class="common-input-text" placeholder="请输入手机号码" />
+						</div>
+					</div>
+					<div class="btn-box">
+						<p>
+							<a id="nextbtn4"  href="javascript:void(0);" class="common-btn btn-green">下一步</a>
+						</p>
+						<p>
+							<a id="prebtn32" href="javascript:void(0);" class="common-btn btn-white">上一步</a>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!--上传图片-->
+			<div id="step4" class="staging-main" style="display:none;">
+				<div class="common-tip">您填写的联系人信息越全面，越快审批。</div>
+				<div class="common-title2">必要认证</div>
+				<div class="upload-item">
+					<h1 class="upload-inf-title"><em>*</em>1.身份证<span>(身份证正反面+手持身份证照片)</span></h1>
+					<div class="upload-item-box clearfix">
+						<!--
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						-->
+						<div id="imgdiv_0" style="float:left;">
+						</div>
+						<div id="img_0" style="float:left;margin-left: 5px;" class="upload-add-img upload-btn" onclick="">
+							<input type="file" style="display:none;" name="orderMaterialFile" id="orderMaterialFile" />
+						</div>
+					</div>
+				</div>
+				<div class="upload-item">
+					<h1 class="upload-inf-title"><em>*</em>2.房产证明<span>(房产证名字需与借款人名字一致（如房产证名字是申请人爱人，需要提供结婚证明）</span></h1>
+					<div class="upload-item-box clearfix">
+						<!--
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						-->
+						<div id="imgdiv_1" style="float:left;">
+						</div>
+						<div id="img_1" style="float:left;margin-left: 5px;" class="upload-add-img upload-btn" onclick="">
+
+						</div>
+					</div>
+				</div>
+				<div class="upload-item">
+					<h1 class="upload-inf-title"><em>*</em>3.现住址证明<span>（任选其一）</span></h1>
+					<div class="common-tip1">
+						（1）房产登记证明/房产使用权证明/（房屋抵押合同+还贷流水）/（购房合同+购房发票）<br>
+						（2）水/电/气/有线电视/固定电话的缴费详单（近6 个月）。<br>
+						（3）居委会/街道办/派出所开具的居住证明。<br>
+					</div>
+					<div class="upload-item-box clearfix">
+						<!--
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						-->
+						<div id="imgdiv_2" style="float:left;">
+						</div>
+						<div id="img_2" style="float:left;margin-left: 5px;"  class="upload-add-img upload-btn" onclick="">
+
+						</div>
+					</div>
+				</div>
+				<div class="upload-item">
+					<h1 class="upload-inf-title"><em>*</em>4.工作证明<span>（任选其一）</span></h1>
+					<div class="common-tip1">
+						（1）公司人事部门开具的在职证明+社保卡<br>
+						（2）营业执照+办公场所照片
+					</div>
+					<div class="upload-item-box clearfix">
+						<!--
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						-->
+						<div id="imgdiv_3" style="float:left;">
+						</div>
+						<div id="img_3" style="float:left;margin-left: 5px;"  class="upload-add-img upload-btn" onclick="">
+
+						</div>
+					</div>
+				</div>
+				<div class="upload-item">
+					<h1 class="upload-inf-title"><em>*</em>5.收入证明<span>（近6个月与工资收入相关的银行流水+银行卡正反面照片）</span></h1>
+					<div class="upload-item-box clearfix">
+						<!--
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						-->
+						<div id="imgdiv_4" style="float:left;">
+						</div>
+						<div id="img_4" style="float:left;margin-left: 5px;"  class="upload-add-img upload-btn" onclick="">
+
+						</div>
+					</div>
+				</div>
+
+				<div class="common-title2">可选认证<span>（根据需要选传的认证信息）</span></div>
+				<div class="upload-item">
+					<h1 class="upload-inf-title">1.结婚证/单身证明<span>不超过5张</span></h1>
+					<div class="upload-item-box clearfix">
+						<!--
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						-->
+						<div id="imgdiv_5" style="float:left;">
+						</div>
+						<div id="img_5" class="upload-add-img upload-btn" onclick="">
+
+						</div>
+					</div>
+				</div>
+				<div class="upload-item">
+					<h1 class="upload-inf-title">2.企业用户营业执照照片<span>（不超过5辆）</span></h1>
+					<div class="upload-item-box clearfix">
+						<!--
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						-->
+						<div id="imgdiv_7" style="float:left;">
+						</div>
+						<div id="img_7" class="upload-add-img upload-btn" onclick="">
+
+						</div>
+					</div>
+				</div>
+				<div class="upload-item">
+					<h1 class="upload-inf-title">3.企业用户组织结构代码证<span>（不超过5张）</span></h1>
+					<div class="upload-item-box clearfix">
+						<!--
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						-->
+						<div id="imgdiv_8" style="float:left;">
+						</div>
+						<div id="img_8" class="upload-add-img upload-btn" onclick="">
+
+						</div>
+					</div>
+				</div>
+				<div class="upload-item">
+					<h1 class="upload-inf-title">4.企业用户税务登记证<span>不超过5张</span></h1>
+					<div class="upload-item-box clearfix">
+						<!--
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						-->
+						<div id="imgdiv_9" style="float:left;">
+						</div>
+						<div id="img_9" class="upload-add-img upload-btn" onclick="">
+
+						</div>
+					</div>
+				</div>
+				<div class="upload-item">
+					<h1 class="upload-inf-title">5.企业用户企业经营场所照片<span>不超过5张</span></h1>
+					<div class="upload-item-box clearfix">
+						<!--
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						<div class="uploaded-img">
+							<i class="upload-img-close"></i>
+							<img src="../res/images/personal-top-bg.jpg" />
+						</div>
+						-->
+						<div id="imgdiv_10" style="float:left;">
+						</div>
+						<div id="img_10" class="upload-add-img upload-btn" onclick="">
+
+						</div>
+					</div>
+				</div>
+				<div class="btn-box">
+					<p>
+						<a id="nextbtn5" href="javascript:void(0);"  class="common-btn btn-green">下一步</a>
+					</p>
+					<p>
+						<a id="prebtn3" href="javascript:void(0);" class="common-btn btn-white">上一步</a>
+					</p>
+				</div>
+			</div>
+
+
+			<!--完成-->
+			<div id="step5" class="staging-main" style="display:none;">
+				<div class="result-div">
+					<p class="result-text">恭喜您，订单提交成功，请等待审核结果</p>
+				</div>
+				<div class="btn-box">
+					<p>
+						<a href="../index/index.html" class="common-btn btn-green">返回首页</a>
+					</p>
+					<!--
+					<p>
+						<a href="../mystaging/mystaging3-3.html" class="common-btn btn-white">上一步</a>
+					</p>
+					-->
+				</div>
+			</div>
+
+
+
+		</div>
+
+
+
+
+	</div>
+
+
+
+	<script type="text/javascript" src="../res/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../res/js/layer.m.js"></script>
+	<script type="text/javascript" src="../res/js/common.js"></script>
+	<script type="text/javascript" src="../libs/json.js"></script>
+	<script type="text/javascript" src="../libs/base.js"></script>
+	<script type="text/javascript" src="../libs/utils.js"></script>
+	<script type="text/javascript" src="../libs/idcard.js"></script>
+	<script type="text/javascript" src="../libs/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="../js/mystaging.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.choose-goods .choose-goods-item').bind('click',function(){
+				$(this).siblings('.choose-goods-item').removeClass('active');
+				$(this).addClass('active');
+			})
+		});
+	</script>
+
 </body>
-<script type="text/javascript" src="../res/js/jquery.min.js"></script>
-<script type="text/javascript" src="../res/js/layer.m.js"></script>
-<script type="text/javascript" src="../res/js/common.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$('.choose-goods .choose-goods-item').bind('click',function(){
-			$(this).siblings('.choose-goods-item').removeClass('active');
-			$(this).addClass('active');
-		})
-	});
-</script>
 </html>
+
+
+
+
