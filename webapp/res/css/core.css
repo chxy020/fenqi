@@ -135,7 +135,7 @@
 .ui-nav .ui-nav-ul li a{
 	display:block;
 	text-align:center;
-	padding:3px 0px;
+	padding:5px 0px 2px;
 }
 .ui-nav .ui-nav-ul li a:active{
 	background:#efefef;
