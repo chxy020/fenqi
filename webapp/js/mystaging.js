@@ -1268,7 +1268,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "提交订单用户信息失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1427,7 +1427,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "删除上传图片失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1479,7 +1479,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "提交订单用户信息失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1506,14 +1506,14 @@ $(function(){
 		//获取截取的最后一个字符串，即为后缀名
 		var last=three[three.length-1];
 		//添加需要判断的后缀名类型
-		var tp ="jpg,gif,bmp,JPG,GIF,BMP,png";
+		var tp ="jpg,gif,bmp,JPG,GIF,BMP,png,jpeg";
 		//返回符合条件的后缀名在字符串中的位置
 		var rs=tp.indexOf(last);
 		//如果返回的结果大于或等于0，说明包含允许上传的文件类型
 		if(rs>=0){
 			return true;
 		}else{
-			alert("您选择的上传文件不是有效的图片文件！");
+			Utils.alert("您选择的上传文件不是有效的图片文件！");
 			return false;
 		}
 	}
@@ -1543,7 +1543,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "获取订单信息失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
