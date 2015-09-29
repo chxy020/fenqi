@@ -74,9 +74,21 @@ $(function(){
 
 	//头像
 	$(document).on("change","#orderMaterialFile",orderMaterialFileBtnUp);
+
+	//事件响应两次控制
+	g.clicktwo = false;
 	$(".upload-btn").bind("click",function(evt){
-		evt.stopPropagation();
-		g.uploadIndex = this.id.split("_")[1] - 0;
+		var index = this.id.split("_")[1] - 0;
+		if(index > 0){
+			g.uploadIndex = index;
+			g.clicktwo = false;
+		}
+		else{
+			if(g.clicktwo){
+				g.uploadIndex = index;
+			}
+			g.clicktwo = true;
+		}
 		document.getElementById('orderMaterialFile').click();
 	});
 
