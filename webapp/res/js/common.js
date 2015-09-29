@@ -84,11 +84,12 @@ COMMON_PLUGIN.COMMON.ALERT_DIALOG_TWO = function(showMsg,sureClickCallBack,cance
 		}
 	});
 }
-COMMON_PLUGIN.COMMON.SLIDE_INIT = function (bannerImgInterface){
-		var imgInterface = bannerImgInterface || ''
+COMMON_PLUGIN.COMMON.SLIDE_INIT = function (bannerImgInterface,bannerInterfactType){
+		var imgInterface = bannerImgInterface || '';
+		var interfactType = bannerInterfactType || ''
 		var condi = {};
 		var slideHtml = []
-		condi.navigationKey = "INDEX";
+		condi.navigationKey = interfactType;
 
 		var url = Base.serverUrl + imgInterface;
 		$.ajax({
@@ -98,6 +99,7 @@ COMMON_PLUGIN.COMMON.SLIDE_INIT = function (bannerImgInterface){
 			dataType:"json",
 			context:this,
 			success: function(data){
+				console.log(data);
 				var status = data.success || false;
 				if(status){
 					var list = data.list;
