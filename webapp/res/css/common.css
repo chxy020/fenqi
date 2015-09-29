@@ -456,8 +456,8 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 }
 .ui-header .ui-person-btn .person-btn-more{
 	display:inline-block;
-	width:5px;
-	height:18px;
+	width:4px;
+	height:14px;
 	background:url(../images/person-btn-more.png) left top no-repeat;
 	background-size:100% 100%;
 	margin-right:10px;

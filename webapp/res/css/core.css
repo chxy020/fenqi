@@ -34,8 +34,12 @@
 	display:inline-block;
 	width:40px;
 	height:40px;
-	background:#ccc;
 	margin-top:5px;
+}
+.index-part-list .index-part-item i img{
+	width:40px;
+	height:40px;
+	font-size:0px;
 }
 .index-part-list .index-part-item p{
 	margin-top:3px;
@@ -74,8 +78,12 @@
 	height:40px;
 	margin-left:5px;
 	margin-top:6px;
-	background:#efefef;
 	
+}
+.index-part-list1 .index-part-item i img{
+	width:40px;
+	height:40px;
+	font-size:0px;
 }
 .index-part-list1 .index-part-item h1{
 	font-size:14px;
