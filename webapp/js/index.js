@@ -13,8 +13,8 @@ $(function(){
 	g.httpTip = new Utils.httpTip({});
 
 	//验证登录状态
-	var loginStatus = Utils.getUserInfo();
-	if(!loginStatus){
+	g.loginStatus = Utils.getUserInfo();
+	if(!g.loginStatus){
 		//未登录
 	}
 	else{
@@ -53,7 +53,7 @@ $(function(){
 	}
 
 	function personBtnUp(evt){
-		if(loginStatus){
+		if(g.loginStatus){
 			location.href = "../personal-center/index.html";
 		}
 		else{
@@ -70,22 +70,34 @@ $(function(){
 			break;
 			case "li_1":
 				url = location.href = "../personal-center/index.html";
+				if(g.loginStatus){
+					location.href = url;
+				}
+				else{
+					location.href = "../login/login.html";
+				}
 			break;
 			case "li_2":
-				url = location.href = "../mystaging/index.html";
+				location.href = "../mystaging/index.html";
 			break;
 			case "li_3":
 				url = location.href = "../personal-center/index.html";
+				if(g.loginStatus){
+					location.href = url;
+				}
+				else{
+					location.href = "../login/login.html";
+				}
 			break;
 			case "li_4":
 				url = location.href = "../personal-center/index.html";
+				if(g.loginStatus){
+					location.href = url;
+				}
+				else{
+					location.href = "../login/login.html";
+				}
 			break;
-		}
-		if(loginStatus){
-			location.href = url;
-		}
-		else{
-			location.href = "../login/login.html";
 		}
 	}
 

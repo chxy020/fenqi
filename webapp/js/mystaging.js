@@ -79,6 +79,7 @@ $(function(){
 		document.getElementById('orderMaterialFile').click();
 	});
 
+	$("#person-btn").bind("click",personBtnUp);
 	$("#bottom-ul > li").bind("click",bottomBtnUp);
 
 	//$("#contractNo").bind("blur",validNoEmpty);
@@ -149,31 +150,52 @@ $(function(){
 	$("#liableAddress").bind("blur",validNoEmpty);
 	*/
 
+	function personBtnUp(evt){
+		if(g.loginStatus){
+			location.href = "../personal-center/index.html";
+		}
+		else{
+			location.href = "../login/login.html";
+		}
+	}
+
 	function bottomBtnUp(evt){
 		var id = this.id || "";
 		var url = "";
 		switch(id){
 			case "li_0":
-				location.href = "../index/index.html";
+				location.href = "index.html";
 			break;
 			case "li_1":
 				url = location.href = "../personal-center/index.html";
+				if(g.loginStatus){
+					location.href = url;
+				}
+				else{
+					location.href = "../login/login.html";
+				}
 			break;
 			case "li_2":
-				url = location.href = "/index.html";
+				location.href = "../mystaging/index.html";
 			break;
 			case "li_3":
 				url = location.href = "../personal-center/index.html";
+				if(g.loginStatus){
+					location.href = url;
+				}
+				else{
+					location.href = "../login/login.html";
+				}
 			break;
 			case "li_4":
 				url = location.href = "../personal-center/index.html";
+				if(g.loginStatus){
+					location.href = url;
+				}
+				else{
+					location.href = "../login/login.html";
+				}
 			break;
-		}
-		if(loginStatus){
-			location.href = url;
-		}
-		else{
-			location.href = "../login/login.html";
 		}
 	}
 
