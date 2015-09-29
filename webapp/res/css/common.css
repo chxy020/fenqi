@@ -413,7 +413,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	background-position:-200px -36px;
 }
 .nav-ico.ico-service{
-	background-position:-250px -36px;
+	background-position:-250px -37px;
 }
 .nav-ico.ico-main{
 	width:46px;
@@ -478,6 +478,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 }
 .ui-header .ui-person-btn .person-btn-userImg img{
 	width:100%;
+	height:100%;
 }
 .result-div{
 	padding:50px 25px;

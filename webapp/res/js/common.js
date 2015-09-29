@@ -54,7 +54,7 @@ COMMON_PLUGIN.COMMON.ALERT_DIALOG_ONE = function(showMsg,sureClickCallBack){
 	if(typeof showMsg === 'undefined') return;
 	var sureClickCallBackFun = sureClickCallBack || function(){};
 	layer.open({
-		content: 'showMsg',
+		content: showMsg,
 		 shadeClose: false,
 		btn: ['确定'],
 		yes: function(index){
@@ -128,6 +128,11 @@ COMMON_PLUGIN.COMMON.SLIDE_INIT = function (bannerImgInterface,bannerInterfactTy
 				//g.httpTip.hide();
 			}
 		});	
+}
+COMMON_PLUGIN.COMMON.DELAY_ITEM = function(){
+	$('.delay-item').bind('click',function(){
+		COMMON_PLUGIN.COMMON.ALERT_DIALOG_ONE('敬请期待10月底上线',function(){});
+	});
 }
 ;(function($){
 /*
@@ -226,6 +231,7 @@ COMMON_PLUGIN.COMMON.SLIDE_INIT = function (bannerImgInterface,bannerInterfactTy
 	}
 })(jQuery);
 $(function(){
+	COMMON_PLUGIN.COMMON.DELAY_ITEM();
 	COMMON_PLUGIN.COMMON.INIT();
 	//初始化checkbox
 	$(".ui-checkbox").yyptCheckbox();
