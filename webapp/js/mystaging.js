@@ -74,7 +74,8 @@ $(function(){
 
 	//头像
 	$(document).on("change","#orderMaterialFile",orderMaterialFileBtnUp);
-	$(".upload-btn").bind("click",function(){
+	$(".upload-btn").bind("click",function(evt){
+		evt.stopPropagation();
 		g.uploadIndex = this.id.split("_")[1] - 0;
 		document.getElementById('orderMaterialFile').click();
 	});
@@ -779,7 +780,7 @@ $(function(){
 			var obj = countFee(packageMoney,time);
 
 			$("#poundage").html(obj.rate > 0 ? (obj.rate + "元") : "免费");
-			$("#moneyMonth").html(obj.mouth + "元");
+			$("#moneyMonth").html(obj.mouth);
 
 			g.poundage = obj.rate + "";
 			g.moneyMonth = obj.mouth + "";
@@ -1360,8 +1361,8 @@ $(function(){
 		//~ html.push('</div>');
 
 		 html.push('<div id="img_' + id + '"  class="uploaded-img">');
-		 html.push('<i class="upload-img-close" onclick=deleteUploadImg(\'' + id + '\',\'' + g.uploadIndex + '\')" ></i>');
-		 html.push('<img src="../res/images/personal-top-bg.jpg" />');
+		 html.push('<i class="upload-img-close" onclick="deleteUploadImg(\'' + id + '\',\'' + g.uploadIndex + '\')" ></i>');
+		 html.push('<img src="' + src + '" width=60 height=60 />');
 		 html.push('</div>');
 
 		$("#imgdiv_" + g.uploadIndex).append(html.join(''));
@@ -1590,7 +1591,7 @@ $(function(){
 		$("#packageMoney").val(packageMoney);
 		$("#fenQiTimes").val(fenQiTimes);
 		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元")));
-		$("#moneyMonth").html((moneyMonth + "元"));
+		$("#moneyMonth").html((moneyMonth));
 		$("#agreeck").attr("checked",true);
 		$($("#agreeck").parent()).addClass("chk-bg-checked");
 
