@@ -364,23 +364,25 @@
 .staging-fun-box .staging-fun-item a{
 	display:block;
 	padding:15px 0px;
+	border-right:1px solid #ececec;
+	border-bottom:1px solid #ececec;
 }
 .staging-fun-box .staging-fun-item a:active{
 	background:#efefef;
 }
 .staging-fun-box .staging-fun-item a p{
-	font-size:16px;
+	font-size:14px;
 	margin-top:10px;
 	color:#333;
 }
-.staging-fun-box .staging-fun-item:first-child a{
-	border-right:1px solid #ececec;
+.staging-fun-box .staging-fun-item:nth-child(2) a,.staging-fun-box .staging-fun-item:nth-child(4) a{
+	border-right:none;
 }
 .cal-btn-box{
 	position:absolute;
 	left:50%;
-	margin-left:-52px;
-	top:-20px;
+	margin-left:-56px;
+	top:73px;
 	width:105px;
 	border:1px solid #ececec;
 	border-radius:8px;

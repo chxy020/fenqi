@@ -66,7 +66,7 @@ $(function(){
 		var url = "";
 		switch(id){
 			case "li_0":
-				location.href = "index.html";
+				location.href = "../index/index.html";
 			break;
 			case "li_1":
 				url = location.href = "../personal-center/index.html";
@@ -90,7 +90,7 @@ $(function(){
 				}
 			break;
 			case "li_4":
-				url = location.href = "../personal-center/index.html";
+				url = location.href = "tel://4006616896";
 				if(g.loginStatus){
 					location.href = url;
 				}

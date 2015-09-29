@@ -31,7 +31,7 @@ $(function(){
 		var time = $("#stagingtime").val() || "";
 		var ratearr = [0,0.04,0.04,0.07,0.1,0.13,0.16];
 		var r = ratearr[time] || 0;
-		$("#ratetext").val(r);
+		$("#ratetext").val(r*100);
 	}
 
 	function countBtnUp(){

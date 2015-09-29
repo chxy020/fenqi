@@ -451,7 +451,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 .ui-header .ui-person-btn{
 	position:absolute;
 	font-size:0px;
-	left:18px;
+	left:10px;
 	top:0px;
 }
 .ui-header .ui-person-btn .person-btn-more{
@@ -460,7 +460,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	height:14px;
 	background:url(../images/person-btn-more.png) left top no-repeat;
 	background-size:100% 100%;
-	margin-right:10px;
+	margin-right:5px;
 	vertical-align:middle;
 }
 .ui-header .ui-person-btn .person-btn-userImg{

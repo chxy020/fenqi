@@ -27,6 +27,7 @@ COMMON_PLUGIN.COMMON.TOAST = function(toastMsg,durationTime){
 	if(typeof toastMsg === 'undefined' || typeof durationTime === 'undefined') return;
 	layer.open({
 		content: toastMsg,
+		shadeClose: true,
 		style: 'background-color:rgba(0,0,0,0.7); color:#fff; border:none;padding:5px;',
 		time: durationTime
 	});
