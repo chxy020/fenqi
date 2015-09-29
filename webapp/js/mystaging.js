@@ -174,7 +174,7 @@ $(function(){
 				}
 			break;
 			case "li_2":
-				location.href = "../mystaging/index.html";
+				location.href = "../mystaging/staging-step.html";
 			break;
 			case "li_3":
 				url = location.href = "../personal-center/index.html";
