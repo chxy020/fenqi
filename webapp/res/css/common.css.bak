@@ -37,7 +37,8 @@ sup {
   vertical-align: baseline;
 }
 html{
-	background:#f8f8f8;
+	background:#ececec;/*haitao #f8f8f8*/
+	font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
 }
 input,button,textarea,select,optgroup,option {
   font-family: inherit;
@@ -51,7 +52,7 @@ a{
 }
 a:hover{
 }
-input[type="search"],input[type="text"],input[type="button"],input[type="password"],input[type="submit"]{
+input[type="search"],input[type="text"],input[type="button"],input[type="password"],input[type="submit"],select{
 	-webkit-appearance:none;
 	border:none;
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
@@ -94,6 +95,9 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 .high-light{
 	color:#61dd43!important;
 }
+.table-cell{
+	display:table-cell;
+}
 /*common*/
 .trigger{
 	display:inline-block;
@@ -110,6 +114,9 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 .bg-white{
 	background:#fff;
 }
+.bd-bottom{
+	border-bottom:1px solid #f2f2f2;
+}
 /*common-input*/
 .common-inp-cont{
 	margin:15px 0px;
@@ -122,7 +129,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 }
 .common-inp-cont .img-ver-item{}
 .common-inp-cont .img-ver-item .img-ver-item-left{
-	margin-right:130px;
+	margin-right:100px;
 }
 .common-inp-cont .img-ver-item .img-ver-img{
 	float:right;
@@ -130,13 +137,13 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 }
 .common-inp-cont .img-ver-item .img-ver-btn{
 	float:right;
-	width:130px;
+	width:100px;
 }
 .common-inp-cont .img-ver-item .img-ver-btn .common-btn{
 	border-radius:0px;
 }
 .common-inp-cont .img-ver-item .img-ver-img img{
-	width:130px;
+	width:100px;
 	height:45px;
 }
 .common-input-text{
@@ -147,6 +154,61 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	height:45px;
 	line-height:inherit;
 	color:#555;
+}
+.common-select{
+	display:inline-block;
+	width:100%;
+	padding:0px 15px;
+	box-sizing:border-box;
+	height:45px;
+	line-height:inherit;
+	color:#555;
+	font-size:16px;
+	direction: rtl;
+	background:#fff;
+}
+.common-select option{
+	direction: rtl;
+}
+.common-title{
+	font-size:18px;
+	color:#539d34;
+	padding:15px;
+	text-align:center;
+}
+.common-title2{
+	font-size:16px;
+	margin:15px 0px 0px;
+	background:#dff0d8;
+	color:#4cc51a;
+	padding:10px 15px;
+	line-height:16px;
+}
+.common-title3{
+	font-size:16px;
+	height:35px;
+	line-height:35px;
+	color:#333;
+	padding:0px 15px;
+}
+.common-title3 .common-ico{
+	margin-right:5px;
+}
+.common-tip{
+	font-size:12px;
+	color:#666;
+	padding:10px 15px;
+	margin:15px 0px;
+	line-height:20px;
+	background:#efefef;
+}
+.common-tip1{
+	font-size:12px;
+	color:#666;
+	padding:10px 0px;
+	margin:15px 0px;
+	line-height:20px;
+	background:#efefef;
 }
 .input-type{
 	background:url(../images/input-ico.png) left top no-repeat;
@@ -169,6 +231,78 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 }
 .input-type.type-smsVer{
 	background-position:0px -133px;
+}
+.common-inp-cont1{
+	margin:15px 0px;
+	border-top: 1px solid #f2f2f2;
+}
+.common-inp-cont1 .inp-item{
+	position:relative;
+	border-bottom:1px solid #f2f2f2;
+	height:45px;
+	background:#fff;
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	width: 100%;
+	background: #fff;
+	border-bottom: 1px solid #f2f2f2;
+}
+.common-inp-cont1 .inp-item label{
+	display:block;
+	line-height:45px;
+	font-size:16px;
+	color:#333;
+	padding-left:15px;
+}
+.common-inp-cont1 .inp-item label em{
+	color:#e60012;
+	margin-right:5px;
+}
+.common-inp-cont1 .inp-item .common-input-text{
+	display: block;
+	-moz-box-flex: 1;
+	-webkit-box-flex: 1;
+	box-flex: 1;
+	text-align:right;
+}
+.common-inp-cont1 .inp-item .common-select{
+	display: block;
+	-moz-box-flex: 1;
+	-webkit-box-flex: 1;
+	box-flex: 1;
+	text-align:right;
+	padding-right:30px;
+}
+.common-inp-cont1 .inp-item .common-text{
+	display: block;
+	-moz-box-flex: 1;
+	-webkit-box-flex: 1;
+	box-flex: 1;
+	text-align:right;
+	padding-right:15px;
+	font-size:16px;
+	color:#333;
+	line-height:45px;
+}
+.common-inp-cont1 .inp-item .common-select-trigger{
+	position:absolute;
+	right:15px;
+	top:16px;
+	width:8px;
+	height:8px;
+	-webkit-transform:rotate(225deg);
+	transform:rotate(225deg);
+	border-width:1px;
+	border-color:#adadad;
+}
+.common-inp-cont1 .inp-item .unit-item{
+	display:block;
+	height:45px;
+	line-height:45px;
+	font-size:16px;
+	color:#333;
+	padding-right:15px;
 }
 /*common-btn*/
 .btn-box{
@@ -243,7 +377,23 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	height:14px;
 	background-position:0px -0px;
 }
-
+.common-ico.staging-ico{
+	width:35px;
+	height:35px;
+	background-position:0px -40px;
+}
+.common-ico.cal-ico{
+	width:35px;
+	height:35px;
+	background-position:-39px -40px;
+}
+.common-ico.coop-ico{
+	width:14px;
+	height:14px;
+	background:url(../images/icon.png) left top no-repeat;
+	background-position:0px -86px;
+	background-size:75px auto;
+}
 .nav-ico{
 	display:inline-block;
 	width:23px;
@@ -263,7 +413,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	background-position:-200px -36px;
 }
 .nav-ico.ico-service{
-	background-position:-250px -36px;
+	background-position:-250px -37px;
 }
 .nav-ico.ico-main{
 	width:46px;
@@ -294,24 +444,23 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 }
 .ui-header .ui-back{
 	position:absolute;
-	/*chenxy 修改,增大点击区域*/
-	left: 0px;
-	top: 0px;
-	margin: 0px 18px;
+	left:0px;
+	top:0px;
+	padding:0px 18px;
 }
 .ui-header .ui-person-btn{
 	position:absolute;
 	font-size:0px;
-	left:18px;
+	left:10px;
 	top:0px;
 }
 .ui-header .ui-person-btn .person-btn-more{
 	display:inline-block;
-	width:5px;
-	height:18px;
+	width:4px;
+	height:14px;
 	background:url(../images/person-btn-more.png) left top no-repeat;
 	background-size:100% 100%;
-	margin-right:10px;
+	margin-right:5px;
 	vertical-align:middle;
 }
 .ui-header .ui-person-btn .person-btn-userImg{
@@ -329,6 +478,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 }
 .ui-header .ui-person-btn .person-btn-userImg img{
 	width:100%;
+	height:100%;
 }
 .result-div{
 	padding:50px 25px;
@@ -384,7 +534,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
   text-align: center;
   font-size: 10px;
 }
-
+ 
 .spinner > div {
   background-color: #67CF22;
   height: 100%;
@@ -394,32 +544,32 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
   -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
   animation: stretchdelay 1.2s infinite ease-in-out;
 }
-
+ 
 .spinner .rect2 {
   -webkit-animation-delay: -1.1s;
   animation-delay: -1.1s;
 }
-
+ 
 .spinner .rect3 {
   -webkit-animation-delay: -1.0s;
   animation-delay: -1.0s;
 }
-
+ 
 .spinner .rect4 {
   -webkit-animation-delay: -0.9s;
   animation-delay: -0.9s;
 }
-
+ 
 .spinner .rect5 {
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
 }
-
+ 
 @-webkit-keyframes stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) } 
   20% { -webkit-transform: scaleY(1.0) }
 }
-
+ 
 @keyframes stretchdelay {
   0%, 40%, 100% {
     transform: scaleY(0.4);
