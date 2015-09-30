@@ -308,10 +308,10 @@
 }
 .f-g-step-box .step-item i{
 	display:inline-block;
-	width:35px;
-	height:35px;
-	line-height:35px;
-	font-size:20px;
+	width:26px; /*haitao 35px*/
+	height:26px; /*haitao 35px*/
+	line-height:26px;/*haitao 35px*/
+	font-size:16px;/*haitao 20px*/
 	font-weight:bold;
 	color:#999999;
 	background-color:#e2e2e2;
@@ -319,7 +319,7 @@
 	overflow:hidden;
 }
 .f-g-step-box .step-item p{
-	font-size:16px;
+	font-size:12px;  /*haitao 16px*/
 	color:#999999;
 	margin-top:5px;
 }
@@ -341,7 +341,7 @@
 	font-weight:inherit;
 }
 .f-g-step-box.step-type1 p{
-	font-size:14px;
+	font-size:12px;/*haitao 14px*/
 }
 .ui-banner{
 	font-size:0px;
