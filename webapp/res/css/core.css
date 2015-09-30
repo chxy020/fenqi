@@ -1,6 +1,6 @@
 /*index-main*/
 .ui-index-main{
-	background:#ececec;/*haitao #f8f8f8*/
+	background:#f8f8f8;/*haitao #f8f8f8*/
 }
 .index-part-list{
 	margin:10px 0px;
@@ -62,8 +62,8 @@
 	padding:30px 18px;
 	height:50px;
 	overflow:hidden;
-	border-right:1px solid #ececec;
-	border-bottom:1px solid #ececec;
+	border-right:1px solid #f8f8f8;
+	border-bottom:1px solid #f8f8f8;
 }
 /*.index-part-list1 .index-part-item a:active{
 	background:#efefef;
