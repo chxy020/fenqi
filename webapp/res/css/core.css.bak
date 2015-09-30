@@ -363,8 +363,8 @@
 .staging-fun-box .staging-fun-item a{
 	display:block;
 	padding:15px 0px;
-	border-right:1px solid #ececec;/*haitao #ececec*/
-	border-bottom:1px solid #ececec;/*haitao #ececec*/
+	border-right:1px solid #f8f8f8;/*haitao #ececec*/
+	border-bottom:1px solid #f8f8f8;/*haitao #ececec*/
 }
 .staging-fun-box .staging-fun-item  a i img{
 	width:40px;
