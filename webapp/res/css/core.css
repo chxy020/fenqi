@@ -562,8 +562,8 @@
 .ask-item h1{
 	font-size:16px;
 	color:#333;
-	height:40px;
-	line-height:40px;
+	line-height:20px;
+	padding:8px 0px;
 }
 .ask-item .ans-text{
 	font-size:14px;
