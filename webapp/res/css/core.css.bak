@@ -312,7 +312,7 @@
 	height:26px; /*haitao 35px*/
 	line-height:26px;/*haitao 35px*/
 	font-size:16px;/*haitao 20px*/
-	font-weight:bold;
+	font-weight:inherit;/*haitao bold*/
 	color:#999999;
 	background-color:#e2e2e2;
 	border-radius:35px;
@@ -341,7 +341,7 @@
 	font-weight:inherit;
 }
 .f-g-step-box.step-type1 p{
-	font-size:14px;
+	font-size:12px;/*haitao 14px*/
 }
 .ui-banner{
 	font-size:0px;
