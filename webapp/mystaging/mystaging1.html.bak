@@ -6,14 +6,14 @@
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
 	<meta name="format-detection" content="telephone=no"/>
-    <link rel="stylesheet" href="../res/css/common.css?4443" />
-    <link rel="stylesheet" href="../res/css/core.css?123" />
+    <link rel="stylesheet" href="../res/css/common.css?11123233" />
+    <link rel="stylesheet" href="../res/css/core.css?5563044036468" />
 	<title>燕子安家</title>
 </head>
 <body>
 	<div class="ui-main">
         <div class="ui-header bd-bottom">
-        	<a class="ui-back" href="../mystaging/mystaging3-3.html">
+        	<a class="ui-back" href="../mystaging/index.html">
             	<i class="trigger"></i>
             </a>
         	开始分期
@@ -21,37 +21,39 @@
         <div class="sub-main">
         	<div class="f-g-step-box step-type1">
 				<div class="f-g-step-div">
-                	<div class="step-line"></div>
-					<div class="step-line step3"></div>
+					<div class="step-line"></div>
+					<div class="step-line step1"></div>
 					<div class="step-item left active" style="left:-24px;">
 						<i>1</i>
-						<p>合作商家</p>
+						<p>与合作商家<br />签约</p>
 					</div>
-					<div class="step-item middle-left active">
+					<div class="step-item middle-left">
 						<i>2</i>
-						<p>装修信息</p>
+						<p>提交装修<br />信息</p>
 					</div>
-					<div class="step-item middle-right active">
+					<div class="step-item middle-right">
 						<i>3</i>
-						<p>个人信息</p>
+						<p>提交个人<br />信息</p>
 					</div>
-                    <div class="step-item right active" style="right:-24px;">
+                    <div class="step-item right" style="right:-24px;">
 						<i>4</i>
 						<p>上传资料</p>
 					</div>
 				</div>
 			</div>
             <div class="staging-main">
-            	<div class="result-div">
-                    <p class="result-text">恭喜您，订单提交成功，请等待审核结果</p>
+            	<div class="choose-goods">
+                	<div class="choose-goods-item active">
+                    	<img src="../res/images/business-logo1.png" />
+                        <div class="select-tag"></div>
+                    </div>
+                    <div class="choose-goods-item">
+                    	<img src="../res/images/business-logo2.png" />
+                        <div class="select-tag"></div>
+                    </div>
                 </div>
-                <div class="btn-box">
-                	<p>
-                    	<a href="../index/index.html" class="common-btn btn-green">返回首页</a>
-                    </p>
-                    <p>
-                    	<a href="../mystaging/mystaging3-3.html" class="common-btn btn-white">上一步</a>
-                    </p>
+                <div class="btn-box" style="margin:35px 25px;">
+                	<a href="../mystaging/mystaging2.html" class="common-btn btn-green">下一步</a>
                 </div>
             </div>
         </div>
