@@ -200,12 +200,13 @@ $(function(){
 			break;
 			case "li_4":
 				url = location.href = "tel://4006616896";
-				if(g.loginStatus){
-					location.href = url;
-				}
-				else{
-					location.href = "../login/login.html";
-				}
+				location.href = url;
+//				if(g.loginStatus){
+//					location.href = url;
+//				}
+//				else{
+//					location.href = "../login/login.html";
+//				}
 			break;
 		}
 	}
