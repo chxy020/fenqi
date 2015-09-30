@@ -274,7 +274,7 @@
 }
 .f-g-step-box .step-item {
 	position:absolute;
-	top:16px;
+	top:22px;/*haitao 16px*/
 	text-align:center;
 	z-index:3;
 }
