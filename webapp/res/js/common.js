@@ -130,6 +130,31 @@ COMMON_PLUGIN.COMMON.SLIDE_INIT = function (bannerImgInterface,bannerInterfactTy
 			}
 		});	
 }
+//targetObj 初始化对象
+//maxTime 最长时间
+//minTime 最短时间
+//onselectCallBack 点击确定回调方法
+COMMON_PLUGIN.COMMON.MOBILE_SCROLL_INIT=function(targetObj,maxTime,minTime,changeValueObj,onselectCallBack){
+	var opt = {
+		preset: 'date', 
+		display: 'bottom', 
+		mode: 'scroller', 
+		dateFormat: 'yy-mm-dd', 
+		setText: '确定', 
+		cancelText: '取消',
+		dateOrder: 'yymmdd', 
+		dayText: '年', monthText: '月', yearText: '日', 
+		endYear:2050,
+		startYear:1950,
+		minDate:minTime,
+		maxDate:maxTime ,
+		onSelect: function(){
+			//onselectCallBack();
+		}
+	};
+	targetObj.mobiscroll(opt);
+	targetObj.attr('readonly','readonly');
+}
 COMMON_PLUGIN.COMMON.DELAY_ITEM = function(){
 	$('.delay-item').bind('click',function(){
 		COMMON_PLUGIN.COMMON.ALERT_DIALOG_ONE('敬请期待10月底上线',function(){});

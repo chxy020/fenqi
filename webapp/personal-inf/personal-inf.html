@@ -7,6 +7,7 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
 	<meta name="format-detection" content="telephone=no"/>
     <link rel="stylesheet" href="../res/css/common.css?111233" />
+    <link rel="stylesheet" href="../res/css/mobiscroll.custom-2.6.2.min.css?55668" />
     <link rel="stylesheet" href="../res/css/core.css?55668" />
 	<title>个人信息</title>
 </head>
@@ -20,6 +21,15 @@
         </div>
         <div class="sub-main">
         	<div class="common-inp-cont1">
+            	<div class="inp-item common-inp-item" style="height:auto;">
+                	<label><em>*</em>头像</label>
+                    <div class="right-cont">
+                    	<img src="../res/images/default-user-img.jpg" class="user-img" onclick="document.getElementById('userImg').click()" />
+                        <input type="file" id="userImg" style="display:none" />
+                    </div>
+                </div>
+            </div>
+        	<div class="common-inp-cont1">
             	<div class="inp-item">
                 	<i class="trigger common-select-trigger"></i>
                 	<label><em>*</em>性别</label>
@@ -30,7 +40,7 @@
                 </div>
             	<div class="inp-item">
                 	<label><em>*</em>生日</label>
-                    <input id="allprice" type="text" class="common-input-text" placeholder="请选择生日日期" />
+                    <input type="text" class="common-input-text" placeholder="请选择生日日期" id="birthDay" readonly="readonly" />
                 </div>
                 <div class="inp-item">
                 	<i class="trigger common-select-trigger"></i>
@@ -54,31 +64,65 @@
                         <option value=4 >保密</option>
                     </select>
                 </div>
-                <div class="inp-item">
-                	<i class="trigger common-select-trigger"></i>
+                <div class="inp-item common-inp-item">
                 	<label><em>*</em>兴趣爱好</label>
-                    <select id="stagingtime" class="common-select">
-                        <option value=0 >请选择</option>
-                        <option value=1 >单身</option>
-                        <option value=2 >恋爱中</option>
-                        <option value=3 >已婚</option>
-                        <option value=4 >保密</option>
-                    </select>
+                    <div class="right-cont">
+                    	<div class="choose-list">
+                        	<div class="c-list-item">美食<input type="checkbox" name="1" value="美食" /></div>
+                            <div class="c-list-item">电影<input type="checkbox" name="1" value="电影" /></div>
+                            <div class="c-list-item">酒店<input type="checkbox" name="1" value="酒店" /></div>
+                            <div class="c-list-item">休闲娱乐<input type="checkbox" name="1" value="休闲娱乐" /></div>
+                            <div class="c-list-item">丽人<input type="checkbox" name="1" value="丽人" /></div>
+                            <div class="c-list-item">购物<input type="checkbox" name="1" value="购物" /></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="btn-box">
-            	<a id="countbtn" href="javascript:void(0)" class="common-btn btn-green">开始计算</a>
+            <div class="btn-box" style="margin-top:35px;">
+            	<a id="countbtn" href="javascript:void(0)" class="common-btn btn-green">保存并提交</a>
             </div>
         </div>
     </div>
 
 	<script type="text/javascript" src="../res/js/jquery.min.js"></script>
 	<script type="text/javascript" src="../res/js/layer.m.js"></script>
-	<script type="text/javascript" src="../res/js/common.js"></script>
+	<script type="text/javascript" src="../res/js/mobiscroll.custom-2.6.2.min.js"></script>
+    <script type="text/javascript" src="../res/js/common.js"></script>
 	<script type="text/javascript" src="../libs/json.js"></script>
 	<script type="text/javascript" src="../libs/base.js"></script>
 	<script type="text/javascript" src="../libs/utils.js"></script>
-	<script type="text/javascript" src="../js/stagingcount.js"></script>
+    <script type="text/javascript">
+		chooseListClick();
+		//选择兴趣爱好点击效果
+    	function chooseListClick(){
+			$('.choose-list').find('.c-list-item').on('click',function(){
+				var $this = $(this);
+				if($this.hasClass('selected')){
+					$this.removeClass('selected');
+					$this.find('input[type="checkbox"]').removeAttr('checked','checked');
+					
+				}else{
+					$this.addClass('selected');
+					$this.find('input[type="checkbox"]').attr('checked','checked');
+				};
+				
+			});
+		}
+    </script>
+    <script type="text/javascript">
+	//选择日期初始化
+	$(function(){
+		var opt1= { 
+			minDate: new Date(1900,1,01), 
+			maxDate: new Date(2020,12,31) 
+		};
+		COMMON_PLUGIN.COMMON.MOBILE_SCROLL_INIT($('#birthDay'),opt1.maxDate,opt1.minDate,'');
+		
+	
+	})
+		
+	</script>
+
 </body>
 
 </html>

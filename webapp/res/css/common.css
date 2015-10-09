@@ -52,7 +52,7 @@ a{
 }
 a:hover{
 }
-input[type="search"],input[type="text"],input[type="button"],input[type="password"],input[type="submit"],select{
+input[type="search"],input[type="text"],input[type="button"],input[type="password"],input[type="submit"],select,input[type="checkbox"]{
 	-webkit-appearance:none;
 	border:none;
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
@@ -233,7 +233,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	background-position:0px -133px;
 }
 .common-inp-cont1{
-	margin:15px 0px;
+	margin:10px 0px;
 	border-top: 1px solid #f2f2f2;
 }
 .common-inp-cont1 .inp-item{
@@ -265,6 +265,32 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	-webkit-box-flex: 1;
 	box-flex: 1;
 	text-align:right;
+}
+.common-inp-cont1 .inp-item .right-cont{
+	display: block;
+	-moz-box-flex: 1;
+	-webkit-box-flex: 1;
+	box-flex: 1;
+	text-align:right;
+}
+.common-inp-cont1 .common-inp-item{
+	padding:10px 0px;
+	height:auto;
+}
+.common-inp-cont1 .common-inp-item label{
+	line-height:52px;
+}
+
+.common-inp-cont1 .common-inp-item .right-cont .user-img{
+	float:right;
+	width:50px;
+	height:50px;
+	border:1px solid #ddd;
+	border-top-right-radius:50%;
+	border-top-left-radius:50%;
+	border-bottom-right-radius:50%;
+	border-bottom-left-radius:50%;
+	margin-right:15px;
 }
 .common-inp-cont1 .inp-item .common-select{
 	display: block;
@@ -303,6 +329,23 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	font-size:16px;
 	color:#333;
 	padding-right:15px;
+}
+.choose-list{
+	padding:0px 15px 0px 30px;
+}
+.choose-list .c-list-item{
+	display:inline-block;
+	padding:5px 10px;
+	font-size:12px;
+	color:#555;
+	border:1px solid #f2f2f2;
+	background:#fff;
+	margin:3px 2px;
+}
+.choose-list .c-list-item.selected{
+	background:#539d34;
+	border:1px solid #539d34;
+	color:#fff;
 }
 /*common-btn*/
 .btn-box{
