@@ -420,6 +420,33 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	height:22px;
 	background-position: -112px -19px;
 }
+.person-ico{
+	display:inline-block;
+	width:17px;
+	height:17px;
+	background:url(../images/person-icon.png) left top no-repeat;
+	background-size:17px auto;
+	font-size:0px;
+	vertical-align:middle;
+}
+.person-ico.p-ico1{
+	background-position:0px 3px;
+}
+.person-ico.p-ico2{
+	background-position:0px -23px;
+}
+.person-ico.p-ico3{
+	background-position:0px -47px;
+}
+.person-ico.p-ico4{
+	background-position:0px -72px;
+}
+.person-ico.p-ico5{
+	background-position:0px -97px;
+}
+.person-ico.p-ico6{
+	background-position:0px -122px;
+}
 /*main*/
 .block-tip{
 	font-size:16px;
@@ -441,6 +468,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	text-align:center;
 	font-size:19px;
 	color:#539d34;
+	border-bottom:1px solid #f2f2f2;
 }
 .ui-header .ui-back{
 	position:absolute;
