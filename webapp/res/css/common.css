@@ -342,6 +342,9 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	background:#fff;
 	margin:3px 2px;
 }
+.choose-list .c-list-item input[type="checkbox"]{
+	display:none;
+}
 .choose-list .c-list-item.selected{
 	background:#539d34;
 	border:1px solid #539d34;
