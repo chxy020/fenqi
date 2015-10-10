@@ -73,14 +73,14 @@ COMMON_PLUGIN.COMMON.ALERT_DIALOG_ONE = function(showMsg,sureClickCallBack){
 COMMON_PLUGIN.COMMON.ALERT_DIALOG_TWO = function(showMsg,sureClickCallBack,cancelClickCallBack){
 	if(typeof showMsg === 'undefined' || typeof sureClickCallBack !== 'function' || typeof cancelClickCallBack !== 'function') return;
 	layer.open({
-		content: 'showMsg',
+		content: showMsg,
 		btn: ['确定','取消'],
 		yes: function(index){
 			sureClickCallBack();
 			layer.close(index);
 		},
 		no: function(index){
-			sureClickCallBack();
+			cancelClickCallBack();
 			layer.close(index);
 		}
 	});

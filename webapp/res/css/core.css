@@ -575,3 +575,57 @@
 .am-slider{
 	min-height:150px;
 }
+.card-list-ul{
+	margin:15px 15px;
+}
+.card-list-ul li{
+	position:relative;
+	margin-bottom:10px;
+}
+.card-list-ul li .card-item{
+	display:block;
+	padding:10px;
+	background:#fff;
+	border:1px solid #eee;
+	border-radius:5px;
+}
+.card-list-ul li .bank-card-logo{
+	height:30px;
+	width:auto;
+}
+.card-list-ul li .card-number{
+	text-align:right;
+	font-size:20px;
+	margin-top:10px;
+	color:#333;
+}
+.card-list-ul li .close-ico{
+	display:none;
+	position:absolute;
+	right:-5px;
+	top:-5px;
+	font-size:0px;
+	width:20px;
+	height:20px;
+	background:url(../images/close-btn.png) left top no-repeat;
+	background-size:100% 100%;
+	opacity:0.7;
+}
+.card-list-ul.edit-state li{
+	-webkit-animation-name: tada;
+ 	animation-name: tada;
+	-webkit-transform-origin:center center;
+	-webkit-animation-duration: .15s;
+	animation-duration: 0.15s;
+	-webkit-animation-timing-function: ease-in; 
+	animation-timing-function: ease-in;
+	-webkit-animation-delay: 0s;
+	animation-delay: 0s;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+.card-list-ul.edit-state li .close-ico{
+	display:block;
+}
