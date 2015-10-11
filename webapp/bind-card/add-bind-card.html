@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="../res/css/common.css?234" />
+    <link rel="stylesheet" href="../res/css/core.css?55555557700000888064" />
+	<title>换绑手机</title>
+</head>
+<body>
+	<div class="ui-main">
+    	<div class="ui-header">
+        	<a class="ui-back" href="card-list.html">
+            	<i class="trigger"></i>
+            </a>
+        	新增银行卡
+        </div>
+		<div class="sub-main">
+			<div class="common-inp-cont1">
+				<div class="inp-item">
+					<i class="trigger common-select-trigger"></i>
+					<label><em>*</em>发卡银行</label>
+					<select class="common-select">
+						<option>请选择</option>
+						<option>工商银行</option>
+						<option>招商银行</option>
+					</select>
+				</div>
+				<div class="inp-item">
+					<label><em>*</em>持卡人姓名</label>
+					<input type="text" class="common-input-text" placeholder="请输入持卡人姓名" />
+				</div>
+				<div class="inp-item">
+					<label><em>*</em>身份证号</label>
+					<input type="number" class="common-input-text" placeholder="请输入身份证号" />
+				</div>
+				<div class="inp-item">
+					<label><em>*</em>银行卡号</label>
+					<input type="number" class="common-input-text" placeholder="请输入银行卡号" />
+				</div>
+				<div class="inp-item">
+					<label><em>*</em>预留手机号码</label>
+					<input type="number" class="common-input-text" placeholder="请输入预留手机号码" />
+				</div>
+			</div>
+			<div class="common-inp-cont">
+				<div class="inp-item img-ver-item">
+					<div class="img-ver-img">
+						<img id="imgcodebtn" src="" />
+					</div>
+					<div class="img-ver-item-left">
+                		<input id="inputimgcode" type="text" class="common-input-text input-type type-imgVer" placeholder="请输入图形验证码" />
+					</div>
+                </div>
+				<div class="inp-item img-ver-item">
+					<div class="img-ver-btn">
+						<input id="getcodebtn" type="button" class="common-btn btn-green" value="发送验证码" />
+					</div>
+					<div class="img-ver-item-left">
+                		<input id="inputcode" type="text" class="common-input-text input-type type-smsVer" placeholder="请输短信验证码" />
+					</div>
+                </div>
+            </div>
+			<div class="btn-box">
+            	<p><a id="regbtn" href="card-list.html" class="common-btn btn-green">同意并绑定</a></p>
+            </div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../res/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../res/js/layer.m.js"></script>
+	<script type="text/javascript" src="../res/js/common.js"></script>
+	<script type="text/javascript" src="../libs/json.js"></script>
+	<script type="text/javascript" src="../libs/base.js"></script>
+	<script type="text/javascript" src="../libs/utils.js"></script>
+</body>
+
+</html>

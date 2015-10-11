@@ -52,12 +52,19 @@ a{
 }
 a:hover{
 }
-input[type="search"],input[type="text"],input[type="button"],input[type="password"],input[type="submit"],select,input[type="checkbox"]{
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+input[type="search"],input[type="number"],input[type="text"],input[type="button"],input[type="password"],input[type="submit"],select,input[type="checkbox"]{
 	-webkit-appearance:none;
 	border:none;
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 	outline:none;
+	border-width:0px;
 }
+
 *{
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
@@ -119,7 +126,7 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 }
 /*common-input*/
 .common-inp-cont{
-	margin:15px 0px;
+	margin:10px 0px;
 	border-top:1px solid #f2f2f2;
 }
 .common-inp-cont .inp-item{
@@ -368,6 +375,16 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	color:#fff;
 	text-align:center;
 }
+.common-btn.btn-add{
+	color:#999;
+	border:1px dashed #ccc;
+	background:#fff;
+}
+.common-btn.btn-add em{
+}
+.common-btn.btn-add:active{
+	background:#efefef;
+}
 .common-btn.btn-green{
 	height:45px;
 	color:#fff;
@@ -522,6 +539,15 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
 	top:0px;
 	padding:0px 18px;
 }
+.ui-header .ui-right{
+	position:absolute;
+	right:0px;
+	top:0px;
+	padding:0px 18px;
+}
+.ui-header .ui-right .edit-btn{
+	font-size:16px;
+}
 .ui-header .ui-person-btn{
 	position:absolute;
 	font-size:0px;
@@ -651,5 +677,35 @@ input[type="search"],input[type="text"],input[type="button"],input[type="passwor
   }  20% {
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
+  }
+}
+@-webkit-keyframes tada {
+  0%  {
+    -webkit-transform: rotate3d(0, 0, 1, -1deg);
+    transform: rotate3d(0, 0, 1, -1deg);
+  }
+  50%  {
+    -webkit-transform: rotate3d(0, 0, 1, 1deg);
+    transform: rotate3d(0, 0, 1, 1deg);
+  }
+  100%  {
+    -webkit-transform: rotate3d(0, 0, 1, -1deg);
+    transform: rotate3d(0, 0, 1, -1deg);
+  }
+}
+
+@keyframes tada {
+
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, -1deg);
+    transform: rotate3d(0, 0, 1, -1deg);
+  }
+  50%  {
+    -webkit-transform: rotate3d(0, 0, 1, 1deg);
+    transform: rotate3d(0, 0, 1, 1deg);
+  }
+  100%  {
+    -webkit-transform: rotate3d(0, 0, 1, -1deg);
+    transform: rotate3d(0, 0, 1, -1deg);
   }
 }
