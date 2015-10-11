@@ -108,7 +108,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "登录失败";
-					alert(msg);
+					Utils.alert(msg);
 					//getImgCode();
 				}
 				g.httpTip.hide();
@@ -286,7 +286,7 @@ $(function(){
 		if(rs>=0){
 			return true;
 		}else{
-			alert("您选择的上传文件不是有效的图片文件！");
+			Utils.alert("您选择的上传文件不是有效的图片文件！");
 			return false;
 		}
 	}
@@ -381,7 +381,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "登录失败";
-					alert(msg);
+					Utils.alert(msg);
 					//getImgCode();
 				}
 				g.httpTip.hide();

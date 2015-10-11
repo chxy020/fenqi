@@ -228,7 +228,7 @@ $(function(){
 				}
 				else{
 					var msg = data.error || "";
-					alert("获取我的订单错误:" + msg);
+					Utils.alert("获取我的订单错误:" + msg);
 				}
 			},
 			error:function(data){
@@ -333,7 +333,7 @@ $(function(){
 				var status = data.status || "";
 				if(status == "OK"){
 					//Utils.alert("订单申请退款成功");
-					alert("订单申请退款成功:" + data.result);
+					Utils.alert("订单申请退款成功:" + data.result);
 					setTimeout(function(){
 						getMyOrder();
 					},500);

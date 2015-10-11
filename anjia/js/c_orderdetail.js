@@ -17,7 +17,7 @@ $(function(){
 		changeOrderInfoHtml(g.orderInfo);
 	}
 	else{
-		alert("数据错误");
+		Utils.alert("数据错误");
 		history.go(-1);
 	}
 
@@ -175,7 +175,7 @@ $(function(){
 		if(rs>=0){
 			return true;
 		}else{
-			alert("您选择的上传文件不是有效的图片文件！");
+			Utils.alert("您选择的上传文件不是有效的图片文件！");
 			return false;
 		}
 	}

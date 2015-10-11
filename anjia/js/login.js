@@ -99,7 +99,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "登录失败";
-					alert(msg);
+					Utils.alert(msg);
 					//getImgCode();
 				}
 				g.httpTip.hide();

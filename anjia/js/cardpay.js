@@ -244,7 +244,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取验证码失败";
-					alert(msg);
+					Utils.alert(msg);
 
 					//重新请求图形验证码
 					sendGetImgCodeHttp();
@@ -309,7 +309,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "支付失败";
-					alert(msg);
+					Utils.alert(msg);
 					$("#validcode").val("");
 				}
 				g.httpTip.hide();
@@ -366,7 +366,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "支付失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},

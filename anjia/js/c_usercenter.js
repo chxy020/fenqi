@@ -166,7 +166,7 @@ $(function(){
 		if(rs>=0){
 			return true;
 		}else{
-			alert("您选择的上传文件不是有效的图片文件！");
+			Utils.alert("您选择的上传文件不是有效的图片文件！");
 			return false;
 		}
 	}

@@ -257,7 +257,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "手机号注册失败";
-					alert(msg);
+					Utils.alert(msg);
 
 					//重新请求图形验证码
 					//sendGetImgCodeHttp();

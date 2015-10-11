@@ -678,7 +678,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "获取订单编号失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -787,7 +787,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "获取订单编号失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1170,7 +1170,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "提交订单用户信息失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1319,7 +1319,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "删除上传图片失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1371,7 +1371,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "提交订单用户信息失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1405,7 +1405,7 @@ $(function(){
 		if(rs>=0){
 			return true;
 		}else{
-			alert("您选择的上传文件不是有效的图片文件！");
+			Utils.alert("您选择的上传文件不是有效的图片文件！");
 			return false;
 		}
 	}
@@ -1435,7 +1435,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "获取订单信息失败";
-					alert(msg);
+					Utils.alert(msg);
 				}
 				g.httpTip.hide();
 			},
