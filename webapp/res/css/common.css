@@ -93,6 +93,9 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
 .text-right{
 	text-align:right!important;
 }
+.color-green{
+	color:#4cc51a;
+}
 .bold{
 	font-weight:bold;
 }
@@ -318,7 +321,7 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
 	color:#333;
 	line-height:45px;
 }
-.common-inp-cont1 .inp-item .common-select-trigger{
+.common-select-trigger{
 	position:absolute;
 	right:15px;
 	top:16px;
@@ -457,6 +460,26 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
 	background-position:0px -86px;
 	background-size:75px auto;
 }
+.common-ico.product-tip1{
+	width:10px;
+	height:10px;
+	background-position:0px -101px;
+}
+.common-ico.product-tip2{
+	width:10px;
+	height:10px;
+	background-position:-11px -101px;
+}
+.common-ico.product-tip3{
+	width:10px;
+	height:10px;
+	background-position:-24px -101px;
+}
+.common-ico.product-ico{
+	width:12px;
+	height:12px;
+	background-position:-60px 0px;
+}
 .nav-ico{
 	display:inline-block;
 	width:23px;
@@ -509,6 +532,16 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
 }
 .person-ico.p-ico6{
 	background-position:0px -122px;
+}
+.fixed-bottom{
+	position:fixed;
+	left:0px;
+	bottom:0px;
+	width:100%;
+	background:#fff;
+	border-top:1px solid #f2f2f2;
+	padding:10px 15px;
+	box-sizing:border-box;
 }
 /*main*/
 .block-tip{
