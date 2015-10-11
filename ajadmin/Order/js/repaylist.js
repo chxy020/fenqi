@@ -149,10 +149,10 @@ $(function(){
 		condi.status = $("#status").val() || "";
 		condi.currentPageNum = g.currentPage;
 		condi.pageSize = g.pageSize;
-		condi.applicantName = $("#applicantName").val() || "";
-		condi.applicantPhone = $("#applicantPhone").val() || "";
-		condi.createTimeBegin = $("#createTimeBegin").val() || "";
-		condi.createTimeEnd = $("#createTimeEnd").val() || "";
+		condi.customerName = $("#applicantName").val() || "";
+		condi.customerPhone = $("#applicantPhone").val() || "";
+		condi.expectRepaymentTimeBegin = $("#createTimeBegin").val() || "";
+		condi.expectRepaymentTimeEnd = $("#createTimeEnd").val() || "";
 		condi.orderId = $("#orderId").val() || ""
 		//condi.companyId = $("#company").val() || "";
 
