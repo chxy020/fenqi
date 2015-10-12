@@ -30,7 +30,7 @@ $(function(){
 	}
 	else{
 		//获取页面分类信息
-		sendGetNavigationKeyHttp();
+		//sendGetNavigationKeyHttp();
 
 		$("#login_token").val(g.login_token);
 		$("#createBy").val(g.usersId);
@@ -42,9 +42,7 @@ $(function(){
 
 	//g.httpTip.show();
 
-	$("#addbtn").bind("click",function(){
-		//debugger
-	});
+	$("#addbtn").bind("click",addArticle);
 
 
 
@@ -113,5 +111,54 @@ $(function(){
 	}
 
 
+	function addArticle(){
+		var articleTitle = $("#articleTitle").val() || "";
+		var articleContent = $("#editor").html() || "";
+		var articleKey = $("#articleKey").val() || "";
+		var createBy = $("#createBy").val() || "";
+		var createByName = $("#createByName").val() || "";
+
+		if(articleTitle !== ""){
+			var condi = {};
+			condi.articleTitle = articleTitle;
+			condi.articleContent = articleContent;
+			condi.articleKey = articleKey;
+			condi.createBy = createBy;
+			condi.createByName = createByName;
+			condi.login_token = g.login_token;
+			sendAddArticleHttp(condi);
+		}
+		else{
+			Utils.alert("标题不能为空");
+		}
+	}
+
+	function sendAddArticleHttp(condi){
+		g.httpTip.show();
+		var url = Base.serverUrl + "article/addArticle";
+		var condi = {};
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendAddArticleHttp",data);
+				var status = data.success || false;
+				if(status){
+					//changeSelectHtml(data);
+				}
+				else{
+					var msg = data.message || "添加文章失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
 
 });

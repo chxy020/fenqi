@@ -29,7 +29,9 @@ $(function(){
 	}
 	else{
 		//获取页面分类信息
-		sendGetNavigationKeyHttp();
+		//sendGetNavigationKeyHttp();
+
+		sendQueryListHttp();
 	}
 
 	$("#querybtn").bind("click",queryList);
@@ -84,13 +86,13 @@ $(function(){
 
 	function sendQueryListHttp(){
 		g.httpTip.show();
-		var url = Base.serverUrl + "bannerImage/queryBannerImageController";
+		var url = Base.serverUrl + "article/queryArticle";
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.pageSize = g.pageSize;
 		condi.currentPageNum = g.currentPage;
-		condi.bmTitle = $("#bmTitle").val() || "";
-		condi.navigationKey = $("#navigationKey").val() || "";
+		condi.articleTitle = $("#articleTitle").val() || "";
+		condi.articleKey = $("#articleKey").val() || "";
 		condi.usedFlag = $("#usedFlag").val() || "";
 		$.ajax({
 			url:url,
@@ -105,7 +107,7 @@ $(function(){
 					changeListHtml(data);
 				}
 				else{
-					var msg = data.message || "获取轮播图列表数据失败";
+					var msg = data.message || "获取文章列表数据失败";
 					Utils.alert(msg);
 				}
 				g.httpTip.hide();
@@ -142,7 +144,7 @@ $(function(){
 			if(deleted === 1){
 				continue;
 			}
-			var bmId = d.bmId || "";
+			var articleId = d.articleId || "";
 			var bmTitle = d.bmTitle || "";
 			var bmTextDesc = d.bmTextDesc || "";
 			var navigationKey = d.navigationKey || "";
@@ -170,10 +172,10 @@ $(function(){
 			html.push('<td>' + createTime + '</td>');
 
 			if(usedFlag == 0){
-				html.push('<td><a href="javascript:changeBannerUsedFlag(1,\'' + bmId + '\');">启用</a>&nbsp&nbsp<a href="javascript:editItem(\'' + bmId + '\');">编辑</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + bmId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:changeArticlerUsedFlag(1,\'' + articleId + '\');">启用</a>&nbsp&nbsp<a href="javascript:editItem(\'' + bmId + '\');">编辑</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + articleId + '\')">删除</a></td>');
 			}
 			else{
-				html.push('<td><a href="javascript:changeBannerUsedFlag(0,\'' + bmId + '\');">停用</a>&nbsp&nbsp<a href="javascript:editItem(\'' + bmId + '\');">编辑</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + bmId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:changeArticlerUsedFlag(0,\'' + articleId + '\');">停用</a>&nbsp&nbsp<a href="javascript:editItem(\'' + bmId + '\');">编辑</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + articleId + '\')">删除</a></td>');
 			}
 			html.push('</tr>');
 		}
@@ -186,7 +188,7 @@ $(function(){
 			html.push(page);
 		}
 		else{
-			Utils.alert("没有订单数据");
+			Utils.alert("没有文章数据");
 		}
 
 		$("#list").html(html.join(''));
@@ -320,19 +322,19 @@ $(function(){
 		});
 	}
 
-	function changeBannerUsedFlag(status,bmId){
-		var msg = status == 0 ? "你确认停用该轮播图吗?" : "你确认启动该轮播图吗?";
+	function changeArticlerUsedFlag(status,articleId){
+		var msg = status == 0 ? "你确认停用该文章吗?" : "你确认启动该文章吗?";
 		if(confirm(msg)){
 			g.httpTip.show();
 			var condi = {};
-			condi.bmId = bmId;
+			condi.articleId = articleId;
 			condi.login_token = g.login_token;
 
 			if(status == 1){
-				var url = Base.serverUrl + "bannerImage/usedBannerImage";
+				var url = Base.serverUrl + "article/usedArticle";
 			}
 			else{
-				var url = Base.serverUrl + "bannerImage/stopBannerImage";
+				var url = Base.serverUrl + "article/stopArticle";
 			}
 			$.ajax({
 				url:url,
@@ -341,13 +343,13 @@ $(function(){
 				dataType:"json",
 				context:this,
 				success: function(data){
-					console.log("changeBannerUsedFlag",data);
+					console.log("changeArticlerUsedFlag",data);
 					var status = data.success || false;
 					if(status){
 						sendQueryListHttp();
 					}
 					else{
-						var msg = data.message || "启用/停用轮播图失败";
+						var msg = data.message || "启用/停用文章失败";
 						Utils.alert(msg);
 					}
 					g.httpTip.hide();
@@ -360,17 +362,17 @@ $(function(){
 	}
 
 	function editItem(bmId){
-		location.href = "edit.html?bmId=" + bmId;
+		location.href = "edit.html?articleId=" + articleId;
 	}
 
-	function deleteItem(bmId){
-		if(confirm("你确认删除该轮播图吗?")){
+	function deleteItem(articleId){
+		if(confirm("你确认删除该文章吗?")){
 			g.httpTip.show();
 			var condi = {};
-			condi.bmId = bmId;
+			condi.articleId = articleId;
 			condi.login_token = g.login_token;
 
-			var url = Base.serverUrl + "bannerImage/deleteBannerImage";
+			var url = Base.serverUrl + "article/deleteArticle";
 			$.ajax({
 				url:url,
 				data:condi,
@@ -384,7 +386,7 @@ $(function(){
 						sendQueryListHttp();
 					}
 					else{
-						var msg = data.message || "删除轮播图数据失败";
+						var msg = data.message || "删除文章数据失败";
 						Utils.alert(msg);
 					}
 					g.httpTip.hide();
@@ -397,7 +399,7 @@ $(function(){
 	}
 
 	window.showImgTip = showImgTip;
-	window.changeBannerUsedFlag = changeBannerUsedFlag;
+	window.changeArticlerUsedFlag = changeArticlerUsedFlag;
 	window.editItem = editItem;
 	window.deleteItem = deleteItem;
 

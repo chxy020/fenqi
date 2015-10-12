@@ -15,7 +15,7 @@ $(function(){
 	g.phoneNumber = Utils.offLineStore.get("user_phoneNumber",false) || "";
 	g.usersId = Utils.offLineStore.get("user_usersId",false) || "";
 	g.usersName = Utils.offLineStore.get("user_usersName",false) || "";
-	g.bmId = Utils.getQueryString("bmId") || "";
+	g.articleId = Utils.getQueryString("articleId") || "";
 	g.httpTip = new Utils.httpTip({});
 
 
@@ -28,12 +28,15 @@ $(function(){
 	}
 	else{
 		//获取页面分类信息
-		sendGetNavigationKeyHttp();
+		//sendGetNavigationKeyHttp();
 
-		$("#bmId").val(g.bmId);
+		//$("#articleId").val(g.articleId);
 		$("#login_token").val(g.login_token);
 		$("#createBy").val(g.usersId);
 		$("#createByName").val(g.usersName);
+
+		//获取文章图详情
+		sendGetArticleInfoById();
 	}
 
 	//获取图形验证码
@@ -112,13 +115,13 @@ $(function(){
 		$("#navigationKey").html(option.join(''));
 	}
 
-	function sendGetBannerInfoById(){
-		var bmId = g.bmId;
+	function sendGetArticleInfoById(){
+		var articleId = g.articleId;
 		g.httpTip.show();
-		var url = Base.serverUrl + "bannerImage/getBannerImageById";
+		var url = Base.serverUrl + "article/getArticleById";
 		var condi = {};
 		condi.login_token = g.login_token;
-		condi.bmId = bmId;
+		condi.articleId = articleId;
 		$.ajax({
 			url:url,
 			data:condi,
@@ -126,13 +129,13 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetBannerInfoById",data);
+				console.log("sendGetArticleInfoById",data);
 				var status = data.success || false;
 				if(status){
-					changeBannerHtml(data);
+					changeArticleHtml(data);
 				}
 				else{
-					var msg = data.message || "获取轮播图数据失败";
+					var msg = data.message || "获取文章数据失败";
 					Utils.alert(msg);
 				}
 				g.httpTip.hide();
@@ -143,7 +146,7 @@ $(function(){
 		});
 	}
 
-	function changeBannerHtml(data){
+	function changeArticleHtml(data){
 		var obj = data.obj || "";
 		var bmTitle = obj.bmTitle || "";
 		var bmTextDesc = obj.bmTextDesc || "";
@@ -152,12 +155,9 @@ $(function(){
 		var navigationKey = obj.navigationKey || "";
 		var orderNum = obj.orderNum || "";
 
-		$("#bmTitle").val(bmTitle);
-		$("#bmTextDesc").val(bmTextDesc);
-		$("#bmClickUrl").val(bmClickUrl);
-		$("#navigationKey").val(navigationKey);
-		$("#bmUrl").attr("src",bmUrl);
-		$("#orderNum").val(orderNum);
+		$("#articleTitle").val(articleTitle);
+		$("#articleKey").val(articleKey);
+		$("#editor").html(articleContent);
 	}
 
 });

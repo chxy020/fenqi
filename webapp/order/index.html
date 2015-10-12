@@ -19,35 +19,36 @@
         	我的订单
         </div>
 		<div class="sub-main">
-			<div class="staging-tab clearfix">
-            	<div class="staging-tab-item selected"><a href="index.html">全部订单</a></div>
-                <div class="staging-tab-item"><a href="loan-list.html">待放款</a></div>
-                <div class="staging-tab-item"><a href="repayment-list.html">还款中</a></div>
-                <div class="staging-tab-item"><a href="already-repayment-list.html">已还清</a></div>
+			<div id="orderstatus" class="staging-tab clearfix">
+            	<div class="staging-tab-item selected"><a id="" href="javascript:void(0);">全部订单</a></div>
+                <div class="staging-tab-item"><a id="100506" href="javascript:void(0);">待放款</a></div>
+                <div class="staging-tab-item"><a id="100507" href="javascript:void(0);">还款中</a></div>
+                <div class="staging-tab-item"><a id="100508" href="javascript:void(0);">已还清</a></div>
                 <div class="staging-tab-item"><div class="other-item">更多<i class="trigger common-select-trigger"></i></div></div>
-                <dl class="other-choose-list">
-                	<dd>
+                <dl id="allorderstatus" class="other-choose-list">
+                	<dd id="100501">
                     	<a href="javascript:void(0)">订单未完成</a>
                     </dd>
-                    <dd>
+                    <dd id="100502">
                         <a href="javascript:void(0)">商家审核中</a>
                     </dd>
-                    <dd>
+                    <dd id="100503">
                         <a href="javascript:void(0)">风控审核中</a>
                     </dd>
-                    <dd>
+                    <dd id="100504">
                         <a href="javascript:void(0)">已删除</a>
                     </dd>
-                    <dd>
+                    <dd id="100505">
                         <a href="javascript:void(0)">代缴手续费</a>
                     </dd>
-                    <dd>
+                    <dd id="100509">
                         <a href="javascript:void(0)">审核不通过</a>
                     </dd>
                 </dl>
             </div>
             <div class="order-list">
-            	<ul class="order-list-ul">
+            	<ul id="orderlist" class="order-list-ul">
+			<!--
                 	<li>
                     	<div class="order-item-top">
                         	<div class="order-state state-grey">订单未完成</div>
@@ -196,9 +197,10 @@
                         	<a href="javascript:void(0)" class="item-btn item-btn-red">删除</a>
                         </div>
                     </li>
+                    -->
                 </ul>
                 <div class="btn-box">
-                	<a href="javascript:void(0)" class="common-btn btn-white">加载下一页</a>
+                	<a id="nextpagebtn" href="javascript:void(0)" class="common-btn btn-white">加载下一页</a>
                 </div>
             </div>
 		</div>
@@ -207,9 +209,12 @@
 	<script type="text/javascript" src="../res/js/jquery.min.js"></script>
 	<script type="text/javascript" src="../res/js/layer.m.js"></script>
 	<script type="text/javascript" src="../res/js/common.js"></script>
+
+	<script type="text/javascript" src="../libs/layer.js"></script>
 	<script type="text/javascript" src="../libs/json.js"></script>
 	<script type="text/javascript" src="../libs/base.js"></script>
 	<script type="text/javascript" src="../libs/utils.js"></script>
+	<script type="text/javascript" src="../js/myorder.js"></script>
     <script type="text/javascript">
     	$('.other-item').on('click',function(){
 			$('.other-choose-list').show();
