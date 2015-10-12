@@ -298,7 +298,7 @@ $(function(){
 			$(next).show();
 		}
 		else{
-			$(next).html('<i class="common-ico validate-ico"></i>只能输入010-12345678或0102345678');
+			$(next).html('<i class="common-ico validate-ico"></i>填写示意010-123456或01012345678');
 			$(next).removeClass("validate-success");
 			$(next).addClass("validate-error");
 			$(next).show();

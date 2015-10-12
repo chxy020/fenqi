@@ -16,6 +16,12 @@ $(function(){
 	$("#inputphone").bind("blur",validPhone);
 	$("#inputpwd").bind("blur",validPwd);
 	$("#loginbtn").bind("click",loginBtnUp);
+	$(document).keydown(function(e){
+		var keycode=e.keyCode || e.which || e.charCode;
+		if(keycode == 13){
+			loginBtnUp();
+		}
+	});	
 	//找回密码
 	//$("#findpwd").bind("click",findPwdPage);
 
