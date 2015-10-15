@@ -24,7 +24,7 @@
                 <div class="staging-tab-item"><a id="100506" href="javascript:void(0);">待放款</a></div>
                 <div class="staging-tab-item"><a id="100507" href="javascript:void(0);">还款中</a></div>
                 <div class="staging-tab-item"><a id="100508" href="javascript:void(0);">已还清</a></div>
-                <div class="staging-tab-item"><div class="other-item">更多<i class="trigger common-select-trigger"></i></div></div>
+                <div class="staging-tab-item" id="otherItem"><div class="other-item">更多<i class="trigger common-select-trigger"></i></div></div>
                 <dl id="allorderstatus" class="other-choose-list">
                 	<dd id="100501">
                     	<a href="javascript:void(0)">订单未完成</a>
@@ -207,7 +207,6 @@
 	</div>
 
 	<script type="text/javascript" src="../res/js/jquery.min.js"></script>
-	<script type="text/javascript" src="../res/js/layer.m.js"></script>
 	<script type="text/javascript" src="../res/js/common.js"></script>
 
 	<script type="text/javascript" src="../libs/layer.js"></script>
@@ -219,7 +218,7 @@
     	$('.other-item').on('click',function(){
 			$('.other-choose-list').show();
 		});
-		$('.other-choose-list dd').on('click',function(){
+		$('.other-choose-list dd,.staging-tab-item').not('#otherItem').on('click',function(){
 			$('.other-choose-list').hide();
 		})
     </script>

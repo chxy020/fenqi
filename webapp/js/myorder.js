@@ -27,19 +27,28 @@ $(function(){
 	}
 	else{
 		getUserInfo();
-		//获取订单列表
-		getUserOrderList(true);
+		//获取我要还款参数id模拟点击
+		$("#nextpagebtn").bind("click",nextPageBtnUp);
+		$("#orderstatus a").bind("click",changeOrderStatus);
+		$("#allorderstatus dd").bind("click",changeOrderStatus);
+		if(Utils.getQueryString('orderType') && Utils.getQueryString('orderType') == '100507'){
+			$("#100507").parents('.staging-tab-item').trigger('click');
+			$("#100507").trigger('click');
+		}else{
+			//获取全部订单列表
+			getUserOrderList(true);
+		}
+		
+		
 
 		//获取订单状态
 		//sendGetUserInfoDicHttp();
 	}
 
 
-
-	$("#nextpagebtn").bind("click",nextPageBtnUp);
-
-	$("#orderstatus a").bind("click",changeOrderStatus);
-	$("#allorderstatus dd").bind("click",changeOrderStatus);
+	
+	
+	
 
 	//获取个人资料
 	function getUserInfo(){

@@ -46,6 +46,12 @@ COMMON_PLUGIN.COMMON.LOADING = function(){
 		style: 'background-color:rgba(0,0,0,0.7); color:#fff; border:none;padding:5px;'
 	});
 }
+COMMON_PLUGIN.COMMON.REMOVE_LOADING = function(){
+	setTimeout(function(){
+		$('.layermbox').remove();
+	},1000);
+	
+}
 //dialog one-btn
 /*
 	@param String showMsg;
