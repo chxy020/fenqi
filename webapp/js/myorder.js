@@ -331,7 +331,7 @@ $(function(){
 			g.orderInfo[orderId] = d;
 
 			if(status == "100501"){
-				html.push('<a href="../mystaging/mystaging.html" class="item-btn item-btn-green">编辑</a>');
+				html.push('<a href="../mystaging/mystaging.html?orderid=' + orderId + '" class="item-btn item-btn-green">编辑</a>');
 				html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>');
 				//html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
@@ -353,7 +353,7 @@ $(function(){
 			}
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
-				html.push('<a href="../mystaging/mystaging.html" class="item-btn item-btn-green">查看</a>');
+				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',0)" class="item-btn item-btn-green">查看</a>');
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
 			}
 			else if(status == "100506"){

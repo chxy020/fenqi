@@ -547,6 +547,7 @@ $(function(){
 		location.href = "repayment-list-detail.html";
 		return;
 
+		/*以下不用*/
 		var orderId = d.orderId || "";
 		var repaymentRecordId = d.repaymentRecordId || "主键";
 		var repaymentTypeDesc = d.repaymentTypeDesc || "";

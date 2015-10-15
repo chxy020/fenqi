@@ -11,6 +11,8 @@ $(function(){
 	g.httpTip = new Utils.httpTip({});
 
 	g.orderDetailInfo = {};
+	g.repaymentRecordId = "";
+	g.yinghuanjine = "";
 
 	g.orderInfo = Utils.offLineStore.get("repay_userorderinfo_list",false) || "";
 	if(g.orderInfo != ""){
@@ -43,7 +45,8 @@ $(function(){
 
 	//头像
 	//$(document).on("change","#avatar",avatarBtnUp);
-	//$("#orderstatus").bind("change",changeOrderStatus);
+
+	$("#repaybtn").bind("click",confirmRepayment);
 
 
 	//获取个人资料
@@ -149,6 +152,9 @@ $(function(){
 		var poundage = dd.poundage - 0 || 0;
 		var moneyMonth = dd.moneyMonth - 0 || 0;
 		var noRepaymentTimes = dd.noRepaymentTimes || 0;
+
+		g.repaymentRecordId = repaymentRecordId;
+		g.yinghuanjine = yinghuanjine;
 
 		var html = [];
 		html.push('<li>');
@@ -264,40 +270,43 @@ $(function(){
 
 	}
 
-	function confirmRepayment(repaymentRecordId,yinghuanjine){
-		//先判断用户有没有判定银行卡
-		sendIsExistBindBankCardHttp(repaymentRecordId,yinghuanjine);
+	function confirmRepayment(){
+		var repaymentRecordId = g.repaymentRecordId;
+		var yinghuanjine = g.yinghuanjine;
 
-		//~ g.httpTip.show();
-		//~ var url = Base.serverUrl + "order/repaymentDoneByRepaymentRecordId";
-		//~ var condi = {};
-		//~ condi.repaymentRecordId = repaymentRecordId;
-		//~ condi.login_token = g.login_token;
-		//~ $.ajax({
-			//~ url:url,
-			//~ data:condi,
-			//~ type:"POST",
-			//~ dataType:"json",
-			//~ context:this,
-			//~ success: function(data){
-				//~ console.log("confirmRepayment",data);
-				//~ var status = data.success || false;
-				//~ if(status){
-					//~ hidePop();
-					//~ Utils.alert("还款成功");
-					//~ getUserOrderStagingList();
-					//~ //changeOrderStagingListHtml(data);
-				//~ }
-				//~ else{
-					//~ var msg = data.message || "还款失败";
-					//~ Utils.alert(msg);
-				//~ }
-				//~ g.httpTip.hide();
-			//~ },
-			//~ error:function(data){
-				//~ g.httpTip.hide();
-			//~ }
-		//~ });
+		g.httpTip.show();
+		var url = Base.serverUrl + "payMobile/getPayMobileURL";
+		var condi = {};
+		condi.repaymentRecordId = repaymentRecordId;
+		condi.login_token = g.login_token;
+		condi.customerId = g.customerId;
+		condi.userUa = navigator.userAgent;
+
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("confirmRepayment",data);
+				var status = data.success || false;
+				if(status){
+					//hidePop();
+					Utils.alert("还款成功");
+					//getUserOrderStagingList();
+					//changeOrderStagingListHtml(data);
+				}
+				else{
+					var msg = data.message || "还款失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
 	}
 
 
@@ -334,7 +343,7 @@ $(function(){
 	}
 
 
-	window.confirmRepayment = confirmRepayment;
+	//window.confirmRepayment = confirmRepayment;
 	window.repayment = repayment;
 });
 

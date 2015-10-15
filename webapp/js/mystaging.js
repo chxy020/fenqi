@@ -1373,10 +1373,10 @@ $(function(){
 		//~ html.push('</div>');
 		//~ html.push('</div>');
 
-		 html.push('<div id="img_' + id + '"  class="uploaded-img">');
-		 html.push('<i class="upload-img-close" onclick="deleteUploadImg(\'' + id + '\',\'' + g.uploadIndex + '\')" ></i>');
-		 html.push('<img src="' + src + '" width=60 height=60 />');
-		 html.push('</div>');
+		html.push('<div id="img_' + id + '"  class="uploaded-img">');
+		html.push('<i class="upload-img-close" onclick="deleteUploadImg(\'' + id + '\',\'' + g.uploadIndex + '\')" ></i>');
+		html.push('<img src="' + src + '" width=60 height=60 />');
+		html.push('</div>');
 
 		$("#imgdiv_" + g.uploadIndex).append(html.join(''));
 
@@ -1574,8 +1574,8 @@ $(function(){
 		//第一步
 		var companyId = obj.companyId || "";
 		g.companyId = companyId;
-		$("#companydiv .select-brand-item").removeClass("selected");
-		$("#" + companyId).addClass("selected");
+		$("#companydiv .choose-goods-item").removeClass("active");
+		$("#" + companyId).addClass("active");
 
 		//第二步数据,套餐信息
 		var contractNo = obj.contractNo || "";
@@ -1633,11 +1633,12 @@ $(function(){
 
 		$("#applicantName").val(applicantName);
 		$("#applicantAge").val(applicantAge);
-		if(applicantSex == "100102"){
-			$("#applicantSex").attr("checked",true);
-			$($("#r_100101").parent()).removeClass("radio-bg-checked");
-			$($("#applicantSex").parent()).addClass("radio-bg-checked");
-		}
+		$("#applicantSex").val(applicantSex);
+		//~ if(applicantSex == "100102"){
+			//~ $("#applicantSex").attr("checked",true);
+			//~ $($("#r_100101").parent()).removeClass("radio-bg-checked");
+			//~ $($("#applicantSex").parent()).addClass("radio-bg-checked");
+		//~ }
 		$("#applicantIdentity").val(applicantIdentity);
 		if(applicantMarital !== ""){
 			$("#applicantMarital").val(applicantMarital);
@@ -1746,14 +1747,19 @@ $(function(){
 			}
 			var uploadIndex = orderMaterialType.substring(slen) - 1;
 			var html = [];
-			html.push('<div id="img_' + id + '" class="upload-img-item">');
-			html.push('<div class="upload-inf-img">');
-			html.push('<img src="' + src + '" width=230 height=130 />');
-			html.push('</div>');
-			html.push('<div class="upload-img-edit">');
-			//html.push('<a href="javascript:void(0)" onclick="" class="common-ico ico-edit"></a>
-			html.push('<a href="javascript:deleteUploadImg(\'' + id + '\',\'' + uploadIndex + '\')" class="common-ico ico-rubbish"></a>');
-			html.push('</div>');
+			//~ html.push('<div id="img_' + id + '" class="upload-img-item">');
+			//~ html.push('<div class="upload-inf-img">');
+			//~ html.push('<img src="' + src + '" width=230 height=130 />');
+			//~ html.push('</div>');
+			//~ html.push('<div class="upload-img-edit">');
+			//~ //html.push('<a href="javascript:void(0)" onclick="" class="common-ico ico-edit"></a>
+			//~ html.push('<a href="javascript:deleteUploadImg(\'' + id + '\',\'' + uploadIndex + '\')" class="common-ico ico-rubbish"></a>');
+			//~ html.push('</div>');
+			//~ html.push('</div>');
+
+			html.push('<div id="img_' + id + '"  class="uploaded-img">');
+			html.push('<i class="upload-img-close" onclick="deleteUploadImg(\'' + id + '\',\'' + uploadIndex + '\')" ></i>');
+			html.push('<img src="' + src + '" width=60 height=60 />');
 			html.push('</div>');
 
 			$("#imgdiv_" + uploadIndex).append(html.join(''));
