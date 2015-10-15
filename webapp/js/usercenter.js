@@ -61,7 +61,10 @@ $(function(){
 
 	//退出
 	function loginOutBtn(evt){
-		Utils.loginOut();
+		COMMON_PLUGIN.COMMON.ALERT_DIALOG_TWO('确定要退出吗？',function(){
+			Utils.loginOut();
+		},function(){})
+		
 	}
 
 
