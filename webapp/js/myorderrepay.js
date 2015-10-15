@@ -276,12 +276,19 @@ $(function(){
 
 		g.httpTip.show();
 		var url = Base.serverUrl + "payMobile/getPayMobileURL";
-		var condi = {};
-		condi.repaymentRecordId = repaymentRecordId;
-		condi.login_token = g.login_token;
-		condi.customerId = g.customerId;
-		condi.userUa = navigator.userAgent;
+		//~ var condi = {};
+		//~ condi.repaymentRecordId = repaymentRecordId;
+		//~ condi.login_token = g.login_token;
+		//~ condi.customerId = g.customerId;
+		//~ condi.userUa = navigator.userAgent;
+		$("#repaymentRecordId").val(repaymentRecordId);
+		$("#login_token").val(g.login_token);
+		$("#customerId").val(g.customerId);
+		$("#userUa").val(navigator.userAgent);
 
+		$("#bankform").attr("action",url);
+		$("#bankform").submit();
+		/*
 		$.ajax({
 			url:url,
 			data:condi,
@@ -307,6 +314,7 @@ $(function(){
 				g.httpTip.hide();
 			}
 		});
+		*/
 	}
 
 
