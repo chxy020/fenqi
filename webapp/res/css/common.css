@@ -543,6 +543,21 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
 	padding:10px 15px;
 	box-sizing:border-box;
 }
+.result-ico{
+	display:block;
+	margin:0px auto 25px;
+	width:82px;
+	height:82px;
+	font-size:0px;
+	background:url(../images/result-ico.png) left top no-repeat;
+	background-size:104px auto;
+}
+.result-ico.result-sucess-ico{
+	background-position: -11px -8px;
+}
+.result-ico.result-fail-ico{
+	background-position:-12px -105px;
+}
 /*main*/
 .block-tip{
 	font-size:16px;

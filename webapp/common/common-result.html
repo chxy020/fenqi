@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html class="bg-white">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="../res/css/common.css" />
+    <link rel="stylesheet" href="../res/css/core.css" />
+	<title>燕子安家</title>
+</head>
+<body>
+	<div class="ui-main">
+        <div class="ui-header bd-bottom">
+        	<a class="ui-back" href="../index/index.html">
+            	<i class="trigger"></i>
+            </a>
+        	操作结果
+        </div>
+        <div class="sub-main">
+            <div class="staging-main">
+            	<div class="result-div">
+                	<!--success:result-sucess-ico fail:result-fail-ico-->
+                	<i class="result-ico result-sucess-ico"></i>
+                    <p class="result-text">恭喜您，支付成功</p>
+                </div>
+                <div class="btn-box" style="margin-top:0px;">
+                	<p>
+                    	<a href="../index/index.html" class="common-btn btn-green">返回首页</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../res/js/jquery.min.js"></script>
+<script type="text/javascript" src="../res/js/layer.m.js"></script>
+<script type="text/javascript" src="../res/js/common.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.choose-goods .choose-goods-item').bind('click',function(){
+			$(this).siblings('.choose-goods-item').removeClass('active');
+			$(this).addClass('active');
+		})
+	});
+</script>
+</html>
