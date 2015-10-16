@@ -216,10 +216,15 @@
 	<script type="text/javascript" src="../js/myorder.js"></script>
     <script type="text/javascript">
     	$('.other-item').on('click',function(){
-			$('.other-choose-list').show();
+			if($('.other-choose-list').is(':visible')){
+				$('.other-choose-list').hide();	
+			}else{
+				$('.other-choose-list').show();
+			}
 		});
 		$('.other-choose-list dd,.staging-tab-item').not('#otherItem').on('click',function(){
 			$('.other-choose-list').hide();
+			
 		})
     </script>
 </body>
