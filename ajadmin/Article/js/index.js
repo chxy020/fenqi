@@ -124,13 +124,13 @@ $(function(){
 
 		html.push('<table class="table table-bordered table-hover definewidth m10" ><thead>');
 		html.push('<tr>');
-		html.push('<th>标题</th>');
-		html.push('<th>描述</th>');
-		html.push('<th>分类</th>');
+		html.push('<th>文章标题</th>');
+		html.push('<th>文章标记</th>');
+		//html.push('<th>分类</th>');
 		html.push('<th>状态</th>');
-		html.push('<th>图片</th>');
-		html.push('<th>跳转地址</th>');
-		html.push('<th>排序</th>');
+		//html.push('<th>图片</th>');
+		//html.push('<th>跳转地址</th>');
+		//html.push('<th>排序</th>');
 		html.push('<th>添加人</th>');
 		html.push('<th>添加时间</th>');
 		html.push('<th>操作</th>');
@@ -145,37 +145,25 @@ $(function(){
 				continue;
 			}
 			var articleId = d.articleId || "";
-			var bmTitle = d.bmTitle || "";
-			var bmTextDesc = d.bmTextDesc || "";
-			var navigationKey = d.navigationKey || "";
-			navigationKey = g.navigationKeyObj[navigationKey] || "";
+			var articleTitle = d.articleTitle || "";
+			var articleKey = d.articleKey || "";
 			var usedFlag = d.usedFlag || 0;
 			var flag = usedFlag == 0 ? "停用" : "启用";
-			var bmUrl = d.bmUrl || "";
-			if(bmUrl != ""){
-				bmUrl = bmUrl + "?t=" + (new Date() - 0);
-			}
-			var bmClickUrl = d.bmClickUrl || "";
-			var orderNum = d.orderNum || "";
 			var createByName = d.createByName || "";
 			var createTime = d.createTime || "";
 
 			html.push('<tr>');
-			html.push('<td>' + bmTitle + '</td>');
-			html.push('<td>' + bmTextDesc + '</td>');
-			html.push('<td>' + navigationKey + '</td>');
+			html.push('<td>' + articleTitle + '</td>');
+			html.push('<td>' + articleKey + '</td>');
 			html.push('<td>' + flag + '</td>');
-			html.push('<td><img src="' + bmUrl + '" width="120px" onclick="showImgTip(\'' + bmUrl + '\');" style="cursor: pointer;"/></td>');
-			html.push('<td>' + bmClickUrl + '</td>');
-			html.push('<td>' + orderNum + '</td>');
 			html.push('<td>' + createByName + '</td>');
 			html.push('<td>' + createTime + '</td>');
 
 			if(usedFlag == 0){
-				html.push('<td><a href="javascript:changeArticlerUsedFlag(1,\'' + articleId + '\');">启用</a>&nbsp&nbsp<a href="javascript:editItem(\'' + bmId + '\');">编辑</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + articleId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:changeArticlerUsedFlag(1,\'' + articleId + '\');">启用</a>&nbsp&nbsp<a href="javascript:editItem(\'' + articleId + '\');">编辑</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + articleId + '\')">删除</a></td>');
 			}
 			else{
-				html.push('<td><a href="javascript:changeArticlerUsedFlag(0,\'' + articleId + '\');">停用</a>&nbsp&nbsp<a href="javascript:editItem(\'' + bmId + '\');">编辑</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + articleId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:changeArticlerUsedFlag(0,\'' + articleId + '\');">停用</a>&nbsp&nbsp<a href="javascript:editItem(\'' + articleId + '\');">编辑</a>&nbsp&nbsp<a href="javascript:deleteItem(\'' + articleId + '\')">删除</a></td>');
 			}
 			html.push('</tr>');
 		}
@@ -361,7 +349,7 @@ $(function(){
 		}
 	}
 
-	function editItem(bmId){
+	function editItem(articleId){
 		location.href = "edit.html?articleId=" + articleId;
 	}
 

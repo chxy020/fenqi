@@ -18,7 +18,6 @@ $(function(){
 	g.articleId = Utils.getQueryString("articleId") || "";
 	g.httpTip = new Utils.httpTip({});
 
-
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -44,7 +43,7 @@ $(function(){
 
 	//g.httpTip.show();
 
-	$("#addform").bind("submit",validForm);
+	$("#editbtn").bind("click",editBtnUp);
 
 
 
@@ -148,16 +147,63 @@ $(function(){
 
 	function changeArticleHtml(data){
 		var obj = data.obj || "";
-		var bmTitle = obj.bmTitle || "";
-		var bmTextDesc = obj.bmTextDesc || "";
-		var bmClickUrl = obj.bmClickUrl || "";
-		var bmUrl = obj.bmUrl || "";
-		var navigationKey = obj.navigationKey || "";
-		var orderNum = obj.orderNum || "";
+		var articleTitle = obj.articleTitle || "";
+		var articleKey = obj.articleKey || "";
+		var articleContent = obj.articleContent || "";
 
 		$("#articleTitle").val(articleTitle);
 		$("#articleKey").val(articleKey);
 		$("#editor").html(articleContent);
+	}
+
+	function editBtnUp(){
+		var articleTitle = $("#articleTitle").val() || "";
+		var articleContent = $("#editor").html() || "";
+		var articleKey = $("#articleKey").val() || "";
+		var createBy = $("#createBy").val() || "";
+		var createByName = $("#createByName").val() || "";
+
+		if(articleTitle !== ""){
+			var condi = {};
+			condi.articleId = g.articleId;
+			condi.articleTitle = articleTitle;
+			condi.articleContent = articleContent;
+			condi.articleKey = articleKey;
+			condi.createBy = createBy;
+			condi.createByName = createByName;
+			condi.login_token = g.login_token;
+			sendUpdateArticleInfoById(condi);
+		}
+		else{
+			Utils.alert("标题不能为空");
+		}
+	}
+
+	function sendUpdateArticleInfoById(condi){
+		g.httpTip.show();
+		var url = Base.serverUrl + "article/updateArticle";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendUpdateArticleInfoById",data);
+				var status = data.success || false;
+				if(status){
+					window.location.href="index.html";
+				}
+				else{
+					var msg = data.message || "获取文章数据失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
 	}
 
 });

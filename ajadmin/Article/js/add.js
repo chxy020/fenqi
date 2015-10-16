@@ -136,7 +136,6 @@ $(function(){
 	function sendAddArticleHttp(condi){
 		g.httpTip.show();
 		var url = Base.serverUrl + "article/addArticle";
-		var condi = {};
 		$.ajax({
 			url:url,
 			data:condi,
@@ -147,7 +146,7 @@ $(function(){
 				console.log("sendAddArticleHttp",data);
 				var status = data.success || false;
 				if(status){
-					//changeSelectHtml(data);
+					Utils.alert("文章添加成功");
 				}
 				else{
 					var msg = data.message || "添加文章失败";
