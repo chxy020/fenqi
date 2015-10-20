@@ -20,7 +20,6 @@ $(function(){
 	g.currentPage = 1;
 	g.pageSize = 10;
 
-
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -31,6 +30,14 @@ $(function(){
 	else{
 		$("#usersId").val(g.usersId);
 		$("#usersName").val(g.usersName);
+
+		var phtml = [];
+
+		phtml.push('<a href="../protocol/protocol-fenqi.html?orderId=' + g.orderId + '" target="_blank">借款协议</a><br />');
+		phtml.push('<a href="../protocol/protocol-authorization.html?orderId=' + g.orderId + '" target="_blank">征信授权</a><br />');
+		phtml.push('<a href="../protocol/protocol-customer-commitment.html?orderId=' + g.orderId + '" target="_blank">客户承诺</a><br />');
+		phtml.push('<a href="../protocol/protocol-credit-counseling.html?orderId=' + g.orderId + '" target="_blank">咨询协议</a>');
+		$("#protocol").html(phtml.join(''));
 	}
 
 	$("#sellerbtn").bind("click",fkSellerBtnUp);

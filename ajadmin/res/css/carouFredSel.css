@@ -1,0 +1,150 @@
+.list_carousel {
+	position: relative;
+	width: 100%;
+	height:540px;
+	overflow:hidden;
+}
+.list_pro_carousel{
+	position:relative;
+	width:552px;
+	height:317px;
+	overflow:hidden;
+}
+.list_carousel ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+}
+.list_pro_carousel ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+}
+.list_carousel li {
+	font-size: 40px;
+	text-align: center;
+	background-color: #eee;
+	width: 1920px;
+	height: 540px;
+	padding: 0;
+	display: block;
+	float: left;
+	overflow:hidden;
+	
+}
+.list_pro_carousel li {
+	font-size: 40px;
+	text-align: center;
+	background-color: #eee;
+	width: 552px;
+	height: 317px;
+	padding: 0;
+	display: block;
+	float: left;
+	overflow:hidden;
+	
+}
+.list_carousel li a{
+	display:block;
+	width:100%;
+	height:540px;
+	
+}
+.list_pro_carousel li a{
+	display:block;
+	width:552px;
+	height:317px;
+	
+}
+.list_carousel.responsive {
+	width: auto;
+	margin-left: 0;
+}
+.index-slide .prev {
+	background: url(../images/slider-pointer.png) no-repeat left top;
+	position: absolute;
+	left: 50px;
+	top: 206px;
+	display: block;
+	width: 43px;
+	height: 156px;
+	z-index:5;
+}
+.index-slide .next {
+	background: url(../images/slider-pointer.png) no-repeat right top;
+	position: absolute;
+	right: 50px;
+	top: 206px;
+	display: block;
+	width: 43px;
+	height: 156px;
+	z-index:5;
+}
+.index-slide .prev:hover,.index-slide .next:hover{
+	cursor:pointer;
+}
+.ui-slider{
+	position:relative;
+	z-index:2;
+}
+.ui-slide .pager {
+	position:absolute;
+	right:0px;
+	bottom:10px;
+	width: 100%;
+	text-align: center;
+	padding-top: 10px;
+	z-index:5;
+}
+.ui-slider .pager a {
+	color: #fff;
+	text-align:center;
+	display: inline-block;
+	margin: 0 15px;
+	background: url(../images/slide-bg.png) no-repeat -18px 0px;
+	width: 16px;
+	height: 16px;
+	line-height: 16px;
+	text-indent:-99px;
+	overflow:hidden;
+}
+.ui-slider .pager a:hover{
+	text-decoration:none;
+}
+.ui-slider .pager a.selected {
+	background: url(../images/slide-bg.png) no-repeat -0px 0px;
+	color:#99bf38;
+}
+.mask .list_carousel {
+	width: 500px;
+}
+.mask .list_carousel .pager{
+	width: 500px;
+}
+.mask .list_carousel .prev {
+	top: 130px;
+}
+.mask .list_carousel .next {
+	top: 130px;
+}
+
+.ui-slider .pagerNum{
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+}
+.ui-slider .pagerNum a {
+	color: #fff;
+	font-weight: bold;
+	display: inline-block;
+	margin: 0 10px;
+	background: url(../images/bg_direction_point2.gif) no-repeat -12px top;
+	width: 12px;
+	height: 12px;
+	line-height: 12px;
+}
+.ui-slider .pagerNum a.selected {
+	background: url(../images/bg_direction_point2.gif) no-repeat left top;
+}
