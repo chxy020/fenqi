@@ -14,7 +14,10 @@ $(function(){
 
 	g.orderInfo = Utils.offLineStore.get("userorderinfo_list",false) || "";
 	if(g.orderInfo != ""){
+		//console.log("g.orderInfo",g.orderInfo);
 		changeOrderInfoHtml(g.orderInfo);
+
+		sendGetOrderInfoHttp(g.orderId);
 	}
 	else{
 		Utils.alert("数据错误");
@@ -45,6 +48,40 @@ $(function(){
 	//$(document).on("change","#avatar",avatarBtnUp);
 	//$("#orderstatus").bind("change",changeOrderStatus);
 
+	//以下为订单编辑
+	function sendGetOrderInfoHttp(orderId){
+		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = orderId;
+
+		g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetOrderInfoHttp",data);
+				var status = data.success || false;
+				if(status){
+					var info = JSON.stringify(data);
+					Utils.offLineStore.set("userorderinfo_detail",info,false);
+					//changeOrderInfoHtml(data);
+				}
+				else{
+					//var msg = data.error || "";
+					var msg = data.message || "获取订单信息失败";
+					//alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
 
 	//获取个人资料
 	function getUserInfo(){

@@ -13,25 +13,45 @@
 	  <h1 class="protocol-title">个人征信等信息查询及使用授权书 <br />（适用于燕子安家分期业务）</h1>
 	  <p>尊敬的客户：为了维护您的权益，请在签署本授权书前，仔细阅读本授权书各条款（特别是黑体字条款），关注您在授权书中的权利、义务。 </p>
 	  <p>北京德维投资管理有限公司： </p>
-	  <p>本人xxxx（身份证号xxxxxxxxxxxxxxxx）向贵司作以下不可撤销的授权： </p>
+	  <p id="myname">本人xxxx（身份证号xxxxxxxxxxxxxxxx）向贵司作以下不可撤销的授权： </p>
 	  <p>（1）&nbsp;授权贵司在本人分期业务申请阶段及业务存续期间直接或通过有关机构向中国人民银行金融信用信息基础数据库查询、打印本人的征信信息。&nbsp;此外，本人同时授权贵司可在本人分期业务申请阶段及业务存续期间向其他有关机构或单位&nbsp;(包括但不限于经国务院或其他政府有权部门批准合法设立的其他征信机构、公安、公积金、社保、税务、民政、物流、通信运营商、电子商务平台、互联网平台等第三方机构）&nbsp;查询、打印本人的征信信息、财产信息、联络方式、关系人、资信状况、就业情况、收入情况、婚姻情况、学历信息、地址信息、位置数据、通讯行为、通讯信息、互联网使用信息、互联网使用行为等信息并保留相关核查资料等，&nbsp;并保证不会因上述机构或单位配合贵司提供有关信息或确认事项而向上述机构或单位以任何形式提出权利主张。上述信息可用于以下用途: </p>
 	  <p>（a）&nbsp;审核本人授信及债务分期偿还的需求申请； </p>
 	  <p>（b）&nbsp;对已本人分期金额进行贷后管理。 </p>
 	  <p>（2）&nbsp;本人同意并授权贵司向中国人民银行金融信用信息基础数据库以及经国务院或其他政府有权部门批准合法设立的征信机构报送本人信用信息，报送的信用信息包括但不限于信贷信息及对本人信用状况构成负面影响的信息。 </p>
 	  <p>（3）&nbsp;本人同意并授权合法成立的征信机构采集本人不动产的信息，并授权贵司向合法成立的征信机构查核本人提供的不动产的信息。本人已被明确告知查询上述信息可能会给本人带来不利后果，但本人仍然同意合法成立的征信机构采集并向贵司提供这些信息。 </p>
 	  <p>&nbsp;</p>
-	  <p>本授权书的授权期限:自xxxx年xx月xx日起至本人与贵司的所有分期债务结清之日止。 </p>
+	  <p id="sdate">本授权书的授权期限:自xxxx年xx月xx日起至本人与贵司的所有分期债务结清之日止。 </p>
 	  <p>授权人声明：贵司已依法向本人提示了相关条款（特别是黑体字条款），应本人要求对相关条款的概念、内容及法律效果做了说明，本人已经知悉并理解上述条款，本授权书一经勾选即视为本人签署。 </p>
 	  <p>【以下无正文】 </p>
 	  <p>&nbsp;</p>
 	</div>
 </body>
-<script type="text/javascript" src="../libs/utils.js"></script>
+<script type="text/javascript" src="../../res/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../res/js/ui.js"></script>
+<script src="../libs/json.js"></script>
+<script src="../libs/base.js"></script>
+<script src="../libs/utils.js"></script>
+<script src="../libs/layer.js"></script>
 <script type="text/javascript">
-(function(){
+$(function(){
 	//获取参数对象
 	var paramArr = Utils.getQueryStringArr(window.location.href);
 	if(!paramArr) return;
+
+	var detail = Utils.offLineStore.get("userorderinfo_detail",false);
+	var obj = JSON.parse(detail) || "";
+	if(obj !== ""){
+		obj = obj.obj || {};
+		var applicantName = obj.applicantName || "";
+		var applicantIdentity = obj.applicantIdentity || "";
+
+		$("#myname").html('本人' + applicantName + '（身份证号' + applicantIdentity + '）向贵司作以下不可撤销的授权： ');
+		var createTime = obj.createTime || "";
+		if(createTime !== ""){
+			var d = createTime.split("-") || [];
+			$("#sdate").html('本授权书的授权期限:自' + d[0] + '年' + d[1] + '月' + d[2] + '日起至本人与贵司的所有分期债务结清之日止。');
+		}
+	}
 });
 
 </script>
