@@ -46,9 +46,9 @@ $(function(){
 		var applicantIdentity = obj.applicantIdentity || "";
 
 		$("#myname").html('本人' + applicantName + '（身份证号' + applicantIdentity + '）向贵司作以下不可撤销的授权： ');
-		var createTime = obj.createTime || "";
-		if(createTime !== ""){
-			var d = createTime.split("-") || [];
+		var modifyTime = obj.modifyTime || "";
+		if(modifyTime !== ""){
+			var d = modifyTime.split("-") || [];
 			$("#sdate").html('本授权书的授权期限:自' + d[0] + '年' + d[1] + '月' + d[2] + '日起至本人与贵司的所有分期债务结清之日止。');
 		}
 	}
