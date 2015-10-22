@@ -38,24 +38,18 @@
 		<select id="company" name="parentid" style="width:210px;"></select>&nbsp;&nbsp;
 		-->
 		订单状态：
-		<select id="status" name="status" style="width:210px;"></select>&nbsp;&nbsp;
-		订单编号：
-		<input type="text" id="orderId" name="orderId" style="width:206px;"disabled  />&nbsp;&nbsp;
-		<!--
+		<select id="status" name="status" style="width:210px;" disabled></select>&nbsp;&nbsp;
 		申请人姓名：
 		<input type="text" id="applicantName" name="applicantName" style="width:206px;" />&nbsp;&nbsp;
 		申请人电话：
-		<input type="text" id="applicantPhone" name="applicantPhone" style="width:206px;" />&nbsp;&nbsp;
-		-->
-		<br />
+		<input type="text" id="applicantPhone" name="applicantPhone" style="width:206px;" />&nbsp;&nbsp;<br />
 		开始时间：
 		<input type="text" id="createTimeBegin" name="createTimeBegin" style="width:206px;" />&nbsp;&nbsp;
-		结束时间：
+		　结束时间：
 		<input type="text" id="createTimeEnd" name="createTimeEnd" style="width:206px;" />&nbsp;&nbsp;
-		　
+		　订单编号：
+		<input type="text" id="orderId" name="orderId" style="width:206px;" />&nbsp;&nbsp;
 		<button id="querybtn" type="button" class="btn btn-primary">查询</button>&nbsp;&nbsp;
-
-		<button id="backbtn" type="button" class="btn btn-primary">返回</button>&nbsp;&nbsp;
 	</form>
 
 	<div id="orderlist">
@@ -92,12 +86,26 @@
 	<script src="../libs/json.js"></script>
 	<script src="../libs/base.js"></script>
 	<script src="../libs/utils.js"></script>
-	<script src="../libs/layer.js"></script>
 	<script src="../libs/calendar.js"></script>
-	<script src="js/repaylist.js"></script>
+	<script src="js/repayorder.js"></script>
 </body>
 </html>
 
+
+<script>
+	//~ $(function () {
+		//~ $('#addnew').click(function(){
+			//~ window.location.href="add.html";
+		 //~ });
+	//~ });
+//~
+	//~ function del(id){
+		//~ if(confirm("确定要删除吗？")){
+			//~ var url = "index.html";
+			//~ window.location.href=url;
+		//~ }
+	//~ }
+</script>
 
 
 
