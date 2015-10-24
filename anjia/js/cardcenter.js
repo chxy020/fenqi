@@ -325,7 +325,7 @@ $(function(){
 	}
 
 	function cardReleaseBound(bbcId){
-		layer.confirm('您确定要解除绑定的银行卡吗？', {
+		layer.confirm('重新绑定也只能绑定同一张银行卡,您确定要解除绑定的银行卡吗？', {
 			//按钮
 			btn: ['确定','取消']
 		}, function(){
