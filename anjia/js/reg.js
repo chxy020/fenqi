@@ -177,44 +177,52 @@ $(function(){
 		var reg = /^1[3,5,7,8]\d{9}$/g;
 		if(phone !== ""){
 			if(reg.test(phone)){
-				var pwd1 = $("#inputpwd").val() || "";
-				var pwd2 = $("#inputcpwd").val() || "";
-				if(pwd1 !== ""){
-					if(pwd2 !== ""){
-						if(pwd1 === pwd2){
-							var code = $("#inputcode").val() || "";
-							if(code !== ""){
-								var isAgree = $("#agressck")[0].checked || false;
-								if(isAgree){
-									var condi = {};
-									condi.phone_number = g.phone;
-									condi.password = pwd2;
-									condi.validate_code = code;
-									sendRegHttp(condi);
+				var name = $("#name").val() || "";
+				if(name !== ""){
+					var pwd1 = $("#inputpwd").val() || "";
+					var pwd2 = $("#inputcpwd").val() || "";
+					if(pwd1 !== ""){
+						if(pwd2 !== ""){
+							if(pwd1 === pwd2){
+								var code = $("#inputcode").val() || "";
+								if(code !== ""){
+									var isAgree = $("#agressck")[0].checked || false;
+									if(isAgree){
+										var condi = {};
+										condi.name = name;
+										condi.phone_number = g.phone;
+										condi.password = pwd2;
+										condi.validate_code = code;
+										sendRegHttp(condi);
+									}
+									else{
+										Utils.alert("请勾选同意服务协议");
+									}
 								}
 								else{
-									Utils.alert("请勾选同意服务协议");
+									Utils.alert("请输入验证码");
+									$("#inputcode").focus();
 								}
 							}
 							else{
-								Utils.alert("请输入验证码");
-								$("#inputcode").focus();
+								Utils.alert("两次密码输入不一致");
+								$("#inputcpwd").val("");
+								$("#inputcpwd").focus();
 							}
 						}
 						else{
-							Utils.alert("两次密码输入不一致");
-							$("#inputcpwd").val("");
+							Utils.alert("请输入确认密码");
 							$("#inputcpwd").focus();
 						}
 					}
 					else{
-						Utils.alert("请输入确认密码");
-						$("#inputcpwd").focus();
+						Utils.alert("请输入密码");
+						$("#inputpwd").focus();
 					}
 				}
 				else{
-					Utils.alert("请输入密码");
-					$("#inputpwd").focus();
+					Utils.alert("请输入用户姓名");
+					$("#name").focus();
 				}
 			}
 			else{
