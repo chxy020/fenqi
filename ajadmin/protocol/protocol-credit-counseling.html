@@ -11,11 +11,10 @@
 <body>
 	<div class="ui-protocol">
 	  <h1 class="protocol-title">信用咨询及居间服务协议 </h1>
-	  <p >甲方：&nbsp; </p>
-	  <p >燕子安家用户名：&nbsp; </p>
-	  <p >身份证号码： </p>
-	  <p >住所：&nbsp; </p>
-	  <p >电子邮件地址： </p>
+	  <p >甲方：&nbsp; <span id="applicantName"></span></p>
+	  <p >身份证号码： <span id="applicantIdentity"></span></p>
+	  <p >住所：&nbsp; <span id="applicantAddress"></span></p>
+	   <p >电子邮件地址： </p>
 	  <p >&nbsp;</p>
 	  <p >乙方：北京德维投资管理有限公司&nbsp; </p>
 	  <p >法人代表： </p>
@@ -94,5 +93,60 @@
 	      <li>本协议中的任何条款或部分条款因违反中国法律而无效的，不影响本协议其他条款的效力。 </li>
         </ol>
       </ol>
-	</div></body>
+
+	</div>
+<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../res/js/ui.js"></script>
+<script src="../libs/json.js"></script>
+<script src="../libs/base.js"></script>
+<script src="../libs/utils.js"></script>
+<script src="../libs/layer.js"></script>
+<script type="text/javascript">
+$(function(){
+	//获取参数对象
+	var orderId = Utils.getQueryString("orderId") || "";
+	var login_token = Utils.offLineStore.get("token",false) || "";
+
+	sendGetOrderInfoHttp();
+	//以下为订单编辑
+	function sendGetOrderInfoHttp(){
+		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
+		var condi = {};
+		condi.login_token = login_token;
+		condi.orderId = orderId;
+
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetOrderInfoHttp",data);
+				var status = data.success || false;
+				if(status){
+					var obj = data.obj || {};
+					var applicantName = obj.applicantName || "";
+					var applicantIdentity = obj.applicantIdentity || "";
+					var applicantAddress = obj.applicantAddress || "";
+
+					$("#applicantName").html(applicantName);
+					$("#applicantIdentity").html(applicantIdentity);
+					$("#applicantAddress").html(applicantAddress);
+				}
+				else{
+					//var msg = data.error || "";
+					var msg = data.message || "获取订单信息失败";
+					alert(msg);
+				}
+			},
+			error:function(data){
+				//g.httpTip.hide();
+			}
+		});
+	}
+});
+
+</script>
+</body>
 </html>

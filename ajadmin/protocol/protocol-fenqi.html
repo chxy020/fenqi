@@ -16,9 +16,9 @@
 	  <p >住&nbsp;&nbsp;所&nbsp;&nbsp;地： </p>
 	  <p >&nbsp;</p>
 	  <p >乙&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方： </p>
-	  <p >身份证号码： </p>
-	  <p >燕子安家用户名： </p>
-	  <p >住&nbsp;&nbsp;所&nbsp;&nbsp;地： </p>
+	  <p >姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名： <span id="applicantName"></span></p>
+	  <p >身份证号码： <span id="applicantIdentity"></span></p>
+	  <p >住&nbsp;&nbsp;所&nbsp;&nbsp;地： <span id="applicantAddress"></span></p>
 	  <p >&nbsp;</p>
 	  <p >丙&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方： </p>
 	  <p >法定代表人： </p>
@@ -125,12 +125,73 @@
 	  <p >&nbsp;</p>
 	  <p >甲方：&nbsp;（签章）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
 	  <p >&nbsp;</p>
-	  <p >乙方：&nbsp;（签章）&nbsp;&nbsp;&nbsp;&nbsp; </p>
+	  <p >乙方：&nbsp;（签章）&nbsp;&nbsp;&nbsp;&nbsp; <span id="applicantName2"></span></p>
 	  <p >&nbsp;</p>
 	  <p >丙方：（签章） </p>
 	  <p >&nbsp;</p>
-	  <p >年&nbsp;&nbsp;月&nbsp;&nbsp;日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+	  <p id="sdate">年&nbsp;&nbsp;月&nbsp;&nbsp;日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
 	  <p >&nbsp;</p>
 	</div>
+<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../res/js/ui.js"></script>
+<script src="../libs/json.js"></script>
+<script src="../libs/base.js"></script>
+<script src="../libs/utils.js"></script>
+<script src="../libs/layer.js"></script>
+<script type="text/javascript">
+$(function(){
+	//获取参数对象
+	var orderId = Utils.getQueryString("orderId") || "";
+	var login_token = Utils.offLineStore.get("token",false) || "";
+
+	sendGetOrderInfoHttp();
+	//以下为订单编辑
+	function sendGetOrderInfoHttp(){
+		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
+		var condi = {};
+		condi.login_token = login_token;
+		condi.orderId = orderId;
+
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetOrderInfoHttp",data);
+				var status = data.success || false;
+				if(status){
+					var obj = data.obj || {};
+					var applicantName = obj.applicantName || "";
+					var applicantIdentity = obj.applicantIdentity || "";
+					var applicantAddress = obj.applicantAddress || "";
+
+
+					$("#applicantName").html(applicantName);
+					$("#applicantIdentity").html(applicantIdentity);
+					$("#applicantAddress").html(applicantAddress);
+					$("#applicantName2").html(applicantName);
+					var modifyTime = obj.modifyTime || "";
+					//modifyTime  = "2015-10-16";
+					if(modifyTime !== ""){
+						var d = modifyTime.split("-") || [];
+						$("#sdate").html(d[0] + '年&nbsp;&nbsp;' + d[1] + '月&nbsp;&nbsp;' + d[2] + '日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+					}
+				}
+				else{
+					//var msg = data.error || "";
+					var msg = data.message || "获取订单信息失败";
+					alert(msg);
+				}
+			},
+			error:function(data){
+				//g.httpTip.hide();
+			}
+		});
+	}
+});
+
+</script>
 </body>
 </html>
