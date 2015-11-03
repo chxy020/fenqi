@@ -799,6 +799,7 @@ html{
 .ui-bottom .f-link p.f-link-p{
 	line-height:20px;
 	color:#454646;
+	font-size:14px;
 	margin-top:5px;
 }
 .ui-bottom .f-link a:hover{
