@@ -793,6 +793,10 @@ html{
 	line-height: 30px;
 	font-size: 14px;
 }
+.ui-bottom .f-link p{
+	line-height:20px;
+	color:#454646;
+}
 .ui-bottom .f-link a:hover{
 	color: #539d34;
 }
