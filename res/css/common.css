@@ -781,6 +781,7 @@ html{
 	width: 166px;
 	float:right;
 	margin: 0px 30px 0px 20px;
+	font-size:14px;
 }
 .ui-bottom .f-link p{
 	font-size: 16px;
@@ -798,7 +799,6 @@ html{
 .ui-bottom .f-link p.f-link-p{
 	line-height:20px;
 	color:#454646;
-	font-size:14px;
 	margin-top:5px;
 }
 .ui-bottom .f-link a:hover{
