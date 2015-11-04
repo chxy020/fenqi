@@ -75,7 +75,7 @@
                             <i class="common-ico ico-selected-flag"></i>
                         </div>
                     </li>
-                    <li onclick="subLeftItemClick(this,'sw')">
+                    <li li="coopli" onclick="subLeftItemClick(this,'sw')">
                     	<div class="nav-main-item">
                             <a href="javascript:void(0)">商务合作</a>
                             <i class="common-ico ico-selected-flag"></i>
@@ -303,6 +303,10 @@
 		var jobs = Utils.getQueryString("jobs") - 0 || "";
 		if(jobs === 1){
 			subLeftItemClick($("#jobli")[0],'zx');
+		}
+		var coop = Utils.getQueryString("coop") - 0 || "";
+		if(coop === 1){
+			subLeftItemClick($("#coopli")[0],'sw');
 		}
 	});
 	function subLeftItemClick(obj,targetId){
