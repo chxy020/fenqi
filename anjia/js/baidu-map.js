@@ -6,7 +6,7 @@
 		script.src = "http://api.map.baidu.com/api?v=1.4&callback=initialize";
 		document.body.appendChild(script);
 	}
-	
+
 	function initialize() {
 		map = new BMap.Map('map');
 		map.enableScrollWheelZoom();//启动鼠标滚轮操作
@@ -19,7 +19,7 @@
 		var	marker = new BMap.Marker(point); //创建标注
 		map.clearOverlays();//清除所有覆盖物(标注)
 		map.addOverlay(marker);
-		
+
 		var cp = point;//cp为临时point
 		map.addEventListener("tilesloaded",function(){//加载完成时,触发
 			map.setCenter(cp);
@@ -29,5 +29,3 @@
 		});
 		map.panBy(140,120);
 	}
-	
-	
