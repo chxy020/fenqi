@@ -240,7 +240,13 @@ $(function(){
 		condi.currentPageNum = g.currentPage;
 		condi.pageSize = g.pageSize;
 
-		sendGetUserOrderListHttp(condi);
+		if(condi.status == "100506"){
+			//待放款新逻辑
+			sendGetRepayOrderListHttp(condi);
+		}
+		else{
+			sendGetUserOrderListHttp(condi);
+		}
 	}
 
 	function sendGetUserOrderListHttp(condi){
@@ -269,6 +275,48 @@ $(function(){
 			}
 		});
 	}
+
+	//获取放款列表
+	function sendGetRepayOrderListHttp(condi){
+		g.httpTip.show();
+		//~ login_token：string,
+		//~ customerId:string
+		//~ status:string
+		//~ currentPageNum:int,
+		//~ applicantName:string申请人姓名,
+		//~ applicantPhone:string申请人电话,
+		//~ createTimeBegin:string开始时间精确到天,
+		//~ createTimeEnd:string精确到天，
+		//~ orderId:订单编号,
+		//:还款状态(102401 待放款)
+		condi.loanStatus = 102401;
+		condi.status = null;
+
+		var url = Base.serverUrl + "order/queryOrdersController";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetRepayOrderListHttp",data);
+				var status = data.success || false;
+				if(status){
+					changeRepayOrderListHtml(data);
+				}
+				else{
+					var msg = data.message || "获取用户放款订单失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+
 
 	function changeOrderListHtml(data){
 
@@ -330,6 +378,98 @@ $(function(){
 			else if(status == "100506"){
 				//100506: "待放款"
 				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
+			}
+			else if(status == "100507"){
+				//100506: "待放款"
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
+			}
+			else if(status == "100508"){
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+			}
+			html.push('</tr>');
+		}
+		html.push('</table>');
+
+		var pobj = data.obj || {};
+
+		if(obj.length > 0){
+			var page = countListPage(pobj);
+			html.push(page);
+		}
+		else{
+			Utils.alert("没有订单数据");
+		}
+
+		$("#orderlist").html(html.join(''));
+
+		$("#orderlistpage a").bind("click",pageClick);
+	}
+
+
+
+	//放款订单列表
+	function changeRepayOrderListHtml(data){
+
+		var html = [];
+
+		html.push('<table class="order-table" cellpadding="0" cellspacing="0">');
+		html.push('<tr>');
+		html.push('<th width="160">订单编号</th>');
+		html.push('<th width="100">合作商家</th>');
+		html.push('<th width="110">合同总金额</th>');
+		html.push('<th width="110">授信额度</th>');
+		html.push('<th width="100">订单状态</th>');
+		html.push('<th width="100">剩余房款额度</th>');
+		html.push('<th width="80">分期数</th>');
+		html.push('<th>操作</th>');
+		html.push('</tr>');
+		var obj = data.list || [];
+		for(var i = 0,len = obj.length; i < len; i++){
+			var d = obj[i];
+			var orderId = d.orderId || "";
+			var contractNo = d.contractNo || "";
+			var packageName = d.packageName || "";
+			var contractMoney = d.contractMoney || 0;
+			var packageMoney = d.packageMoney || 0;
+			var loanResidueMoney = d.loanResidueMoney || 0;
+			var statusDes = d.statusDes || "";
+			var status = d.status || "";
+			var fenQiTimes = d.fenQiTimes || 0;
+			var noRepaymentTimes = d.noRepaymentTimes || 0;
+
+			html.push('<tr>');
+			html.push('<td>' + orderId + '</td>');
+			html.push('<td>' + packageName + '</td>');
+			html.push('<td>' + contractMoney + '元</td>');
+			html.push('<td>' + packageMoney + '元</td>');
+			html.push('<td>' + statusDes + '</td>');
+			html.push('<td>' + loanResidueMoney + '元</td>');
+			html.push('<td>' + fenQiTimes + '期</td>');
+
+			g.orderInfo[orderId] = d;
+
+			if(status == "100501"){
+				html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+			}
+			else if(status == "100502"){
+				//100502: "商家审核中"
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',1)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+			}
+			else if(status == "100503"){
+				//100503: "风控审核中
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',1)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+			}
+			else if(status == "100504" || status == "100509"){
+				html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+			}
+			else if(status == "100505"){
+				//100505: "待缴手续费"showOrderDetail
+				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
+			}
+			else if(status == "100506"){
+				//100506: "待放款"
+				html.push('<td><a href="javascript:sendGetRepayOrderInfoListHttp(\'' + orderId + '\')">申请放款</a></td>');
 			}
 			else if(status == "100507"){
 				//100506: "待放款"
@@ -475,6 +615,9 @@ $(function(){
 		}
 	}
 
+
+
+
 	function deleteOrderById(id){
 		if(confirm("你确认要删除订单吗?")){
 			g.httpTip.show();
@@ -520,6 +663,117 @@ $(function(){
 		}
 	}
 
+
+	//获取放款列表
+	function sendGetRepayOrderInfoListHttp(orderId){
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = orderId;
+		g.httpTip.show();
+		var url = Base.serverUrl + "order/loanByOrderId";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetRepayOrderInfoListHttp",data);
+				var status = data.success || false;
+				if(status){
+					repayListHtml(data);
+				}
+				else{
+					var msg = data.message || "获取用户放款订单失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+
+	function repayListHtml(data){
+		//~ var d =data
+		//~ var orderId = d.orderId || "";
+		//~ var repaymentRecordId = d.repaymentRecordId || "主键";
+		//~ var repaymentTypeDesc = d.repaymentTypeDesc || "";
+		//~ var repaymentPrincipal = d.repaymentPrincipal || 0;
+		//~ var expectRepaymentTime = d.expectRepaymentTime || "";
+		//~ var overdueTime = d.overdueTime || 0;
+		//~ var overdueInterest = d.overdueInterest || 0;
+		//~ var yinghuanjine = repaymentPrincipal  + overdueInterest ;
+		//~ var realRepaymentTime = d.realRepaymentTime || "无";
+//~
+		//~ var dd = JSON.parse(g.orderInfo) || {};
+		//~ var orderId = dd.orderId || "";
+		//~ var contractNo = dd.contractNo || "";
+		//~ var packageName = dd.packageName || "";
+		//~ var packageMoney = dd.packageMoney - 0 || 0;
+		//~ var statusDes = dd.statusDes || "";
+		//~ var status = dd.status || "";
+		//~ var fenQiTimes = dd.fenQiTimes || 0;
+		//~ var poundage = dd.poundage - 0 || 0;
+		//~ var moneyMonth = dd.moneyMonth - 0 || 0;
+		//~ var noRepaymentTimes = dd.noRepaymentTimes || 0;
+//~
+		var html = [];
+		html.push('<table class="common-table1" cellpadding="0" cellspacing="0" style="margin-top:25px;">');
+		html.push('<tr>');
+		html.push('<th>待付期数</th>');
+		html.push('<th>剩余金额</th>');
+		html.push('<th>付款日期</th>');
+		html.push('<th>付款金额</th>');
+		html.push('<th>操作</th>');
+		html.push('</tr>');
+
+		html.push('<tr>');
+		html.push('<td>' + 1 + '</td>');
+		html.push('<td>' + 22 + '元</td>');
+		html.push('<td>' + 33 + '</td>');
+		html.push('<td>' + 44 + '天</td>');
+		html.push('<td><a href="javascript:deleteOrderById(\'' + 11 + '\')">删除</a></td>');
+		html.push('</tr>');
+		html.push('</table>');
+
+		$("#detailinfodiv").html(html.join(''));
+		showOrderPop('#repayBackPop');
+	}
+
+
+	//出现弹窗遮罩层
+	function showPopFade(){
+		var bodyHei = document.body.clientHeight;
+		if($('.pop-fade').size()<=0){
+			console.log('a');
+			$('body').append('<div class="pop-fade" id="commonPopFade"></div>');
+		}
+		$('#commonPopFade').css('height',parseInt(bodyHei)+'px');
+		$('#commonPopFade').fadeIn();
+	}
+	//还款弹窗出现方法
+	function showOrderPop(objId){
+		var $target = $(objId);
+		var popBoxWid = $target.width();
+		$target.css('left',($(window).width()-popBoxWid)/2);
+		$(window).bind('resize',function(){
+			var popBoxWid = $target.width();
+			$target.css('left',($(window).width()-popBoxWid)/2);
+		});
+		window.scrollTo(0,0);
+		showPopFade(100);
+		$target.fadeIn(100);
+
+	}
+	function hidePop(){
+		$('.pop-fade').fadeOut(100);
+		$('.pop-main-box').fadeOut(100);
+	}
+
+	window.hidePop = hidePop;
+	window.sendGetRepayOrderInfoListHttp = sendGetRepayOrderInfoListHttp;
 	window.showOrderDetail = showOrderDetail;
 	window.deleteOrderById = deleteOrderById;
 });
