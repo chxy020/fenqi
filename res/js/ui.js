@@ -109,6 +109,11 @@
 				$(this).find('.select-city-btn').removeClass('active');
 				$(this).find('.select-city-area').hide();
 			});
+			$('.select-city-area').find('a').on('click',document,function(){
+				var areaValue = $(this).text();
+				$('#curCity').text(areaValue);
+				$('.select-city-area').hide();
+			});
 		},
 		//填充底部html
 		insertBottomHtml:function(){
@@ -157,8 +162,6 @@
 			});
 		}	
 	});
-
-
 })(jQuery);
 $(function(){
 	$.fn.selectArea();
