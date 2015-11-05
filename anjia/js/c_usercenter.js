@@ -474,7 +474,8 @@ $(function(){
 			}
 			else if(status == "100507"){
 				//100506: "待放款"
-				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
+				html.push('<td><a href="javascript:sendGetRepayOrderInfoListHttp(\'' + orderId + '\')">申请放款</a></td>');
+				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
 			}
 			else if(status == "100508"){
 				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
