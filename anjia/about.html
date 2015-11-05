@@ -7,7 +7,6 @@
 	<link href="../res/css/common.css" rel="stylesheet">
     <link href="../res/css/carouFredSel.css" rel="stylesheet">
     <link href="../res/css/index.css" rel="stylesheet">
-	<link href="./css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,7 +23,7 @@
 			</div>
         </div>
     </div>
-    <div class="ui-header">
+    <!--<div class="ui-header">
     	<div class="ui-wrap">
         	<div class="ui-head-left f-left clearfix">
         		<a href="/anjia/index.html"><img class="ui-logo" src="../res/images/logo.png" /></a>
@@ -64,7 +63,9 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>-->
+    <!--加载通用头部-->
+	<script type="text/javascript" src="../anjia/js/head.js"></script>
     <div class="sub-main">
     	<div class="ui-wrap clearfix">
             <div class="sub-left-nav">
@@ -110,10 +111,10 @@
                 </div>
             </div>
             <div class="sub-right-cont" id="sw" style="display:none">
-            	<ul id="swTab" class="nav nav-tabs">
-                  <li class="active"><a href="#khww" data-toggle="tab">客户服务</a></li>
-                  <li><a href="#swhz" data-toggle="tab">商务合作</a></li>
-                  <li><a href="#gsdz" data-toggle="tab">公司地址</a></li>
+            	<ul id="swTab" class="nav nav-tabs clearfix">
+                  <li class="active"><a data-id="#khww" data-toggle="tab">客户服务</a></li>
+                  <li><a data-id="#swhz" data-toggle="tab">商务合作</a></li>
+                  <li><a data-id="#gsdz" data-toggle="tab">公司地址</a></li>
                 </ul>
 				<div id="myTabContent" class="tab-content">
 				   <div class="tab-pane fade in active" id="khww">
@@ -125,7 +126,7 @@
 						</div>
 					 </div>
 				   </div>
-				   <div class="tab-pane fade" id="swhz">
+				   <div class="tab-pane fade" id="swhz" style="display:none;">
 					  <div class="sub-right-box">
 						<div class="sub-right-text">
 							<p>商务合作（品牌合作，市场活动合作，广告合作）</p>
@@ -135,7 +136,7 @@
 						</div>
 					 </div>
 				   </div>
-				   <div class="tab-pane fade" id="gsdz">
+				   <div class="tab-pane fade" id="gsdz" style="display:none;">
 					  <div class="sub-right-box">
 						<div class="sub-right-text">
 						<div id="map" style="width:100%;height:600px"></div>
@@ -282,7 +283,6 @@
 <script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>
 <script type="text/javascript" src="../res/js/ui.js"></script>
-<script type="text/javascript" src="../res/js/bootstrap.min.js"></script>
 <script src="libs/json.js"></script>
 <script src="libs/base.js"></script>
 <script src="libs/layer.js"></script>
@@ -308,6 +308,13 @@
 		if(coop === 1){
 			subLeftItemClick($("#coopli")[0],'sw');
 		}
+		//tap标签切换
+		$('#swTab li').on('click',function(){
+			var targetId = $(this).find('a').attr('data-id');
+			$('#swTab li').removeClass('active');
+			$(this).addClass('active');
+			$(targetId).siblings('.tab-pane').hide().end().fadeIn(500);
+		});
 	});
 	function subLeftItemClick(obj,targetId){
 		if(typeof targetId === 'undefined') return;
