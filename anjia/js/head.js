@@ -12,14 +12,11 @@ __html__.push('<a href="/anjia/index.html"><img class="ui-logo" src="../res/imag
 __html__.push('<div class="ui-head-left-l f-left">');
 __html__.push('<span class="cur-pos"><i class="common-ico ico-position"></i><em id="curCity">&nbsp;&nbsp;&nbsp;&nbsp;</em></span>');
 __html__.push('<div class="select-city-box">');
-__html__.push('<a href="javascript" class="select-city-btn">[切换]</a>');
+__html__.push('<a href="javascript:void(0)" class="select-city-btn">[切换]</a>');
 __html__.push('<div class="select-city-area">');
 __html__.push('<ul class="select-city-area-ul clearfix">');
 __html__.push('<li>');
 __html__.push('<a href="javascript:void(0)">成都</a>');
-__html__.push('</li>');
-__html__.push('<li>');
-__html__.push('<a href="javascript:void(0)">朗润</a>');
 __html__.push('</li>');
 __html__.push('<li>');
 __html__.push('<a href="javascript:void(0)">南充</a>');
