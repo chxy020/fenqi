@@ -470,7 +470,7 @@ $(function(){
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
-				html.push('<td><a href="javascript:sendGetRepayOrderInfoListHttp(\'' + orderId + '\')">我要付款</a></td>');
+				html.push('<td><a href="javascript:sendGetRepayOrderInfoListHttp(\'' + orderId + '\')">申请放款</a></td>');
 			}
 			else if(status == "100507"){
 				//100506: "待放款"
@@ -482,6 +482,8 @@ $(function(){
 			html.push('</tr>');
 		}
 		html.push('</table>');
+
+		/*
 		html.push("<table class='updown'>");
 		html.push('<tr>');
 		html.push('<th width="160">付款期数</th>');
@@ -508,6 +510,7 @@ $(function(){
 		html.push('<th ><a>已付款</a></th>');
 		html.push('</tr>');
 		html.push('</table>');
+		*/
 		var pobj = data.obj || {};
 
 		if(obj.length > 0){
@@ -694,9 +697,13 @@ $(function(){
 	function sendGetRepayOrderInfoListHttp(orderId){
 		var condi = {};
 		condi.login_token = g.login_token;
+		condi.customerId = g.customerId;
 		condi.orderId = orderId;
+		condi.currentPageNum = 1;
+		condi.pageSize = 10;
+
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/loanByOrderId";
+		var url = Base.serverUrl + "order/queryLoanRecordByQuery";
 		$.ajax({
 			url:url,
 			data:condi,
@@ -722,17 +729,6 @@ $(function(){
 	}
 
 	function repayListHtml(data){
-		//~ var d =data
-		//~ var orderId = d.orderId || "";
-		//~ var repaymentRecordId = d.repaymentRecordId || "主键";
-		//~ var repaymentTypeDesc = d.repaymentTypeDesc || "";
-		//~ var repaymentPrincipal = d.repaymentPrincipal || 0;
-		//~ var expectRepaymentTime = d.expectRepaymentTime || "";
-		//~ var overdueTime = d.overdueTime || 0;
-		//~ var overdueInterest = d.overdueInterest || 0;
-		//~ var yinghuanjine = repaymentPrincipal  + overdueInterest ;
-		//~ var realRepaymentTime = d.realRepaymentTime || "无";
-//~
 		//~ var dd = JSON.parse(g.orderInfo) || {};
 		//~ var orderId = dd.orderId || "";
 		//~ var contractNo = dd.contractNo || "";
@@ -754,19 +750,79 @@ $(function(){
 		html.push('<th>付款金额</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
+		var obj = data.list || [];
+		for(var i = 0,len = obj.length; i < len; i++){
+			var d = obj[i] || {};
+			var loanRecordId = d.loanRecordId || "";
+			var loanTimes = d.loanTimes;
+			var packageMoney = d.packageMoney - 0 || 0;
+			var loanMoney = d.loanMoney - 0 || 0;
+			var realLoanTime = d.realLoanTime || "";
+			var loanResidueMoney = d.loanResidueMoney || 0;
+			var loanMaxMoney = d.loanMaxMoney - 0 || 0;
+			var expectLoanTime = d.expectLoanTime;
+			var now = new Date();
+			var status = d.status;
+			//(102401 待放款,102402以放款)
 
-		html.push('<tr>');
-		html.push('<td>' + 1 + '</td>');
-		html.push('<td>' + 22 + '元</td>');
-		html.push('<td>' + 33 + '</td>');
-		html.push('<td>' + 44 + '天</td>');
-		html.push('<td><a href="javascript:deleteOrderById(\'' + 11 + '\')">删除</a></td>');
-		html.push('</tr>');
+			html.push('<tr>');
+			html.push('<td>' + loanTimes + '</td>');
+			html.push('<td>' + (packageMoney - loanMoney) + '元</td>');
+			html.push('<td>' + realLoanTime + '</td>');
+			if(status == "102401"){
+				//待放款
+				html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大放款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
+				html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要放款</a></td>');
+			}
+			else if(status == "102402"){
+				html.push('<td>' + loanMoney + '元</td>');
+				html.push('<td><a href="javascript:;">已放款</a></td>');
+			}
+
+			html.push('</tr>');
+		}
 		html.push('</table>');
 
 		$("#detailinfodiv").html(html.join(''));
 		showOrderPop('#repayBackPop');
 	}
+
+	function loanByLoanRecord(loanRecordId,loanMaxMoney){
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.loanRecordId = loanRecordId;
+		condi.loanMoney = $("#" +loanRecordId).val() - 0;
+		if(loanMaxMoney < condi.loanMoney){
+			Utils.alert("最多只能申请" +loanMaxMoney + "元");
+			return;
+		}
+		g.httpTip.show();
+		var url = Base.serverUrl + "order/loanByLoanRecord";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("loanByLoanRecord",data);
+				var status = data.success || false;
+				if(status){
+					Utils.alert("申请放款成功");
+					//repayListHtml(data);
+				}
+				else{
+					var msg = data.message || "申请放款失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+
 
 
 	//出现弹窗遮罩层
@@ -798,6 +854,7 @@ $(function(){
 		$('.pop-main-box').fadeOut(100);
 	}
 
+	window.loanByLoanRecord = loanByLoanRecord;
 	window.hidePop = hidePop;
 	window.sendGetRepayOrderInfoListHttp = sendGetRepayOrderInfoListHttp;
 	window.showOrderDetail = showOrderDetail;
