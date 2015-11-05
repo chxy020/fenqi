@@ -300,6 +300,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
+				/* var data={"success":true,"obj":{"currentPageNum":1,"pageSize":10,"totalRowNum":2,"startRow":0},"list":[],"message":null,"code":null,"token":null}; */
 				console.log("sendGetRepayOrderListHttp",data);
 				var status = data.success || false;
 				if(status){
@@ -412,15 +413,15 @@ $(function(){
 
 		var html = [];
 
-		html.push('<table class="order-table" cellpadding="0" cellspacing="0">');
+		html.push("<table class='order-table' onclick='$(\"#orderlist .updown,#orderlist .updown2\").fadeToggle(300)' cellpadding='0' cellspacing='0'>");
 		html.push('<tr>');
 		html.push('<th width="160">订单编号</th>');
 		html.push('<th width="100">合作商家</th>');
 		html.push('<th width="110">合同总金额</th>');
 		html.push('<th width="110">授信额度</th>');
-		html.push('<th width="100">订单状态</th>');
-		html.push('<th width="100">剩余房款额度</th>');
-		html.push('<th width="80">分期数</th>');
+		html.push('<th width="100">订单状况</th>');
+		html.push('<th width="100">已付金额</th>');
+		html.push('<th width="100">总期数</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
 		var obj = data.list || [];
@@ -469,7 +470,7 @@ $(function(){
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
-				html.push('<td><a href="javascript:sendGetRepayOrderInfoListHttp(\'' + orderId + '\')">申请放款</a></td>');
+				html.push('<td><a href="javascript:sendGetRepayOrderInfoListHttp(\'' + orderId + '\')">我要付款</a></td>');
 			}
 			else if(status == "100507"){
 				//100506: "待放款"
@@ -481,7 +482,32 @@ $(function(){
 			html.push('</tr>');
 		}
 		html.push('</table>');
+		html.push("<table class='updown'>");
+		html.push('<tr>');
+		html.push('<th width="160">付款期数</th>');
+		html.push('<th width="160">剩余金额</th>');
+		html.push('<th width="160">付款日期</th>');
+		html.push('<th width="200">付款金额</th>');
+		html.push('<th >操作</th>');
+		html.push('</tr>');
+		html.push('</table>');
 
+		html.push("<table class='updown2'  cellpadding='0' cellspacing='0' >");
+		html.push('<tr>');
+		html.push('<th width="160">1</th>');
+		html.push('<th width="160">50000</th>');
+		html.push("<th width='160'><input id='input_id2' type='text' onclick='laydate({elem: \"#input_id2\"});' placeholder='请选择付款日期' onfocus='placeholder=\"\"' onblur='placeholder=\"请选择付款日期\"'  class='up_input'/></th>");
+		html.push("<th width='200'><input type='text' class='up_input' /></th>");
+		html.push('<th ><a>已付款</a></th>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<th width="160">2</th>');
+		html.push('<th width="160">50000</th>');
+		html.push("<th width='160'><input id='input_id' type='text' onclick='laydate({elem: \"#input_id\"});' placeholder='请选择付款日期' onfocus='placeholder=\"\"' onblur='placeholder=\"请选择付款日期\"'  class='up_input'/></th>");
+		html.push("<th width='200'><input type='text' class='up_input' /></th>");
+		html.push('<th ><a>已付款</a></th>');
+		html.push('</tr>');
+		html.push('</table>');
 		var pobj = data.obj || {};
 
 		if(obj.length > 0){
@@ -777,8 +803,5 @@ $(function(){
 	window.showOrderDetail = showOrderDetail;
 	window.deleteOrderById = deleteOrderById;
 });
-
-
-
 
 
