@@ -491,7 +491,7 @@ $(function(){
 		html.push('<th >操作</th>');
 		html.push('</tr>');
 		html.push('</table>');
-			
+
 		html.push("<table class='updown2'  cellpadding='0' cellspacing='0' >");
 		html.push('<tr>');
 		html.push('<th width="160">1</th>');
@@ -501,7 +501,7 @@ $(function(){
 		html.push('<th ><a>已付款</a></th>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<th width="160">1</th>');
+		html.push('<th width="160">2</th>');
 		html.push('<th width="160">50000</th>');
 		html.push("<th width='160'><input id='input_id' type='text' onclick='laydate({elem: \"#input_id\"});' placeholder='请选择付款日期' onfocus='placeholder=\"\"' onblur='placeholder=\"请选择付款日期\"'  class='up_input'/></th>");
 		html.push("<th width='200'><input type='text' class='up_input' /></th>");
@@ -803,5 +803,5 @@ $(function(){
 	window.showOrderDetail = showOrderDetail;
 	window.deleteOrderById = deleteOrderById;
 });
-   
-    
+
+
