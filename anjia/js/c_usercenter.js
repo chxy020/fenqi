@@ -797,7 +797,7 @@ $(function(){
 					}
 				}
 				else if(loanTimes == 3){
-					if(two == true){
+					if(two == true && days == 0){
 						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大放款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
 						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要放款</a></td>');
 					}
@@ -807,7 +807,7 @@ $(function(){
 					}
 				}
 				else if(loanTimes == 4){
-					if(three == true){
+					if(three == true && days == 0){
 						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大放款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
 						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要放款</a></td>');
 					}
