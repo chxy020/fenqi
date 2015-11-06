@@ -420,7 +420,7 @@ $(function(){
 		html.push('<th width="110">合同总金额</th>');
 		html.push('<th width="110">授信额度</th>');
 		html.push('<th width="100">订单状况</th>');
-		html.push('<th width="100">已付金额</th>');
+		html.push('<th width="100">剩余放款金额</th>');
 		html.push('<th width="100">总期数</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
