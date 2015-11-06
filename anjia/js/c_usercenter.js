@@ -745,37 +745,88 @@ $(function(){
 		var html = [];
 		html.push('<table class="common-table1" cellpadding="0" cellspacing="0" style="margin-top:25px;">');
 		html.push('<tr>');
-		html.push('<th>待付期数</th>');
+		html.push('<th>待放期数</th>');
 		html.push('<th>剩余金额</th>');
-		html.push('<th>付款日期</th>');
-		html.push('<th>付款金额</th>');
+		html.push('<th>放款日期</th>');
+		html.push('<th>放款金额</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
 		var obj = data.list || [];
+
+		var one = false;
+		var two = false;
+		var three = false;
+		var four = false;
+		var max = 0;
+
 		for(var i = 0,len = obj.length; i < len; i++){
 			var d = obj[i] || {};
 			var loanRecordId = d.loanRecordId || "";
-			var loanTimes = d.loanTimes;
+			var loanTimes = d.loanTimes - 0;
 			var packageMoney = d.packageMoney - 0 || 0;
 			var loanMoney = d.loanMoney - 0 || 0;
 			var realLoanTime = d.realLoanTime || "";
 			var loanResidueMoney = d.loanResidueMoney || 0;
 			var loanMaxMoney = d.loanMaxMoney - 0 || 0;
-			var expectLoanTime = d.expectLoanTime;
-			var now = new Date();
+			var expectLoanTime = d.expectLoanTime || "";
+			var now = new Date().format("yyyy-MM-dd");
 			var status = d.status;
+			var days = getDays(now,expectLoanTime);
+
+			max = max + loanMoney;
 			//(102401 待放款,102402以放款)
 
 			html.push('<tr>');
 			html.push('<td>' + loanTimes + '</td>');
-			html.push('<td>' + (packageMoney - loanMoney) + '元</td>');
+			html.push('<td>' + (packageMoney - max) + '元</td>');
 			html.push('<td>' + realLoanTime + '</td>');
 			if(status == "102401"){
 				//待放款
-				html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大放款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
-				html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要放款</a></td>');
+				if(loanTimes == 1){
+					html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大放款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
+					html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要放款</a></td>');
+				}
+				else if(loanTimes == 2){
+					if(one == true){
+						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大放款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
+						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要放款</a></td>');
+					}
+					else{
+						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大放款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
+						html.push('<td><a href="javascript:Utils.alert(\'请先申请第一期\')">我要放款</a></td>');
+					}
+				}
+				else if(loanTimes == 3){
+					if(two == true){
+						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大放款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
+						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要放款</a></td>');
+					}
+					else{
+						html.push('<td>还剩' + days + '天再放款,不能超过金额35%</td>');
+						html.push('<td><span style="color:#C8C8C8;">我要放款</span></td>');
+					}
+				}
+				else if(loanTimes == 4){
+					if(three == true){
+						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大放款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
+						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要放款</a></td>');
+					}
+					else{
+						html.push('<td>还剩' + days + '天再放款,不能超过金额5%</td>');
+						html.push('<td><span style="color:#C8C8C8;">我要放款</span></td>');
+					}
+				}
 			}
 			else if(status == "102402"){
+				if(loanTimes === 1){
+					one = true;
+				}
+				if(loanTimes === 2){
+					two = true;
+				}
+				if(loanTimes === 3){
+					three = true;
+				}
 				html.push('<td>' + loanMoney + '元</td>');
 				html.push('<td><a href="javascript:;">已放款</a></td>');
 			}
@@ -788,15 +839,33 @@ $(function(){
 		showOrderPop('#repayBackPop');
 	}
 
+	function getDays(strDateStart,strDateEnd){
+		var strSeparator = "-"; //日期分隔符
+		var oDate1;
+		var oDate2;
+		var iDays;
+		oDate1= strDateStart.split(strSeparator);
+		oDate2= strDateEnd.split(strSeparator);
+		var strDateS = new Date(oDate1[0], oDate1[1]-1, oDate1[2]);
+		var strDateE = new Date(oDate2[0], oDate2[1]-1, oDate2[2]);
+		iDays = parseInt(Math.abs(strDateS - strDateE ) / 1000 / 60 / 60 /24)//把相差的毫秒数转换为天数
+		return iDays ;
+	}
+
 	function loanByLoanRecord(loanRecordId,loanMaxMoney){
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.loanRecordId = loanRecordId;
-		condi.loanMoney = $("#" +loanRecordId).val() - 0;
+		condi.loanMoney = $("#" +loanRecordId).val() - 0 || 0;
 		if(loanMaxMoney < condi.loanMoney){
 			Utils.alert("最多只能申请" +loanMaxMoney + "元");
 			return;
 		}
+		if(condi.loanMoney == 0){
+			Utils.alert("申请额度必须大于0元");
+			return;
+		}
+
 		g.httpTip.show();
 		var url = Base.serverUrl + "order/loanByLoanRecord";
 		$.ajax({
@@ -811,6 +880,7 @@ $(function(){
 				if(status){
 					Utils.alert("申请放款成功");
 					//repayListHtml(data);
+					hidePop();
 				}
 				else{
 					var msg = data.message || "申请放款失败";
