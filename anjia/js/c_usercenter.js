@@ -771,8 +771,11 @@ $(function(){
 			var expectLoanTime = d.expectLoanTime || "";
 			var now = new Date().format("yyyy-MM-dd");
 			var status = d.status;
-			var days = getDays(now,expectLoanTime);
 
+			var days = -1;
+			if(expectLoanTime !== ""){
+				days = getDays(now,expectLoanTime);
+			}
 			max = max + loanMoney;
 			//(102401 待放款,102402以放款)
 
@@ -802,7 +805,12 @@ $(function(){
 						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要放款</a></td>');
 					}
 					else{
-						html.push('<td>还剩' + days + '天再放款,不能超过金额35%</td>');
+						if(days === -1){
+							html.push('<td>不能超过金额35%</td>');
+						}
+						else{
+							html.push('<td>还剩' + days + '天再放款,不能超过金额35%</td>');
+						}
 						html.push('<td><span style="color:#C8C8C8;">我要放款</span></td>');
 					}
 				}
@@ -812,7 +820,12 @@ $(function(){
 						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要放款</a></td>');
 					}
 					else{
-						html.push('<td>还剩' + days + '天再放款,不能超过金额5%</td>');
+						if(days === -1){
+							html.push('<td>不能超过金额5%</td>');
+						}
+						else{
+							html.push('<td>还剩' + days + '天再放款,不能超过金额5%</td>');
+						}
 						html.push('<td><span style="color:#C8C8C8;">我要放款</span></td>');
 					}
 				}
