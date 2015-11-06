@@ -778,7 +778,7 @@ $(function(){
 
 			html.push('<tr>');
 			html.push('<td>' + loanTimes + '</td>');
-			html.push('<td>' + (packageMoney - max) + '元</td>');
+			html.push('<td>' +loanResidueMoney + '元</td>');
 			html.push('<td>' + realLoanTime + '</td>');
 			if(status == "102401"){
 				//待放款
