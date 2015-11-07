@@ -430,6 +430,7 @@ $(function(){
 			var orderId = d.orderId || "";
 			var contractNo = d.contractNo || "";
 			var packageName = d.packageName || "";
+			var company = d.company || "";
 			var contractMoney = d.contractMoney || 0;
 			var packageMoney = d.packageMoney || 0;
 			var loanResidueMoney = d.loanResidueMoney || 0;
@@ -440,7 +441,7 @@ $(function(){
 
 			html.push('<tr>');
 			html.push('<td>' + orderId + '</td>');
-			html.push('<td>' + packageName + '</td>');
+			html.push('<td>' + company + '</td>');
 			html.push('<td>' + contractMoney + '元</td>');
 			html.push('<td>' + packageMoney + '元</td>');
 			html.push('<td>' + statusDes + '</td>');
