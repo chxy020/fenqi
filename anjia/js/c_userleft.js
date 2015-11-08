@@ -56,15 +56,27 @@ __html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100505">待缴手�
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
 
+
+if(__ostatus__ == "100510"){
+	__html__.push('<dd class="selected">');
+}
+else{
+	__html__.push('<dd>');
+}
+__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100510">待财务审核</a>');
+__html__.push('<i class="common-ico ico-selected-flag"></i>');
+__html__.push('</dd>');
+
 if(__ostatus__ == "100506"){
 	__html__.push('<dd class="selected">');
 }
 else{
 	__html__.push('<dd>');
 }
-__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100506">待支付</a>');
+__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100506">我要付款</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
+
 
 if(__ostatus__ == "100507"){
 	__html__.push('<dd class="selected">');
