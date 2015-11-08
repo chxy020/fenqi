@@ -23,6 +23,7 @@
 			<div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
 			<ul id="J_Nav"  class="nav-list ks-clear">
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">账户管理</div></li>
+				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">角色管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">订单管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">轮播图管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">用户管理</div></li>
@@ -74,6 +75,22 @@
 							/*默认打开哪个页面*/
 							homePage : '1',
 							menu:[{
+								text:'角色管理',items:[
+									{id:'1',text:'角色查询',href:'Role/role_list.html'},
+									{id:'2',text:'添加角色',href:'Role/role_add.html'},
+									{id:'3',text:'菜单列表',href:'Role/menu_list.html'},
+									{id:'4',text:'配置角色权限',href:'Role/menu_list.html'}
+									//~ ,{id:'6',text:'添加菜单',href:'Order/loanorder.html'},
+									//~ {id:'7',text:'更新菜单',href:'Order/loanorder.html'},
+									//~ {id:'8',text:'获取角色后台系统菜单',href:'Order/loanorder.html'}
+								]
+							}]
+						},
+						{
+							id:'3',
+							/*默认打开哪个页面*/
+							homePage : '1',
+							menu:[{
 								text:'订单管理',items:[
 									{id:'1',text:'订单查询',href:'Order/orderquery.html'},
 									{id:'2',text:'风控审核',href:'Order/fk_index.html'},
@@ -85,7 +102,7 @@
 							}]
 						},
 						{
-							id:'3',
+							id:'4',
 							/*默认打开哪个页面*/
 							homePage : '1',
 							menu:[{
@@ -96,7 +113,7 @@
 							}]
 						},
 						{
-							id:'4',
+							id:'5',
 							/*默认打开哪个页面*/
 							homePage : '1',
 							menu:[{
@@ -106,7 +123,7 @@
 							}]
 						},
 						{
-							id:'5',
+							id:'6',
 							/*默认打开哪个页面*/
 							homePage : '1',
 							menu:[{

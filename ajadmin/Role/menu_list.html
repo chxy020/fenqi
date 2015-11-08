@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../Css/base.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+	<script type="text/javascript" src="../Js/jquery.js"></script>
+	<script type="text/javascript" src="../Js/bootstrap.js"></script>
+	<script type="text/javascript" src="../Js/ckform.js"></script>
+	<script type="text/javascript" src="../Js/common.js"></script>
+
+	<link rel="stylesheet" href="JQueryzTreev3.5/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="JQueryzTreev3.5/js/jquery.ztree.core-3.5.js"></script>
+	<script type="text/javascript" src="JQueryzTreev3.5/js/jquery.ztree.excheck-3.5.js"></script>
+
+	<style type="text/css">
+		body {
+			padding-bottom: 40px;
+		}
+		.sidebar-nav {
+			padding: 9px 0;
+		}
+
+		@media (max-width: 980px) {
+			/* Enable use of floated navbar text */
+			.navbar-text.pull-right {
+				float: none;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+		}
+	</style>
+
+</head>
+<body>
+	<TABLE border=0 height=600px align=left>
+		<TR>
+			<TD width=260px align=left valign=top style="BORDER-RIGHT: #999999 1px dashed">
+				<ul id="treeDemo" class="ztree" style="width:260px; overflow:auto;"></ul>
+			</TD>
+		</TR>
+	</TABLE>
+	<div style="margin-left: 270px;">
+		<table class="table table-bordered table-hover definewidth m10">
+			<tr>
+				<th colspan=2>
+					新增子菜单资源
+				</th>
+			</tr>
+			<tr>
+				<td width="10%" class="tableleft">父菜单名称</td>
+				<td><input id="parentId" type="hidden" name="parentId"/><input id="parentTId" type="text" name="parentTId"/></td>
+			</tr>
+			<tr>
+				<td width="10%" class="tableleft">菜单名称</td>
+				<td><input id="authorityName" type="text" name="authorityName"/></td>
+			</tr>
+			<tr>
+				<td width="10%" class="tableleft">菜单链接</td>
+				<td><input id="authorityUrl" type="text" name="authorityUrl"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">菜单描述</td>
+				<td><textarea id="description" name="description" style="width:400px;height:80px;"></textarea></td>
+			</tr>
+			<tr>
+				<td class="tableleft"></td>
+				<td>
+					<button id="addbtn" type="button" class="btn btn-primary">添加</button>
+				</td>
+			</tr>
+		</table>
+
+		<table class="table table-bordered table-hover definewidth m10">
+			<tr>
+				<th colspan=2>
+					删除菜单资源
+				</th>
+			</tr>
+			<tr>
+				<td>
+					<button id="deletebtn" type="button" class="btn btn-primary">删除</button>
+				</td>
+			</tr>
+		</table>
+
+		<table class="table table-bordered table-hover definewidth m10">
+			<tr>
+				<th colspan=2>
+					修改菜单资源
+				</th>
+			</tr>
+			<tr>
+				<td width="10%" class="tableleft">菜单名称</td>
+				<td><input id="authorityName2" type="text" name="authorityName2"/></td>
+			</tr>
+			<tr>
+				<td width="10%" class="tableleft">菜单链接</td>
+				<td><input id="authorityUrl2" type="text" name="authorityUrl2"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">菜单描述</td>
+				<td><textarea id="description2" name="description2" style="width:400px;height:80px;"></textarea></td>
+			</tr>
+			<tr>
+				<td class="tableleft"></td>
+				<td>
+					<button id="editbtn" type="button" class="btn btn-primary">修改</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+
+	<script src="../libs/json.js"></script>
+	<script src="../libs/base.js"></script>
+	<script src="../libs/utils.js"></script>
+	<script src="../libs/layer.js"></script>
+	<script src="js/menu_list.js"></script>
+	<!---->
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE> ZTREE DEMO </TITLE>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="../../css/zTreeStyle/zTreeStyle.css" type="text/css">
+  <style>
+	body {
+	background-color: white;
+	margin:0; padding:0;
+	text-align: center;
+	}
+	div, p, table, th, td {
+		list-style:none;
+		margin:0; padding:0;
+		color:#333; font-size:12px;
+		font-family:dotum, Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+	}
+	#testIframe {margin-left: 10px;}
+  </style>
+<script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="../../js/jquery.ztree.excheck-3.5.js"></script>
+  <SCRIPT type="text/javascript" >
+  		var data ={"success":true,"obj":{"authorityId":"20151103000001","parentId":null,"authorityName":"燕子安家后台管理系统菜单","description":null,"authorityType":"102201","authorityTypeDesc":"菜单","authorityUrl":null,"authoritySystem":"102301","authoritySystemDesc":"系统管理","createTime":"2015-11-03","deleted":0,"childrenAuthority":[{"authorityId":"20151103000002","parentId":"20151103000001","authorityName":"订单管理","description":null,"authorityType":"102201","authorityTypeDesc":"菜单","authorityUrl":null,"authoritySystem":"102301","authoritySystemDesc":"系统管理","createTime":"2015-11-08","deleted":0,"childrenAuthority":[{"authorityId":"20151103000003","parentId":"20151103000002","authorityName":"订单查询","description":null,"authorityType":"102201","authorityTypeDesc":"菜单","authorityUrl":"http://123.57.95.154/ajadmin/Order/orderquery.html","authoritySystem":"102301","authoritySystemDesc":"系统管理","createTime":"2015-11-08","deleted":0,"childrenAuthority":[]},{"authorityId":"20151103000004","parentId":"20151103000002","authorityName":"订单新增","description":null,"authorityType":"102201","authorityTypeDesc":"菜单","authorityUrl":"http://123.57.95.154/ajadmin/Order/orderquery.html","authoritySystem":"102301","authoritySystemDesc":"系统管理","createTime":"2015-11-08","deleted":0,"childrenAuthority":[]}]}]},"list":[],"message":null,"code":null,"token":null};
+
+  		/**
+  			Tree 设置必备(单选)
+  		**/
+		var setting = {
+			view: {
+				selectedMulti: false
+			},
+			check: {
+				enable: true,
+				chkStyle: "radio",
+				radioType: "all"
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				beforeCheck: beforeCheck,
+				onCheck: onCheck
+			}
+		};
+
+		/**
+			解析数据
+		**/
+		var format = {
+			format_children:function(__data){
+				var arr = new Array();
+				for (var i = 0; i<__data.length ; i++) {
+					var obj ={id:null,name:null,children:[]};
+					obj["id"]=__data[i].authorityId;
+					obj["name"]=__data[i].authorityName;
+					obj["authorityId"]=__data[i].authorityId;
+					obj["parentId"]=__data[i].parentId;
+					obj["authorityUrl"] = __data[i].authorityUrl;
+					obj["authorityType"] = __data[i].authorityType;
+					obj["authoritySystem"] = __data[i].authoritySystem;
+					obj["children"]=this.format_children(__data[i].childrenAuthority);
+					obj["open"]=true;
+					arr.push(obj);
+				};
+				return arr;
+			},
+			init:function(data){
+				if (data.success) {
+					var _data = [{open:true,id:data.obj["authorityId"],name:data.obj["authorityName"],parentId:data.obj["authorityName"],authorityUrl:data.obj["authorityUrl"]}];
+					_data[0].children = this.format_children(data.obj.childrenAuthority);
+					return _data;
+				}else{
+					alert("菜单数据错误!");
+					return null;
+				};
+			}
+		}
+
+		function beforeCheck(treeId, treeNode) {
+			return (treeNode.doCheck !== false);
+		}
+		function onCheck(e, treeId, treeNode) {
+			console.log("treeNode",treeNode);
+		}
+
+		$(document).ready(
+			function(){
+				var _data = format.init(data);
+				$.fn.zTree.init($("#treeDemo"), setting, _data);
+			}
+		);
+  </SCRIPT>
+ </HEAD>
+
+<BODY>
+<TABLE border=0 height=600px align=left>
+	<TR>
+		<TD width=260px align=left valign=top style="BORDER-RIGHT: #999999 1px dashed">
+			<ul id="treeDemo" class="ztree" style="width:260px; overflow:auto;"></ul>
+		</TD>
+	</TR>
+</TABLE>
+
+</BODY>
+</HTML>
