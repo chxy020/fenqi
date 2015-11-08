@@ -177,7 +177,7 @@ $(function(){
 			condi.authorityId = g.authorityId;
 			condi.login_token = g.login_token;
 
-			var url = Base.serverUrl + "authority/queryAuthorityById";
+			var url = Base.serverUrl + "authority/deleteAuthority";
 			$.ajax({
 				url:url,
 				data:condi,
@@ -189,6 +189,7 @@ $(function(){
 					var status = data.success || false;
 					if(status){
 						Utils.alert("删除菜单成功");
+						sendQueryListHttp();
 					}
 					else{
 						var msg = data.message || "删除菜单资源失败";
