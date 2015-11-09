@@ -787,22 +787,22 @@ $(function(){
 			if(status == "102401"){
 				//待放款
 				if(loanTimes == 1){
-					html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
+					html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '元" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
 					html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要付款</a></td>');
 				}
 				else if(loanTimes == 2){
 					if(one == true){
-						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
+						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '元" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
 						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要付款</a></td>');
 					}
 					else{
-						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
+						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '元" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
 						html.push('<td><a href="javascript:Utils.alert(\'请先申请第一期\')">我要付款</a></td>');
 					}
 				}
 				else if(loanTimes == 3){
 					if(two == true && days == 0){
-						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
+						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '元" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
 						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要付款</a></td>');
 					}
 					else{
