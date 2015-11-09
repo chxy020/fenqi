@@ -63,7 +63,7 @@ if(__ostatus__ == "100510"){
 else{
 	__html__.push('<dd>');
 }
-__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100510">待财务审核</a>');
+__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100510">待放款</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
 

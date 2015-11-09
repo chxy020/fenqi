@@ -165,6 +165,7 @@ $(function(){
 
 			html.push('<td>' + fenQiTimes + '期</td>');
 			html.push('<td>' + noRepaymentTimes + '期</td>');
+
 			if(status == "100501"){
 				//html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
@@ -183,7 +184,7 @@ $(function(){
 				//100505: "待缴手续费"
 				//html.push('<td><a href="/anjia/orderdetail.html">查看</a></td>');
 			}
-			else if(status == "100506"){
+			else if(status == "100506" || status == "100510" ){
 				//100506: "待放款"
 				//html.push('<td><a href="/anjia/orderdetail.html">查看</a></td>');
 				html.push('<td><a href="fkuan_detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="fkuan_loan.html?orderid=' + orderId + '">放款</a></td>');
