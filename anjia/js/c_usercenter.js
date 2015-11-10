@@ -788,12 +788,12 @@ $(function(){
 				//待放款
 				if(loanTimes == 1){
 					html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '元" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
-					html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要付款</a></td>');
+					html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\',\'' + loanResidueMoney + '\')">我要付款</a></td>');
 				}
 				else if(loanTimes == 2){
 					if(one == true){
 						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '元" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
-						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要付款</a></td>');
+						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\',\'' + loanResidueMoney + '\')">我要付款</a></td>');
 					}
 					else{
 						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '元" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
@@ -803,7 +803,7 @@ $(function(){
 				else if(loanTimes == 3){
 					if(two == true && days == 0){
 						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '元" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
-						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要付款</a></td>');
+						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney  + '\',\'' + loanResidueMoney + '\')">我要付款</a></td>');
 					}
 					else{
 						if(days === -1){
@@ -818,7 +818,7 @@ $(function(){
 				else if(loanTimes == 4){
 					if(three == true && days == 0){
 						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
-						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\')">我要付款</a></td>');
+						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\',\'' + loanResidueMoney + '\')">我要付款</a></td>');
 					}
 					else{
 						if(days === -1){
@@ -866,11 +866,15 @@ $(function(){
 		return iDays ;
 	}
 
-	function loanByLoanRecord(loanRecordId,loanMaxMoney){
+	function loanByLoanRecord(loanRecordId,loanMaxMoney, loanResidueMoney){
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.loanRecordId = loanRecordId;
 		condi.loanMoney = $("#" +loanRecordId).val() - 0 || 0;
+		if(loanResidueMoney < condi.loanMoney){
+			Utils.alert("申请不能大于" +loanResidueMoney + "元");
+			return;
+		}
 		if(loanMaxMoney < condi.loanMoney){
 			Utils.alert("最多只能申请" +loanMaxMoney + "元");
 			return;
