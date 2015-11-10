@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/calendar.css" />
+    <script type="text/javascript" src="../Js/jquery.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../Js/ckform.js"></script>
+    <script type="text/javascript" src="../Js/common.js"></script>
+
+
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+	<form class="form-inline definewidth m20" action="index.html" method="get">
+		公司名称：
+		<select id="companyId" name="companyId" style="width:210px;"></select>&nbsp;&nbsp;
+		手机号码：
+		<input type="text" id="usersPhone" name="usersPhone" style="width:210px;" />&nbsp;&nbsp;
+		真实姓名：
+		<input type="text" id="usersName" name="usersName" style="width:210px;" />&nbsp;&nbsp;<br />
+		开始时间：
+		<input type="text" id="createTimeBegin" name="createTimeBegin" style="width:206px;" />&nbsp;&nbsp;
+		结束时间：
+		<input type="text" id="createTimeEnd" name="createTimeEnd" style="width:210px;" />&nbsp;&nbsp;
+		<button id="querybtn" type="button" class="btn btn-primary" style="margin-top: 5px;">查询</button>&nbsp;&nbsp;<br />
+
+		<hr />
+		角色名称：
+		<select id="rolelist" name="rolelist" style="width:210px;"></select>&nbsp;&nbsp;
+		&nbsp;&nbsp; <button type="button" class="btn btn-success" id="bindbtn">绑定角色</button>
+	</form>
+
+	<div id="list">
+	</div>
+
+	<script src="../libs/json.js"></script>
+	<script src="../libs/base.js"></script>
+	<script src="../libs/utils.js"></script>
+	<script src="../libs/calendar.js"></script>
+	<script src="../libs/layer.js"></script>
+	<script src="js/role_user.js"></script>
+</body>
+</html>
