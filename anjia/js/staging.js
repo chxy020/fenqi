@@ -56,6 +56,41 @@ $(function(){
 		}
 	}
 });
+$(document).ready(function(){
+//	首页计算器
+	$("#do_btn2").bind("click",countBtnUp2);
+
+	function countFee2(allprice,time){
+		var numarr = [3,6,6,12,18,24,36];
+		var ratearr = [0,0.04,0.07,0.1,0.13,0.16];
+
+		var rate = ratearr[time] * allprice;
+		var all = allprice + rate;
+		var mouthprice = allprice / numarr[time];
+		var obj = {};
+		obj.all = all;
+		obj.mouth = mouthprice.toFixed(2);
+		obj.rate = rate.toFixed(2);
+		obj.stagnum = numarr[time];
+		return obj;
+	}
+
+	function countBtnUp2(){
+		var allprice = $("#allprice3").val() - 0 || 0;
+		var time = $("#select-option2 option:selected").attr("value");
+
+		if(allprice > 0){
+			var obj = countFee2(allprice,time);
+
+			//$("#capitaltext").html(allprice.toFixed(2));
+			//$("#alltext").html(obj.all);
+			$("#feetext3").html(obj.rate+"万元");
+			$("#mouthtext3").html(obj.mouth+"万元");
+		}
+	}
+	
+//ready_end	
+})
 
 
 

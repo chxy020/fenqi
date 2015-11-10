@@ -78,7 +78,13 @@ $(function(){
 				}
 			break;
 			case "li_2":
-				location.href = "../mystaging/staging-step.html";
+				url = location.href = "../mystaging/staging-step.html";
+				if(g.loginStatus){
+					location.href = url;
+				}
+				else{
+					location.href = "../login/login.html";
+				}
 			break;
 			case "li_3":
 				url = location.href = "../personal-center/index.html";

@@ -70,7 +70,11 @@
 	<!--加载通用头部-->
 	<script type="text/javascript" src="../anjia/js/head.js"></script>
 
-
+	<!-- 右侧二维码 -->
+	<ul class="weixin_er">
+		<a class="er"></a>
+		<img class="big_er" src="../res/images/weixin_er.png"/>
+	</ul>
     <div class="ui-slide index-slide">
     	<div class="ui-wrap" style="width:100%">
         	<div class="ui-slider">
@@ -90,19 +94,26 @@
             </div>
         </div>
     </div>
+<div class="body_div">    
     <div class="index-main1">
     	<div class="ui-wrap">
         	<div class="common-title1">
             	家装分期
-                <p>Decoration loan</p>
+                <p>Decoratqion loan</p>
             </div>
+            <a href="/anjia/staging.html" title="我要分期" class="loan-btn">
             <div class="loan-img">
-            	<a href="/anjia/staging.html" title="我要分期" class="loan-btn">
-                	<h1>我要分期</h1>
-                    <p>点击了解详情</p>
-                </a>
+            	<img class="rotate" src="images/button_m.png"/>
             </div>
+            </a>
         </div>
+    </div>
+    <div class="index-divn">
+    	<div class="content">
+	    	<h4><span class="font">其实不用算</span><br>￥服务费每月低至58.3元</h4>
+	    	<ul class="ul"><li class="rela">分期金额： <input id="allprice2" type="text" placeholder='0.00' onfocus="placeholder=''" onblur="placeholder='0.00'" class="input1"/><span class="position">（万元）</span></li><li>分期期数： <select id="select-option"><option>请选择分期期数</option><option value='0'>3期（免费）</option><option value='1'>6期（服务费率4%）</option><option value='2'>12期（服务费率7%）</option><option value='3'>18期（服务费率10%）</option><option value='4'>24期（服务费率13%）</option><option value='5'>36期（服务费率16%）</option></select></li><li><a class="do" id="do_btn">计算</a></li></ul>
+	    	<div class="id_bt">每月还款<span id="mouthtext2" class="font2">￥000000.00  元</span>服务费（一次性支付）<span id="feetext2" class="font2">￥000000.00  元</span></div>
+    	</div>
     </div>
     <div class="staging-step-main">
     	<div class="ui-wrap">
@@ -123,13 +134,13 @@
                 </div>
                 <div class="staging-step-item">
                 	<i class="staging-ico staging-ico3"></i>
-                    <p class="highlight staging-step-title">更低手续费</p>
+                    <p class="highlight staging-step-title">更低服务费</p>
                     <p>最低享0元手续费</p>
                 </div>
                 <div class="staging-step-item">
                 	<i class="staging-ico staging-ico4"></i>
                     <p class="highlight staging-step-title">人性化付款</p>
-                    <p>支付手续费即可开始家装</p>
+                    <p>支付服务费即可开始家装</p>
                 </div>
             </div>
         </div>
@@ -141,6 +152,7 @@
                 <p>Cooperative business</p>
             </div>
             <div class="cooperative-business-box clearfix">
+            	<a href="http://www.cdlrzs.com/" target="_blank" >
             	<div class="cooperative-part f-right">
                     <img src="../res/images/business-logo2.png" class="cooperative-part-logo" />
                     <div class="cooperative-example clearfix">
@@ -155,6 +167,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             	<div class="cooperative-part">
                     <img src="../res/images/business-logo1.png" class="cooperative-part-logo" />
                     <div class="cooperative-example clearfix">
@@ -184,7 +197,7 @@
     </div>
     <div class="ui-bottom">
     </div>
-
+</div>
 	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>
 	<script type="text/javascript" src="../res/js/ui.js"></script>

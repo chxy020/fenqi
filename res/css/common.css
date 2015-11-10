@@ -780,15 +780,18 @@ html{
 .ui-bottom .f-link{
 	width: 166px;
 	float:right;
-	margin: 0px 30px 0px 20px;
+	margin: 0px 13px 0px 21px;
 	font-size:14px;
 }
 .ui-bottom .f-link p{
 	font-size: 16px;
-	color: #539d34;
+	color: #006837;
 	margin-bottom: 15px;
 	line-height:20px;
-	color:#454646;
+	
+}
+.ui-bottom .f-link  .color{
+	color:#006837;
 }
 
 .ui-bottom .f-link a{
@@ -837,7 +840,7 @@ html{
 	float: left;
 	width: 200px;
 	margin: 0;
-	padding-right: 60px;
+	padding-right: 0px;
 	margin-top: 38px;
 }
 .bottom-left{
@@ -847,7 +850,7 @@ html{
 }
 .bottom-right{
 	border-left:1px solid #fff;
-	padding-left:60px;
+	padding-left:0px;
 	float:left;
 	height:160px;
 }
@@ -1538,32 +1541,6 @@ a.improve-btn:hover{
 }
 /*from{-webkit-transform:rotate(0deg) translateZ(0);}
 to{-webkit-transform:rotate(360deg) translateZ(0);}*/
-}
-.nav-tabs{
-	border-bottom:1px solid #e9e9e9;
-}
-.nav-tabs li{
-	float:left;
-	margin-right:10px;
-}
-.nav-tabs li a{
-	display:block;
-	height:35px;
-	line-height:35px;
-	font-size:16px;
-	padding:0px 15px;
-	border:1px solid #e9e9e9;
-	border-bottom:none;
-	border-top-left-radius:5px;
-	border-top-right-radius:5px;
-	color:#555;
-	cursor:pointer;
-}
-.nav-tabs li a:hover,.nav-tabs li.active a{
-	text-decoration:none;
-	background:#94d316;
-	border-color:#94d316;
-	color:#fff;
 }
 .rp_tishi {
        text-align: center;
