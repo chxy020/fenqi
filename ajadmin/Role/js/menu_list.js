@@ -106,8 +106,10 @@ $(function(){
 	function onCheck(e, treeId, treeNode) {
 		console.log("treeNode",treeNode);
 		var parentTId = treeNode.id || "";
+		var name = treeNode.name || "";
 		if(parentTId !== ""){
 			$("#parentTId").val(parentTId);
+			$("#parentname").val(name);
 		}
 		g.authorityId = treeNode.authorityId || "";
 		var name = treeNode.name || "";

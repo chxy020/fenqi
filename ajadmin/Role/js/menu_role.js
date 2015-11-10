@@ -157,8 +157,13 @@ $(function(){
 				else{
 					var msg = data.message || "获取轮播图列表数据失败";
 					Utils.alert(msg);
-
-					g.tree.checkAllNodes(false);
+					if(g.tree){
+						g.tree.checkAllNodes(false);
+					}
+					else{
+						var _data = format.init(g.alldata,{list:[]});
+						g.tree = $.fn.zTree.init($("#treeDemo"), setting, _data);
+					}
 				}
 				g.httpTip.hide();
 			},
@@ -251,7 +256,7 @@ $(function(){
 		init:function(data,selected_data){
 			if (data.success) {
 				var _data = [{open:true,authorityId:data.obj["authorityId"],id:data.obj["authorityId"],name:data.obj["authorityName"],parentId:data.obj["parentId"],authorityUrl:data.obj["authorityUrl"]}];
-				var _selected_data = selected_data.list;
+				var _selected_data = selected_data.list || [];
 				for (var j = 0; j < _selected_data.length; j++) {
 					if (_data[0]["authorityId"]==_selected_data[j]["authorityId"]) {
 						_data[0]["checked"] =true;

@@ -22,12 +22,14 @@
 		<div class="dl-main-nav">
 			<div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
 			<ul id="J_Nav"  class="nav-list ks-clear">
+				<!--
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">账户管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">角色管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">订单管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">轮播图管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">用户管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">文章管理</div></li>
+				-->
 				<!--
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">账户管理</div></li>
 				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">角色管理</div></li>
@@ -50,17 +52,79 @@
 
 	<script type="text/javascript">
 		$(function(){
-			var loginStatus = Utils.getUserInfo();
-			if(!loginStatus){
-				//未登录
-				location.href = "Public/login.html";
+			var g = {};
+			g.login_token = Utils.offLineStore.get("token",false) || "";
+			g.tabConfig = [];
+
+			function sendQueryMenuListByRoleHttp(roleId){
+				//g.httpTip.show();
+				var url = Base.serverUrl + "authority/queryAdminMenuTreeByRoleId";
+				var condi = {};
+				condi.login_token = g.login_token;
+				condi.roleId = roleId;
+				$.ajax({
+					url:url,
+					data:condi,
+					type:"POST",
+					dataType:"json",
+					context:this,
+					success: function(data){
+						console.log("sendQueryMenuListByRoleHttp",data);
+						var status = data.success || false;
+						if(status){
+							var obj = data.obj || {};
+							var tab = obj.childrenAuthority || [];
+							var tabhtml = [];
+							for(var i = 0,len = tab.length; i < len; i++){
+								var name = tab[i].authorityName || "";
+								if(name !== ""){
+									tabhtml.push('<li class="nav-item dl-selected"><div class="nav-item-inner ">' + name + '</div></li>');
+								}
+
+								var child = tab[i].childrenAuthority || [];
+								if(child.length > 0){
+									var config = {
+										id:(i + 1 + ""),
+										//默认打开哪个页面
+										homePage : '1',
+										menu:[{
+											text:name,
+											items:[]
+										}]
+									};
+									for(var j = 0,jlen = child.length; j < jlen; j++){
+										var cobj = child[j] || {};
+										var text = cobj.authorityName || "";
+										var href = cobj.authorityUrl || "";
+										config.menu[0].items.push({id:(j+1 + ""),text:text,href:href});
+									}
+									g.tabConfig.push(config);
+								}
+							}
+							$("#J_Nav").html(tabhtml.join(''));
+							initTab();
+						}
+						else{
+							var msg = data.message || "获取账户权限错误";
+							Utils.alert(msg);
+						}
+						//g.httpTip.hide();
+					},
+					error:function(data){
+						//g.httpTip.hide();
+					}
+				});
 			}
-			else{
+
+			function initTab(){
 				BUI.use('common/main',function(){
+					var config = g.tabConfig;
+
+					/*
 					var config = [
 						{
 							id:'1',
-							/*默认打开哪个页面*/
+							//默认打开哪个页面
 							homePage : '1',
 							menu:[{
 								text:'账户管理',
@@ -72,7 +136,6 @@
 						},
 						{
 							id:'2',
-							/*默认打开哪个页面*/
 							homePage : '1',
 							menu:[{
 								text:'角色管理',items:[
@@ -89,7 +152,6 @@
 						},
 						{
 							id:'3',
-							/*默认打开哪个页面*/
 							homePage : '1',
 							menu:[{
 								text:'订单管理',items:[
@@ -104,7 +166,6 @@
 						},
 						{
 							id:'4',
-							/*默认打开哪个页面*/
 							homePage : '1',
 							menu:[{
 								text:'轮播图管理',items:[
@@ -115,17 +176,15 @@
 						},
 						{
 							id:'5',
-							/*默认打开哪个页面*/
 							homePage : '1',
 							menu:[{
-								text:'注册用户管理',items:[
+								text:'用户管理',items:[
 									{id:'1',text:'注册用户列表',href:'RegUser/index.html'}
 								]
 							}]
 						},
 						{
 							id:'6',
-							/*默认打开哪个页面*/
 							homePage : '1',
 							menu:[{
 								text:'文章管理',items:[
@@ -135,10 +194,27 @@
 							}]
 						}
 					];
+					*/
 					new PageUtil.MainPage({
 						modulesConfig : config
 					});
+
 				});
+			}
+
+			var loginStatus = Utils.getUserInfo();
+			if(!loginStatus){
+				//未登录
+				location.href = "Public/login.html";
+			}
+			else{
+				//initTab();
+
+				var roleId = Utils.offLineStore.get("user_roleId",false) || "";
+				console.log("roleId",roleId);
+				if(roleId !== ""){
+					sendQueryMenuListByRoleHttp(roleId);
+				}
 			}
 		});
 	</script>

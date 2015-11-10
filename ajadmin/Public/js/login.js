@@ -88,6 +88,7 @@ $(function(){
 						Utils.offLineStore.set("user_phoneNumber",userInfo.usersPhone,false);
 						Utils.offLineStore.set("user_usersName",userInfo.usersName,false);
 						Utils.offLineStore.set("user_usersId",userInfo.usersId,false);
+						Utils.offLineStore.set("user_roleId",userInfo.roleId,false);
 
 						userInfo = JSON.stringify(userInfo);
 						//保存用户数据

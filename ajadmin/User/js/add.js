@@ -11,7 +11,6 @@ $(function(){
 	g.sendCode = false;
 	g.sendTime = 60;
 	g.login_token = Utils.offLineStore.get("token",false) || "";
-
 	g.httpTip = new Utils.httpTip({});
 
 
