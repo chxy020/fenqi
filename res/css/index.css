@@ -940,9 +940,9 @@ h1,h2,h3,h4,h5{font-weight:500;}
 
 .staging_div{width:1200px;margin:0 auto;position:relative;background-color:#fff;}
 .staging_div h4{font-size:30px;color:#546d1c;margin:50px 0;}
-.staging_div p{width:895px;font-size:18px;color:#3e3e3e;line-height:38px;margin-bottom:50px;}
+.staging_div p{width:895px;font-size:18px;color:#3e3e3e;line-height:38px;margin-bottom:66px;}
 .staging_div p .color{color:#546d1c;}
-.staging_div .weixin_img{position:absolute;right:85px;top:34px;}
+.staging_div .weixin_img{position:absolute;right:85px;top:-12px;}
 
 .index-divn .bttom_btn{text-align:center;}
 .index-divn .bttom_btn a.btn{margin-top:50px;margin-bottom:90px;border-radius:20px;display:inline-block;width:300px;height:75px;line-height:75px;text-align:center;font-size:40px;color:#fff;background-color:#fd680e;}
