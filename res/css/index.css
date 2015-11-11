@@ -1009,6 +1009,6 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .cooperative-part .cooperative_border2{bottom:-4px;}
 .cooperative_border3{display:none;border:1px solid #dcdcdc;transition:all 3s ease-in;z-index:10;top:0;bottom:0;right:0;left:0;margin:0 auto;position:absolute;width:76%;height:100%;}
 
-
-
+/* 关于我们 */
+.src_display  li{cursor:pointer;float:left;display:inline-block;margin-right:10px;}
 
