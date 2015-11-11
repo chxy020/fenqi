@@ -104,10 +104,10 @@ $(document).ready(function(){
 	function countFee2(allprice,time){
 		var numarr = [3,6,6,12,18,24,36];
 		var ratearr = [0,0.04,0.07,0.1,0.13,0.16];
-
-		var rate = ratearr[time] * allprice;
-		var all = allprice + rate;
-		var mouthprice = allprice / numarr[time];
+		var allprice_l=allprice*10000;
+		var rate = ratearr[time] * allprice_l;
+		var all = allprice_l + rate;
+		var mouthprice = allprice_l / numarr[time];
 		var obj = {};
 		obj.all = all;
 		obj.mouth = mouthprice.toFixed(2);
@@ -125,8 +125,8 @@ $(document).ready(function(){
 
 			//$("#capitaltext").html(allprice.toFixed(2));
 			//$("#alltext").html(obj.all);
-			$("#feetext2").html(obj.rate+"万元");
-			$("#mouthtext2").html(obj.mouth+"万元");
+			$("#feetext2").html(obj.rate+"元");
+			$("#mouthtext2").html(obj.mouth+"元");
 		}
 	}
 	

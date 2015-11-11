@@ -984,4 +984,9 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .slide-right-part{margin-right:0;}
 .sub-page-banner.improve-banner{background:url('../images/jbanner1.jpg') no-repeat scroll center top;}
 
-
+.cooperative-part .cooperative-example .cooperative-example-part .c-example-img, .cooperative-part .cooperative-example .cooperative-example-part-two .c-example-img{
+	width:423px;	
+}
+.cooperative-part .cooperative-example .cooperative-example-part, .cooperative-part .cooperative-example .cooperative-example-part-two{
+	width:423px;float:none;margin:0 auto;
+}
