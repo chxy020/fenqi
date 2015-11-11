@@ -608,7 +608,7 @@ $(function(){
 			window.scrollTo(0,170);
 		}
 		else{
-			location.href = "/anjia/login.html";
+			location.href = "/anjia/login.html?p=1";
 		}
 	}
 
