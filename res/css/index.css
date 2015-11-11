@@ -912,6 +912,7 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .index-divn .ul li.rela {position:relative;}
 .index-divn .ul span.position{position:absolute;right:88px;}
 .index-divn .ul .input1,.index-divn .ul select{font-size:16px;font-family:宋体;color:#747674;border:1px solid #f8c82e;margin-right:84px;width:236px;height:47px;line-height:47px;padding-left:3px;}
+.index-divn .ul select{vertical-align:middle;}
 .index-divn .do{cursor:pointer;display:inline-block;width:236px;height:47px;line-height:47px;text-align:center;background-color:#1b8cd3;color:#fff;}
 .index-divn .do:hover{text-decoration:none;}
 .index-divn .id_bt{font-size:16px;margin-top:30px;}
@@ -987,6 +988,27 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .cooperative-part .cooperative-example .cooperative-example-part .c-example-img, .cooperative-part .cooperative-example .cooperative-example-part-two .c-example-img{
 	width:423px;	
 }
-.cooperative-part .cooperative-example .cooperative-example-part, .cooperative-part .cooperative-example .cooperative-example-part-two{
-	width:423px;float:none;margin:0 auto;
+.cooperative-part .cooperative-example .cooperative-example-part .c-example-img2, .cooperative-part .cooperative-example .cooperative-example-part-two .c-example-img2{
+	width:425px;	
 }
+.cooperative-part .cooperative-example .cooperative-example-part, .cooperative-part .cooperative-example .cooperative-example-part-two{
+	width:425px;float:none;margin:0 auto;
+}
+.cooperative-part .cooperative-example .cooperative-example-part2{
+	width:422px;float:none;margin:0 auto;
+}
+
+.staging-step-main .staging-border{border:1px solid #dcdcdc;padding:20px 0 36px;position:relative;}
+.staging-step-main{padding-bottom:46px;}
+.staging-step-main .border_none{right:0;left:0;margin:0 auto;position:absolute;width:80%;height:3px;top:-1px;background-color:#fff;}
+
+.cooperative-part{overflow:hidden;}
+.border_outside{height:300px;position:relative;border:none;overflow:visible;}
+.cooperative-part .cooperative_border2,.cooperative-part .cooperative_border1{z-index:9;right:0;left:0;margin:0 auto;position:absolute;width:76%;height:3px;background-color:#fff;}
+.cooperative-part .cooperative_border1{top:-1px;}
+.cooperative-part .cooperative_border2{bottom:-4px;}
+.cooperative_border3{display:none;border:1px solid #dcdcdc;transition:all 3s ease-in;z-index:10;top:0;bottom:0;right:0;left:0;margin:0 auto;position:absolute;width:76%;height:100%;}
+
+
+
+
