@@ -148,3 +148,7 @@
 .ui-slider .pagerNum a.selected {
 	background: url(../images/bg_direction_point2.gif) no-repeat left top;
 }
+
+.index-slide .prev,.index-slide .next{transition:all .5s ease-in-out;opacity:0.4;background:url('../images/i_left.png') no-repeat 45% center;background-color:#3c3c3c;top:255px;height:60px;width:60px;border-radius:50px;}
+.ui-slider:hover  .prev,.ui-slider:hover  .next{opacity:0.8;}
+.index-slide .next{background:url('../images/i_right.png') no-repeat 55% center;background-color:#3c3c3c;}

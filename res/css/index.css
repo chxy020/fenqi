@@ -920,12 +920,12 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .index-divn .content{}
 
 .loan-img{position:relative;}
-.loan-img .rotate{position:absolute;left:495px;top:-9px;transition:all 1s ease-in-out;}
-.loan-img .rotate:hover{transform:rotateZ(360deg);transform-origin: 102px 107.5px;
--ms-transform:rotate(360deg); -ms-transform-origin: 102px 107.5px;
--moz-transform:rotate(360deg); -moz-transform-origin: 102px 107.5px;
--webkit-transform:rotate(360deg);-webkit-transform-origin: 102px 107.5px;
--o-transform:rotate(360deg); -o-transform-origin:102px 107.5px;
+.loan-img .rotate{position:absolute;left:514px;top:13px;transition:all 1s ease-in-out;}
+.loan-img .rotate:hover{transform:rotateZ(360deg);
+-ms-transform:rotate(360deg);
+-moz-transform:rotate(360deg); 
+-webkit-transform:rotate(360deg);
+-o-transform:rotate(360deg);
 }
 .loan-img .rotate:active{transform:scale(1.1);
 -ms-transform:scale(1.1);
