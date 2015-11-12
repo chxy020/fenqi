@@ -137,8 +137,20 @@
 	text-align:center;
 	padding:5px 0px 2px;
 }
-.ui-nav .ui-nav-ul li a:active{
-	background:#efefef;
+.ui-nav .ui-nav-ul li a:active p{
+	color:#ffd04d;
+}
+.ui-nav .ui-nav-ul #li_0 a:active .nav-ico{
+	background-position:0px -35px;
+}
+.ui-nav .ui-nav-ul #li_1 a:active .nav-ico{
+	background-position:-50px -91px;
+}
+.ui-nav .ui-nav-ul #li_3 a:active .nav-ico{
+	background-position:-200px -91px;
+}
+.ui-nav .ui-nav-ul #li_4 a:active .nav-ico{
+	background-position:-250px -91px;
 }
 .ui-nav .ui-nav-ul li a p{
 	font-size:10px;
@@ -147,7 +159,7 @@
 	line-height:16px;
 }
 .ui-nav .ui-nav-ul li.selected a .nav-ico{
-	background-position:0px -93px;
+	background-position:0px -35px;
 }
 .ui-nav .ui-nav-ul li.selected a p{
 	color:#61dd43;
@@ -766,9 +778,11 @@
 .ui-nav .ui-nav-ul li.nav-middle a{left:0;right:0;width:83px;background:url('../images/ipd_bimg.png') no-repeat center 0px;background-size:cover;top:-15px;margin:0 auto;}
 .ui-nav .ui-nav-ul li a p{color:#61dd43;}
 .ui-nav .ui-nav-ul li.selected a p{color:#ffd04d;}
-.nav-ico{height:23px;}
 
-.ui-nav .ui-nav-ul li.selected a .nav-ico{background-position:0 -91px;}
+.nav-ico{height:23px;}
+.nav-ico.ico-home{background-position:0 -91px;}
+
+.ui-nav .ui-nav-ul li.selected a .nav-ico{background-position:0 -35px;}
 .nav-ico.ico-service{background-position:-250px -36px;}
 
 .staging_div1{background-color:#fff;border-top:2px solid #f8f8f8;border-bottom:2px solid #f8f8f8;}
