@@ -137,6 +137,26 @@ $(document).ready(function(){
 		$(this).parents(".weixin_er").find(".big_er").fadeOut(100);		
 	})
 	
+/* 平台优势 动态效果 */
+	$(".staging-step-box  .staging-step-item .staging-ico").each(function(){
+	$(this).hover(
+	   function(){
+		var ths=$(this);
+            ths.siblings(".li3").animate({'left':'100px','opacity':"0"},10,function(){
+			ths.siblings(".txt1").animate({"left":"0","opacity":"1"},150,function(){
+			ths.siblings(".txt2").animate({"left":"0","opacity":"1"},150)
+			})
+		 })
+	   },
+	   function(){
+		   var ths=$(this);
+		   ths.siblings(".li3").css({"left":"0","opacity":"1"})}
+	   )
+
+})
+	
+	
+	
 //ready_end	
 })
 

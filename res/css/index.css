@@ -1012,3 +1012,7 @@ h1,h2,h3,h4,h5{font-weight:500;}
 /* 关于我们 */
 .src_display  li{cursor:pointer;float:left;display:inline-block;margin-right:10px;}
 
+.staging-step-box .li3{position:relative;}
+.staging-step-item p{width:50%;margin-left:auto;margin-right:auto;}
+.staging-step-box .staging-step-item .staging-step-title{margin-left:auto;margin-right:auto;}
+.staging-ico{cursor:pointer;}
