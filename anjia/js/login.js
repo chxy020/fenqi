@@ -24,8 +24,19 @@ $(function(){
 	});	
 	//找回密码
 	//$("#findpwd").bind("click",findPwdPage);
-
-
+	/* 接收页面参数 */
+	function GetRequest() { 
+		var url = location.search; //获取url中"?"符后的字串
+	   var theRequest = [];
+	   if (url.indexOf("?") != -1) {
+		  var str = url.substr(1);
+		  strs = str.split("&");
+		  for(var i = 0; i < strs.length; i ++) {
+			 theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+		  }
+	   }
+	   return theRequest;
+	}
 	//验证手机号
 	function validPhone(){
 		var phone = $("#inputphone").val() || "";
@@ -95,7 +106,10 @@ $(function(){
 						var token = data.token || "";
 
 						Utils.offLineStore.set("token",token,false);
-						location.href = "/anjia/usercenter.html";
+						var compare=GetRequest().p;						
+						if(compare==1){location.href = "/anjia/mystaging.html"}
+						else{location.href = "/anjia/usercenter.html";}
+						
 					}
 					//location.href = "center.html";
 					//var token = data.result.token || "";

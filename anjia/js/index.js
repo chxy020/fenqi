@@ -104,10 +104,10 @@ $(document).ready(function(){
 	function countFee2(allprice,time){
 		var numarr = [3,6,6,12,18,24,36];
 		var ratearr = [0,0.04,0.07,0.1,0.13,0.16];
-
-		var rate = ratearr[time] * allprice;
-		var all = allprice + rate;
-		var mouthprice = allprice / numarr[time];
+		var allprice_l=allprice*10000;
+		var rate = ratearr[time] * allprice_l;
+		var all = allprice_l + rate;
+		var mouthprice = allprice_l / numarr[time];
 		var obj = {};
 		obj.all = all;
 		obj.mouth = mouthprice.toFixed(2);
@@ -125,8 +125,8 @@ $(document).ready(function(){
 
 			//$("#capitaltext").html(allprice.toFixed(2));
 			//$("#alltext").html(obj.all);
-			$("#feetext2").html(obj.rate+"万元");
-			$("#mouthtext2").html(obj.mouth+"万元");
+			$("#feetext2").html(obj.rate+"元");
+			$("#mouthtext2").html(obj.mouth+"元");
 		}
 	}
 	
@@ -136,6 +136,26 @@ $(document).ready(function(){
 	},function(){
 		$(this).parents(".weixin_er").find(".big_er").fadeOut(100);		
 	})
+	
+/* 平台优势 动态效果 */
+	$(".staging-step-box  .staging-step-item .staging-ico").each(function(){
+	$(this).hover(
+	   function(){
+		var ths=$(this);
+            ths.siblings(".li3").animate({'left':'100px','opacity':"0"},10,function(){
+			ths.siblings(".txt1").animate({"left":"0","opacity":"1"},150,function(){
+			ths.siblings(".txt2").animate({"left":"0","opacity":"1"},150)
+			})
+		 })
+	   },
+	   function(){
+		   var ths=$(this);
+		   ths.siblings(".li3").css({"left":"0","opacity":"1"})}
+	   )
+
+})
+	
+	
 	
 //ready_end	
 })

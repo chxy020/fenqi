@@ -121,20 +121,22 @@
 		},
 		//合作商家经过函数
 		businessHoverFun:function(){
-			$('.cooperative-part').hover(function(){
+			$('.border_outside').hover(function(){
 				$(this).find('.cooperative-part-logo').stop().animate({
 					'margin-top':'20px'
 				});
 				$(this).find('.cooperative-example').stop().animate({
-					'top':'112px'
+					'top':'112px',"z-index":"11"
 				});
+				$(this).find(".cooperative_border3").fadeIn(300);
 			},function(){
 				$(this).find('.cooperative-part-logo').stop().animate({
 					'margin-top':'109px'
 				});
 				$(this).find('.cooperative-example').stop().animate({
-					'top':'300px'
+					'top':'300px',"z-index":"11"
 				});
+				$(this).find(".cooperative_border3").fadeOut(300);
 			});
 		},
 		//@param String protocolPageUrl
