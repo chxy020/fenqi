@@ -933,8 +933,15 @@ h1,h2,h3,h4,h5{font-weight:500;}
 -webkit-transform:scale(1.1);
 -o-transform:scale(1.1);}
 
-.weixin_er{position:fixed;width:100px;left:50%;margin-left:600px;z-index:10;}
-.weixin_er a.er{position:relative;z-index:2;cursor:pointer;margin-top:71px;float:right;display:block;width:69px;height:69px;background:url('../images/weixin_icon.png') no-repeat center center;}
+.weixin_er{position:fixed;width:100px;right:0;bottom:10%;z-index:10;}
+.weixin_er a.er,.weixin_er a.top{position:relative;z-index:2;cursor:pointer;margin-top:71px;float:right;display:block;width:57px;height:54px;}
+.weixin_er a.top{transition:all .1s ease-in;margin-top:2px;background:url('../images/right_box_img2.png') no-repeat center center;}
+.weixin_er a.er{transition:all 0.1s ease-out; text-align:center;background:url('../images/right_box_img6.png') no-repeat center center;}
+.weixin_er a.er .er_img{position:absolute;transition:all 0.5s ease-in-out;bottom:38px;right:29px;display:none;}
+.weixin_er  .cl_bottom{position:absolute;bottom:0;left:0;}
+.weixin_er  .cl_top{position:absolute;top:0;left:0;}
+.weixin_er a.er:hover{width:178px;height:178px;background:url('../images/er_border.png') no-repeat center center;}
+.weixin_er a.er:hover .er_img{transition:all 0.5s ease-in-out;display:inline;width:106px;height:106px;}
 .weixin_er .big_er{position:relative;z-index:1;display:none;float:right;margin-right:5px;margin-top:-86px;transition:all 1s ease-in-out;}
 .body_div{position:relative;overflow:hidden;}
 

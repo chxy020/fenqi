@@ -154,13 +154,32 @@ $(document).ready(function(){
 	   )
 
 })
+
+/* 返回顶部效果 */
+	$(window).load(function(){
+		backTop();
+	})
+	$(window).on("scroll",backTop);
 	
-	
+	$(".weixin_er a.top").click(function(){
+		$(".weixin_er a.top").css({"background":"url('../res/images/right_box_img9.png') no-repeat center center"});
+		$(window).off("scroll",backTop);		
+	$('html,body').animate({scrollTop:0},900,function(){if ($(this).scrollTop() <= 450){$(window).on("scroll",backTop);$(".weixin_er").fadeOut(0)}});
+		
+	});
 	
 //ready_end	
 })
 
-
+/* 返回顶部效果 */
+	function backTop(){
+		if ($(this).scrollTop() >= 200) {
+				$(".weixin_er a.top").css({"background":"none","background":"url('../res/images/right_box_img2.png') no-repeat center center"});
+		}else{
+			$(".weixin_er a.top").css({"background":"url('../res/images/right_box_img9.png') no-repeat center center"});
+		  }
+		 if ($(this).scrollTop() <= 350){$(".weixin_er").fadeOut(0)}else{$(".weixin_er").fadeIn(300)} 
+	}
 
 
 
