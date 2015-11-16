@@ -59,7 +59,7 @@ $(function(){
 	$("#perbtn1").bind("click",preBtnUp1);
 	$("#nextbtn3").bind("click",nextBtnUp3);
 
-	$("#userinfotab li").bind("click",userInfoTabChange);
+	/* $("#userinfotab li").bind("click",userInfoTabChange); */
 	$("#prebtn2").bind("click",preBtnUp2);
 	$("#nextbtn32").bind("click",nextBtnUp32);
 
