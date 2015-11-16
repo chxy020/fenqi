@@ -16,7 +16,7 @@ $(function(){
 	g.guid = Utils.getGuid();
 
 	//获取图形验证码
-	sendGetImgCodeHttp();
+	/* sendGetImgCodeHttp(); 11-16*/
 
 	//g.httpTip.show();
 
@@ -27,9 +27,9 @@ $(function(){
 	$("#regbtn").bind("click",regUser);
 	$("#gobtn").bind("click",gotoUserCenter);
 
-	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);
+	/* $("#imgcodebtn").bind("click",sendGetImgCodeHttp); 11-16*/
 
-	function sendGetImgCodeHttp(){
+/* 	function sendGetImgCodeHttp(){
 		//URL:  http://www.partywo.com/imageValidate/getImageValidate
 		//参数: {image_key:string}
 		var url = Base.serverUrl + "imageValidate/getImageValidate";
@@ -37,7 +37,7 @@ $(function(){
 		g.codeImg.src = url;
 
 		$("#inputimgcode").val("");
-	}
+	} */
 
 	//验证手机号
 	function validPhone(){
@@ -87,15 +87,15 @@ $(function(){
 			var reg = /^1[3,5,7,8]\d{9}$/g;
 			if(reg.test(p)){
 				g.phone = p;
-				if(imgCode !== ""){
+				/* if(imgCode !== ""){ */
 					if(!g.sendCode){
 						sendGetCodeHttp(imgCode);
 					}
-				}
+				/* }
 				else{
 					Utils.alert("请输入图形验证码");
 					$("#inputimgcode").focus();
-				}
+				} */
 			}
 			else{
 				Utils.alert("手机号输入错误");
@@ -122,7 +122,7 @@ $(function(){
 
 			//重新获取图形验证码,1分钟有效
 			//重新获取图形验证码,1分钟有效
-			sendGetImgCodeHttp();
+			/* sendGetImgCodeHttp(); 11-16*/
 		}
 	}
 	//请求验证码
@@ -160,7 +160,7 @@ $(function(){
 					Utils.alert(msg);
 
 					//重新请求图形验证码
-					sendGetImgCodeHttp();
+					/* sendGetImgCodeHttp(); 11-16*/
 				}
 				g.httpTip.hide();
 			},
@@ -177,8 +177,8 @@ $(function(){
 		var reg = /^1[3,5,7,8]\d{9}$/g;
 		if(phone !== ""){
 			if(reg.test(phone)){
-				var name = $("#name").val() || "";
-				if(name !== ""){
+				/* var name = $("#name").val() || "";
+				if(name !== ""){ 11-16*/
 					var pwd1 = $("#inputpwd").val() || "";
 					var pwd2 = $("#inputcpwd").val() || "";
 					if(pwd1 !== ""){
@@ -219,11 +219,11 @@ $(function(){
 						Utils.alert("请输入密码");
 						$("#inputpwd").focus();
 					}
-				}
+				/* }
 				else{
 					Utils.alert("请输入用户姓名");
 					$("#name").focus();
-				}
+				} 11-16*/
 			}
 			else{
 				Utils.alert("手机号输入错误");

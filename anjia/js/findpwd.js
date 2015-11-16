@@ -15,7 +15,7 @@ $(function(){
 	g.guid = Utils.getGuid();
 
 	//获取图形验证码
-	sendGetImgCodeHttp();
+	/* sendGetImgCodeHttp(); 11-16*/
 
 
 	$("#inputphone").bind("blur",validPhone);
@@ -26,7 +26,7 @@ $(function(){
 	$("#inputcpwd").bind("blur",validCPwd);
 	$("#changepwdbtn").bind("click",changePwd);
 
-	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);
+	/* $("#imgcodebtn").bind("click",sendGetImgCodeHttp); 11-16*/
 
 	function sendGetImgCodeHttp(){
 		//URL:  http://www.partywo.com/imageValidate/getImageValidate
@@ -62,15 +62,15 @@ $(function(){
 			var reg = /^1[3,5,7,8]\d{9}$/g;
 			if(reg.test(p)){
 				g.phone = p;
-				if(imgCode !== ""){
+				/* if(imgCode !== ""){ 11-16*/
 					if(!g.sendCode){
 						sendGetCodeHttp(imgCode);
 					}
-				}
+				/* }
 				else{
 					Utils.alert("请输入图形验证码");
 					$("#inputimgcode").focus();
-				}
+				} 11-16*/
 			}
 			else{
 				Utils.alert("手机号输入错误");
@@ -96,7 +96,7 @@ $(function(){
 			g.sendCode = false;
 
 			//重新获取图形验证码,1分钟有效
-			sendGetImgCodeHttp();
+			/* sendGetImgCodeHttp(); 11-16*/
 			//$("#inputImgCode3").focus();
 		}
 	}
@@ -135,7 +135,7 @@ $(function(){
 					Utils.alert(msg);
 
 					//重新请求图形验证码
-					sendGetImgCodeHttp();
+					/* sendGetImgCodeHttp(); 11-16*/
 				}
 				g.httpTip.hide();
 			},

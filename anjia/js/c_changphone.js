@@ -18,8 +18,8 @@ $(function(){
 	g.guid = Utils.getGuid();
 	g.guidNew = Utils.getGuid();
 	//获取图形验证码
-	sendGetImgCodeHttp();
-	sendGetNewImgCodeHttp();
+	/* sendGetImgCodeHttp(); */
+	/* sendGetNewImgCodeHttp(); */
 
 	g.customerId = "";
 	g.login_token = Utils.offLineStore.get("token",false) || "";
@@ -38,12 +38,12 @@ $(function(){
 
 	$("#inputphone").bind("blur",validPhone);
 	$("#getcodebtn").bind("click",getValidCode);
-	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);
+	/* $("#imgcodebtn").bind("click",sendGetImgCodeHttp); 11-16*/
 	$("#nextbtn").bind("click",validPhoneCode);
 
 	$("#inputphone_new").bind("blur",validNewPhone);
 	$("#getcodebtn_new").bind("click",getValidNewCode);
-	$("#imgcodebtn_new").bind("click",sendGetNewImgCodeHttp);
+	/* $("#imgcodebtn_new").bind("click",sendGetNewImgCodeHttp); 11-16*/
 	$("#changephonebtn").bind("click",validNewPhoneCode);
 
 
@@ -76,7 +76,7 @@ $(function(){
 		}
 	}
 
-	function sendGetImgCodeHttp(){
+	/* function sendGetImgCodeHttp(){
 		//URL:  http://www.partywo.com/imageValidate/getImageValidate
 		//参数: {image_key:string}
 		var url = Base.serverUrl + "imageValidate/getImageValidate";
@@ -84,8 +84,8 @@ $(function(){
 		g.codeImg.src = url;
 
 		$("#inputimgcode").val("");
-	}
-	function sendGetNewImgCodeHttp(){
+	} */
+/* 	function sendGetNewImgCodeHttp(){
 		//URL:  http://www.partywo.com/imageValidate/getImageValidate
 		//参数: {image_key:string}
 		var url = Base.serverUrl + "imageValidate/getImageValidate";
@@ -93,7 +93,7 @@ $(function(){
 		g.codeNewImg.src = url;
 
 		$("#inputimgcode_new").val("");
-	}
+	} */
 
 
 	//验证手机号
@@ -120,15 +120,15 @@ $(function(){
 			var reg = /^1[3,5,7,8]\d{9}$/g;
 			if(reg.test(p)){
 				g.phone = p;
-				if(imgCode !== ""){
+				/* if(imgCode !== ""){ 11-16*/
 					if(!g.sendCode){
 						sendGetCodeHttp(imgCode);
 					}
-				}
+				/* }
 				else{
 					Utils.alert("请输入图形验证码");
 					$("#inputimgcode").focus();
-				}
+				} 11-16*/
 			}
 			else{
 				Utils.alert("手机号输入错误");
@@ -154,7 +154,7 @@ $(function(){
 			g.sendCode = false;
 
 			//重新获取图形验证码,1分钟有效
-			sendGetImgCodeHttp();
+			/* sendGetImgCodeHttp(); 11-16*/
 		}
 	}
 	//请求验证码
@@ -192,7 +192,7 @@ $(function(){
 					Utils.alert(msg);
 
 					//重新请求图形验证码
-					sendGetImgCodeHttp();
+					/* sendGetImgCodeHttp(); 11-16*/
 				}
 				g.httpTip.hide();
 			},
@@ -285,17 +285,17 @@ $(function(){
 			var reg = /^1[3,5,7,8]\d{9}$/g;
 			if(reg.test(p)){
 				g.newPhone = p;
-				if(imgCode !== ""){
+				/* if(imgCode !== ""){ 11-16*/
 					if(!g.sendCode){
 						g.sendTime = 60;
 
 						sendGetNewCodeHttp(imgCode);
 					}
-				}
+			/* 	}
 				else{
 					Utils.alert("请输入图形验证码");
 					$("#inputimgcode_new").focus();
-				}
+				} 11-16*/
 			}
 			else{
 				Utils.alert("手机号输入错误");
@@ -321,7 +321,7 @@ $(function(){
 			g.sendCode = false;
 
 			//重新获取图形验证码,1分钟有效
-			sendGetNewImgCodeHttp();
+			/* sendGetNewImgCodeHttp(); 11-16*/
 		}
 	}
 	//请求验证码
@@ -357,7 +357,7 @@ $(function(){
 					Utils.alert(msg);
 
 					//重新请求图形验证码
-					sendGetNewImgCodeHttp();
+					/* sendGetNewImgCodeHttp(); 11-16*/
 				}
 				g.httpTip.hide();
 			},
