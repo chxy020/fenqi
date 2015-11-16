@@ -902,8 +902,8 @@ h1,h2,h3,h4,h5{font-weight:500;}
 
 .loan-img{width:1200px;background:url('../images/banner_img1.jpg') no-repeat center top;height:312px;}
 
-.index-divn{height:294px;text-align:center;color:#747674;background-color:#fbffef;padding-top:30px;}
-.index-divn .content{width:1200px;margin:0 auto;}
+.index-divn{text-align:center;color:#747674;background-color:#fbffef;padding-top:30px;}
+.index-divn .content{width:1200px;margin:0 auto;overflow:hidden;}
 .index-divn h4{font-size:16px;color:#747674;font-weight:500;line-height:28px;}
 .index-divn h4 .font{color:#546d1c;font-size:30px;line-height:32px;margin-top:10px;}
 
