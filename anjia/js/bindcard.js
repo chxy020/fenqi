@@ -59,7 +59,7 @@ $(function(){
 	//$("#validcode").bind("blur",validIsNumber);
 
 
-	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);
+	/* $("#imgcodebtn").bind("click",sendGetImgCodeHttp); */
 	$("#getcodebtn").bind("click",getValidCode);
 
 	$("#bindcardbtn").bind("click",bindUserCardBtnUp);
