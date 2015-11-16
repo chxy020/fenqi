@@ -294,7 +294,7 @@
 		var defaultOffsetHei = $('.sub-left-nav').offset().top;
 		$(window).scroll(function(){
 			if($(this).scrollTop() > defaultOffsetHei){
-				$('.sub-left-nav').css({'top':$(this).scrollTop()-defaultOffsetHei+50});
+				$('.sub-left-nav').css({'top':$(this).scrollTop()-defaultOffsetHei+1});
 			}else{
 				$('.sub-left-nav').css({'top':'0px'});
 			}
