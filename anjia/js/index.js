@@ -163,7 +163,7 @@ $(document).ready(function(){
 	
 	$(".weixin_er a.top").click(function(){
 		$(".weixin_er a.top").css({"background":"url('../res/images/right_box_img9.png') no-repeat center center"});
-		$(window).off("scroll",backTop);		
+		$(window).off("scroll",backTop); 		
 	$('html,body').animate({scrollTop:0},900,function(){if ($(this).scrollTop() <= 450){$(window).on("scroll",backTop);$(".weixin_er").fadeOut(0)}});
 		
 	});

@@ -930,7 +930,7 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .loan-img .rotate:active{transform:scale(1.1);
 -ms-transform:scale(1.1);
 -moz-transform:scale(1.1);
--webkit-transform:scale(1.1);
+-webkit-transform:scale(1.1); 
 -o-transform:scale(1.1);}
 
 .weixin_er{position:fixed;width:100px;right:0;bottom:10%;z-index:10;}
