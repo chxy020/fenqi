@@ -985,10 +985,10 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .staging_div5 .ul li p{font-size:12px;color:#0f0f0f;line-height:27px;}
 .staging_div5 .ul li.last{border-right:1px solid #c9c7c7;}
 
-.slide-btn-box{opacity:0.6;border-radius:17px;box-shadow:0px 1px 9px #333;margin-top:0px;padding-top:17px;width:214px;padding-left:16px;background-color:#8fab35;height:172px;}
+.slide-btn-box{opacity:0.8;border-radius:17px;box-shadow:0px 1px 9px #333;margin-top:0px;padding-top:17px;width:214px;padding-left:16px;background-color:#126479;height:172px;}
 .slide-right-part .left{left:43px;top:14px;position:absolute;font-family:FZLTCHK;font-weight:600;padding-left:38px;font-size:30px;color:#fff;overflow:hidden;line-height:44px;}
 .slide-btn-box .left span.right{float:right;font-size:24px;line-height:37px;margin-right:47px;}
-.slide-right-part  .improve-btn2{position:absolute;top:109px;left:46px;box-shadow:0 1px 4px #acb64c;margin:7px 0 7px -3px;font-weight:600;font-family:华文琥珀;color:#fd680e;font-size:40px;border-radius:20px;background-color:#fff;display:block;width:204px;height:60px;line-height:60px;text-align:center;}
+.slide-right-part  .improve-btn2{position:absolute;top:109px;left:46px;box-shadow:0 1px 4px #f68607;margin:7px 0 7px -3px;font-weight:600;font-family:华文琥珀;color:#fd680e;font-size:40px;border-radius:9px;background-color:#fff;display:block;width:204px;height:60px;line-height:60px;text-align:center;}
 .slide-right-part{margin-right:0;position:relative;width:198px;}
 .sub-page-banner.improve-banner{background:url('../images/jbanner1.jpg') no-repeat scroll center top;}
 
@@ -1023,3 +1023,112 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .staging-step-item p{width:50%;margin-left:auto;margin-right:auto;}
 .staging-step-box .staging-step-item .staging-step-title{margin-left:auto;margin-right:auto;}
 .staging-ico{cursor:pointer;}
+
+/* 左右轮播按钮 */
+.imgplayer .carousel-control a::before {background: #fff none repeat scroll 0 0;
+    border-radius: 50%;
+    content: " ";
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transform: scale(0.9);
+    transition: transform 0.3s ease 0s, opacity 0.3s ease 0s;
+	width: 100%;
+}
+.imgplayer .carousel-btn-prev {
+    left: 15px;
+}
+.imgplayer .carousel-btn-prev, .imgplayer .carousel-btn-next {
+    background-repeat: no-repeat;
+    height: 50px;
+    position: absolute;
+    top: 130px;
+    width: 50px;
+    z-index: 89;
+}
+
+
+.imgplayer .carousel-btn-next {
+    right: 15px;
+}
+
+.carousel-control .icon-wrap::before {
+    transform: translateX(-50%) rotate(30deg);
+    transform-origin: 0 100% 0;
+}
+.carousel-control .icon-wrap::before, .carousel-control .icon-wrap::after {
+    backface-visibility: hidden;
+    background: #fff none repeat scroll 0 0;
+    content: " ";
+    height: 50%;
+    left: 25%;
+    position: absolute;
+    transition: transform 0.3s ease 0s, background-color 0.3s ease 0s;
+    width: 3px;
+}
+.carousel-control .icon-wrap::after {
+    top: 50%;
+    transform: translateX(-50%) rotate(-30deg);
+    transform-origin: 0 0 0;
+}
+.carousel-control .icon-wrap::before, .carousel-control .icon-wrap::after {
+    backface-visibility: hidden;
+    background: #fff none repeat scroll 0 0;
+    content: " ";
+    height: 50%;
+    left: 25%;
+    position: absolute;
+    transition: transform 0.3s ease 0s, background-color 0.3s ease 0s;
+    width: 3px;
+}
+.carousel-control .icon-wrap {
+    display: block;
+    height: 80%;
+    margin: 10% 0 0 10%;
+    position: relative;
+    width: 80%;
+}
+.carousel-control .icon-wrap::before {
+    transform: translateX(-50%) rotate(30deg);
+    transform-origin: 0 100% 0;
+}
+.carousel-control .icon-wrap::before, .carousel-control .icon-wrap::after {
+    backface-visibility: hidden;
+    background: #fff none repeat scroll 0 0;
+    content: " ";
+    height: 50%;
+    left: 25%;
+    position: absolute;
+    transition: transform 0.3s ease 0s, background-color 0.3s ease 0s;
+    width: 3px;
+}
+.carousel-control .icon-wrap::after {
+    top: 50%;
+    transform: translateX(-50%) rotate(-30deg);
+    transform-origin: 0 0 0;
+}
+
+.carousel-control .carousel-btn-next .icon-wrap {
+    transform: rotate(180deg);
+}
+.carousel-control .icon-wrap {
+    display: block;
+    height: 80%;
+    margin: 10% 0 0 10%;
+    position: relative;
+    width: 80%;
+}
+
+.carousel-control a:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+.carousel-control a:hover .icon-wrap::before {
+    transform: translateX(-50%) rotate(45deg);
+}
+.carousel-control a:hover .icon-wrap::before, .carousel-control a:hover .icon-wrap::after {
+    background: #c00 none repeat scroll 0 0;
+}
+.carousel-control{position:absolute;top:0;}
