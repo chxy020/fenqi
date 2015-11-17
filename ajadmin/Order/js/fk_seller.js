@@ -59,7 +59,7 @@ $(function(){
 		condi.approveName = g.usersName;
 		condi.packageMoney=$("#packageMoney").val();//11-17
 		condi.fenQiTimes=$("#fenQiTimes").val();//11-17
-		alert($("#fenQiTimes").val());
+		
 		var result = $("#sellerradio")[0].checked;
 		result = result == true ? result : false;
 		condi.approveResult = result;
