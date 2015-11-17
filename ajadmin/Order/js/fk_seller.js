@@ -10,6 +10,8 @@ $(function(){
 	g.sendCode = false;
 	g.sendTime = 60;
 	g.orderId = Utils.getQueryString("orderId") || "";
+	g.fenQiTimes = Utils.getQueryString("fenQiTimes") || "";
+	g.packageMoney = Utils.getQueryString("packageMoney") || "";
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.phoneNumber = Utils.offLineStore.get("user_phoneNumber",false) || "";
 	g.usersId = Utils.offLineStore.get("user_usersId",false) || "";
@@ -28,9 +30,11 @@ $(function(){
 		//window.parent.location.href = "../Public/login.html";
 	}
 	else{
-		$("#usersId").val(g.usersId);
+		$("#usersId").val(g.usersId);		
 		$("#usersName").val(g.usersName);
-
+		$("#packageMoney").attr("value",g.packageMoney);		
+		$("#fenQiTimes").find("option[value="+g.fenQiTimes+"]").attr("selected",true);
+		
 		var phtml = [];
 
 		phtml.push('<a href="../protocol/protocol-fenqi.html?orderId=' + g.orderId + '" target="_blank">借款协议</a><br />');
@@ -53,7 +57,9 @@ $(function(){
 		condi.login_token = g.login_token;
 		condi.approvePerson = g.usersId;
 		condi.approveName = g.usersName;
-
+		condi.packageMoney=$("#packageMoney").val();//11-17
+		condi.fenQiTimes=$("#fenQiTimes").val();//11-17
+		alert($("#fenQiTimes").val());
 		var result = $("#sellerradio")[0].checked;
 		result = result == true ? result : false;
 		condi.approveResult = result;
