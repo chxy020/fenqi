@@ -1025,7 +1025,7 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .staging-ico{cursor:pointer;}
 
 /* 左右轮播按钮 */
-.imgplayer .carousel-control a::before {background: #fff none repeat scroll 0 0;
+.carousel-control a::before {background: #3c3c3c none repeat scroll 0 0;
     border-radius: 50%;
     content: " ";
     height: 100%;
@@ -1037,10 +1037,10 @@ h1,h2,h3,h4,h5{font-weight:500;}
     transition: transform 0.3s ease 0s, opacity 0.3s ease 0s;
 	width: 100%;
 }
-.imgplayer .carousel-btn-prev {
-    left: 15px;
+ .carousel-btn-prev {
+    left:8%;
 }
-.imgplayer .carousel-btn-prev, .imgplayer .carousel-btn-next {
+ .carousel-btn-prev, .carousel-btn-next {
     background-repeat: no-repeat;
     height: 50px;
     position: absolute;
@@ -1050,8 +1050,8 @@ h1,h2,h3,h4,h5{font-weight:500;}
 }
 
 
-.imgplayer .carousel-btn-next {
-    right: 15px;
+.carousel-btn-next {
+    right:8%;
 }
 
 .carousel-control .icon-wrap::before {
@@ -1096,7 +1096,7 @@ h1,h2,h3,h4,h5{font-weight:500;}
 }
 .carousel-control .icon-wrap::before, .carousel-control .icon-wrap::after {
     backface-visibility: hidden;
-    background: #fff none repeat scroll 0 0;
+    background: #3c3c3c none repeat scroll 0 0;
     content: " ";
     height: 50%;
     left: 25%;
@@ -1115,10 +1115,10 @@ h1,h2,h3,h4,h5{font-weight:500;}
 }
 .carousel-control .icon-wrap {
     display: block;
-    height: 80%;
-    margin: 10% 0 0 10%;
+    height: 90%;
+    margin: 5% 0 0 5%;
     position: relative;
-    width: 80%;
+    width: 90%;
 }
 
 .carousel-control a:hover::before {
@@ -1129,6 +1129,14 @@ h1,h2,h3,h4,h5{font-weight:500;}
     transform: translateX(-50%) rotate(45deg);
 }
 .carousel-control a:hover .icon-wrap::before, .carousel-control a:hover .icon-wrap::after {
+    background: #fff none repeat scroll 0 0;
+}
+/*  */
+.carousel-control a:hover .icon-wrap::before, .carousel-control a:hover .icon-wrap::after {
     background: #c00 none repeat scroll 0 0;
 }
-.carousel-control{position:absolute;top:0;}
+.carousel-control a:hover .icon-wrap::after {
+    transform: translateX(-50%) rotate(-45deg);
+}
+
+.carousel-control{position:absolute;top:112px;left:0;right:0;}
