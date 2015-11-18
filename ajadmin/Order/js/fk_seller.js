@@ -49,7 +49,7 @@ $(function(){
 	$('#backid').click(function(){
 		window.location.href="fk_index.html";
 	});
-
+	
 	function fkSellerBtnUp(id){
 		g.httpTip.show();
 		var condi = {};
@@ -59,6 +59,8 @@ $(function(){
 		condi.approveName = g.usersName;
 		condi.packageMoney=$("#packageMoney").val();//11-17
 		condi.fenQiTimes=$("#fenQiTimes").val();//11-17
+		condi.poundage=g.poundage;//11-18
+		condi.moneyMonth=g.moneyMonth;//11-18
 		
 		var result = $("#sellerradio")[0].checked;
 		result = result == true ? result : false;
@@ -91,6 +93,40 @@ $(function(){
 			}
 		});
 	}
+/* 分期计算器 */
+//	首页计算器
+	countBtnUp2();
+	$("#fenQiTimes").bind("change",countBtnUp2);
+	$("#packageMoney").bind("blur",countBtnUp2);
+	function countFeeM(allprice,time){
+		var numarr = [3,6,12,18,24,36];
+		var ratearr = [0,0.04,0.07,0.1,0.13,0.16];
+		var allprice_l=allprice;
+		var rate = ratearr[time] * allprice_l;
+		var all = allprice_l + rate;
+		var mouthprice = allprice_l / numarr[time];
+		var obj = {};
+		obj.all = all;
+		obj.mouth = mouthprice.toFixed(2);
+		obj.rate = rate.toFixed(2);
+		obj.stagnum = numarr[time];
+		return obj;
+	}
+	
+	function countBtnUp2(){
+		var allprice = $("#packageMoney").val() - 0 || 0;
+		var time = $("#fenQiTimes option:selected").attr("tvalue");
 
+		if(allprice > 0){
+			var obj = countFeeM(allprice,time);
+
+			//$("#capitaltext").html(allprice.toFixed(2));
+			//$("#alltext").html(obj.all);
+			$("#poundage").html(obj.rate+"元");
+			$("#moneyMonth").html(obj.mouth+"元");
+			g.poundage=obj.rate;
+			g.moneyMonth=obj.mouth;
+		}
+	}
 
 });
