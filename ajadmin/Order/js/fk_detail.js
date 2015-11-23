@@ -159,6 +159,8 @@ $(function(){
 		var moneyMonth = obj.moneyMonth || "0";
 
 		g.stagnum = fenQiTimes;
+		g.fenQiTimes=fenQiTimes;
+		g.packageMoney=packageMoney;
 		g.poundage = poundage;
 		g.moneyMonth = moneyMonth;
 
@@ -346,7 +348,7 @@ $(function(){
 			window.location.href="fk_index.html";
 		});
 		$('#sellerbtn').click(function(){
-			window.location.href="fk_seller.html?orderid=" + g.orderId;
+			window.location.href="fk_seller.html?orderid=" + g.orderId+"&fenQiTimes="+g.fenQiTimes+"&packageMoney="+g.packageMoney;
 		});
 	}
 
