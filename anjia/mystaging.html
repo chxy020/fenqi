@@ -223,6 +223,16 @@
                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
                         </div>
                     </div>
+					<div class="sign-item clearfix">
+                        <label><em>*</em>合作商户</label>
+                        <div class="sign-right-cont">
+                            <select id="subsidiaryId" class="common-select" style="width:413px;">
+                               <!--  <option value=0 >北京德维投资管理有限公司</option>
+								<option value=1 >北京生活家</option>
+								<option value=2 >北京朗润</option> -->
+                            </select>
+                        </div>
+                    </div>
                     <div class="sign-item clearfix">
                         <label><em>*</em>合同总金额</label>
                         <div class="sign-right-cont">
@@ -265,13 +275,15 @@
                     </div>
                     <div class="sign-item clearfix">
                         <label><em>*</em>月还款本金</label>
-                        <div class="sign-right-cont">
+                         <div class="sign-right-cont">
                              <p id="moneyMonth" >0元</p>
-                             <p style="font-size:14px;line-height:22px;"><input id="agreeck" type="checkbox" class="common-checkbox" />同意
-                             <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../anjia/protocol/protocol-fenqi.html','分期付款协议')" class="highlight">《借款服务协议》</a>
-                             <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../anjia/protocol/protocol-authorization.html','个人征信等信息查询及使用授权书')" class="highlight">《个人征信等信息查询及使用授权书》</a>
-                             <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../anjia/protocol/protocol-customer-commitment.html','客户承诺函 ')" class="highlight">《客户承诺函》</a>
-                              <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../anjia/protocol/protocol-credit-counseling.html','信用咨询及居间服务协议')" class="highlight">《信用咨询及居间服务协议》</a>
+                             <p class="protocol_slideToggle_a" style="font-size:14px;line-height:22px;"><input id="agreeck" type="checkbox" class="common-checkbox" />同意
+                              <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../anjia/protocol/protocol-authorization.html','个人征信等信息查询及使用授权书')" class="highlight">《个人征信等信息查询及使用授权书》</a>
+							 <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../anjia/protocol/protocol-credit-counseling.html','信用咨询及居间服务协议')" class="highlight">《信用咨询及居间服务协议》</a>
+							 <a class="protocol_slideToggle">更多>></a>
+							 <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../anjia/protocol/protocol-fenqi.html','分期付款协议')" class="highlight active_a">《分期付款协议》</a>      
+                             <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../anjia/protocol/protocol-customer-commitment.html','客户承诺函 ')" class="highlight active_a">《客户承诺函》</a>
+                             <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../anjia/protocol/protocol-transfer.html','债权转让协议 ')" class="highlight active_a">《债权转让协议》</a> 
                             </p>
 
                         </div>

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="ui-protocol">
-	  <h1 class="protocol-title">个人征信等信息查询及使用授权书 <br />（适用于燕子安家分期业务）</h1>
+	  <h1 class="protocol-title">个人征信等信息查询及使用授权书<br /><!--（适用于燕子安家分期业务）--></h1>
 	  <p>尊敬的客户：为了维护您的权益，请在签署本授权书前，仔细阅读本授权书各条款（特别是黑体字条款），关注您在授权书中的权利、义务。 </p>
 	  <p>北京德维投资管理有限公司： </p>
 	  <p id="myname">本人xxxx（身份证号xxxxxxxxxxxxxxxx）向贵司作以下不可撤销的授权： </p>
@@ -46,12 +46,12 @@ $(function(){
 		var applicantIdentity = obj.applicantIdentity || "";
 		//applicantName = "廖轩";
 		//applicantIdentity = "520102198410201216";
-		$("#myname").html('本人' + applicantName + '（身份证号' + applicantIdentity + '）向贵司作以下不可撤销的授权： ');
-		var modifyTime = obj.modifyTime || "";
+		$("#myname").html('本人<b>' + applicantName + '</b>（身份证号<b>' + applicantIdentity + '</b>）向贵司作以下不可撤销的授权： ');
+		var createTime = obj.createTime || "";
 		//modifyTime  = "2015-10-16";
-		if(modifyTime !== ""){
-			var d = modifyTime.split("-") || [];
-			$("#sdate").html('本授权书的授权期限:自' + d[0] + '年' + d[1] + '月' + d[2] + '日起至本人与贵司的所有分期债务结清之日止。');
+		if(createTime !== ""){
+			var d = createTime.split("-") || [];
+			$("#sdate").html('本授权书的授权期限:自<b>' + d[0] + '</b>年<b>' + d[1] + '</b>月<b>' + d[2] + '</b>日起至本人与贵司的所有分期债务结清之日止。');
 		}
 	}
 });

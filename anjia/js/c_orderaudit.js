@@ -19,6 +19,7 @@ $(function(){
 	}
 	else{
 		getUserInfo();
+		Utils.offLineStore.remove("userorderinfo_detail",false);
 	}
 
 

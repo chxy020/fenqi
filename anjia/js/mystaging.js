@@ -41,7 +41,8 @@ $(function(){
 	else{
 		getUserInfo();
 		//sendGetProductHttp();
-		sendGetDicHttp();
+		sendGetDicHttp();	
+		Utils.offLineStore.remove("userorderinfo_detail",false);
 	}
 
 	//获取图形验证码
@@ -592,8 +593,7 @@ $(function(){
 	function nextBtnUp1(){
 		var companyId = $("#companydiv .selected").attr("id");
 		g.companyId = companyId;
-
-
+		sendGetcompanys();
 		if(g.loginStatus){
 			//显示第二步
 			$("#step1").hide();
@@ -702,7 +702,52 @@ $(function(){
 			g.stagnum = obj.stagnum;
 		}
 	}
+/* 获取合作商户列表 */
+	function sendGetcompanys(){
+		g.httpTip.show();
+		var url = Base.serverUrl + "subsidiary/getSubsidiarys";
+		var condi = {};	
+		condi.brandtype = g.companyId;
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				//console.log("sendGetNavigationKeyHttp",data);
+				var status = data.success || false;
+				if(status){
+					changeSelect(data);
+					//getCompanyinfo();//初次加载给协议里的合作商户赋值
+				}
+				else{
+					var msg = data.message || "获取公司信息字典数据失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
 
+	function changeSelect(obj){
+		var data = obj.list || {};
+		var option = [];
+		for(var i=0;i<data.length;i++){
+			var name = data[i].name;
+			if(data[i].cityName==g.curCity)	{
+				option.push('<option selected="true" value="' + data[i].id + '">' + name + '</option>');
+				g.curCity="1";//防止重复
+			}else{
+				option.push('<option value="' + data[i].id + '">' + name + '</option>');
+			}				
+		}
+		$("#subsidiaryId").html(option.join(''));
+	}
+	
 	function nextBtnUp3(){
 		var contractNo = $("#contractNo").val() || "";
 
@@ -715,6 +760,7 @@ $(function(){
 		var contractMoney = $("#contractMoney").val() || "";
 		var packageMoney = $("#packageMoney").val() || "";
 		var fenQiTimes = $("#fenQiTimes").val() || "";
+		var subsidiaryId = $("#subsidiaryId option:selected").attr("value") || "";//合作商户
 		var agreeck = $("#agreeck")[0].checked || false;
 		ptype = packageType.split("_");
 		packageType = ptype[0] || "";
@@ -755,6 +801,7 @@ $(function(){
 					condi.poundage =  g.poundage;
 					condi.repaymentType = g.repaymentType;
 					condi.moneyMonth = g.moneyMonth;
+					condi.subsidiaryId = subsidiaryId;//合作商户
 					sendSetOrderPackageHttp(condi);
 				}
 				else{
@@ -1464,7 +1511,7 @@ $(function(){
 		var fenQiTimes = obj.fenQiTimes || "";
 		var poundage = obj.poundage || "0";
 		var moneyMonth = obj.moneyMonth || "0";
-
+		g.subsidiaryId=obj.subsidiaryId || "";
 		g.packageType = packageType;
 
 		g.stagnum = fenQiTimes;
@@ -1475,7 +1522,7 @@ $(function(){
 		fenQiTimes = fenarr[(fenQiTimes + "")];
 
 		sendGetProductHttp(companyId);
-
+		$("#subsidiaryId").val(g.subsidiaryId);
 		$("#contractNo").val(contractNo);
 		$("#packageType").val((packageType + "_" + companyId));
 		$("#contractMoney").val(contractMoney);
@@ -1656,6 +1703,12 @@ $(function(){
 			}
 		}
 	}
+/* 协议的隐藏显示 */
+$(".protocol_slideToggle").click(function(){
+	$(this).parents(".protocol_slideToggle_a").toggleClass("active");
+	$(".protocol_slideToggle_a .protocol_slideToggle").html("更多>>");	
+	$(".protocol_slideToggle_a.active .protocol_slideToggle").html("收起>>");	
+})
 
 
 	window.deleteUploadImg = deleteUploadImg;

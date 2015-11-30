@@ -685,6 +685,7 @@ $(function(){
 	function showOrderDetail(orderId,t){
 		var info = g.orderInfo[orderId] || "";
 		info = JSON.stringify(info);
+		Utils.offLineStore.remove("userorderinfo_detail",false);
 		Utils.offLineStore.set("userorderinfo_list",info,false);
 		if(t == 0){
 			location.href = "/anjia/orderdetail.html?orderId=" + orderId ;

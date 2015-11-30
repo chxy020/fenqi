@@ -50,25 +50,30 @@ __html__.push('<dl id="orderleftbtn" class="sub-left-sec-nav">');
 //__html__.push('<dd class="selected" onclick="$.fn.showProtocolPop(\'../anjia/protocol/protocol-fenqi.html\',\'分期付款协议\')">');
 
 __html__.push('<dd id="xieyi_1">');
-__html__.push('<a href="javascript:void(0)">借款协议</a>');
+__html__.push('<a href="javascript:void(0)">分期付款协议</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
 
 
 __html__.push('<dd id="xieyi_2">');
-__html__.push('<a href="javascript:void(0)">征信授权</a>');
+__html__.push('<a href="javascript:void(0)">征信授权书</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
 
 
 __html__.push('<dd id="xieyi_3">');
-__html__.push('<a href="javascript:void(0)">客户承诺</a>');
+__html__.push('<a href="javascript:void(0)">客户承诺函</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
 
 
 __html__.push('<dd id="xieyi_4">');
-__html__.push('<a href="javascript:void(0)">咨询协议</a>');
+__html__.push('<a href="javascript:void(0)">信用咨询协议</a>');
+__html__.push('<i class="common-ico ico-selected-flag"></i>');
+__html__.push('</dd>');
+
+__html__.push('<dd id="xieyi_5">');
+__html__.push('<a href="javascript:void(0)">债权转让协议</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
 
@@ -107,8 +112,8 @@ function OrderLeftProtocolClick(){
 	$("#orderleftbtn > dd").bind("click",function(evt){
 		var id = this.id || "";
 		var t = id.split("_")[1] || "";
-		var pages = ["","../anjia/protocol/protocol-fenqi.html","../anjia/protocol/protocol-authorization.html","../anjia/protocol/protocol-customer-commitment.html","../anjia/protocol/protocol-credit-counseling.html"];
-		var titles = ["","分期付款协议","个人征信等信息查询及使用授权书","客户承诺函","信用咨询及居间服务协议"];
+		var pages = ["","../anjia/protocol/protocol-fenqi.html","../anjia/protocol/protocol-authorization.html","../anjia/protocol/protocol-customer-commitment.html","../anjia/protocol/protocol-credit-counseling.html","../anjia/protocol/protocol-transfer.html"];
+		var titles = ["","分期付款协议","个人征信等信息查询及使用授权书","客户承诺函","信用咨询及居间服务协议","债权转让协议"];
 		var url = pages[t] || "";
 		if(url !== ""){
 			$(".selected").removeClass("selected");
