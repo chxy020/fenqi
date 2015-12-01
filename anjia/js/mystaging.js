@@ -10,6 +10,7 @@ $(function(){
 	g.imgCodeId = "";
 	g.sendCode = false;
 	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.curCity = Utils.offLineStore.get("curCity",false) || "";//获取所在城市
 	g.sendTime = 60;
 	g.customerId = "";
 	g.userPhone = "";
@@ -738,7 +739,8 @@ $(function(){
 		var option = [];
 		for(var i=0;i<data.length;i++){
 			var name = data[i].name;
-			if(data[i].cityName==g.curCity)	{
+			var conf = (g.curCity).indexOf(data[i].cityName) || false;
+			if(conf!=-1){
 				option.push('<option selected="true" value="' + data[i].id + '">' + name + '</option>');
 				g.curCity="1";//防止重复
 			}else{
