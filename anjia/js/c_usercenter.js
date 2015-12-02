@@ -774,7 +774,7 @@ $(function(){
 			var now = new Date().format("yyyy-MM-dd");
 			var status = d.status;
 
-			var days = -1;
+			var days = 100000;
 			if(expectLoanTime !== ""){
 				days = getDays(now,expectLoanTime);
 			}
@@ -802,31 +802,33 @@ $(function(){
 					}
 				}
 				else if(loanTimes == 3){
-					if(two == true && days == 0){
+					if(two == true && days >= 0){
 						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '元" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
 						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney  + '\',\'' + loanResidueMoney + '\')">我要付款</a></td>');
 					}
 					else{
-						if(days === -1){
+						var days2=Math.abs(days);
+						if(days === 100000){
 							html.push('<td>不能超过金额35%</td>');
 						}
 						else{
-							html.push('<td>还剩' + days + '天再付款,不能超过金额35%</td>');
+							html.push('<td>还剩' + days2 + '天再付款,不能超过金额35%</td>');
 						}
 						html.push('<td><span style="color:#C8C8C8;">我要付款</span></td>');
 					}
 				}
 				else if(loanTimes == 4){
-					if(three == true && days == 0){
+					if(two == true && days >= 0){
 						html.push('<td><input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '" class="common-input-text" style="width:150px;vertical-align:middle;" /></td>');
 						html.push('<td><a href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\',\'' + loanResidueMoney + '\')">我要付款</a></td>');
 					}
 					else{
-						if(days === -1){
+						var days2=Math.abs(days);
+						if(days === 100000){
 							html.push('<td>不能超过金额5%</td>');
 						}
 						else{
-							html.push('<td>还剩' + days + '天再付款,不能超过金额5%</td>');
+							html.push('<td>还剩' + days2 + '天再付款,不能超过金额5%</td>');
 						}
 						html.push('<td><span style="color:#C8C8C8;">我要付款</span></td>');
 					}
@@ -863,7 +865,7 @@ $(function(){
 		oDate2= strDateEnd.split(strSeparator);
 		var strDateS = new Date(oDate1[0], oDate1[1]-1, oDate1[2]);
 		var strDateE = new Date(oDate2[0], oDate2[1]-1, oDate2[2]);
-		iDays = parseInt(Math.abs(strDateS - strDateE ) / 1000 / 60 / 60 /24)//把相差的毫秒数转换为天数
+		iDays = parseInt((strDateS - strDateE ) / 1000 / 60 / 60 /24)//把相差的毫秒数转换为天数
 		return iDays ;
 	}
 
