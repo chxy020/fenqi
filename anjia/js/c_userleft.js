@@ -57,7 +57,7 @@ __html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100501">未完成<
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
 
-if(__ostatus__ == "100511"){
+if(__ostatus__ == "100502100503"){
 	__html__.push('<dd class="selected">');
 }
 else{
