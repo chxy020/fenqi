@@ -99,10 +99,8 @@ $(function(){
 			var d = modifyTime.split("-") || [];
 			$("#sdate").html(d[0] + '&nbsp;年&nbsp;&nbsp;' + d[1] + '&nbsp;月&nbsp;&nbsp;' + d[2] + '&nbsp;日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
 		}
-		if(modifyTime !== ""){
-		getUserorderinfo();
-		}
-	}
+		
+	
 	
 	function getUserorderinfo(){
 		var url = Base.serverUrl + "subsidiary/getSubsidiary";
@@ -132,6 +130,7 @@ $(function(){
 			}
 		});	
 	}
+	if(modifyTime !== ""){getUserorderinfo();}
 	function changeHtml(data){
 		var obj = data.obj || {};
 		var applicantCompany = obj.name || "";
@@ -143,7 +142,7 @@ $(function(){
 		$("#applicantAdress").html("联系地址：<b>" + applicantAddress+"</b>");
 		$("#stamp").html("<img alt='待上传' style='vertical-align:middle;color:red;' width='120px' src='"+stamp+"'/>");
 	}
-	
+}	
 
 });
 
