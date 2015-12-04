@@ -1140,3 +1140,9 @@ h1,h2,h3,h4,h5{font-weight:500;}
 }
 
 .carousel-control{position:absolute;top:112px;left:0;right:0;}
+
+
+.slide-right-part .improve-btn2{top:192px;}
+.slide-btn-box{height:247px;}
+.slide-right-part div,.slide-right-part a,.slide-right-part{opacity:0;filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;}
+
