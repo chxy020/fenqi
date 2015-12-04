@@ -528,7 +528,7 @@ function sendGetPayOrderListHttp(condi){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
-				html.push('<td><a href="javascript:repayment(\'' + poundageRecordId + '\')">支付</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:repayment(\'' + poundageRecordId + '\')">支付</a><br><br><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
