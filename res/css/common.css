@@ -1574,7 +1574,7 @@ to{-webkit-transform:rotate(360deg) translateZ(0);}*/
     display: block;
     height: 22px;
     position: absolute;
-    left: 0;
+    left:26px;padding:0;
     top: 11px;
     width: 22px;
 	cursor:pointer;
@@ -1584,7 +1584,7 @@ to{-webkit-transform:rotate(360deg) translateZ(0);}*/
     display: block;
     height: 22px;
     position: absolute;
-    left: 0;
+    left:26px;padding:0;
     top: 11px;
     width: 22px;
 	cursor:pointer;
@@ -1599,25 +1599,17 @@ to{-webkit-transform:rotate(360deg) translateZ(0);}*/
 }
 .sub-left-nav ul li .sub-left-sec-nav-n{display:none;}
 
-}
-
-.protocol_slideToggle_a .active_a{display:none;transition:all .5s ease-in-out;}
-.protocol_slideToggle_a.active  .active_a{display:inline;}
-.protocol_slideToggle_a  .protocol_slideToggle{content:"更多>>";cursor:pointer;}
-.protocol_slideToggle_a.active  .protocol_slideToggle{content:"收起>>";}
-
-.sub-left-nav ul li .nav-main-item  .up_down_a{
-	background: rgba(0, 0, 0, 0) url("../images/order_up.png") no-repeat scroll center -61px;
-    display: block;
-    height: 22px;
-    position: absolute;
-    left: 0;
-    top: 11px;
-    width: 22px;
-	cursor:pointer;
-}
-
-.sub-left-nav ul li .nav-main-item  a.up_down_a.up {
-    background-position: center -34px;
-}
-.sub-left-nav ul li .sub-left-sec-nav-m{display:none;}
+/*  */
+.coo-result-box h3,.coo-result-box h4{font-weight:500;}
+.common-ico.ico-setting {margin-right:10px;}
+.coo-result-box{margin-bottom:10px;text-align:center;color: #333;height:218px;background:url('../images/coupons_img1.jpg') no-repeat center center;background-size:cover;text-align: center;position:relative;}
+.coo-result-box h4{text-align:left;font-size:16px;color:#000;padding-left:10px;line-height:30px;}
+.coo-result-box h3{display:inline-block;padding-left:53px;font-size:45px;color:#fff;margin-top:98px;}
+.coo-result-box h3 #money{font-size:113px;}
+.coo-result-box p.p{font-size:14px;color:#a73434;position:absolute;bottom:5px;left:0;right:0;}
+.common-ico.ico-coupons{background:url('../images/hongbao.png') no-repeat center center;}
+.common-ico.ico-coupons:hover{background-color:#ffda53;}
+.coo-result-box.used  p.p{color:#585757;}
+.coo-result-box.used  h3{color:#989898;}
+.coo-result-box.used{background:url('../images/coupons_img2.jpg') no-repeat center center;}
+.coo-result-box.old{background:url('../images/coupons_img3.jpg') no-repeat center center;}

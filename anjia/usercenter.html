@@ -7,6 +7,7 @@
 	<link href="../res/css/common.css" rel="stylesheet">
 	<link href="../res/css/carouFredSel.css" rel="stylesheet">
 	<link href="../res/css/personal.css" rel="stylesheet">
+	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
 </head>
 
 <body>
@@ -23,7 +24,6 @@
 			</div>
 		</div>
 	</div>
-
 	<script type="text/javascript" src="../anjia/js/head.js"></script>
 
     <div class="ui-personal-main">
@@ -92,6 +92,7 @@
                             <p class="user-edit-area">
                                 <a class="common-ico ico-phone" href="/anjia/changephone.html?item=3"></a>
                                 <a class="common-ico ico-setting" title="编辑" href="/anjia/userinfo.html?item=2"></a>
+								<!-- <a class="common-ico ico-setting ico-coupons" title="优惠券" href="/anjia/coupons.html?item=2"></a> -->
                             </p>
                         </div>
                     </div>
@@ -371,8 +372,88 @@
 			</div>
 		</div>
 	</div>
+		<!--还款弹窗-->
+	<div class="pop-main-box" id="payBackPop">
+		<div class="pop-box-inner" style="width:750px;">
+			<i class="common-ico ico-pop-close" onclick="hidePop()"></i>
+			<h1 class="pop-title">
+				<i class="common-ico ico-pay"></i>缴纳服务费
+			</h1>
+			<div id="detailinfodiv1" class="pop-box-detail">
+				<!--
+				<table class="common-table" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="150" class="odd">订单编号</td>
+						<td class="even">2015080123</td>
+					</tr>
+					<tr>
+						<td class="odd">合同编号</td>
+						<td class="even">wlh235231</td>
+					</tr>
+					<tr>
+						<td class="odd">套餐名称</td>
+						<td class="even">基础套餐</td>
+					</tr>
+					<tr>
+						<td class="odd">套餐金额</td>
+						<td class="even">6000元</td>
+					</tr>
+					<tr>
+						<td class="odd">分期月数</td>
+						<td class="even">6个月</td>
+					</tr>
+					<tr>
+						<td class="odd">服务费</td>
+						<td class="even">6元</td>
+					</tr>
+					<tr>
+						<td class="odd">每月还款本金</td>
+						<td class="even">100元</td>
+					</tr>
+					<tr>
+						<td class="odd">当前状态</td>
+						<td class="even">已还清</td>
+					</tr>
+					<tr>
+						<td class="odd">待还期数</td>
+						<td class="even">无</td>
+					</tr>
+					<tr>
+						<td class="odd">总还款金额</td>
+						<td class="even">70000元</td>
+					</tr>
+					<tr>
+						<td class="odd">待还金额</td>
+						<td class="even">5000元</td>
+					</tr>
+				</table>
+				<table class="common-table1" cellpadding="0" cellspacing="0" style="margin-top:25px;">
+					<tr>
+						<th>还款期数</th>
+						<th>还款本金</th>
+						<th>应还时间</th>
+						<th>逾期天数</th>
+						<th>逾期利息</th>
+						<th>应还金额</th>
+					</tr>
+					<tr>
+						<td>手续费</td>
+						<td>6.00元</td>
+						<td>2015/01/09</td>
+						<td>0天</td>
+						<td>0.00元</td>
+						<td>6.00元</td>
+					</tr>
+				</table>
+				<div class="btn-box">
+					<input type="button" class="common-btn btn-light-green" value="确认还款" />
+					<input type="button" class="common-btn btn-grey" value="取消" onclick="hidePop()" />
+				</div>
+				-->
+			</div>
+		</div>
+	</div>
 
-	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="../res/js/jquery.carouFredSel-6.1.0-packed.js"></script>
 	<script type="text/javascript" src="../res/js/ui.js"></script>
 	<script src="libs/json.js"></script>
@@ -380,7 +461,37 @@
 	<script src="libs/layer.js"></script>
 	<script src="libs/utils.js"></script>
 	<script src="libs/ajaxfileupload.js"></script>
+	<!-- <script src="js/c_orderdetail.js"></script> -->
 	<script src="js/c_usercenter.js"></script>
+		<script type="text/javascript">
+		//出现弹窗遮罩层
+		function showPopFade(){
+			var bodyHei = document.body.clientHeight;
+			if($('.pop-fade').size()<=0){
+				console.log('a');
+				$('body').append('<div class="pop-fade" id="commonPopFade"></div>');
+			}
+			$('#commonPopFade').css('height',parseInt(bodyHei)+'px');
+			$('#commonPopFade').fadeIn();
+		}
+		//还款弹窗出现方法
+		function showOrderPop(objId){
+			var $target = $(objId);
+			var popBoxWid = $target.width();
+			$target.css('left',($(window).width()-popBoxWid)/2);
+			$(window).bind('resize',function(){
+				var popBoxWid = $target.width();
+				$target.css('left',($(window).width()-popBoxWid)/2);
+			});
+			window.scrollTo(0,0);
+			showPopFade(100);
+			$target.fadeIn(100);
+		}
+		function hidePop(){
+			$('.pop-fade').fadeOut(100);
+			$('.pop-main-box').fadeOut(100);
+		}
+	</script>
 	<!--BAIDU定位JS 开始-->
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
 	<script type="text/javascript">
@@ -394,6 +505,7 @@
 			myCity.get(myFun);
 		})
 	</script>
+
 </body>
 
 </html>

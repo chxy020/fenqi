@@ -202,6 +202,7 @@ $(function(){
 		html.push('<tr>');
 		html.push('<th>订单编号</th>');
 		html.push('<th>合同编号</th>');
+		html.push('<th>所属公司</th>');
 		html.push('<th>产品名称</th>');
 		html.push('<th>分期金额</th>');
 		html.push('<th>订单状态</th>');
@@ -220,6 +221,7 @@ $(function(){
 
 			var orderId = d.orderId || "";
 			var contractNo = d.contractNo || "";
+			var subsidiary = d.subsidiary || "";//所属公司
 			var packageName = d.packageName || "";
 			var packageMoney = d.packageMoney || 0;
 			var statusDes = d.statusDes || "";
@@ -227,13 +229,14 @@ $(function(){
 
 			var applicantName = d.applicantName || "";
 			var applicantPhone = d.applicantPhone || "";
-
+			
 			var fenQiTimes = d.fenQiTimes || 0;
 			var noRepaymentTimes = d.noRepaymentTimes || 0;
 
 			html.push('<tr>');
 			html.push('<td>' + orderId + '</td>');
 			html.push('<td>' + contractNo + '</td>');
+			html.push('<td>' + subsidiary + '</td>');//所属公司
 			html.push('<td>' + packageName + '</td>');
 			html.push('<td>' + packageMoney + '元</td>');
 			html.push('<td>' + statusDes + '</td>');

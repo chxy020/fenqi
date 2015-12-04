@@ -127,9 +127,9 @@ $(function(){
 		html.push('<th>产品名称</th>');
 		html.push('<th>分期金额</th>');
 		html.push('<th>订单状态</th>');
-		html.push('<th>审核人员</th>');
+		html.push('<th>申请人</th>');
 		html.push('<th>联系电话</th>');
-		html.push('<th>最近待还</th>');
+		/* html.push('<th>最近待还</th>'); */
 		html.push('<th>总期数</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
@@ -159,14 +159,16 @@ $(function(){
 			html.push('<td>' + applicantName + '</td>');
 			html.push('<td>' + applicantPhone + '</td>');
 
-			html.push('<td>' + fenQiTimes + '期</td>');
+			/* html.push('<td>' + fenQiTimes + '期</td>'); */
 			html.push('<td>' + noRepaymentTimes + '期</td>');
 			if(status == "100501"){
 				//html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td></td>');
 			}
 			else if(status == "100502"){
 				//100502: "商家审核中"
 				//html.push('<td><a href="detail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="seller.html?orderid=' + orderId + '">审批</a></td>');
+				html.push('<td></td>');
 			}
 			else if(status == "100503"){
 				//100503: "风控审核中
@@ -174,19 +176,23 @@ $(function(){
 			}
 			else if(status == "100504" || status == "100508" || status == "100509"){
 				//html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td></td>');
 			}
 			else if(status == "100505"){
 				//100505: "待缴手续费"
 				//html.push('<td><a href="/anjia/orderdetail.html">查看</a></td>');
+				html.push('<td></td>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
 				//html.push('<td><a href="/anjia/orderdetail.html">查看</a></td>');
+				html.push('<td></td>');
 			}
 			else if(status == "100507"){
 				//100506: "待放款"
 				//html.push('<td><a href="/anjia/orderdetail.html">查看</a></td>');
-			}
+				html.push('<td></td>');
+			}else{html.push('<td></td>');}
 			html.push('</tr>');
 		}
 		html.push('</table>');

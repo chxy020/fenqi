@@ -284,3 +284,15 @@
 .updown2 tr{border-bottom:1px solid #c9c9c9;}
 .updown2 .up_input{border:1px solid #e6e6e6;border-radius:3px;text-align:center;width:115px;}
 .updown2 .up_input2{width:180px;}
+
+.td_height.order-table tr td{height:46px;}
+.td_height.order-table{display:none;}
+.order_position{position:relative;}
+.order-table tr td a.order_a{display:block;position:absolute;right:0;top:28px;height:22px;width:22px;background:url('../images/order_up.png') no-repeat center -61px;}
+.order-table tr td a.up{background-position:center -34px;}
+
+
+
+
+
+

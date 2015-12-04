@@ -23,9 +23,18 @@ $(function(){
 	//合作商家经过效果
 	$.fn.businessHoverFun();
 
+	/* “我要分期”判断是否登录 */
+	$("#fenqi_btn1,#fenqi_btn2").bind("click",fenqi_btn_click);
+	function fenqi_btn_click(){
+		if(!loginStatus){
+			location.href = "/anjia/login.html?p=1";
+		}else{
+			location.href = "/anjia/mystaging.html";
+		}
+	}
+	
 	//获取轮播图数据
 	sendGetBannerImageByNavigationKey();
-
 	function sendGetBannerImageByNavigationKey(){
 		//g.httpTip.show();
 		var condi = {};
@@ -39,7 +48,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetBannerImageByNavigationKey",data);
+				//console.log("sendGetBannerImageByNavigationKey",data);
 				var status = data.success || false;
 				if(status){
 					changeBannerHtml(data);
@@ -104,7 +113,7 @@ $(document).ready(function(){
 	function countFee2(allprice,time){
 		var numarr = [3,6,12,18,24,36];
 		var ratearr = [0,0.04,0.07,0.1,0.13,0.16];
-		var allprice_l=allprice*10000;
+		var allprice_l=allprice;
 		var rate = ratearr[time] * allprice_l;
 		var all = allprice_l + rate;
 		var mouthprice = allprice_l / numarr[time];
@@ -129,6 +138,19 @@ $(document).ready(function(){
 			$("#mouthtext2").html(obj.mouth+"元");
 		}
 	}
+	/* 添加千位分隔符 */
+	function formatNumber(num){  
+		 if(!(/^(\+|-)?(\d+)(\.\d+)?$/).test(num)){  
+		  return num;  
+		 }  
+		 var a = RegExp.$1,b = RegExp.$2,c = RegExp.$3;  
+		 var re = new RegExp().compile("(\\d)(\\d{3})(,|$)"); 
+		 var re2=re.test(b) || false;		 
+		 while(re2){  
+		  b = b.replace(re,"$1,$2$3");  
+		 }  
+		 return a +""+ b +""+ c;  
+		}
 	
 //二维码鼠标经过
 	$(".weixin_er a.er").hover(function(){

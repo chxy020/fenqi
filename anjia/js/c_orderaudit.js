@@ -18,8 +18,8 @@ $(function(){
 		location.replace("/anjia/login.html");
 	}
 	else{
-		getUserInfo();
 		Utils.offLineStore.remove("userorderinfo_detail",false);
+		getUserInfo();		
 	}
 
 
@@ -33,7 +33,7 @@ $(function(){
 		var info = Utils.offLineStore.get("userinfo",false) || "";
 		if(info !== ""){
 			var obj = JSON.parse(info) || {};
-			console.log("getUserInfo",obj);
+			//console.log("getUserInfo",obj);
 			setUserInfoHtml(obj);
 		}
 	}

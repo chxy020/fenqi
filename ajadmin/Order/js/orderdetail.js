@@ -158,7 +158,7 @@ $(function(){
 		var fenQiTimes = obj.fenQiTimes || "";
 		var poundage = obj.poundage || "0";
 		var moneyMonth = obj.moneyMonth || "0";
-
+		var subsidiary = obj.subsidiary || "";//所属公司
 		g.stagnum = fenQiTimes;
 		g.poundage = poundage;
 		g.moneyMonth = moneyMonth;
@@ -169,6 +169,8 @@ $(function(){
 		html.push('<td>' + contractNo + '</td></tr>');
 		html.push('<tr><td class="tableleft">产品类型</td>');
 		html.push('<td>' + packageName + '</td></tr>');
+		html.push('<tr><td class="tableleft">所属公司</td>');
+		html.push('<td>' + subsidiary + '</td></tr>');		
 		html.push('<tr><td class="tableleft">合同总金额</td>');
 		html.push('<td>' + contractMoney + '元</td></tr>');
 		html.push('<tr><td class="tableleft">分期金额</td>');

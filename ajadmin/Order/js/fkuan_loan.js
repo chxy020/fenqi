@@ -63,6 +63,7 @@ $(function(){
 				console.log("loanBtnUp",data);
 				var status = data.success || false;
 				if(status){
+					//sendGetOrderInfoHttp(g.orderId);
 					alert("放款完成");
 					window.location.href="fkuan_index.html";
 				}
@@ -77,6 +78,39 @@ $(function(){
 			}
 		});
 	}
+function sendGetOrderInfoHttp(orderId){
+		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = orderId;
 
+		g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetOrderInfoHttp",data);
+				var status = data.success || false;
+				if(status){
+					var info = JSON.stringify(data);
+					Utils.offLineStore.set("userorderinfo_detail",info,false);
+					//changeOrderInfoHtml(data);
+				}
+				else{
+					//var msg = data.error || "";
+					var msg = data.message || "获取订单信息失败";
+					//alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+	
 
 });

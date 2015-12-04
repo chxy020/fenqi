@@ -71,8 +71,8 @@ $(function(){
 				}
 				var condi = {};
 				condi.phone_number = phone;
-				condi.password = pwd;
-				sendLoginHttp(condi);
+				condi.password = pwd;				
+				sendLoginHttp(condi);				
 			}
 			else{
 				Utils.alert("请输入密码");

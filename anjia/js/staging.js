@@ -17,6 +17,16 @@ $(function(){
 	//获取图形验证码
 	//sendGetImgCodeHttp();
 
+	/* “我要分期”判断是否登录 */
+	$("#fenqi_btn3,#fenqi_btn4").bind("click",fenqi_btn_click2);
+	function fenqi_btn_click2(){
+
+		if(!loginStatus){
+			location.href = "/anjia/login.html?p=1";
+		}else{
+			location.href = "/anjia/mystaging.html";
+		}
+	}
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -63,7 +73,7 @@ $(document).ready(function(){
 	function countFee2(allprice,time){
 		var numarr = [3,6,12,18,24,36];
 		var ratearr = [0,0.04,0.07,0.1,0.13,0.16];
-		var allprice_l=allprice*10000;
+		var allprice_l=allprice;
 		var rate = ratearr[time] * allprice_l;
 		var all = allprice_l + rate;
 		var mouthprice = allprice_l / numarr[time];
@@ -88,6 +98,18 @@ $(document).ready(function(){
 			$("#mouthtext3").html(obj.mouth+"元");
 		}
 	}
+		/* 添加千位分隔符 */
+	function formatNumber(num){  
+		 if(!/^(\+|-)?(\d+)(\.\d+)?$/.test(num)){  
+		  return num;  
+		 }  
+		 var a = RegExp.$1,b = RegExp.$2,c = RegExp.$3;  
+		 var re = new RegExp().compile("(\\d)(\\d{3})(,|$)");  
+		 while(re.test(b)){  
+		  b = b.replace(re,"$1,$2$3");  
+		 }  
+		 return a +""+ b +""+ c;  
+		}
 	
 //ready_end	
 })

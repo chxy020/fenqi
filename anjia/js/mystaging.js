@@ -14,7 +14,7 @@ $(function(){
 	g.sendTime = 60;
 	g.customerId = "";
 	g.userPhone = "";
-
+	
 	g.orderId = Utils.getQueryString("orderid") || "";
 	g.poundage = 0;
 	g.moneyMonth = 0;
@@ -27,7 +27,7 @@ $(function(){
 
 	g.uploadImgType = ["100701","100702","100703","100704","100705","100706","100707","100708","100709","100710","100711"];
 	g.uploadIndex = 0;
-	g.uploadMark = [0,0,0,0,0,0,0];
+	g.uploadMark = [0,0];
 
 	//编辑订单
 	//g.editOrderId = Utils.getQueryString("orderid") || "";
@@ -42,10 +42,56 @@ $(function(){
 	else{
 		getUserInfo();
 		//sendGetProductHttp();
-		sendGetDicHttp();	
-		Utils.offLineStore.remove("userorderinfo_detail",false);
+		sendGetDicHttp();
+		sendGetcompanys();
+		//getCompanyinfo();//发送商户信息到协议
+	}
+	/* 获取合作商户列表 */
+	function sendGetcompanys(){
+		g.httpTip.show();
+		var url = Base.serverUrl + "subsidiary/getSubsidiarys";
+		var condi = {};		
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				//console.log("sendGetNavigationKeyHttp",data);
+				var status = data.success || false;
+				if(status){
+					changeSelect(data);
+					getCompanyinfo();//初次加载给协议里的合作商户赋值
+				}
+				else{
+					var msg = data.message || "获取公司信息字典数据失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
 	}
 
+	function changeSelect(obj){
+		var data = obj.list || {};
+		var option = [];
+		for(var i=0;i<data.length;i++){
+			var name = data[i].name;
+			var conf = (g.curCity).indexOf(data[i].cityName) || false;
+			if(conf!=-1)	{
+				option.push('<option selected="true" value="' + data[i].id + '">' + name + '</option>');
+				g.curCity="1";//防止重复
+			}else{
+				option.push('<option value="' + data[i].id + '">' + name + '</option>');
+			}				
+		}
+		$("#subsidiaryId").html(option.join(''));
+	}
+	
 	//获取图形验证码
 	//sendGetImgCodeHttp();
 
@@ -60,7 +106,7 @@ $(function(){
 
 	$("#perbtn1").bind("click",preBtnUp1);
 	$("#nextbtn3").bind("click",nextBtnUp3);
-
+	$("#subsidiaryId").bind("change",getCompanyinfo);//协议获取商户信息
 	/* $("#userinfotab li").bind("click",userInfoTabChange); */
 	$("#prebtn2").bind("click",preBtnUp2);
 	$("#nextbtn32").bind("click",nextBtnUp32);
@@ -89,6 +135,7 @@ $(function(){
 
 	$("#packageMoney").bind("blur",validNoEmpty);
 	$("#packageMoney").bind("blur",validIsNumber);
+	$("#packageMoney").bind("blur",sendValidIsBig);
 
 	$("#applicantName").bind("blur",validNoEmpty);
 	$("#applicantName").bind("blur",validChineseName);
@@ -113,9 +160,9 @@ $(function(){
 	$("#applicantWages").bind("blur",validNoEmpty);
 	$("#applicantWages").bind("blur",validIsNumber);
 
-	$("#familyName").bind("blur",validNoEmpty);
+	//$("#familyName").bind("blur",validNoEmpty);
 	$("#familyName").bind("blur",validChineseName);
-	$("#familyPhone").bind("blur",validNoEmpty);
+	//$("#familyPhone").bind("blur",validNoEmpty);
 	$("#familyPhone").bind("blur",validIsPhone);
 	$("#familyTwoName").bind("blur",validNoEmpty);
 	$("#familyTwoName").bind("blur",validChineseName);
@@ -149,7 +196,27 @@ $(function(){
 	$("#liableIdentity").bind("blur",validIsIdentity);
 	$("#liableAddress").bind("blur",validNoEmpty);
 	*/
-
+	/* 判断是否大于50万 */
+	function sendValidIsBig(txt,dom){
+		txt=$("#packageMoney").val();
+		dom=$("#packageMoney");
+		var b = false;
+		var next = dom.next();
+		if(txt>500000){			
+			$(next).html('<i class="common-ico validate-ico"></i>金额不能大于50万');
+			$(next).removeClass("validate-success");
+			$(next).addClass("validate-error");
+			$(next).show();
+		}else{b = true;}
+		return b;
+	}
+	/* 合同协议获取选择商户信息 */
+	function getCompanyinfo(){
+		var data=$("#subsidiaryId option:selected").attr("value") || "";
+		var info = data;
+		Utils.offLineStore.set("Companyinfo_id",info,false);
+	}
+	
 	function validNoEmpty(evt){
 		var t = $(this).val() || "";
 		var id = this.id || "";
@@ -252,12 +319,13 @@ $(function(){
 	}
 
 	function validChineseName(evt){
-		var t = $(this).val() || "";
-		if(t == ""){
-			return;
-		}
+		var t = $(this).val() || "";		
 		var id = this.id || "";
 		var next = $(this).next();
+		if(t == ""){			
+			$(next).hide();
+			return;
+		}
 		var reg = /[\u4e00-\u9fa5]/gi;
 		var result = t.match(reg);
 		if(result != null && result.length > 0){
@@ -346,6 +414,10 @@ $(function(){
 	}
 	function sendValidIsPhone(txt,dom){
 		var b = false;
+		if(txt == ""){
+			b = true;
+			return b;
+		}
 		var reg = /^1[3,5,7,8]\d{9}$/;
 		var next = dom.next();
 		if(reg.test(txt)){
@@ -438,7 +510,7 @@ $(function(){
 			$(next).removeClass("validate-success");
 			$(next).addClass("validate-error");
 			$(next).show();
-			b = false;
+			b = true;
 		}
 		return b;
 	}
@@ -481,7 +553,7 @@ $(function(){
 			context:this,
 			async: false,
 			success: function(data){
-				console.log("sendGetProductHttp",data);
+				//console.log("sendGetProductHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeProductSelectHtml(data);
@@ -511,7 +583,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetDicHttp",data);
+				//console.log("sendGetDicHttp",data);
 				var status = data.success || false;
 				if(status){
 					var obj = data.obj || {};
@@ -582,7 +654,7 @@ $(function(){
 	//获取个人资料
 	function getUserInfo(){
 		var info = Utils.offLineStore.get("userinfo",false) || "";
-		console.log("getUserInfo",info);
+		//console.log("getUserInfo",info);
 		if(info !== ""){
 			var obj = JSON.parse(info) || {};
 			g.customerId = obj.customerId || "";
@@ -594,7 +666,8 @@ $(function(){
 	function nextBtnUp1(){
 		var companyId = $("#companydiv .selected").attr("id");
 		g.companyId = companyId;
-		sendGetcompanys();
+		
+
 		if(g.loginStatus){
 			//显示第二步
 			$("#step1").hide();
@@ -671,7 +744,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetOrderIdHttp",data);
+				//console.log("sendGetOrderIdHttp",data);
 				var status = data.success || false;
 				if(status){
 					g.orderId = data.obj || "";
@@ -695,7 +768,7 @@ $(function(){
 			var time = $("#fenQiTimes").val() - 0 || 0;
 			var obj = countFee(packageMoney,time);
 
-			$("#poundage").html(obj.rate > 0 ? (obj.rate + "元") : "免费");
+			$("#poundage").html(obj.rate > 0 ? (obj.rate + "元（通过审批后需一次性偿还）") : "免费");
 			$("#moneyMonth").html(obj.mouth + "元");
 
 			g.poundage = obj.rate + "";
@@ -703,56 +776,10 @@ $(function(){
 			g.stagnum = obj.stagnum;
 		}
 	}
-/* 获取合作商户列表 */
-	function sendGetcompanys(){
-		g.httpTip.show();
-		var url = Base.serverUrl + "subsidiary/getSubsidiarys";
-		var condi = {};	
-		condi.brandtype = g.companyId;
-		$.ajax({
-			url:url,
-			data:condi,
-			type:"POST",
-			dataType:"json",
-			context:this,
-			success: function(data){
-				//console.log("sendGetNavigationKeyHttp",data);
-				var status = data.success || false;
-				if(status){
-					changeSelect(data);
-					//getCompanyinfo();//初次加载给协议里的合作商户赋值
-				}
-				else{
-					var msg = data.message || "获取公司信息字典数据失败";
-					Utils.alert(msg);
-				}
-				g.httpTip.hide();
-			},
-			error:function(data){
-				g.httpTip.hide();
-			}
-		});
-	}
 
-	function changeSelect(obj){
-		var data = obj.list || {};
-		var option = [];
-		for(var i=0;i<data.length;i++){
-			var name = data[i].name;
-			var conf = (g.curCity).indexOf(data[i].cityName) || false;
-			if(conf!=-1){
-				option.push('<option selected="true" value="' + data[i].id + '">' + name + '</option>');
-				g.curCity="1";//防止重复
-			}else{
-				option.push('<option value="' + data[i].id + '">' + name + '</option>');
-			}				
-		}
-		$("#subsidiaryId").html(option.join(''));
-	}
-	
 	function nextBtnUp3(){
 		var contractNo = $("#contractNo").val() || "";
-
+		var designer = $("#designer").val() || "";
 		if($("#packageType")[0].selectedIndex == - 1){
 			Utils.alert("请选择产品类型");
 			return;
@@ -788,27 +815,30 @@ $(function(){
 
 		if(sendValidNoEmpty(packageMoney,$("#packageMoney"))){
 			if(sendValidIsNumber(packageMoney,$("#packageMoney"))){
-				if(agreeck){
-					var condi = {};
-					condi.login_token = g.login_token;
-					condi.customerId = g.customerId;
-					condi.orderId = g.orderId;
-					condi.contractNo = contractNo;
-					condi.packageName = packageName;
-					condi.packageType = packageType;
-					condi.companyId = companyId;
-					condi.contractMoney = contractMoney;
-					condi.packageMoney = packageMoney;
-					condi.fenQiTimes = g.stagnum;
-					condi.poundage =  g.poundage;
-					condi.repaymentType = g.repaymentType;
-					condi.moneyMonth = g.moneyMonth;
-					condi.subsidiaryId = subsidiaryId;//合作商户
-					sendSetOrderPackageHttp(condi);
-				}
-				else{
-					Utils.alert("请勾选同意借款服务协议");
-				}
+				if(sendValidIsBig(packageMoney,$("#packageMoney"))){//判断是否大于50万元
+					if(agreeck){
+						var condi = {};
+						condi.login_token = g.login_token;
+						condi.customerId = g.customerId;
+						condi.orderId = g.orderId;
+						condi.contractNo = contractNo;
+						condi.packageName = packageName;
+						condi.packageType = packageType;
+						condi.companyId = companyId;
+						condi.contractMoney = contractMoney;
+						condi.packageMoney = packageMoney;
+						condi.fenQiTimes = g.stagnum;
+						condi.poundage =  g.poundage;
+						condi.repaymentType = g.repaymentType;
+						condi.moneyMonth = g.moneyMonth;
+						condi.designer=designer;//设计师
+						condi.subsidiaryId = subsidiaryId;//合作商户
+						sendSetOrderPackageHttp(condi);
+					}
+					else{
+						Utils.alert("请勾选同意协议");
+					}
+				}	
 			}
 		}
 
@@ -824,7 +854,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendSetOrderPackageHttp",data);
+				//console.log("sendSetOrderPackageHttp",data);
 				var status = data.success || false;
 				if(status){
 					//显示第二步
@@ -1070,6 +1100,7 @@ $(function(){
 		//sendSetCustomerInfoHttp(g.orderUserInfo);
 	}
 
+	
 	function nextBtnUp4(){
 		var familyName = $("#familyName").val() || "";
 		var familyPhone = $("#familyPhone").val() || "";
@@ -1088,15 +1119,15 @@ $(function(){
 		var workmateTwoName = $("#workmateTwoName").val() || "";
 		var workmateTwoPhone = $("#workmateTwoPhone").val() || "";
 
-		if(!sendValidNoEmpty(familyName,$("#familyName"))){
+		/* if(!sendValidNoEmpty(familyName,$("#familyName"))){
 			return;
-		}
+		} */
 		if(!sendValidChineseName(familyName,$("#familyName"))){
 			return;
 		}
-		if(!sendValidNoEmpty(familyPhone,$("#familyPhone"))){
+		/* if(!sendValidNoEmpty(familyPhone,$("#familyPhone"))){
 			return;
-		}
+		} */
 		if(!sendValidIsPhone(familyPhone,$("#familyPhone"))){
 			return;
 		}
@@ -1131,14 +1162,14 @@ $(function(){
 		//~ if(!sendValidNoEmpty(friendTwoPhone,$("#friendTwoPhone"))){
 			//~ return;
 		//~ }
-		if(!sendValidChineseName(friendTwoName,$("#friendTwoName"))){
+		/* if(!sendValidChineseName(friendTwoName,$("#friendTwoName"))){
 			return;
 		}
 		if(friendTwoPhone !== ""){
 			if(!sendValidIsPhone(friendTwoPhone,$("#friendTwoPhone"))){
 				return;
 			}
-		}
+		} */
 
 		if(!sendValidNoEmpty(workmateName,$("#workmateName"))){
 			return;
@@ -1158,14 +1189,14 @@ $(function(){
 		//~ if(!sendValidNoEmpty(workmateTwoPhone,$("#workmateTwoPhone"))){
 			//~ return;
 		//~ }
-		if(!sendValidChineseName(workmateTwoName,$("#workmateTwoName"))){
+		/* if(!sendValidChineseName(workmateTwoName,$("#workmateTwoName"))){
 			return;
 		}
 		if(workmateTwoPhone !== ""){
 			if(!sendValidIsPhone(workmateTwoPhone,$("#workmateTwoPhone"))){
 				return;
 			}
-		}
+		} */
 
 		g.orderUserInfo.familyName = familyName;
 		g.orderUserInfo.familyPhone = familyPhone;
@@ -1176,13 +1207,13 @@ $(function(){
 
 		g.orderUserInfo.friendName = friendName;
 		g.orderUserInfo.friendPhone = friendPhone;
-		g.orderUserInfo.friendTwoName = friendTwoName;
-		g.orderUserInfo.friendTwoPhone = friendTwoPhone;
+		//g.orderUserInfo.friendTwoName = friendTwoName;
+		//g.orderUserInfo.friendTwoPhone = friendTwoPhone;
 
 		g.orderUserInfo.workmateName = workmateName;
 		g.orderUserInfo.workmatePhone = workmatePhone;
-		g.orderUserInfo.workmateTwoName = workmateTwoName;
-		g.orderUserInfo.workmateTwoPhone = workmateTwoPhone;
+		//g.orderUserInfo.workmateTwoName = workmateTwoName;
+		//g.orderUserInfo.workmateTwoPhone = workmateTwoPhone;
 
 		//显示三步,里面的第三步
 		//~ $("#userinfotab li").removeClass("selected");
@@ -1209,7 +1240,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendSetCustomerInfoHttp",data);
+				//console.log("sendSetCustomerInfoHttp",data);
 				var status = data.success || false;
 				if(status){
 					//显示第4步
@@ -1252,7 +1283,7 @@ $(function(){
 			condi.customerId = g.customerId;
 			condi.orderId = g.orderId;
 			condi.orderMaterialType  = g.uploadImgType[g.uploadIndex];
-			console.log("uploadBtnUp",condi);
+			//console.log("uploadBtnUp",condi);
 
 			//document.domain = "partywo.com";
 			$.ajaxFileUpload({
@@ -1264,12 +1295,13 @@ $(function(){
 				success: function (data, status)  //服务器成功响应处理函数
 				{
 					//data = '{"success":true,"message":1111,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508300051/100701.jpg","list":null,"code":null,"token":null}';
-					console.log("ajaxFileUpload",data);
+					//console.log("ajaxFileUpload",data);
+					
 					g.httpTip.hide();
 					if(data != null && data != ""){
-						try{
+						try{							
 							var obj = JSON.parse(data);
-							imgUploadCallBack(obj);
+							imgUploadCallBack(obj);	
 							//var src = obj.obj + "?t=" + (new Date() - 0);
 							//$("#avatarimg").attr("src",src);
 						}
@@ -1292,6 +1324,7 @@ $(function(){
 	}
 
 	function imgUploadCallBack(data){
+
 		var src = data.obj + "?t=" + (new Date() - 0);
 		var id = data.message || "";
 		var html = [];
@@ -1341,7 +1374,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("deleteUploadImg",data);
+				//console.log("deleteUploadImg",data);
 				var status = data.success || false;
 				if(status){
 					$("#img_" + id).hide();
@@ -1406,7 +1439,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendSetOrderCompleteHttp",data);
+				//console.log("sendSetOrderCompleteHttp",data);
 				var status = data.success || false;
 				if(status){
 					//显示第5步
@@ -1476,7 +1509,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetOrderInfoHttp",data);
+				//console.log("sendGetOrderInfoHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeOrderInfoHtml(data);
@@ -1513,6 +1546,7 @@ $(function(){
 		var fenQiTimes = obj.fenQiTimes || "";
 		var poundage = obj.poundage || "0";
 		var moneyMonth = obj.moneyMonth || "0";
+		var designer = obj.designer || "";
 		g.subsidiaryId=obj.subsidiaryId || "";
 		g.packageType = packageType;
 
@@ -1528,9 +1562,10 @@ $(function(){
 		$("#contractNo").val(contractNo);
 		$("#packageType").val((packageType + "_" + companyId));
 		$("#contractMoney").val(contractMoney);
+		$("#designer").val(designer);
 		$("#packageMoney").val(packageMoney);
 		$("#fenQiTimes").val(fenQiTimes);
-		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元")));
+		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元（通过审批后需一次性偿还）")));
 		$("#moneyMonth").html((moneyMonth + "元"));
 		$("#agreeck").attr("checked",true);
 		$($("#agreeck").parent()).addClass("chk-bg-checked");

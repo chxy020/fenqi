@@ -225,7 +225,6 @@ $(function(){
 		var likes = $("input[name='cklike']:checked") || [];
 
 		var birthday = $("#birthday").val() || "";
-
 		var cksex = "";
 		var ckid = "";
 		var ckstatus = "";

@@ -225,7 +225,7 @@ $(function(){
 			if(deleted !== 0){continue;}
 
 			var orderId = d.orderId || "";
-			var companyId = d.companyId || "";
+			var company = d.company || "";
 			var customerName = d.customerName || "";
 			var customerPhone = d.customerPhone || "";
 			var contractMoney = d.contractMoney || 0;
@@ -237,7 +237,7 @@ $(function(){
 
 			html.push('<tr>');
 			html.push('<td>' + orderId + '</td>');
-			html.push('<td>' + companyId + '</td>');
+			html.push('<td>' + company + '</td>');
 			html.push('<td>' + customerName + '</td>');
 			html.push('<td>' + customerPhone + '</td>');
 			html.push('<td>' + contractMoney + '元</td>');
