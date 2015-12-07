@@ -1437,8 +1437,7 @@ $(function(){
 		  };
 		}
 /*  */
-		var uploa = g.uploadMark+"";
-		if(uploa.indexOf("0") == -1){
+		if(g.uploadMark.indexOf(0) == -1){
 			sendSetOrderCompleteHttp(condi);
 		}
 		else{
