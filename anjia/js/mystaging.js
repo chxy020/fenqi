@@ -1415,8 +1415,10 @@ $(function(){
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.orderId = g.orderId;
+		/*  */
 
-		if(g.uploadMark[0] == 0 || g.uploadMark[1] == 0){
+/*  */
+		if(g.uploadMark.indexOf(0) == -1){
 			sendSetOrderCompleteHttp(condi);
 		}
 		else{
