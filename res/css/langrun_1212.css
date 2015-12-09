@@ -13,20 +13,20 @@ html,body{font-size:14px;font-family:microsoft yahei;background-color:#001a35;}
 .er_div1{position:relative;height:1257px;background:url("../images/langrun_img/er_div1.jpg") no-repeat center center;}
 .er_div1  .red_box_btn{margin:0 auto;display:block;width:281px;height:91px;background:url("../images/langrun_img/redBox_btn.png") no-repeat center center;}
 .er_div1 .red_box{position:absolute;left:0;right:0;text-align:center;top:596px;}
-.er_div1  .tip{position:absolute;left:0;right:0;text-align:center;bottom:88px;font-family:FZLTCHK;font-size:26px;}
+.er_div1  .tip{position:absolute;left:0;right:0;text-align:center;bottom:88px;font-size:26px;}
 .er_div1  .tip h4{color:#fff;margin-left:318px;}
 .er_div1  .tip p{display:inline-block;color:#fffefd;margin-left:318px;margin-top:10px;font-size:20px;line-height:37px;}
 
-.er_div2{font-family:FZLTCHK;font-size:22px;position:relative;height:872px;background:url("../images/langrun_img/er_div2.jpg") no-repeat center center;}
+.er_div2{font-size:22px;position:relative;height:872px;background:url("../images/langrun_img/er_div2.jpg") no-repeat center center;}
 .er_div2 .tip{position:absolute;left:0;right:0;text-align:center;top:168px;font-size:26px;}
 .er_div2  .tip p{color:#001a35;margin:0 auto;width:620px;font-size:22px;line-height:37px;}
 
-.er_div3{color:#001a35;font-family:FZLTCHK;font-size:22px;position:relative;height:675px;background:url("../images/langrun_img/er_div3.jpg") no-repeat center center;}
+.er_div3{color:#001a35;font-size:22px;position:relative;height:675px;background:url("../images/langrun_img/er_div3.jpg") no-repeat center center;}
 .er_div3  .tip{position:absolute;left:0;right:0;text-align:center;top:342px;font-size:26px;}
 .er_div3  .tip p{display:inline-block;width:822px;text-align:center;margin:0 auto;font-size:22px;line-height:37px;}
 .er_div3  .tip span.color{color:#d6000f;font-size:26px;display:inline-block;margin-bottom:39px;}
 
-.er_div4{font-family:FZLTCHK;font-size:20px;position:relative;height:1241px;background:url("../images/langrun_img/er_div4.jpg") no-repeat center center;}
+.er_div4{font-size:20px;position:relative;height:1241px;background:url("../images/langrun_img/er_div4.jpg") no-repeat center center;}
 .er_div4 .tip{position:absolute;left:0;right:0;text-align:center;top:272px;font-size:26px;}
 .er_div4  .tip p{padding-left:220px;text-align:left;color:#28425a;margin:0 auto;width:820px;font-size:22px;line-height:37px;}
 .er_div4  .tip p  span.color{color:#f15a25;}

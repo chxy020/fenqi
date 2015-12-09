@@ -13,20 +13,20 @@ html,body{font-size:14px;font-family:microsoft yahei;background-color:#001a35;}
 .er_div1{position:relative;height:1500px;background:url("../images/shenghuojia_img/er_div1.jpg") no-repeat center center;}
 .er_div1  .red_box_btn{margin:0 auto;display:block;width:281px;height:91px;background:url("../images/shenghuojia_img/redBox_btn.png") no-repeat center center;}
 .er_div1 .red_box{position:absolute;left:0;right:0;text-align:center;top:596px;}
-.er_div1  .tip{position:absolute;left:0;right:0;text-align:center;bottom:240px;font-family:FZLTCHK;font-size:26px;}
+.er_div1  .tip{position:absolute;left:0;right:0;text-align:center;bottom:240px;font-size:26px;}
 .er_div1  .tip h4{color:#fff;margin-left:318px;}
 .er_div1  .tip p{display:inline-block;color:#cd3c00;margin-left:318px;margin-top:10px;font-size:22px;line-height:37px;}
 
-.er_div2{font-family:FZLTCHK;font-size:22px;position:relative;height:961px;background:url("../images/shenghuojia_img/er_div2.jpg") no-repeat center center;}
+.er_div2{font-size:22px;position:relative;height:961px;background:url("../images/shenghuojia_img/er_div2.jpg") no-repeat center center;}
 .er_div2 .tip{position:absolute;left:0;right:0;text-align:center;top:228px;font-size:26px;}
 .er_div2  .tip p{color:#fff;margin:0 auto;width:620px;font-size:22px;line-height:37px;}
 
-.er_div3{color:#fb6020;font-family:FZLTCHK;font-size:22px;position:relative;height:785px;background:url("../images/shenghuojia_img/er_div3.jpg") no-repeat center center;}
+.er_div3{color:#fb6020;font-size:22px;position:relative;height:785px;background:url("../images/shenghuojia_img/er_div3.jpg") no-repeat center center;}
 .er_div3  .tip{position:absolute;left:0;right:0;text-align:center;top:224px;font-size:26px;}
 .er_div3  .tip p{display:inline-block;width:822px;text-align:center;margin:0 auto;font-size:22px;line-height:37px;}
 .er_div3  .tip span.color{color:#fff;font-size:26px;display:inline-block;margin-bottom:20px;}
 
-.er_div4{font-family:FZLTCHK;font-size:20px;position:relative;height:1377px;background:url("../images/shenghuojia_img/er_div4.jpg") no-repeat center center;}
+.er_div4{font-size:20px;position:relative;height:1377px;background:url("../images/shenghuojia_img/er_div4.jpg") no-repeat center center;}
 .er_div4 .tip{position:absolute;left:0;right:0;text-align:center;top:272px;font-size:26px;}
 .er_div4  .tip p{padding-left:220px;text-align:left;color:#fac43d;margin:0 auto;width:820px;font-size:22px;line-height:37px;}
 .er_div4  .tip p  span.color{color:#fb6020;}
