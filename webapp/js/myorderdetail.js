@@ -9,7 +9,7 @@ $(function(){
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.orderId = Utils.getQueryString("orderId");
 	g.httpTip = new Utils.httpTip({});
-
+	g.pa = Utils.getQueryString("pa");
 	g.orderDetailInfo = {};
 
 	g.orderInfo = Utils.offLineStore.get("userorderinfo_list",false) || "";
@@ -294,7 +294,7 @@ $(function(){
 
 	function sendGetUserOrderStagingListHttp(condi){
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/getRepaymentRecordByOrderId";
+		var url = Base.serverUrl + "order/getAllRepaymentRecordByOrderId";
 		$.ajax({
 			url:url,
 			data:condi,
@@ -543,8 +543,8 @@ $(function(){
 		var d = g.orderDetailInfo[id];
 		var info = JSON.stringify(d);
 		Utils.offLineStore.set("repay_userorderinfo_list",info,false);
-
-		location.href = "repayment-list-detail.html";
+		if(g.pa==1){location.href = "repayment-list-detail.html?pa=1"}
+		else{location.href = "repayment-list-detail.html"}
 		return;
 
 		/*以下不用*/

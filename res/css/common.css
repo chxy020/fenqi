@@ -1602,7 +1602,7 @@ to{-webkit-transform:rotate(360deg) translateZ(0);}*/
 /*  */
 .coo-result-box h3,.coo-result-box h4{font-weight:500;}
 .common-ico.ico-setting {margin-right:10px;}
-.coo-result-box{margin-bottom:10px;text-align:center;color: #333;height:218px;background:url('../images/coupons_img1.jpg') no-repeat center center;background-size:cover;text-align: center;position:relative;}
+.coo-result-box{margin-bottom:10px;text-align:center;color: #333;height:218px;background:url('../images/coupons_img2.jpg') no-repeat center center;background-size:cover;text-align: center;position:relative;}
 .coo-result-box h4{text-align:left;font-size:16px;color:#000;padding-left:10px;line-height:30px;}
 .coo-result-box h3{display:inline-block;padding-left:53px;font-size:45px;color:#fff;margin-top:98px;}
 .coo-result-box h3 #money{font-size:113px;}
@@ -1611,5 +1611,5 @@ to{-webkit-transform:rotate(360deg) translateZ(0);}*/
 .common-ico.ico-coupons:hover{background-color:#ffda53;}
 .coo-result-box.used  p.p{color:#585757;}
 .coo-result-box.used  h3{color:#989898;}
-.coo-result-box.used{background:url('../images/coupons_img2.jpg') no-repeat center center;}
+.coo-result-box.used{background:url('../images/coupons_img1.jpg') no-repeat center center;}
 .coo-result-box.old{background:url('../images/coupons_img3.jpg') no-repeat center center;}

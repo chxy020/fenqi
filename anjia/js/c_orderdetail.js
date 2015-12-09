@@ -324,7 +324,6 @@ $(function(){
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.orderId = g.orderId;
-
 		sendGetUserOrderStagingListHttp(condi);
 	}
 

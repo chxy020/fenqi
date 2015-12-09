@@ -9,7 +9,7 @@ $(function(){
 	g.codeId = "";
 	g.tout = null;
 	g.httpTip = new Utils.httpTip({});
-
+	
 	var userPhone = Utils.offLineStore.get("userphone_login",true) || "";
 	$("#inputphone").val(userPhone);
 
@@ -34,7 +34,7 @@ $(function(){
 		var reg = /^1[3,5,7,8]\d{9}$/g;
 		if(phone !== ""){
 			if(!reg.test(phone)){
-				Utils.alert("用户名/手机号输入错误");
+				alert("用户名/手机号输入错误");
 				//$("#inputphone").focus();
 			}
 		}
@@ -44,11 +44,23 @@ $(function(){
 	function validPwd(){
 		var pwd = $("#inputpwd").val() || "";
 		if((pwd.length < 6 || pwd.length > 16) && pwd !== ""){
-			Utils.alert("密码输入错误");
+			alert("密码输入错误");
 			//$("#inputpwd").focus();
 		}
 	}
-
+	/* 接收页面参数 */
+	function GetRequest() { 
+		var url = location.search; //获取url中"?"符后的字串
+	   var theRequest = [];
+	   if (url.indexOf("?") != -1) {
+		  var str = url.substr(1);
+		  strs = str.split("&");
+		  for(var i = 0; i < strs.length; i ++) {
+			 theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+		  }
+	   }
+	   return theRequest;
+	}
 
 	function loginBtnUp(evt){
 		var phone = $("#inputphone").val() || "";
@@ -57,6 +69,7 @@ $(function(){
 		if(phone !== ""){
 			if(pwd !== ""){
 				var savePhone = $("#chkphone")[0].checked;
+				
 				if(savePhone){
 					Utils.offLineStore.set("userphone_login",phone,true);
 				}
@@ -66,12 +79,12 @@ $(function(){
 				sendLoginHttp(condi);
 			}
 			else{
-				Utils.alert("请输入密码");
+				alert("请输入密码");
 				//$("#inputpwd").focus();
 			}
 		}
 		else{
-			Utils.alert("请输入手机号");
+			alert("请输入手机号");
 			//$("#inputphone").focus();
 		}
 	}
@@ -97,7 +110,14 @@ $(function(){
 						var token = data.token || "";
 
 						Utils.offLineStore.set("token",token,false);
-						location.replace("../personal-center/index.html");
+						var compare = GetRequest().p;
+						if(compare==1){location.replace("../mystaging/mystaging.html");}//分期付款
+						else if(compare==2){location.replace("../order/index.html?orderType=100507");}//还款中
+						else if(compare=="langrun"){location.href = "/webapp/coupons/langrun_1212_mobi.html";}
+						else if(compare=="shenghuojia"){location.href = "/webapp/coupons/shenghuojia_1212_mobi.html";}
+						else{location.replace("../personal-center/index.html");}
+						
+						//location.replace("../personal-center/index.html");
 					}
 					//location.href = "center.html";
 					//var token = data.result.token || "";
@@ -175,4 +195,5 @@ $(function(){
 	function openRegPage(evt){
 		window.open("/anjia/reg.html");
 	}
+	
 });

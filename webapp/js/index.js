@@ -78,21 +78,21 @@ $(function(){
 				}
 			break;
 			case "li_2":
-				url = location.href = "../mystaging/staging-step.html";
+				url = location.href = "../mystaging/mystaging.html";
 				if(g.loginStatus){
 					location.href = url;
 				}
 				else{
-					location.href = "../login/login.html";
+					location.href = "../login/login.html?p=1";
 				}
 			break;
 			case "li_3":
-				url = location.href = "../personal-center/index.html";
+				url = location.href = "../order/index.html?orderType=100507";
 				if(g.loginStatus){
 					location.href = url;
 				}
 				else{
-					location.href = "../login/login.html";
+					location.href = "../login/login.html?p=2";
 				}
 			break;
 			case "li_4":

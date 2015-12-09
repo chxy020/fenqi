@@ -12,7 +12,7 @@ $(function(){
 	g.sendTime = 60;
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.httpTip = new Utils.httpTip({});
-
+	g.couponId = Utils.getQueryString("id") || "";
 	g.repaymentRecordId = Utils.getQueryString("recordId") || "";
 	g.price = Utils.getQueryString("p") - 0 || 0;
 
@@ -168,6 +168,7 @@ $(function(){
 		condi.repaymentRecordId = g.repaymentRecordId;
 		condi.bankCardTop = bankCardTop;
 		condi.bankCardLast = bankCardLast;
+		condi.couponId = g.couponId;
 		$.ajax({
 			url:url,
 			type:"POST",
@@ -350,6 +351,7 @@ $(function(){
 					if(status == 1){
 						$(".layui-layer-btn").show();
 						$(".layui-layer-content").html('<i class="layui-layer-ico layui-layer-ico1"></i>支付成功');
+						//消除优惠券
 					}
 					else if(status == 0){
 						var errorcode = data.obj.errorcode || "";

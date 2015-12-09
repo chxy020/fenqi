@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/calendar.css" />
+    <script type="text/javascript" src="../Js/jquery.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../Js/ckform.js"></script>
+    <script type="text/javascript" src="../Js/common.js"></script>
+
+
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+	input{
+		width:400px;
+	}
+
+    </style>
+</head>
+<body>
+<form id="addform" action="" method="post" class="definewidth m20" enctype="multipart/form-data">
+	<input id="login_token" type="hidden" name="login_token"/>
+<table class="table table-bordered table-hover definewidth m10">
+	<tr>
+		<td width="10%" class="tableleft">活动名称</td>
+		<td><input id="title" type="text" name="title"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">活动内容</td>
+		<td><textarea id="summary" name="summary" style="width:400px;height:80px;"></textarea></td>
+	</tr>
+	<tr>
+		<td class="tableleft">优惠券金额</td>
+		<td><input id="money"  type="text" name="money"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">最低消费金额</td>
+		<td><input id="useLeastMoney"  type="text" name="useLeastMoney"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">开始时间</td>
+		<td><input id="beginDate"  type="text" name="beginDate"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">结束时间</td>
+		<td><input id="endDate"  type="text" name="endDate"/></td>
+	</tr>
+	<tr>
+		<td class="tableleft">有效期</td>
+		<td><input id="expiryDate"  type="text" name="expiryDate"/></td>
+	</tr>
+	<tr>
+        <td class="tableleft"></td>
+        <td>
+            <button id="regbtn" type="button" class="btn btn-primary" >添加</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+        </td>
+    </tr>
+</table>
+</form>
+
+	<script src="../libs/json.js"></script>
+	<script src="../libs/base.js"></script>
+	<script src="../libs/utils.js"></script>
+	<script src="../libs/layer.js"></script>
+	<script src="../libs/calendar.js"></script>
+	<script src="js/add.js"></script>
+	<script>
+    $(function () {       
+
+		$('#backid').click(function(){
+			window.location.href="index.html";
+		});
+    });
+</script>
+</body>
+</html>

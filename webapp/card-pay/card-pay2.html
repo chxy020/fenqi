@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="../res/css/core.css?88034434430565" />
+	<link href="../res/common_pc.css" rel="stylesheet">
+	<link href="../res/css/common.css" rel="stylesheet">
+    <link href="../res/css/carouFredSel.css" rel="stylesheet">
+    <link href="../res/css/index.css" rel="stylesheet">
+</head>
+<style >
+.ui-short-head, .ui-header, .index-main1, .staging-step-main, .cooperative-business-main, .ui-bottom, .sub-page-banner, .improvement-cal-main, .staging-detai-main, .staging-rate-main, .staging-compare-main, .staging-ask-main, .ui-main, .ui-count-part, .service-step, .login-main, .ui-bottom, .index-slide{min-width:0;}
+.sign-item label{width:26%;font-size:14px;}
+.sign-item .sign-right-cont{margin-left:10%;}
+.bind-card-main .common-input-text{border:1px solid #ddd;margin-left:1%;}
+</style>
+<body>
+	<div class="ui-main" style="width:auto;min-width:0;">
+    	<div class="ui-header">
+        	<a class="ui-back" onclick="window.history.go(-1)">
+            	<i class="trigger"></i>
+            </a>
+        	还款详情
+        </div>
+
+	<script type="text/javascript" src="../anjia/js/head.js"></script>
+
+	<div class="bind-card-main">
+		<div class="ui-wrap" style="width:auto;">
+			<div id="orderinfo" class="common-block-tip tip-style-orange">
+				<label style="margin-right:100px;">应付金额：<em class="highlight-red">0.00</em> 元</label>
+				分期订单编号：<em class="highlight"></em>
+			</div>
+			<div class="sign-item-box" style="margin-top:45px;">
+				<div class="sign-item clearfix">
+					<label><em>*</em>发卡银行</label>
+					<div class="choose-bank-list" style="margin-left: 160px;padding-left: 5px;">
+						<ul id="mycardlist">
+
+						</ul>
+
+					</div>
+					<div class="sign-right-cont" style="margin-top: 15px;">
+						<a class="a-link" href="../bind-card/add-bind-card.html">更换支付方式</a>
+					</div>
+				</div>
+				<div class="sign-item clearfix">
+					<label><em>*</em>图形验证码</label>
+					<div class="sign-right-cont">
+						<input id="inputimgcode" type="text" placeholder="请输入图形验证码" class="common-input-text" style="width:35%;vertical-align:middle;border:1px solid #ddd" />
+						<img id="imgcodebtn" src="" class="codebtn">
+						<span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
+					</div>
+				</div>
+				<div class="sign-item clearfix">
+					<label><em>*</em>短信验证码</label>
+					<div class="sign-right-cont">
+						<input id="validcode" type="text" placeholder="请输入短信验证码" class="common-input-text" style="width:35%;vertical-align:middle;border:1px solid #ddd" />
+						<input id="getcodebtn" type="button" class="common-btn btn-green" value="发送验证码" style="width:112px;margin-left:10px;">
+					</div>
+				</div>
+				<div class="sign-item clearfix" style="margin-top:55px;text-align:center;">
+					<div class="sign-right-cont" style="margin-left:0;">
+						 <a id="enterbtn" href="javascript:void(0);" class="common-btn common-btn-m btn-green" style="width:200px;">确认支付</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../res/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../res/js/ui.js"></script>
+	<script src="../libs/json.js"></script>
+	<script src="../libs/base.js"></script>
+	<script src="../libs/utils.js"></script>
+	<script src="../libs/idcard.js"></script>
+	<script src="../libs/layer.js"></script>
+	<script src="../js/cardpay.js"></script>
+</body>
+</html>
+

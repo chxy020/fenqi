@@ -21,8 +21,8 @@
         </div>
 		<div class="sub-main">
 			<div class="card-list">
-				<ul class="card-list-ul">
-					<li>
+				<ul id="cardlist" class="card-list-ul">
+					<!-- <li>
 						<i class="close-ico"></i>
 						<a href="javascript:void(0)" class="card-item">
 							<img src="../res/images/bank-logo/abc.gif" class="bank-card-logo" />
@@ -42,7 +42,7 @@
 							<img src="../res/images/bank-logo/boc.gif" class="bank-card-logo" />
 							<p class="card-number">**** **** **** 6678</p>
 						</a>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 			<div class="btn-box">
@@ -57,26 +57,8 @@
 	<script type="text/javascript" src="../libs/json.js"></script>
 	<script type="text/javascript" src="../libs/base.js"></script>
 	<script type="text/javascript" src="../libs/utils.js"></script>
-	<script type="text/javascript">
-	//右上角编辑按钮
-		$('#stateEdit').on('click',function(){
-			$this = $(this);
-			if($('.card-list-ul').hasClass('edit-state')){
-				$this.text('编辑');
-				$('.card-list-ul').removeClass('edit-state');
-			}else{
-				$this.text('保存');
-				$('.card-list-ul').addClass('edit-state');
-			}
-		});
-		//解绑银行卡点击效果
-		$('.card-list-ul .close-ico').on('click',function(){
-			var $this = $(this);
-			COMMON_PLUGIN.COMMON.ALERT_DIALOG_TWO('确定要解绑该银行卡吗',function(){releaseCardBind($this)},function(){});
-		});
-		function releaseCardBind(obj){
-			obj.parents('li').remove();
-		}
+	<script type="text/javascript" src="../js/cardcenter.js"></script>	
+	<script type="text/javascript">	
 	</script>
 </body>
 

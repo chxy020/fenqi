@@ -187,21 +187,21 @@ $(function(){
 				}
 			break;
 			case "li_2":
-				url = location.href = "../mystaging/staging-step.html";
+				url = location.href = "../mystaging/mystaging.html";
 				if(g.loginStatus){
 					location.href = url;
 				}
 				else{
-					location.href = "../login/login.html";
+					location.href = "../login/login.html?p=1";
 				}
 			break;
 			case "li_3":
-				url = location.href = "../personal-center/index.html";
+				url = location.href = "../order/index.html?orderType=100507";
 				if(g.loginStatus){
 					location.href = url;
 				}
 				else{
-					location.href = "../login/login.html";
+					location.href = "../login/login.html?p=1";
 				}
 			break;
 			case "li_4":
@@ -389,7 +389,26 @@ $(function(){
 			//~ $(next).removeClass("validate-success");
 			//~ $(next).addClass("validate-error");
 			//~ $(next).show();
-			Utils.alert(msg + "不能为空");
+			alert(msg + "不能为空");
+		}
+		return b;
+	}
+	function sendValidNobig(txt,dom,msg){
+		var b = false;
+		var next = dom.next();
+		if(txt <= 500000){
+			b = true;
+			//~ $(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			//~ $(next).removeClass("validate-error");
+			//~ $(next).addClass("validate-success");
+			//~ $(next).show();
+		}
+		else{
+			//~ $(next).html('<i class="common-ico validate-ico"></i>不能为空');
+			//~ $(next).removeClass("validate-success");
+			//~ $(next).addClass("validate-error");
+			//~ $(next).show();
+			alert(msg + "不能大于50万");
 		}
 		return b;
 	}
@@ -409,12 +428,13 @@ $(function(){
 			//~ $(next).removeClass("validate-success");
 			//~ $(next).addClass("validate-error");
 			//~ $(next).show();
-			Utils.alert(msg + "只能填写数字");
+			alert(msg + "只能填写数字");
 		}
 		return b;
 	}
 	function sendValidIsPhone(txt,dom,msg){
 		var b = false;
+		if(txt==""){return true;}
 		var reg = /^1[3,5,7,8]\d{9}$/;
 		var next = dom.next();
 		if(reg.test(txt)){
@@ -430,7 +450,7 @@ $(function(){
 			//~ $(next).addClass("validate-error");
 			//~ $(next).show();
 
-			Utils.alert(msg + "手机号码输入错误");
+			alert(msg + "手机号码输入错误");
 		}
 		return b;
 	}
@@ -450,7 +470,7 @@ $(function(){
 			//~ $(next).addClass("validate-error");
 			//~ $(next).show();
 
-			Utils.alert("身份证号码输入错误");
+			alert("身份证号码输入错误");
 		}
 		return b;
 	}
@@ -477,7 +497,7 @@ $(function(){
 			//~ $(next).show();
 			//~ b = false;
 
-			Utils.alert(msg + "只能输入英文字符,数字,符号");
+			alert(msg + "只能输入英文字符,数字,符号");
 		}
 		return b;
 	}
@@ -507,7 +527,7 @@ $(function(){
 				//~ $(next).show();
 				b = false;
 
-				Utils.alert(msg + "只能输入汉字或汉字+字符");
+				alert(msg + "只能输入汉字或汉字+字符");
 			}
 		}
 		else{
@@ -517,7 +537,7 @@ $(function(){
 			//~ $(next).show();
 			b = false;
 
-			Utils.alert(msg + "只能输入汉字或汉字+字符");
+			alert(msg + "只能输入汉字或汉字+字符");
 		}
 		return b;
 	}
@@ -543,7 +563,7 @@ $(function(){
 			//~ $(next).show();
 			b = false;
 
-			Utils.alert(msg + "只能输入010-12345678或01012345678");
+			alert(msg + "只能输入010-12345678或01012345678");
 		}
 		return b;
 	}
@@ -569,7 +589,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取产品数据失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -609,7 +629,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取字典数据失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -708,7 +728,7 @@ $(function(){
 			//window.scrollTo(0,170);
 		}
 		else{
-			location.href = "../login/login.html";
+			location.href = "../login/login.html?p=1";
 		}
 	}
 
@@ -809,9 +829,9 @@ $(function(){
 
 	function nextBtnUp3(){
 		var contractNo = $("#contractNo").val() || "";
-
+		var designer = $("#designer").val() || "";
 		if($("#packageType")[0].selectedIndex == - 1){
-			Utils.alert("请选择产品类型");
+			alert("请选择产品类型");
 			return;
 		}
 		var packageName = $("#packageType")[0].options[$("#packageType")[0].selectedIndex].text;
@@ -819,7 +839,7 @@ $(function(){
 		var contractMoney = $("#contractMoney").val() || "";
 		var packageMoney = $("#packageMoney").val() || "";
 		var fenQiTimes = $("#fenQiTimes").val() || "";
-		//var agreeck = $("#agreeck")[0].checked || false;
+		var agreeck = $("#agreeck")[0].checked || false;
 		ptype = packageType.split("_");
 		packageType = ptype[0] || "";
 		var companyId = ptype[1] || "";
@@ -840,36 +860,45 @@ $(function(){
 			//~ $(next).addClass("validate-error");
 			//~ $(next).show();
 
-			Utils.alert("分期金额必须小于总金额");
+			alert("分期金额必须小于总金额");
 			return;
 		}
 
 		if(sendValidNoEmpty(packageMoney,$("#packageMoney"),"分期金额")){
 			if(sendValidIsNumber(packageMoney,$("#packageMoney"),"分期金额")){
-				//if(agreeck){
-					var condi = {};
-					condi.login_token = g.login_token;
-					condi.customerId = g.customerId;
-					condi.orderId = g.orderId;
-					condi.contractNo = contractNo;
-					condi.packageName = packageName;
-					condi.packageType = packageType;
-					condi.companyId = companyId;
-					condi.contractMoney = contractMoney;
-					condi.packageMoney = packageMoney;
-					condi.fenQiTimes = g.stagnum;
-					condi.poundage =  g.poundage;
-					condi.repaymentType = g.repaymentType;
-					condi.moneyMonth = g.moneyMonth;
-					sendSetOrderPackageHttp(condi);
-				//}
-				//else{
-					//~ Utils.alert("请勾选同意借款服务协议");
-				//}
+				if(sendValidNobig(packageMoney,$("#packageMoney"),"分期金额")){				
+					if(agreeck){
+						var condi = {};
+						condi.login_token = g.login_token;
+						condi.customerId = g.customerId;
+						condi.orderId = g.orderId;
+						condi.contractNo = contractNo;
+						condi.designer = designer;
+						condi.packageName = packageName;
+						condi.packageType = packageType;
+						condi.companyId = companyId;
+						condi.contractMoney = contractMoney;
+						condi.packageMoney = packageMoney;
+						condi.fenQiTimes = g.stagnum;
+						condi.poundage =  g.poundage;
+						condi.repaymentType = g.repaymentType;
+						condi.moneyMonth = g.moneyMonth;
+						sendSetOrderPackageHttp(condi);
+					}
+					else{
+						alert("请勾选同意协议");
+					}
+				}
 			}
 		}
 
 	}
+/* 协议的隐藏显示 */
+$(".protocol_slideToggle").click(function(){
+	$(this).parents(".protocol_slideToggle_a").toggleClass("active");
+	$(".protocol_slideToggle_a .protocol_slideToggle").html("更多>>");	
+	$(".protocol_slideToggle_a.active .protocol_slideToggle").html("收起>>");	
+})
 
 	function sendSetOrderPackageHttp(condi){
 		var url = Base.serverUrl + "order/editOrderPackageController";
@@ -1153,15 +1182,15 @@ $(function(){
 		var workmateTwoName = $("#workmateTwoName").val() || "";
 		var workmateTwoPhone = $("#workmateTwoPhone").val() || "";
 
-		if(!sendValidNoEmpty(familyName,$("#familyName"),"亲属一姓名")){
+		/* if(!sendValidNoEmpty(familyName,$("#familyName"),"亲属一姓名")){
 			return;
-		}
+		} */
 		if(!sendValidChineseName(familyName,$("#familyName"),"亲属一姓名")){
 			return;
 		}
-		if(!sendValidNoEmpty(familyPhone,$("#familyPhone"),"亲属一手机号")){
+		/* if(!sendValidNoEmpty(familyPhone,$("#familyPhone"),"亲属一手机号")){
 			return;
-		}
+		} */
 		if(!sendValidIsPhone(familyPhone,$("#familyPhone"),"亲属一")){
 			return;
 		}
@@ -1196,14 +1225,14 @@ $(function(){
 		//~ if(!sendValidNoEmpty(friendTwoPhone,$("#friendTwoPhone"))){
 			//~ return;
 		//~ }
-		if(!sendValidChineseName(friendTwoName,$("#friendTwoName"),"朋友二姓名")){
+		/* if(!sendValidChineseName(friendTwoName,$("#friendTwoName"),"朋友二姓名")){
 			return;
 		}
 		if(friendTwoPhone !== ""){
 			if(!sendValidIsPhone(friendTwoPhone,$("#friendTwoPhone"),"朋友二")){
 				return;
 			}
-		}
+		} */
 
 		if(!sendValidNoEmpty(workmateName,$("#workmateName"),"同事一姓名")){
 			return;
@@ -1223,14 +1252,14 @@ $(function(){
 		//~ if(!sendValidNoEmpty(workmateTwoPhone,$("#workmateTwoPhone"))){
 			//~ return;
 		//~ }
-		if(!sendValidChineseName(workmateTwoName,$("#workmateTwoName"),"同事二姓名")){
+		/* if(!sendValidChineseName(workmateTwoName,$("#workmateTwoName"),"同事二姓名")){
 			return;
 		}
 		if(workmateTwoPhone !== ""){
 			if(!sendValidIsPhone(workmateTwoPhone,$("#workmateTwoPhone"),"同事二")){
 				return;
 			}
-		}
+		} */
 
 		g.orderUserInfo.familyName = familyName;
 		g.orderUserInfo.familyPhone = familyPhone;
@@ -1288,7 +1317,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "提交订单用户信息失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1347,16 +1376,16 @@ $(function(){
 							//$("#avatarimg").attr("src",src);
 						}
 						catch(e){
-							Utils.alert("图片上传失败");
+							alert("图片上传失败");
 						}
 					}
-					//Utils.alert("头像上传成功");
+					//alert("头像上传成功");
 					//console.log("ajaxFileUpload",data,status);
 					//location.reload();
 				},
 				error: function (data, status, e)//服务器响应失败处理函数
 				{
-					Utils.alert("图片上传失败");
+					alert("图片上传失败");
 					g.httpTip.hide();
 				}
 			});
@@ -1447,7 +1476,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "删除上传图片失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1469,7 +1498,7 @@ $(function(){
 			for(var i = 0,len = g.uploadMark.length; i < len; i++){
 				var m = g.uploadMark[i];
 				if(m === 0){
-					Utils.alert(msg[i]);
+					alert(msg[i]);
 					break;
 				}
 			}
@@ -1499,7 +1528,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "提交订单用户信息失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1533,7 +1562,7 @@ $(function(){
 		if(rs>=0){
 			return true;
 		}else{
-			Utils.alert("您选择的上传文件不是有效的图片文件！");
+			alert("您选择的上传文件不是有效的图片文件！");
 			return false;
 		}
 	}
@@ -1563,7 +1592,7 @@ $(function(){
 				else{
 					//var msg = data.error || "";
 					var msg = data.message || "获取订单信息失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -1585,6 +1614,7 @@ $(function(){
 
 		//第二步数据,套餐信息
 		var contractNo = obj.contractNo || "";
+		var designer = obj.designer || "";
 		var packageType = obj.packageType || "";
 		//var companyId = obj.companyId || "";
 		var contractMoney = obj.contractMoney || "";
@@ -1605,6 +1635,7 @@ $(function(){
 		sendGetProductHttp(companyId);
 
 		$("#contractNo").val(contractNo);
+		$("#designer").val(designer);
 		$("#packageType").val((packageType + "_" + companyId));
 		$("#contractMoney").val(contractMoney);
 		$("#packageMoney").val(packageMoney);
@@ -1741,12 +1772,12 @@ $(function(){
 	}
 	/* 点击我要分期 */
 	$("#stg_btn").click(function(){
-		url = location.href = "../mystaging/staging-step.html";
+		url = location.href = "../mystaging/mystaging.html";
 				if(g.loginStatus){
 					location.href = url;
 				}
 				else{
-					location.href = "../login/login.html";
+					location.href = "../login/login.html?p=1";
 				}
 	})
 		

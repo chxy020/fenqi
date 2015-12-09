@@ -27,7 +27,7 @@ $(function(){
 
 	g.uploadImgType = ["100701","100702","100703","100704","100705","100706","100707","100708","100709","100710","100711"];
 	g.uploadIndex = 0;
-	g.uploadMark = [0,0];
+	g.uploadMark = [[0],[0]];
 
 	//编辑订单
 	//g.editOrderId = Utils.getQueryString("orderid") || "";
@@ -792,7 +792,7 @@ $(function(){
 		var packageMoney = $("#packageMoney").val() || "";
 		var fenQiTimes = $("#fenQiTimes").val() || "";
 		var subsidiaryId = $("#subsidiaryId option:selected").attr("value") || "";//合作商户
-		var agreeck = $("#agreeck")[0].checked || false;
+		var agreeck = $("#agreeck").attr("checked")=="checked" || false;
 		ptype = packageType.split("_");
 		packageType = ptype[0] || "";
 		var companyId = ptype[1] || "";
@@ -1341,7 +1341,8 @@ $(function(){
 		html.push('</div>');
 
 		$("#imgdiv_" + g.uploadIndex).append(html.join(''));
-		if(g.uploadIndex == 0){
+		g.uploadMark[g.uploadIndex][0]++;
+		/* if(g.uploadIndex == 0){
 			var fm = g.uploadMark[0];
 			if(fm === 1){
 				var fm1 = g.uploadMark[1];
@@ -1350,15 +1351,15 @@ $(function(){
 				}
 				else{
 					g.uploadMark[g.uploadIndex + 1] = 1;
-				}
+				} 
 			}
 			else{
 				g.uploadMark[g.uploadIndex] = 1;
 			}
 		}
 		else{
-			g.uploadMark[g.uploadIndex + 2] = 1;
-		}
+			g.uploadMark[g.uploadIndex] = 1;
+		} */
 	}
 
 	function deleteUploadImg(id,index){
@@ -1379,25 +1380,9 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					$("#img_" + id).hide();
-					index = index - 0;
-					if(index == 0){
-						var fm = g.uploadMark[2];
-						if(fm === 1){
-							g.uploadMark[2] = 0;
-						}
-						else{
-							var fm1 = g.uploadMark[1];
-							if(fm1 === 1){
-								g.uploadMark[1] = 0;
-							}
-							else{
-								g.uploadMark[0] = 0;
-							}
-						}
-					}
-					else{
-						g.uploadMark[index + 2] = 0;
-					}
+					index = index - 0;					
+					var fm = g.uploadMark[index][0];
+					if(fm > 0){g.uploadMark[index][0]--;}
 				}
 				else{
 					//var msg = data.error || "";
@@ -1416,40 +1401,21 @@ $(function(){
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.orderId = g.orderId;
-		/*  */
-if (!Array.prototype.indexOf)
-{
-  Array.prototype.indexOf = function(elt /*, from*/)
-  {
-    var len = this.length >>> 0;
-    var from = Number(arguments[1]) || 0;
-    from = (from < 0)
-         ? Math.ceil(from)
-         : Math.floor(from);
-    if (from < 0)
-      from += len;
-    for (; from < len; from++)
-    {
-      if (from in this &&
-          this[from] === elt)
-        return from;
-    }
-    return -1;
-  };
-}
-/*  */
-		if(g.uploadMark.indexOf(0) == -1){
+		var confirm = (g.uploadMark[0][0] > 0 && g.uploadMark[1][0] > 0) || false;
+		if(confirm){
 			sendSetOrderCompleteHttp(condi);
 		}
 		else{
-			var msg = ["身份证未上传","身份证需要上传正反面","身份证需要上传手持身份证照片","房产证明未上传","现住址证明未上传","工作证明未上传","收入证明未上传"];
-			for(var i = 0,len = g.uploadMark.length; i < len; i++){
+			var msg = ["身份证未上传","房产证明未上传","身份证需要上传正反面","身份证需要上传手持身份证照片","房产证明未上传","现住址证明未上传","工作证明未上传","收入证明未上传"];
+			if(g.uploadMark[0][0] <= 0){Utils.alert(msg[0]);}
+			else if(g.uploadMark[1][0] <= 0){Utils.alert(msg[1]);}
+			/* for(var i = 0,len = g.uploadMark.length; i < len; i++){
 				var m = g.uploadMark[i];
 				if(m === 0){
 					Utils.alert(msg[i]);
 					break;
 				}
-			}
+			} */
 		}
 	}
 	function sendSetOrderCompleteHttp(condi){
@@ -1742,8 +1708,10 @@ if (!Array.prototype.indexOf)
 			html.push('</div>');
 
 			$("#imgdiv_" + uploadIndex).append(html.join(''));
-
-			if(uploadIndex == 0){
+			
+			g.uploadMark[uploadIndex][0]++;
+			
+		/* 	if(uploadIndex == 0){
 				var fm = g.uploadMark[0];
 				if(fm === 1){
 					var fm1 = g.uploadMark[1];
@@ -1760,7 +1728,7 @@ if (!Array.prototype.indexOf)
 			}
 			else{
 				g.uploadMark[uploadIndex + 2] = 1;
-			}
+			} */
 		}
 	}
 /* 协议的隐藏显示 */
@@ -1769,8 +1737,6 @@ $(".protocol_slideToggle").click(function(){
 	$(".protocol_slideToggle_a .protocol_slideToggle").html("更多>>");	
 	$(".protocol_slideToggle_a.active .protocol_slideToggle").html("收起>>");	
 })
-
-
 	window.deleteUploadImg = deleteUploadImg;
 });
 

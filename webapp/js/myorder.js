@@ -276,7 +276,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取用户订单失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -362,7 +362,7 @@ $(function(){
 			}
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
-				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',0)" class="item-btn item-btn-green">查看</a>');
+				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',1)" class="item-btn item-btn-green">查看</a>');
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
 			}
 			else if(status == "100506"){
@@ -583,6 +583,9 @@ $(function(){
 		Utils.offLineStore.set("userorderinfo_list",info,false);
 		if(t == 0){
 			location.href = "repayment-list-item.html?orderId=" + orderId ;
+		}
+		else if(t == 1){
+			location.href = "repayment-list-item.html?orderId=" + orderId+"&pa=1";
 		}
 		else{
 			layer.msg("商家正在审核,暂无还款记录");

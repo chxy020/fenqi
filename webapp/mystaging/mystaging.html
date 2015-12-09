@@ -69,15 +69,19 @@
 				<div class="common-title2">套餐信息</div>
 				<div class="common-inp-cont1" style="margin-top:0px;">
 					<div class="inp-item">
-						<label><em>*</em>合同编号</label>
+						<label><em></em>合同编号</label>
 						<input id="contractNo" type="text" class="common-input-text" placeholder="请输入合同编号" />
 					</div>
 					<div class="inp-item">
 						<i class="trigger common-select-trigger"></i>
-						<label><em>*</em>产品类型</label>
+						<label><em></em>产品类型</label>
 						<select id="packageType" class="common-select">
 							<option>请选择</option>
 						</select>
+					</div>
+					<div class="inp-item">
+						<label><em></em>设计师</label>
+						<input id="designer" type="text" class="common-input-text" placeholder="请输入设计师" />
 					</div>
 					<div class="inp-item">
 						<label><em>*</em>合同总金额</label>
@@ -86,7 +90,7 @@
 					</div>
 					<div class="inp-item">
 						<label><em>*</em>分期金额</label>
-						<input id="packageMoney" maxlength=7 type="text" class="common-input-text" placeholder="请输入分期金额" />
+						<input id="packageMoney" maxlength=6 type="text" class="common-input-text" placeholder="请输入分期金额" />
 						<div class="unit-item">元</div>
 					</div>
 				</div>
@@ -112,6 +116,18 @@
 						<label><em>*</em>月还款本金</label>
 						<div id="moneyMonth" class="common-text">0</div>
 						<div class="unit-item">元</div>
+					</div>				
+					<div class="inp-item inp-item_protocol">
+						<label><em>*</em>协议</label>						
+						 <p class="protocol_slideToggle_a" style="font-size:14px;line-height:22px;"><input id="agreeck" checked="checked" type="checkbox" class="common-checkbox" />同意
+							  <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../protocol/protocol-authorization.html','个人征信等信息查询及使用授权书')" class="highlight">《个人征信等信息查询及使用授权书》</a>
+							 <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../protocol/protocol-credit-counseling.html','信用咨询及居间服务协议')" class="highlight">《信用咨询及居间服务协议》</a>
+							 <a class="protocol_slideToggle">更多>></a>
+							 <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../protocol/protocol-fenqi.html','分期付款协议')" class="highlight active_a">《分期付款协议》</a>   
+							 <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../protocol/protocol-customer-commitment.html','客户承诺函 ')" class="highlight active_a">《客户承诺函》</a>
+							 <a href="javascript:void(0)" onclick="$.fn.showProtocolPop('../protocol/protocol-transfer.html','债权转让协议 ')" class="highlight active_a">《债权转让协议》</a>
+						</p>
+						
 					</div>
 				</div>
 				<div class="btn-box">
@@ -276,26 +292,19 @@
 
 				<!--联系人信息-->
 				<div id="step33" class="staging-main" style="display:none;">
-					<div class="common-tip">您填写的联系人信息越全面，越快审批。</div>
-					<div class="common-title2">亲属一</div>
+					<div class="common-tip"><!--您填写的联系人信息越全面，越快审批。--></div>
+					<div class="common-title2">配偶（已婚必填）</div>
 					<div class="common-inp-cont1">
 						<div class="inp-item">
-							<label><em>*</em>姓名</label>
+							<label><em></em>姓名</label>
 							<input id="familyName" type="text" class="common-input-text" placeholder="请输入姓名" />
 						</div>
 						<div class="inp-item">
-							<label><em>*</em>手机号码</label>
+							<label><em></em>手机号码</label>
 							<input id="familyPhone" type="text" maxlength=11 class="common-input-text" placeholder="请输入手机号码" />
-						</div>
-						<div class="inp-item">
-							<i class="trigger common-select-trigger"></i>
-							<label><em>*</em>关系</label>
-							<select id="familyRelation" class="common-select">
-								<option>请选择</option>
-							</select>
-						</div>
+						</div>						
 					</div>
-					<div class="common-title2">亲属二</div>
+					<div class="common-title2">直系亲属</div>
 						<div class="common-inp-cont1">
 						<div class="inp-item">
 							<label><em>*</em>姓名</label>
@@ -313,7 +322,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="common-title2">朋友一</div>
+					<div class="common-title2">朋友</div>
 					<div class="common-inp-cont1">
 						<div class="inp-item">
 							<label><em>*</em>姓名</label>
@@ -324,7 +333,7 @@
 							<input id="friendPhone" type="text" maxlength=11 class="common-input-text" placeholder="请输入手机号码" />
 						</div>
 					</div>
-					<div class="common-title2">朋友二</div>
+					<!-- <div class="common-title2">朋友二</div>
 					<div class="common-inp-cont1">
 						<div class="inp-item">
 							<label>姓名</label>
@@ -334,8 +343,8 @@
 							<label>手机号码</label>
 							<input id="friendTwoPhone" type="text" maxlength=11 class="common-input-text" placeholder="请输入手机号码" />
 						</div>
-					</div>
-					<div class="common-title2">同事一</div>
+					</div> -->
+					<div class="common-title2">同事</div>
 					<div class="common-inp-cont1">
 						<div class="inp-item">
 							<label><em>*</em>姓名</label>
@@ -346,7 +355,7 @@
 							<input id="workmatePhone" type="text" maxlength=11 class="common-input-text" placeholder="请输入手机号码" />
 						</div>
 					</div>
-					<div class="common-title2">同事二</div>
+					<!-- <div class="common-title2">同事二</div>
 					<div class="common-inp-cont1">
 						<div class="inp-item">
 							<label>姓名</label>
@@ -356,7 +365,7 @@
 							<label>手机号码</label>
 							<input id="workmateTwoPhone" type="text" maxlength=11 class="common-input-text" placeholder="请输入手机号码" />
 						</div>
-					</div>
+					</div> -->
 					<div class="btn-box">
 						<p>
 							<a id="nextbtn4"  href="javascript:void(0);" class="common-btn btn-green">下一步</a>
@@ -370,8 +379,8 @@
 
 			<!--上传图片-->
 			<div id="step4" class="staging-main" style="display:none;">
-				<div class="common-tip">您填写的联系人信息越全面，越快审批。</div>
-				<div class="common-title2">必要认证</div>
+				<!-- <div class="common-tip">您填写的联系人信息越全面，越快审批。</div> -->
+				<div class="common-title2">必要认证（必须上传的认证资料，不上传无法提交分期申请。上传图片大小不超过2M，格式为png或jpg）</div>
 				<div class="upload-item">
 					<h1 class="upload-inf-title"><em>*</em>1.身份证<span>(身份证正反面+手持身份证照片)</span></h1>
 					<div class="upload-item-box clearfix">
@@ -393,7 +402,7 @@
 					</div>
 				</div>
 				<div class="upload-item">
-					<h1 class="upload-inf-title"><em>*</em>2.房产证明<span>(房产证名字需与借款人名字一致（如房产证名字是申请人爱人，需要提供结婚证明）</span></h1>
+					<h1 class="upload-inf-title"><em>*</em>2.房产证或购房合同＋发票<span>(房产证名字需与借款人名字一致（如房产证名字是申请人爱人，需要提供结婚证明）</span></h1>
 					<div class="upload-item-box clearfix">
 						<!--
 						<div class="uploaded-img">
@@ -462,7 +471,7 @@
 					</div>
 				</div>
 				<div class="upload-item">
-					<h1 class="upload-inf-title"><em>*</em>5.收入证明<span>（近6个月与工资收入相关的银行流水+银行卡正反面照片）</span></h1>
+					<h1 class="upload-inf-title"><em>*</em>5.收入证明<span>（近6个月与工资收入相关的银行流水）</span></h1>
 					<div class="upload-item-box clearfix">
 						<!--
 						<div class="uploaded-img">
@@ -482,107 +491,6 @@
 					</div>
 				</div>
 
-				<div class="common-title2">可选认证<span>（根据需要选传的认证信息）</span></div>
-				<div class="upload-item">
-					<h1 class="upload-inf-title">1.结婚证/单身证明<span>不超过5张</span></h1>
-					<div class="upload-item-box clearfix">
-						<!--
-						<div class="uploaded-img">
-							<i class="upload-img-close"></i>
-							<img src="../res/images/personal-top-bg.jpg" />
-						</div>
-						<div class="uploaded-img">
-							<i class="upload-img-close"></i>
-							<img src="../res/images/personal-top-bg.jpg" />
-						</div>
-						-->
-						<div id="imgdiv_5" style="float:left;">
-						</div>
-						<div id="img_5" class="upload-add-img upload-btn" onclick="">
-
-						</div>
-					</div>
-				</div>
-				<div class="upload-item">
-					<h1 class="upload-inf-title">2.企业用户营业执照照片<span>（不超过5辆）</span></h1>
-					<div class="upload-item-box clearfix">
-						<!--
-						<div class="uploaded-img">
-							<i class="upload-img-close"></i>
-							<img src="../res/images/personal-top-bg.jpg" />
-						</div>
-						<div class="uploaded-img">
-							<i class="upload-img-close"></i>
-							<img src="../res/images/personal-top-bg.jpg" />
-						</div>
-						-->
-						<div id="imgdiv_7" style="float:left;">
-						</div>
-						<div id="img_7" class="upload-add-img upload-btn" onclick="">
-
-						</div>
-					</div>
-				</div>
-				<div class="upload-item">
-					<h1 class="upload-inf-title">3.企业用户组织结构代码证<span>（不超过5张）</span></h1>
-					<div class="upload-item-box clearfix">
-						<!--
-						<div class="uploaded-img">
-							<i class="upload-img-close"></i>
-							<img src="../res/images/personal-top-bg.jpg" />
-						</div>
-						<div class="uploaded-img">
-							<i class="upload-img-close"></i>
-							<img src="../res/images/personal-top-bg.jpg" />
-						</div>
-						-->
-						<div id="imgdiv_8" style="float:left;">
-						</div>
-						<div id="img_8" class="upload-add-img upload-btn" onclick="">
-
-						</div>
-					</div>
-				</div>
-				<div class="upload-item">
-					<h1 class="upload-inf-title">4.企业用户税务登记证<span>不超过5张</span></h1>
-					<div class="upload-item-box clearfix">
-						<!--
-						<div class="uploaded-img">
-							<i class="upload-img-close"></i>
-							<img src="../res/images/personal-top-bg.jpg" />
-						</div>
-						<div class="uploaded-img">
-							<i class="upload-img-close"></i>
-							<img src="../res/images/personal-top-bg.jpg" />
-						</div>
-						-->
-						<div id="imgdiv_9" style="float:left;">
-						</div>
-						<div id="img_9" class="upload-add-img upload-btn" onclick="">
-
-						</div>
-					</div>
-				</div>
-				<div class="upload-item">
-					<h1 class="upload-inf-title">5.企业用户企业经营场所照片<span>不超过5张</span></h1>
-					<div class="upload-item-box clearfix">
-						<!--
-						<div class="uploaded-img">
-							<i class="upload-img-close"></i>
-							<img src="../res/images/personal-top-bg.jpg" />
-						</div>
-						<div class="uploaded-img">
-							<i class="upload-img-close"></i>
-							<img src="../res/images/personal-top-bg.jpg" />
-						</div>
-						-->
-						<div id="imgdiv_10" style="float:left;">
-						</div>
-						<div id="img_10" class="upload-add-img upload-btn" onclick="">
-
-						</div>
-					</div>
-				</div>
 				<div class="btn-box">
 					<p>
 						<a id="nextbtn5" href="javascript:void(0);"  class="common-btn btn-green">下一步</a>
@@ -623,7 +531,9 @@
 
 
 	<script type="text/javascript" src="../res/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../res/js/ui.js"></script>
 	<script type="text/javascript" src="../res/js/layer.m.js"></script>
+	<script type="text/javascript" src="../libs/layer.js"></script>
 	<script type="text/javascript" src="../res/js/common.js"></script>
 	<script type="text/javascript" src="../libs/json.js"></script>
 	<script type="text/javascript" src="../libs/base.js"></script>

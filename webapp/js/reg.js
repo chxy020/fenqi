@@ -16,7 +16,7 @@ $(function(){
 	g.guid = Utils.getGuid();
 
 	//获取图形验证码
-	sendGetImgCodeHttp();
+	//sendGetImgCodeHttp();
 
 	//g.httpTip.show();
 
@@ -45,7 +45,7 @@ $(function(){
 		var reg = /^1[3,5,7,8]\d{9}$/g;
 		if(phone !== ""){
 			if(!reg.test(phone)){
-				Utils.alert("手机号输入错误");
+				alert("手机号输入错误");
 				//$("#inputphone").focus();
 			}
 		}
@@ -55,7 +55,7 @@ $(function(){
 	function validPwd(){
 		var pwd = $("#inputpwd").val() || "";
 		if((pwd.length < 6 || pwd.length > 16) && pwd !== ""){
-			Utils.alert("密码输入错误:请输入字符6-16位");
+			alert("密码输入错误:请输入字符6-16位");
 			//$("#inputpwd").focus();
 		}
 	}
@@ -63,13 +63,13 @@ $(function(){
 	function validCPwd(){
 		var pwd = $("#inputcpwd").val() || "";
 		if((pwd.length < 6 || pwd.length > 16) && pwd !== ""){
-			Utils.alert("确认密码输入错误:请输入字符6-16位");
+			alert("确认密码输入错误:请输入字符6-16位");
 			//$("#inputcpwd").focus();
 		}
 		else{
 			var pwd1 = $("#inputpwd").val() || "";
 			if(pwd !== pwd1){
-				Utils.alert("两次密码输入不一致.");
+				alert("两次密码输入不一致.");
 				//$("#inputcpwd").focus();
 			}
 		}
@@ -82,23 +82,24 @@ $(function(){
 		//if(!this.moved){}
 
 		var p = $("#inputphone").val() || "";
-		var imgCode = $("#inputimgcode").val() || "";
+		//var imgCode = $("#inputimgcode").val() || "";
 		if(p !== ""){
 			var reg = /^1[3,5,7,8]\d{9}$/g;
 			if(reg.test(p)){
 				g.phone = p;
-				if(imgCode !== ""){
+				sendGetCodeHttp();
+				/* if(imgCode !== ""){
 					if(!g.sendCode){
-						sendGetCodeHttp(imgCode);
+						
 					}
 				}
 				else{
-					Utils.alert("请输入图形验证码");
+					alert("请输入图形验证码");
 					//$("#inputimgcode").focus();
-				}
+				} */
 			}
 			else{
-				Utils.alert("手机号输入错误");
+				alert("手机号输入错误");
 				//$("#inputphone").focus();
 			}
 		}
@@ -148,7 +149,7 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					//alert("验证码:" + data.obj);
-					Utils.alert("验证码已发送,请注意查收");
+					alert("验证码已发送,请注意查收");
 					g.sendCode = true;
 					$("#getcodebtn").val("60秒后重新发送");
 					setTimeout(function(){
@@ -157,7 +158,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "验证码获取失败";
-					Utils.alert(msg);
+					alert(msg);
 
 					//重新请求图形验证码
 					sendGetImgCodeHttp();
@@ -193,37 +194,37 @@ $(function(){
 									sendRegHttp(condi);
 								}
 								else{
-									Utils.alert("请勾选同意服务协议");
+									alert("请勾选同意服务协议");
 								}
 							}
 							else{
-								Utils.alert("请输入验证码");
+								alert("请输入验证码");
 								//$("#inputcode").focus();
 							}
 						}
 						else{
-							Utils.alert("两次密码输入不一致");
+							alert("两次密码输入不一致");
 							$("#inputcpwd").val("");
 							//$("#inputcpwd").focus();
 						}
 					}
 					else{
-						Utils.alert("请输入确认密码");
+						alert("请输入确认密码");
 						//$("#inputcpwd").focus();
 					}
 				}
 				else{
-					Utils.alert("请输入密码");
+					alert("请输入密码");
 					//$("#inputpwd").focus();
 				}
 			}
 			else{
-				Utils.alert("手机号输入错误");
+				alert("手机号输入错误");
 				//$("#inputphone").focus();
 			}
 		}
 		else{
-			Utils.alert("请输入手机号");
+			alert("请输入手机号");
 			//$("#inputphone").focus();
 		}
 	}
@@ -314,11 +315,11 @@ $(function(){
 				//http://101.200.229.135:8080/api/regist?username=ytm&password=123456&mobile=18612444099&validater=3967
 			}
 			else{
-				Utils.alert("账户信息未填");
+				alert("账户信息未填");
 			}
 		}
 		else{
-			Utils.alert("用户名输入错误,请输入邮箱或者手机号");
+			alert("用户名输入错误,请输入邮箱或者手机号");
 			//$("#inputEmail3").focus();
 		}
 

@@ -2107,87 +2107,81 @@ function sendGetPayOrderListHttp8(condi){
 		html.push('<td class="odd">转让协议</td>');
 		html.push('<td class="even"><a class="orderleftbtn_a" id="xieYi_5">债权转让协议</a></td>');
 		html.push('</tr>');
-		/* html.push('<tr>');
-		html.push('<td class="odd">当前状态</td>');
-		html.push('<td class="even">' + statusDes + '</td>');
-		html.push('</tr>');
+		//当服务费金额大于5000时显示优惠券
+		if(poundage >= 5000){
 		html.push('<tr>');
-		html.push('<td class="odd">待还期数</td>');
-		html.push('<td class="even">' + noRepaymentTimes + '期</td>');
+		html.push('<td class="odd">优惠券</td>');
+		html.push('<td class="even"><div class="chk-bg" id="cklikeCheckbox1"><input type="checkbox" name="coupons_value" id="coupons_value"  class="common-checkbox" style="display: none;"></div><label style="float:none;" for="coupons_value">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span id="coupons_money_span">0元</span></label></td>');
 		html.push('</tr>');
-		html.push('<tr>');
-		html.push('<td class="odd">总还款金额</td>');
-		html.push('<td class="even">' + (packageMoney + poundage) + '元</td>');
-		html.push('</tr>');
-		html.push('<tr>');
-		html.push('<td class="odd">待还金额</td>');
-		html.push('<td class="even">' + moneyMonth + '元</td>');
-		html.push('</tr>'); */
+		get_coupons_money();
+		}			
 		html.push('</table>');
-		//html.push('<table class="common-table1" cellpadding="0" cellspacing="0" style="margin-top:25px;">');
-		/* html.push('<tr>');
-		html.push('<th>还款期数</th>');
-		html.push('<th>还款本金</th>');
-		html.push('<th>应还时间</th>');
-		html.push('<th>逾期天数</th>');
-		html.push('<th>逾期利息</th>');
-		html.push('<th>应还金额</th>');
-		html.push('</tr>'); */
-		/* html.push('<tr>');
-		html.push('<td>' +repaymentTypeDesc + '</td>');
-		html.push('<td>' + repaymentPrincipal + '元</td>');
-		html.push('<td>' + expectRepaymentTime + '</td>');
-		html.push('<td>' + overdueTime + '天</td>');
-		html.push('<td>' + overdueInterest + '元</td>');
-		html.push('<td>' + yinghuanjine + '元</td>');
-		html.push('</tr>'); */
-		//html.push('</table>');
+
 		html.push('<div class="btn-box">');
 		html.push('<input type="button" class="common-btn btn-light-green" value="确认支付" onclick="confirmRepayment(\'' + poundageRecordId + '\',' + poundage + ')" />');
 		html.push('<input type="button" class="common-btn btn-grey" value="取消" onclick="hidePop()" />');
 		html.push('</div>');
 
 		$("#detailinfodiv1").html(html.join(''));
+		n_click();
 		showOrderPop('#payBackPop');
 		OrderLeftProtocolClick();
 	}
+	function n_click(){
+		$("#cklikeCheckbox1").click(function(){
+			$(this).toggleClass("chk-bg-checked");
+			if($(this).find("#coupons_value").attr("checked")=="checked"){
+				$(this).find("#coupons_value").attr("checked",false);
+			}else{
+				$(this).find("#coupons_value").attr("checked","checked");
+			}
+		})
+	}
+	function get_coupons_money(){
+		g.get_coupons_money = 0;
+		var condi = {};
+			condi.login_token = g.login_token;
+			condi.customerId = g.customerId;
+		var url = Base.serverUrl + "coupon/getAvailableCouponsByCustomerId";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var dd = data.list;
+					var coupons_money_span = dd[0].money || 0;
+					var get_coupons_couponId = dd[0].couponId || "";
+					$("#coupons_money_span").html(coupons_money_span+"元");
+					g.get_coupons_money = coupons_money_span;
+					g.get_coupons_couponId = get_coupons_couponId;
+				}
+				else{
+					var msg = data.message || "获取优惠券失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+	
 	
 	function confirmRepayment(poundageRecordId,yinghuanjine){
+		var get_coupons_couponId = "";
+		if(yinghuanjine >= 5000 && $("#coupons_value").attr("checked")=="checked")
+		{yinghuanjine = yinghuanjine - g.get_coupons_money; get_coupons_couponId = g.get_coupons_couponId;}
+		
 		//先判断用户有没有判定银行卡
-		sendIsExistBindBankCardHttp(poundageRecordId,yinghuanjine);
+		sendIsExistBindBankCardHttp(poundageRecordId,yinghuanjine,get_coupons_couponId);
 
-		//~ g.httpTip.show();
-		//~ var url = Base.serverUrl + "order/repaymentDoneByRepaymentRecordId";
-		//~ var condi = {};
-		//~ condi.poundageRecordId = poundageRecordId;
-		//~ condi.login_token = g.login_token;
-		//~ $.ajax({
-			//~ url:url,
-			//~ data:condi,
-			//~ type:"POST",
-			//~ dataType:"json",
-			//~ context:this,
-			//~ success: function(data){
-				//~ console.log("confirmRepayment",data);
-				//~ var status = data.success || false;
-				//~ if(status){
-					//~ hidePop();
-					//~ Utils.alert("还款成功");
-					//~ getUserOrderStagingList();
-					//~ //changeOrderStagingListHtml(data);
-				//~ }
-				//~ else{
-					//~ var msg = data.message || "还款失败";
-					//~ Utils.alert(msg);
-				//~ }
-				//~ g.httpTip.hide();
-			//~ },
-			//~ error:function(data){
-				//~ g.httpTip.hide();
-			//~ }
-		//~ });
 	}
-	function sendIsExistBindBankCardHttp(poundageRecordId,yinghuanjine){
+	function sendIsExistBindBankCardHttp(poundageRecordId,yinghuanjine,get_coupons_couponId){
 		g.httpTip.show();
 		var url = Base.serverUrl + "payPc/isExistBindBankCard";
 		var condi = {};
@@ -2205,11 +2199,11 @@ function sendGetPayOrderListHttp8(condi){
 				var status = data.success || false;
 				if(status){
 					//用户绑定银行卡
-					location.href = "/anjia/card-pay2.html?recordId=" + poundageRecordId + "&p=" + yinghuanjine;
+					location.href = "/anjia/card-pay2.html?recordId=" + poundageRecordId + "&p=" + yinghuanjine+"&id=" + get_coupons_couponId;
 				}
 				else{
 					//用户没有绑定银行卡
-					location.href = "/anjia/bind-card.html?recordId=" + poundageRecordId + "&p=" + yinghuanjine;
+					location.href = "/anjia/bind-card.html?recordId=" + poundageRecordId + "&p=" + yinghuanjine+"&id=" + get_coupons_couponId;
 				}
 				g.httpTip.hide();
 			},
@@ -2284,6 +2278,7 @@ function OrderLeftProtocolClick(){
 	window.repayment = repayment;	
 	window.OrderLeftProtocolClick=OrderLeftProtocolClick;
 	window.sendGetOrderInfoHttp=sendGetOrderInfoHttp;
+	window.n_click = n_click;
 	
 });
 

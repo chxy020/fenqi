@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<title>燕子安家</title>
+	<link href="../res/css/common.css" rel="stylesheet">
+    <link href="../res/css/carouFredSel.css" rel="stylesheet">
+    <link href="../res/css/personal.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="ui-short-head">
+		<div class="ui-wrap">
+			<div id="loginstatus" class="head-box">
+				<a href="/anjia/login.html">登录</a>
+				<s class="header-line"></s>
+				<a href="/anjia/regist.html">注册</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">个人中心</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">我要还款</a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/head.js"></script>
+
+
+	<div class="ui-personal-main">
+		<div class="ui-wrap">
+			<div class="personal-main-left">
+				<div class="sub-left-nav">
+					<script type="text/javascript" src="js/c_cooleft.js"></script>
+				</div>
+			</div>
+
+			<div class="personal-main-right">
+				<div class="personal-top clearfix">
+					<div class="back-go f-right">
+						<a href="/anjia/usercenter.html">返回我的订单&gt;&gt;</a>
+					</div>
+					<div class="personal-inf">
+						<img id="avatarimg" src="../res/images/usercenter1.png" class="user-img" onclick="document.getElementById('avatar').click()" />
+						<input type="file" id="avatar" name="avatar" style="display:none;" />
+						<div class="personal-inf-right">
+							<p id="userphone" class="user-phone" style="margin-left:10px;">手机号码</p>
+							<p class="user-edit-area">
+								<a class="common-ico ico-phone" href="/anjia/changephone.html"></a>
+								<a class="common-ico ico-setting" title="编辑" href="/anjia/userinfo.html"></a>
+								<a class="common-ico ico-setting ico-coupons " title="优惠券" href="/anjia/coupons.html?item=2"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div  id="coupons_list">
+					<!-- <div class="coo-result-box">	
+						<h3>¥<span id="money">1212</span>抵用券</h3>
+						<p class="p">使用期限：2015年12月2日到2016年1月2日</p>		
+					</div>
+					<div class="coo-result-box">	
+						<h3>¥<span id="money">1212</span>抵用券</h3>
+						<p class="p">使用期限：2015年12月2日到2016年1月2日</p>		
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class="ui-bottom">
+    </div>
+
+	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../res/js/ui.js"></script>
+	<script src="libs/json.js"></script>
+	<script src="libs/base.js"></script>
+	<script src="libs/utils.js"></script>
+	<script src="libs/layer.js"></script>
+	<script src="libs/calendar.js"></script>
+	<script src="libs/ajaxfileupload.js"></script>
+	<script src="js/coupons.js"></script>
+    <!--BAIDU定位JS 开始-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+    <script type="text/javascript">
+	$(function(){
+		// 百度地图API功能
+        function myFun(result){
+            var cityName = result.name;
+            $("#curCity").html(cityName);
+        }
+        var myCity = new BMap.LocalCity();
+        myCity.get(myFun);
+	})
+
+    </script>
+</body>
+</html>
+

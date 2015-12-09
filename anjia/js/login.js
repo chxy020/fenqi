@@ -108,8 +108,9 @@ $(function(){
 						Utils.offLineStore.set("token",token,false);
 						var compare=GetRequest().p;						
 						if(compare==1){location.href = "/anjia/mystaging.html"}
+						else if(compare=="langrun"){location.href = "/anjia/langrun_1212.html";}
+						else if(compare=="shenghuojia"){location.href = "/anjia/shenghuojia_1212.html";}
 						else{location.href = "/anjia/usercenter.html";}
-						
 					}
 					//location.href = "center.html";
 					//var token = data.result.token || "";

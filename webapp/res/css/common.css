@@ -757,3 +757,61 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
     transform: rotate3d(0, 0, 1, -1deg);
   }
 }
+.protocol_slideToggle_a .active_a{display:none;transition:all .5s ease-in-out;}
+.protocol_slideToggle_a.active  .active_a{display:inline;}
+.protocol_slideToggle_a  .protocol_slideToggle{content:"更多>>";cursor:pointer;}
+.protocol_slideToggle_a.active  .protocol_slideToggle{content:"收起>>";}
+
+.chk-bg {
+	width: 18px;
+	height: 18px;
+	outline: none;
+	margin-right:5px;
+	vertical-align: middle;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	margin-bottom:2px;
+	background: url(../images/checked-bg.png) no-repeat -18px 0px;
+}
+
+.chk-bg-checked {
+	background: url(../images/checked-bg.png) no-repeat 0px 0px;
+}
+
+.common-inp-cont1 .inp-item_protocol{height:auto;display:inline-block;}
+.common-inp-cont1 .inp-item_protocol label{display:inline-block;float:left;}
+.highlight{
+	color:#539d34;
+}
+.highlight-red{
+	color:#ff503e;
+}
+.protocol_slideToggle_a  a,.protocol_slideToggle_a  i{display:inline-block;vertical-align:middle;line-height:45px;}
+.protocol_slideToggle_a{margin-left:10px;display:inline-block;float:left;}
+
+.person-ico.p-ico7{background-position:0 -148px}
+
+.cou-list-ul.order-list-ul li{position:relative;color:#fff;display:inline-block;width:100%;}
+.order-list-ul li span.left{font-size:36px;float:left;margin:1% 0 0 4%;display:inline-block;}
+.order-list-ul li span.left i{font-size:17px;}
+.order-list-ul li span.right{font-size:17px;float:left;margin:1% 0 0 3%;display:inline-block;}
+.order-list-ul li span.right i{margin-left:24px;font-size:21px;}
+.order-list-ul li p{font-size:12px;padding-left:3%;display:inline-block;width:100%;}
+.order-list-ul  img.back{position:absolute;z-index:1;top:0;left:0;right:0;bottom:0;width:100%;}
+.order-list-ul  .back2{position:absolute;z-index:2;top:0;background:none;left:0;right:0;bottom:0;}
+@media only screen and (min-width:375px){
+.order-list-ul li span.left{font-size:47px;}
+.order-list-ul li span.left i{font-size:30px;}
+.order-list-ul li span.right{font-size:20px;margin:1% 0 0 5%;}
+.order-list-ul li span.right i{font-size:26px;margin-left:41px;}
+.order-list-ul li p{font-size:14px;margin-top:1%;}
+	
+}
+@media only screen and (min-width:900px){
+.order-list-ul li span.left{font-size:109px;}
+.order-list-ul li span.left i{font-size:30px;}
+.order-list-ul li span.right{font-size:35px;margin:3% 0 0 6%;}
+.order-list-ul li span.right i{font-size:58px;margin-left:41px;}
+.order-list-ul li p{font-size:33px;margin-top:2%;}
+}
