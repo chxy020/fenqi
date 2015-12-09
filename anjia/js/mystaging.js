@@ -1395,12 +1395,30 @@ $(function(){
 			}
 		});
 	}
-
+	//判断是不是ie6,7,8,9
+	function interploer(){
+		var b = false;
+		if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/6./i)=="6."){ 
+			b = true; return b;
+		} 
+		else if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/7./i)=="7."){ 
+			b = true; return b;
+		} 
+		else if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/8./i)=="8."){ 
+			b = true; return b;
+		} 
+		else if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/9./i)=="9."){ 
+			b = true; return b;
+		} 
+		
+	}
+	
 	function nextBtnUp5(){
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.orderId = g.orderId;
 		var confirm = (g.uploadMark[0][0] > 0 && g.uploadMark[1][0] > 0) || false;
+		if(interploer()){confirm = true;}
 		if(confirm){
 			sendSetOrderCompleteHttp(condi);
 		}
