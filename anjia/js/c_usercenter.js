@@ -15,7 +15,7 @@ $(function(){
 	g.orderDetailInfo = {};
 	g.orderInfo = {};
 	g.orderStatus = Utils.getQueryString("ostatus") || "";
-
+	g.get_coupons_money = 0;
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -29,6 +29,7 @@ $(function(){
 
 		//获取订单状态 select框
 		sendGetUserInfoDicHttp();
+		get_coupons_money();//获取优惠券
 	}
 
 
@@ -2108,12 +2109,12 @@ function sendGetPayOrderListHttp8(condi){
 		html.push('<td class="even"><a class="orderleftbtn_a" id="xieYi_5">债权转让协议</a></td>');
 		html.push('</tr>');
 		//当服务费金额大于5000时显示优惠券
-		if(poundage >= 5000){
+		if(poundage >= 5000 && g.get_coupons_money > 0){
+		var get_coupons_money = g.get_coupons_money || 0;	
 		html.push('<tr>');
 		html.push('<td class="odd">优惠券</td>');
-		html.push('<td class="even"><div class="chk-bg" id="cklikeCheckbox1"><input type="checkbox" name="coupons_value" id="coupons_value"  class="common-checkbox" style="display: none;"></div><label style="float:none;" for="coupons_value">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span id="coupons_money_span">0元</span></label></td>');
+		html.push('<td class="even"><div class="chk-bg" id="cklikeCheckbox1"><input type="checkbox" name="coupons_value" id="coupons_value"  class="common-checkbox" style="display: none;"></div><label style="float:none;" for="coupons_value">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span id="coupons_money_span">'+get_coupons_money+'元</span></label></td>');
 		html.push('</tr>');
-		get_coupons_money();
 		}			
 		html.push('</table>');
 
@@ -2137,8 +2138,8 @@ function sendGetPayOrderListHttp8(condi){
 			}
 		})
 	}
+	
 	function get_coupons_money(){
-		g.get_coupons_money = 0;
 		var condi = {};
 			condi.login_token = g.login_token;
 			condi.customerId = g.customerId;
@@ -2155,7 +2156,7 @@ function sendGetPayOrderListHttp8(condi){
 					var dd = data.list;
 					var coupons_money_span = dd[0].money || 0;
 					var get_coupons_couponId = dd[0].couponId || "";
-					$("#coupons_money_span").html(coupons_money_span+"元");
+					//$("#coupons_money_span").html(coupons_money_span+"元");
 					g.get_coupons_money = coupons_money_span;
 					g.get_coupons_couponId = get_coupons_couponId;
 				}
@@ -2279,6 +2280,6 @@ function OrderLeftProtocolClick(){
 	window.OrderLeftProtocolClick=OrderLeftProtocolClick;
 	window.sendGetOrderInfoHttp=sendGetOrderInfoHttp;
 	window.n_click = n_click;
-	
+	window.get_coupons_money = get_coupons_money;
 });
 
