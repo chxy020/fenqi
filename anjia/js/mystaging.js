@@ -121,12 +121,11 @@ $(function(){
 	$("#nextbtn5").bind("click",nextBtnUp5);
 
 	//头像
-	//$(document).on("change","#orderMaterialFile",orderMaterialFileBtnUp);
+	$(document).on("change","#orderMaterialFile",orderMaterialFileBtnUp);
 	//$("#orderMaterialFile").change(function(){orderMaterialFileBtnUp()});	
 	$(".upload-btn").bind("click",function(){
 		g.uploadIndex = this.id.split("_")[1] - 0;
 		document.getElementById('orderMaterialFile').click();
-		orderMaterialFileBtnUp();
 	});
 
 
