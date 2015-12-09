@@ -295,7 +295,7 @@ $(function(){
 			var expiryDate = d.expiryDate || "";
 			var now = new Date().format("yyyy-MM-dd");
 			var expiry = getDays(now,expiryDate)>0 || false;
-			var d2 = endDate.split("-") || [];
+			var d2 = expiryDate.split("-") || [];
 			var money = d.money || 0;
 			var status = d.status || "";			
 			html.push('<li>');

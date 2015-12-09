@@ -291,9 +291,9 @@ $(function(){
 			var orderId = d.orderId || "";
 			var claimDate = d.claimDate || "";
 			var d1 = claimDate.split("-") || [];
-			var endDate = d.endDate || "";
-			var d2 = endDate.split("-") || [];
+			var endDate = d.endDate || "";			
 			var expiryDate = d.expiryDate || "";
+			var d2 = expiryDate.split("-") || [];
 			var now = new Date().format("yyyy-MM-dd");
 			var expiry = getDays(now,expiryDate)>0 || false;
 			var money = d.money || 0;			
