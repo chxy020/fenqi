@@ -94,7 +94,7 @@ $(function(){
 				items: 1,
 				duration: 1000,
 				fx:'crossfade',
-				timeoutDuration: 7000
+				timeoutDuration: 5000
 			},
 			swipe: {
 				onMouse: true,
