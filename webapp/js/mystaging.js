@@ -26,7 +26,7 @@ $(function(){
 
 	g.uploadImgType = ["100701","100702","100703","100704","100705","100706","100707","100708","100709","100710","100711"];
 	g.uploadIndex = 0;
-	g.uploadMark = [0,0,0,0,0,0,0];
+	g.uploadMark = [[0],[0]];
 
 	//编辑订单
 	//g.editOrderId = Utils.getQueryString("orderid") || "";
@@ -42,6 +42,7 @@ $(function(){
 		getUserInfo();
 		//sendGetProductHttp();
 		sendGetDicHttp();
+		sendGetcompanys();
 	}
 
 	//获取图形验证码
@@ -74,7 +75,47 @@ $(function(){
 
 	//头像
 	$(document).on("change","#orderMaterialFile",orderMaterialFileBtnUp);
+	
+	/* 获取合作商户列表 */
+	function sendGetcompanys(){
+		g.httpTip.show();
+		var url = Base.serverUrl + "subsidiary/getSubsidiarys";
+		var condi = {};		
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				//console.log("sendGetNavigationKeyHttp",data);
+				var status = data.success || false;
+				if(status){
+					changeSelect(data);					
+				}
+				else{
+					var msg = data.message || "获取公司信息字典数据失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
 
+	function changeSelect(obj){
+		var data = obj.list || {};
+		var option = [];		
+		option.push('<option>请选择</option>');
+		for(var i=0;i<data.length;i++){
+			var name = data[i].name;
+			option.push('<option value="' + data[i].id + '">' + name + '</option>');	
+		}
+		$("#subsidiaryId").html(option.join(''));
+	}
+	
 	//事件响应两次控制
 	g.clicktwo = false;
 	$(".upload-btn").bind("click",function(evt){
@@ -835,6 +876,7 @@ $(function(){
 			return;
 		}
 		var packageName = $("#packageType")[0].options[$("#packageType")[0].selectedIndex].text;
+		var subsidiaryId = $("#subsidiaryId option:selected").attr("value") || "";//合作商户
 		var packageType = $("#packageType").val() || "";
 		var contractMoney = $("#contractMoney").val() || "";
 		var packageMoney = $("#packageMoney").val() || "";
@@ -883,6 +925,7 @@ $(function(){
 						condi.poundage =  g.poundage;
 						condi.repaymentType = g.repaymentType;
 						condi.moneyMonth = g.moneyMonth;
+						condi.subsidiaryId = subsidiaryId;
 						sendSetOrderPackageHttp(condi);
 					}
 					else{
@@ -1414,8 +1457,8 @@ $(".protocol_slideToggle").click(function(){
 		html.push('</div>');
 
 		$("#imgdiv_" + g.uploadIndex).append(html.join(''));
-
-		if(g.uploadIndex == 0){
+		g.uploadMark[g.uploadIndex][0]++;
+		/* if(g.uploadIndex == 0){
 			var fm = g.uploadMark[0];
 			if(fm === 1){
 				var fm1 = g.uploadMark[1];
@@ -1432,7 +1475,7 @@ $(".protocol_slideToggle").click(function(){
 		}
 		else{
 			g.uploadMark[g.uploadIndex + 2] = 1;
-		}
+		} */
 	}
 
 	function deleteUploadImg(id,index){
@@ -1454,7 +1497,9 @@ $(".protocol_slideToggle").click(function(){
 				if(status){
 					$("#img_" + id).hide();
 					index = index - 0;
-					if(index == 0){
+					var fm = g.uploadMark[index][0];
+					if(fm > 0){g.uploadMark[index][0]--;}
+					/* if(index == 0){
 						var fm = g.uploadMark[2];
 						if(fm === 1){
 							g.uploadMark[2] = 0;
@@ -1471,7 +1516,7 @@ $(".protocol_slideToggle").click(function(){
 					}
 					else{
 						g.uploadMark[index + 2] = 0;
-					}
+					} */
 				}
 				else{
 					//var msg = data.error || "";
@@ -1490,18 +1535,22 @@ $(".protocol_slideToggle").click(function(){
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.orderId = g.orderId;
-		if(g.uploadMark.indexOf(0) == -1){
+		var confirm = (g.uploadMark[0][0] > 0 && g.uploadMark[1][0] > 0) || false;
+		//if(interploer()){confirm = true;}
+		if(confirm){
 			sendSetOrderCompleteHttp(condi);
 		}
 		else{
-			var msg = ["身份证未上传","身份证需要上传正反面","身份证需要上传手持身份证照片","房产证明未上传","现住址证明未上传","工作证明未上传","收入证明未上传"];
-			for(var i = 0,len = g.uploadMark.length; i < len; i++){
+			var msg = ["身份证未上传","房产证明未上传","身份证需要上传正反面","身份证需要上传手持身份证照片","房产证明未上传","现住址证明未上传","工作证明未上传","收入证明未上传"];
+			if(g.uploadMark[0][0] <= 0){alert(msg[0]);}
+			else if(g.uploadMark[1][0] <= 0){alert(msg[1]);}
+			/* for(var i = 0,len = g.uploadMark.length; i < len; i++){
 				var m = g.uploadMark[i];
 				if(m === 0){
 					alert(msg[i]);
 					break;
 				}
-			}
+			} */
 		}
 	}
 	function sendSetOrderCompleteHttp(condi){
@@ -1622,7 +1671,7 @@ $(".protocol_slideToggle").click(function(){
 		var fenQiTimes = obj.fenQiTimes || "";
 		var poundage = obj.poundage || "0";
 		var moneyMonth = obj.moneyMonth || "0";
-
+		var subsidiaryId = obj.subsidiaryId || "";
 		g.packageType = packageType;
 
 		g.stagnum = fenQiTimes;
@@ -1633,7 +1682,7 @@ $(".protocol_slideToggle").click(function(){
 		fenQiTimes = fenarr[(fenQiTimes + "")];
 
 		sendGetProductHttp(companyId);
-
+		$("#subsidiaryId").val(subsidiaryId);
 		$("#contractNo").val(contractNo);
 		$("#designer").val(designer);
 		$("#packageType").val((packageType + "_" + companyId));
@@ -1811,8 +1860,8 @@ $(".protocol_slideToggle").click(function(){
 			html.push('</div>');
 
 			$("#imgdiv_" + uploadIndex).append(html.join(''));
-
-			if(uploadIndex == 0){
+			g.uploadMark[uploadIndex][0]++;
+			/* if(uploadIndex == 0){
 				var fm = g.uploadMark[0];
 				if(fm === 1){
 					var fm1 = g.uploadMark[1];
@@ -1829,12 +1878,13 @@ $(".protocol_slideToggle").click(function(){
 			}
 			else{
 				g.uploadMark[uploadIndex + 2] = 1;
-			}
+			} */
 		}
 	}
 
 
 	window.deleteUploadImg = deleteUploadImg;
+	window.sendGetcompanys = sendGetcompanys;
 });
 
 

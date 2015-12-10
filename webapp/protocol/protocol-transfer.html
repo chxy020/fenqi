@@ -11,7 +11,7 @@
 <body>
 	<div class="ui-protocol">
 	  <h1 class="protocol-title">债权转让协议</h1>
-	  <p id="applicantCompany_no2" style="text-align:right;margin-right:312px;">(编号：债 )</p>
+	  <p id="applicantCompany_no2">(编号：债 )</p><br>
 	  <p id="applicantName">甲方（债务人）： </p>
 	  <p id="applicantIdentity">身份证号码： </p>
 	  <p >&nbsp;</p>
@@ -40,7 +40,7 @@
 	  <p >乙方（盖章）： <span id="stamp"></span></p>
 	  <p >&nbsp;</p>
 	  <p >&nbsp;</p>
-	  <p >丙方（盖章）： <img alt='待上传' style='vertical-align:middle;color:red;' width="120px" src="../images/stamp.jpg"/></p>
+	  <p >丙方（盖章）： <img alt='待上传' style='vertical-align:middle;color:red;' width="120px" src="../res/images/stamp.jpg"/></p>
 	  <p >&nbsp;</p>
 	  <p >&nbsp;</p>
 	  <p >&nbsp;</p>
@@ -68,7 +68,7 @@ $(function(){
 	var detail = Utils.offLineStore.get("userorderinfo_detail",false) || "1";
 	var obj = JSON.parse(detail) || "";
 	//console.log("detail",obj);
-	if(obj !== ""){
+	if(obj !== "" && obj != "1"){
 		var data = obj.obj || {};		
 		var applicantName = data.applicantName || "";
 		var applicantIdentity = data.applicantIdentity || "";

@@ -155,7 +155,7 @@
 				title: protocolTitle,
 				shadeClose: true,
 				shade: 0.8,
-				area: ['1000px', ($(window).height() - 50) +'px'],
+				area: [$(window).width()+"px", ($(window).height() - 50) +'px'],
 				content: [protocolPageUrl],
 				btn: ['确定'],
 				yes: function(index, layero){

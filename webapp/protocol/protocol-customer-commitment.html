@@ -45,7 +45,7 @@ $(function(){
 	var detail = Utils.offLineStore.get("userorderinfo_detail",false);
 	var obj = JSON.parse(detail) || "";
 	console.log("detail",obj);
-	if(obj !== ""){
+	if(obj !== "" && obj != "1"){
 		obj = obj.obj || {};
 		var applicantName = obj.applicantName || "";
 		var applicantIdentity = obj.applicantIdentity || "";

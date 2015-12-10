@@ -11,7 +11,7 @@
 <body>
 	<div class="ui-protocol">
 	  <h1 class="protocol-title">分期付款协议 </h1>
-	  <p id="applicantCompany_no" style="text-align:right;margin-right:312px;">（编号：YZAJ20151126001）</p>
+	  <p id="applicantCompany_no" >（编号：YZAJ20151126001）</p><br>
 	  <p id="applicantCompany">甲&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方：&nbsp; </p>
 	  <p id="applicantLegalperson">法定代表人： </p>
 	  <p id="applicantAdress">住&nbsp;&nbsp;所&nbsp;&nbsp;地： </p>
@@ -130,7 +130,7 @@
 	  <p >&nbsp;</p>
 	  <p id="applicantName2">乙方：&nbsp;（签章）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 	  <p >&nbsp;</p>
-	  <p >丙方：&nbsp;（签章）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img alt='待上传' style='vertical-align:middle;color:red;' width="120px" src="../images/stamp.jpg"/></p>
+	  <p >丙方：&nbsp;（签章）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img alt='待上传' style='vertical-align:middle;color:red;' width="120px" src="../res/images/stamp.jpg"/></p>
 	  <p >&nbsp;</p>
 	  <p id="sdate">年&nbsp;&nbsp;月&nbsp;&nbsp;日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
 	  <p >&nbsp;</p>
@@ -153,7 +153,7 @@ $(function(){
 	var detail = Utils.offLineStore.get("userorderinfo_detail",false) || "1";
 	var obj = JSON.parse(detail) || "";
 	//console.log("detail",obj);
-	if(obj !== ""){
+	if(obj !== "" && obj != "1"){
 		var data = obj.obj || {};		
 		var applicantName = data.applicantName || "";
 		var applicantIdentity = data.applicantIdentity || "";
@@ -172,7 +172,7 @@ $(function(){
 		$("#applicantMessage").html("甲方与乙方签订的家装服务合同（合同编号：<b>"+contractNo+"</b>）中约定乙方按首付、中期、尾款的方式支付甲方提供的家装服务，现因乙方资金不足，甲方同意乙方支付的款项人民币<b>"+packageMoney+"</b>元以分期付款的方式进行支付。");		
 		var loanTime2 = data.expectRepaymentStartTime || "";
 		var loanTime = loanTime2.split("-") || "";
-		var monthMoney=(data.packageMoney/data.fenQiTimes).toFixed(2) || "";
+		var monthMoney=(data.packageMoney/data.fenQiTimes).toFixed(2) || 0;
 		var poundage=data.poundage || "0";
 		$("#applicantMessage2").html("乙方应自<b>"+loanTime[0]+"</b>年<b>"+loanTime[1]+"</b>月<b>"+loanTime[2]+"</b>日开始偿付，分<b>"+fenQiTimes+"</b>月还清，服务费率为<b>"+fuwufeilv+"</b>%，应缴服务费为<b>"+poundage+"</b>元。&nbsp;乙方每月应当偿还甲方人民币<b>"+monthMoney+"</b>元，每月还款日为当月<b>"+loanTime[2]+"</b>日24点之前。 ");
 		var loan2 = data.poundageExpectRepaymentTime || "";

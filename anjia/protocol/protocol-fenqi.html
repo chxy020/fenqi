@@ -154,7 +154,7 @@ $(function(){
 	var detail = Utils.offLineStore.get("userorderinfo_detail",false) || "1";
 	var obj = JSON.parse(detail) || "";
 	//console.log("detail",obj);
-	if(obj !== ""){
+	if(obj !== "" && obj != "1"){
 		var data = obj.obj || {};		
 		var applicantName = data.applicantName || "";
 		var applicantIdentity = data.applicantIdentity || "";
