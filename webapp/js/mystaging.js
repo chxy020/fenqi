@@ -1409,7 +1409,7 @@ $(".protocol_slideToggle").click(function(){
 				success: function (data, status)  //服务器成功响应处理函数
 				{
 					//data = '{"success":true,"message":1111,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508300051/100701.jpg","list":null,"code":null,"token":null}';
-					console.log("ajaxFileUpload",data);
+					//console.log("ajaxFileUpload",data);
 					g.httpTip.hide();
 					if(data != null && data != ""){
 						try{
@@ -1421,7 +1421,7 @@ $(".protocol_slideToggle").click(function(){
 						catch(e){
 							alert("图片上传失败");
 						}
-					}
+					}else if(data == undefined){sendGetOrderInfoHttp2();}
 					//alert("头像上传成功");
 					//console.log("ajaxFileUpload",data,status);
 					//location.reload();
@@ -1651,7 +1651,40 @@ $(".protocol_slideToggle").click(function(){
 		});
 	}
 
+//上传图片
+	function sendGetOrderInfoHttp2(){
+		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = g.orderId;
 
+		g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetOrderInfoHttp",data);
+				var status = data.success || false;
+				if(status){
+					$("#imgdiv_0,#imgdiv_1").html("");
+					var imglist = data.list || [];
+					imgUploadEdit(imglist);
+				}
+				else{
+					//var msg = data.error || "";
+					var msg = data.message || "获取订单信息失败";
+					alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
 	function changeOrderInfoHtml(data){
 		var obj = data.obj || {};
 
@@ -1885,6 +1918,7 @@ $(".protocol_slideToggle").click(function(){
 
 	window.deleteUploadImg = deleteUploadImg;
 	window.sendGetcompanys = sendGetcompanys;
+	window.imgUploadCallBack = imgUploadCallBack;
 });
 
 
