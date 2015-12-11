@@ -1155,11 +1155,11 @@ html{
 	display: inline-block;
 	*display: inline;
 	zoom: 1;
-	background: url(../images/radio-bg.png) no-repeat -18px 0px;
+	background: url(images/radio-bg.png) no-repeat -18px 0px;
 }
 
 .radio-bg-checked {
-	background: url(../images/radio-bg.png) no-repeat 0px 0px;
+	background: url(images/radio-bg.png) no-repeat 0px 0px;
 }
 .chk-bg {
 	width: 18px;
@@ -1171,7 +1171,7 @@ html{
 	*display: inline;
 	zoom: 1;
 	margin-bottom:2px;
-	background: url(../images/checked-bg.png) no-repeat -18px 0px;
+	background: url(images/checked-bg.png) no-repeat -18px 0px;
 }
 
 .chk-bg-checked {
