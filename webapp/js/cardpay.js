@@ -168,6 +168,7 @@ $(function(){
 		condi.repaymentRecordId = g.repaymentRecordId;
 		condi.bankCardTop = bankCardTop;
 		condi.bankCardLast = bankCardLast;
+		condi.couponId = g.couponId;
 		$.ajax({
 			url:url,
 			type:"POST",
