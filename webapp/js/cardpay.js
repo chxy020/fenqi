@@ -31,7 +31,7 @@ $(function(){
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
 		//未登录
-		location.replace("/anjia/login.html");
+		location.replace("/webapp/login/login.html");
 	}
 	else{
 		getUserInfo();
@@ -324,7 +324,7 @@ $(function(){
 	function showPayTip(){
 		layer.alert('支付中...', {icon: 4,closeBtn: 0}, function(index){
 			layer.close(index);
-			location.href = "/anjia/usercenter.html";
+			location.href = "/webapp/personal-center/index.html";
 		});
 		$(".layui-layer-btn").hide();
 

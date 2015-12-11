@@ -772,11 +772,13 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
 	*display: inline;
 	zoom: 1;
 	margin-bottom:2px;
-	background: url(../images/checked-bg.png) no-repeat -18px 0px;
+	background: url(../images/checked-bg.png) no-repeat right center;
+	/* background-position:-18px 0px; */
+	background-size:36px 18px;
 }
 
 .chk-bg-checked {
-	background: url(../images/checked-bg.png) no-repeat 0px 0px;
+	background: url(../images/checked-bg.png) no-repeat left center;
 }
 
 .common-inp-cont1 .inp-item_protocol{height:auto;display:inline-block;}
