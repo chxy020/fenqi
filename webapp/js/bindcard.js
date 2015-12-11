@@ -29,7 +29,7 @@ $(function(){
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
 		//未登录
-		location.replace("/anjia/login.html");
+		location.replace("/webapp/login/login.html");
 	}
 	else{
 		getUserInfo();
@@ -164,16 +164,17 @@ $(function(){
 		var next = dom.next();
 		if(txt !== ""){
 			b = true;
-			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			/* $(next).html('<i class="common-ico validate-ico"></i>填写正确');
 			$(next).removeClass("validate-error");
 			$(next).addClass("validate-success");
-			$(next).show();
+			$(next).show(); */
 		}
 		else{
-			$(next).html('<i class="common-ico validate-ico"></i>不能为空');
+			
+			/* $(next).html('<i class="common-ico validate-ico"></i>不能为空');
 			$(next).removeClass("validate-success");
 			$(next).addClass("validate-error");
-			$(next).show();
+			$(next).show(); */
 		}
 		return b;
 	}
@@ -254,7 +255,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取银行代码失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -294,7 +295,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取银行卡绑定编码失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -319,27 +320,27 @@ $(function(){
 		var img_validate_code = $("#inputimgcode").val() || "";
 
 		if(bankCode == ""){
-			Utils.alert("请选择发卡银行");
+			alert("请选择发卡银行");
 			return;
 		}
 		if(!sendValidNoEmpty(username,$("#username"))){
-			return;
+			$("#username").focus();return;
 		}
 		if(!sendValidNoEmpty(idcardno,$("#idcardno"))){
-			return;
+			$("#idcardno").focus();return;
 		}
-		if(!sendValidIsIdentity(idcardno,$("#idcardno"))){
+		/* if(!sendValidIsIdentity(idcardno,$("#idcardno"))){
 			return;
-		}
+		} */
 		if(!sendValidNoEmpty(cardno,$("#cardno"))){
-			return;
+			$("#cardno").focus();return;
 		}
 		if(!sendValidNoEmpty(phone,$("#phone"))){
-			return;
+			$("#phone").focus();return;
 		}
-		if(!sendValidIsPhone(phone,$("#phone"))){
+		/* if(!sendValidIsPhone(phone,$("#phone"))){
 			return;
-		}
+		} */
 		/* if(!sendValidNoEmpty(img_validate_code,$("#inputimgcode"))){
 			return;
 		} 11-16*/
@@ -378,7 +379,7 @@ $(function(){
 				console.log("sendInvokeBindBanCardHttp",data);
 				var status = data.success || false;
 				if(status){
-					Utils.alert("验证码已发送,请注意查收");
+					alert("验证码已发送,请注意查收");
 					g.sendCode = true;
 					$("#getcodebtn").val("60秒后重新发送");
 					setTimeout(function(){
@@ -387,7 +388,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取验证码失败";
-					Utils.alert(msg);
+					alert(msg);
 
 					//重新请求图形验证码
 					/* sendGetImgCodeHttp(); 11-16*/
@@ -425,7 +426,7 @@ $(function(){
 	function bindUserCardBtnUp(evt){
 		var validate_code = $("#validcode").val() || "";
 		if(validate_code == ""){
-			Utils.alert("请输入短信验证码");
+			alert("请输入短信验证码");
 			return;
 		}
 		var condi = g.bindCondi;
@@ -499,7 +500,7 @@ $(function(){
 		var reg = /^1[3,5,7,8]\d{9}$/g;
 		if(phone !== ""){
 			if(!reg.test(phone)){
-				Utils.alert("手机号输入错误");
+				alert("手机号输入错误");
 				$("#inputphone").focus();
 			}
 		}
@@ -509,7 +510,7 @@ $(function(){
 	function validPwd(){
 		var pwd = $("#inputpwd").val() || "";
 		if((pwd.length < 6 || pwd.length > 16) && pwd !== ""){
-			Utils.alert("密码输入错误:请输入字符6-16位");
+			alert("密码输入错误:请输入字符6-16位");
 			$("#inputpwd").focus();
 		}
 	}
@@ -517,13 +518,13 @@ $(function(){
 	function validCPwd(){
 		var pwd = $("#inputcpwd").val() || "";
 		if((pwd.length < 6 || pwd.length > 16) && pwd !== ""){
-			Utils.alert("确认密码输入错误:请输入字符6-16位");
+			alert("确认密码输入错误:请输入字符6-16位");
 			$("#inputcpwd").focus();
 		}
 		else{
 			var pwd1 = $("#inputpwd").val() || "";
 			if(pwd !== pwd1){
-				Utils.alert("两次密码输入不一致.");
+				alert("两次密码输入不一致.");
 				//$("#inputcpwd").focus();
 			}
 		}
@@ -554,7 +555,7 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					//alert("验证码:" + data.obj);
-					Utils.alert("验证码已发送,请注意查收");
+					alert("验证码已发送,请注意查收");
 					g.sendCode = true;
 					$("#getcodebtn").val("60秒后重新发送");
 					setTimeout(function(){
@@ -563,7 +564,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "验证码获取失败";
-					Utils.alert(msg);
+					alert(msg);
 
 					//重新请求图形验证码
 					/* sendGetImgCodeHttp(); 11-16*/

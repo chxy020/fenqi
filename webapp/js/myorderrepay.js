@@ -353,7 +353,7 @@ $(function(){
 				}
 				else{
 					//用户没有绑定银行卡
-					location.href = "../bind-card/bind-card.html?recordId=" + repaymentRecordId + "&p=" + yinghuanjine;
+					location.href = "../bind-card/add-bind-card.html?recordId=" + repaymentRecordId + "&p=" + yinghuanjine;
 				}
 				g.httpTip.hide();
 			},

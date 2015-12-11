@@ -23,7 +23,7 @@
 				<div class="inp-item">
 					<i class="trigger common-select-trigger"></i>
 					<label><em>*</em>发卡银行</label>
-					<select class="common-select">
+					<select id="bankCode" class="common-select">
 						<option>请选择</option>
 						<option>工商银行</option>
 						<option>招商银行</option>
@@ -31,41 +31,41 @@
 				</div>
 				<div class="inp-item">
 					<label><em>*</em>持卡人姓名</label>
-					<input type="text" class="common-input-text" placeholder="请输入持卡人姓名" />
+					<input id="username" type="text" class="common-input-text" placeholder="请输入持卡人姓名" />
 				</div>
 				<div class="inp-item">
 					<label><em>*</em>身份证号</label>
-					<input type="number" class="common-input-text" placeholder="请输入身份证号" />
+					<input id="idcardno" type="number" class="common-input-text" placeholder="请输入身份证号" />
 				</div>
 				<div class="inp-item">
 					<label><em>*</em>银行卡号</label>
-					<input type="number" class="common-input-text" placeholder="请输入银行卡号" />
+					<input id="cardno" type="number" class="common-input-text" placeholder="请输入银行卡号" />
 				</div>
 				<div class="inp-item">
 					<label><em>*</em>预留手机号码</label>
-					<input type="number" class="common-input-text" placeholder="请输入预留手机号码" />
+					<input id="inputphone" type="number" class="common-input-text" placeholder="请输入预留手机号码" />
 				</div>
 			</div>
 			<div class="common-inp-cont">
-				<div class="inp-item img-ver-item">
+				<!-- <div class="inp-item img-ver-item">
 					<div class="img-ver-img">
 						<img id="imgcodebtn" src="" />
 					</div>
 					<div class="img-ver-item-left">
                 		<input id="inputimgcode" type="text" class="common-input-text input-type type-imgVer" placeholder="请输入图形验证码" />
 					</div>
-                </div>
+                </div> -->
 				<div class="inp-item img-ver-item">
 					<div class="img-ver-btn">
 						<input id="getcodebtn" type="button" class="common-btn btn-green" value="发送验证码" />
 					</div>
 					<div class="img-ver-item-left">
-                		<input id="inputcode" type="text" class="common-input-text input-type type-smsVer" placeholder="请输短信验证码" />
+                		<input id="validcode" type="text" class="common-input-text input-type type-smsVer" placeholder="请输短信验证码" />
 					</div>
                 </div>
             </div>
 			<div class="btn-box">
-            	<p><a id="regbtn" href="card-list.html" class="common-btn btn-green">同意并绑定</a></p>
+            	<p><a id="bindcardbtn" href="card-list.html" class="common-btn btn-green">同意并绑定</a></p>
             </div>
 		</div>
 	</div>
@@ -76,6 +76,7 @@
 	<script type="text/javascript" src="../libs/json.js"></script>
 	<script type="text/javascript" src="../libs/base.js"></script>
 	<script type="text/javascript" src="../libs/utils.js"></script>
+	<script src="../js/bindcard.js"></script>
 </body>
 
 </html>
