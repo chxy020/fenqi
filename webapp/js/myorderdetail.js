@@ -32,6 +32,7 @@ $(function(){
 		location.replace("../login/login.html");
 	}
 	else{
+		show_pro();//判断是否显示协议
 		getUserInfo();
 		//获取订单列表
 		getUserOrderStagingList();
@@ -72,8 +73,52 @@ $(function(){
 		}
 		*/
 	}
+//判断是否为还款中  显示协议
+	function show_pro(){
+		var pa = g.pa || "";
+		if(pa=="2"){
+			sendGetOrderInfoHttp(g.orderId);
+			$("#staging_Protocol").fadeIn(0);
+		}else{
+			$("#staging_Protocol").fadeOut(0);
+		}
+	}
 
+	//显示协议
+		
+	function sendGetOrderInfoHttp(orderId){
+		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = orderId;
 
+		g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetOrderInfoHttp",data);
+				var status = data.success || false;
+				if(status){					
+					var info = JSON.stringify(data);
+					Utils.offLineStore.set("userorderinfo_detail",info,false);
+					//changeOrderInfoHtml(data);
+				}
+				else{
+					//var msg = data.error || "";
+					var msg = data.message || "获取订单信息失败";
+					//alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
 	function avatarBtnUp(){
 		var avatar = $("#avatar").val() || "";
 		if(avatar !== ""){

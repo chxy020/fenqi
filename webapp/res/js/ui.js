@@ -150,6 +150,7 @@
 		showProtocolPop:function(protocolPageUrl,protocolTitle){
 			if(typeof protocolPageUrl === 'undefined') return;
 			var protocolTitle = protocolTitle || '协议';
+			$("html,body").css("overflow","hidden");
 			layer.open({
 				type: 2,
 				title: protocolTitle,
@@ -160,8 +161,9 @@
 				btn: ['确定'],
 				yes: function(index, layero){
 					layer.close(index);
+					$("html,body").css("overflow","auto");
 				}
-			});
+			});			
 		}	
 	});
 })(jQuery);

@@ -29,7 +29,7 @@ $(function(){
 		getUserInfo();
 		//获取我要还款参数id模拟点击
 		$("#nextpagebtn").bind("click",nextPageBtnUp);
-		$("#orderstatus a").bind("click",changeOrderStatus);
+		$("#orderstatus div a").bind("click",changeOrderStatus);
 		$("#allorderstatus dd").bind("click",changeOrderStatus);
 		if(Utils.getQueryString('orderType') && Utils.getQueryString('orderType') == '100507'){
 			$("#100507").parents('.staging-tab-item').trigger('click');
@@ -138,16 +138,16 @@ $(function(){
 							$("#avatarimg").attr("src",src);
 						}
 						catch(e){
-							Utils.alert("头像上传失败");
+							alert("头像上传失败");
 						}
 					}
-					//Utils.alert("头像上传成功");
+					//alert("头像上传成功");
 					//console.log("ajaxFileUpload",data,status);
 					//location.reload();
 				},
 				error: function (data, status, e)//服务器响应失败处理函数
 				{
-					Utils.alert("头像上传失败");
+					alert("头像上传失败");
 					g.httpTip.hide();
 				}
 			});
@@ -177,7 +177,7 @@ $(function(){
 		if(rs>=0){
 			return true;
 		}else{
-			Utils.alert("您选择的上传文件不是有效的图片文件！");
+			alert("您选择的上传文件不是有效的图片文件！");
 			return false;
 		}
 	}
@@ -204,7 +204,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取用户信息字典数据失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -261,7 +261,7 @@ $(function(){
 
 	function sendGetUserOrderListHttp(condi){
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/queryOrdersController";
+		var url = Base.serverUrl + "order/queryOrderList";//之前是queryOrdersController
 		$.ajax({
 			url:url,
 			data:condi,
@@ -370,9 +370,9 @@ $(function(){
 				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',0)" class="item-btn item-btn-green">查看</a>');
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
 			}
-			else if(status == "100507"){
+			else if(status == "100507"){//还款中
 				//100506: "待放款"
-				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',0)" class="item-btn item-btn-green">查看</a>');
+				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',2)" class="item-btn item-btn-green">查看</a>');
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
 			}
 			else if(status == "100508"){
@@ -402,7 +402,7 @@ $(function(){
 			//html.push(page);
 		}
 		else{
-			Utils.alert("没有订单数据");
+			alert("没有订单数据");
 		}
 
 		$("#orderlist").html(html.join(''));
@@ -481,7 +481,7 @@ $(function(){
 			getUserOrderList();
 		}
 		else{
-			Utils.alert("当前是最后一页");
+			alert("当前是最后一页");
 		}
 	}
 
@@ -490,7 +490,7 @@ $(function(){
 		var text = $(this).text() - 0 || "";
 		if(text !== ""){
 			if(g.currentPage === text){
-				Utils.alert("当前是第" + text + "页");
+				alert("当前是第" + text + "页");
 				return;
 			}
 			else{
@@ -503,7 +503,7 @@ $(function(){
 				case "page-pre-end":
 					//第一页
 					if(g.currentPage == 1){
-						Utils.alert("当前是第一页");
+						alert("当前是第一页");
 						return;
 					}
 					else{
@@ -516,7 +516,7 @@ $(function(){
 						g.currentPage--;
 					}
 					else{
-						Utils.alert("当前是第一页");
+						alert("当前是第一页");
 						return;
 					}
 				break;
@@ -535,7 +535,7 @@ $(function(){
 			getUserOrderList();
 		}
 		else{
-			Utils.alert("当前是最后一页");
+			alert("当前是最后一页");
 		}
 	}
 
@@ -563,7 +563,7 @@ $(function(){
 					}
 					else{
 						var msg = data.message || "删除订单数据失败";
-						Utils.alert(msg);
+						alert(msg);
 					}
 					g.httpTip.hide();
 				},
@@ -584,8 +584,11 @@ $(function(){
 		if(t == 0){
 			location.href = "repayment-list-item.html?orderId=" + orderId ;
 		}
-		else if(t == 1){
+		else if(t == 1){			
 			location.href = "repayment-list-item.html?orderId=" + orderId+"&pa=1";
+		}
+		else if(t == 2){//还款中
+			location.href = "repayment-list-item.html?orderId=" + orderId+"&pa=2";			
 		}
 		else{
 			layer.msg("商家正在审核,暂无还款记录");
@@ -593,6 +596,8 @@ $(function(){
 		}
 	}
 
+	
+	//window.sendGetOrderInfoHttp = sendGetOrderInfoHttp;
 	window.showOrderDetail = showOrderDetail;
 	window.deleteOrderById = deleteOrderById;
 });
