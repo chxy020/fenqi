@@ -24,7 +24,7 @@ html,body{font-size:14px;font-family:microsoft yahei;background-color:#001a35;}
 
 .er_div3{color:#3e3f3f;font-size:22px;position:relative;height:1348px;background:url("../images/langrun_img/er_div3.jpg") no-repeat center center;}
 .er_div3  .tip{position:absolute;left:0;right:0;text-align:center;top:142px;font-size:26px;}
-.er_div3  .tip p{display:inline-block;width:831px;text-align:center;margin:0 auto;font-size:22px;line-height:37px;}
+.er_div3  .tip p{display:block;width:831px;text-align:center;margin:0 auto;font-size:22px;line-height:37px;}
 .er_div3  .tip span.color{color:#d6000f;font-size:26px;display:inline-block;margin-bottom:8px;}
 .er_div3  .tip p.p1  i{font-style:normal;color:#fac43d;display:inline-block;width:30px;height:30px;line-height:30px;text-align:center;background:url('../images/langrun_img/i_bg.png') no-repeat center center;}
 .er_div3  .tip p.p1{text-align:left;color:#3e3f3f;}
