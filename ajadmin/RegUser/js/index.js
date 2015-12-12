@@ -147,6 +147,9 @@ $(function(){
 		html.push('<th>登录次数</th>');
 		html.push('<th>最后登录日期</th>');
 		html.push('<th>注册日期</th>');
+		html.push('<th>注册来源</th>');
+		html.push('<th>所在城市</th>');
+		html.push('<th>注册终端</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
 
@@ -171,7 +174,9 @@ $(function(){
 			var loginTimes = d.loginTimes || 0;
 			var lastLoginTime = d.lastLoginTime || "";
 			var createTime = d.createTime || "";
-
+			var company = d.company || "";
+			var city = d.city || "";
+			var platform = d.platform || "";
 			html.push('<tr>');
 			html.push('<td>' + phoneNumber + '</td>');
 
@@ -185,7 +190,14 @@ $(function(){
 			html.push('<td>' + loginTimes + '</td>');
 			html.push('<td>' + lastLoginTime + '</td>');
 			html.push('<td>' + createTime + '</td>');
-
+			html.push('<td>' + company + '</td>');
+			html.push('<td>' + city + '</td>');
+			if(platform == "0"){
+				html.push('<td>手机端</td>');
+			}else if(platform == "3"){
+				html.push('<td>电脑端</td>');
+			}else{html.push('<td></td>');}
+			
 			if(deleted === 1){
 				html.push('<td></td>');
 			}

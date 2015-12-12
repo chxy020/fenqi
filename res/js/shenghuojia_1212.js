@@ -9,6 +9,7 @@ $(function(){
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.httpTip = new Utils.httpTip({});
 	g.customerId = "";
+	g.typePageId = Utils.getQueryString("typePageId") || "";
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -25,6 +26,19 @@ $(function(){
 			var obj = JSON.parse(info) || {};
 			setUserInfoHtml(obj);
 		}
+	}
+		typePageId_compare();
+	function typePageId_compare(){
+		var typePageId =g.typePageId || "9";
+		var company = "";
+		if(typePageId == "5"){
+			company = "20150901000001";
+		}else if(typePageId == "6"){
+			company = "20150901000002";
+		}else if(typePageId == "7"){
+			company = "20150901";
+		}
+		Utils.offLineStore.set("company",company,false);	
 	}
 	//修改个人资料
 	function setUserInfoHtml(data){
