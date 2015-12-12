@@ -49,7 +49,7 @@ $(function(){
 	//$("#gobtn").bind("click",gotoUserCenter);
 
 	function change_pay_fuc(){
-		location.href = "../bind-card/add-bind-card.html?recordId=" + g.repaymentRecordId;
+		location.href = "../bind-card/add-bind-card.html?recordId=" + g.repaymentRecordId+"&id="+g.couponId;
 	}
 	function sendGetImgCodeHttp(){
 		//URL:  http://www.partywo.com/imageValidate/getImageValidate

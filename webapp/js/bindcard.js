@@ -12,7 +12,7 @@ $(function(){
 	g.sendTime = 60;
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.httpTip = new Utils.httpTip({});
-
+	g.couponId = Utils.getQueryString("id") || "";
 	g.repaymentRecordId = Utils.getQueryString("recordId") || "";
 	g.price = Utils.getQueryString("p") - 0 || 0;
 
@@ -454,7 +454,7 @@ $(function(){
 					}
 					else{
 						//绑定成功跳转到支付页面
-						location.href = "../card-pay/card-pay2.html?recordId=" + g.repaymentRecordId + "&p=" + g.price;
+						location.href = "../card-pay/card-pay2.html?recordId=" + g.repaymentRecordId + "&p=" + g.price+"&id="+g.couponId;
 					}
 				}
 				else{
