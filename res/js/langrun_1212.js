@@ -65,7 +65,9 @@ $(function(){
 				else{
 					var msg = data.message || "领取失败";
 					Utils.alert(msg);
-					location.href = "/anjia/usercenter.html";
+					setTimeout(function(){
+						location.href = "/anjia/usercenter.html";
+					},2000);
 				}
 			},
 			error:function(data){
