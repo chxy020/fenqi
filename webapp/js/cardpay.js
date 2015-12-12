@@ -45,9 +45,12 @@ $(function(){
 	$("#getcodebtn").bind("click",getValidCode);
 
 	$("#enterbtn").bind("click",enterPlayBtnUp);
-
+	$("#change_pay").bind("click",change_pay_fuc);
 	//$("#gobtn").bind("click",gotoUserCenter);
 
+	function change_pay_fuc(){
+		location.href = "../bind-card/add-bind-card.html?recordId=" + g.repaymentRecordId;
+	}
 	function sendGetImgCodeHttp(){
 		//URL:  http://www.partywo.com/imageValidate/getImageValidate
 		//参数: {image_key:string}
@@ -72,7 +75,7 @@ $(function(){
 	function changeOrderInfoHtml(){
 		var p = g.price.toFixed(2);
 		var id = g.repaymentRecordId;
-		var html = '<label style="margin-right:100px;">服务费金额：<em class="highlight-red">' + p + '</em> 元</label>分期订单编号：<em class="highlight">' + id + '</em>';
+		var html = '<label>服务费金额：<em class="highlight-red">' + p + '</em> 元</label><div>分期订单编号：<em class="highlight">' + id + '</em></div>';
 		$("#orderinfo").html(html);
 	}
 
@@ -97,7 +100,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取绑定银行卡失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -184,7 +187,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "支付请求失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -199,11 +202,11 @@ $(function(){
 		var img_validate_code = $("#inputimgcode").val() || "";
 
 		if(g.payId == ""){
-			Utils.alert("正在创建支付订单ID...");
+			alert("正在创建支付订单ID...");
 			return;
 		}
 		if(img_validate_code == ""){
-			Utils.alert("请输入图形验证码");
+			alert("请输入图形验证码");
 			return;
 		}
 		if(g.sendCode){
@@ -236,7 +239,7 @@ $(function(){
 				console.log("sendSmsByRepaymentRecordIdHttp",data);
 				var status = data.success || false;
 				if(status){
-					Utils.alert("验证码已发送,请注意查收");
+					alert("验证码已发送,请注意查收");
 					g.sendCode = true;
 					$("#getcodebtn").val("60秒后重新发送");
 					setTimeout(function(){
@@ -245,7 +248,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取验证码失败";
-					Utils.alert(msg);
+					alert(msg);
 
 					//重新请求图形验证码
 					sendGetImgCodeHttp();
@@ -282,7 +285,7 @@ $(function(){
 	function enterPlayBtnUp(evt){
 		var validate_code = $("#validcode").val() || "";
 		if(validate_code == ""){
-			Utils.alert("请输入短信验证码");
+			alert("请输入短信验证码");
 			return;
 		}
 		var condi = g.playCondi;
@@ -310,7 +313,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "支付失败";
-					Utils.alert(msg);
+					alert(msg);
 					$("#validcode").val("");
 				}
 				g.httpTip.hide();
@@ -367,7 +370,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "支付失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},
@@ -429,7 +432,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "获取银行代码失败";
-					Utils.alert(msg);
+					alert(msg);
 				}
 				g.httpTip.hide();
 			},

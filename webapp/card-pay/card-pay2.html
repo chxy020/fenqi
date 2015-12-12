@@ -9,14 +9,21 @@
     <link rel="stylesheet" href="../res/css/core.css?88034434430565" />	
 	<link href="../res/css/common.css" rel="stylesheet">
 	<link href="../res/common_pc.css" rel="stylesheet">
-    <link href="../res/css/carouFredSel.css" rel="stylesheet">
-    <link href="../res/css/index.css" rel="stylesheet">
+
 </head>
 <style >
 .ui-short-head, .ui-header, .index-main1, .staging-step-main, .cooperative-business-main, .ui-bottom, .sub-page-banner, .improvement-cal-main, .staging-detai-main, .staging-rate-main, .staging-compare-main, .staging-ask-main, .ui-main, .ui-count-part, .service-step, .login-main, .ui-bottom, .index-slide{min-width:0;}
 .sign-item label{width:26%;font-size:14px;}
 .sign-item .sign-right-cont{margin-left:10%;}
 .bind-card-main .common-input-text{border:1px solid #ddd;margin-left:1%;}
+.bank-card-inf{    border: 1px solid #ddd;display: inline-block;height: 42px;line-height: 42px;vertical-align: middle; width: 250px;}
+.bank-card-inf .bank-card-inf-num {
+    color: #484848;
+    float: right;
+    font-size: 14px;
+    margin-right: 10px;
+}
+#mycardlist li{display:inline-block;clear:both;width:100%;height:42px!important;}
 </style>
 <body>
 	<div class="ui-main" style="width:auto;min-width:0;">
@@ -26,26 +33,21 @@
             </a>
         	还款详情
         </div>
-
-	<script type="text/javascript" src="../anjia/js/head.js"></script>
-
 	<div class="bind-card-main">
 		<div class="ui-wrap" style="width:auto;">
 			<div id="orderinfo" class="common-block-tip tip-style-orange">
 				<label style="margin-right:100px;">应付金额：<em class="highlight-red">0.00</em> 元</label>
-				<div>分期订单编号：<em class="highlight"></em></div>
+				<div >分期订单编号：<em class="highlight"></em></div>
 			</div>
 			<div class="sign-item-box" style="margin-top:45px;">
 				<div class="sign-item clearfix">
 					<label><em>*</em>发卡银行</label>
-					<div class="choose-bank-list" style="margin-left: 160px;padding-left: 5px;">
+					<div class="choose-bank-list" style="padding-left: 5px;">
 						<ul id="mycardlist">
-
 						</ul>
-
 					</div>
-					<div class="sign-right-cont" style="margin-top: 15px;">
-						<a class="a-link" href="../bind-card/add-bind-card.html">更换支付方式</a>
+					<div class="sign-right-cont" style="margin-top: 15px;display:inline-block;">
+						<a class="a-link" style="cursor:pointer" id="change_pay" >更换支付方式</a>
 					</div>
 				</div>
 				<div class="sign-item clearfix">

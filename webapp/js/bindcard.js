@@ -459,7 +459,7 @@ $(function(){
 				}
 				else{
 					var msg = data.message || "银行卡绑定失败";
-					layer.msg(msg);
+					alert(msg);
 					$("#validcode").val("");
 				}
 				g.httpTip.hide();

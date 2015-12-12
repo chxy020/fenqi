@@ -817,3 +817,5 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
 .order-list-ul li span.right i{font-size:58px;margin-left:41px;}
 .order-list-ul li p{font-size:33px;margin-top:2%;}
 }
+
+a{cursor:pointer;}
