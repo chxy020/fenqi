@@ -190,6 +190,7 @@
 			function myFun(result){
 				var cityName = result.name;
 				$("#curCity").html(cityName);
+				Utils.offLineStore.set("curCity",cityName,false);
 			}
 			var myCity = new BMap.LocalCity();
 			myCity.get(myFun);
