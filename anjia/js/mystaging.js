@@ -121,14 +121,14 @@ $(function(){
 	$("#nextbtn5").bind("click",nextBtnUp5);
 
 	//头像
-	$(document).on("change","#orderMaterialFile",orderMaterialFileBtnUp);
+	//$(document).on("change","#orderMaterialFile",orderMaterialFileBtnUp);
 	//$("#orderMaterialFile").change(function(){orderMaterialFileBtnUp()});	
-	$(".upload-btn").bind("click",function(){
+	/* $(".upload-btn").bind("click",function(){
 		g.uploadIndex = this.id.split("_")[1] - 0;
 		document.getElementById('orderMaterialFile').click();
-	});
+	}); */
 
-
+	
 	//$("#contractNo").bind("blur",validNoEmpty);
 	$("#contractNo").bind("blur",validNoChinese);
 	$("#contractMoney").bind("blur",validNoEmpty);
@@ -1266,13 +1266,26 @@ $(function(){
 		$("#step3").show();
 		$("#step4").hide();
 	}
-
-	function orderMaterialFileBtnUp(){
+	
+	$("#orderMaterialFile").change(function(){
+		var orderMaterialFile = $("#orderMaterialFile").val() || "";
+		if(orderMaterialFile != ""){
+			uploadBtnUp();
+		}
+	});
+	$("#orderMaterialFile2").change(function(){
+		var orderMaterialFile = $("#orderMaterialFile2").val() || "";
+		if(orderMaterialFile != ""){
+			uploadBtnUp2();
+			
+		}
+	});
+/* 	function orderMaterialFileBtnUp(){
 		var orderMaterialFile = $("#orderMaterialFile").val() || "";
 		if(orderMaterialFile !== ""){
 			uploadBtnUp();
 		}
-	}
+	} */
 
 
 	function uploadBtnUp(){
@@ -1283,9 +1296,8 @@ $(function(){
 			condi.login_token = g.login_token;
 			condi.customerId = g.customerId;
 			condi.orderId = g.orderId;
-			condi.orderMaterialType  = g.uploadImgType[g.uploadIndex];
+			condi.orderMaterialType  = g.uploadImgType[0];
 			//console.log("uploadBtnUp",condi);
-
 			//document.domain = "partywo.com";
 			$.ajaxFileUpload({
 				url: url, //用于文件上传的服务器端请求地址
@@ -1300,7 +1312,7 @@ $(function(){
 					
 					g.httpTip.hide();
 					if(data != null && data != ""){
-						try{							
+						try{						
 							var obj = JSON.parse(data);
 							imgUploadCallBack(obj);	
 							//var src = obj.obj + "?t=" + (new Date() - 0);
@@ -1309,7 +1321,108 @@ $(function(){
 						catch(e){
 							Utils.alert("图片上传失败");
 						}
-					}
+					}else if(data == undefined){sendGetOrderInfoHttp2();g.uploadMark[0][0]++;}
+					//Utils.alert("头像上传成功");
+					//console.log("ajaxFileUpload",data,status);
+					//location.reload();
+				},
+				error: function (data, status, e)//服务器响应失败处理函数
+				{
+					Utils.alert("图片上传失败");
+					g.httpTip.hide();
+				}
+			});
+			return false;
+		}
+	}
+//上传图片
+	function sendGetOrderInfoHttp2(){
+		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = g.orderId;
+
+		g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				console.log("sendGetOrderInfoHttp",data);
+				var status = data.success || false;
+				if(status){
+					$("#imgdiv_0,#imgdiv_1").html("");
+					var imglist = data.list || [];
+					imgUploadEdit(imglist,true);					
+				}
+				else{
+					//var msg = data.error || "";
+					var msg = data.message || "获取订单信息失败";
+					alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+	function imgUploadCallBack(data){
+		var src = data.obj + "?t=" + (new Date() - 0);
+		var id = data.message || "";
+		var html = [];
+		html.push('<div id="img_' + id + '" class="upload-img-item">');
+		html.push('<div class="upload-inf-img">');
+		html.push('<img src="' + src + '" width=230 height=130 />');
+		html.push('</div>');
+		html.push('<div class="upload-img-edit">');
+		//html.push('<a href="javascript:void(0)" onclick="" class="common-ico ico-edit"></a>
+		html.push('<a href="javascript:deleteUploadImg(\'' + id + '\',\'' + 0 + '\')" class="common-ico ico-rubbish"></a>');
+		html.push('</div>');
+		html.push('</div>');
+
+		$("#imgdiv_0").append(html.join(''));
+		g.uploadMark[0][0]++;
+	}
+	
+	/*  */
+		function uploadBtnUp2(){
+		if(lastname2()){
+			g.httpTip.show();
+			var url = Base.serverUrl + "order/uploadOrderMaterial";
+			var condi = {};
+			condi.login_token = g.login_token;
+			condi.customerId = g.customerId;
+			condi.orderId = g.orderId;
+			condi.orderMaterialType  = g.uploadImgType[1];
+			//console.log("uploadBtnUp",condi);
+
+			//document.domain = "partywo.com";
+			$.ajaxFileUpload({
+				url: url, //用于文件上传的服务器端请求地址
+				data:condi,
+				secureuri: false, //一般设置为false
+				fileElementId: 'orderMaterialFile2', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+				dataType: 'jsonp', //返回值类型 一般设置为json
+				success: function (data, status)  //服务器成功响应处理函数
+				{
+					//data = '{"success":true,"message":1111,"obj":"http://123.57.5.50:8888/anjia/201508240001/201508300051/100701.jpg","list":null,"code":null,"token":null}';
+					//console.log("ajaxFileUpload",data);
+					
+					g.httpTip.hide();
+					if(data != null && data != ""){
+						try{							
+							var obj = JSON.parse(data);
+							imgUploadCallBack2(obj);	
+							//var src = obj.obj + "?t=" + (new Date() - 0);
+							//$("#avatarimg").attr("src",src);
+						}
+						catch(e){
+							Utils.alert("图片上传失败");
+						}
+					}else if(data == undefined){sendGetOrderInfoHttp2();g.uploadMark[1][0]++;}
 					//Utils.alert("头像上传成功");
 					//console.log("ajaxFileUpload",data,status);
 					//location.reload();
@@ -1324,8 +1437,7 @@ $(function(){
 		}
 	}
 
-	function imgUploadCallBack(data){
-
+	function imgUploadCallBack2(data){
 		var src = data.obj + "?t=" + (new Date() - 0);
 		var id = data.message || "";
 		var html = [];
@@ -1335,32 +1447,14 @@ $(function(){
 		html.push('</div>');
 		html.push('<div class="upload-img-edit">');
 		//html.push('<a href="javascript:void(0)" onclick="" class="common-ico ico-edit"></a>
-		html.push('<a href="javascript:deleteUploadImg(\'' + id + '\',\'' + g.uploadIndex + '\')" class="common-ico ico-rubbish"></a>');
+		html.push('<a href="javascript:deleteUploadImg(\'' + id + '\',\'' + 1 + '\')" class="common-ico ico-rubbish"></a>');
 		html.push('</div>');
 		html.push('</div>');
 
-		$("#imgdiv_" + g.uploadIndex).append(html.join(''));
-		g.uploadMark[g.uploadIndex][0]++;
-		/* if(g.uploadIndex == 0){
-			var fm = g.uploadMark[0];
-			if(fm === 1){
-				var fm1 = g.uploadMark[1];
-				if(fm1 === 1){
-					g.uploadMark[g.uploadIndex + 2] = 1;
-				}
-				else{
-					g.uploadMark[g.uploadIndex + 1] = 1;
-				} 
-			}
-			else{
-				g.uploadMark[g.uploadIndex] = 1;
-			}
-		}
-		else{
-			g.uploadMark[g.uploadIndex] = 1;
-		} */
+		$("#imgdiv_1").append(html.join(''));
+		g.uploadMark[1][0]++;
 	}
-
+	/*  */
 	function deleteUploadImg(id,index){
 		var url = Base.serverUrl + "order/deleteOrderMaterial";
 		var condi = {};
@@ -1381,7 +1475,7 @@ $(function(){
 					$("#img_" + id).hide();
 					index = index - 0;					
 					var fm = g.uploadMark[index][0];
-					if(fm > 0){g.uploadMark[index][0]--;}
+					if(fm > 0){g.uploadMark[index][0]--;}						
 				}
 				else{
 					//var msg = data.error || "";
@@ -1418,7 +1512,7 @@ $(function(){
 		condi.login_token = g.login_token;
 		condi.orderId = g.orderId;
 		var confirm = (g.uploadMark[0][0] > 0 && g.uploadMark[1][0] > 0) || false;
-		if(interploer()){confirm = true;}
+		//if(interploer()){confirm = true;}
 		if(confirm){
 			sendSetOrderCompleteHttp(condi);
 		}
@@ -1497,7 +1591,32 @@ $(function(){
 			return false;
 		}
 	}
-
+	function lastname2(){
+		//获取欲上传的文件路径
+		var filepath = document.getElementById("orderMaterialFile2").value;
+		//为了避免转义反斜杠出问题，这里将对其进行转换
+		var re = /(\\+)/g;
+		var filename=filepath.replace(re,"#");
+		//对路径字符串进行剪切截取
+		var one=filename.split("#");
+		//获取数组中最后一个，即文件名
+		var two=one[one.length-1];
+		//再对文件名进行截取，以取得后缀名
+		var three=two.split(".");
+		//获取截取的最后一个字符串，即为后缀名
+		var last=three[three.length-1];
+		//添加需要判断的后缀名类型
+		var tp ="jpg,gif,bmp,JPG,GIF,BMP,png";
+		//返回符合条件的后缀名在字符串中的位置
+		var rs=tp.indexOf(last);
+		//如果返回的结果大于或等于0，说明包含允许上传的文件类型
+		if(rs>=0){
+			return true;
+		}else{
+			Utils.alert("您选择的上传文件不是有效的图片文件！");
+			return false;
+		}
+	}
 
 
 	//以下为订单编辑
@@ -1701,7 +1820,7 @@ $(function(){
 		imgUploadEdit(imglist);
 	}
 
-	function imgUploadEdit(list){
+	function imgUploadEdit(list,clin){
 		for(var i = 0, len = list.length; i < len; i++){
 			var data = list[i] || {};
 
@@ -1709,9 +1828,9 @@ $(function(){
 			var id = data.orderMaterialId || "";
 			var orderMaterialType = data.orderMaterialType || "";
 			var slen = orderMaterialType.length - 1;
-			if(len > 9){
+			/* if(len > 9){
 				slen = orderMaterialType.length - 2;
-			}
+			} */
 			var uploadIndex = orderMaterialType.substring(slen) - 1;
 			var html = [];
 			html.push('<div id="img_' + id + '" class="upload-img-item">');
@@ -1725,27 +1844,9 @@ $(function(){
 			html.push('</div>');
 
 			$("#imgdiv_" + uploadIndex).append(html.join(''));
-			
-			g.uploadMark[uploadIndex][0]++;
-			
-		/* 	if(uploadIndex == 0){
-				var fm = g.uploadMark[0];
-				if(fm === 1){
-					var fm1 = g.uploadMark[1];
-					if(fm1 === 1){
-						g.uploadMark[uploadIndex + 2] = 1;
-					}
-					else{
-						g.uploadMark[uploadIndex + 1] = 1;
-					}
-				}
-				else{
-					g.uploadMark[uploadIndex] = 1;
-				}
-			}
-			else{
-				g.uploadMark[uploadIndex + 2] = 1;
-			} */
+			if(clin){}else{
+				g.uploadMark[uploadIndex][0]++;
+			}						
 		}
 	}
 /* 协议的隐藏显示 */

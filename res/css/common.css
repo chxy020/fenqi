@@ -1613,3 +1613,7 @@ to{-webkit-transform:rotate(360deg) translateZ(0);}*/
 .coo-result-box.used  h3{color:#989898;}
 .coo-result-box.used{background:url('../images/coupons_img1.jpg') no-repeat center center;}
 .coo-result-box.old{background:url('../images/coupons_img3.jpg') no-repeat center center;}
+
+.upload-inf-main .upload-inf-box label{position:relative;}
+.upload-inf-main .upload-inf-box  #orderMaterialFile,.upload-inf-main .upload-inf-box  #orderMaterialFile2{cursor:pointer;position:absolute;top:0;left:50px;height:40px;width:61px;opacity:0; filter:alpha(opacity=0);}
+.upload-inf-main .upload-inf-box  .opacity{opacity:0; filter:alpha(opacity=0);}
