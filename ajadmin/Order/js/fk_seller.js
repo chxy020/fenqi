@@ -12,6 +12,7 @@ $(function(){
 	g.orderId = Utils.getQueryString("orderId") || "";
 	g.fenQiTimes = Utils.getQueryString("fenQiTimes") || "";
 	g.packageMoney = Utils.getQueryString("packageMoney") || "";
+	g.contractMoney = Utils.getQueryString("contractMoney") || "";
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.phoneNumber = Utils.offLineStore.get("user_phoneNumber",false) || "";
 	g.usersId = Utils.offLineStore.get("user_usersId",false) || "";
@@ -131,7 +132,7 @@ $(function(){
 	function fenQiTimesChange(){
 		var packageMoney = $("#packageMoney").val() - 0 || 0;
 		if(packageMoney > 0){
-			if(g.packageMoney >= packageMoney){
+			if(g.contractMoney >= packageMoney){
 				var time = $("#fenQiTimes").val() - 0 || 0;
 				var obj = countFee(packageMoney,time);
 
@@ -139,7 +140,7 @@ $(function(){
 				$("#moneyMonth").html(obj.mouth + "元");
 			}
 			else{
-				Utils.alert("最大审批额度为" + packageMoney + "元");
+				Utils.alert("最大审批额度为" + g.contractMoney + "元");
 			}
 		}
 		else{
