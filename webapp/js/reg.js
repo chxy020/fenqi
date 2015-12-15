@@ -14,12 +14,12 @@ $(function(){
 	g.city = Utils.offLineStore.get("curCity",false) || "";
 	g.codeImg = $("#imgcodebtn")[0];
 	g.guid = Utils.getGuid();
-
+	
 	//获取图形验证码
 	//sendGetImgCodeHttp();
 
 	//g.httpTip.show();
-
+	isWeiXin();	
 	$("#inputphone").bind("blur",validPhone);
 	$("#inputpwd").bind("blur",validPwd);
 	$("#inputcpwd").bind("blur",validCPwd);
@@ -28,6 +28,7 @@ $(function(){
 	//$("#gobtn").bind("click",gotoUserCenter);
 
 	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);
+
 
 	function sendGetImgCodeHttp(){
 		//URL:  http://www.partywo.com/imageValidate/getImageValidate
@@ -229,12 +230,23 @@ $(function(){
 		}
 	}
 
+		/* 判断是否是微信登录 */
+	function isWeiXin(){
+		var ua = window.navigator.userAgent.toLowerCase();
+		if(ua.match(/MicroMessenger/i) == 'micromessenger'){			
+			g.platform = 1;
+			return true;
+		}else{
+			return false;
+		}
+	}
 	//注册
 	function sendRegHttp(condi){
 		var url = Base.serverUrl + "user/registerCustomerController";
 		var url = Base.serverUrl + "user/registerCustomerController";
 		var company ="";
 		var platform = 0;
+		platform = g.platform || 0;
 		var city = g.city || "";
 		condi.company = company;//传城市 德维-20150901，生活家-20150901000001，朗润-20150901000002
 		condi.platform = platform;//平台(0-wap 1-android 2-ios 3-pc)
@@ -331,4 +343,5 @@ $(function(){
 		}
 
 	}
+	window.isWeiXin = isWeiXin;
 });

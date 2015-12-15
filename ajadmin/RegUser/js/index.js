@@ -194,6 +194,8 @@ $(function(){
 			html.push('<td>' + city + '</td>');
 			if(platform == "0"){
 				html.push('<td>手机端</td>');
+			}else if(platform == "1"){
+				html.push('<td>微信端</td>');
 			}else if(platform == "3"){
 				html.push('<td>电脑端</td>');
 			}else{html.push('<td></td>');}
