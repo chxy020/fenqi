@@ -16,7 +16,7 @@ html,body{font-size:16px;font-family:microsoft yahei;background-color:#ee382b;co
 .tip_body  p.tip{font-size:17px;}
 .tip_body .ul{}
 .tip_body .ul li{line-height:35px;margin-top:10px;}
-
+.tip_body .ul li .block{display:block;}
 .btn {text-align:center;margin-top:15px;}
 .btn  a.btn_a{display:inline-block;width:30%;height:40px;line-height:40px;text-align:center;background-color:#9b0318;border-radius:10px;}
 

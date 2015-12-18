@@ -33,36 +33,33 @@ $(document).ready(function(){
                 }
             })
 		condi.userPhone = $("#input_phone_value").val() || "";
-		condi.question1 = $("#select_city option:selected").attr("value");
-		condi.question2 = "10020"+$("input[name='radio1']:checked").attr("value");
-		condi.question3 = "10030"+$("input[name='radio2']:checked").attr("value");
-		condi.question4 = str;
-		condi.question5 = "10050"+$("input[name='radio4']:checked").attr("value");
-		condi.question6 = "10060"+$("input[name='radio5']:checked").attr("value");
-		condi.question7 = "10070"+$("input[name='radio6']:checked").attr("value");
-		condi.question8 = "10080"+$("input[name='radio7']:checked").attr("value");
-		condi.question9 = "10090"+$("input[name='radio8']:checked").attr("value");
+		condi.question1 = $("#select_city option:selected").attr("value") || "";
+		condi.question4 = str || "";
 		condi.question10 = $("#input_common_value").val() || "";
-		condi.question11 = "10110"+$("input[name='radio10']:checked").attr("value");
-		condi.question12 = "10120"+$("input[name='radio11']:checked").attr("value");
-		condi.question13 = "10130"+$("input[name='radio12']:checked").attr("value");		
-		/* if($("#select_city option:selected").attr("value") == ""){
-			alert("第"+1+"题不能为空");return;
-		}
-		for(var i = 0; i < 12; i++){
-			var a = i + 1,b = i + 2;
-			if( a != 3 && a != 9){
-				var a = 0;
-				$("input[name='radio"+a+"']").each(function(){
-					if($(this).attr("checked")){return;}else{a++;return;}
-				})
-				if(a >= 3){}
-			}else if(a == 3 && str == "10040,"){
-				alert("第"+4+"题不能为空");return;
-			}else if(a == 9 && $("#input_common_value").val() == ""){
-				alert("第"+4+"题不能为空");return;
-			}
-		}	 */			
+		var question2 = $("input[name='radio1']:checked").attr("value") || "";
+		var question3 = $("input[name='radio2']:checked").attr("value") || "";
+		var question5 = $("input[name='radio4']:checked").attr("value") || "";
+		var question6 = $("input[name='radio5']:checked").attr("value") || "";
+		var question7 = $("input[name='radio6']:checked").attr("value") || "";
+		var question8 = $("input[name='radio7']:checked").attr("value") || "";
+		var question9 = $("input[name='radio8']:checked").attr("value") || "";
+		var question11 = $("input[name='radio10']:checked").attr("value") || "";
+		var question12 = $("input[name='radio11']:checked").attr("value") || "";
+		var question13 = $("input[name='radio12']:checked").attr("value") || "";
+		if(condi.question1 == ""){alert("第"+1+"题不能为空","提示");return;}
+		if(question2 == ""){condi.question2 = "";alert("第2题不能为空","提示");return;}else{condi.question2 = "10020" + question2}
+		if(question3 == ""){condi.question3 = "";alert("第3题不能为空","提示");return;}else{condi.question3 = "10030" + question3}
+		if(condi.question4 == ""){alert("第"+4+"题不能为空","提示");return;}
+		if(question5 == ""){condi.question5 = "";alert("第5题不能为空","提示");return;}else{condi.question5 = "10050" + question5}
+		if(question6 == ""){condi.question6 = "";alert("第6题不能为空","提示");return;}else{condi.question6 = "10060" + question6}
+		if(question7 == ""){condi.question7 = "";alert("第7题不能为空","提示");return;}else{condi.question7 = "10070" + question7}
+		if(question8 == ""){condi.question8 = "";alert("第8题不能为空","提示");return;}else{condi.question8 = "10080" + question8}
+		if(question9 == ""){condi.question9 = "";alert("第9题不能为空","提示");return;}else{condi.question9 = "10090" + question9}
+		if(condi.question10 == ""){alert("第"+10+"题不能为空","提示");return;}
+		if(question11 == ""){condi.question11 = "";alert("第11题不能为空","提示");return;}else{condi.question11 = "10110" + question11}
+		if(question12 == ""){condi.question12 = "";alert("第12题不能为空","提示");return;}else{condi.question12 = "10120" + question12}
+		if(question13 == ""){condi.question13 = "";alert("第13题不能为空","提示");return;}else{condi.question13 = "10130" + question13}
+	
 		var url = Base.serverUrl + "questionnaire/addQuestionnaire";
 		//if(!isWeiXin()){alert("请使用微信");return;}
 		if(!validPhone()){return;}
@@ -74,7 +71,6 @@ $(document).ready(function(){
 				context:this,
 				global:false,
 				success: function(data){
-					//console.log("sendGetMyOrderHttp",data);
 					var success = data.success || "";
 					if(success){
 						var hongbao = data.obj;
@@ -119,7 +115,6 @@ $(document).ready(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				//console.log("sendGetUserInfoDicHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeSelectHtml(data);
@@ -148,8 +143,7 @@ $(document).ready(function(){
 	/* 判断是否是微信登录 */
 	function isWeiXin(){
 		var ua = window.navigator.userAgent.toLowerCase();
-		if(ua.match(/MicroMessenger/i) == 'micromessenger'){
-			g.platform = 1;
+		if(ua.match(/MicroMessenger/i) == 'micromessenger'){			
 			return true;
 		}else{
 			return false;
