@@ -33,7 +33,7 @@ $(document).ready(function(){
                 }
             })
 		condi.userPhone = $("#input_phone_value").val() || "";
-		condi.question1 = "10010"+$("#select_city option:selected").attr("value");
+		condi.question1 = $("#select_city option:selected").attr("value");
 		condi.question2 = "10020"+$("input[name='radio1']:checked").attr("value");
 		condi.question3 = "10030"+$("input[name='radio2']:checked").attr("value");
 		condi.question4 = str;
