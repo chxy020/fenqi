@@ -150,6 +150,7 @@ $(function(){
 		html.push('<th>注册来源</th>');
 		html.push('<th>所在城市</th>');
 		html.push('<th>注册终端</th>');
+		html.push('<th>百度统计</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
 
@@ -177,6 +178,7 @@ $(function(){
 			var company = d.company || "";
 			var city = d.city || "";
 			var platform = d.platform || "";
+			var channel = d.channel || "";
 			html.push('<tr>');
 			html.push('<td>' + phoneNumber + '</td>');
 
@@ -198,6 +200,10 @@ $(function(){
 				html.push('<td>微信端</td>');
 			}else if(platform == "3"){
 				html.push('<td>电脑端</td>');
+			}else{html.push('<td></td>');}
+			
+			if(channel == "1"){
+				html.push('<td>百度推广</td>');
 			}else{html.push('<td></td>');}
 			
 			if(deleted === 1){

@@ -10,6 +10,8 @@ $(function(){
 	g.imgCodeId = "";
 	g.sendCode = false;
 	g.login_token = Utils.offLineStore.get("token",false) || "";
+	g.channel = Utils.getQueryString("channel") || "";
+	if(g.channel != ""){Utils.offLineStore.set("channel",g.channel,false);}	
 	g.sendTime = 60;
 	g.customerId = "";
 	g.userPhone = "";

@@ -152,6 +152,20 @@
 	<script src="libs/utils.js"></script>
 	<script src="js/reg.js"></script>
 	<script src="js/login.js"></script>
+	<!--BAIDU定位JS 开始-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+	<script type="text/javascript">
+		$(function(){
+			// 百度地图API功能
+			function myFun(result){
+				var cityName = result.name;
+				$("#curCity").html(cityName);
+				Utils.offLineStore.set("curCity",cityName,false);
+			}
+			var myCity = new BMap.LocalCity();
+			myCity.get(myFun);
+		});
+	</script>
 	<script type="text/javascript">
 		$(function(){
 			//初始化

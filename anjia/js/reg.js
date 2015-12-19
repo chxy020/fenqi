@@ -10,8 +10,7 @@ $(function(){
 	g.imgCodeId = "";
 	g.sendCode = false;
 	g.sendTime = 60;
-	g.httpTip = new Utils.httpTip({});
-	g.city = Utils.offLineStore.get("curCity",false) || "";
+	g.httpTip = new Utils.httpTip({});	
 	g.company = Utils.offLineStore.get("company",false) || "";
 	g.codeImg = $("#imgcodebtn")[0];
 	g.guid = Utils.getGuid();
@@ -235,16 +234,18 @@ $(function(){
 			$("#inputphone").focus();
 		}
 	}
-
 	//注册
 	function sendRegHttp(condi){
 		var url = Base.serverUrl + "user/registerCustomerController";
 		var company = g.company || "";
 		var platform = 3;
+		g.city = Utils.offLineStore.get("curCity",false) || "";
 		var city = g.city || "";
 		condi.company = company;//传城市 德维-20150901，生活家-20150901000001，朗润-20150901000002
 		condi.platform = platform;//平台(0-wap 1-android 2-ios 3-pc)
-		condi.city = city;//城市		
+		condi.city = city;//城市
+		g.channel = Utils.offLineStore.get("channel",false) || "";
+		condi.channel = g.channel;
 		g.httpTip.show();
 		$.ajax({
 			url:url,
