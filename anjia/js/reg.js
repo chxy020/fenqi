@@ -241,6 +241,7 @@ $(function(){
 		var platform = 3;
 		g.city = Utils.offLineStore.get("curCity",false) || "";
 		var city = g.city || "";
+		if(company == ""){company = "20150901"; }
 		condi.company = company;//传城市 德维-20150901，生活家-20150901000001，朗润-20150901000002
 		condi.platform = platform;//平台(0-wap 1-android 2-ios 3-pc)
 		condi.city = city;//城市
