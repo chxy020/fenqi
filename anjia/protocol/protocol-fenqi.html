@@ -172,12 +172,13 @@ $(function(){
 		$("#applicantName2").html("乙方：&nbsp;（签章）&nbsp;&nbsp;&nbsp;&nbsp;<b>" + applicantName+"</b>");
 		$("#applicantMessage").html("甲方与乙方签订的家装服务合同（合同编号：<b>"+contractNo+"</b>）中约定乙方按首付、中期、尾款的方式支付甲方提供的家装服务，现因乙方资金不足，甲方同意乙方支付的款项人民币<b>"+packageMoney+"</b>元以分期付款的方式进行支付。");		
 		var loanTime2 = data.expectRepaymentStartTime || "";
-		var loanTime = loanTime2.split("-") || "";
+		var loanTime = loanTime2.split("-") || "";	
 		var monthMoney=(data.packageMoney/data.fenQiTimes).toFixed(2) || "";
 		var poundage=data.poundage || "0";
 		$("#applicantMessage2").html("乙方应自<b>"+loanTime[0]+"</b>年<b>"+loanTime[1]+"</b>月<b>"+loanTime[2]+"</b>日开始偿付，分<b>"+fenQiTimes+"</b>月还清，服务费率为<b>"+fuwufeilv+"</b>%，应缴服务费为<b>"+poundage+"</b>元。&nbsp;乙方每月应当偿还甲方人民币<b>"+monthMoney+"</b>元，每月还款日为当月<b>"+loanTime[2]+"</b>日24点之前。 ");
 		var loan2 = data.poundageExpectRepaymentTime || "";
 		var loan = loan2.split("-") || "";
+		if(loan2 == ""){loan = ["","",""]}
 		$("#applicantMessage3").html("丙方为此次分期交易提供了相关服务，乙方应于<b>"+loan[0]+"</b>年<b>"+loan[1]+"</b>月<b>"+loan[2]+"</b>日之前，向丙方缴纳服务费<b>"+poundage+"</b>元。");
 		var modifyTime = data.modifyTime || "";
 		//modifyTime  = "2015-10-16";
