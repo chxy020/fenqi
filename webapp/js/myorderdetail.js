@@ -402,7 +402,7 @@ $(function(){
 			html.push('<div class="order-item-box">');
 			html.push('<div class="box-item">');
 			html.push('<div class="box-item-text">');
-			html.push('<p><i class="common-ico product-tip3"></i>还款期数：<span class="color-green">' + repaymentTypeDesc + '</span></p>');
+			html.push('<p><i class="common-ico product-tip3"></i>还款类型：<span class="color-green">' + repaymentTypeDesc + '</span></p>');
 			html.push('</div>');
 			html.push('</div>');
 			html.push('<div class="box-item">');
@@ -664,7 +664,7 @@ $(function(){
 		html.push('</table>');
 		html.push('<table class="common-table1" cellpadding="0" cellspacing="0" style="margin-top:25px;">');
 		html.push('<tr>');
-		html.push('<th>还款期数</th>');
+		html.push('<th>还款类型</th>');
 		html.push('<th>还款本金</th>');
 		html.push('<th>应还时间</th>');
 		html.push('<th>逾期天数</th>');

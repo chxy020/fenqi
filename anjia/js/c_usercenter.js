@@ -2113,7 +2113,7 @@ function sendGetPayOrderListHttp8(condi){
 		var get_coupons_money = g.get_coupons_money || 0;	
 		html.push('<tr>');
 		html.push('<td class="odd">优惠券</td>');
-		html.push('<td class="even"><div class="chk-bg" id="cklikeCheckbox1"><input type="checkbox" name="coupons_value" id="coupons_value"  class="common-checkbox" style="display: none;"></div><label style="float:none;" for="coupons_value">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span id="coupons_money_span">'+get_coupons_money+'元</span></label></td>');
+		html.push('<td class="even"><div class="chk-bg chk-bg-checked" id="cklikeCheckbox1"><input type="checkbox" name="coupons_value" id="coupons_value" checked="checked"  class="common-checkbox" style="display: none;"></div><label style="float:none;" for="coupons_value">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span id="coupons_money_span">'+get_coupons_money+'元</span></label></td>');
 		html.push('</tr>');
 		}			
 		html.push('</table>');
