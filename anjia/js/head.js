@@ -8,6 +8,7 @@ var __html__ = [];
 __html__.push('<div class="ui-header">');
 __html__.push('<div class="ui-wrap">');
 __html__.push('<div class="ui-head-left f-left clearfix">');
+__html__.push('<i class="happy_body_red_head"></i>');
 __html__.push('<a href="/anjia/index.html"><img class="ui-logo" src="../res/images/logo.png"></a>');
 __html__.push('<div class="ui-head-left-l f-left">');
 __html__.push('<span class="cur-pos"><i class="common-ico ico-position"></i><em id="curCity">&nbsp;&nbsp;&nbsp;&nbsp;</em></span>');
@@ -108,6 +109,8 @@ __html__.push('</ul>');
 __html__.push('</div>');
 __html__.push('</div>');
 __html__.push('</div>');
+//圣诞右侧图片
+__html__.push('<i class="happy_body_ico"></i>');
 document.write(__html__.join(''));
 //获取url参数
 function getQueryString(name) {

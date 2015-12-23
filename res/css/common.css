@@ -1617,3 +1617,23 @@ to{-webkit-transform:rotate(360deg) translateZ(0);}*/
 .upload-inf-main .upload-inf-box label{position:relative;}
 .upload-inf-main .upload-inf-box  #orderMaterialFile,.upload-inf-main .upload-inf-box  #orderMaterialFile2{cursor:pointer;position:absolute;top:0;left:50px;height:40px;width:61px;opacity:0; filter:alpha(opacity=0);}
 .upload-inf-main .upload-inf-box  .opacity{opacity:0; filter:alpha(opacity=0);}
+
+/* 圣诞 */
+.header_bg{background:url('../images/happy_img1.png') no-repeat center top;background-size:contain; }
+.ui-nav li{border:none;}
+.ui-wrap .common-title1{position:relative;}
+i.happy_tree{position:absolute;left:-51px;top:22px;display:inline-block;vertical-align:middle;height:60px;width:42px;}
+.happy_tree1{background:url('../images/happy_tree1.png') no-repeat center center;}
+.happy_tree2{background:url('../images/happy_tree2.png') no-repeat center center;}
+.happy_tree3{background:url('../images/happy_tree3.png') no-repeat center center;}
+i.happy_position2{display:inline-block;height:122px;width:217px;position:absolute;right:-171px;top:0;background:url('../images/happy_position2.png') no-repeat center center;}
+i.happy_body_ico{bottom: 47%;position: fixed;right: 0;width: 86px;height:133px;z-index: 11;background:url('../images/happy_position1.png') no-repeat center center;}
+.happy_body_red_head{display:none;}
+
+
+
+
+
+
+
+

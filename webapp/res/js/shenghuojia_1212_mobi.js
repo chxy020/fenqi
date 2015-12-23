@@ -3,20 +3,20 @@ $(document).ready(function(){
 	resize_width();	
 	function resize_width(){
 		var width=$("html").width();
-		var size=[0.75,1.4,0.71,0.93];
-		var size2=[0.42,0.15,0.23,0.29,0.26,0.25];
+		var size=[1.08,1.45,2.29,1.08];
+		var size2=[0.41,0.15,0.23,0.29,0.26,0.25];
 		var height=[];
 		for(var i=0;i < size.length;i++){
 			var n=i+1;
 			height[i]=(width/size[i]).toFixed(0);
-			$(".er_div"+n+"").css("height",height[i]+"px");			
+			$(".er_div"+n+"").css("height",height[i]+"px");
 		}
 		$(".er_div1 .red_box").css("top",(height[0]*size2[0]).toFixed(0)+"px");
-		$(".er_div1 .tip").css("bottom",height[0]*size2[1]);
-		$(".er_div2 .tip").css("top",(height[1]*size2[2]).toFixed(0)+"px");
-		$(".er_div3 .tip").css("top",(height[2]*size2[3]).toFixed(0)+"px");
-		$(".er_div3 .tip p.p1").css("margin-bottom",(height[2]*size2[4]).toFixed(0)+"px");
-		$(".er_div4 .tip").css("top",(height[3]*size2[5]).toFixed(0)+"px");
+		//$(".er_div1 .tip").css("bottom",height[0]*size2[1]);
+		//$(".er_div2 .tip").css("top",(height[1]*size2[2]).toFixed(0)+"px");
+		//$(".er_div3 .tip").css("top",(height[2]*size2[3]).toFixed(0)+"px");
+		//$(".er_div3 .tip p.p1").css("margin-bottom",(height[2]*size2[4]).toFixed(0)+"px");
+		//$(".er_div4 .tip").css("top",(height[3]*size2[5]).toFixed(0)+"px");
 	}
 	$(window).resize(function(){
 		resize_width();	

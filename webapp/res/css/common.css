@@ -819,3 +819,9 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
 }
 
 a{cursor:pointer;}
+
+
+.person-ico.set-ico1{background:url(../images/set_img1.png) no-repeat center center;background-size:contain;}
+.person-ico.set-ico2{background:url(../images/set_img2.png) no-repeat center center;background-size:contain;}
+
+.ui-header  .set_a_btn{float:right;margin-right:18px;font-size:15px;}

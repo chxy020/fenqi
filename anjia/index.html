@@ -13,31 +13,46 @@
 	<link href="../res/css/index.css" rel="stylesheet"> 
 </head>
 <!--  -->
+<style>
+.ui-short-head{background:none;}
+.ui-short-head .head-box a{color:#fff;}
+.ui-head-left.f-left{position:relative;}
+.happy_body_red_head{display:inline-block;width:72px;height:81px;position:absolute;left:0;top:-14px;background:url(../res/images/happy_ico1.png) no-repeat center center;}
+.ui-slide.index-slide{position:relative;}
+.happy_body_body1{float:left;display:inline-block;width:68px;height:83px;background:url(../res/images/happy_ico2.png) no-repeat center center;}
+.happy_body_body2{float:right;display:inline-block;width:91px;height:96px;background:url(../res/images/happy_ico3.png) no-repeat center center;}
+.happy_body_body{z-index:999;position:absolute;left:0;right:0;margin:0 auto;width:820px;}
+.ui-header{background:none;}
+</style>
 <body>
-	<div class="ui-short-head">
-		<div class="ui-wrap">
-			<div id="loginstatus" class="head-box">
-				<a href="/anjia/login.html">登录</a>
-				<s class="header-line"></s>
-				<a href="/anjia/reg.html">注册</a>
-				<s class="header-line"></s>
-				<a href="/anjia/login.html">个人中心</a>
-				<s class="header-line"></s>
-				<a href="/anjia/login.html">我要还款</a>
+	<div class="header_bg" >
+		<div class="ui-short-head">
+			<div class="ui-wrap">
+				<div id="loginstatus" class="head-box">
+					<a href="/anjia/login.html">登录</a>
+					<s class="header-line"></s>
+					<a href="/anjia/reg.html">注册</a>
+					<s class="header-line"></s>
+					<a href="/anjia/login.html">个人中心</a>
+					<s class="header-line"></s>
+					<a href="/anjia/login.html">我要还款</a>
+				</div>
 			</div>
 		</div>
+		<!--加载通用头部-->
+		<script type="text/javascript" src="../anjia/js/head.js"></script>
 	</div>
-
-	<!--加载通用头部-->
-	<script type="text/javascript" src="../anjia/js/head.js"></script>
-
 	<!-- 右侧二维码 -->
-	<ul class="weixin_er">		
+	<ul class="weixin_er">
 		<a class="er "><img class="er_img" src="../res/images/erweima.jpg"/></a>
 		<a class="top"><img src="../res/images/right_box_img1.png"/></a>
 		<!-- <img class="big_er" src="../res/images/weixin_er.png"/> -->
 	</ul>
     <div class="ui-slide index-slide"> 
+		<!-- <div class="happy_body_body">
+			<i class="happy_body_body1"></i>
+			<i class="happy_body_body2"></i>
+		</div>	 -->
     	<div class="ui-wrap" style="width:100%">
         	<div class="ui-slider">
 		<!--haitao-->
@@ -72,7 +87,7 @@
     <div class="index-main1">
     	<div class="ui-wrap">
         	<div class="common-title1">
-            	家装分期
+            	<i class="happy_tree happy_tree1"></i>家装分期
                 <p>Decoration loan</p>
             </div>
             <a id="fenqi_btn1" href="javascript:void(0)" title="我要分期" class="loan-btn">
@@ -93,7 +108,7 @@
     <div class="staging-step-main">
     	<div class="ui-wrap">
         	<div class="common-title1">
-            	平台优势
+            	<i class="happy_tree happy_tree2"></i>平台优势
                 <p>Platform advantage</p>
             </div>
         	<div class="staging-step-box clearfix staging-border">
@@ -124,8 +139,9 @@
     <div class="cooperative-business-main bg-color-white">
     	<div class="ui-wrap">
         	<div class="common-title1">
-            	合作商家
+            	<i class="happy_tree happy_tree3"></i>合作商家
                 <p>Cooperative business</p>
+				<i class="happy_position2"></i>
             </div>
             <div class="cooperative-business-box clearfix">           	
 				<div class="cooperative-part border_outside f-right" onclick="window.open('http://www.cdlrzs.com/')">
@@ -181,6 +197,7 @@
 	<script src="../anjia/libs/base.js"></script>
 	<script src="../anjia/libs/layer.js"></script>
 	<script src="../anjia/libs/utils.js"></script>
+	<script type="text/javascript" src="../res/js/snow.js"></script>
 	<script src="../anjia/js/index.js"></script>
 	<!--BAIDU定位JS 开始-->
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
@@ -194,6 +211,7 @@
 			}
 			var myCity = new BMap.LocalCity();
 			myCity.get(myFun);
+			createSnow('', 30);
 		});
 	</script>
 </body>
