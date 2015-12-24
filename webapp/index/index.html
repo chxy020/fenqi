@@ -78,34 +78,54 @@
         </div>
     </div>
     <!--fixed-nav-->
+	<!-- 圣诞节 -->
+	<style>
+		/* #li_0,#li_1,#li_2,#li_3,#li_4{position:relative;}
+		.happy_ico{position:absolute;top:0;display:block;width:23px;height:23px;} */
+		.ui-nav .ui-nav-ul li a .happy_ico{background-position:center center;width:30px;height:30px;}
+		.ui-nav .ui-nav-ul li.selected a .nav-ico{background-position:center center;}
+		div.ui-nav .ui-nav-ul li a:active .nav-ico{background-position:center center!important;}
+		.ui-nav .ui-nav-ul li.nav-middle a:active{background:none;background:url("../images/ipd_bimg.png") no-repeat scroll center 0 / cover ;}
+		.happy_ico1{background:url('../res/images/happy_ico1.png') no-repeat center center;background-size:contain;}
+		.happy_ico2{background:url('../res/images/happy_ico2.png') no-repeat center center;background-size:contain;}
+		.happy_ico3{background:url('../res/images/happy_ico3.png') no-repeat center center;background-size:contain;}
+		.ui-nav .ui-nav-ul li a .happy_ico3{height:46px;width:46px}
+		.happy_ico4{background:url('../res/images/happy_ico4.png') no-repeat center center;background-size:contain;}
+		.happy_ico5{background:url('../res/images/happy_ico5.png') no-repeat center center;background-size:contain;}
+		.ui-nav .ui-nav-ul li.nav-middle .nav-ico{height:46px;margin-top:0;}
+	</style>
     <div class="ui-nav">
     	<ul id="bottom-ul" class="ui-nav-ul clearfix">
         	<li id="li_0" class="selected">
             	<a href="javascript:void(0);">
-                    <i class="nav-ico ico-home"></i>
+                    <!-- <i class="happy_ico happy_ico1"></i> -->
+					<i class="nav-ico ico-home happy_ico happy_ico1"></i>
                     <p>首页</p>
                 </a>
             </li>
             <li id="li_3">
             	<a href="javascript:void(0);">
-                    <i class="nav-ico ico-back"></i>
+					<!-- <i class="happy_ico happy_ico2"></i> -->
+                    <i class="nav-ico ico-back happy_ico happy_ico2"></i>
                     <p>还款</p>
                 </a>
             </li>
             <li  id="li_2" class="nav-middle">
             	<a href="javascript:void(0);">
-                	<i class="nav-ico ico-main"></i>
+                	<i class="nav-ico ico-main happy_ico happy_ico3"></i>
                 </a>
             </li>
             <li  id="li_4">
             	<a href="javascript:void(0)">
-                    <i class="nav-ico ico-service"></i>
+                    <!-- <i class="happy_ico happy_ico3"></i> -->
+					<i class="nav-ico ico-service happy_ico happy_ico4"></i>
                     <p>客服</p>
                 </a>
             </li>
             <li id="li_1">
             	<a href="javascript:void(0);">
-                    <i class="nav-ico ico-order"></i>
+                    <!-- <i class="happy_ico happy_ico4"></i> -->
+					<i class="nav-ico ico-order happy_ico happy_ico5"></i>
                     <p>我</p>
                 </a>
             </li>			
