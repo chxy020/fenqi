@@ -1619,7 +1619,7 @@ to{-webkit-transform:rotate(360deg) translateZ(0);}*/
 .upload-inf-main .upload-inf-box  .opacity{opacity:0; filter:alpha(opacity=0);}
 
 /* 圣诞 */
-.header_bg{background:url('../images/happy_img1.png') no-repeat center top;background-size:contain; }
+.header_bg{background:url('../images/happy_top.gif') no-repeat center top;background-size:contain; }
 .ui-nav li{border:none;}
 .ui-wrap .common-title1{position:relative;}
 i.happy_tree{position:absolute;left:-51px;top:22px;display:inline-block;vertical-align:middle;height:60px;width:42px;}
