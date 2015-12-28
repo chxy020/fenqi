@@ -1,0 +1,32 @@
+﻿
+h1,h2,h3,h4,h5,ul,li,dd,dl{margin:0;padding:0;font-weight:500;list-style-type:none;}
+a{cursor:pointer;outline:none;}
+html,body{margin:0;padding:0;}
+*{}
+html,body{font-size:16px;font-family:microsoft yahei;background-color:#feffef;color:#611d57;}
+
+/* top */
+.body_div{margin:0 3%;}
+.header img{width:100%;}
+
+.select_common{background:none;position:relative;height:22px;display:inline-block;vertical-align:middle;}
+.select_img{position:absolute;display:inline-block;vertical-align:middle;right:0;}
+.select_common  .city{color:#611d57;background-color:#feffef;padding-right:5px;float:left;display:inline-block;height:22px;border:1px solid #611d57;}
+.tip_body{}
+.tip_body  p.tip{font-size:17px;}
+.tip_body .ul{}
+.tip_body .ul li{line-height:35px;margin-top:10px;}
+.tip_body .ul li .block{display:block;}
+.btn {text-align:center;margin-top:15px;}
+.btn  a.btn_a{color:#fdfdfd;display:inline-block;width:30%;height:40px;line-height:40px;text-align:center;background-color:#fc4f38;border-radius:10px;}
+
+.bottom{position:relative;bottom:0;margin-top:16%;}
+.bottom img{width:100%;position:absolute;bottom:0;}
+
+i.radio_common ,i.check_common{margin:0 2%;display:inline-block;vertical-align:middle;width:14px;height:14px;background:url('img/w_radio0.png') no-repeat center center;background-size:cover;}
+i.radio_common.checked,i.check_common.checked{background:url('img/w_radio1.png') no-repeat center center;background-size:cover;}
+i.radio_common  input,i.check_common input{display:none;}
+
+.input_common{color:#611d57;background-color:#feffef;border:none;border-bottom:1px solid #611d57;width:99%;height:22px;line-height:22px;display:inline-block;}
+
+
