@@ -3,8 +3,8 @@ $(document).ready(function(){
 	resize_width();	
 	function resize_width(){
 		var width=$("html").width();
-		var size=[1.08,1.45,2.29,1.08];
-		var size2=[0.41,0.15,0.23,0.29,0.26,0.25];
+		var size=[1.13,1.43,2.3,1.196];
+		var size2=[0.38,0.15,0.23,0.29,0.26,0.25];
 		var height=[];
 		for(var i=0;i < size.length;i++){
 			var n=i+1;

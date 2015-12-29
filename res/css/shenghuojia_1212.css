@@ -10,24 +10,24 @@ html,body{font-size:14px;font-family:microsoft yahei;background-color:#fafdd2;}
 }
 
 /* top */
-.er_div1{position:relative;height:1359px;background:url("../images/shenghuojia_img/er_div11.jpg") no-repeat center center;}
-.er_div1  .red_box_btn{margin:0 auto;display:block;width:281px;height:91px;background:url("../images/shenghuojia_img/redBox_btn.png") no-repeat center center;}
-.er_div1 .red_box{position:absolute;left:0;right:0;text-align:center;top:519px;}
-.er_div1  .tip{position:absolute;left:0;right:0;text-align:center;bottom:205px;font-size:26px;}
-.er_div1  .tip h4{color:#fff9f7;margin-left:318px;}
-.er_div1  .tip p{display:inline-block;color:#fff;margin-left:318px;margin-top:20px;font-size:22px;line-height:37px;}
+.er_div1{position:relative;height:1060px;background:url("../images/shenghuojia_img/er_div21.jpg") no-repeat center center;}
+.er_div1  .red_box_btn{margin:0 auto;display:block;width:250px;height:74px;background:url("../images/shenghuojia_img/redBox_btn2.png") no-repeat center center;}
+.er_div1 .red_box{position:absolute;left:0;right:0;text-align:center;top:391px;}
+.er_div1  .tip{position:absolute;left:0;right:0;text-align:center;bottom:87px;font-size:26px;}
+.er_div1  .tip h4{color:#fff9f7;margin-left:270px;}
+.er_div1  .tip p{display:inline-block;color:#fff;margin-left:306px;margin-top:20px;font-size:22px;line-height:37px;}
 
-.er_div2{font-size:22px;position:relative;height:922px;background:url("../images/shenghuojia_img/er_div12.jpg") no-repeat center center;}
-.er_div2 .tip{position:absolute;left:0;right:0;text-align:center;top:190px;font-size:26px;}
+.er_div2{font-size:22px;position:relative;height:834px;background:url("../images/shenghuojia_img/er_div22.jpg") no-repeat center center;}
+.er_div2 .tip{position:absolute;left:0;right:0;text-align:center;top:128px;font-size:26px;}
 .er_div2  .tip p{color:#016c48;margin:0 auto;width:620px;font-size:22px;line-height:37px;}
 
-.er_div3{color:#fb6020;font-size:22px;position:relative;height:657px;background:url("../images/shenghuojia_img/er_div13.jpg") no-repeat center center;}
-.er_div3  .tip{position:absolute;left:0;right:0;text-align:center;top:256px;}
+.er_div3{color:#fb6020;font-size:22px;position:relative;height:442px;background:url("../images/shenghuojia_img/er_div23.jpg") no-repeat center center;}
+.er_div3  .tip{position:absolute;left:0;right:0;text-align:center;top:207px;}
 .er_div3  .tip p{display:inline-block;width:822px;text-align:center;margin:0 auto;font-size:20px;line-height:37px;}
 .er_div3  .tip span.color{color:#01895b;font-size:26px;display:inline-block;margin-bottom:20px;}
 
-.er_div4{font-size:22px;position:relative;height:1234px;background:url("../images/shenghuojia_img/er_div14.jpg") no-repeat center center;}
-.er_div4 .tip{position:absolute;left:0;right:0;text-align:center;top:272px;font-size:26px;}
+.er_div4{font-size:22px;position:relative;height:1071px;background:url("../images/shenghuojia_img/er_div24.jpg") no-repeat center center;}
+.er_div4 .tip{position:absolute;left:0;right:0;text-align:center;top:211px;font-size:26px;}
 .er_div4  .tip p{padding-left:220px;text-align:left;color:#e94c33;margin:0 auto;width:820px;font-size:22px;line-height:37px;}
 .er_div4  .tip p  span.color{color:#28425a;}
 .er_div4  .tip p  i{color:#fefdfd;display:inline-block;width:29px;height:29px;line-height:29px;text-align:center;background:url('../images/shenghuojia_img/i_bg.png') no-repeat center center;}
