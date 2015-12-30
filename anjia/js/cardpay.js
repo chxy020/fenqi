@@ -422,8 +422,8 @@ $(function(){
 	function showPayTip(){
 		layer.alert('支付中...', {icon: 4,closeBtn: 0}, function(index){
 			layer.close(index);
-			if(g.price2 > 5 && g.price2 <= 10 && g.breakUp){//分笔支付方式
-				g.price2 -= 5;
+			if(g.price2 > 10000 && g.price2 <= 20000 && g.breakUp){//分笔支付方式
+				g.price2 -= 10000;
 				$(".form_input .form_input1,.form_input .fenbi_step2").fadeOut(0);
 				sendGetBindBankCardByCustomerId2(g.price2);
 			}else{
@@ -454,7 +454,7 @@ $(function(){
 					var status = data.obj.status - 0;
 					if(status == 1){
 						$(".layui-layer-btn").show();						
-						if(g.price2 > 5 && g.price2 <= 10 && g.breakUp){//分笔支付
+						if(g.price2 > 10000 && g.price2 <= 20000 && g.breakUp){//分笔支付
 							$(".layui-layer-content").html('<i class="layui-layer-ico layui-layer-ico1"></i>支付成功,请继续支付剩余金额！');		
 						}else {
 							$(".layui-layer-content").html('<i class="layui-layer-ico layui-layer-ico1"></i>支付成功');
@@ -491,7 +491,7 @@ $(function(){
 	function breakUp(){		
 		var money = g.price || 0;
 		var money2 = g.price || 0;
-		var xiane = 5;		
+		var xiane = 10000;		
 		var i = 1;
 		if(money2 > xiane && money2 <= xiane*2){
 			while(money2 > xiane){
