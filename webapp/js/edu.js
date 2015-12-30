@@ -288,7 +288,7 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					alert("申请付款成功");
-					sendGetRepayOrderInfoListHttp(orderId);
+					sendGetRepayOrderInfoListHttp(g.orderId);
 				}
 				else{
 					var msg = data.message || "申请付款失败";
