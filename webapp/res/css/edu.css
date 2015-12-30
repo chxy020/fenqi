@@ -1,0 +1,16 @@
+﻿
+/*  */
+.my_edu_list{color:#1a191f;padding:0 5%;font-size:14px;line-height:25px;}
+.my_edu_list h4{color:#6c813f;font-size:16px;line-height:20px;margin-top:20px;}
+
+.my_edu_list .pay_btn{text-align:center;display:inline-block;width:26%;height:30px;line-height:30px;border:1px solid #f6c952;border-radius:6px;}
+.my_edu_list p .pay_btn{float:right;}
+.my_edu_list p {overflow:hidden;margin-bottom:10px;}
+
+.my_edu_list .pay1 .pay_btn{margin-left:5%;border:1px solid #f4bf34;background-color:#f4bf34;}
+.my_edu_list .pay2 .pay_btn{margin-left:5%;border:1px solid #ebe9e9;background-color:#ebe9e9;}
+
+.my_edu_list   .pay_list .edu_pay_input{border-radius:6px;margin-left:1%;display:inline-block;text-align:center;width:63%;height:30px;line-height:30px;border:1px solid #f6c952;}
+.my_edu_list   .pay_list  .pay2  .edu_pay_input{background-color:#ebe9e9;border:1px solid #ebe9e9;}
+
+.my_edu_list   .pay_list li{line-height:40px;}

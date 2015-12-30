@@ -19,6 +19,7 @@ $(function(){
 	}
 	else{
 		getUserInfo();
+		sendGetRepayOrderListHttp();
 		//sendGetUserInfoDicHttp();
 	}
 
@@ -59,6 +60,44 @@ $(function(){
 		}
 	}
 
+	//查询额度
+	function sendGetRepayOrderListHttp(){
+		//g.httpTip.show();
+		var condi = {};
+		condi.loanStatus = 102401;
+		condi.login_token = g.login_token;
+		condi.customerId = g.customerId;
+		condi.currentPageNum = "1";
+		condi.pageSize = "10";
+		condi.status = null;
+		var url = Base.serverUrl + "order/queryOrdersController";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				//console.log("sendGetBannerImageByNavigationKey",data);
+				var status = data.success || false;
+				if(status){
+					var obj = data.list || [];
+					var d = obj[0];							
+					var loanResidueMoney = d.loanResidueMoney || 0;
+					$(".my_edu .edu").html(loanResidueMoney);
+					
+				}
+				else{
+					var msg = data.message || "获取首页轮播图数据失败";
+					Utils.alert(msg);
+				}
+				//g.httpTip.hide();
+			},
+			error:function(data){
+				//g.httpTip.hide();
+			}
+		});
+	}
 	//退出
 	function loginOutBtn(evt){
 		COMMON_PLUGIN.COMMON.ALERT_DIALOG_TWO('确定要退出吗？',function(){
