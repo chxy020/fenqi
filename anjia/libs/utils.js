@@ -481,7 +481,8 @@ if(typeof console == "undefined"){
 			html.push('<span >' + phoneNumber + '，您好！&nbsp;&nbsp;</span>');
 			html.push('[<a class="header-log-out" href="javascript:Utils.loginOut();">注销</a>]<s class="header-line"></s>');
 			html.push('<a href="/anjia/usercenter.html?item=1">个人中心</a><s class="header-line"></s>');
-			html.push('<a href="/anjia/usercenter.html?item=1&ostatus=100507">我要还款</a>');
+			html.push('<a href="/anjia/usercenter.html?item=1&ostatus=100507">我要还款</a><s class="header-line"></s>');
+			html.push('<a href="/anjia/guide.html">新手引导</a>');
 
 			if($("#loginstatus").length > 0){
 				$("#loginstatus")[0].innerHTML = html.join('');
