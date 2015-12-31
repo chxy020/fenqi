@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>查看客户订单信息</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../Css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/style.css"/>
+    <script type="text/javascript" src="../Js/jquery.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script src="../libs/base.js"></script>
+    <script src="../libs/utils.js"></script>
+    <script src="js/ViewOrder.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<form id="editform" name="editform" action="" method="post">
+    <table id="orderinfotable" class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="16%" class="tableleft">订单号</td>
+            <td><input readonly id="orderId" type="text" name="orderId"/></td>
+        </tr>
+        <tr>
+            <td width="16%" class="tableleft">品牌</td>
+            <td><select id="companyId" name="companyId" class="common-select">
+                <option value="20150901000001">生活家家居</option>
+                <option value="20150901000002">朗润装饰</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td width="16%" class="tableleft">合作商户</td>
+            <td><select id="subsidiaryId" name="subsidiaryId" class="common-select"></select></td>
+        </tr>
+        <tr>
+            <td width="16%" class="tableleft">设计师</td>
+            <td><input id="designer" type="text" name="designer"/></td>
+        </tr>
+        <tr>
+            <td width="16%" class="tableleft">合同编号</td>
+            <td><input id="contractNo" type="text" name="contractNo"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">产品类型</td>
+            <td>
+                <select id="packageType" name="packageType" class="common-select">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">申请分期金额</td>
+            <td><input id="applyPackageMoney" type="text" name="applyPackageMoney"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">分期方式</td>
+            <td>
+                <select id="applyFenQiTimes" name="applyFenQiTimes" class="common-select">
+                    <option value='3'>3期 (免费)</option>
+                    <option value='6'>6期 (服务费率4%)</option>
+                    <option value='12'>12期 (服务费率7%)</option>
+                    <option value='18'>18期 (服务费率10%)</option>
+                    <option value='24'>24期 (服务费率13%)</option>
+                    <option value='36'>36期 (服务费率16%)</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">服务手续费</td>
+            <td><input readonly id="poundage" type="text" name="poundage"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">月还款本金</td>
+            <td><input readonly id="moneyMonth" type="text" name="moneyMonth"/></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">还款方式</td>
+            <td><select id="repaymentType" name="repaymentType" class="common-select"></select></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">申请人姓名</td>
+            <td><input id="applicantName" type="text" name="applicantName"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">申请人电话</td>
+            <td><input id="applicantPhone" type="text" name="applicantPhone" readonly/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">年龄</td>
+            <td><input id="applicantAge" type="text" name="applicantAge" readonly/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">性别</td>
+            <td>
+                <select id="applicantSex" name="applicantSex" class="common-select">
+                    <option value='100101'>男</option>
+                    <option value='100102'>女</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">身份证号</td>
+            <td><input id="applicantIdentity" type="text" name="applicantIdentity"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">婚姻状况</td>
+            <td><select class="common-select" name="applicantMarital" id="applicantMarital"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">现居住地址</td>
+            <td><input id="applicantAddress" type="text" name="applicantAddress"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">最高学历</td>
+            <td><select class="common-select" name="applicantStudyStatus" id="applicantStudyStatus"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">学校名称</td>
+            <td><input id="applicantSchool" type="text" name="applicantSchool"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">所学专业</td>
+            <td><input id="applicantMajor" type="text" name="applicantMajor"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">资产信息</td>
+            <td>
+                <select class="common-select" name="applicantAsset" id="applicantAsset">
+                    <option value="101001">有房</option>
+                    <option value="101002">有车</option>
+                    <option value="101004">有房有车</option>
+                    <option value="101005">无房无车</option>
+                </select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">工作性质</td>
+            <td><select class="common-select" name="applicantJobNature" id="applicantJobNature"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">工作单位全称</td>
+            <td><input id="applicantCompany" type="text" name="applicantCompany"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">工作单位性质</td>
+            <td><select class="common-select" name="applicantCompanyNature" id="applicantCompanyNature"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">所属行业</td>
+            <td><select class="common-select" name="applicantCompanyIndustry" id="applicantCompanyIndustry"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">担当职务</td>
+            <td><select class="common-select" name="applicantDuties" id="applicantDuties"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">工作年限</td>
+            <td><select class="common-select" name="applicantWorkYears" id="applicantWorkYears"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">公司地址</td>
+            <td><input id="applicantCompanyAddress" type="text" name="applicantCompanyAddress"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">单位电话</td>
+            <td><input id="applicantCompanyPhone" type="text" name="applicantCompanyPhone"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">税后收入</td>
+            <td><input id="applicantWages" type="text" name="applicantWages"/></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">配偶姓名</td>
+            <td><input id="familyName" type="text" name="familyName"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">配偶手机号码</td>
+            <td><input id="familyPhone" type="text" name="familyPhone"/></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">亲属姓名</td>
+            <td><input id="familyTwoName" type="text" name="familyTwoName"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">亲属手机号码</td>
+            <td><input id="familyTwoPhone" type="text" name="familyTwoPhone"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">亲属关系</td>
+            <td><select class="common-select" name="familyTwoRelation" id="familyTwoRelation"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">朋友姓名</td>
+            <td><input id="friendName" type="text" name="friendName"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">朋友手机号码</td>
+            <td><input id="friendPhone" type="text" name="friendPhone"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">同事姓名</td>
+            <td><input id="workmateName" type="text" name="workmateName"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">同事手机号码</td>
+            <td><input id="workmatePhone" type="text" name="workmatePhone"/></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">身份证</td>
+            <td id="Img100701"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">房产证</td>
+            <td id="Img100702"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">户口本</td>
+            <td id="Img100703"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">结婚证/单身证明</td>
+            <td id="Img100704">
+            </td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">流水证明</td>
+            <td id="Img100705"></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">在职证明</td>
+            <td id="Img100709"></td>
+        </tr>
+
+        <tr>
+            <td class="tableleft">连带责任人身份证照片</td>
+            <td id="Img100706"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">企业用户营业执照照片</td>
+            <td id="Img100707"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">企业用户组织结构代码证</td>
+            <td id="Img100708"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">企业用户税务登记证</td>
+            <td id="Img100710"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">企业用户企业经营场所照片</td>
+            <td id="Img100711"></td>
+        </tr>
+        <tr>
+            <td class="tableleft">用户协议</td>
+            <td id="protocol"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <button type="button" class="btn" name="backid" id="backid">关闭</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

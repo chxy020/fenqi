@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>风控初审列表</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../Css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/calendar.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/style.css"/>
+    <script type="text/javascript" src="../Js/jquery.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../Js/ckform.js"></script>
+    <script type="text/javascript" src="../Js/common.js"></script>
+    <script src="../libs/json.js"></script>
+    <script src="../libs/base.js"></script>
+    <script src="../libs/utils.js"></script>
+    <script src="../libs/calendar.js"></script>
+
+    <script src="js/OrderFunction.js"></script>
+    <script src="js/Fk_OrderList_1.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+        .label_td {
+            width: 120px;
+            white-space: nowrap;
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #F1F1F1;
+            border: 1px solid #dddddd;
+        }
+
+        .edit_td {
+            padding-left: 10px;
+            padding-top: 10px;
+            padding-right: 10px;
+            text-align: center;
+            vertical-align: bottom;
+            border: 1px solid #dddddd;
+        }
+
+    </style>
+</head>
+<body>
+
+<form id="CX">
+    <table class="table table-bordered definewidth m10">
+        <tbody>
+        <tr>
+            <td bgcolor="#F1F1F1">订单编号</td>
+            <td><input type="text" id="orderId" name="orderId" maxlength="20"/></td>
+            <td bgcolor="#F1F1F1">申请人姓名</td>
+            <td><input id="applicantName" type="text" name="applicantName"/></td>
+            <td bgcolor="#F1F1F1">申请人电话</td>
+            <td><input id="applicantPhone" type="text" name="applicantPhone"/></td>
+        </tr>
+        <tr>
+            <td bgcolor="#F1F1F1">开始时间</td>
+            <td><input type="text" id="createTimeBegin" name="createTimeBegin"/></td>
+            <td bgcolor="#F1F1F1">结束时间</td>
+            <td><input type="text" id="createTimeEnd" name="createTimeEnd"/></td>
+            <td colspan="2" style="text-align: center">
+                <button id="querybtn" type="button" class="btn btn-primary">查询</button>
+                <br>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<div id="orderlist"></div>
+
+<!-- 初审Modal -->
+<!--<div id="pass" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+
+    <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+        <!--<h3 id="myModalLabel">初审</h3>-->
+    <!--</div>-->
+    <!--<form id="CheckForm">-->
+        <!--<div class="modal-body">-->
+            <!--<table>-->
+                <!--<tr>-->
+                    <!--<td class="label_td">订单号</td>-->
+                    <!--<td class="edit_td"><input type="text" id="s_orderId" name="s_orderId" readonly></td>-->
+                    <!--<td class="label_td">用户姓名</td>-->
+                    <!--<td class="edit_td"><input id="s_applicantName" type="text" name="s_applicantName"/></td>-->
+                    <!--<td class="label_td">用户电话</td>-->
+                    <!--<td class="edit_td"><input id="s_applicantPhone" type="text" name="s_applicantPhone"/></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td class="label_td">分期金额</td>-->
+                    <!--<td class="edit_td"><input type="text" id="s_applyPackageMoney" name="s_applyPackageMoney"></td>-->
+                    <!--<td class="label_td">分期期数</td>-->
+                    <!--<td class="edit_td"><input id="s_applyFenQiTimes" type="text" name="s_applyFenQiTimes"/></td>-->
+                    <!--<td class="label_td">服务费</td>-->
+                    <!--<td class="edit_td"><input id="s_poundage" type="text" name="s_poundage"/></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td class="label_td">月还金额</td>-->
+                    <!--<td class="edit_td"><input type="text" id="s_moneyMonth" name="s_moneyMonth"></td>-->
+                    <!--<td class="label_td">审核人员</td>-->
+                    <!--<td class="edit_td"><input id="" type="text" name="" readonly/></td>-->
+                    <!--<td class="label_td"></td>-->
+                    <!--<td class="edit_td"></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td class="label_td">审批意见</td>-->
+                    <!--<td class="edit_td" colspan="5">-->
+                        <!--<textarea id="s_approveRemarks" name="s_approveRemarks" style="width: 100%" rows="5"></textarea>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td class="label_td">初审报告</td>-->
+                    <!--<td class="edit_td" colspan="5">-->
+                        <!--<textarea id="s_approveReport" name="s_approveReport" style="width: 100%" rows="5"></textarea>-->
+                    <!--</td>-->
+                <!--</tr>-->
+            <!--</table>-->
+    <!--</form>-->
+    <!--<br>-->
+<!--</div>-->
+
+<!--<div class="modal-footer" style="text-align: center">-->
+    <!--<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">通过</button>-->
+    <!--<button class="btn btn-danger" style="margin-left: 50px; margin-right: 50px">拒绝</button>-->
+    <!--<button class="btn btn-info" data-dismiss="modal" aria-hidden="true">退回</button>-->
+<!--</div>-->
+<!--</div>-->
+
+</body>
+</html>
