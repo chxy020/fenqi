@@ -13,7 +13,7 @@ $(function(){
 	g.orderDetailInfo = {};
 	g.repaymentRecordId = "";
 	g.yinghuanjine = "";
-
+	g.get_coupons_money = 0;
 
 	g.totalPage = 1;
 	g.currentPage = 1;
@@ -29,18 +29,9 @@ $(function(){
 		getUserInfo();
 		//获取订单列表
 		//getUserOrderStagingList();
-
+		get_coupons_money();//获取优惠券
 		//获取订单状态
 		//sendGetUserInfoDicHttp();
-	}
-	
-	g.orderInfo = Utils.offLineStore.get("repay_userorderinfo_list",false) || "";
-	if(g.orderInfo != ""){
-		changeOrderInfoHtml(g.orderInfo);
-	}
-	else{
-		Utils.alert("数据错误");
-		history.go(-1);
 	}
 
 
@@ -63,8 +54,7 @@ $(function(){
 	function setUserInfoHtml(data){
 		var obj = data || {};
 		//用户登录ID
-		g.customerId = obj.customerId || "";
-
+		g.customerId = obj.customerId || "";		
 		//var phoneNumber = obj.phoneNumber || "";
 		//$("#userphone").html(phoneNumber);
 
@@ -76,8 +66,8 @@ $(function(){
 		}
 		*/
 	}
-
-
+	
+	
 	//获取用户信息字典信息
 	function sendGetUserInfoDicHttp(){
 		g.httpTip.show();
@@ -155,7 +145,7 @@ $(function(){
 		var noRepaymentTimes = dd.noRepaymentTimes || 0;
 
 		g.repaymentRecordId = repaymentRecordId;
-		g.yinghuanjine = poundage;
+		g.yinghuanjine = yinghuanjine;
 
 		var html = [];
 		html.push('<li>');
@@ -247,21 +237,20 @@ $(function(){
 		html.push('<p><i class="common-ico product-tip2"></i>待还金额：<span class="color-green">' + moneyMonth + '</span>元</p>');
 		html.push('</div>');
 		html.push('</div>');
-		if(poundage >=5000 && g.pa == "1"){
+		if(poundage >=5000 && g.get_coupons_money > 0 && g.pa == "1"){
+		var get_coupons_money = g.get_coupons_money || 0;		
 		html.push('<br><div class="box-item">');
 		html.push('<div class="box-item-text">');
-		html.push('&nbsp;&nbsp;&nbsp;<div class="chk-bg chk-bg-checked" style="display:inline-block" id="cklikecoupons"><input type="checkbox" name="coupons_value1" id="coupons_value" checked="checked"  class="common-checkbox" style="display: none;"></div><p style="display:inline-block;width:auto;padding-left:0;">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span class="color-green" id="coupons_money_span">0</span>元</p>');
+		html.push('&nbsp;&nbsp;&nbsp;<div class="chk-bg chk-bg-checked" style="display:inline-block" id="cklikecoupons"><input type="checkbox" name="coupons_value1" id="coupons_value" checked="checked"  class="common-checkbox" style="display: none;"></div><p style="display:inline-block;width:auto;padding-left:0;">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span class="color-green" id="coupons_money_span">'+get_coupons_money+'元</span></p>');
 		html.push('</div>');
 		html.push('</div>');
 		}
 		html.push('</div>');
 		html.push('</li>');
 
-		$("#orderinfodiv").html(html.join(''));
-		if(poundage >=5000 && g.pa == "1"){
+		$("#orderinfodiv").html(html.join(''));		
 		n_click();
-		get_coupons_money();
-		}
+		
 	}
 	function n_click(){
 		$("#cklikecoupons").click(function(){
@@ -274,7 +263,7 @@ $(function(){
 		})
 	}
 	function get_coupons_money(){
-		g.get_coupons_money = 0;
+		
 		var condi = {};
 			condi.login_token = g.login_token;
 			condi.customerId = g.customerId;
@@ -291,9 +280,10 @@ $(function(){
 					var dd = data.list;
 					var coupons_money_span = dd[0].money || 0;
 					var get_coupons_couponId = dd[0].couponId || "";
-					$("#coupons_money_span").html(coupons_money_span);
+					//$("#coupons_money_span").html(coupons_money_span);
 					g.get_coupons_money = coupons_money_span;
 					g.get_coupons_couponId = get_coupons_couponId;
+					getOrderInfo();
 				}
 				else{
 					var msg = data.message || "获取优惠券失败";
@@ -306,7 +296,17 @@ $(function(){
 			}
 		});
 	}
-	
+	function getOrderInfo(){
+		g.orderInfo = Utils.offLineStore.get("repay_userorderinfo_list",false) || "";
+		if(g.orderInfo != ""){
+			changeOrderInfoHtml(g.orderInfo);
+		}
+		else{
+			Utils.alert("数据错误");
+			history.go(-1);
+		}
+	}
+		
 
 
 	function repayment(id){
@@ -364,11 +364,11 @@ $(function(){
 	}
 
 
-
+	window.getOrderInfo = getOrderInfo;
 	window.confirmRepayment = confirmRepayment;
-	window.repayment = repayment;
-	window.get_coupons_money = get_coupons_money;
+	window.repayment = repayment;	
 	window.n_click = n_click;
+	window.get_coupons_money = get_coupons_money;
 });
 
 
