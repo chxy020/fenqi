@@ -47,8 +47,9 @@ $(function(){
 		condi.approvePerson = g.usersId;
 		condi.approveName = g.usersName;
 
-		var result = $("#sellerradio")[0].checked;
-		result = result == true ? result : false;
+		//var result = $("#sellerradio")[0].checked;
+		//result = result == true ? result : false;
+		var result = $('input[name="sellerstatus"]:checked ').val();
 		condi.approveResult = result;
 		condi.approveRemarks = $("#approveRemarks").val() || "";
 
