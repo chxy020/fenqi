@@ -123,7 +123,7 @@ $(function(){
 			html.push('<td>' + (d.fk2_approve_time || "" ) + '</td>');
 			html.push('<td>' + (d.fk3_approve_name || "" ) + '</td>');
 			html.push('<td>' + (d.fk3_approve_time || "" ) + '</td>');
-			html.push('<td>' + getCheckResult(d.fk3_approve_result) +  '</td>');
+			html.push('<td>' + getCheckStatus(d.last_approve_type) + " " + getCheckResult(d.last_approve_result) +  '</td>');
 			html.push('</tr>');
 		}
 		html.push('</table>');

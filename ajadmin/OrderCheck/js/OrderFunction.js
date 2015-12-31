@@ -50,6 +50,23 @@ function getCheckResult(CheckCode){
 	}
 }
 
+function getCheckStatus(CheckCode){
+	switch(CheckCode){
+		case null:
+			return "";
+		case "101701":
+			return "商家审批";
+		case "101702":
+			return "终审";
+		case "101703":
+			return "复审";
+		case "101704":
+			return "初审";
+		default :
+			return "错误状态";
+	}
+}
+
 function getQueryParameters1(Obj,FormId){
 	$.each($("#" + FormId).serializeArray(),function(index,param) {
 		Obj[param.name] = param.value;
