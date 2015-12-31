@@ -54,7 +54,7 @@ $(function(){
 	//获取订单数据
 	function sendQueryRiskOrderListHttp(){
 		g.httpTip.show();
-		var url = Base.serverUrl + "/order/queryOrdersMapController";
+		var url = Base.serverUrl + "order/queryOrdersMapController";
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.currentPageNum = g.currentPage;

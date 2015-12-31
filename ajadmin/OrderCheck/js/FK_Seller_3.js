@@ -28,7 +28,7 @@ $(function(){
 		$("#usersId").val(g.usersId);
 		$("#usersName").val(g.usersName);
 		$.ajax({
-			url:Base.serverUrl + "/order/selectFKApproveRecordByOrderId",
+			url:Base.serverUrl + "order/selectFKApproveRecordByOrderId",
 			data:{login_token: g.login_token,orderId: g.orderId},	type:"POST",dataType:"json",context:this,
 			success: function(data){
 				if(data.obj == null){
@@ -95,7 +95,7 @@ $(function(){
 			condi.poundage = g.poundage;
 			condi.fenQiTimes = g.stagnum;
 			condi.moneyMonth = g.moneyMonth;
-			var url = Base.serverUrl + "/order/riskManagementThirdApproveOrderController";
+			var url = Base.serverUrl + "order/riskManagementThirdApproveOrderController";
 			$.ajax({
 				url:url,data:condi,type:"POST",dataType:"json",context:this,
 				success: function(data){

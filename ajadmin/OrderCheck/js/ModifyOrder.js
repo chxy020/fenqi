@@ -265,7 +265,7 @@ $(function () {
             return false;
         }
         g.httpTip.show();
-        var url = Base.serverUrl + "/order/updateOrderByFK";
+        var url = Base.serverUrl + "order/updateOrderByFK";
         var condi = {};
         condi.login_token = g.login_token;
         condi.companyId = g.companyId;
