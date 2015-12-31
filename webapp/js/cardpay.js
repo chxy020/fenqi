@@ -108,7 +108,7 @@ $(function(){
 	function changeOrderInfoHtml(){
 		var p = g.price.toFixed(2);
 		var id = g.repaymentRecordId;
-		var html = '<label>服务费金额：<em class="highlight-red">' + p + '</em> 元</label><div>分期订单编号：<em class="highlight">' + id + '</em></div>';
+		var html = '<label>应付金额：<em class="highlight-red">' + p + '</em> 元</label><div>分期订单编号：<em class="highlight">' + id + '</em></div>';
 		$("#orderinfo").html(html);
 	}
 
