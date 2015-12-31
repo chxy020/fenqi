@@ -54,14 +54,14 @@ $(function(){
 	//获取订单数据
 	function sendQueryRiskOrderListHttp(){
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/queryOrdersMapController";
+		var url = Base.serverUrl + "order/queryFKApproveOrdersController";
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.currentPageNum = g.currentPage;
 		condi = getQueryParameters1(condi,"CX");
-		if($("#status").val() == ""){
-			condi.status = "100503" ;
-		}
+		//if($("#status").val() == ""){
+		//	condi.status = "100503" ;
+		//}
 		//console.log(condi);
 		$.ajax({
 			url:url, data:condi,type:"POST",	dataType:"json",context:this,
