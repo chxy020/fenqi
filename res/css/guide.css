@@ -30,6 +30,7 @@ html,body{font-size:14px;font-family:microsoft yahei;background-color:#fafdd2;}
 .er_div4 .tip1{position:absolute;left:0;right:0;text-align:center;top:19px;}
 .er_div4 .tip1 ul{margin:0 auto;display:inline-block;}
 .er_div4 .tip1 ul li{margin:0 45px;color:#fefaf0;text-align:right;float:left;display:inline-block;width:203px;height:79px;line-height:79px;background:url("../images/guide_img/btn_bg1.png") no-repeat center center;}
+.er_div4 .tip1 ul li.last i{display:inline-block;width:7px;}
 .er_div4 .tip1 ul li.active{background:url("../images/guide_img/btn_bg2.png") no-repeat center center;}
 .er_div4 .tip2{z-index:2;margin:0 auto;position:absolute;left:0;right:0;text-align:center;top:298px;width:1226px;}
 .er_div4 .tip2  a{display:inline-block;width:35px;height:59px;}
