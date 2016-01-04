@@ -389,8 +389,9 @@ $(function(){
 
 			html.push('<li>');
 			html.push('<div class="order-item-top">');
-			if(status == "101901"){
-				html.push('<div class="order-state state-grey">还款中</div>');
+			if(status == "101901"){				
+				if(g.pa == "1"){html.push('<div class="order-state state-grey">待缴服务费</div>');}
+				else {html.push('<div class="order-state state-grey">还款中</div>');}
 			}
 			else if(status == "101902"){
 				html.push('<div class="order-state state-grey">已还款</div>');
