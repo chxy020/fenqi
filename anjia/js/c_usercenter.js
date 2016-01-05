@@ -405,7 +405,7 @@ $(function(){
 			}
 			else if(status == "100503"){
 				//100503: "风控审核中
-				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',1)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',1)">查看</a></td>');
 			}
 			else if(status == "100504" || status == "100509"){
 				html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
