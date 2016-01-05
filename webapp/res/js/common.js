@@ -269,4 +269,8 @@ $(function(){
 	$(".ui-checkbox").yyptCheckbox();
 	//初始化radiobox
 	$('.ui-radio').yyptRadio();
+	//30分钟超时
+	if(Utils.offLineStore.get("token",false) != ""){
+		setTimeout(function(){Utils.offLineStore.remove("token",false);alert('页面超时，请重录登陆！');location.reload()},1800000);
+	}
 });

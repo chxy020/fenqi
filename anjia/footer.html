@@ -52,6 +52,9 @@
 </div>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=52268329" charset="UTF-8"></script>
 <script>
+if(Utils.offLineStore.get("token",false) != ""){
+	setTimeout(function(){Utils.offLineStore.remove("token",false);alert('页面超时，请重新登录！');location.reload()},1800000);//30分钟超时
+}
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
