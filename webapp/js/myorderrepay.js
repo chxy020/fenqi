@@ -275,14 +275,16 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				var status = data.success || false;
+				var status = data.success || false;				
 				if(status){
-					var dd = data.list;
-					var coupons_money_span = dd[0].money || 0;
-					var get_coupons_couponId = dd[0].couponId || "";
-					//$("#coupons_money_span").html(coupons_money_span);
-					g.get_coupons_money = coupons_money_span;
-					g.get_coupons_couponId = get_coupons_couponId;
+					if(data.list != ""){
+						var dd = data.list || [];
+						var coupons_money_span = dd[0].money || 0;
+						var get_coupons_couponId = dd[0].couponId || "";
+						//$("#coupons_money_span").html(coupons_money_span);
+						g.get_coupons_money = coupons_money_span;
+						g.get_coupons_couponId = get_coupons_couponId;
+					}
 					getOrderInfo();
 				}
 				else{
