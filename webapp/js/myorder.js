@@ -353,7 +353,7 @@ $(function(){
 			else if(status == "100503"){
 				//100503: "风控审核中
 				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',1)" class="item-btn item-btn-green">查看</a>');
-				html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>');
+				/* html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>'); */
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',1)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else if(status == "100504" || status == "100509"){
