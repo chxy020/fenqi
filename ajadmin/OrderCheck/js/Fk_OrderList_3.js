@@ -90,7 +90,7 @@ $(function(){
 		//html.push('<th>联系电话</th>');
 		html.push('<th>合同编号</th>');
 		html.push('<th>产品名称</th>');
-		html.push('<th>分期金额</th>');
+		html.push('<th>申请分期金额</th>');
 		html.push('<th>申请分期期数</th>');
 		html.push('<th>审批期数</th>');
 		html.push('<th>审批金额</th>');

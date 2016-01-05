@@ -25,6 +25,7 @@ $(function(){
 	g.sendTime = 60;
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.httpTip = new Utils.httpTip({});
+	g.functionArr = {};
 
 	g.totalPage = 1;
 	g.currentPage = 1;
@@ -89,6 +90,8 @@ $(function(){
 			for(var k in data){
 				var id = k || "";
 				var name = data[k] || "";
+				g.functionArr[id] = name;
+				//g.functionArr[1] = 2;
 				option.push('<option value="' + id + '">' + name + '</option>');
 			}
 			$("#" + ids[i]).html(option.join(''));
@@ -155,12 +158,12 @@ $(function(){
 			html.push('<tr>');
 			html.push('<td>' + d.user_id + '</td>');
 			html.push('<td>' + d.user_name + '</td>');
-			html.push('<td>' + d.function + '</td>');
+			html.push('<td>' + g.functionArr[d.function] + '</td>');
 			html.push('<td>' + d.query_uri + '</td>');
 			html.push('<td>' + d.description + '</td>');
 			html.push('<td>' + d.order_id + '</td>');
 			html.push('<td>' + d.client_ip + '</td>');
-			html.push('<td>' + d.status + '</td>');
+			html.push('<td>' + (d.status==0?"后台":"网站 WAP") + '</td>');
 			html.push('<td>' + d.create_time +  '</td>');
 			html.push('</tr>');
 		}

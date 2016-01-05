@@ -91,8 +91,8 @@ $(function(){
 		html.push('<th>订单编号</th>');
 		html.push('<th>真实姓名</th>');
 		//html.push('<th>联系电话</th>');
-		html.push('<th>分期期数</th>');
-		html.push('<th>分期金额</th>');
+		html.push('<th>申请分期期数</th>');
+		html.push('<th>申请分期金额</th>');
 		html.push('<th>审批期数</th>');
 		html.push('<th>审批金额</th>');
 		html.push('<th>订单状态</th>');

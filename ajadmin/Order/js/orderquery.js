@@ -64,7 +64,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetCompanyInfoHttp",data);
+				//console.log("sendGetCompanyInfoHttp",data);
 				var status = data.success || false;
 				if(status){
 					var obj = data.list || [];
@@ -116,7 +116,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetUserInfoDicHttp",data);
+				//console.log("sendGetUserInfoDicHttp",data);
 				var status = data.success || false;
 				if(status){
 					var obj = data.obj || {};
@@ -177,7 +177,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendQueryOrderListHttp",data);
+				//console.log("sendQueryOrderListHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeOrderListHtml(data);
@@ -204,12 +204,14 @@ $(function(){
 		html.push('<th>合同编号</th>');
 		html.push('<th>所属公司</th>');
 		html.push('<th>产品名称</th>');
-		html.push('<th>分期金额</th>');
+		html.push('<th>申请分期金额</th>');
+		html.push('<th>申请分期期数</th>');
+		html.push('<th>审批分期金额</th>');
+		html.push('<th>审批分期期数</th>');
 		html.push('<th>订单状态</th>');
 		html.push('<th>真实姓名</th>');
 		html.push('<th>联系电话</th>');
-		html.push('<th>最近待还</th>');
-		html.push('<th>总期数</th>');
+		html.push('<th>未还期数</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
 		var obj = data.list || [];
@@ -238,13 +240,15 @@ $(function(){
 			html.push('<td>' + contractNo + '</td>');
 			html.push('<td>' + subsidiary + '</td>');//所属公司
 			html.push('<td>' + packageName + '</td>');
+			html.push('<td>' + d.applyPackageMoney + '元</td>');
+			html.push('<td>' + d.applyFenQiTimes + '期</td>');
 			html.push('<td>' + packageMoney + '元</td>');
+			html.push('<td>' + fenQiTimes + '期</td>');
 			html.push('<td>' + statusDes + '</td>');
 
 			html.push('<td>' + applicantName + '</td>');
 			html.push('<td>' + applicantPhone + '</td>');
 
-			html.push('<td>' + fenQiTimes + '期</td>');
 			html.push('<td>' + noRepaymentTimes + '期</td>');
 
 			if(status != "100504"){
@@ -429,7 +433,7 @@ $(function(){
 				dataType:"json",
 				context:this,
 				success: function(data){
-					console.log("deleteOrderById",data);
+					//console.log("deleteOrderById",data);
 					var status = data.success || false;
 					if(status){
 						sendQueryOrderListHttp();
