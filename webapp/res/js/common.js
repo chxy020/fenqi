@@ -180,17 +180,17 @@ COMMON_PLUGIN.COMMON.DELAY_ITEM = function(){
 				if(undefined==yyptCheckboxStyle){
 					yyptCheckboxStyle="";
 				}
-				var chk_bg = $('<i id="'+yyptCheckboxId+'" class="chk-bg" style='+yyptCheckboxStyle+'></i>');
+				var chk_bg = $('<i id="'+yyptCheckboxId+'" class="chk-bg chk-bg-checked" style='+yyptCheckboxStyle+'></i>');
 				$this.before(chk_bg).appendTo(chk_bg);
 				var $thisCotain = $("#"+yyptCheckboxId);
 				$thisCotain.bind("click",function(){
 					if(!$this.prop("disabled")){
-						if($this.prop("checked")) {
-							$this.prop("checked",false);
+						if($this.attr("checked")) {
+							$this.attr("checked",false);
 							$thisCotain.removeClass("chk-bg-checked");
 						}else{
 							$thisCotain.addClass("chk-bg-checked");
-							$this.prop("checked",'true');
+							$this.attr("checked","checked");
 						}
 					}
 				});
@@ -204,11 +204,11 @@ COMMON_PLUGIN.COMMON.DELAY_ITEM = function(){
 				*/
 
 				//貌似写反了 chenxy add
-				if($this.prop("checked")) {
+				/* if($this.prop("checked")) {
 					$thisCotain.removeClass("chk-bg-checked");
 				}else{
 					$thisCotain.addClass("chk-bg-checked");
-				}
+				} */
 				$this.hide();
 			}
 		});

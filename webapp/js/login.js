@@ -68,7 +68,7 @@ $(function(){
 		//var code = $("#inputCode3").val() || "";
 		if(phone !== ""){
 			if(pwd !== ""){
-				var savePhone = $("#chkphone")[0].checked;
+				var savePhone = $("#chkphone").attr("checked") == "checked" ? true : false;
 				
 				if(savePhone){
 					Utils.offLineStore.set("userphone_login",phone,true);

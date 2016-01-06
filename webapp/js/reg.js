@@ -184,7 +184,7 @@ $(function(){
 						if(pwd1 === pwd2){
 							var code = $("#inputcode").val() || "";
 							if(code !== ""){
-								var isAgree = $("#agressck")[0].checked || false;
+								var isAgree = $("#agressck").attr("checked") == "checked" ? true : false;
 								if(isAgree){
 									var condi = {};
 									condi.phone_number = g.phone;

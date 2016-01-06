@@ -108,7 +108,7 @@ $(function(){
 	function changeSelect(obj){
 		var data = obj.list || {};
 		var option = [];		
-		option.push('<option>请选择</option>');
+		//option.push('<option>请选择</option>');
 		for(var i=0;i<data.length;i++){
 			var name = data[i].name;
 			option.push('<option value="' + data[i].id + '">' + name + '</option>');	
@@ -881,7 +881,7 @@ $(function(){
 		var contractMoney = $("#contractMoney").val() || "";
 		var packageMoney = $("#packageMoney").val() || "";
 		var fenQiTimes = $("#fenQiTimes").val() || "";
-		var agreeck = $("#agreeck")[0].checked || false;
+		var agreeck = $("#agreeck").attr("checked") == "checked" ? true : false;
 		ptype = packageType.split("_");
 		packageType = ptype[0] || "";
 		var companyId = ptype[1] || "";
