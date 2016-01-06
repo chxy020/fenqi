@@ -352,7 +352,7 @@ $(function(){
 			}
 			else if(status == "100503"){
 				//100503: "风控审核中
-				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',1)" class="item-btn item-btn-green">查看</a>');
+				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',3)" class="item-btn item-btn-green">查看</a>');
 				/* html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>'); */
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',1)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
@@ -591,7 +591,7 @@ $(function(){
 			location.href = "repayment-list-item.html?orderId=" + orderId+"&pa=2";			
 		}
 		else{
-			layer.msg("商家正在审核,暂无还款记录");
+			layer.msg("商家正在审核,请耐心等待！");
 			//location.href = "/anjia/orderaudit.html?orderId=" + orderId ;
 		}
 	}
