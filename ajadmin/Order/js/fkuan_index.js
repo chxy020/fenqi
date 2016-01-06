@@ -131,7 +131,7 @@ $(function(){
 		html.push('<th>订单状态</th>');
 
 		html.push('<th>真实姓名</th>');
-		html.push('<th>联系电话</th>');
+		//html.push('<th>联系电话</th>');
 
 		html.push('<th>最近待还</th>');
 		html.push('<th>总期数</th>');
@@ -161,7 +161,7 @@ $(function(){
 			html.push('<td>' + statusDes + '</td>');
 
 			html.push('<td>' + applicantName + '</td>');
-			html.push('<td>' + applicantPhone + '</td>');
+			//html.push('<td>' + applicantPhone + '</td>');
 
 			html.push('<td>' + fenQiTimes + '期</td>');
 			html.push('<td>' + noRepaymentTimes + '期</td>');

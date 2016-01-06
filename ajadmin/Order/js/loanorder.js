@@ -209,7 +209,7 @@ $(function(){
 		html.push('<th>订单编号</th>');
 		html.push('<th>合作公司</th>');
 		html.push('<th>用户姓名</th>');
-		html.push('<th>用户电话</th>');
+		//html.push('<th>用户电话</th>');
 		html.push('<th>合同金额</th>');
 		html.push('<th>分期金额</th>');
 		html.push('<th>支付金额</th>');
@@ -239,7 +239,7 @@ $(function(){
 			html.push('<td>' + orderId + '</td>');
 			html.push('<td>' + company + '</td>');
 			html.push('<td>' + customerName + '</td>');
-			html.push('<td>' + customerPhone + '</td>');
+			//html.push('<td>' + customerPhone + '</td>');
 			html.push('<td>' + contractMoney + '元</td>');
 			html.push('<td>' + packageMoney + '元</td>');
 			html.push('<td>' + loanMoney + '元</td>');
