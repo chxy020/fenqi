@@ -216,6 +216,17 @@
 					sendQueryMenuListByRoleHttp(roleId);
 				}
 			}
+			
+			<!-- 窗口大小改变 重新调整大小 -->
+			$(window).resize(function(){
+				var size1 = $(window).height() - 75,
+					size2 = size1 - 21;
+				$(".dl-second-nav").height(size1);
+				$(".bui-side-menu").height(size1);
+				$(".bui-nav-tab").height(size1);
+				$(".tab-content-container").height(size2);
+			
+			})
 		});
 	</script>
 </body>
