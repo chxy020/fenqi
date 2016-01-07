@@ -38,7 +38,12 @@ $(function(){
 
 	//g.httpTip.show();
 	$("#countbtn").bind("click",countBtnUp);
-
+	$("#more_question").bind("click",more_question_f);
+	
+	//了解更多
+	function more_question_f(){
+		location.href = "/anjia/questions.html?typePageId=m";
+	}
 	function countFee(allprice,time){
 		var numarr = [3,6,12,18,24,36];
 		var ratearr = [0,0.04,0.07,0.1,0.13,0.16];

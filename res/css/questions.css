@@ -1,0 +1,24 @@
+﻿
+h1,h2,h3,h4,h5,ul,li,dd,dl{margin:0;padding:0;font-weight:500;}
+a{cursor:pointer;outline:none;}
+html,body{margin:0;padding:0;}
+html,body{font-family:microsoft yahei;background-color:#fff;}
+
+.Q_body_div{width:1000px;margin:0 auto;color:#171616;}
+.Q_body_div  h4.directory{font-size:14px;margin:20px 0 26px 0;}
+.Q_body_div  h5.Qtitle {font-size:20px;height:40px;line-height:40px;border-bottom:1px solid #e8e6e6;}
+.Q_body_div  .Q_list{border-bottom:1px dashed #e7e7e7;}
+.Q_body_div  .Q_list i{display:inline-block;width:28px;height:25px;vertical-align:text-bottom;margin-right:5px;}
+.Q_body_div  .Q_list i.Q_i1{background:url('../images/Q_img1.png') no-repeat center center;}
+.Q_body_div  .Q_list i.Q_i2{background:url('../images/Q_img2.png') no-repeat center center;}
+.Q_body_div  .Q_list  h4.title{font-size:18px;margin:30px 0 23px 0;}
+.Q_body_div  .Q_list  p.Q_a{line-height:32px;font-size:14px;margin-bottom:5px;}
+
+.Q_body_div   ul.list_page{margin:85px 0 40px 0;text-align:center;}
+.Q_body_div   ul.list_page li{cursor:pointer;display:inline-block;text-align:center;width:70px;height:40px;line-height:40px;border-radius:10px;background-color:#f5f5f5;margin:30px 10px;}
+.Q_body_div   ul.list_page li.active{background-color:#f39800;color:#fff;}
+
+
+
+
+
