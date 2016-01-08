@@ -219,17 +219,26 @@ $(function(){
 	//更新个人资料
 	function saveBtnUp(){
 		//debugger
-		var sex = $("input[name='sexradio']:checked") || [];
-		var ids = $("input[name='idrodio']:checked") || [];
-		var status = $("input[name='userstatus']:checked") || [];
+		var sex = $("input[name='sexradio']") || [];
+		var ids = $("input[name='idrodio']") || [];
+		var status = $("input[name='userstatus']") || [];
 		var likes = $("input[name='cklike']:checked") || [];
 
 		var birthday = $("#birthday").val() || "";
 		var cksex = "";
 		var ckid = "";
 		var ckstatus = "";
-		var cklikes = "";
-
+		var cklikes = "";		
+		sex.each(function(){
+			if($(this).attr("checked") == "checked"){cksex = $(this).val()}
+		})
+		ids.each(function(){
+			if($(this).attr("checked") == "checked"){ckid = $(this).val()}
+		})
+		status.each(function(){
+			if($(this).attr("checked") == "checked"){ckstatus = $(this).val()}
+		})
+		
 		if(sex.length > 0){
 			cksex = sex[0].value || "";
 		}
