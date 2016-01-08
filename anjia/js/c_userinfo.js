@@ -239,7 +239,7 @@ $(function(){
 			if($(this).attr("checked") == "checked"){ckstatus = $(this).val()}
 		})
 		
-		if(sex.length > 0){
+		/* if(sex.length > 0){
 			cksex = sex[0].value || "";
 		}
 		if(ids.length > 0){
@@ -247,7 +247,7 @@ $(function(){
 		}
 		if(status.length > 0){
 			ckstatus = status[0].value || "";
-		}
+		} */
 		if(likes.length > 0){
 			var like = [];
 			for(var i = 0, len = likes.length; i < len; i++){
