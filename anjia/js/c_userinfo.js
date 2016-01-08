@@ -188,17 +188,20 @@ $(function(){
 		}
 
 		if(sex !== ""){
-			$("#" + sex)[0].checked = true;
+			//$("#" + sex)[0].checked = true;
+			$("#" + sex).attr("checked","checked");
 			$($("#" + sex).parent()).removeClass("radio-bg-checked");
 			$($("#" + sex).parent()).addClass("radio-bg-checked");
 		}
 		if(identification !== ""){
-			$("#" + identification)[0].checked = true;
+			//$("#" + identification)[0].checked = true;
+			$("#" + identification).attr("checked","checked");
 			$($("#" + identification).parent()).removeClass("radio-bg-checked");
 			$($("#" + identification).parent()).addClass("radio-bg-checked");
 		}
 		if(maritalStatus !== ""){
-			$("#" + maritalStatus)[0].checked = true;
+			//$("#" + maritalStatus)[0].checked = true;
+			$("#" + maritalStatus).attr("checked","checked");
 			$($("#" + maritalStatus).parent()).removeClass("radio-bg-checked");
 			$($("#" + maritalStatus).parent()).addClass("radio-bg-checked");
 		}
@@ -240,6 +243,7 @@ $(function(){
 		})
 		
 		/* if(sex.length > 0){
+			
 			cksex = sex[0].value || "";
 		}
 		if(ids.length > 0){
