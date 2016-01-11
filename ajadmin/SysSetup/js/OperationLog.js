@@ -160,7 +160,7 @@ $(function(){
 			html.push('<td>' + d.user_name + '</td>');
 			html.push('<td>' + g.functionArr[d.function] + '</td>');
 			html.push('<td>' + d.query_uri + '</td>');
-			html.push('<td>' + d.description + '</td>');
+			html.push('<td><div style="width: 300px; overflow: auto;">' + d.description + '</div></td>');
 			html.push('<td>' + d.order_id + '</td>');
 			html.push('<td>' + d.client_ip + '</td>');
 			html.push('<td>' + (d.status==0?"后台":"网站 WAP") + '</td>');

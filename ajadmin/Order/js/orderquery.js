@@ -210,7 +210,7 @@ $(function(){
 		html.push('<th>审批分期期数</th>');
 		html.push('<th>订单状态</th>');
 		html.push('<th>真实姓名</th>');
-		html.push('<th>联系电话</th>');
+		//html.push('<th>联系电话</th>');
 		html.push('<th>未还期数</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
@@ -247,15 +247,15 @@ $(function(){
 			html.push('<td>' + statusDes + '</td>');
 
 			html.push('<td>' + applicantName + '</td>');
-			html.push('<td>' + applicantPhone + '</td>');
+			//html.push('<td>' + applicantPhone + '</td>');
 
 			html.push('<td>' + noRepaymentTimes + '期</td>');
 
 			if(status != "100504"){
-				html.push('<td><a href="orderdetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="ViewOrderDetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else{
-				html.push('<td><a href="orderdetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp</td>');
+				html.push('<td><a href="ViewOrderDetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp</td>');
 			}
 			if(status == "100501"){
 				//html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');

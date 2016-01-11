@@ -40,6 +40,8 @@ $(function(){
 				g.packageMoney = RowData.packageMoney;
 				$("#applicantName").val(RowData.applicantName);
 				$("#applicantPhone").val(RowData.applicantPhone);
+
+				$("#contractMoney").val(RowData.contractMoney);
 				$("#applyPackageMoney").val(RowData.applyPackageMoney);
 				$("#applyFenQiTimes").val(RowData.applyFenQiTimes);
 				$("#packageMoney").val(RowData.packageMoney);

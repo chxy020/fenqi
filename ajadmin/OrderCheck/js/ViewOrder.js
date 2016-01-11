@@ -249,7 +249,6 @@ $(function () {
         if (UUserCard.substring(10, 12) < month || UUserCard.substring(10, 12) == month && UUserCard.substring(12, 14) <= day) {
             age++;
         }
-        //alert(age);
         $("#applicantAge").val( Math.abs(age)>100?"身份号号输入错误，请检查！":age);
     }
 
