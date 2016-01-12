@@ -206,7 +206,7 @@ $(function(){
 					if(two == true && days >= 0){
 						html.push('<li class="li1 pay1">'+loanTimes+'');
 						html.push('<input id="' + loanRecordId + '" type="text" placeholder="最大付款金额' +loanMaxMoney + '" class="edu_pay_input" />');
-						html.push('<a class="pay_btn" href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\',\'' + loanResidueMoney + '\')">支付</a>');
+						html.push('<a class="pay_btn" href="javascript:loanByLoanRecord(\'' + loanRecordId + '\',\'' + loanMaxMoney + '\',\'' + loanResidueMoney + '\',4)">支付</a>');
 					}
 					else{
 						var days2=Math.abs(days);
@@ -258,7 +258,7 @@ $(function(){
 		return iDays ;
 	}
 
-	function loanByLoanRecord(loanRecordId,loanMaxMoney, loanResidueMoney){
+	function loanByLoanRecord(loanRecordId,loanMaxMoney, loanResidueMoney,loanTimes){
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.loanRecordId = loanRecordId;
@@ -275,7 +275,10 @@ $(function(){
 			alert("申请额度必须大于0元");
 			return;
 		}
-
+		if(loanTimes == "4" && loanMaxMoney > condi.loanMoney){
+			alert("为了避免支付结余，请填写"+loanMaxMoney+"元");
+			return;
+		}
 		var url = Base.serverUrl + "order/loanByLoanRecord";
 		$.ajax({
 			url:url,
