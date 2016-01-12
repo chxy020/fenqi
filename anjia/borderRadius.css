@@ -1,0 +1,6 @@
+﻿.MagicZoomBigImageCont {
+  -moz-border-radius: 1000px; /* Firefox */
+  -webkit-border-radius: 1000px; /* Safari 和 Chrome */
+  border-radius: 1000px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+  behavior: url(ie-css3.htc); /* 通知IE浏览器调用脚本作用于'box'类 */
+}

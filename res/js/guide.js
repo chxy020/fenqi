@@ -51,7 +51,12 @@ $(function(){
 	$("#fenqi_btn7").bind("click",fenqi_btn_click2);
 	$("#tip2_left_btn").bind("click",function(){btn_click(1)});
 	$("#tip2_right_btn").bind("click",function(){btn_click(2)});
-	
+	$("#tip3_left_btn").bind("click",function(){btn_click2(1)});
+	$("#tip3_right_btn").bind("click",function(){btn_click2(2)});
+	$("#tip4_left_btn").bind("click",function(){btn_click3(1)});
+	$("#tip4_right_btn").bind("click",function(){btn_click3(2)});
+	$("#tip5_left_btn").bind("click",function(){btn_click4(1)});
+	$("#tip5_right_btn").bind("click",function(){btn_click4(2)});
 	function fenqi_btn_click2(){
 
 		if(!loginStatus){
@@ -73,11 +78,66 @@ $(function(){
 		$(".er_div4 .tip1 ul li:nth-child("+now+")").addClass("active").siblings("li").removeClass("active");
 		$(".er_div4 .tip4  div.box").attr("class","box").addClass("bg"+now+"");
 	}
-	
-	
-	
-	
-	
-	
+	var now2 = 1;
+	function  btn_click2(direct){
+		if(direct == 1){
+			if(now2 <= 1){now2 = 3;}
+			now2--;
+		}
+		else if(direct == 2){
+			if(now2 >= 2){now2 = 0;}
+			now2++;
+		}
+		$(".er_div5 .tip1 ul li:nth-child("+now2+")").addClass("active").siblings("li").removeClass("active");
+		$(".er_div5 .tip4  div.box").attr("class","box").addClass("bg"+now2+"");
+	}
+	var now3 = 1;
+	function  btn_click3(direct){
+		if(direct == 1){
+			if(now3 <= 1){now3 = 3;}
+			now3--;
+		}
+		else if(direct == 2){
+			if(now3 >= 2){now3 = 0;}
+			now3++;
+		}
+		$(".er_div6 .tip1 ul li:nth-child("+now3+")").addClass("active").siblings("li").removeClass("active");
+		$(".er_div6 .tip4  div.box").attr("class","box").addClass("bg"+now3+"");
+	}
+	var now4 = 1;
+	function  btn_click4(direct){
+		if(direct == 1){
+			if(now4 <= 1){now4 = 4;}
+			now4--;
+		}
+		else if(direct == 2){
+			if(now4 >= 3){now4 = 0;}
+			now4++;
+		}
+		$(".er_div7 .tip1 ul li:nth-child("+now4+")").addClass("active").siblings("li").removeClass("active");
+		$(".er_div7 .tip4  div.box").attr("class","box").addClass("bg"+now4+"");
+	}
+	/* 标签click */
+	$(".er_div4 .tip1 ul li").each(function(n){
+		$(this).click(function(){
+			now = n+1;
+			$(".er_div4 .tip1 ul li:nth-child("+now+")").addClass("active").siblings("li").removeClass("active");
+			$(".er_div4 .tip4  div.box").attr("class","box").addClass("bg"+now+"");
+		})
+	})
+	$(".er_div5 .tip1 ul li").each(function(n){
+		$(this).click(function(){
+			now2 = n+1;
+			$(".er_div5 .tip1 ul li:nth-child("+now2+")").addClass("active").siblings("li").removeClass("active");
+			$(".er_div5 .tip4  div.box").attr("class","box").addClass("bg"+now2+"");
+		})
+	})
+	$(".er_div6 .tip1 ul li").each(function(n){
+		$(this).click(function(){
+			now3 = n+1;
+			$(".er_div6 .tip1 ul li:nth-child("+now3+")").addClass("active").siblings("li").removeClass("active");
+			$(".er_div6 .tip4  div.box").attr("class","box").addClass("bg"+now3+"");
+		})
+	})
 	
 });
