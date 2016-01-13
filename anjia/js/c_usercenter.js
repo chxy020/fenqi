@@ -413,7 +413,7 @@ $(function(){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
-				html.push('<td><a href="javascript:repayment(\'' + poundageRecordId + '\')">支付</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">取消订单</a></td>');
+				html.push('<td><a href="javascript:repayment(\'' + poundageRecordId + '\')">支付</a><br><br><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
@@ -2025,6 +2025,7 @@ function sendGetPayOrderListHttp8(condi){
 	}
 
 	function repayment(id){
+		Utils.offLineStore.remove("userorderinfo_detail",false);
 		var d = g.orderDetailInfo[id] || "";
 		var orderId = d.orderId || "";
 		var poundageRecordId = d.poundageRecordId || "主键";
@@ -2092,7 +2093,7 @@ function sendGetPayOrderListHttp8(condi){
 		html.push('<td class="even">' + moneyMonth + '元</td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td class="odd">借款协议</td>');
+		html.push('<td class="odd">分期付款协议</td>');
 		html.push('<td class="even"><a class="orderleftbtn_a" id="xieYi_1">分期付款协议</a></td>');
 		html.push('</tr>');
 		html.push('<tr>');

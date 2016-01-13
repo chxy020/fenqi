@@ -573,7 +573,7 @@ $(function(){
 		var poundage = dd.poundage - 0 || 0;
 		var moneyMonth = dd.moneyMonth - 0 || 0;
 		var noRepaymentTimes = dd.noRepaymentTimes || 0;
-		var subsidiary = dd.subsidiary || 0;
+		var subsidiary = dd.subsidiary || "";
 		var yihuanzonge=((fenQiTimes-noRepaymentTimes)*moneyMonth).toFixed(2) || 0;
 		
 		var html = [];
