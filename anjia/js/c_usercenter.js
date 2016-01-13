@@ -829,10 +829,10 @@ function sendGetPayOrderListHttp3(condi){
 		html.push('<th width="130">合同编号</th>');
 		html.push('<th width="110">合作商家</th>');
 		html.push('<th width="110">申请分期金额</th>');
-		html.push('<th width="100">订单状态</th>');
+		html.push('<th width="110">申请分期期数</th>');
 		//html.push('<th width="100">应缴服务费</th>');
 		//html.push('<th width="80">最近待还</th>'); 
-		html.push('<th width="110">申请分期期数</th>');
+		html.push('<th width="100">订单状态</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
 		var obj = data.list || [];
@@ -853,10 +853,10 @@ function sendGetPayOrderListHttp3(condi){
 			html.push('<td>' + contractNo + '</td>');
 			html.push('<td>' + subsidiary + '</td>');
 			html.push('<td>' + packageMoney + '元</td>');
-			html.push('<td>' + statusDes + '</td>');
+			html.push('<td>' + fenQiTimes + '期</td>');
 			//html.push('<td>' + noRepaymentTimes + '元</td>');
 			// html.push('<td>' + noRepaymentTimes + '期</td>');
-			html.push('<td>' + fenQiTimes + '期</td>');
+			html.push('<td>' + statusDes + '</td>');
 
 			g.orderInfo[orderId] = d;
 			g.orderDetailInfo[poundageRecordId] = d;
