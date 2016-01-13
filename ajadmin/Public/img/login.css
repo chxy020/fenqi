@@ -1,0 +1,69 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    background:#f3fccc;
+    overflow: hidden;
+}
+.container{
+    text-align: center;
+    width: 100%;
+    height: 860px;
+    position:absolute;
+    background:url("body_bak.png") repeat-x;
+}
+form{
+    padding: 0px;
+    margin: 0px;
+}
+.FormDiv{
+    padding-top: 25px;
+    width:400px;
+    height:300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    background: url("fromdiv_bak.png");
+}
+
+#userDiv{
+    width: 280px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    background: url("user_bak.png") no-repeat;
+}
+#username{
+    width: 228px;
+    height: 33px;
+    border: 0px solid;
+    color: #469ec6;
+    font-size: 20px;
+    margin-left: 50px;
+    background-color:transparent;
+}
+#passDiv{
+    width: 280px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    background: url("pass_bak.png") no-repeat;
+}
+#password{
+    width: 228px;
+    height: 33px;
+    border: 0px solid;
+    color: #469ec6;
+    font-size: 20px;
+    margin-left: 50px;
+    background-color:transparent;
+}
+#loginbtn{
+    background-color: #469ec6;
+    width: 280px;
+    height: 35px;
+    border: 0px;
+    color: #FFFFFF;
+    font-size: 20px;
+    cursor: pointer;
+}
