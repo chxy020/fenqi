@@ -208,7 +208,7 @@ $(function(){
 		if(interesting !== ""){
 			var inter = interesting.split(",") || [];
 			for(var i = 0, len = inter.length; i < len; i++){
-				$("#" + inter[i])[0].checked = true;
+				$("#" + inter[i]).attr("checked","checked");
 				$($("#" + inter[i]).parent()).addClass("chk-bg-checked");
 			}
 		}
