@@ -107,6 +107,7 @@
             g.httpTip.show();
             var url = Base.serverUrl + "report/getStatusReport";
             var condi = {};
+            condi.login_token = g.login_token;
             $.ajax({
                 url: url, data: condi, type: "POST", dataType: "json", context: this, async: false,
                 success: function (data) {
