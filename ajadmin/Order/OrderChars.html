@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>订单统计图表</title>
+    <link rel="stylesheet" type="text/css" href="../Css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/style.css"/>
+    <style>
+        .divPercentage {
+            width: 100px;
+            height: 97px;
+            text-align: center;
+            vertical-align: middle;
+            background: url("image/logo_quan.png") no-repeat;
+            color: #1b3160;
+        }
+
+        .tdgradient{
+            background: #000000;
+            background: -moz-linear-gradient(top,  #ffffff 0%, #ddf7a6 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ddf7a6));
+            background: -webkit-linear-gradient(top,  #ffffff 0%,#ddf7a6 100%);
+            background: -o-linear-gradient(top,  #ffffff 0%,#ddf7a6 100%);
+            background: -ms-linear-gradient(top,  #ffffff 0%,#ddf7a6 100%);
+            background: linear-gradient(to bottom,  #ffffff 0%,#ddf7a6 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ddf7a6',GradientType=0 );
+        }
+        :root .gradient{filter:none;}
+
+        .gradient{
+            background: #000000;
+            background: -moz-linear-gradient(top,  #ddf7a6 0%, #ffffff 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ddf7a6), color-stop(100%,#ffffff));
+            background: -webkit-linear-gradient(top,  #ddf7a6 0%,#ffffff 100%);
+            background: -o-linear-gradient(top,  #ddf7a6 0%,#ffffff 100%);
+            background: -ms-linear-gradient(top,  #ddf7a6 0%,#ffffff 100%);
+            background: linear-gradient(to bottom,  #ddf7a6 0%,#ffffff 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ddf7a6', endColorstr='#ffffff',GradientType=0 );
+        }
+        :root .gradient{filter:none;}
+    </style>
+    <script type="text/javascript" src="../Js/jquery.js"></script>
+    <script src="../libs/base.js"></script>
+    <script src="../libs/utils.js"></script>
+    <script src="../echarts-2.2.7/build/dist/echarts.js"></script>
+</head>
+
+<body style="background-color:#FFFFFF">
+
+<div id="Round" style="padding-bottom: 10px"></div>
+<table width="98%" align="center">
+    <tr>
+        <td align="center" class="gradient">
+            <div id="pieDiv" style="height:500px; width: 80%; background-color: #000066"></div>
+        </td>
+    </tr>
+</table>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="height:10px; width: 80%;"></div>
+
+
+<script type="text/javascript">
+
+    $(function () {
+        var g = {};
+        g.login_token = Utils.offLineStore.get("token", false) || "";
+        g.usersId = Utils.offLineStore.get("user_usersId", false) || "";
+        g.usersName = Utils.offLineStore.get("user_usersName", false) || "";
+        g.httpTip = new Utils.httpTip({});
+        g.KeyArr = [];
+        g.ValArr = [];
+        //未使用
+        var viewChart = function () {
+            require.config({//路径配置
+                paths: {echarts: '../echarts-2.2.7/build/dist'}
+            });
+            require(['echarts', 'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                    ],
+                    function (ec) {
+                        // 基于准备好的dom，初始化echarts图表
+                        var myChart = ec.init(document.getElementById('main'));
+                        var option = {
+                            tooltip: {
+                                show: true
+                            },
+                            legend: {
+                                data: ['订单数量'],
+                                backgroundColor: '#cccccc',
+                                floating: true,
+                                y: 25
+                            },
+                            xAxis: [{type: 'category', data: g.KeyArr}],
+                            yAxis: [
+                                {type: 'value'}
+                            ],
+                            series: [{"name": "订单数量", "type": "bar", "data": g.ValArr}],
+                            color: ["rgb(56, 65, 121)"]
+                        };
+                        // 为echarts对象加载数据
+                        myChart.setOption(option);
+                    }
+            );
+        };
+        //获取数据
+        var getData = function () {
+            g.httpTip.show();
+            var url = Base.serverUrl + "report/getStatusReport";
+            var condi = {};
+            $.ajax({
+                url: url, data: condi, type: "POST", dataType: "json", context: this, async: false,
+                success: function (data) {
+                    var status = data.success || false;
+                    if (status) {
+                        var Obj = data.obj;
+                        for (var p in Obj) {
+                            g.KeyArr.push(p);
+                            g.ValArr.push(Obj[p]);
+                        }
+                        Charts();
+                    } else {
+                        var msg = data.message || "获取图表数据失败！";
+                        Utils.alert(msg);
+                    }
+                    g.httpTip.hide();
+                },
+                error: function (data) {
+                    g.httpTip.hide();
+                }
+            });
+        };
+        //图形
+        var Charts = function () {
+            var JsonData = [];
+            for (var i = 0; i < g.KeyArr.length; i++) {
+                var RowObj = {};
+                RowObj.name = g.KeyArr[i];
+                RowObj.value = g.ValArr[i];
+                JsonData.push(RowObj);
+            }
+            require.config({//路径配置
+                paths: {echarts: '../echarts-2.2.7/build/dist'}
+            });
+            require(['echarts', 'echarts/chart/pie', 'echarts/chart/funnel'], function (ec) {
+                        var myChart = ec.init(document.getElementById('pieDiv'));
+                        option = {
+                            title: {
+                                text: '订单数据分析',
+                                subtext: '图形报表',
+                                x: 'center'
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                            },
+                            legend: {
+                                orient: 'vertical',
+                                x: 'left',
+                                y:150,
+                                data: g.KeyArr
+                            },
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    mark: {show: true},
+                                    dataView: {show: true, readOnly: false},
+                                    magicType: {
+                                        show: true,
+                                        type: ['pie', 'funnel'],
+                                        option: {
+                                            funnel: {
+                                                x: '25%',
+                                                width: '60%',
+                                                funnelAlign: 'left',
+                                                max: Math.max.apply(null, g.ValArr)
+                                            }
+                                        }
+                                    },
+                                    restore: {show: true},
+                                    saveAsImage: {show: true}
+                                }
+                            },
+                            calculable: true,
+                            series: [
+                                {
+                                    name: '数据',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    center: ['50%', '60%'],
+                                    data: JsonData
+                                }
+                            ]
+                        };
+                        myChart.setOption(option);
+                    }
+            );
+        };
+        //头部圆形图标
+        var CreateRound = function () {
+            var TableHtml = [];
+            TableHtml.push('<table width="98%" align="center" border="0" style="margin-top:20px"><tr>');
+            for (var i = 0; i < g.KeyArr.length; i++) {
+                var tdRow = '<td width="12.5%" height="50" align="center" class="tdgradient"><div class="divPercentage"><div style="padding-top: 30px">';
+                tdRow += g.KeyArr[i] + "<br>" + Percentage(eval(g.ValArr.join('+')), g.ValArr[i]) + '</div></div>';
+                tdRow += '<span style="color: #1b3160">数量:' + g.ValArr[i] + '</span></td>';
+                TableHtml.push(tdRow);
+            }
+            TableHtml.push('</tr></table>');
+            $("#Round").html(TableHtml.join(''));
+        };
+        //百分比
+        var Percentage = function (total, num) {
+            return (Math.round(num / total * 10000) / 100.00 + "%");// 小数点后两位百分比
+        };
+
+        //验证登录状态
+        var loginStatus = Utils.getUserInfo();
+        if (!loginStatus) {
+            Utils.alert("您未登陆系统!");
+        } else {
+            getData();//获取数据
+            CreateRound();//圆形图
+        }
+    });
+
+</script>
+</body>

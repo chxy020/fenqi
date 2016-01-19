@@ -244,8 +244,8 @@ $(function(){
 			html.push('<td>' + applicantName + '</td>');
 			//html.push('<td>' + applicantPhone + '</td>');
 
-			html.push('<td>' + fenQiTimes + '期</td>');
 			html.push('<td>' + noRepaymentTimes + '期</td>');
+			html.push('<td>' + fenQiTimes  + '期</td>');
 
 			if(status == "100507"){
 				html.push('<td><a href="repaylist.html?orderId=' + orderId + '">详情</a>&nbsp&nbsp</td>');
