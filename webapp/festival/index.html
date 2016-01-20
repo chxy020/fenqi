@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<title>猜灯谜</title>
+	<meta name="keywords"    content="燕子安家，家装分期，装修贷款，装修贷款怎么申请，家庭消费">
+	<meta name="description"   content="燕子安家—致力于打造“家消费”领域的互联网金融服务平台，向3亿中国家庭提供低利率、高额度、长期限、纯信用的的家装分期贷款等金融服务">
+	<link type="text/css" href="common/index.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="body_div" id="get_dialog_btn">	
+	<img class="bg" id="ripple_img"  width="100%" src="common/img/hongbao_img.jpg"/>
+	<a class="hand_btn" id="hongbao_a_btn"></a>
+</div>
+<div class="bottom">
+	<img class="bg"  width="100%" src="common/img/hongbao_img_b.png"/>
+	<h4>活动规则</h4>
+	<p class="tip">
+		1 用户参加元宵猜灯谜活动即可随机获得燕子安家20.16元、201.6元 、2016元的优惠券红包或随机现金红包；<br>
+		2.优惠券红包只能用来抵扣家装分期服务费，分期服务费超过1000元可以使用201.6元的红包，分期服务费超过10000元可以使用2016元红包；<br>
+		3.优惠券红包期限为一个月，过期自动作废；<br>
+		4 一个账号有且仅有一次机会获得优惠券红包；<br>
+		5本活动最终解释权归北京德维投资有限公司所有；
+	</p>
+</div>	
+
+<!-- 弹窗 -->
+<div class="sbox_bg"></div>	
+<div class="sbox " id="hongbao_sbox">
+	<div class="top_btn2"><a class="a_btn" id="exit_a_btn2"></a></div>
+	<img class="bg"  width="100%" src="common/img/hongbao_box.png"/>
+	<div id="choise_b" class="position Q1">
+		<div class="top_btn"><a class="a_btn" id="exit_a_btn"></a></div>
+		<div id="question_list">
+			<!-- <div class="question question1" id="question1">
+				<h4 class="title">1、北(打一数学名词)</h4>
+				<ul class="answer hidden">
+					<li class="yes"><i></i>对比</li>
+					<li class="wrong"><i></i>反比</li>
+					<li class="wrong"><i></i>正比</li>
+				</ul>
+			</div>
+			<div class="question question2" id="question2">
+				<h4 class="title">2、最长的腿（打一成语）</h4>
+				<ul class="answer hidden">
+					<li class="yes"><i></i>一步登天</li>
+					<li class="wrong"><i></i>二步登天</li>
+					<li class="wrong"><i></i>一步之遥</li>
+				</ul>
+			</div> -->
+		</div>	
+		<div class="result1" id="result1">
+			<h4 class="title">您答对了<span id="yes_number">0</span>/2题，可以参与抽奖</h4>
+			<span class="font1">恭喜！</span>
+			您获得燕子安家
+			<span class="font2" id="coupons_money">0元</span>优惠券
+		</div>
+		<div class="result2" id="result2">
+			<span class="font1">恭喜！</span><br>
+			您获得燕子安家<br>
+			<span class="font2" id="cash_money">0元</span>现金红包
+		</div>
+		<div class="bottom_btn">
+			<a id="next_btn" class="a_btn btn1"></a>
+			<a id="sunmit_btn" class="a_btn btn2"></a>
+			<a id="login_btn" class="a_btn btn3"></a>
+			<a id="focus_btn" class="a_btn btn4"></a>
+		</div>
+	</div>	
+</div>	
+
+	<script type="text/javascript" src="../libs/utils.js"></script>
+	<script type="text/javascript" src="common/jquery.js"></script>
+	<script src="../libs/base.js"></script>
+	<script type="text/javascript" src="common/index.js"></script>
+	<script type="text/javascript" src="common/ripple.js"></script>
+	
+</body>
+</html>

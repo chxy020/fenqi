@@ -9,7 +9,10 @@ $(function(){
 	g.codeId = "";
 	g.tout = null;
 	g.httpTip = new Utils.httpTip({});
-	
+	/* 元宵活动标记 */
+	g.customerId = "";
+	g.dengmi = Utils.offLineStore.get("dengmi",false) || "";
+	g.coupons_id = Utils.offLineStore.get("coupons_id",false) || "";
 	var userPhone = Utils.offLineStore.get("userphone_login",true) || "";
 	$("#inputphone").val(userPhone);
 
@@ -104,17 +107,21 @@ $(function(){
 				if(status){
 					var userInfo = data.obj || "";
 					if(userInfo !== ""){
+						g.customerId = userInfo.customerId || "";
 						userInfo = JSON.stringify(userInfo);
 						//保存用户数据
 						Utils.offLineStore.set("userinfo",userInfo,false);
 						var token = data.token || "";
-
+						g.login_token = token;
 						Utils.offLineStore.set("token",token,false);
+						/* 判断是否是从元宵活动页过来的 */
+						
 						var compare = GetRequest().p;
 						if(compare==1){location.replace("../mystaging/mystaging.html");}//分期付款
 						else if(compare==2){location.replace("../order/index.html?orderType=100507");}//还款中
 						else if(compare=="langrun"){location.href = "/webapp/coupons/langrun_1212_mobi.html";}
 						else if(compare=="shenghuojia"){location.href = "/webapp/coupons/shenghuojia_1212_mobi.html";}
+						else if(g.dengmi == "dengmi"){get_user_coupons();}
 						else{location.replace("../personal-center/index.html");}
 						
 						//location.replace("../personal-center/index.html");
@@ -138,7 +145,36 @@ $(function(){
 		});
 	}
 
+//元宵活动的自动获取优惠券
+	function get_user_coupons(){
+		var url = Base.serverUrl + "coupon/claimCoupon";		
+		var condi = {};
+		condi.couponId = g.coupons_id;//优惠券id
+		condi.customerId = g.customerId;
+		condi.login_token = g.login_token;
+		$.ajax({
+			url:url,
+			type:"POST",
+			data:condi,
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					/* 判断是否是从元宵活动页过来的 */
+					location.href = "/webapp/coupons/index.html";
 
+				}
+				else{
+					var msg = data.message || "获取优惠券失败";
+					alert(msg);
+					location.replace("../personal-center/index.html");
+				}
+			},
+			error:function(data){
+			}
+		});
+	}
 
 
 
