@@ -31,6 +31,8 @@
 					success: function(data){
 						var success = data.success || "";
 						if(success){
+							var data = data || "";
+							g.openid = data.obj || "";
 							$("#get_dialog_btn").bind("click",get_hongbao);//绑定打开猜谜语页面
 						}
 						else{
@@ -172,7 +174,7 @@
 	/* 请求红包 */
 	function focus_btn_func(){
 		var condi = {};	
-			condi.user_code = g.code;
+			condi.user_id = g.openid;
 			condi.pond_id = g.pond_id;
 		var url = Base.serverUrl + "pond/claimRedpack";
 		$.ajax({
