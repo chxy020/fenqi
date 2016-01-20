@@ -413,7 +413,7 @@ $(function(){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
-				html.push('<td><a href="javascript:repayment(\'' + poundageRecordId + '\')">支付</a><br><br><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:repayment(\'' + poundageRecordId + '\',\'' + orderId + '\')">支付</a><br><br><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
@@ -529,7 +529,7 @@ function sendGetPayOrderListHttp(condi){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
-				html.push('<td><a href="javascript:repayment(\'' + poundageRecordId + '\')">支付</a><br><br><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:repayment(\'' + poundageRecordId + '\',\'' + orderId + '\')">支付</a><br><br><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
@@ -2024,8 +2024,9 @@ function sendGetPayOrderListHttp8(condi){
 		});
 	}
 
-	function repayment(id){
+	function repayment(id,orderId){
 		Utils.offLineStore.remove("userorderinfo_detail",false);
+		sendGetOrderInfoHttp(orderId);
 		var d = g.orderDetailInfo[id] || "";
 		var orderId = d.orderId || "";
 		var poundageRecordId = d.poundageRecordId || "主键";
@@ -2156,8 +2157,8 @@ function sendGetPayOrderListHttp8(condi){
 			context:this,
 			success: function(data){
 				var status = data.success || false;
-				if(status){
-					var dd = data.list;
+				if(status && data.list != ""){
+					var dd = data.list || [];
 					var coupons_money_span = dd[0].money || 0;
 					var get_coupons_couponId = dd[0].couponId || "";
 					//$("#coupons_money_span").html(coupons_money_span+"元");
@@ -2166,7 +2167,7 @@ function sendGetPayOrderListHttp8(condi){
 				}
 				else{
 					var msg = data.message || "获取优惠券失败";
-					Utils.alert(msg);
+					
 				}
 				g.httpTip.hide();
 			},
@@ -2254,7 +2255,7 @@ function OrderLeftProtocolClick(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetOrderInfoHttp",data);
+				//console.log("sendGetOrderInfoHttp",data);
 				var status = data.success || false;
 				if(status){
 					var info = JSON.stringify(data);
