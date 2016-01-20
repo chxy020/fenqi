@@ -13,6 +13,7 @@ $(function(){
 	g.customerId = "";
 	g.dengmi = Utils.offLineStore.get("dengmi",false) || "";
 	g.coupons_id = Utils.offLineStore.get("coupons_id",false) || "";
+	g.openid = Utils.offLineStore.get("openid",false) || "";
 	var userPhone = Utils.offLineStore.get("userphone_login",true) || "";
 	$("#inputphone").val(userPhone);
 
@@ -151,6 +152,7 @@ $(function(){
 		var condi = {};
 		condi.couponId = g.coupons_id;//优惠券id
 		condi.customerId = g.customerId;
+		condi.user_id = g.openid;
 		condi.login_token = g.login_token;
 		$.ajax({
 			url:url,

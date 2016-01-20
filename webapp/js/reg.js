@@ -16,6 +16,7 @@ $(function(){
 	/* 元宵活动标记 */
 	g.customerId = "";
 	g.dengmi = Utils.offLineStore.get("dengmi",false) || "";
+	g.openid = Utils.offLineStore.get("openid",false) || "";
 	g.coupons_id = Utils.offLineStore.get("coupons_id",false) || "";
 	//获取图形验证码
 	//sendGetImgCodeHttp();
@@ -304,6 +305,7 @@ $(function(){
 		var condi = {};
 		condi.couponId = g.coupons_id;//优惠券id
 		condi.customerId = g.customerId;
+		condi.user_id = g.openid;
 		condi.login_token = g.login_token;
 		$.ajax({
 			url:url,

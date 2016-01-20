@@ -33,6 +33,7 @@
 						if(success){
 							var data = data || "";
 							g.openid = data.obj || "";
+							Utils.offLineStore.set("openid",g.openid,false);
 							$("#get_dialog_btn").bind("click",get_hongbao);//绑定打开猜谜语页面
 						}
 						else{
@@ -145,6 +146,7 @@
 		var condi = {};
 		condi.couponId = g.coupons_id;//优惠券id
 		condi.customerId = g.customerId;
+		condi.user_id = g.openid;
 		condi.login_token = g.login_token;
 		$.ajax({
 			url:url,
