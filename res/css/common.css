@@ -1606,6 +1606,7 @@ to{-webkit-transform:rotate(360deg) translateZ(0);}*/
 .coo-result-box h4{text-align:left;font-size:16px;color:#000;padding-left:10px;line-height:30px;}
 .coo-result-box h3{display:inline-block;padding-left:53px;font-size:45px;color:#fff;margin-top:98px;}
 .coo-result-box h3 #money{font-size:113px;}
+.coo-result-box .useLeastMoney{color:#fff;font-size:20px;display:block;float:left;margin-left:11px;margin-top:21px;}
 .coo-result-box p.p{font-size:14px;color:#a73434;position:absolute;bottom:5px;left:0;right:0;}
 .common-ico.ico-coupons{background:url('../images/hongbao.png') no-repeat center center;}
 .common-ico.ico-coupons:hover{background-color:#ffda53;}
@@ -1613,6 +1614,7 @@ to{-webkit-transform:rotate(360deg) translateZ(0);}*/
 .coo-result-box.used  h3{color:#989898;}
 .coo-result-box.used{background:url('../images/coupons_img1.jpg') no-repeat center center;}
 .coo-result-box.old{background:url('../images/coupons_img3.jpg') no-repeat center center;}
+.coo-result-box.old .useLeastMoney{color:#989898;}
 
 .upload-inf-main .upload-inf-box label{position:relative;}
 .upload-inf-main .upload-inf-box  #orderMaterialFile,.upload-inf-main .upload-inf-box  #orderMaterialFile2{cursor:pointer;position:absolute;top:0;left:50px;height:40px;width:61px;opacity:0; filter:alpha(opacity=0);}

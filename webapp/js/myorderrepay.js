@@ -14,7 +14,7 @@ $(function(){
 	g.repaymentRecordId = "";
 	g.yinghuanjine = "";
 	g.get_coupons_money = 0;
-
+	g.useLeastMoney = 0;//优惠券限制使用最低金额
 	g.totalPage = 1;
 	g.currentPage = 1;
 	g.pageSize = 10;
@@ -237,7 +237,7 @@ $(function(){
 		html.push('<p><i class="common-ico product-tip2"></i>待还金额：<span class="color-green">' + moneyMonth + '</span>元</p>');
 		html.push('</div>');
 		html.push('</div>');
-		if(poundage >=5000 && g.get_coupons_money > 0 && g.pa == "1"){
+		if(poundage >= g.useLeastMoney && g.get_coupons_money > 0 && g.pa == "1"){
 		var get_coupons_money = g.get_coupons_money || 0;		
 		html.push('<br><div class="box-item">');
 		html.push('<div class="box-item-text">');
@@ -281,9 +281,11 @@ $(function(){
 						var dd = data.list || [];
 						var coupons_money_span = dd[0].money || 0;
 						var get_coupons_couponId = dd[0].couponId || "";
+						var useLeastMoney = dd[0].useLeastMoney || 0;
 						//$("#coupons_money_span").html(coupons_money_span);
 						g.get_coupons_money = coupons_money_span;
 						g.get_coupons_couponId = get_coupons_couponId;
+						g.useLeastMoney = useLeastMoney;
 					}
 					getOrderInfo();
 				}
@@ -325,7 +327,7 @@ $(function(){
 		var repaymentRecordId = g.repaymentRecordId;
 		var yinghuanjine = g.yinghuanjine;
 		var get_coupons_couponId="";
-		if(yinghuanjine >= 5000 && $("#coupons_value").attr("checked")=="checked")
+		if(yinghuanjine >= g.useLeastMoney && $("#coupons_value").attr("checked")=="checked")
 		{yinghuanjine = yinghuanjine - g.get_coupons_money; get_coupons_couponId = g.get_coupons_couponId;}
 		
 		//先判断用户有没有判定银行卡

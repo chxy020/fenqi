@@ -296,12 +296,14 @@ $(function(){
 			var d2 = expiryDate.split("-") || [];
 			var now = new Date().format("yyyy-MM-dd");
 			var expiry = getDays(now,expiryDate)>0 || false;
-			var money = d.money || 0;			
+			var money = d.money || 0;
+			var useLeastMoney = d.useLeastMoney || 0;
 			var status = d.status || "";
 			if( !expiry && status == "102601"){html.push('<div class="coo-result-box">');	}
 			else if( !expiry && status == "102602"){html.push('<div class="coo-result-box used">');}
 			else if(expiry){html.push('<div class="coo-result-box old">');}		
 			else{html.push('<div class="coo-result-box old">');	}
+			html.push('<span class="useLeastMoney">（满'+useLeastMoney+'可用）</span>');
 			html.push('<h3>¥<span id="money">'+money+'</span>抵用券</h3>');
 			html.push('<p class="p">使用期限：'+d1[0]+'年'+d1[1]+'月'+d1[2]+'日-'+d2[0]+'年'+d2[1]+'月'+d2[2]+'日</p>');
 			html.push('</div>');

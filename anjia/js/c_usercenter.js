@@ -16,6 +16,7 @@ $(function(){
 	g.orderInfo = {};
 	g.orderStatus = Utils.getQueryString("ostatus") || "";
 	g.get_coupons_money = 0;
+	g.useLeastMoney = 0;//优惠券限制使用最低金额
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -2114,7 +2115,7 @@ function sendGetPayOrderListHttp8(condi){
 		html.push('<td class="even"><a class="orderleftbtn_a" id="xieYi_5">债权转让协议</a></td>');
 		html.push('</tr>');
 		//当服务费金额大于5000时显示优惠券
-		if(poundage >= 5000 && g.get_coupons_money > 0){
+		if(poundage >= g.useLeastMoney && g.get_coupons_money > 0){
 		var get_coupons_money = g.get_coupons_money || 0;	
 		html.push('<tr>');
 		html.push('<td class="odd">优惠券</td>');
@@ -2161,9 +2162,11 @@ function sendGetPayOrderListHttp8(condi){
 					var dd = data.list || [];
 					var coupons_money_span = dd[0].money || 0;
 					var get_coupons_couponId = dd[0].couponId || "";
+					var useLeastMoney = dd[0].useLeastMoney || 0;
 					//$("#coupons_money_span").html(coupons_money_span+"元");
 					g.get_coupons_money = coupons_money_span;
 					g.get_coupons_couponId = get_coupons_couponId;
+					g.useLeastMoney = useLeastMoney;
 				}
 				else{
 					var msg = data.message || "获取优惠券失败";
@@ -2180,7 +2183,7 @@ function sendGetPayOrderListHttp8(condi){
 	
 	function confirmRepayment(poundageRecordId,yinghuanjine){
 		var get_coupons_couponId = "";
-		if(yinghuanjine >= 5000 && $("#coupons_value").attr("checked")=="checked")
+		if(yinghuanjine >= g.useLeastMoney && $("#coupons_value").attr("checked")=="checked")
 		{yinghuanjine = yinghuanjine - g.get_coupons_money; get_coupons_couponId = g.get_coupons_couponId;}
 		
 		//先判断用户有没有判定银行卡
