@@ -39,9 +39,15 @@
 						else{
 							var msg = data.message || "";
 							alert(msg);
-							$("#get_dialog_btn").bind("click",function(){
-								alert("请关注微信\"燕子安家\"参与活动！");
-							});
+							if(msg == "您已参加活动"){
+								$("#get_dialog_btn").bind("click",function(){
+									alert("您已参加活动");
+								});
+							}else{
+								$("#get_dialog_btn").bind("click",function(){
+									alert("请关注微信\"燕子安家\"参与活动！");
+								});
+							}							
 						}
 					},
 					error:function(data){
