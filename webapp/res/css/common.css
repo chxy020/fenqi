@@ -800,7 +800,7 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
 .order-list-ul li span.right{font-size:17px;float:left;margin:1% 0 0 3%;display:inline-block;}
 .order-list-ul li span.right i{margin-left:24px;font-size:21px;}
 .order-list-ul li p{font-size:12px;padding-left:3%;display:inline-block;width:100%;}
-.order-list-ul  img.back{position:absolute;z-index:1;top:0;left:0;right:0;bottom:0;width:100%;}
+.order-list-ul  img.back{position:relative;z-index:1;top:0;left:0;right:0;bottom:0;width:100%;}
 .order-list-ul  .back2{position:absolute;z-index:2;top:0;background:none;left:0;right:0;bottom:0;}
 @media only screen and (min-width:375px){
 .order-list-ul li span.left{font-size:47px;}

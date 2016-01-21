@@ -332,7 +332,8 @@ $(function(){
 		}
 
 		$("#orderlist").html(html.join(''));
-		$("#orderlist li").height($("#orderlist li img.back").height()+"px");
+		
+		$("#orderlist li").css("height",$("#orderlist li img.back").css("height"));
 		//$("#orderlistpage a").bind("click",pageClick);
 	}
 
