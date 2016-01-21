@@ -333,7 +333,7 @@ $(function(){
 
 		$("#orderlist").html(html.join(''));
 		
-		$("#orderlist li").css("height",$("#orderlist li img.back").css("height"));
+		setTimeout(function(){$("#orderlist li").css("height",$("#orderlist li img.back").css("height"));},1000);
 		//$("#orderlistpage a").bind("click",pageClick);
 	}
 
