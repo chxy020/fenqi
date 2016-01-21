@@ -8,6 +8,7 @@ html,body{font-size:15px;line-height:25px;font-family:microsoft yahei;background
 /* top */
 .body_div{position:relative;}
 .body_div .hand_btn{background:url('img/hand.gif') no-repeat center center;background-size:contain;left:3%;right:0;margin:0 auto;position:absolute;top:35%;display:block;width:10%;height:15%;}
+.body_div  .lantern{background:url('img/lantern.png') no-repeat center center;background-size:contain;left:7%;right:0;margin:0 auto;position:absolute;top:21%;display:block;width:36%;height:36%;}
 
 .bottom{position:relative;margin-top:-46%;}
 .bottom  .bg{position:absolute;top:0;left:0;right:0;bottom:0;}
@@ -68,6 +69,22 @@ html,body{font-size:15px;line-height:25px;font-family:microsoft yahei;background
 @media only screen  and (min-width:530px) and (max-width:1024px){
 	.sbox{width:48%;}
 	.sbox  .question{margin:6% 17% 0 17%;font-size:16px;line-height:35px;}
+}
+/*  */
+.body_div  .lantern{
+	animation:swing 2s linear 0s infinite alternate ;
+	-webkit-animation:swing 2s linear 0s infinite alternate ;
+	/* -moz-animation:swing 1s linear 0s ;
+	-ms-animation:swing 1s linear 0s ;
+	-o-animation:swing 1s linear 0s ; */
+}
+@keyframes swing {
+	0% {
+		transform:rotate3d(0, 0, 0.7, 5deg);transform-origin:center top;
+	}
+	100% {
+		transform:rotate3d(0, 0, 0.7, -5deg);transform-origin:center top;
+	}
 }
 /*  */
 .body_div .hand_btn {
