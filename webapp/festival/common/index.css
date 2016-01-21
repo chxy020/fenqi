@@ -71,7 +71,7 @@ html,body{font-size:15px;line-height:25px;font-family:microsoft yahei;background
 	.sbox  .question{margin:6% 17% 0 17%;font-size:16px;line-height:35px;}
 }
 /*  */
-.body_div  .lantern{
+.body_div  .lantern1{
 	animation:swing 2s linear 0s infinite alternate ;
 	-webkit-animation:swing 2s linear 0s infinite alternate ;
 	-moz-animation:swing 2s linear 0s infinite alternate ;
