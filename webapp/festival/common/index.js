@@ -286,7 +286,7 @@ function sbox_out(){
 		dropRadius: 10, //px
 		perturbance: 0.10,
 	}); */
- jQuery('#ripple_img').waterripple({onclick: true});
+ /* jQuery('#ripple_img').waterripple({onclick: true}); */
  
 function resize_width(){
 	var width=$("html").width();
