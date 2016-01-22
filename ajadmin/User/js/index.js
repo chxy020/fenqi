@@ -34,11 +34,8 @@ $(function(){
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
-		//未登录
-		//location.replace("/login.html");
-		//window.parent.location.href = "../Public/login.html";
-	}
-	else{
+
+	}else{
 		sendGetCompanyInfoHttp();
 	}
 
@@ -192,7 +189,7 @@ $(function(){
 				html.push('<td></td>');
 			}
 			else{
-				html.push('<td><a href="javascript:deleteItem(\'' + usersId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:deleteItem(\'' + usersId + '\')">删除</a>&nbsp;&nbsp;<a href="javascript:resetPassword(\'' + usersId + '\')">重置</a> </td>');
 			}
 
 			html.push('</tr>');
@@ -389,22 +386,16 @@ $(function(){
 			var condi = {};
 			condi.usersId = usersId;
 			condi.login_token = g.login_token;
-
 			var url = Base.serverUrl + "user/deleteUsersByUsersIdController";
 			$.ajax({
-				url:url,
-				data:condi,
-				type:"POST",
-				dataType:"json",
-				context:this,
+				url:url,data:condi,type:"POST",dataType:"json",context:this,
 				success: function(data){
-					console.log("deleteItem",data);
+					//console.log("deleteItem",data);
 					var status = data.success || false;
 					if(status){
 						sendQueryListHttp();
 						Utils.alert("删除成功");
-					}
-					else{
+					}else{
 						var msg = data.message || "删除账户数据失败";
 						layer.msg(msg);
 					}
@@ -416,6 +407,31 @@ $(function(){
 			});
 		}
 	}
+	window.resetPassword = function(usersId){
+		if(confirm("你确认要重置该用户的密码?")){
+			g.httpTip.show();
+			var condi = {};
+			condi.usersId = usersId;
+			condi.login_token = g.login_token;
+			var url = Base.serverUrl + "user/resetPassword";
+			$.ajax({
+				url:url,data:condi,type:"POST",dataType:"json",context:this,
+				success: function(data){
+					//console.log("|",data);
+					var status = data.success || false;
+					if(status){
+						layer.msg( "密码重置成功，新密码为[123456]!");
+					}else{
+						layer.msg( data.message);
+					}
+					g.httpTip.hide();
+				},
+				error:function(data){
+					g.httpTip.hide();
+				}
+			});
+		}
+	};
 
 	window.showImgTip = showImgTip;
 	window.changeBannerUsedFlag = changeBannerUsedFlag;
