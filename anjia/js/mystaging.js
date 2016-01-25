@@ -673,7 +673,7 @@ $(function(){
 			//显示第二步
 			$("#step1").hide();
 			$("#step2").show();
-
+			Utils.offLineStore.remove("userorderinfo_detail",false);
 			sendGetProductHttp(companyId);
 
 			if(g.orderId == ""){

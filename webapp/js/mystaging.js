@@ -759,7 +759,7 @@ $(function(){
 			$("#pline").addClass("step2-1");
 			//$(".step-item").removeClass("active");
 			$("#pimg2").addClass("active");
-
+			Utils.offLineStore.remove("userorderinfo_detail",false);
 			sendGetProductHttp(companyId);
 
 			if(g.orderId == ""){
