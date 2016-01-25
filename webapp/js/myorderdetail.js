@@ -423,7 +423,7 @@ $(function(){
 			html.push('</div>');
 			html.push('<div class="box-item">');
 			html.push('<div class="box-item-text">');
-			html.push('<p><i class="common-ico product-tip2"></i>应还金额：<span class="color-green">' + overdueInterest + '</span>元</p>');
+			html.push('<p><i class="common-ico product-tip2"></i>逾期金额：<span class="color-green">' + overdueInterest + '</span>元</p>');
 			html.push('</div>');
 			html.push('</div>');
 			html.push('</div>');
