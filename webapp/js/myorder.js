@@ -367,7 +367,7 @@ $(function(){
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
-				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',0)" class="item-btn item-btn-green">查看</a>');
+				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',3)" class="item-btn item-btn-green">查看</a>');
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
 			}
 			else if(status == "100507"){//还款中
