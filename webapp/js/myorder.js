@@ -29,6 +29,7 @@ $(function(){
 		getUserInfo();
 		//获取我要还款参数id模拟点击
 		$("#nextpagebtn").bind("click",nextPageBtnUp);
+		$("#prepagebtn").bind("click",prePageBtnUp);//上一页
 		$("#orderstatus div a").bind("click",changeOrderStatus);
 		$("#allorderstatus dd").bind("click",changeOrderStatus);
 		if(Utils.getQueryString('orderType') && Utils.getQueryString('orderType') == '100507'){
@@ -398,6 +399,11 @@ $(function(){
 			else{
 				$("#nextpagebtn").hide();
 			}
+			if(currentPageNum > 1){
+				$("#prepagebtn").show();
+			}else{
+				$("#prepagebtn").hide();
+			}
 			//var page = countListPage(pobj);
 			//html.push(page);
 		}
@@ -484,7 +490,17 @@ $(function(){
 			alert("当前是最后一页");
 		}
 	}
-
+	
+	function prePageBtnUp(){
+		//上一页
+		g.currentPage--;
+		if(g.currentPage >= 1){
+			getUserOrderList();
+		}
+		else{
+			alert("当前是第一页");
+		}
+	}
 	function pageClick(evt){
 		var index = $(this).index();
 		var text = $(this).text() - 0 || "";
