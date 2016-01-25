@@ -110,7 +110,7 @@ $(function(){
 		var option = [];		
 		//option.push('<option>请选择</option>');
 		for(var i=0;i<data.length;i++){
-			var name = data[i].name;
+			var name = data[i].shortName;
 			option.push('<option value="' + data[i].id + '">' + name + '</option>');	
 		}
 		$("#subsidiaryId").html(option.join(''));

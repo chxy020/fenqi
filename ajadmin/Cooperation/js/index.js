@@ -157,7 +157,7 @@ $(function(){
 		html.push('<th>角色ID</th>');
 		html.push('<th>所在城市</th>');
 		html.push('<th>公司名称</th>');
-
+		html.push('<th>公司简称</th>');
 		html.push('<th>品牌类型</th>');
 		html.push('<th>公司地址</th>');
 		html.push('<th>法人</th>');
@@ -182,7 +182,7 @@ $(function(){
 			var brandtypeName=d.brandtypeName || "";
 			var legalperson=d.legalperson || "";
 			companyName = g.companyObj[companyId] || "";
-
+			var shortName = d.shortName || "";
 			var address = d.address || 0;
 			var lastLoginTime = d.lastLoginTime || "";
 			var createTime = d.createTime || "";
@@ -191,7 +191,7 @@ $(function(){
 			html.push('<td>' + id + '</td>');
 			html.push('<td>' + cityName + '</td>');
 			html.push('<td>' + name + '</td>');
-
+			html.push('<td>' + shortName + '</td>');
 			html.push('<td>' + brandtypeName + '</td>');
 			html.push('<td>' + address + '</td>');
 			html.push('<td>' + legalperson + '</td>');

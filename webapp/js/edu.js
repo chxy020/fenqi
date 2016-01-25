@@ -53,7 +53,7 @@ $(function(){
 	function sendGetRepayOrderListHttp(){
 		//g.httpTip.show();
 		var condi = {};
-		condi.loanStatus = "102401102402";
+		condi.loanStatus = "102401102402102403";
 		condi.login_token = g.login_token;
 		condi.customerId = g.customerId;
 		condi.currentPageNum = "1";

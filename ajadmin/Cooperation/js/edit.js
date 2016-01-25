@@ -142,6 +142,7 @@ $(function(){
 	function changeBannerHtml(data){
 		var obj = data.obj || "";
 		var name = obj.name || "";
+		var shortName = obj.shortName || "";
 		var cityid = obj.cityid || "";
 			g.cityid=cityid;
 		var brandtype = obj.brandtype || "";
@@ -154,6 +155,7 @@ $(function(){
 		var summary = obj.summary || "";
 		
 		$("#name").val(name);
+		$("#shortName").val(shortName);
 		//$("#cityName").val(cityName);
 		//$("#brandtypeName").val(brandtypeName);
 		$("#address").val(address);

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../Css/base.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+	<script type="text/javascript" src="../Js/jquery.js"></script>
+	<script type="text/javascript" src="../Js/bootstrap.js"></script>
+	<script type="text/javascript" src="../Js/ckform.js"></script>
+	<script type="text/javascript" src="../Js/common.js"></script>
+	<style type="text/css">
+		body {
+			padding-bottom: 40px;
+		}
+		.sidebar-nav {
+			padding: 9px 0;
+		}
+		input, textarea, .uneditable-input{width:255px;}
+		@media (max-width: 980px) {
+			/* Enable use of floated navbar text */
+			.navbar-text.pull-right {
+				float: none;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+		}
+		.btn-success{display:inline-block;vertical-align:super;}
+	</style>
+</head>
+<body>
+	<form action="" method="post">
+		<table class="table table-bordered table-hover definewidth m10">
+			<tr>
+				<td width="10%" class="tableleft">登录用户ID</td>
+				<td><input id="usersId" readonly type="text" name="phoneNumber" /></td>
+			</tr>
+			<tr>
+				<td class="tableleft">真实姓名</td>
+				<td><input id="usersName" readonly type="text" name="usersName"/></td>
+			</tr>
+			<tr>
+				<td class="tableleft">第一笔到款金额</td>
+				<td><input class="get_money1"  type="text" name="usersName"/>&nbsp;&nbsp;<a id="get_money_btn1" class="btn btn-primary" >收款</a></td>
+			</tr>
+			<tr>
+				<td class="tableleft">第二笔到款金额</td>
+				<td><input class="get_money2"  type="text" name="usersName"/>&nbsp;&nbsp;<a id="get_money_btn2" class="btn btn-primary">收款</a></td>
+			</tr>
+			<tr>
+				<td class="tableleft">第三笔到款金额</td>
+				<td><input class="get_money3"  type="text" name="usersName"/>&nbsp;&nbsp;<a id="get_money_btn3" class="btn btn-primary">收款</a></td>
+			</tr>
+			<tr>
+				<td class="tableleft">第四笔到款金额</td>
+				<td><input class="get_money4"  type="text" name="usersName"/>&nbsp;&nbsp;<a id="get_money_btn4" class="btn btn-primary" >收款</a></td>
+			</tr>
+			<tr>
+				<td class="tableleft"></td>
+				<td>
+					<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+
+	<script src="../libs/json.js"></script>
+	<script src="../libs/base.js"></script>
+	<script src="../libs/utils.js"></script>
+	<script src="js/sj_seller.js"></script>
+</body>
+</html>

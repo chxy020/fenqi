@@ -328,7 +328,7 @@ $(function(){
 		//~ createTimeEnd:string精确到天，
 		//~ orderId:订单编号,
 		//:还款状态(102401 待放款)
-		condi.loanStatus = 102401;
+		condi.loanStatus = "102401102402102403";
 		condi.status = null;
 
 		var url = Base.serverUrl + "order/queryOrdersController";
@@ -1534,7 +1534,7 @@ function sendGetPayOrderListHttp8(condi){
 			var contractMoney = d.contractMoney || 0;
 			var packageMoney = d.packageMoney || 0;
 			var loanResidueMoney = d.loanResidueMoney || 0;
-			var statusDes = d.statusDes || "";
+			var loanStatusDesc = d.loanStatusDesc || "";
 			var status = d.status || "";
 			var fenQiTimes = d.fenQiTimes || 0;
 			var noRepaymentTimes = d.noRepaymentTimes || 0;
@@ -1544,7 +1544,7 @@ function sendGetPayOrderListHttp8(condi){
 			html.push('<td width="110">' + company + '</td>');
 			html.push('<td width="125">' + contractMoney + '元</td>');
 			html.push('<td width="115">' + packageMoney + '元</td>');
-			html.push('<td width="110">' + statusDes + '</td>');
+			html.push('<td width="110">' + loanStatusDesc + '</td>');
 			html.push('<td width="110">' + loanResidueMoney + '元</td>');
 			//html.push('<td>' + fenQiTimes + '期</td>');
 
