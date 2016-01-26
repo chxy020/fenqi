@@ -68,6 +68,7 @@ $(function(){
 		condi.customerPhone = g.user_phone;
 		condi.beginDate = g.createTimeBegin;
 		condi.endDate = g.createTimeEnd;
+		g.currentPage = 1;
 		sendQueryListHttp(condi);
 	}
 	
@@ -76,8 +77,9 @@ $(function(){
 	}
 
 	function queryList(){
+		var condi = {};
 		g.currentPage = 1;
-		sendQueryListHttp(1);
+		sendQueryListHttp(condi);
 	}
 
 	function sendGetCouponsInfoHttp(){
