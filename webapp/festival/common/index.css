@@ -3,7 +3,7 @@ h1,h2,h3,h4,h5,ul,li,dd,dl{margin:0;padding:0;font-weight:500;list-style-type:no
 a{cursor:pointer;outline:none;}
 html,body{margin:0;padding:0;}
 *{}
-html,body{font-size:15px;line-height:25px;font-family:microsoft yahei;background-color:#f5eed2;color:#4d0255;}
+html,body{font-size:15px;line-height:25px;font-family:microsoft yahei;background-color:#fdfbdb;color:#4d0255;}
 
 /* top */
 .body_div{position:relative;}
