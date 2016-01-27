@@ -160,7 +160,7 @@ $(function(){
 		var applicantIdentity = data.applicantIdentity || "";
 		var applicantAddress = data.applicantAddress || "";	
 		var fenQiTimes=	data.fenQiTimes || "";
-		var fuwufeilv=(data.poundage/data.packageMoney)*100 || "0";
+		var fuwufeilv=(data.poundage*100/data.packageMoney).toFixed(2) || "0";
 		var contractNo=data.contractNo || "";
 		var packageMoney=data.packageMoney || "";
 		g.subsidiaryId=data.subsidiaryId || "";

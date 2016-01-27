@@ -91,7 +91,7 @@ $(function(){
 		$("#applicantMessage4").html("每月还款日：<b>" +loanTime+"</b>号");
 		var poundage = data.poundage || "0";
 		$("#applicantMessage5").html("服务费：<b>" +poundage+"</b>元");
-		var fuwufeilv=(data.poundage/data.packageMoney)*100 || "0";
+		var fuwufeilv=(data.poundage*100/data.packageMoney).toFixed(2) || "0";
 		$("#applicantMessage6").html("服务费率：<b>" +fuwufeilv+"</b>%");
 		var modifyTime = data.modifyTime || "";
 		//modifyTime  = "2015-10-16";
