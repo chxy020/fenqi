@@ -227,6 +227,24 @@
 				$(".tab-content-container").height(size2);
 			
 			})
+			$(document).ready(function(){
+			var _time;	
+				$("body").click(function(){
+					clearTimeout(_time);
+					if(Utils.offLineStore.get("token",false) != ""){
+						_time = setTimeout(function(){
+							Utils.offLineStore.remove("token",false);
+							alert('页面超时，请重新登录！');
+							location.reload();
+						},10800000);//超时3个小时10800000
+					}
+				});
+				/*window.frames["iframeSon"].document.onclick = function(){
+					console.log(2);
+					clearTimeout(_time);
+					_time = setTimeout(function(){alert(5)},5000);
+				};*/		
+			})
 		});
 	</script>
 </body>
