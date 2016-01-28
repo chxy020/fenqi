@@ -15,22 +15,88 @@
 <!--  -->
 <style>
 /* 圣诞 */
-/* .body_div{margin-top:10px;}
-.ui-short-head .head-box{color:#fff;}
+.body_div{margin-top:10px;}
+.ui-short-head .head-box{color:#6c6c6c;}
 .ui-short-head{background:none;}
-.ui-short-head .head-box a{color:#fff;}
+.ui-short-head .head-box a{color:#6c6c6c;}
 .ui-head-left.f-left{position:relative;}
 .happy_body_red_head{display:inline-block;width:72px;height:81px;position:absolute;left:0;top:-14px;background:url(../res/images/happy_ico1.png) no-repeat center center;}
 .ui-slide.index-slide{position:relative;}
 .happy_body_body1{float:left;display:inline-block;width:68px;height:83px;background:url(../res/images/happy_ico2.png) no-repeat center center;}
 .happy_body_body2{float:right;display:inline-block;width:91px;height:96px;background:url(../res/images/happy_ico3.png) no-repeat center center;}
 .happy_body_body{z-index:999;position:absolute;left:0;right:0;margin:0 auto;width:820px;}
-.ui-header{background:none;} */
+.ui-header{background:none;}
+
+.header_bg{background:url('../res/images/happy_top.png') no-repeat center top;background-size:auto; }
+.ui-nav li{border:none;}
+.ui-wrap .common-title1{position:relative;}
+i.happy_tree{position:absolute;left:-94px;top:15px;display:inline-block;vertical-align:middle;height:80px;width:93px;display:none;}
+.happy_tree1{background:url('../res/images/happy_tree11.png') no-repeat center center;}
+.happy_tree2{background:url('../res/images/happy_tree12.png') no-repeat center center;}
+.happy_tree3{background:url('../res/images/happy_tree13.png') no-repeat center center;}
+i.happy_position2{display:inline-block;height:122px;width:217px;position:absolute;right:-113px;top:0;background:url('../res/images/happy_position2.png') no-repeat center center;display:none;}
+i.happy_body_ico{bottom: 47%;position: fixed;right: 0;width: 86px;height:133px;z-index: 11;background:url('../res/images/happy_position3.png') no-repeat center center;}
+.happy_body_red_head{display:none;}
+
+.ui-wrap .common-title1{color:#e24414;}
+.denglong{position:absolute;top:31px;z-index:999999;}
+.denglong1{left:-100px;}
+.denglong2{right:-120px;}
+/*  */
+.denglong img{
+	animation:swing 2s linear 0s infinite alternate ;
+	-webkit-animation:swing 2s linear 0s infinite alternate ;
+	-moz-animation:swing 2s linear 0s infinite alternate ;
+	-ms-animation:swing 2s linear 0s infinite alternate ;
+	-o-animation:swing 2s linear 0s infinite alternate ;
+}
+@keyframes swing {
+	0% {
+		transform:rotate3d(0, 0, 0.7, 5deg);transform-origin:center top;
+	}
+	100% {
+		transform:rotate3d(0, 0, 0.7, -5deg);transform-origin:center top;
+	}
+}
+@-webkit-keyframes swing {
+	0% {
+		-webkit-transform:rotate3d(0, 0, 0.7, 5deg);-webkit-transform-origin:center top;
+	}
+	100% {
+		-webkit-transform:rotate3d(0, 0, 0.7, -5deg);-webkit-transform-origin:center top;
+	}
+}
+@-moz-keyframes swing {
+	0% {
+		-moz-transform:rotate3d(0, 0, 0.7, 5deg);-moz-transform-origin:center top;
+	}
+	100% {
+		-moz-transform:rotate3d(0, 0, 0.7, -5deg);-moz-transform-origin:center top;
+	}
+}
+@-ms-keyframes swing {
+	0% {
+		-ms-transform:rotate3d(0, 0, 0.7, 5deg);-ms-transform-origin:center top;
+	}
+	100% {
+		-ms-transform:rotate3d(0, 0, 0.7, -5deg);-ms-transform-origin:center top;
+	}
+}
+@-o-keyframes swing {
+	0% {
+		-o-transform:rotate3d(0, 0, 0.7, 5deg);-o-transform-origin:center top;
+	}
+	100% {
+		-o-transform:rotate3d(0, 0, 0.7, -5deg);-o-transform-origin:center top;
+	}
+}
 </style>
 <body>
 	<div class="header_bg" >
 		<div class="ui-short-head">
 			<div class="ui-wrap">
+				<div class="denglong denglong1"><img src="../res/images/denglong.png" /></div>
+				<div class="denglong denglong2"><img src="../res/images/denglong.png" /></div>
 				<div id="loginstatus" class="head-box">
 					<a href="/anjia/login.html">登录</a>
 					<s class="header-line"></s>
