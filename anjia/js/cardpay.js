@@ -497,7 +497,7 @@ $(function(){
 			while(money2 > xiane){
 				$(".form_input .form_input"+i+"").attr("value",xiane).fadeIn(0);
 				money2 -= xiane;i++;
-				if(money2 > xiane ){continue;}else{$(".form_input .form_input"+i+"").attr("value",money2).fadeIn(0);break;}
+				if(money2 > xiane ){continue;}else{$(".form_input .form_input"+i+"").attr("value",money2.toFixed(2)).fadeIn(0);break;}
 			}
 		}
 		if(money > xiane && money <= xiane*2){

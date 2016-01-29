@@ -496,7 +496,7 @@ $(function(){
 			while(money2 > xiane){
 				$(".form_input .form_input"+i+"").attr("value",xiane).fadeIn(0);
 				money2 -= xiane;i++;
-				if(money2 > xiane ){continue;}else{$(".form_input .form_input"+i+"").attr("value",money2).fadeIn(0);break;}
+				if(money2 > xiane ){continue;}else{$(".form_input .form_input"+i+"").attr("value",money2.toFixed(2)).fadeIn(0);break;}
 			}
 		}
 		if(money > xiane && money <= xiane*2){
@@ -506,7 +506,7 @@ $(function(){
 				xiane = (g.price - g.paidMoney).toFixed(2);g.breakUp = false;			
 				$(".form_input .form_input1,.form_input .fenbi_step2").fadeOut(0);
 				$(".form_input .form_input2").attr("value",xiane).fadeIn(0);
-			}//判断如果已经支付过一部分 则不分笔支付		
+			}//判断如果已经支付过一部分 则不分笔支付		http://127.0.0.1:8080/webapp/order/index.html
 			sendGetBindBankCardByCustomerId2(xiane);//支付请求
 			
 		}else if(money > xiane*2){
