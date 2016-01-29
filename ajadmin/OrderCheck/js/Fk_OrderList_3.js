@@ -114,8 +114,8 @@ $(function(){
 			html.push('<td>' + d.packageName + '</td>');
 			html.push('<td>' + d.applyPackageMoney + '元</td>');
 			html.push('<td>' + d.applyFenQiTimes  + '</td>');
-			html.push('<td>' + d.fenQiTimes  + '</td>');
-			html.push('<td>' + d.packageMoney + '元</td>');
+			html.push('<td>' + (d.fenQiTimes==0?"":d.fenQiTimes + "期") + '</td>');
+			html.push('<td>' + (d.packageMoney==0?"":d.packageMoney + "元") +  '</td>');
 			html.push('<td>' + (d.fk1_approve_name || "")  + '</td>');
 			html.push('<td>' + (d.fk1_approve_time || "")  + '</td>');
 			html.push('<td>' + (d.fk2_approve_name || "")  + '</td>');

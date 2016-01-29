@@ -827,8 +827,8 @@ $(function(){
 						condi.packageType = packageType;
 						condi.companyId = companyId;
 						condi.contractMoney = contractMoney;
-						condi.packageMoney = packageMoney;
-						condi.fenQiTimes = g.stagnum;
+						condi.applyPackageMoney = packageMoney;//提交到申请分期金额
+						condi.applyFenQiTimes = g.stagnum;//提交到申请分期期数
 						condi.poundage =  g.poundage;
 						condi.repaymentType = g.repaymentType;
 						condi.moneyMonth = g.moneyMonth;
@@ -1667,8 +1667,8 @@ $(function(){
 		var packageType = obj.packageType || "";
 		//var companyId = obj.companyId || "";
 		var contractMoney = obj.contractMoney || "";
-		var packageMoney = obj.packageMoney || "";
-		var fenQiTimes = obj.fenQiTimes || "";
+		var packageMoney = obj.applyPackageMoney || "";//查询申请分期金额2016-1-26
+		var fenQiTimes = obj.applyFenQiTimes || "";//查询申请分期期数2016-1-26
 		var poundage = obj.poundage || "0";
 		var moneyMonth = obj.moneyMonth || "0";
 		var designer = obj.designer || "";

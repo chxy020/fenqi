@@ -3,10 +3,12 @@
 <head>
 	<title>后台管理系统</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="Css/bootstrap.css"/>
 	<link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/bui-min.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/main-min.css" rel="stylesheet" type="text/css" />
 
+	<link rel="stylesheet" href="Js/JquerySwitches/lc_switch.css">
 </head>
 <body>
 	<div class="header">
@@ -15,7 +17,9 @@
 			<!--<img src="/chinapost/Public/assets/img/top.png">-->
 		</div>
 
-		<div class="dl-log">欢迎您，<span class="dl-log-user" id="username_index"></span><a href="javascript:Utils.loginOut();" title="退出系统" class="dl-log-quit">[退出]</a></div>
+		<div class="dl-log">
+			<input type="checkbox" class="lcs_check" checked autocomplete="off" id="FinancialTips" style="display: none"/>
+			欢迎您，<span class="dl-log-user" id="username_index"></span><a href="javascript:Utils.loginOut();" title="退出系统" class="dl-log-quit">[退出]</a></div>
 	</div>
 
 	<div class="content">
@@ -39,6 +43,21 @@
 		</div>
 		<ul id="J_NavContent" class="dl-tab-conten">
 		</ul>
+
+		<!--提示信息 -->
+		<div id="TipsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 id="myModalLabel">温馨提示</h4>
+			</div>
+			<br>
+			<div id="TipsList" align="center" style="font-size: 16px"></div>
+			<br>
+			<div class="modal-footer" style="text-align: center">
+				<button class="btn " data-dismiss="modal" aria-hidden="true">关闭</button>
+			</div>
+		</div>
+
 	</div>
 
 	<script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
@@ -49,6 +68,10 @@
 	<script src="libs/json.js"></script>
 	<script src="libs/base.js"></script>
 	<script src="libs/utils.js"></script>
+
+	<script type="text/javascript" src="Js/bootstrap.js"></script>
+	<script src="Js/JquerySwitches/js/lc_switch.min.js"></script>
+	<script src="Js/JquerySwitches/js/TipsSwitch.js"></script>
 
 	<script type="text/javascript">
 		$(function(){
@@ -63,13 +86,9 @@
 				condi.login_token = g.login_token;
 				condi.roleId = roleId;
 				$.ajax({
-					url:url,
-					data:condi,
-					type:"POST",
-					dataType:"json",
-					context:this,
+					url:url,data:condi,type:"POST",dataType:"json",context:this,
 					success: function(data){
-						console.log("sendQueryMenuListByRoleHttp",data);
+//						console.log("sendQueryMenuListByRoleHttp",data);
 						var status = data.success || false;
 						if(status){
 							var obj = data.obj || {};
@@ -78,9 +97,8 @@
 							for(var i = 0,len = tab.length; i < len; i++){
 								var name = tab[i].authorityName || "";
 								if(name !== ""){
-									tabhtml.push('<li class="nav-item dl-selected"><div class="nav-item-inner ">' + name + '</div></li>');
+									tabhtml.push('<li class="nav-item dl-selected"><div class="nav-item-inner ">' + name + '</div></li>');//模块
 								}
-
 								var child = tab[i].childrenAuthority || [];
 								if(child.length > 0){
 									var config = {
@@ -117,116 +135,106 @@
 			}
 
 			function initTab(){
+//				console.log(g.tabConfig);
 				BUI.use('common/main',function(){
 					var config = g.tabConfig;
-
-					/*
-					var config = [
-						{
-							id:'1',
-							//默认打开哪个页面
-							homePage : '1',
-							menu:[{
-								text:'账户管理',
-								items:[
-									{id:'1',text:'添加账户',href:'User/add.html'},
-									{id:'2',text:'账户列表',href:'User/index.html'}
-								]
-							}]
-						},
-						{
-							id:'2',
-							homePage : '1',
-							menu:[{
-								text:'角色管理',items:[
-									{id:'1',text:'角色查询',href:'Role/role_list.html'},
-									{id:'2',text:'添加角色',href:'Role/role_add.html'},
-									{id:'3',text:'菜单列表',href:'Role/menu_list.html'},
-									{id:'4',text:'配置角色权限',href:'Role/menu_role.html'},
-									{id:'5',text:'账户角色分配',href:'Role/role_user.html'}
-									//~ ,{id:'6',text:'添加菜单',href:'Order/loanorder.html'},
-									//~ {id:'7',text:'更新菜单',href:'Order/loanorder.html'},
-									//~ {id:'8',text:'获取角色后台系统菜单',href:'Order/loanorder.html'}
-								]
-							}]
-						},
-						{
-							id:'3',
-							homePage : '1',
-							menu:[{
-								text:'订单管理',items:[
-									{id:'1',text:'订单查询',href:'Order/orderquery.html'},
-									{id:'2',text:'风控审核',href:'Order/fk_index.html'},
-									{id:'3',text:'后台审核',href:'Order/index.html'},
-									{id:'4',text:'等待放款订单',href:'Order/fkuan_index.html'},
-									{id:'5',text:'还款订单管理',href:'Order/repayorder.html'},
-									{id:'6',text:'支付订单管理',href:'Order/loanorder.html'}
-								]
-							}]
-						},
-						{
-							id:'4',
-							homePage : '1',
-							menu:[{
-								text:'轮播图管理',items:[
-									{id:'1',text:'轮播图查询',href:'Banner/index.html'},
-									{id:'2',text:'添加轮播图',href:'Banner/add.html'}
-								]
-							}]
-						},
-						{
-							id:'5',
-							homePage : '1',
-							menu:[{
-								text:'用户管理',items:[
-									{id:'1',text:'注册用户列表',href:'RegUser/index.html'}
-								]
-							}]
-						},
-						{
-							id:'6',
-							homePage : '1',
-							menu:[{
-								text:'文章管理',items:[
-									{id:'1',text:'文章列表',href:'Article/index.html'},
-									{id:'2',text:'添加文章',href:'Article/add.html'}
-								]
-							}]
-						}
-					];
-					*/
+//					var config = [
+//						{
+//							id:'1',
+//							//默认打开哪个页面
+//							homePage : '1',
+//							menu:[{
+//								text:'账户管理',
+//								items:[
+//									{id:'1',text:'添加账户',href:'User/add.html'},
+//									{id:'2',text:'账户列表',href:'User/index.html'}
+//								]
+//							}]
+//						},
+//						{
+//							id:'2',
+//							homePage : '1',
+//							menu:[{
+//								text:'角色管理',items:[
+//									{id:'1',text:'角色查询',href:'Role/role_list.html'},
+//									{id:'2',text:'添加角色',href:'Role/role_add.html'},
+//									{id:'3',text:'菜单列表',href:'Role/menu_list.html'},
+//									{id:'4',text:'配置角色权限',href:'Role/menu_role.html'},
+//									{id:'5',text:'账户角色分配',href:'Role/role_user.html'}
+//									//~ ,{id:'6',text:'添加菜单',href:'Order/loanorder.html'},
+//									//~ {id:'7',text:'更新菜单',href:'Order/loanorder.html'},
+//									//~ {id:'8',text:'获取角色后台系统菜单',href:'Order/loanorder.html'}
+//								]
+//							}]
+//						},
+//						{
+//							id:'3',
+//							homePage : '1',
+//							menu:[{
+//								text:'订单管理',items:[
+//									{id:'1',text:'订单查询',href:'Order/orderquery.html'},
+//									{id:'2',text:'风控审核',href:'Order/fk_index.html'},
+//									{id:'3',text:'后台审核',href:'Order/index.html'},
+//									{id:'4',text:'等待放款订单',href:'Order/fkuan_index.html'},
+//									{id:'5',text:'还款订单管理',href:'Order/repayorder.html'},
+//									{id:'6',text:'支付订单管理',href:'Order/loanorder.html'}
+//								]
+//							}]
+//						},
+//						{
+//							id:'4',
+//							homePage : '1',
+//							menu:[{
+//								text:'轮播图管理',items:[
+//									{id:'1',text:'轮播图查询',href:'Banner/index.html'},
+//									{id:'2',text:'添加轮播图',href:'Banner/add.html'}
+//								]
+//							}]
+//						},
+//						{
+//							id:'5',
+//							homePage : '1',
+//							menu:[{
+//								text:'用户管理',items:[
+//									{id:'1',text:'注册用户列表',href:'RegUser/index.html'}
+//								]
+//							}]
+//						},
+//						{
+//							id:'6',
+//							homePage : '1',
+//							menu:[{
+//								text:'文章管理',items:[
+//									{id:'1',text:'文章列表',href:'Article/index.html'},
+//									{id:'2',text:'添加文章',href:'Article/add.html'}
+//								]
+//							}]
+//						}
+//					];
 					new PageUtil.MainPage({
 						modulesConfig : config
 					});
-
 				});
 			}
 
 			var loginStatus = Utils.getUserInfo();
-			if(!loginStatus){
-				//未登录
+			if(!loginStatus){//未登录
 				location.href = "Public/login.html";
-			}
-			else{
+			} else{
 				//initTab();
-
 				var roleId = Utils.offLineStore.get("user_roleId",false) || "";
-				console.log("roleId",roleId);
 				if(roleId !== ""){
-					sendQueryMenuListByRoleHttp(roleId);
+					sendQueryMenuListByRoleHttp(roleId);//获取模块列表
 				}
 			}
-			
 			<!-- 窗口大小改变 重新调整大小 -->
 			$(window).resize(function(){
-				var size1 = $(window).height() - 75,
-					size2 = size1 - 21;
+				var size1 = $(window).height() - 75,size2 = size1 - 21;
 				$(".dl-second-nav").height(size1);
 				$(".bui-side-menu").height(size1);
 				$(".bui-nav-tab").height(size1);
 				$(".tab-content-container").height(size2);
-			
-			})
+			});
 			$(document).ready(function(){
 			var _time;	
 				$("body").click(function(){

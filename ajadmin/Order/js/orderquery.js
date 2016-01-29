@@ -225,14 +225,14 @@ $(function(){
 			var contractNo = d.contractNo || "";
 			var subsidiary = d.subsidiary || "";//所属公司
 			var packageName = d.packageName || "";
-			var packageMoney = d.packageMoney || 0;
+			var packageMoney = d.packageMoney || "";
 			var statusDes = d.statusDes || "";
 			var status = d.status || "";
 
 			var applicantName = d.applicantName || "";
 			var applicantPhone = d.applicantPhone || "";
 			
-			var fenQiTimes = d.fenQiTimes || 0;
+			var fenQiTimes = d.fenQiTimes || "";
 			var noRepaymentTimes = d.noRepaymentTimes || 0;
 
 			html.push('<tr>');
@@ -242,10 +242,9 @@ $(function(){
 			html.push('<td>' + packageName + '</td>');
 			html.push('<td>' + d.applyPackageMoney + '元</td>');
 			html.push('<td>' + d.applyFenQiTimes + '期</td>');
-			html.push('<td>' + packageMoney + '元</td>');
-			html.push('<td>' + fenQiTimes + '期</td>');
+			html.push('<td>' + (fenQiTimes==0?"":fenQiTimes + "期") + '</td>');
+			html.push('<td>' + (packageMoney==0?"":packageMoney + "元") +  '</td>');
 			html.push('<td>' + statusDes + '</td>');
-
 			html.push('<td>' + applicantName + '</td>');
 			//html.push('<td>' + applicantPhone + '</td>');
 

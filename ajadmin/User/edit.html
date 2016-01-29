@@ -3,21 +3,21 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/style.css"/>
     <script type="text/javascript" src="../Js/jquery.js"></script>
-    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
     <script type="text/javascript" src="../Js/bootstrap.js"></script>
     <script type="text/javascript" src="../Js/ckform.js"></script>
     <script type="text/javascript" src="../Js/common.js"></script>
 
- 
 
     <style type="text/css">
         body {
             padding-bottom: 40px;
         }
+
         .sidebar-nav {
             padding: 9px 0;
         }
@@ -35,53 +35,44 @@
     </style>
 </head>
 <body>
-<form action="{:U('User/edit')}" method="post" class="definewidth m20">
-<input type="hidden" name="id" value="{$user.id}" />
+<form action="" method="post" class="definewidth m20">
     <table class="table table-bordered table-hover definewidth m10">
         <tr>
-            <td width="10%" class="tableleft">登录名</td>
-            <td><input type="text" name="username" value="{$user.username}"/></td>
-        </tr>
-        <tr>
-            <td class="tableleft">密码</td>
-            <td><input type="password" name="password"/></td>
+            <td width="10%" class="tableleft">登录手机号</td>
+            <td><input id="usersPhone" type="text" name="usersPhone" maxlength="11"/></td>
         </tr>
         <tr>
             <td class="tableleft">真实姓名</td>
-            <td><input type="text" name="realname" value="{$user.realname}"/></td>
+            <td><input id="usersName" type="text" name="usersName"/></td>
         </tr>
+
         <tr>
-            <td class="tableleft">邮箱</td>
-            <td><input type="text" name="email" value="{$user.email}"/></td>
-        </tr>
-        <tr>
-            <td class="tableleft">状态</td>
+            <td class="tableleft">品牌名称</td>
             <td>
-                <input type="radio" name="status" value="0"
-                    <eq name="user.status" value='0'>checked</eq> /> 启用
-              <input type="radio" name="status" value="1"
-                    <eq name="user.status" value='1'>checked</eq> /> 禁用
+                <select id="companyId" name="companyId" style="width:210px;"></select>
             </td>
         </tr>
         <tr>
-            <td class="tableleft">角色</td>
-            <td>{$role_checkbox}</td>
+            <td class="tableleft">公司名称</td>
+            <td>
+                <select id="subsidiaryId" name="subsidiaryId" style="width:210px;"></select>
+            </td>
         </tr>
         <tr>
             <td class="tableleft"></td>
             <td>
-                <button type="submit" class="btn btn-primary" type="button">保存</button>				 &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+                <button id="updateBut" type="button" class="btn btn-primary" type="button">修改</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </td>
         </tr>
     </table>
 </form>
+
+<script src="../libs/json.js"></script>
+<script src="../libs/base.js"></script>
+<script src="../libs/utils.js"></script>
+<script src="js/Edit.js"></script>
+
 </body>
 </html>
-<script>
-    $(function () {       
-		$('#backid').click(function(){
-				window.location.href="{:U('User/index')}";
-		 });
-
-    });
-</script>

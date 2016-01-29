@@ -62,7 +62,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetCompanyInfoHttp",data);
+				//console.log("sendGetCompanyInfoHttp",data);
 				var status = data.success || false;
 				if(status){
 					var obj = data.list || [];
@@ -189,7 +189,7 @@ $(function(){
 				html.push('<td></td>');
 			}
 			else{
-				html.push('<td><a href="javascript:deleteItem(\'' + usersId + '\')">删除</a>&nbsp;&nbsp;<a href="javascript:resetPassword(\'' + usersId + '\')">重置</a> </td>');
+				html.push('<td><a href="javascript:deleteItem(\'' + usersId + '\')">删除</a>&nbsp;&nbsp;<a href="javascript:resetPassword(\'' + usersId + '\')">重置</a> &nbsp;&nbsp;<a href="Edit.html?usersId=' + usersId + '">编辑</a></td>');
 			}
 
 			html.push('</tr>');
@@ -358,7 +358,7 @@ $(function(){
 				dataType:"json",
 				context:this,
 				success: function(data){
-					console.log("changeBannerUsedFlag",data);
+					//console.log("changeBannerUsedFlag",data);
 					var status = data.success || false;
 					if(status){
 						sendQueryListHttp();

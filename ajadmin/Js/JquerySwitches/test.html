@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="js/jquery.js"></script>
+<script src="js/lc_switch.js" type="text/javascript"></script>
+<link rel="stylesheet" href="lc_switch.css">
+
+</head>
+
+<body>
+
+<input type="checkbox" name="check-1" value="4" class="lcs_check" checked autocomplete="off" />
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        $('input').lc_switch();
+        // triggered each time a field changes status 触发更新
+        $('body').delegate('.lcs_check', 'lcs-statuschange', function() {
+            var status = ($(this).is(':checked')) ? 'checked' : 'unchecked';
+            console.log('field changed status: '+ status );
+        });
+
+        // triggered each time a field is checked  选择
+        $('body').delegate('.lcs_check', 'lcs-on', function() {
+            console.log('field is checked');
+        });
+
+
+        // triggered each time a is unchecked 取消选择
+        $('body').delegate('.lcs_check', 'lcs-off', function() {
+            console.log('field is unchecked');
+        });
+    });
+</script>
+
+</body>
+</html>

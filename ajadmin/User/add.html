@@ -3,21 +3,21 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../Css/base.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/style.css"/>
     <script type="text/javascript" src="../Js/jquery.js"></script>
     <script type="text/javascript" src="../Js/bootstrap.js"></script>
     <script type="text/javascript" src="../Js/ckform.js"></script>
     <script type="text/javascript" src="../Js/common.js"></script>
 
 
-
     <style type="text/css">
         body {
             padding-bottom: 40px;
         }
+
         .sidebar-nav {
             padding: 9px 0;
         }
@@ -36,43 +36,51 @@
 </head>
 <body>
 <form action="" method="post" class="definewidth m20">
-<table class="table table-bordered table-hover definewidth m10">
-    <tr>
-        <td width="10%" class="tableleft">登录手机号</td>
-        <td><input id="inputphone" type="text" name="inputphone"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">密码</td>
-        <td><input id="inputpwd" type="password" name="inputpwd"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">确认密码</td>
-        <td><input id="inputcpwd" type="password" name="inputcpwd"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">真实姓名</td>
-        <td><input id="usersName" type="text" name="usersName"/></td>
-    </tr>
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">登录手机号</td>
+            <td><input id="inputphone" type="text" name="inputphone" maxlength="11"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">密码</td>
+            <td><input id="inputpwd" type="password" name="inputpwd"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">确认密码</td>
+            <td><input id="inputcpwd" type="password" name="inputcpwd"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">真实姓名</td>
+            <td><input id="usersName" type="text" name="usersName"/></td>
+        </tr>
 
-	<tr>
-        <td class="tableleft">公司名称</td>
-        <td>
-		<select id="company" name="parentid" style="width:210px;"></select>
-	</td>
-    </tr>
-    <tr>
-        <td class="tableleft"></td>
-        <td>
-            <button id="regbtn" type="button" class="btn btn-primary" type="button">添加</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
-        </td>
-    </tr>
-</table>
+        <tr>
+            <td class="tableleft">品牌名称</td>
+            <td>
+                <select id="company" name="company" style="width:210px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">公司名称</td>
+            <td>
+                <select id="subsidiaryId" name="subsidiaryId" style="width:210px;"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button id="regbtn" type="button" class="btn btn-primary" type="button">添加</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>
+        </tr>
+    </table>
 </form>
 
-	<script src="../libs/json.js"></script>
-	<script src="../libs/base.js"></script>
-	<script src="../libs/utils.js"></script>
-	<script src="js/add.js"></script>
+<script src="../libs/json.js"></script>
+<script src="../libs/base.js"></script>
+<script src="../libs/utils.js"></script>
+<script src="js/add.js"></script>
 
 </body>
 </html>

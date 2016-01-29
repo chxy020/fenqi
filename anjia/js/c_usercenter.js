@@ -17,6 +17,7 @@ $(function(){
 	g.orderStatus = Utils.getQueryString("ostatus") || "";
 	g.get_coupons_money = 0;
 	g.useLeastMoney = 0;//优惠券限制使用最低金额
+	g.coupons = [];
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -30,7 +31,7 @@ $(function(){
 
 		//获取订单状态 select框
 		sendGetUserInfoDicHttp();
-		get_coupons_money();//获取优惠券
+		//get_coupons_money();//获取优惠券
 	}
 
 
@@ -369,7 +370,7 @@ $(function(){
 		html.push('<th width="110">申请分期金额</th>');
 		html.push('<th width="100">订单状态</th>');
 		/* html.push('<th width="80">最近待还</th>'); */
-		html.push('<th width="80">分期期数</th>');
+		html.push('<th width="110">申请分期期数</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
 		var obj = data.list || [];
@@ -380,20 +381,20 @@ $(function(){
 			var contractNo = d.contractNo || "";
 			var packageName = d.packageName || "";
 			var subsidiary = d.subsidiary || "";
-			var packageMoney = d.packageMoney || 0;
+			var applyPackageMoney = d.applyPackageMoney || 0;
 			var statusDes = d.statusDes || "";
 			var status = d.status || "";
-			var fenQiTimes = d.fenQiTimes || 0;
+			var applyFenQiTimes = d.applyFenQiTimes || 0;
 			var noRepaymentTimes = d.noRepaymentTimes || 0;
 			
 			html.push('<tr>');
 			html.push('<td>' + orderId + '</td>');
 			html.push('<td>' + contractNo + '</td>');
 			html.push('<td>' + subsidiary + '</td>');
-			html.push('<td>' + packageMoney + '元</td>');
+			html.push('<td>' + applyPackageMoney + '元</td>');
 			html.push('<td>' + statusDes + '</td>');
 			/* html.push('<td>' + noRepaymentTimes + '期</td>'); */
-			html.push('<td>' + fenQiTimes + '期</td>');
+			html.push('<td>' + applyFenQiTimes + '期</td>');
 
 			g.orderInfo[orderId] = d;
 			g.orderDetailInfo[poundageRecordId] = d;
@@ -611,18 +612,18 @@ function sendGetPayOrderListHttp1(condi){
 			var orderId = d.orderId || "";
 			var contractNo = d.contractNo || "";
 			var subsidiary = d.subsidiary || "";
-			var packageMoney = d.packageMoney || 0;
+			var applyPackageMoney = d.applyPackageMoney || 0;
 			var statusDes = d.statusDes || "";
 			var status = d.status || "";
-			var fenQiTimes = d.fenQiTimes || 0;
+			var applyFenQiTimes = d.applyFenQiTimes || 0;
 			var noRepaymentTimes = d.noRepaymentTimes || 0;
 			
 			html.push('<tr>');
 			html.push('<td>' + orderId + '</td>');
 			html.push('<td>' + contractNo + '</td>');
 			html.push('<td>' + subsidiary + '</td>');
-			html.push('<td>' + packageMoney + '元</td>');
-			html.push('<td>' + fenQiTimes + '期</td>');
+			html.push('<td>' + applyPackageMoney + '元</td>');
+			html.push('<td>' + applyFenQiTimes + '期</td>');
 			/* html.push('<td>' + noRepaymentTimes + '元</td>'); */
 			/* html.push('<td>' + noRepaymentTimes + '期</td>'); */
 			html.push('<td>' + statusDes + '</td>');
@@ -843,18 +844,18 @@ function sendGetPayOrderListHttp3(condi){
 			var orderId = d.orderId || "";
 			var contractNo = d.contractNo || "";
 			var subsidiary = d.subsidiary || "";
-			var packageMoney = d.packageMoney || 0;
+			var applyPackageMoney = d.applyPackageMoney || 0;
 			var statusDes = d.statusDes || "";
 			var status = d.status || "";
-			var fenQiTimes = d.fenQiTimes || 0;
+			var applyFenQiTimes = d.applyFenQiTimes || 0;
 			var noRepaymentTimes = d.noRepaymentTimes || 0;
 			
 			html.push('<tr>');
 			html.push('<td>' + orderId + '</td>');
 			html.push('<td>' + contractNo + '</td>');
 			html.push('<td>' + subsidiary + '</td>');
-			html.push('<td>' + packageMoney + '元</td>');
-			html.push('<td>' + fenQiTimes + '期</td>');
+			html.push('<td>' + applyPackageMoney + '元</td>');
+			html.push('<td>' + applyFenQiTimes + '期</td>');
 			//html.push('<td>' + noRepaymentTimes + '元</td>');
 			// html.push('<td>' + noRepaymentTimes + '期</td>');
 			html.push('<td>' + statusDes + '</td>');
@@ -1315,7 +1316,7 @@ function sendGetPayOrderListHttp7(condi){
 			var orderId = d.orderId || "";
 			var contractNo = d.contractNo || "";
 			var subsidiary = d.subsidiary || "";
-			var packageMoney = d.packageMoney || 0;
+			var applyPackageMoney = d.applyPackageMoney || 0;
 			var statusDes = d.statusDes || "";
 			var status = d.status || "";
 			var fenQiTimes = d.fenQiTimes || 0;
@@ -1325,7 +1326,7 @@ function sendGetPayOrderListHttp7(condi){
 			html.push('<td>' + orderId + '</td>');
 			html.push('<td>' + contractNo + '</td>');
 			html.push('<td>' + subsidiary + '</td>');
-			html.push('<td>' + packageMoney + '元</td>');
+			html.push('<td>' + applyPackageMoney + '元</td>');
 			html.push('<td>' + fenQiTimes + '期</td>');
 			/* html.push('<td>' + noRepaymentTimes + '元</td>'); */
 			/* html.push('<td>' + noRepaymentTimes + '期</td>'); */
@@ -1436,7 +1437,7 @@ function sendGetPayOrderListHttp8(condi){
 			var orderId = d.orderId || "";
 			var contractNo = d.contractNo || "";
 			var subsidiary = d.subsidiary || "";
-			var packageMoney = d.packageMoney || 0;
+			var applyPackageMoney = d.applyPackageMoney || 0;
 			var statusDes = d.statusDes || "";
 			var status = d.status || "";
 			var fenQiTimes = d.fenQiTimes || 0;
@@ -1446,7 +1447,7 @@ function sendGetPayOrderListHttp8(condi){
 			html.push('<td>' + orderId + '</td>');
 			html.push('<td>' + contractNo + '</td>');
 			html.push('<td>' + subsidiary + '</td>');
-			html.push('<td>' + packageMoney + '元</td>');
+			html.push('<td>' + applyPackageMoney + '元</td>');
 			html.push('<td>' + statusDes + '</td>');
 			/* html.push('<td>' + noRepaymentTimes + '元</td>'); */
 			/* html.push('<td>' + noRepaymentTimes + '期</td>'); */
@@ -1878,7 +1879,8 @@ function sendGetPayOrderListHttp8(condi){
 			var loanResidueMoney = d.loanResidueMoney || 0;
 			var loanMaxMoney = d.loanMaxMoney - 0 || 0;
 			var expectLoanTime = d.expectLoanTime || "";
-			var now = new Date().format("yyyy-MM-dd");
+			//var now = new Date().format("yyyy-MM-dd");
+			var now = new Date($.ajax({async: false}).getResponseHeader("Date")).format("yyyy-MM-dd");
 			var status = d.status;
 
 			var days = 100000;
@@ -2026,6 +2028,10 @@ function sendGetPayOrderListHttp8(condi){
 	}
 
 	function repayment(id,orderId){
+		var dd = g.orderInfo[orderId] || {};
+		var poundage = dd.poundage - 0 || 0;
+		get_coupons_money(poundage);
+		setTimeout(function(){
 		Utils.offLineStore.remove("userorderinfo_detail",false);
 		sendGetOrderInfoHttp(orderId);
 		var d = g.orderDetailInfo[id] || "";
@@ -2039,15 +2045,17 @@ function sendGetPayOrderListHttp8(condi){
 		var yinghuanjine = repaymentPrincipal  + overdueInterest ;
 		var realRepaymentTime = d.realRepaymentTime || "无";
 
-		var dd = g.orderInfo[orderId] || {};
-		var orderId = dd.orderId || "";
+		//var dd = g.orderInfo[orderId] || {};
+		//var orderId = dd.orderId || "";
 		var contractNo = dd.contractNo || "";
 		var subsidiary = dd.subsidiary || "";
 		var packageMoney = dd.packageMoney - 0 || 0;
+		var applyPackageMoney = dd.applyPackageMoney - 0 || 0;
 		var statusDes = dd.statusDes || "";
 		var status = dd.status || "";
 		var fenQiTimes = dd.fenQiTimes || 0;
-		var poundage = dd.poundage - 0 || 0;
+		var applyFenQiTimes = dd.applyFenQiTimes || 0;
+		//var poundage = dd.poundage - 0 || 0;
 		var moneyMonth = dd.moneyMonth - 0 || 0;
 		var poundageExpectRepaymentTime = dd.poundageExpectRepaymentTime || "";
 		var noRepaymentTimes = dd.noRepaymentTimes || 0;
@@ -2068,11 +2076,11 @@ function sendGetPayOrderListHttp8(condi){
 		html.push('</tr>');
 		html.push('<tr>');
 		html.push('<td class="odd">申请分期金额</td>');
-		html.push('<td class="even">' + packageMoney + '元</td>');
+		html.push('<td class="even">' + applyPackageMoney + '元</td>');
 		html.push('</tr>');
 		html.push('<tr>');
 		html.push('<td class="odd">申请分期期数</td>');
-		html.push('<td class="even">' + fenQiTimes + '个月</td>');
+		html.push('<td class="even">' + applyFenQiTimes + '个月</td>');
 		html.push('</tr>');
 		html.push('<tr>');
 		html.push('<td class="odd">实际分期金额</td>');
@@ -2114,14 +2122,15 @@ function sendGetPayOrderListHttp8(condi){
 		html.push('<td class="odd">转让协议</td>');
 		html.push('<td class="even"><a class="orderleftbtn_a" id="xieYi_5">债权转让协议</a></td>');
 		html.push('</tr>');
-		//当服务费金额大于5000时显示优惠券
-		if(poundage >= g.useLeastMoney && g.get_coupons_money > 0){
-		var get_coupons_money = g.get_coupons_money || 0;	
-		html.push('<tr>');
-		html.push('<td class="odd">优惠券</td>');
-		html.push('<td class="even"><div class="chk-bg chk-bg-checked" id="cklikeCheckbox1"><input type="checkbox" name="coupons_value" id="coupons_value" checked="checked"  class="common-checkbox" style="display: none;"></div><label style="float:none;" for="coupons_value">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span id="coupons_money_span">'+get_coupons_money+'元</span></label></td>');
-		html.push('</tr>');
-		}			
+
+		for(var i = 0; i < g.coupons.length; i++){
+			var coupons_money_span = g.coupons[i][0] || "";
+			html.push('<tr>');
+			html.push('<td class="odd">优惠券</td>');
+			html.push('<td class="even"><div class="chk-bg cklikeCheckboxn" ><input type="checkbox" name="coupons_value" id="coupons_value'+i+'"  class="common-checkbox" style="display: none;"></div><label style="float:none;" for="coupons_value">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span id="coupons_money_span">'+coupons_money_span+'元</span></label></td>');
+			html.push('</tr>');	
+		}
+	
 		html.push('</table>');
 
 		html.push('<div class="btn-box">');
@@ -2133,22 +2142,28 @@ function sendGetPayOrderListHttp8(condi){
 		n_click();
 		showOrderPop('#payBackPop');
 		OrderLeftProtocolClick();
+		},500);
 	}
+	
+	
 	function n_click(){
-		$("#cklikeCheckbox1").click(function(){
-			$(this).toggleClass("chk-bg-checked");
-			if($(this).find("#coupons_value").attr("checked")=="checked"){
-				$(this).find("#coupons_value").attr("checked",false);
+		$(".cklikeCheckboxn").click(function(){
+			if($(this).find(".common-checkbox").attr("checked")=="checked"){				
+				$(this).removeClass("chk-bg-checked");
+				$(this).find(".common-checkbox").attr("checked",false);				
 			}else{
-				$(this).find("#coupons_value").attr("checked","checked");
-			}
+				$(".cklikeCheckboxn").removeClass("chk-bg-checked").find(".common-checkbox").attr("checked",false);			
+				$(this).addClass("chk-bg-checked").find(".common-checkbox").attr("checked","checked");		
+			}					
 		})
 	}
 	
-	function get_coupons_money(){
+	function get_coupons_money(poundage){
+		g.coupons = [];
 		var condi = {};
 			condi.login_token = g.login_token;
 			condi.customerId = g.customerId;
+			condi.useMoney = poundage || "";
 		var url = Base.serverUrl + "coupon/getAvailableCouponsByCustomerId";
 		$.ajax({
 			url:url,
@@ -2159,14 +2174,22 @@ function sendGetPayOrderListHttp8(condi){
 			success: function(data){
 				var status = data.success || false;
 				if(status && data.list != ""){
-					var dd = data.list || [];
-					var coupons_money_span = dd[0].money || 0;
+					var dd = data.list || [];					
+					/* var coupons_money_span = dd[0].money || 0;
 					var get_coupons_couponId = dd[0].couponId || "";
 					var useLeastMoney = dd[0].useLeastMoney || 0;
 					//$("#coupons_money_span").html(coupons_money_span+"元");
 					g.get_coupons_money = coupons_money_span;
 					g.get_coupons_couponId = get_coupons_couponId;
-					g.useLeastMoney = useLeastMoney;
+					g.useLeastMoney = useLeastMoney; */
+					for(var i = 0; i < dd.length; i++){
+						var coupons_money_span = dd[i].money || 0;
+						var get_coupons_couponId = dd[i].couponId || "";
+						var useLeastMoney = dd[i].useLeastMoney || 0;
+						if(poundage >= useLeastMoney && coupons_money_span > 0){
+							g.coupons[i] = [coupons_money_span,get_coupons_couponId,useLeastMoney];
+						}
+					}
 				}
 				else{
 					var msg = data.message || "获取优惠券失败";
@@ -2183,9 +2206,16 @@ function sendGetPayOrderListHttp8(condi){
 	
 	function confirmRepayment(poundageRecordId,yinghuanjine){
 		var get_coupons_couponId = "";
-		if(yinghuanjine >= g.useLeastMoney && $("#coupons_value").attr("checked")=="checked")
-		{yinghuanjine = yinghuanjine - g.get_coupons_money; get_coupons_couponId = g.get_coupons_couponId;}
-		
+		var get_coupons_money = "";
+		var useLeastMoney = "";
+		$(".cklikeCheckboxn").each(function(n){
+			if($(this).find(".common-checkbox").attr("checked")=="checked"){
+				get_coupons_couponId = g.coupons[n][1] || "";
+				get_coupons_money = g.coupons[n][0] || "";
+				useLeastMoney = g.coupons[n][2] || "";
+			}
+		})
+		yinghuanjine = yinghuanjine - get_coupons_money; 
 		//先判断用户有没有判定银行卡
 		sendIsExistBindBankCardHttp(poundageRecordId,yinghuanjine,get_coupons_couponId);
 
