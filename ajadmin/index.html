@@ -1,143 +1,149 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>后台管理系统</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="Css/bootstrap.css"/>
-	<link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
-	<link href="assets/css/bui-min.css" rel="stylesheet" type="text/css" />
-	<link href="assets/css/main-min.css" rel="stylesheet" type="text/css" />
+    <title>后台管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css"/>
+    <link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/main-min.css" rel="stylesheet" type="text/css"/>
 
-	<link rel="stylesheet" href="Js/JquerySwitches/lc_switch.css">
+    <link rel="stylesheet" href="Js/JquerySwitches/lc_switch.css">
 </head>
 <body>
-	<div class="header">
-		<!--logo-->
-		<div class="dl-title">
-			<!--<img src="/chinapost/Public/assets/img/top.png">-->
-		</div>
+<div class="header">
+    <!--logo-->
+    <div class="dl-title">
+        <!--<img src="/chinapost/Public/assets/img/top.png">-->
+    </div>
 
-		<div class="dl-log">
-			<input type="checkbox" class="lcs_check" checked autocomplete="off" id="FinancialTips" style="display: none"/>
-			欢迎您，<span class="dl-log-user" id="username_index"></span><a href="javascript:Utils.loginOut();" title="退出系统" class="dl-log-quit">[退出]</a></div>
-	</div>
+    <div class="dl-log">
+        <input type="checkbox" class="lcs_check" checked autocomplete="off" id="FinancialTips" style="display: none"/>
+        欢迎您，<span class="dl-log-user" id="username_index"></span><a href="javascript:Utils.loginOut();" title="退出系统"
+                                                                    class="dl-log-quit">[退出]</a></div>
+</div>
 
-	<div class="content">
-		<div class="dl-main-nav">
-			<div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
-			<ul id="J_Nav"  class="nav-list ks-clear">
-				<!--
-				<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">账户管理</div></li>
-				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">角色管理</div></li>
-				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">订单管理</div></li>
-				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">轮播图管理</div></li>
-				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">用户管理</div></li>
-				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">文章管理</div></li>
-				-->
-				<!--
-				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">账户管理</div></li>
-				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">角色管理</div></li>
-				<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">权限管理</div></li>
-				-->
-			</ul>
-		</div>
-		<ul id="J_NavContent" class="dl-tab-conten">
-		</ul>
+<div class="content">
+    <div class="dl-main-nav">
+        <div class="dl-inform">
+            <div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div>
+        </div>
+        <ul id="J_Nav" class="nav-list ks-clear">
+            <!--
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">账户管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">角色管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">订单管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">轮播图管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">用户管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">文章管理</div></li>
+            -->
+            <!--
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">账户管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">角色管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">权限管理</div></li>
+            -->
+        </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten">
+    </ul>
 
-		<!--提示信息 -->
-		<div id="TipsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 id="myModalLabel">温馨提示</h4>
-			</div>
-			<br>
-			<div id="TipsList" align="center" style="font-size: 16px"></div>
-			<br>
-			<div class="modal-footer" style="text-align: center">
-				<button class="btn " data-dismiss="modal" aria-hidden="true">关闭</button>
-			</div>
-		</div>
+    <!--提示信息 -->
+    <div id="TipsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 id="myModalLabel">温馨提示</h4>
+        </div>
+        <br>
 
-	</div>
+        <div id="TipsList" align="center" style="font-size: 16px"></div>
+        <br>
 
-	<script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/bui-min.js"></script>
-	<script type="text/javascript" src="assets/js/common/main-min.js"></script>
-	<script type="text/javascript" src="assets/js/config-min.js"></script>
+        <div class="modal-footer" style="text-align: center">
+            <button class="btn " data-dismiss="modal" aria-hidden="true">关闭</button>
+        </div>
+    </div>
 
-	<script src="libs/json.js"></script>
-	<script src="libs/base.js"></script>
-	<script src="libs/utils.js"></script>
+</div>
 
-	<script type="text/javascript" src="Js/bootstrap.js"></script>
-	<script src="Js/JquerySwitches/js/lc_switch.min.js"></script>
-	<script src="Js/JquerySwitches/js/TipsSwitch.js"></script>
+<script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="assets/js/bui-min.js"></script>
+<script type="text/javascript" src="assets/js/common/main-min.js"></script>
+<script type="text/javascript" src="assets/js/config-min.js"></script>
 
-	<script type="text/javascript">
-		$(function(){
-			var g = {};
-			g.login_token = Utils.offLineStore.get("token",false) || "";
-			g.tabConfig = [];
+<script src="libs/json.js"></script>
+<script src="libs/base.js"></script>
+<script src="libs/utils.js"></script>
 
-			function sendQueryMenuListByRoleHttp(roleId){
-				//g.httpTip.show();
-				var url = Base.serverUrl + "authority/queryAdminMenuTreeByRoleId";
-				var condi = {};
-				condi.login_token = g.login_token;
-				condi.roleId = roleId;
-				$.ajax({
-					url:url,data:condi,type:"POST",dataType:"json",context:this,
-					success: function(data){
+<script type="text/javascript" src="Js/bootstrap.js"></script>
+<script src="Js/JquerySwitches/js/lc_switch.min.js"></script>
+<script src="Js/JquerySwitches/js/TipsSwitch.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var g = {};
+        g.login_token = Utils.offLineStore.get("token", false) || "";
+        g.tabConfig = [];
+
+        function sendQueryMenuListByRoleHttp(roleId) {
+            //g.httpTip.show();
+            var url = Base.serverUrl + "authority/queryAdminMenuTreeByRoleId";
+            var condi = {};
+            condi.login_token = g.login_token;
+            condi.roleId = roleId;
+            $.ajax({
+                url: url, data: condi, type: "POST", dataType: "json", context: this,
+                success: function (data) {
 //						console.log("sendQueryMenuListByRoleHttp",data);
-						var status = data.success || false;
-						if(status){
-							var obj = data.obj || {};
-							var tab = obj.childrenAuthority || [];
-							var tabhtml = [];
-							for(var i = 0,len = tab.length; i < len; i++){
-								var name = tab[i].authorityName || "";
-								if(name !== ""){
-									tabhtml.push('<li class="nav-item dl-selected"><div class="nav-item-inner ">' + name + '</div></li>');//模块
-								}
-								var child = tab[i].childrenAuthority || [];
-								if(child.length > 0){
-									var config = {
-										id:(i + 1 + ""),
-										//默认打开哪个页面
-										homePage : '1',
-										menu:[{
-											text:name,
-											items:[]
-										}]
-									};
-									for(var j = 0,jlen = child.length; j < jlen; j++){
-										var cobj = child[j] || {};
-										var text = cobj.authorityName || "";
-										var href = cobj.authorityUrl || "";
-										config.menu[0].items.push({id:(j+1 + ""),text:text,href:href});
-									}
-									g.tabConfig.push(config);
-								}
-							}
-							$("#J_Nav").html(tabhtml.join(''));
-							initTab();
-						}
-						else{
-							var msg = data.message || "获取账户权限错误";
-							Utils.alert(msg);
-						}
-						//g.httpTip.hide();
-					},
-					error:function(data){
-						//g.httpTip.hide();
-					}
-				});
-			}
+                    var status = data.success || false;
+                    if (status) {
+                        var obj = data.obj || {};
+                        var tab = obj.childrenAuthority || [];
+                        var tabhtml = [];
+                        for (var i = 0, len = tab.length; i < len; i++) {
+                            var name = tab[i].authorityName || "";
+                            if (name !== "") {
+                                tabhtml.push('<li class="nav-item dl-selected"><div class="nav-item-inner ">' + name + '</div></li>');//模块
+                            }
+                            var child = tab[i].childrenAuthority || [];
+                            if (child.length > 0) {
+                                var config = {
+                                    id: (i + 1 + ""),
+                                    //默认打开哪个页面
+                                    homePage: '1',
+                                    menu: [{
+                                        text: name,
+                                        items: []
+                                    }]
+                                };
+                                for (var j = 0, jlen = child.length; j < jlen; j++) {
+                                    var cobj = child[j] || {};
+                                    var text = cobj.authorityName || "";
+                                    var href = cobj.authorityUrl || "";
+                                    config.menu[0].items.push({id: (j + 1 + ""), text: text, href: href});
+                                }
+                                g.tabConfig.push(config);
+                            }
+                        }
+                        $("#J_Nav").html(tabhtml.join(''));
+                        initTab();
+                    }
+                    else {
+                        var msg = data.message || "获取账户权限错误";
+                        Utils.alert(msg);
+                    }
+                    //g.httpTip.hide();
+                },
+                error: function (data) {
+                    //g.httpTip.hide();
+                }
+            });
+        }
 
-			function initTab(){
+        function initTab() {
 //				console.log(g.tabConfig);
-				BUI.use('common/main',function(){
-					var config = g.tabConfig;
+            BUI.use('common/main', function () {
+                var config = g.tabConfig;
 //					var config = [
 //						{
 //							id:'1',
@@ -211,49 +217,44 @@
 //							}]
 //						}
 //					];
-					new PageUtil.MainPage({
-						modulesConfig : config
-					});
-				});
-			}
+                new PageUtil.MainPage({
+                    modulesConfig: config
+                });
+            });
+        }
 
-			var loginStatus = Utils.getUserInfo();
-			if(!loginStatus){//未登录
-				location.href = "Public/login.html";
-			} else{
-				//initTab();
-				var roleId = Utils.offLineStore.get("user_roleId",false) || "";
-				if(roleId !== ""){
-					sendQueryMenuListByRoleHttp(roleId);//获取模块列表
-				}
-			}
-			<!-- 窗口大小改变 重新调整大小 -->
-			$(window).resize(function(){
-				var size1 = $(window).height() - 75,size2 = size1 - 21;
-				$(".dl-second-nav").height(size1);
-				$(".bui-side-menu").height(size1);
-				$(".bui-nav-tab").height(size1);
-				$(".tab-content-container").height(size2);
-			});
-			$(document).ready(function(){
-			var _time;	
-				$("body").click(function(){
-					clearTimeout(_time);
-					if(Utils.offLineStore.get("token",false) != ""){
-						_time = setTimeout(function(){
-							Utils.offLineStore.remove("token",false);
-							alert('页面超时，请重新登录！');
-							location.reload();
-						},10800000);//超时3个小时10800000
-					}
-				});
-				/*window.frames["iframeSon"].document.onclick = function(){
-					console.log(2);
-					clearTimeout(_time);
-					_time = setTimeout(function(){alert(5)},5000);
-				};*/		
-			})
-		});
-	</script>
+        var loginStatus = Utils.getUserInfo();
+        if (!loginStatus) {//未登录
+            location.href = "Public/login.html";
+        } else {
+            //initTab();
+            var roleId = Utils.offLineStore.get("user_roleId", false) || "";
+            if (roleId !== "") {
+                sendQueryMenuListByRoleHttp(roleId);//获取模块列表
+            }
+        }
+        <!-- 窗口大小改变 重新调整大小 -->
+        $(window).resize(function () {
+            var size1 = $(window).height() - 75, size2 = size1 - 21;
+            $(".dl-second-nav").height(size1);
+            $(".bui-side-menu").height(size1);
+            $(".bui-nav-tab").height(size1);
+            $(".tab-content-container").height(size2);
+        });
+        $(document).ready(function () {
+            var _time;
+            $("body").click(function () {
+                clearTimeout(_time);
+                if (Utils.offLineStore.get("token", false) != "") {
+                    _time = setTimeout(function () {
+                        Utils.offLineStore.remove("token", false);
+                        alert('页面超时，请重新登录！');
+                        location.reload();
+                    }, 10800000);//超时3个小时10800000
+                }
+            });
+        })
+    });
+</script>
 </body>
 </html>

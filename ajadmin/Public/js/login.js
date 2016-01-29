@@ -86,6 +86,8 @@ $(function () {
                         Utils.offLineStore.set("user_usersName", userInfo.usersName, false);
                         Utils.offLineStore.set("user_usersId", userInfo.usersId, false);
                         Utils.offLineStore.set("user_roleId", userInfo.roleId, false);
+                        Utils.offLineStore.set("companyId", userInfo.companyId, false);
+                        Utils.offLineStore.set("subsidiaryId", userInfo.subsidiaryId, false);
                         userInfo = JSON.stringify(userInfo);
                         //保存用户数据
                         Utils.offLineStore.set("userinfo_admin", userInfo, false);

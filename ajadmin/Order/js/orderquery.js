@@ -242,8 +242,8 @@ $(function(){
 			html.push('<td>' + packageName + '</td>');
 			html.push('<td>' + d.applyPackageMoney + '元</td>');
 			html.push('<td>' + d.applyFenQiTimes + '期</td>');
-			html.push('<td>' + (fenQiTimes==0?"":fenQiTimes + "期") + '</td>');
 			html.push('<td>' + (packageMoney==0?"":packageMoney + "元") +  '</td>');
+			html.push('<td>' + (fenQiTimes==0?"":fenQiTimes + "期") + '</td>');
 			html.push('<td>' + statusDes + '</td>');
 			html.push('<td>' + applicantName + '</td>');
 			//html.push('<td>' + applicantPhone + '</td>');

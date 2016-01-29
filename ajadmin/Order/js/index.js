@@ -11,7 +11,8 @@ $(function(){
 	g.sendTime = 60;
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.httpTip = new Utils.httpTip({});
-
+	g.subsidiaryId = Utils.offLineStore.get("subsidiaryId",false) || "";
+	g.companyId = Utils.offLineStore.get("companyId",false) || "";
 	g.totalPage = 1;
 	g.currentPage = 1;
 	g.pageSize = 10;
@@ -26,7 +27,8 @@ $(function(){
 	}
 	else{
 		//获取公司信息
-		sendGetCompanyInfoHttp();
+		//sendGetCompanyInfoHttp();
+		queryOrderList();
 	}
 
 	$("#querybtn").bind("click",queryOrderList);
@@ -92,13 +94,10 @@ $(function(){
 		condi.login_token = g.login_token;
 		condi.status = "";
 		condi.currentPageNum = g.currentPage;
-		condi.companyId = $("#company").val() || "";
+		condi.companyId = g.companyId;
+		condi.subsidiaryId = g.subsidiaryId;
 		$.ajax({
-			url:url,
-			data:condi,
-			type:"POST",
-			dataType:"json",
-			context:this,
+			url:url,data:condi,type:"POST",dataType:"json",context:this,
 			success: function(data){
 				console.log("sendQueryOrderListHttp",data);
 				var status = data.success || false;
