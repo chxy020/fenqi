@@ -503,7 +503,7 @@ $(function(){
 			$(".sign-item.fenbi,.sign-item.tip").fadeIn(0);$(".sign-item.tip2").fadeOut(0);
 			g.breakUp = true;
 			if(g.paidMoney > 0){
-				xiane = g.price - g.paidMoney;g.breakUp = false;			
+				xiane = (g.price - g.paidMoney).toFixed(2);g.breakUp = false;			
 				$(".form_input .form_input1,.form_input .fenbi_step2").fadeOut(0);
 				$(".form_input .form_input2").attr("value",xiane).fadeIn(0);
 			}//判断如果已经支付过一部分 则不分笔支付		
