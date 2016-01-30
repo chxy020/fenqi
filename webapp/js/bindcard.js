@@ -32,6 +32,7 @@ $(function(){
 		location.replace("/webapp/login/login.html");
 	}
 	else{
+		setTimeout(function(){$("#myModal1").click()},500);//显示弹窗
 		getUserInfo();
 		//获取订单列表
 		//getUserOrderStagingList();
@@ -43,6 +44,7 @@ $(function(){
 		sendGetBindBankCardId();
 		//获取银行列表
 		sendGetBankListHttp();
+		
 	}
 
 

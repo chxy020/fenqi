@@ -43,6 +43,7 @@ $(function(){
 		sendGetBindBankCardId();
 		//获取银行列表
 		sendGetBankListHttp();
+		setTimeout(function(){$("#myModal1").click()},500);//显示弹窗
 	}
 
 

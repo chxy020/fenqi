@@ -33,13 +33,14 @@ $(function(){
 		//未登录
 		location.replace("/webapp/login/login.html");
 	}
-	else{
+	else{setTimeout(function(){$("#myModal1").click()},500);//显示弹窗
 		serchRepaymentRecordByRepaymentRecordId();
 		getUserInfo();
 		//
 		changeOrderInfoHtml();
 
 		sendGetBindBankCardByCustomerId();
+		
 	}
 
 	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);

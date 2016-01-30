@@ -39,7 +39,7 @@ $(function(){
 		//
 		changeOrderInfoHtml();
 		sendGetBindBankCardByCustomerId();
-		
+		setTimeout(function(){$("#myModal1").click()},500);//显示弹窗
 	}
 
 	$("#imgcodebtn").bind("click",sendGetImgCodeHttp);
