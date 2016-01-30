@@ -40,21 +40,14 @@ $(function () {
                 g.packageMoney = RowData.packageMoney;
                 $("#applicantName").val(RowData.applicantName);
                 $("#applicantPhone").val(RowData.applicantPhone);
-
                 $("#contractMoney").val(RowData.contractMoney);
                 $("#applyPackageMoney").val(RowData.applyPackageMoney);
                 $("#applyFenQiTimes").val(RowData.applyFenQiTimes);
                 $("#packageMoney").val(RowData.packageMoney || "");
-                var fenarr = {"3": 0, "6": 1, "9": 2, "12": 3, "18": 4, "24": 5, "36": 6};
-                var fenQiTimes = fenarr[(RowData.fenQiTimes + "")];
-                $("#fenQiTimes").val(fenQiTimes);
+                $("#fenQiTimes").val(RowData.fenQiTimes || "请选择审批期数！");
+                fenQiTimesChange();//绑定分期期数后， 要计算一下，否则在不修改的时候 审批通过取不到值
                 $("#fk1_approve_report").val(RowData.fk1_approve_report);
                 $("#fk1_approve_remarks").val(RowData.fk1_approve_remarks);
-                $("#poundage").html(RowData.poundage > 0 ? (RowData.poundage + "元") : "免费");
-                $("#moneyMonth").html(RowData.moneyMonth + "元");
-                //var obj = countFee(RowData.packageMoney, fenQiTimes);
-                //$("#poundage").html(obj.rate > 0 ? (obj.rate + "元") : "免费");
-                //$("#moneyMonth").html(obj.mouth + "元");
                 g.httpTip.hide();
             },
             error: function (data) {
@@ -94,7 +87,7 @@ $(function () {
                     $("#packageMoney").focus();
                     return false;
                 }
-                if (Number($("#packageMoney").val()) < 0) {
+                if (Number($("#packageMoney").val()) <= 0) {
                     alert("审批金额必须大于0!");
                     $("#packageMoney").focus();
                     return false;
@@ -105,7 +98,7 @@ $(function () {
                     return false;
                 }
             }
-            if ($("#fenQiTimes").val() == "") {
+            if (($("#fenQiTimes").val() || 0) == 0) {
                 alert("请选择审批期数!");
                 $("#fenQiTimes").focus();
                 return false;
@@ -114,7 +107,7 @@ $(function () {
             condi.poundage = g.poundage;
             condi.fenQiTimes = g.stagnum;
             condi.moneyMonth = g.moneyMonth;
-        } else if (ActType == 1) {
+        } else if (ActType == 1) {//拒绝
             condi.packageMoney = 0;
             condi.fenQiTimes = 0;
         }
@@ -130,6 +123,8 @@ $(function () {
         condi.approveResult = e.data.approveResult;
         condi.approveReport = $("#fk2_approve_report").val() || "";
         var url = Base.serverUrl + "order/riskManagementSecondApproveOrderController";
+        //console.log(condi);
+        g.httpTip.hide();
         $.ajax({
             url: url, data: condi, type: "POST", dataType: "json", context: this,
             success: function (data) {
@@ -152,19 +147,14 @@ $(function () {
 
     //计算费率
     function countFee(allprice, time) {
-        var numarr = [3, 6, 9, 12, 18, 24, 36];
-        var ratearr = [0, 0.04, 0.04, 0.07, 0.1, 0.13, 0.16];
-        var rate = ratearr[time] * allprice;
-        var all = allprice + rate;
-        var mouthprice = allprice / numarr[time];
-        var obj = {};
-        obj.all = all;
-        obj.mouth = mouthprice.toFixed(2);
-        obj.rate = rate.toFixed(2);
-        obj.stagnum = numarr[time];
+        var Rates = {"3":0,"6":0.04,"9":0.04,"12":0.07,"18":0.1,"24":0.13,"36":0.16};
 
-        g.poundage = obj.rate + "";
-        g.moneyMonth = obj.mouth + "";
+        var obj = {};
+        obj.poundage = (allprice * Rates[time]).toFixed(2);//手续费
+        obj.moneyMonth = (allprice / time ).toFixed(2) ; //月还款金额
+        obj.stagnum = time ; //期数
+        g.poundage = obj.poundage + "";
+        g.moneyMonth = obj.moneyMonth + "";
         g.stagnum = obj.stagnum;
         return obj;
     }
@@ -179,10 +169,12 @@ $(function () {
             if (Number(packageMoney) > Number($("#contractMoney").val())) {
                 Utils.alert("初审审批额度不能大于合同总金额" + $("#contractMoney").val() + "元");
             }else {
-                var time = $("#fenQiTimes").val() - 0 || 0;
-                var obj = countFee(packageMoney, time);
-                $("#poundage").html(obj.rate > 0 ? (obj.rate + "元") : "免费");
-                $("#moneyMonth").html(obj.mouth + "元");
+                var time = $("#fenQiTimes").val() || 0;
+                if(time != 0) {
+                    var obj = countFee(packageMoney, time);
+                    $("#poundage").html(obj.poundage > 0 ? (obj.poundage + "元") : "免费");
+                    $("#moneyMonth").html(obj.moneyMonth + "元");
+                }
             }
         } else {
             Utils.alert("最大审批额度必须大于0元");

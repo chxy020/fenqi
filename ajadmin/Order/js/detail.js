@@ -188,9 +188,9 @@ $(function(){
 		html.push('<td>' + packageName + '</td></tr>');
 		html.push('<tr><td class="tableleft">合同总金额</td>');
 		html.push('<td>' + contractMoney + '元</td></tr>');
-		html.push('<tr><td class="tableleft">分期金额</td>');
+		html.push('<tr><td class="tableleft">审批分期金额</td>');
 		html.push('<td>' + packageMoney + '元</td></tr>');
-		html.push('<tr><td class="tableleft">分期方式</td>');
+		html.push('<tr><td class="tableleft">审批分期期数</td>');
 		html.push('<td>' + fenQiTimes + '期</td></tr>');
 		html.push('<tr><td class="tableleft">服务手续费</td>');
 		html.push('<td>' + (poundage == "0" ? "免费" : (poundage + "元")) + '</td></tr>');

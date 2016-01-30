@@ -7,12 +7,12 @@ $(function(){
 	if(typeof eui !== "undefined"){
 		eui.calendar({
 			startYear: 1900,
-			input: document.getElementById('createTimeBegin'),
+			input: document.getElementById('applicationTimeBegin'),
 			id:"createTimeBegin"
 		});
 		eui.calendar({
 			startYear: 1900,
-			input: document.getElementById('createTimeEnd'),
+			input: document.getElementById('applicationTimeEnd'),
 			id:"createTimeEnd"
 		});
 	}
@@ -169,21 +169,17 @@ $(function(){
 
 		condi.status = $("#status").val() || "";
 		condi.currentPageNum = g.currentPage;
-		condi.applicantName = $("#applicantName").val() || "";
-		condi.applicantPhone = $("#applicantPhone").val() || "";
-		condi.createTimeBegin = $("#createTimeBegin").val() || "";
-		condi.createTimeEnd = $("#createTimeEnd").val() || "";
+		condi.customerName = $("#customerName").val() || "";
+		condi.customerPhone = $("#customerPhone").val() || "";
+		condi.applicationTimeBegin = $("#applicationTimeBegin").val() || "";
+		condi.applicationTimeEnd = $("#applicationTimeEnd").val() || "";
 		condi.orderId = $("#orderId").val() || ""
 		//condi.companyId = $("#company").val() || "";
 
 		$.ajax({
-			url:url,
-			data:condi,
-			type:"POST",
-			dataType:"json",
-			context:this,
+			url:url,data:condi,type:"POST",dataType:"json",context:this,
 			success: function(data){
-				console.log("sendQueryOrderListHttp",data);
+				//console.log("sendQueryOrderListHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeOrderListHtml(data);
