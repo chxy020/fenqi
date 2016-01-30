@@ -482,8 +482,8 @@ function sendGetPayOrderListHttp(condi){
 		html.push('<th width="160">订单编号</th>');
 		html.push('<th width="130">合同编号</th>');
 		html.push('<th width="110">合作商家</th>');
-		html.push('<th width="110">实际分期金额</th>');
-		html.push('<th width="80">分期期数</th>');
+		html.push('<th width="110">审批分期金额</th>');
+		html.push('<th width="90">审批分期期数</th>');
 		html.push('<th width="100">应缴服务费</th>');
 		/* html.push('<th width="80">最近待还</th>'); */
 		html.push('<th width="100">订单状态</th>');
@@ -946,8 +946,8 @@ function sendGetPayOrderListHttp4(condi){
 		html.push('<th width="160">订单编号</th>');
 		html.push('<th width="130">合同编号</th>');
 		html.push('<th width="110">合作商家</th>');
-		html.push('<th width="110">实际分期金额</th>');
-		html.push('<th width="80">分期期数</th>');
+		html.push('<th width="110">审批分期金额</th>');
+		html.push('<th width="90">审批分期期数</th>');
 		/* html.push('<th width="100">应缴服务费</th>'); */
 		/* html.push('<th width="80">最近待还</th>'); */
 		html.push('<th width="100">订单状态</th>');
@@ -1181,8 +1181,8 @@ function sendGetPayOrderListHttp6(condi){
 		html.push('<th width="160">订单编号</th>');
 		html.push('<th width="130">合同编号</th>');
 		html.push('<th width="110">合作商家</th>');
-		html.push('<th width="110">实际分期金额</th>');
-		html.push('<th width="110">实际分期期数</th>');
+		html.push('<th width="110">审批分期金额</th>');
+		html.push('<th width="110">审批分期期数</th>');
 		html.push('<th width="100">订单状态</th>');
 		html.push('<th width="80">还清日期</th>');
 		/* html.push('<th width="100">应缴服务费</th>'); */
@@ -1303,7 +1303,7 @@ function sendGetPayOrderListHttp7(condi){
 		html.push('<th width="130">合同编号</th>');
 		html.push('<th width="110">合作商家</th>');
 		html.push('<th width="110">申请分期金额</th>');
-		html.push('<th width="80">分期期数</th>');
+		html.push('<th width="90">申请分期期数</th>');
 		/* html.push('<th width="100">应缴服务费</th>'); */
 		/* html.push('<th width="80">最近待还</th>'); */
 		html.push('<th width="100">订单状态</th>');
@@ -1426,7 +1426,7 @@ function sendGetPayOrderListHttp8(condi){
 		html.push('<th width="100">订单状态</th>');
 		/* html.push('<th width="100">应缴服务费</th>'); */
 		/* html.push('<th width="80">最近待还</th>'); */
-		html.push('<th width="80">分期期数</th>');
+		html.push('<th width="90">申请分期期数</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
 
@@ -1517,7 +1517,7 @@ function sendGetPayOrderListHttp8(condi){
 		html.push('<th width="160">订单编号</th>');
 		html.push('<th width="100">合作商家</th>');
 		html.push('<th width="110">合同总金额</th>');
-		html.push('<th width="110">实际分期金额</th>');
+		html.push('<th width="110">审批分期金额</th>');
 		html.push('<th width="100">订单状况</th>');
 		html.push('<th width="100">可用额度</th>');
 		//html.push('<th width="100">总期数</th>');
@@ -2083,11 +2083,11 @@ function sendGetPayOrderListHttp8(condi){
 		html.push('<td class="even">' + applyFenQiTimes + '个月</td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td class="odd">实际分期金额</td>');
+		html.push('<td class="odd">审批分期金额</td>');
 		html.push('<td class="even">' + packageMoney + '元</td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td class="odd">实际分期期数</td>');
+		html.push('<td class="odd">审批分期期数</td>');
 		html.push('<td class="even">' + fenQiTimes + '个月</td>');
 		html.push('</tr>');
 		html.push('<tr>');

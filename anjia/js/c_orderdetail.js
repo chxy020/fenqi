@@ -298,9 +298,9 @@ $(function(){
 		html.push('<td class="even">' + contractNo + '</td></tr>');
 		html.push('<tr><td class="odd">合作商家</td>');
 		html.push('<td class="even">' + packageName + '</td></tr>');
-		html.push('<tr><td class="odd">实际分期金额</td>');
+		html.push('<tr><td class="odd">审批分期金额</td>');
 		html.push('<td class="even">' + packageMoney + '元</td></tr>');
-		html.push('<tr><td class="odd">实际分期期数</td>');
+		html.push('<tr><td class="odd">审批分期期数</td>');
 		html.push('<td class="even">' + fenQiTimes + '个月</td></tr>');
 		//html.push('<tr><td class="odd">服务费</td>');
 		//html.push('<td class="even">' + poundage + '元</td></tr>');
@@ -595,11 +595,11 @@ $(function(){
 		html.push('<td class="even">' + packageName + '</td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td class="odd">实际分期金额</td>');
+		html.push('<td class="odd">审批分期金额</td>');
 		html.push('<td class="even">' + packageMoney + '元</td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td class="odd">分期期数</td>');
+		html.push('<td class="odd">审批分期期数</td>');
 		html.push('<td class="even">' + fenQiTimes + '个月</td>');
 		html.push('</tr>');
 		/* html.push('<tr>');
