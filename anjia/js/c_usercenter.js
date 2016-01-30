@@ -1062,12 +1062,12 @@ function sendGetPayOrderListHttp5(condi){
 		html.push('<th width="140">订单编号</th>');
 		html.push('<th width="120">合同编号</th>');
 		html.push('<th width="105">合作商家</th>');
-		html.push('<th width="110">实际分期金额</th>');
-		html.push('<th width="100">订单状态</th>');
+		html.push('<th width="110">审批分期金额</th>');
+		html.push('<th width="90">订单状态</th>');
 		/* html.push('<th width="100">应缴服务费</th>'); */
 		html.push('<th width="80">待还金额</th>');
 		html.push('<th width="80">待还期数</th>');
-		html.push('<th width="80">分期期数</th>');
+		html.push('<th width="90">审批分期期数</th>');
 		html.push('<th>操作</th>');
 		html.push('</tr>');
 		var obj = data.list || [];
