@@ -11,6 +11,8 @@ $(function(){
 	g.sendTime = 60;
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.httpTip = new Utils.httpTip({});
+	g.subsidiaryId = Utils.offLineStore.get("subsidiaryId",false) || "";
+	g.companyId = Utils.offLineStore.get("companyId",false) || "";
 
 	g.totalPage = 1;
 	g.currentPage = 1;
@@ -95,6 +97,8 @@ $(function(){
 		condi.currentPageNum = g.currentPage;
 		condi.orderId = $("#orderId").val() || "";
 		condi.packageType = $("#packageType").val() || "";
+		condi.companyId = g.companyId;
+		condi.subsidiaryId = g.subsidiaryId;
 		$.ajax({
 			url:url,
 			data:condi,
