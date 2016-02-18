@@ -189,7 +189,7 @@ $(function(){
 				html.push('<td></td>');
 			}
 			else{
-				html.push('<td><a href="javascript:deleteItem(\'' + usersId + '\')">删除</a>&nbsp;&nbsp;<a href="javascript:resetPassword(\'' + usersId + '\')">重置</a> &nbsp;&nbsp;<a href="Edit.html?usersId=' + usersId + '">编辑</a></td>');
+				html.push('<td><a href="javascript:deleteItem(\'' + usersId + '\')">删除</a>&nbsp;&nbsp;<a href="javascript:resetPassword(\'' + usersId + '\')">重置</a> &nbsp;&nbsp;<a href="edit.html?usersId=' + usersId + '">编辑</a></td>');
 			}
 
 			html.push('</tr>');
