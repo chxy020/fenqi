@@ -115,11 +115,13 @@ $(function(){
 			html.push('<td>' + getOrderStatus(d.status)  + '</td>');
 			//根据订单状态 判断 初审
 			if(d.status == "10050301"){
-				html.push('<td><a href="ModifyOrder.html?orderid=' + d.orderId + '">编辑</a>&nbsp&nbsp<a href="FK_Seller_1.html?orderid=' + d.orderId + '">初审</a></td>');
+				//html.push('<td><a href="ModifyOrder.html?orderid=' + d.orderId + '">编辑</a>&nbsp&nbsp<a href="FK_Seller_1.html?orderid=' + d.orderId + '">初审</a></td>');
+				html.push('<td><a href="javascript:Hmgx.openWin(\'ModifyOrder.html?orderid=' + d.orderId + '\')">编辑</a>&nbsp&nbsp<a href="javascript:Hmgx.openWin(\'FK_Seller_1.html?orderid=' + d.orderId + '\')">初审</a></td>');
+
 				//html.push('<td><a href="fkuan_detail.html?orderid=' + d.orderId + '">编辑</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-warning" href="javascript:ShowWin(\'' + d.orderId +  '\')">初审</a></td>');
 				//DataList.push(d);
 			}else{
-				html.push('<td><a href="#" onclick="window.open(\'ViewOrder.html?orderid=' + d.orderId + '\')">查看订单</a></td>');
+				html.push('<td><a href=""javascript:Hmgx.openWin(\'ViewOrder.html?orderid=' + d.orderId + '\')">查看订单</a></td>');
 			}
 			html.push('</tr>');
 		}

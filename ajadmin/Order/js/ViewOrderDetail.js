@@ -67,11 +67,12 @@ $(function () {
         if(data.length ==0){
             html.push('<tr><td style="text-align: center" colspan="2">您没有权限查看订单字段，请在[角色管理]-[订单字段权限]里设置！</td></tr>');
         }
-        html.push('<tr><td style="text-align: center" colspan="2"><button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button></td></tr>');
+        html.push('<tr><td style="text-align: center" colspan="2"><button type="button" class="btn btn-success" name="backid" id="backid">关闭</button></td></tr>');
         html.push('</table>');
         $("#TableInfo").html(html.join(''));
         $('#backid').click(function () {
-            window.location.href = "orderquery.html";
+            window.close();
+            //window.location.href = "orderquery.html";
         });
 
         //处理服务费

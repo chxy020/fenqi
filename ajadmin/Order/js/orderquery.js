@@ -251,7 +251,7 @@ $(function(){
 			html.push('<td>' + noRepaymentTimes + '期</td>');
 
 			if(status != "100504"){
-				html.push('<td><a href="ViewOrderDetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:Hmgx.openWin(\'ViewOrderDetail.html?orderid=' + orderId + '\')">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else{
 				html.push('<td><a href="ViewOrderDetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp</td>');

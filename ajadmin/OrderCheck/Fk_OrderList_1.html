@@ -20,6 +20,7 @@
 
     <script src="js/OrderFunction.js"></script>
     <script src="js/Fk_OrderList_1.js"></script>
+    <script src="../Js/HmgxExtend.js"></script>
 
     <style type="text/css">
         body {
@@ -91,58 +92,58 @@
 <!-- 初审Modal -->
 <!--<div id="pass" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
 
-    <!--<div class="modal-header">-->
-        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-        <!--<h3 id="myModalLabel">初审</h3>-->
-    <!--</div>-->
-    <!--<form id="CheckForm">-->
-        <!--<div class="modal-body">-->
-            <!--<table>-->
-                <!--<tr>-->
-                    <!--<td class="label_td">订单号</td>-->
-                    <!--<td class="edit_td"><input type="text" id="s_orderId" name="s_orderId" readonly></td>-->
-                    <!--<td class="label_td">用户姓名</td>-->
-                    <!--<td class="edit_td"><input id="s_applicantName" type="text" name="s_applicantName"/></td>-->
-                    <!--<td class="label_td">用户电话</td>-->
-                    <!--<td class="edit_td"><input id="s_applicantPhone" type="text" name="s_applicantPhone"/></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="label_td">分期金额</td>-->
-                    <!--<td class="edit_td"><input type="text" id="s_applyPackageMoney" name="s_applyPackageMoney"></td>-->
-                    <!--<td class="label_td">分期期数</td>-->
-                    <!--<td class="edit_td"><input id="s_applyFenQiTimes" type="text" name="s_applyFenQiTimes"/></td>-->
-                    <!--<td class="label_td">服务费</td>-->
-                    <!--<td class="edit_td"><input id="s_poundage" type="text" name="s_poundage"/></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="label_td">月还金额</td>-->
-                    <!--<td class="edit_td"><input type="text" id="s_moneyMonth" name="s_moneyMonth"></td>-->
-                    <!--<td class="label_td">审核人员</td>-->
-                    <!--<td class="edit_td"><input id="" type="text" name="" readonly/></td>-->
-                    <!--<td class="label_td"></td>-->
-                    <!--<td class="edit_td"></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="label_td">审批意见</td>-->
-                    <!--<td class="edit_td" colspan="5">-->
-                        <!--<textarea id="s_approveRemarks" name="s_approveRemarks" style="width: 100%" rows="5"></textarea>-->
-                    <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="label_td">初审报告</td>-->
-                    <!--<td class="edit_td" colspan="5">-->
-                        <!--<textarea id="s_approveReport" name="s_approveReport" style="width: 100%" rows="5"></textarea>-->
-                    <!--</td>-->
-                <!--</tr>-->
-            <!--</table>-->
-    <!--</form>-->
-    <!--<br>-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+<!--<h3 id="myModalLabel">初审</h3>-->
+<!--</div>-->
+<!--<form id="CheckForm">-->
+<!--<div class="modal-body">-->
+<!--<table>-->
+<!--<tr>-->
+<!--<td class="label_td">订单号</td>-->
+<!--<td class="edit_td"><input type="text" id="s_orderId" name="s_orderId" readonly></td>-->
+<!--<td class="label_td">用户姓名</td>-->
+<!--<td class="edit_td"><input id="s_applicantName" type="text" name="s_applicantName"/></td>-->
+<!--<td class="label_td">用户电话</td>-->
+<!--<td class="edit_td"><input id="s_applicantPhone" type="text" name="s_applicantPhone"/></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td class="label_td">分期金额</td>-->
+<!--<td class="edit_td"><input type="text" id="s_applyPackageMoney" name="s_applyPackageMoney"></td>-->
+<!--<td class="label_td">分期期数</td>-->
+<!--<td class="edit_td"><input id="s_applyFenQiTimes" type="text" name="s_applyFenQiTimes"/></td>-->
+<!--<td class="label_td">服务费</td>-->
+<!--<td class="edit_td"><input id="s_poundage" type="text" name="s_poundage"/></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td class="label_td">月还金额</td>-->
+<!--<td class="edit_td"><input type="text" id="s_moneyMonth" name="s_moneyMonth"></td>-->
+<!--<td class="label_td">审核人员</td>-->
+<!--<td class="edit_td"><input id="" type="text" name="" readonly/></td>-->
+<!--<td class="label_td"></td>-->
+<!--<td class="edit_td"></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td class="label_td">审批意见</td>-->
+<!--<td class="edit_td" colspan="5">-->
+<!--<textarea id="s_approveRemarks" name="s_approveRemarks" style="width: 100%" rows="5"></textarea>-->
+<!--</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td class="label_td">初审报告</td>-->
+<!--<td class="edit_td" colspan="5">-->
+<!--<textarea id="s_approveReport" name="s_approveReport" style="width: 100%" rows="5"></textarea>-->
+<!--</td>-->
+<!--</tr>-->
+<!--</table>-->
+<!--</form>-->
+<!--<br>-->
 <!--</div>-->
 
 <!--<div class="modal-footer" style="text-align: center">-->
-    <!--<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">通过</button>-->
-    <!--<button class="btn btn-danger" style="margin-left: 50px; margin-right: 50px">拒绝</button>-->
-    <!--<button class="btn btn-info" data-dismiss="modal" aria-hidden="true">退回</button>-->
+<!--<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">通过</button>-->
+<!--<button class="btn btn-danger" style="margin-left: 50px; margin-right: 50px">拒绝</button>-->
+<!--<button class="btn btn-info" data-dismiss="modal" aria-hidden="true">退回</button>-->
 <!--</div>-->
 <!--</div>-->
 

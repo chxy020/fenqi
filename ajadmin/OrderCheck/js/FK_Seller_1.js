@@ -148,7 +148,8 @@ $(function () {
                 var status = data.success || false;
                 if (status) {
                     alert("处理成功！");
-                    window.location.href = "Fk_OrderList_1.html";
+                    window.close();
+                    //window.location.href = "Fk_OrderList_1.html";
                 } else {
                     var msg = data.message || "处理失败！";
                     Utils.alert(msg);
