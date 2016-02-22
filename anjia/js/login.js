@@ -40,7 +40,7 @@ $(function(){
 	//验证手机号
 	function validPhone(){
 		var phone = $("#inputphone").val() || "";
-		var reg = /^1[3,5,7,8]\d{9}$/g;
+		var reg = /^1[3,4,5,7,8]\d{9}$/g;
 		if(phone !== ""){
 			if(!reg.test(phone)){
 				Utils.alert("用户名/手机号输入错误");
