@@ -205,7 +205,7 @@ $(function(){
 		html.push('<tr>');
 		html.push('<th>订单编号</th>');
 		html.push('<th>合作公司</th>');
-		html.push('<th>公司全称</th>');
+		html.push('<th>所属公司</th>');
 		html.push('<th>用户姓名</th>');
 		//html.push('<th>用户电话</th>');
 		html.push('<th>合同金额</th>');
