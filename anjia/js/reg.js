@@ -83,7 +83,7 @@ $(function(){
 		var p = $("#inputphone").val() || "";
 		var imgCode = $("#inputimgcode").val() || "";
 		if(p !== ""){
-			var reg = /^1[3,5,7,8]\d{9}$/g;
+			var reg = /^1[3,4,5,7,8]\d{9}$/g;
 			if(reg.test(p)){
 				g.phone = p;
 				/* if(imgCode !== ""){ */
@@ -173,7 +173,7 @@ $(function(){
 	//注册
 	function regUser(evt){
 		var phone = $("#inputphone").val() || "";
-		var reg = /^1[3,5,7,8]\d{9}$/g;
+		var reg = /^1[3,4,5,7,8]\d{9}$/g;
 		if(phone !== ""){
 			if(reg.test(phone)){
 				/* var name = $("#name").val() || "";
@@ -322,7 +322,7 @@ $(function(){
 		var validCode = $("#inputCode3").val() || "";
 
 		var regEMail = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
-		var regPhone = /^1[3,5,7,8]\d{9}$/;
+		var regPhone = /^1[3,4,5,7,8]\d{9}$/;
 		var regFont = /^([\u4E00-\u9FA5|\w\-])+$/;
 		if(regEMail.test(userName) || regPhone.test(userName) || regFont.test(userName)){
 			if(userName !== "" && usePwd !== "" && phone !== "" && imgCode !== "" && validCode !== ""){
