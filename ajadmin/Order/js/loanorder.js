@@ -27,7 +27,7 @@ $(function(){
 
 	g.totalPage = 1;
 	g.currentPage = 1;
-	g.pageSize = 10;
+	g.pageSize = 20;
 
 
 	//验证登录状态
@@ -169,6 +169,7 @@ $(function(){
 
 		condi.status = $("#status").val() || "";
 		condi.currentPageNum = g.currentPage;
+		condi.pageSize = g.pageSize;
 		condi.customerName = $("#customerName").val() || "";
 		condi.customerPhone = $("#customerPhone").val() || "";
 		condi.applicationTimeBegin = $("#applicationTimeBegin").val() || "";
@@ -200,16 +201,17 @@ $(function(){
 
 		var html = [];
 
-		html.push('<table class="table table-bordered table-hover definewidth m10" ><thead>');
+		html.push('<table id="DataTable" class="table table-bordered table-hover definewidth m10" ><thead>');
 		html.push('<tr>');
 		html.push('<th>订单编号</th>');
 		html.push('<th>合作公司</th>');
+		html.push('<th>公司全称</th>');
 		html.push('<th>用户姓名</th>');
 		//html.push('<th>用户电话</th>');
 		html.push('<th>合同金额</th>');
 		html.push('<th>分期金额</th>');
 		html.push('<th>支付金额</th>');
-		html.push('<th>支付状态</th>');
+		html.push('<th>分笔支付状态</th>');
 		html.push('<th>申请支付时间</th>');
 		//html.push('<th>操作</th>');
 		html.push('</tr>');
@@ -234,6 +236,7 @@ $(function(){
 			html.push('<tr>');
 			html.push('<td>' + orderId + '</td>');
 			html.push('<td>' + company + '</td>');
+			html.push('<td>' + (d.subsidiary||"") + '</td>');
 			html.push('<td>' + customerName + '</td>');
 			//html.push('<td>' + customerPhone + '</td>');
 			html.push('<td>' + contractMoney + '元</td>');
