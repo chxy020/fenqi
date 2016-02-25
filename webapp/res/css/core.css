@@ -784,6 +784,7 @@
 
 .ui-nav .ui-nav-ul li.selected a .nav-ico{background-position:0 -35px;}
 .nav-ico.ico-service{background-position:-250px -36px;}
+.ui-nav .ui-nav-ul #li_1.selected a .nav-ico{background-position:-49px -90px;}
 
 .staging_div1{background-color:#fff;border-top:2px solid #f8f8f8;border-bottom:2px solid #f8f8f8;}
 .staging_div1 .ul{margin:30px 0;overflow:hidden;}
