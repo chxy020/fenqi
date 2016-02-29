@@ -96,6 +96,7 @@ $(function(){
 		html.push('<th>审批期数</th>');
 		html.push('<th>审批金额</th>');
 		html.push('<th>订单状态</th>');
+		html.push('<th>进件时间</th>');
 		html.push('<th>初审人员</th>');
 		html.push('<th>初审时间</th>');
 		html.push('<th>复审人员</th>');
@@ -108,6 +109,7 @@ $(function(){
 		var obj = data.list || [];
 		for(var i = 0,len = obj.length; i < len; i++){
 			var d = obj[i];
+			console.log(d);
 			html.push('<tr>');
 			html.push('<td>' + d.orderId + '</td>');
 			html.push('<td>' + d.applicantName + '</td>');
@@ -117,6 +119,7 @@ $(function(){
 			html.push('<td>' + (d.fenQiTimes==0?"":d.fenQiTimes + "期") + '</td>');
 			html.push('<td>' + (d.packageMoney==0?"":d.packageMoney + "元") +  '</td>');
 			html.push('<td>' + getOrderStatus(d.status) + '</td>');
+			html.push('<td>' + d.editCompleteTime + '</td>');
 			html.push('<td>' + (d.fk1_approve_name || "") +  '</td>');
 			html.push('<td>' + (d.fk1_approve_time || "") + '</td>');
 			html.push('<td>' + (d.fk2_approve_name || "" ) + '</td>');
