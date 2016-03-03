@@ -11,7 +11,8 @@ $(function(){
 	g.sendTime = 60;
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.httpTip = new Utils.httpTip({});
-
+	g.channel = Utils.getQueryString("channel") || "";
+	if(g.channel != ""){Utils.offLineStore.set("channel",g.channel,false);}	
 	//验证登录状态
 	g.loginStatus = Utils.getUserInfo();
 	if(!g.loginStatus){

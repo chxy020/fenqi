@@ -13,14 +13,14 @@ $(function(){
 	g.sendTime = 60;
 	g.customerId = "";
 	g.userPhone = "";
-
 	g.orderId = Utils.getQueryString("orderid") || "";
 	g.poundage = 0;
 	g.moneyMonth = 0;
 	g.stagnum = 0;
 	g.repaymentType = "";
 	g.orderUserInfo = {};
-
+	g.channel = Utils.getQueryString("channel") || "";
+	if(g.channel != ""){Utils.offLineStore.set("channel",g.channel,false);}	
 	g.packageType = "";
 	g.companyId = "";
 
