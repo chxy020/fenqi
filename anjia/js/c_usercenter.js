@@ -1580,7 +1580,7 @@ function sendGetPayOrderListHttp8(condi){
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
 			}
 			else if(status == "100508"){
-				html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td class="order_position"><a href="javascript:sendGetRepayOrderInfoListHttp(\'' + orderId + '\')" class="order_a"></a><a href="javascript:sendGetRepayOrderInfoListHttp(\'' + orderId + '\')">申请支付</a></td>');
 			}		
 			html.push('</tr>');
 			html.push('</table>');
