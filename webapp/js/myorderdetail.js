@@ -370,26 +370,31 @@ $(function(){
 		var obj = data.list || [];
 
 		var showRepay = true;
-
+		var yuqi_number = 0;//统计已逾期个数
 		for(var i = 0,len = obj.length; i < len; i++){
 			var d = obj[i];
 			var orderId = d.orderId || "";
 			var repaymentRecordId = d.repaymentRecordId || "主键";
 			var repaymentTypeDesc = d.repaymentTypeDesc || "";
-			var repaymentPrincipal = d.repaymentPrincipal || 0;
+			var residuePrincipal = d.residuePrincipal || 0;
 			var expectRepaymentTime = d.expectRepaymentTime || "";
 			var overdueTime = d.overdueTime || 0;
-			var overdueInterest = d.overdueInterest || 0;
-			var yinghuanjine = repaymentPrincipal  + overdueInterest;
+			var overdueFee = d.overdueFee || 0;
 			var realRepaymentTime = d.realRepaymentTime || "无";
 
 			var status = d.status || "";
 			var repaymentType = d.repaymentType || "";
-
+			var overdueCount = d.overdueCount || "";
 
 			html.push('<li>');
 			html.push('<div class="order-item-top">');
-			if(status == "101901"){				
+			if(status == "101903"){
+				html.push('<div class="order-state state-grey yuqi_color">已逾期</div>');
+			}
+			else if(status == "101904"){				
+				html.push('<div class="order-state state-grey yuqi_color">已违约</div>');
+			}
+			else if(status == "101901"){
 				if(g.pa == "1"){html.push('<div class="order-state state-grey">待缴服务费</div>');}
 				else {html.push('<div class="order-state state-grey">还款中</div>');}
 			}
@@ -400,7 +405,11 @@ $(function(){
 			html.push('<i class="common-ico product-ico"></i>还款详情');
 			html.push('</div>');
 			html.push('</div>');
-			html.push('<div class="order-item-box">');
+			if(status == "101903" || status == "101904"){
+			html.push('<div class="order-item-box yuqi1">');
+			}else {
+			html.push('<div class="order-item-box">');	
+			}
 			html.push('<div class="box-item">');
 			html.push('<div class="box-item-text">');
 			html.push('<p><i class="common-ico product-tip3"></i>还款类型：<span class="color-green">' + repaymentTypeDesc + '</span></p>');
@@ -408,7 +417,7 @@ $(function(){
 			html.push('</div>');
 			html.push('<div class="box-item">');
 			html.push('<div class="box-item-text">');
-			html.push('<p><i class="common-ico product-tip2"></i>还款本金：<span class="color-green">' + repaymentPrincipal + '</span>元</p>');
+			html.push('<p><i class="common-ico product-tip2"></i>还款本金：<span class="color-green">' + residuePrincipal + '</span>元</p>');
 			html.push('</div>');
 			html.push('</div>');
 			html.push('<div class="box-item">');
@@ -423,11 +432,31 @@ $(function(){
 			html.push('</div>');
 			html.push('<div class="box-item">');
 			html.push('<div class="box-item-text">');
-			html.push('<p><i class="common-ico product-tip2"></i>逾期金额：<span class="color-green">' + overdueInterest + '</span>元</p>');
+			html.push('<p><i class="common-ico product-tip2"></i>逾期费用：<span class="color-green">' + overdueFee + '</span>元</p>');
 			html.push('</div>');
 			html.push('</div>');
 			html.push('</div>');
-			if(status == "101901"){
+			if(status == "101904"){
+				yuqi_number++;
+				g.orderDetailInfo[repaymentRecordId] = d;
+				if(showRepay && yuqi_number == overdueCount){
+					showRepay = false;
+					html.push('<div class="order-item-btn-box">');
+					html.push('<a href="javascript:repayment(\'' + repaymentRecordId + '\')" class="item-btn item-btn-green">马上还款</a>');
+					html.push('</div>');
+				}
+			}
+			else if(status == "101903"){
+				yuqi_number++;
+				g.orderDetailInfo[repaymentRecordId] = d;
+				if(showRepay && yuqi_number == overdueCount){
+					showRepay = false;
+					html.push('<div class="order-item-btn-box">');
+					html.push('<a href="javascript:repayment(\'' + repaymentRecordId + '\')" class="item-btn item-btn-green">马上还款</a>');
+					html.push('</div>');
+				}
+			}
+			else if(status == "101901"){
 				g.orderDetailInfo[repaymentRecordId] = d;
 				if(showRepay){
 					showRepay = false;
@@ -597,11 +626,11 @@ $(function(){
 		var orderId = d.orderId || "";
 		var repaymentRecordId = d.repaymentRecordId || "主键";
 		var repaymentTypeDesc = d.repaymentTypeDesc || "";
-		var repaymentPrincipal = d.repaymentPrincipal || 0;
-		var expectRepaymentTime = d.expectRepaymentTime || "";
-		var overdueTime = d.overdueTime || 0;
-		var overdueInterest = d.overdueInterest || 0;
-		var yinghuanjine = repaymentPrincipal  + overdueInterest ;
+		var totalResiduePrincipal = d.totalResiduePrincipal || 0;
+		var firstExpectRepaymentTime = d.firstExpectRepaymentTime || "";
+		var firstOverdueTime = d.firstOverdueTime || 0;
+		var totalOverdueFee = d.totalOverdueFee || 0;
+		var totalCurrentBalance = d.totalCurrentBalance || 0 ;
 		var realRepaymentTime = d.realRepaymentTime || "无";
 
 		var dd = JSON.parse(g.orderInfo) || {};
@@ -669,20 +698,20 @@ $(function(){
 		html.push('<th>还款本金</th>');
 		html.push('<th>应还时间</th>');
 		html.push('<th>逾期天数</th>');
-		html.push('<th>逾期利息</th>');
+		html.push('<th>逾期费用</th>');
 		html.push('<th>应还金额</th>');
 		html.push('</tr>');
 		html.push('<tr>');
 		html.push('<td>' +repaymentTypeDesc + '</td>');
-		html.push('<td>' + repaymentPrincipal + '元</td>');
-		html.push('<td>' + expectRepaymentTime + '</td>');
-		html.push('<td>' + overdueTime + '天</td>');
-		html.push('<td>' + overdueInterest + '元</td>');
-		html.push('<td>' + yinghuanjine + '元</td>');
+		html.push('<td>' + totalResiduePrincipal + '元</td>');
+		html.push('<td>' + firstExpectRepaymentTime + '</td>');
+		html.push('<td>' + firstOverdueTime + '天</td>');
+		html.push('<td>' + totalOverdueFee + '元</td>');
+		html.push('<td>' + totalCurrentBalance + '元</td>');
 		html.push('</tr>');
 		html.push('</table>');
 		html.push('<div class="btn-box">');
-		html.push('<input type="button" class="common-btn btn-light-green" value="确认还款" onclick="confirmRepayment(\'' + repaymentRecordId + '\',' + yinghuanjine + ')" />');
+		html.push('<input type="button" class="common-btn btn-light-green" value="确认还款" onclick="confirmRepayment(\'' + repaymentRecordId + '\',' + totalCurrentBalance + ')" />');
 		html.push('<input type="button" class="common-btn btn-grey" value="取消" onclick="hidePop()" />');
 		html.push('</div>');
 

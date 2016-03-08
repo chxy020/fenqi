@@ -130,15 +130,15 @@ $(function(){
 		var orderId = d.orderId || "";
 		var repaymentRecordId = d.repaymentRecordId || "主键";
 		var repaymentTypeDesc = d.repaymentTypeDesc || "";
-		var repaymentPrincipal = d.repaymentPrincipal || 0;//月还款本金
-		var expectRepaymentTime = d.expectRepaymentTime || "";
-		var overdueTime = d.overdueTime || 0;
-		var overdueInterest = d.overdueInterest || 0;
-		var yinghuanjine = repaymentPrincipal  + overdueInterest ;
+		var totalOverdueFee = d.totalOverdueFee || 0;
+		var firstExpectRepaymentTime = d.firstExpectRepaymentTime || "";
+		var totalResiduePrincipal = d.totalResiduePrincipal || 0;//月还款本金
 		var realRepaymentTime = d.realRepaymentTime || "无";
-
-		var userorderinfo_list = Utils.offLineStore.get("userorderinfo_list",false) || "";
-		var dd = JSON.parse(userorderinfo_list) || {};
+		var totalCurrentBalance = d.totalCurrentBalance || 0;		
+		var firstOverdueTime = d.firstOverdueTime || 0;	
+		
+		/* var userorderinfo_list = Utils.offLineStore.get("userorderinfo_list",false) || "";
+		var dd = JSON.parse(userorderinfo_list) || {}; */
 		var orderId = dd.orderId || "";
 		var contractNo = dd.contractNo || "";
 		var packageName = dd.packageName || "";
@@ -148,11 +148,9 @@ $(function(){
 		var fenQiTimes = dd.fenQiTimes || 0;
 		var poundage = dd.poundage - 0 || 0;
 		var moneyMonth = dd.moneyMonth - 0 || 0;
-		var noRepaymentTimes = dd.noRepaymentTimes || 0;
-
+		var noRepaymentTimes = dd.noRepaymentTimes || 0;	
 		g.repaymentRecordId = repaymentRecordId;
-		g.yinghuanjine = yinghuanjine;
-
+		g.yinghuanjine = totalCurrentBalance;
 		var html = [];
 		html.push('<li>');
 		html.push('<div class="order-item-top">');
@@ -168,27 +166,27 @@ $(function(){
 		html.push('</div>');
 		html.push('<div class="box-item">');
 		html.push('<div class="box-item-text">');
-		html.push('<p><i class="common-ico product-tip1"></i>还款本金：<span class="color-green">' +repaymentPrincipal + '</span>元</p>');
+		html.push('<p><i class="common-ico product-tip1"></i>还款本金：<span class="color-green">' +totalResiduePrincipal + '</span>元</p>');
 		html.push('</div>');
 		html.push('</div>');
 		html.push('<div class="box-item">');
 		html.push('<div class="box-item-text">');
-		html.push('<p><i class="common-ico product-tip1"></i>应还时间：<span class="color-green">' + expectRepaymentTime + '</span></p>');
+		html.push('<p><i class="common-ico product-tip1"></i>应还时间：<span class="color-green">' + firstExpectRepaymentTime + '</span></p>');
 		html.push('</div>');
 		html.push('</div>');
 		html.push('<div class="box-item">');
 		html.push('<div class="box-item-text">');
-		html.push('<p><i class="common-ico product-tip3"></i>逾期天数：<span class="color-green">' + overdueTime + '</span>天</p>');
+		html.push('<p><i class="common-ico product-tip3"></i>逾期天数：<span class="color-green">' + firstOverdueTime + '</span>天</p>');
 		html.push('</div>');
 		html.push('</div>');
 		html.push('<div class="box-item">');
 		html.push('<div class="box-item-text">');
-		html.push('<p><i class="common-ico product-tip2"></i>逾期利息：<span class="color-green">' + overdueInterest + '</span>元</p>');
+		html.push('<p><i class="common-ico product-tip2"></i>逾期利息：<span class="color-green">' + totalOverdueFee + '</span>元</p>');
 		html.push('</div>');
 		html.push('</div>');
 		html.push('<div class="box-item">');
 		html.push('<div class="box-item-text">');
-		html.push('<p><i class="common-ico product-tip2"></i>应还金额：<span class="color-green">' + yinghuanjine + '</span>元</p>');
+		html.push('<p><i class="common-ico product-tip2"></i>应还金额：<span class="color-green">' + totalCurrentBalance + '</span>元</p>');
 		html.push('</div>');
 		html.push('</div>');
 		html.push('</div>');
@@ -251,14 +249,16 @@ $(function(){
 		html.push('</div>');
 		html.push('</div>'); */
 		//}
-		for(var i = 0; i < g.coupons.length; i++){
-			var coupons_money_span = g.coupons[i][0] || "";
-			html.push('<br><div class="box-item">');
-			html.push('<div class="box-item-text">');
-			html.push('&nbsp;&nbsp;&nbsp;<div class="chk-bg cklikeCheckboxn" style="display:inline-block" ><input type="checkbox" name="coupons_value1" id="coupons_value'+i+'"  class="common-checkbox" style="display: none;"></div><p style="display:inline-block;width:auto;padding-left:0;">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span class="color-green" >'+coupons_money_span+'元</span></p>');
-			html.push('</div>');
-			html.push('</div>');
-		}
+		if(g.pa == "1"){
+			for(var i = 0; i < g.coupons.length; i++){
+				var coupons_money_span = g.coupons[i][0] || "";
+				html.push('<br><div class="box-item">');
+				html.push('<div class="box-item-text">');
+				html.push('&nbsp;&nbsp;&nbsp;<div class="chk-bg cklikeCheckboxn" style="display:inline-block" ><input type="checkbox" name="coupons_value1" id="coupons_value'+i+'"  class="common-checkbox" style="display: none;"></div><p style="display:inline-block;width:auto;padding-left:0;">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span class="color-green" >'+coupons_money_span+'元</span></p>');
+				html.push('</div>');
+				html.push('</div>');
+			}
+		}	
 		html.push('</div>');
 		html.push('</li>');
 
@@ -268,7 +268,7 @@ $(function(){
 	}
 	function n_click(){
 		$(".cklikeCheckboxn").click(function(){
-			if($(this).find(".common-checkbox").attr("checked")=="checked"){				
+			if($(this).find(".common-checkbox").attr("checked")=="checked"){
 				$(this).removeClass("chk-bg-checked");
 				$(this).find(".common-checkbox").attr("checked",false);				
 			}else{

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>违约订单管理</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../Css/base.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/calendar.css" />
+	<script type="text/javascript" src="../Js/jquery.js"></script>
+	<script type="text/javascript" src="../Js/bootstrap.js"></script>
+	<script type="text/javascript" src="../Js/ckform.js"></script>
+	<script type="text/javascript" src="../Js/common.js"></script>
+	<script type="text/javascript" src="../libs/json.js"></script>
+	<script type="text/javascript" src="../libs/base.js"></script>
+	<script type="text/javascript" src="../libs/utils.js"></script>
+	<script type="text/javascript" src="../libs/calendar.js"></script>
+	<script type="text/javascript" src="../Js/HmgxExtend.js"></script>
+	<script src="../Js/HmgxExtend.js"></script>
+	<script src="js/WeiYueManage.js"></script>
+
+	<style type="text/css">
+		body {
+			padding-bottom: 40px;
+		}
+		.sidebar-nav {
+			padding: 9px 0;
+		}
+		@media (max-width: 980px) {
+			.navbar-text.pull-right {
+				float: none;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+		}
+		#orderlist th,#orderlist td{
+			white-space: nowrap
+		}
+	</style>
+</head>
+<body>
+	<form id="CX" class="form-inline definewidth m20" action="" method="get">
+		申请人姓名：
+		<input type="text" id="applicantName" name="applicantName" style="width:150px;" />&nbsp;&nbsp;
+		申请人电话：
+		<input type="text" id="applicantPhone" name="applicantPhone" style="width:150px;" />&nbsp;&nbsp;
+		逾期天数：
+		<input type="text" id="overdueDay" name="overdueDay" style="width:150px;">&nbsp;&nbsp;
+		订单状态：
+		<select id="status" name="status" style="width:153px;" >
+			<option value="" selected>全部</option>
+			<option value="100511">已违约</option>
+			<option value="100513">违约已还清</option>
+		</select>&nbsp;&nbsp;
+		<div style="height: 5px"></div>
+		开&nbsp;始&nbsp;时&nbsp;间：
+		<input type="text" id="finishContractTimeBegin" name="finishContractTimeBegin" style="width:150px;" />&nbsp;&nbsp;
+		结&nbsp;束&nbsp;时&nbsp;间：
+		<input type="text" id="finishContractTimeEnd" name="finishContractTimeEnd" style="width:150px;" />&nbsp;&nbsp;
+		订单编号：
+		<input type="text" id="orderId" name="orderId" style="width:150px;" />&nbsp;&nbsp;
+		<button id="querybtn" type="button" class="btn btn-primary">查询</button>&nbsp;&nbsp;
+		<button type="button" class="btn btn-success" onclick="OutXls()">导出</button>
+	</form>
+
+	<div id="orderlist" style=""></div>
+
+	<!--分期列表-代还款 -->
+	<div id="fqlb_dhkDiv" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align:left;">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h4>分期列表-代还款</h4>
+		</div>
+		<div style="padding-left: 20px">
+			代还金额:<span id="fqlb_Amount" repaymentRecordId=""></span>元<br>
+			代还日期:<input type="text" id="realRepaymentTime" name="realRepaymentTime" style="width:150px; margin-top: 5px" />
+		</div>
+		<div class="modal-footer" style="text-align: center">
+			<button class="btn btn-warning" onclick="SafeFqlb_Dhk()">代还款</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button class="btn " data-dismiss="modal" aria-hidden="true">关闭</button>
+		</div>
+	</div>
+</body>
+</html>

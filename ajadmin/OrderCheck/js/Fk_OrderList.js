@@ -109,7 +109,6 @@ $(function(){
 		var obj = data.list || [];
 		for(var i = 0,len = obj.length; i < len; i++){
 			var d = obj[i];
-			console.log(d);
 			html.push('<tr>');
 			html.push('<td>' + d.orderId + '</td>');
 			html.push('<td>' + d.applicantName + '</td>');

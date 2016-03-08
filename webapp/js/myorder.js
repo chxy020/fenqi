@@ -35,7 +35,14 @@ $(function(){
 		if(Utils.getQueryString('orderType') && Utils.getQueryString('orderType') == '100507'){
 			$("#100507").parents('.staging-tab-item').trigger('click');
 			$("#100507").trigger('click');
-		}else{
+		}
+		else if(Utils.getQueryString('orderType') && Utils.getQueryString('orderType') == '100510'){
+			$("#100510").trigger('click');
+		}
+		else if(Utils.getQueryString('orderType') && Utils.getQueryString('orderType') == '100511'){
+			$("#100511").trigger('click');
+		}
+		else{
 			//获取全部订单列表
 			getUserOrderList(true);
 		}
@@ -305,12 +312,20 @@ $(function(){
 
 			html.push('<li>');
 			html.push('<div class="order-item-top">');
-			html.push('<div class="order-state state-grey">' + statusDes + '</div>');
+			if(status == "100510" || status == "100511"){
+				html.push('<div class="order-state state-grey yuqi_color">' + statusDes + '</div>');
+			}else{
+				html.push('<div class="order-state state-grey">' + statusDes + '</div>');	
+			}
 			html.push('<div class="order-type-name">');
 			html.push('<i class="common-ico product-ico"></i>' + packageName);
 			html.push('</div>');
 			html.push('</div>');
-			html.push('<div class="order-item-box">');
+			if(status == "100510" || status == "100511"){
+			html.push('<div class="order-item-box yuqi1">');
+			}else {
+			html.push('<div class="order-item-box">');	
+			}
 			html.push('<div class="box-item">');
 			html.push('<div class="box-item-text">');
 			html.push('<p><i class="common-ico product-tip1"></i>订单编号：<span class="color-green">' + orderId + '</span></p>');
@@ -348,7 +363,7 @@ $(function(){
 			else if(status == "100502"){
 				//100502: "商家审核中"
 				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',3)" class="item-btn item-btn-green">查看</a>');
-				html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>');
+				/* html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>'); */
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',1)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else if(status == "100503"){
@@ -357,7 +372,7 @@ $(function(){
 				/* html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>'); */
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',1)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
-			else if(status == "100504" || status == "100509"){
+			else if(status == "100504"){
 				//html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>');
 				//html.push('<td><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
@@ -381,7 +396,29 @@ $(function(){
 				html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>');
 				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
-
+			else if(status == "100509"){
+				//拒绝
+				html.push('<a href="../mystaging/mystaging.html?orderid=' + orderId + '" class="item-btn item-btn-green">编辑</a>');
+				html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>');
+			}
+			else if(status == "100510"){
+				//已逾期
+				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',2)" class="item-btn item-btn-green">查看</a>');
+			}
+			else if(status == "100511"){
+				//已违约
+				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',4)" class="item-btn item-btn-green">查看</a>');
+			}
+			else if(status == "100512"){
+				//逾期已还清
+				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',1)" class="item-btn item-btn-green">查看</a>');
+				html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>');
+			}
+			else if(status == "100513"){
+				//违约已还清
+				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',1)" class="item-btn item-btn-green">查看</a>');
+				html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>');
+			}
 			html.push('</div>');
 			html.push('</li>');
 		}
@@ -600,11 +637,14 @@ $(function(){
 		if(t == 0){
 			location.href = "repayment-list-item.html?orderId=" + orderId ;
 		}
-		else if(t == 1){			
+		else if(t == 4){//已违约
+			location.href = "repayment-list-item.html?orderId=" + orderId+"&pa=4";
+		}
+		else if(t == 1){//待缴费
 			location.href = "repayment-list-item.html?orderId=" + orderId+"&pa=1";
 		}
 		else if(t == 2){//还款中
-			location.href = "repayment-list-item.html?orderId=" + orderId+"&pa=2";			
+			location.href = "repayment-list-item.html?orderId=" + orderId+"&pa=2";
 		}
 		else{
 			layer.msg("订单正在审核,请耐心等待！");

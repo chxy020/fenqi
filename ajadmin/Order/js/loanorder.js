@@ -47,6 +47,7 @@ $(function(){
 	}
 
 	$("#querybtn").bind("click",queryOrderList);
+	$("#export").attr("href", Base.serverUrl  + "order/queryLoanRecordByQueryExport?login_token=" + g.login_token);
 
 	function queryOrderList(){
 		g.currentPage = 1;

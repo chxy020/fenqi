@@ -10,7 +10,8 @@ $(function(){
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	//g.page = Utils.getQueryString("p") - 0;
 	g.httpTip = new Utils.httpTip({});
-
+	g.weiyue_message = Utils.offLineStore.get("weiyue_message",false) || "";
+	g.yuqi_weiyue = false;//判断用户是否有逾期或者违约的单子
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -18,20 +19,177 @@ $(function(){
 		location.replace("../login/login.html");
 	}
 	else{
+		yuqi_message_fuc2();
 		getUserInfo();
 		sendGetRepayOrderListHttp();
 		//sendGetUserInfoDicHttp();
+		if(g.weiyue_message != "1"){yuqi_message_fuc();}
+		//yuqi_message_fuc();
 	}
 
 
 
 	//头像
+	$("html,body").click(function(){
+		if($(".yuqi_box1").css("display") != "none" || $(".yuqi_box2").css("display") != "none"){
+			$(".yuqi_box").slideUp(300);
+			Utils.offLineStore.set("weiyue_message",1,false);
+		}
+	});
+	$(".yuqi_box").click(function(event){
+		event.stopPropagation(); 
+	})
 	$(document).on("change","#avatar",avatarBtnUp);
 	//保存个人资料
 	//$("#savebtn").bind("click",saveBtnUp);
-
+	$(".yuqi_box a.close_btn,.yuqi_box.yuqi_box2 .btn a.a_btn2").bind("click",close_box);	
+	$(".yuqi_box span.color").bind("click",show_toggle);
 	$("#loginoutbtn").bind("click",loginOutBtn);
 
+	/* 逾期 */
+	function yuqi_message_fuc(){
+		//order/selectCustomerOrderNextRepaymentRecords
+		var condi = {};
+		condi.login_token = g.login_token;
+		var url = Base.serverUrl + "order/selectCustomerOrderNextRepaymentRecords";//修改之前queryOrdersController
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var success = data.success || false;
+				if(success){
+					var obj = data.list || [];
+					var yuqi = "",weiyue = "",j_yuqi = "";
+					for(var i = 0,len = obj.length; i < len; i++){
+						var d = obj[i];
+						var repaymentStatus =d.repaymentStatus || "";
+						var orderId = d.orderId || "";
+						var orderStatus = d.orderStatus || "";
+						var repaymentTimes = d.repaymentTimes || "";
+						var newRepaymentTimes = d.newRepaymentTimes || "";//最新一笔逾期的
+						var repayResidueDay = d.repayResidueDay || 0;
+						
+						if(repaymentStatus == "101901"){
+							j_yuqi +='您的订单'+orderId+'的第'+repaymentTimes+'笔分期距离付款截止日期仅有'+repayResidueDay+'天；';
+						}
+						else if(orderStatus == "100510"){
+							yuqi +='您的订单'+orderId+'的第'+newRepaymentTimes+'笔分期已逾期；';
+						}
+						else if(orderStatus == "100511"){
+							weiyue += '您的订单'+orderId+'已违约；';
+						}
+						if(j_yuqi != ""){
+							$(".yuqi_box.yuqi_box1 p.text .text_list").html(j_yuqi);
+							setTimeout(function(){$(".yuqi_box.yuqi_box1").slideDown(300);},500);
+						}
+						if(yuqi != ""){
+							$(".yuqi_box.yuqi_box2 p.text1 .text_list").html(yuqi);
+							$(".yuqi_box.yuqi_box2").addClass("yuqi");
+							if($(".yuqi_box.yuqi_box2").css("display") == "none"){
+								setTimeout(function(){$(".yuqi_box.yuqi_box2").fadeIn(500);},500);																
+							}
+						}
+						if(weiyue != ""){
+							$(".yuqi_box.yuqi_box2 p.text2 .text_list").html(weiyue);
+							$(".yuqi_box.yuqi_box2").addClass("weiyue");
+							if($(".yuqi_box.yuqi_box2").css("display") == "none"){
+								setTimeout(function(){$(".yuqi_box.yuqi_box2").fadeIn(500);},500);	
+							}
+						}
+					}
+					
+				}
+				else{
+					var msg = data.message || "获取逾期信息失败";
+					Utils.alert(msg);
+				}
+			},
+			error:function(data){
+			}
+		});	
+	}
+	/* 每次进个人中心实时监测是否有逾期 违约订单 然后控制我的额度 是否可用 */
+	function yuqi_message_fuc2(){
+		//order/selectCustomerOrderNextRepaymentRecords
+		var condi = {};
+		condi.login_token = g.login_token;
+		var url = Base.serverUrl + "order/selectCustomerOrderNextRepaymentRecords";//修改之前queryOrdersController
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var success = data.success || false;
+				if(success){
+					var obj = data.list || [];
+					var yuqi = "",weiyue = "",j_yuqi = "";
+					g.yuqi_weiyue = false;
+					for(var i = 0,len = obj.length; i < len; i++){
+						var d = obj[i];
+						var repaymentStatus =d.repaymentStatus || "";
+						var orderId = d.orderId || "";
+						var orderStatus =d.orderStatus || "";
+						var repaymentTimes = d.repaymentTimes || "";
+						var repayResidueDay = d.repayResidueDay || 0;
+						
+						if(orderStatus == "100510"){
+							yuqi +='1';
+						}
+						else if(orderStatus == "100511"){
+							weiyue += '1';
+						}							
+					}
+					if(yuqi != "" || weiyue != ""){
+						g.yuqi_weiyue = true;
+					}
+					if(g.yuqi_weiyue){
+						$("#userleft_abtn").removeAttr("href").addClass("usercenter_a");
+					}else{
+						$("#userleft_abtn").attr("href","../edu/index.html").removeClass("usercenter_a");
+					}
+					
+				}
+				else{
+					var msg = data.message || "获取逾期信息失败";
+					Utils.alert(msg);
+				}
+			},
+			error:function(data){
+			}
+		});
+		
+		
+	}
+		/* 关闭窗口 */
+	function close_box(event){
+		$(this).parents(".yuqi_box").slideUp(300);
+		Utils.offLineStore.set("weiyue_message",1,false);
+		event.stopPropagation(); 
+	}
+	$(".yuqi_box.yuqi_box2 .btn a.a_btn1").click(function(event){
+		$(this).parents(".yuqi_box").slideUp(300);
+		Utils.offLineStore.set("weiyue_message",1,false);
+		location.href="../order/index.html?orderType=100510";
+		event.stopPropagation();
+	})
+	$(".yuqi_box.yuqi_box2 .btn a.a_btn3").click(function(event){
+		$(this).parents(".yuqi_box").slideUp(300);
+		Utils.offLineStore.set("weiyue_message",1,false);
+		location.href="../order/index.html?orderType=100511";
+		event.stopPropagation();
+	})
+		/* 显示详情 */
+	function show_toggle(){
+		
+		$(this).toggleClass("active").parents(".yuqi_box").find("p.text_message").slideToggle(300);
+		if($(this).html() == "查看详情"){$(this).parents(".yuqi_box").find("span.color").html("隐藏详情");}else{$(this).parents(".yuqi_box").find("span.color").html("查看详情");}
+		$(this).parents(".yuqi_box").css("z-index","999").siblings(".yuqi_box").css("z-index","998");
+	}
 
 	//获取个人资料
 	function getUserInfo(){

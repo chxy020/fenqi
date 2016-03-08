@@ -111,12 +111,12 @@ $(function(){
 						g.customerId = userInfo.customerId || "";
 						userInfo = JSON.stringify(userInfo);
 						//保存用户数据
+						Utils.offLineStore.remove("weiyue_message",false);
 						Utils.offLineStore.set("userinfo",userInfo,false);
 						var token = data.token || "";
 						g.login_token = token;
 						Utils.offLineStore.set("token",token,false);
 						/* 判断是否是从元宵活动页过来的 */
-						
 						var compare = GetRequest().p;
 						if(compare==1){location.replace("../mystaging/mystaging.html");}//分期付款
 						else if(compare==2){location.replace("../order/index.html?orderType=100507");}//还款中

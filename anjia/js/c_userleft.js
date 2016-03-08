@@ -147,9 +147,50 @@ if(__ostatus__ == "100509" ){
 else{
 	__html__.push('<dd>');
 }
-__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100509">未通过</a>');
+__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100509">拒绝</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
+/*  */
+if(__ostatus__ == "100510"){
+	__html__.push('<dd class="selected">');
+}
+else{
+	__html__.push('<dd>');
+}
+__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100510">已逾期</a>');
+__html__.push('<i class="common-ico ico-selected-flag"></i>');
+__html__.push('</dd>');
+/*  */
+if(__ostatus__ == "100511"){
+	__html__.push('<dd class="selected">');
+}
+else{
+	__html__.push('<dd>');
+}
+__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100511">已违约</a>');
+__html__.push('<i class="common-ico ico-selected-flag"></i>');
+__html__.push('</dd>');
+/*  */
+if(__ostatus__ == "100512"){
+	__html__.push('<dd class="selected">');
+}
+else{
+	__html__.push('<dd>');
+}
+__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100512">逾期已还清</a>');
+__html__.push('<i class="common-ico ico-selected-flag"></i>');
+__html__.push('</dd>');
+/*  */
+if(__ostatus__ == "100513"){
+	__html__.push('<dd class="selected">');
+}
+else{
+	__html__.push('<dd>');
+}
+__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100513">违约已还清</a>');
+__html__.push('<i class="common-ico ico-selected-flag"></i>');
+__html__.push('</dd>');
+/*  */
 __html__.push('</dl>');
 __html__.push('</li>');
 
@@ -161,7 +202,7 @@ if(__item__ == 5){
 else{
 	__html__.push('<div class="nav-main-item">');
 }
-__html__.push('<a href="/anjia/usercenter.html?item=5&ostatus=100500">我的额度</a>');
+__html__.push('<a id="userleft_abtn" href="/anjia/usercenter.html?item=5&ostatus=100500">我的额度</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</div>');
 __html__.push('</li>');

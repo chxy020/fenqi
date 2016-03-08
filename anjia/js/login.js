@@ -104,7 +104,7 @@ $(function(){
 						//保存用户数据
 						Utils.offLineStore.set("userinfo",userInfo,false);
 						var token = data.token || "";
-
+						Utils.offLineStore.remove("weiyue_message",false);
 						Utils.offLineStore.set("token",token,false);
 						var compare=GetRequest().p;						
 						if(compare==1){location.href = "/anjia/mystaging.html"}

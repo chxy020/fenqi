@@ -1640,3 +1640,25 @@ i.happy_body_ico{bottom: 47%;position: fixed;right: 0;width: 86px;height:133px;z
 /* 家装分期 */
 .staging_div4 h4 a.more{font-size:18px;text-decoration:underline;color:#546d1c;}
 
+/* 逾期 */
+.yuqi1{background-color:#fbcdcd;} /* 已逾期 */
+.yuqi2{background-color:#fed74b;} /* 将要逾期 */
+.yuqi_box{z-index:999;background-color:#fff;position:absolute;top:0;right:0;width:40%;border:2px solid #9bc03c;border-radius:7px;font-size:16px;color:#333333;line-height:25px;}
+.yuqi_box a.close_btn{display:inline-block;float:right;width:41px;height:31px;background:url('../images/yuqi_close.png') no-repeat center center;}
+.yuqi_box p.text{margin:10px 16px;}
+.yuqi_box p.text_message{background-color:#f5f5f5;padding:14px;display:none;margin:10px 16px;font-size:14px;line-height:20px;}
+.yuqi_box a{cursor:pointer;}
+.yuqi_box span.color{color:#9bc03c;cursor:pointer;}
+.yuqi_box.yuqi_box2 {box-shadow:0 0 30px #444;top:26%;left:0;right:0;margin:0 auto;}
+.yuqi_box.yuqi_box2  .btn{text-align:center;}
+.yuqi_box.yuqi_box2  .btn a{display:inline-block;width:106px;height:37px;margin:0 3%;}
+.yuqi_box.yuqi_box2  .btn a.a_btn1,.yuqi_box.yuqi_box2  .btn a.a_btn3{background:url('../images/yuqi_btn1.png') no-repeat center center;background-size:contain;}
+.yuqi_box.yuqi_box2  .btn a.a_btn2{background:url('../images/yuqi_btn2.png') no-repeat center center;background-size:contain;}
+
+.yuqi_box{display:none;}
+.yuqi_box.yuqi_box2 p.text,.yuqi_box.yuqi_box2 div.btn{display:none;}
+.yuqi_box.yuqi_box2.weiyue div.btn2,.yuqi_box.yuqi_box2.weiyue p.text2{display:block;} 
+.yuqi_box.yuqi_box2.yuqi div.btn1,.yuqi_box.yuqi_box2.yuqi p.text1{display:block;} 
+
+.sub-left-nav ul li .nav-main-item .usercenter_a,.sub-left-nav ul li .nav-main-item .usercenter_a:hover{color:#969696;cursor:unset;}
+.order-table tr .yuqi_color{color:#ea0606;}
