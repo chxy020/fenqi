@@ -1146,3 +1146,11 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .slide-btn-box{height:247px;}
 .slide-right-part div,.slide-right-part a,.slide-right-part{opacity:0;filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;}
 
+/* 身份证提示 */
+.upload-inf-title span.idcard{position:relative;cursor:default;color:#5e7e0c;}
+.upload-inf-title span.idcard img{transition:all .5s ease-in-out;position:absolute;top:22px;left:0;display:none;}
+.upload-inf-title span.idcard:hover{color:inherit;}
+.upload-inf-title span.idcard:hover img{display:inline;}
+.upload-inf-title span.idcard4 img{left:auto;right:0;}
+
+

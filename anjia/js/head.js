@@ -101,10 +101,10 @@ __html__.push('<div class="ui-nav">');
 __html__.push('<ul>');
 //通过url参数,判断selected应该加在哪
 typePageId = getQueryString('typePageId');
-__html__.push('<li><a href="/anjia/index.html?typePageId=0" class="'+((typePageId == '0' || typePageId == '')&&"selected")+'">首页</a></li>');
-__html__.push('<li><a href="/anjia/staging.html?typePageId=1" class="'+((typePageId == '1')&&"selected")+'">家装分期</a></li>');
-__html__.push('<li><a href="/anjia/business.html?typePageId=2" class="'+((typePageId == '2')&&"selected")+'">合作商家</a></li>');
-__html__.push('<li class="no-right-border"><a href="/anjia/about.html?typePageId=3" class="'+((typePageId == '3')&&"selected")+'">关于我们</a></li>');
+__html__.push('<li><a href="/anjia/index.html?typePageId=0" class="'+((typePageId == '0' || typePageId == '')&&"selected")+'"><span><i>首页</i></span></a></li>');
+__html__.push('<li><a href="/anjia/staging.html?typePageId=1" class="'+((typePageId == '1')&&"selected")+'"><span><i>家装分期</i></span></a></li>');
+__html__.push('<li><a href="/anjia/business.html?typePageId=2" class="'+((typePageId == '2')&&"selected")+'"><span><i>合作商家</i></span></a></li>');
+__html__.push('<li class="no-right-border"><a href="/anjia/about.html?typePageId=3" class="'+((typePageId == '3')&&"selected")+'"><span><i>关于我们</i></span></a></li>');
 __html__.push('</ul>');
 __html__.push('</div>');
 __html__.push('</div>');
