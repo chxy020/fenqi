@@ -297,16 +297,26 @@ $(function(){
 			var expiry = getDays(now,expiryDate)>0 || false;
 			var d2 = expiryDate.split("-") || [];
 			var money = d.money || 0;
+			var discount = d.discount || 0;
 			var useLeastMoney = d.useLeastMoney || 0;
-			var status = d.status || "";			
+			var status = d.status || "";
+			var couponType = d.couponType || "";
 			html.push('<li>');
 			if( !expiry && status=="102601"){html.push('<img class="back" src="../res/images/coupons_img1.jpg"/>');}
 			else if( !expiry && status=="102602"){html.push('<img class="back" src="../res/images/coupons_img2.jpg"/>');}
 			else if(expiry){html.push('<img class="back" src="../res/images/coupons_img3.jpg"/>');}
 			else{html.push('<img class="back" src="../res/images/coupons_img3.jpg"/>');}
 			html.push('<div class="back2">');
-			html.push('<span class="left"><i>¥</i>'+money+'</span><span class="right"><i>抵用券</i><br>（满'+useLeastMoney+'可用）</span>');
-			html.push('<p>使用期限：'+d1[0]+'年'+d1[1]+'月'+d1[2]+'日-'+d2[0]+'年'+d2[1]+'月'+d2[2]+'日</p>');
+			if(couponType == "1"){
+				html.push('<span class="left"><i></i>'+discount+'折</span><span class="right"><i>抵用券</i><br>（满'+useLeastMoney+'可用）</span>');
+			}else{
+				html.push('<span class="left"><i>¥</i>'+money+'</span><span class="right"><i>抵用券</i><br>（满'+useLeastMoney+'可用）</span>');
+			}
+			if(expiryDate ==""){
+				html.push('<p>使用期限：不限</p>');
+			}else{
+				html.push('<p>使用期限：'+d1[0]+'年'+d1[1]+'月'+d1[2]+'日-'+d2[0]+'年'+d2[1]+'月'+d2[2]+'日</p>');
+			}
 			html.push('</div>');
 			html.push('</li>');
 

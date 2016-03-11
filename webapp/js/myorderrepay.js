@@ -254,7 +254,11 @@ $(function(){
 				var coupons_money_span = g.coupons[i][0] || "";
 				html.push('<br><div class="box-item">');
 				html.push('<div class="box-item-text">');
-				html.push('&nbsp;&nbsp;&nbsp;<div class="chk-bg cklikeCheckboxn" style="display:inline-block" ><input type="checkbox" name="coupons_value1" id="coupons_value'+i+'"  class="common-checkbox" style="display: none;"></div><p style="display:inline-block;width:auto;padding-left:0;">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span class="color-green" >'+coupons_money_span+'元</span></p>');
+				if(g.coupons[i][3] != 0){
+					html.push('&nbsp;&nbsp;&nbsp;<div class="chk-bg cklikeCheckboxn" style="display:inline-block" ><input type="checkbox" name="coupons_value1" id="coupons_value'+i+'"  class="common-checkbox" style="display: none;"></div><p style="display:inline-block;width:auto;padding-left:0;">使用优惠券&nbsp;&nbsp;&nbsp;优惠折扣<span class="color-green" >'+g.coupons[i][3]+'折</span></p>');
+				}else{
+					html.push('&nbsp;&nbsp;&nbsp;<div class="chk-bg cklikeCheckboxn" style="display:inline-block" ><input type="checkbox" name="coupons_value1" id="coupons_value'+i+'"  class="common-checkbox" style="display: none;"></div><p style="display:inline-block;width:auto;padding-left:0;">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span class="color-green" >'+coupons_money_span+'元</span></p>');
+				}					
 				html.push('</div>');
 				html.push('</div>');
 			}
@@ -306,8 +310,14 @@ $(function(){
 							var coupons_money_span = dd[i].money || 0;
 							var get_coupons_couponId = dd[i].couponId || "";
 							var useLeastMoney = dd[i].useLeastMoney || 0;
+							var couponType = dd[i].couponType || "";
+							var discount = dd[i].discount || 0;//折扣
+							if(couponType == "1" && discount != 0){
+								var coupon_money = poundage*(10-discount)/10 || 0;
+								coupons_money_span = coupon_money.toFixed(2) || 0;
+							}
 							if(poundage >= useLeastMoney && coupons_money_span > 0){
-								g.coupons[i] = [coupons_money_span,get_coupons_couponId,useLeastMoney];
+								g.coupons[i] = [coupons_money_span,get_coupons_couponId,useLeastMoney,discount];
 							}
 						}
 					}				

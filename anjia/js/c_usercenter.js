@@ -2757,7 +2757,11 @@ function sendGetPayOrderListHttp12(condi){
 				var coupons_money_span = g.coupons[i][0] || "";
 				html.push('<tr>');
 				html.push('<td class="odd">优惠券</td>');
-				html.push('<td class="even"><div class="chk-bg cklikeCheckboxn" ><input type="checkbox" name="coupons_value" id="coupons_value'+i+'"  class="common-checkbox" style="display: none;"></div><label style="float:none;" for="coupons_value">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span id="coupons_money_span">'+coupons_money_span+'元</span></label></td>');
+				if(g.coupons[i][3] != 0){
+					html.push('<td class="even"><div class="chk-bg cklikeCheckboxn" ><input type="checkbox" name="coupons_value" id="coupons_value'+i+'"  class="common-checkbox" style="display: none;"></div><label style="float:none;" for="coupons_value">使用优惠券&nbsp;&nbsp;&nbsp;优惠折扣<span id="coupons_money_span">'+g.coupons[i][3]+'折</span></label></td>');
+				}else{
+					html.push('<td class="even"><div class="chk-bg cklikeCheckboxn" ><input type="checkbox" name="coupons_value" id="coupons_value'+i+'"  class="common-checkbox" style="display: none;"></div><label style="float:none;" for="coupons_value">使用优惠券&nbsp;&nbsp;&nbsp;当前余额<span id="coupons_money_span">'+coupons_money_span+'元</span></label></td>');
+				}				
 				html.push('</tr>');	
 			}
 		}
@@ -2821,8 +2825,14 @@ function sendGetPayOrderListHttp12(condi){
 						var coupons_money_span = dd[i].money || 0;
 						var get_coupons_couponId = dd[i].couponId || "";
 						var useLeastMoney = dd[i].useLeastMoney || 0;
+						var couponType = dd[i].couponType || "";
+						var discount = dd[i].discount || 0;//折扣
+						if(couponType == "1" && discount != 0){
+							var coupon_money = poundage*(10-discount)/10 || 0;
+							coupons_money_span = coupon_money.toFixed(2) || 0;
+						}
 						if(poundage >= useLeastMoney && coupons_money_span > 0){
-							g.coupons[i] = [coupons_money_span,get_coupons_couponId,useLeastMoney];
+							g.coupons[i] = [coupons_money_span,get_coupons_couponId,useLeastMoney,discount];
 						}
 					}
 				}
