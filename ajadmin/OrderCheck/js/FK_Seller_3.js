@@ -48,8 +48,10 @@ $(function () {
                 $("#fenQiTimes").val(RowData.fenQiTimes || "请选择审批期数！");
                 fenQiTimesChange();//绑定分期期数后， 要计算一下，否则在不修改的时候 审批通过取不到值
                 $("#fk1_approve_report").val(RowData.fk1_approve_report);
+                $("#fk1_approve_nameSpan").text(RowData.fk1_approve_name);
                 $("#fk1_approve_remarks").val(RowData.fk1_approve_remarks);
                 $("#fk2_approve_report").val(RowData.fk2_approve_report);
+                $("#fk3_approve_nameSpan").text(RowData.fk3_approve_name);
                 g.httpTip.hide();
             },
             error: function (data) {

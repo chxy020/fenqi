@@ -1,24 +1,23 @@
 /**
  * author:hmgx
- * function:待交手续费
- * data:2016-1-12
+ * function:订单统计报表
+ * data:2016-3-10
  */
 
 //页面初始化
 $(function () {
-    if (typeof eui !== "undefined") {
+    if(typeof eui !== "undefined"){
         eui.calendar({
             startYear: 1900,
-            input: document.getElementById('createTimeBegin'),
-            id: "createTimeBegin"
+            input: document.getElementById('editCompleteTimeBegin'),
+            id:"createTimeBegin"
         });
         eui.calendar({
             startYear: 1900,
-            input: document.getElementById('createTimeEnd'),
-            id: "createTimeEnd"
+            input: document.getElementById('editCompleteTimeEnd'),
+            id:"createTimeEnd"
         });
     }
-
     var g = {};
     g.phone = "";
     g.imgCodeId = "";
@@ -26,7 +25,6 @@ $(function () {
     g.sendTime = 60;
     g.login_token = Utils.offLineStore.get("token", false) || "";
     g.httpTip = new Utils.httpTip({});
-
     g.totalPage = 1;
     g.currentPage = 1;
     g.pageSize = 10;
@@ -35,9 +33,10 @@ $(function () {
     //验证登录状态
     var loginStatus = Utils.getUserInfo();
     if (!loginStatus) {
-
+        alert("您未登陆！");
     } else {
         sendGetUserInfoDicHttp();
+        getBranchCompany();
         queryOrderList();
     }
 
@@ -48,109 +47,92 @@ $(function () {
         sendQueryOrderListHttp();
     }
 
-    function sendGetCompanyInfoHttp() {
-        g.httpTip.show();
-        var url = Base.serverUrl + "order/queryCompanyController";
-        var condi = {};
-        $.ajax({
-            url: url,
-            data: condi,
-            type: "POST",
-            dataType: "json",
-            context: this,
-            success: function (data) {
-                //console.log("sendGetCompanyInfoHttp",data);
-                var status = data.success || false;
-                if (status) {
-                    var obj = data.list || [];
-                    changeSelectHtml(obj);
-
-                    sendQueryOrderListHttp();
-                } else {
-                    var msg = data.message || "获取公司信息字典数据失败";
-                    Utils.alert(msg);
-                }
-                g.httpTip.hide();
-            },
-            error: function (data) {
-                g.httpTip.hide();
-            }
-        });
-    }
-
-
-
-    //获取用户信息字典信息
-    function sendGetUserInfoDicHttp() {
+    //获取订单状态
+    function sendGetUserInfoDicHttp(){
         g.httpTip.show();
         var url = Base.serverUrl + "baseCodeController/getBaseCodeByParents";
         var condi = {};
         condi.parents = "1005";
         $.ajax({
-            url: url,
-            data: condi,
-            type: "POST",
-            dataType: "json",
-            context: this,
-            success: function (data) {
+            url:url,
+            data:condi,
+            type:"POST",
+            dataType:"json",
+            context:this,
+            success: function(data){
                 //console.log("sendGetUserInfoDicHttp",data);
                 var status = data.success || false;
-                if (status) {
+                if(status){
                     var obj = data.obj || {};
                     changeSelectHtml(obj);
-                } else {
+                }
+                else{
                     var msg = data.message || "获取用户信息字典数据失败";
                     Utils.alert(msg);
                 }
                 g.httpTip.hide();
             },
-            error: function (data) {
+            error:function(data){
                 g.httpTip.hide();
             }
         });
     }
 
-    function changeSelectHtml(obj) {
+    function changeSelectHtml(obj){
         var parents = ["1005"];
         var ids = ["status"];
-        for (var i = 0, len = parents.length; i < len; i++) {
+        for(var i = 0,len = parents.length; i < len; i++){
             var data = obj[parents[i]] || {};
             var option = [];
             option.push('<option value="">全部订单</option>');
-            for (var k in data) {
+            for(var k in data){
                 var id = k || "";
                 var name = data[k] || "";
                 option.push('<option value="' + id + '">' + name + '</option>');
             }
             $("#" + ids[i]).html(option.join(''));
         }
-        if (g.orderStatus !== "") {
+        if(g.orderStatus !== ""){
             $("#orderstatus").val(g.orderStatus);
         }
     }
 
+    //获取分公司
+    function getBranchCompany(){
+        g.httpTip.show();
+        var url = Base.serverUrl + "subsidiary/getSubsidiarys";
+        var condi = {};
+        condi.pageSize = 1000;
+        $.ajax({
+            url: url, data: condi, type: "POST", dataType: "json", context: this,
+            success: function (data) {
+                var list = data.list || {};
+                var option = [];
+                option.push('<option value="">全部</option>');
+                for(var i = 0;i< list.length;i++){
+                    var d = list[i];
+                    option.push('<option value="' + d.id + '">' + d.name + '</option>');
+                }
+                $("#subsidiaryId").html(option.join(''));
+                g.httpTip.hide();
+            }, error: function (data) {
+                g.httpTip.hide();
+            }
+        });
+    }
+
+    //获取订单数据
     function sendQueryOrderListHttp() {
         g.httpTip.show();
         var url = Base.serverUrl + "order/queryOrdersController";
         var condi = {};
         condi.login_token = g.login_token;
-        condi.status = $("#status").val() || "100505";
         condi.currentPageNum = g.currentPage;
-        condi.applicantName = $("#applicantName").val() || "";
-        condi.applicantPhone = $("#applicantPhone").val() || "";
-        condi.createTimeBegin = $("#createTimeBegin").val() || "";
-        condi.createTimeEnd = $("#createTimeEnd").val() || "";
-        condi.orderId = $("#orderId").val() || ""
-        //condi.companyId = $("#company").val() || "";
-
+        condi.pageSize = g.pageSize;
+        condi = Hmgx.getQueryParamet("CX",condi);
         $.ajax({
-            url: url,
-            data: condi,
-            type: "POST",
-            dataType: "json",
-            context: this,
+            url: url, data: condi, type: "POST", dataType: "json", context: this,
             success: function (data) {
-                //console.log("sendQueryOrderListHttp",data);
                 var status = data.success || false;
                 if (status) {
                     changeOrderListHtml(data);
@@ -172,70 +154,42 @@ $(function () {
 
         html.push('<table class="table table-bordered table-hover definewidth m10" ><thead>');
         html.push('<tr>');
+        html.push('<th>申请人</th>');
+        html.push('<th>订单状态</th>');
         html.push('<th>订单编号</th>');
-        html.push('<th>合同编号</th>');
         html.push('<th>所属公司</th>');
         html.push('<th>产品名称</th>');
         html.push('<th>申请分期金额</th>');
         html.push('<th>申请分期期数</th>');
         html.push('<th>审批分期金额</th>');
         html.push('<th>审批分期期数</th>');
-        html.push('<th>订单状态</th>');
-        html.push('<th>真实姓名</th>');
-        //html.push('<th>联系电话</th>');
-        html.push('<th>未还期数</th>');
-        html.push('<th>操作</th>');
+        html.push('<th>合同总金额</th>');
+        html.push('<th>进件时间</th>');
         html.push('</tr>');
         var obj = data.list || [];
         for (var i = 0, len = obj.length; i < len; i++) {
             var d = obj[i];
             var deleted = d.deleted - 0 || 0;
-
             if (deleted !== 0) {
                 continue;
             }
-
             var orderId = d.orderId || "";
-            var contractNo = d.contractNo || "";
-            var subsidiary = d.subsidiary || "";//所属公司
-            var packageName = d.packageName || "";
-            var packageMoney = d.packageMoney || 0;
-            var statusDes = d.statusDes || "";
-            var status = d.status || "";
-
-            var applicantName = d.applicantName || "";
-            var applicantPhone = d.applicantPhone || "";
-
-            var fenQiTimes = d.fenQiTimes || 0;
-            var noRepaymentTimes = d.noRepaymentTimes || 0;
-
             html.push('<tr>');
-            html.push('<td>' + orderId + '</td>');
-            html.push('<td>' + contractNo + '</td>');
-            html.push('<td>' + subsidiary + '</td>');//所属公司
-            html.push('<td>' + packageName + '</td>');
-            html.push('<td>' + d.applyPackageMoney + '元</td>');
-            html.push('<td>' + d.applyFenQiTimes + '期</td>');
-            html.push('<td>' + packageMoney + '元</td>');
-            html.push('<td>' + fenQiTimes + '期</td>');
-            html.push('<td>' + statusDes + '</td>');
-
-            html.push('<td>' + applicantName + '</td>');
-            //html.push('<td>' + applicantPhone + '</td>');
-
-            html.push('<td>' + noRepaymentTimes + '期</td>');
-
-            if (status == "100505") {
-                //html.push('<td><a href="ViewOrderDetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">代缴费</a></td>');
-                //html.push('<td><a class="btn btn-primary" href="javascript:ShowWin(\'' + d.orderId +  '\',\'' + d.customerId + '\',\'' + d.poundage + '\')">代缴费</a>&nbsp;&nbsp;<a class="btn btn-success" href="javascript:ShowWin(\'' + d.orderId +  '\',\'' + d.customerId + '\',\'' + d.poundage + '\')">发优惠券</a></td>');
-                html.push('<td><a class="btn btn-primary" href="javascript:ShowWin(\'' + d.orderId +  '\',\'' + d.customerId + '\',\'' + d.poundage + '\')">代缴费</a></td>');
-            }
+            html.push('<td>' + (d.applicantName||"") + '</td>');
+            html.push('<td>' + (d.statusDes||"") + '</td>');
+            html.push('<td>' + (d.orderId||"") + '</td>');
+            html.push('<td>' +( d.subsidiary||"") + '</td>');
+            html.push('<td>' + (d.packageName||"") + '</td>');
+            html.push('<td>' +( (d.applyPackageMoney||"")==""?"":d.applyPackageMoney + '元') + '</td>');
+            html.push('<td>' +( d.applyFenQiTimes||"") + '期</td>');
+            html.push('<td>' +( (d.packageMoney||"")==""?"":d.packageMoney + '元') + '</td>');
+            html.push('<td>' +( (d.fenQiTimes||"")==""?"":d.fenQiTimes + '期' ) + '</td>');
+            html.push('<td>' +( d.contractMoney||"") + '元</td>');
+            html.push('<td>' + (d.editCompleteTime||"")+ '</td>');
             html.push('</tr>');
         }
         html.push('</table>');
-
         var pobj = data.obj || {};
-
         if (obj.length > 0) {
             var page = countListPage(pobj);
             html.push(page);
@@ -246,6 +200,7 @@ $(function () {
         $("#orderlistpage a").bind("click", pageClick);
     }
 
+    //分页处理
     function countListPage(data) {
         var html = [];
         g.totalPage = Math.ceil(data.totalRowNum / data.pageSize);
@@ -356,80 +311,10 @@ $(function () {
         }
     }
 
-
-    //*********************************代交服务费
-    //获取优惠券数据
-    function GetCoupon(orderId,customerId,useMoney){
-        var url = Base.serverUrl + "coupon/getAvailableCouponsByCustomerId";
-        var condi = {};
-        condi.login_token = g.login_token;
-        condi.customerId = customerId;
-        condi.useMoney = useMoney;
-        $.ajax({
-            url: url, data: condi,type: "POST", dataType: "json", context: this,
-            success: function (data) {
-                var status = data.success || false;
-                if (status) {
-                    var obj = data.list || [];
-                    var RadioHtml = [];
-                    for(var i = 0 ; i < obj.length ; i ++){
-                        if(obj[i].couponType == "0"){
-                            RadioHtml.push('<li><input type="radio" value="' + obj[i].id + '" />&nbsp;&nbsp;<label>名称:' + obj[i].title + '&nbsp;&nbsp;金额:' + obj[i].money +  '</label></li>');
-                        }else{
-                            RadioHtml.push('<li><input type="radio" value="' + obj[i].id + '" />&nbsp;&nbsp;<label>名称:' + obj[i].title + '&nbsp;&nbsp;折扣:' + obj[i].discount +  '</label></li>');
-                        }
-
-                    }
-                    if(obj.length ==0){
-                        RadioHtml.push("此用户无优惠券可用！");
-                    }
-                    RadioHtml.push('<input type="hidden" id="orderId" value="' + orderId + '">');
-                    $("#ul").html(RadioHtml.join(''));
-                } else {
-                    var msg = data.message || "获取用户优惠券失败！";
-                    Utils.alert(msg);
-                }
-            }
-        });
+    //导出EXCEL
+    window.OutXls = function(){
+        var ParamObj={};
+        ParamObj.login_token = g.login_token;
+        Hmgx.serializeDownload(Base.serverUrl  + "order/queryOrdersControllerExport","CX",ParamObj);
     }
-    //显示代缴费窗口
-    window.ShowWin = function (orderId,customerId,useMoney){
-        GetCoupon(orderId,customerId,useMoney);//获取优惠券数据
-        $('#pass').modal('show');
-    	//$('#pass').modal('show').css({
-    	//	width: '1000',
-    	//	'margin-left': function () {
-    	//		return -($(this).width() / 2);
-    	//		//return 20;
-    	//	}
-    	//});
-    };
-    //代缴费
-    window.DaiJiaoFei = function(id){
-        $('#pass').modal('hide');
-        if(confirm("你确认要执行代交操作吗?")) {
-            g.httpTip.show();
-            var condi = {};
-            condi.orderId = $("ul input[id='orderId']").val();
-            condi.customerCouponId = $("li input[type='radio']:checked").val();
-            condi.login_token = g.login_token;
-            var url = Base.serverUrl + "order/helpPayPoundage";
-            $.ajax({
-                url: url, data: condi, type: "POST", dataType: "json", context: this,
-                success: function (data) {
-                    var status = data.success || false;
-                    if (status) {
-                        Utils.alert(data.message);
-                    } else {
-                        var msg = data.message || "删除订单数据失败";
-                        Utils.alert(msg);
-                    }
-                    g.httpTip.hide();
-                },
-                error: function (data) {
-                    g.httpTip.hide();
-                }
-            });
-        }
-    };
 });

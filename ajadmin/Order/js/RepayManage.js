@@ -83,7 +83,7 @@ $(function () {
         html.push('<th width="100">用户姓名</th>');
         html.push('<th width="100">审批分期金额</th>');
         html.push('<th width="100">审批分期期数</th>');
-        html.push('<th width="80">最近待还</th>');
+        html.push('<th width="80">待还期数</th>');
         html.push('<th width="80">订单状态</th>');
         html.push('<th width="80">手机号</th>');
         html.push('<th width="80">逾期笔数</th>');
@@ -369,6 +369,7 @@ $(function () {
     };
     //分期列表 - 代还款
     window.popFqlb_dhkWin=function(Amount,repaymentRecordId){
+        if(confirm( '是否确定执行代还款? ')==false){return false;}
         $("#fqlb_Amount").text(Amount);
         $("#fqlb_Amount").attr("repaymentRecordId",repaymentRecordId);
         $('#fqlb_dhkDiv').modal('show');
