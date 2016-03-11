@@ -322,6 +322,7 @@ $(function(){
 	function changeBankSelectHtml(obj){
 		var data = obj.obj || {};
 		var option = [];
+		option.push('<option>请选择发卡银行</option>');
 		for(var k in data){
 			var code = k;
 			var name = data[k];
