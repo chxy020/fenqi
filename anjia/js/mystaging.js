@@ -911,15 +911,20 @@ $(function(){
 	function nextBtnUp32(){
 		var applicantName = $("#applicantName").val() || "";
 		var applicantAge = $("#applicantAge").val() || "";
-		var applicantSex = $("[name='rsex']:checked").val() || "";
+		var applicantSex = "";
+		$("[name='rsex']").each(function(){
+			if($(this).attr("checked") == "checked"){applicantSex = $(this).val()}
+		})
 		var applicantIdentity = $("#applicantIdentity").val() || "";
 		var applicantMarital = $("#applicantMarital").val() || "";
 		var applicantAddress = $("#applicantAddress").val() || "";
 		var applicantStudyStatus = $("#applicantStudyStatus").val() || "";
 		var applicantSchool = $("#applicantSchool").val() || "";
 		var applicantMajor = $("#applicantMajor").val() || "";
-		var applicantAsset = $("[name='zcradio']:checked").val() || "";
-
+		var applicantAsset = "";
+		$("[name='zcradio']").each(function(){
+			if($(this).attr("checked") == "checked"){applicantAsset = $(this).val()}
+		})
 		if(!sendValidNoEmpty(applicantName,$("#applicantName"))){
 			return;
 		}
@@ -997,7 +1002,10 @@ $(function(){
 	}
 
 	function nextBtnUp33(){
-		var applicantJobNature = $("[name='gzxzradio']:checked").val() || "";
+		var applicantJobNature = "";
+		$("[name='gzxzradio']").each(function(){
+			if($(this).attr("checked") == "checked"){applicantJobNature = $(this).val()}
+		})
 		var applicantCompany = $("#applicantCompany").val() || "";
 		var applicantCompanyNature = $("#applicantCompanyNature").val() || "";
 		var applicantCompanyIndustry = $("#applicantCompanyIndustry").val() || "";
