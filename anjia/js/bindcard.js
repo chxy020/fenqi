@@ -21,7 +21,7 @@ $(function(){
 	g.customerId = "";
 	g.bindBankCardId = "";
 	g.bindCondi = {};
-
+	g.codelist = [];
 	//获取图形验证码
 	/* sendGetImgCodeHttp(); 11-16*/
 
@@ -41,8 +41,8 @@ $(function(){
 
 		//获取绑定唯一编号
 		sendGetBindBankCardId();
-		//获取银行列表
-		sendGetBankListHttp();
+		//获取限额
+		sendGetBankXianeListHttp();		
 		setTimeout(function(){$("#myModal1").click()},500);//显示弹窗
 	}
 
@@ -64,7 +64,7 @@ $(function(){
 	$("#getcodebtn").bind("click",getValidCode);
 
 	$("#bindcardbtn").bind("click",bindUserCardBtnUp);
-
+	$("#bankCode").bind("change",bank_func);
 	//$("#gobtn").bind("click",gotoUserCenter);
 
 	//获取个人资料
@@ -236,6 +236,60 @@ $(function(){
 	}
 
 
+	//获取银行限额信息
+	function sendGetBankXianeListHttp(){
+		g.httpTip.show();
+		var url = Base.serverUrl + "bank/getBanks";
+		var condi = {};
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var list = data.list || {};
+					var option = [];
+					for(var i = 0; i < list.length ; i++ ){
+						var d = list[i] || [];						
+						var code = d.code || "";//银行编码
+						var name = d.name || "";
+						var per_time_num = d.per_time_num || "";//单笔限额
+						var per_day_num = d.per_day_num || "";//单日限额
+						var per_month_num = d.per_month_num || "";//单月限额
+						var per_day_times = d.per_day_times || "";//单日限次
+						var per_month_times = d.per_month_times || "";//单月限次
+						var a = [];
+						a = [name,per_time_num,per_day_num,per_month_num,per_day_times,per_month_times];
+						g.codelist[code] = a;
+					}
+					//获取银行列表
+					sendGetBankListHttp();			
+				}
+				else{
+					var msg = data.message || "获取银行限额失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+	function bank_func(){
+		var code = $("#bankCode").val() || "";
+		var codexiane = g.codelist[code] || "";
+		if(codexiane != ""){
+			$("#bank_tips_id").html("&nbsp;"+codexiane[0]+":&nbsp;单笔限额"+codexiane[1]+"万元"+"&nbsp;单日限额"+codexiane[2]+"万元"+"&nbsp;单月限额"+codexiane[3]+"万元"+"&nbsp;单日限次"+codexiane[4]+"次"+"&nbsp;单月限次"+codexiane[5]+"次");
+		}else{
+			$("#bank_tips_id").html("");
+		}
+	}
+
+	
 	//获取银行信息
 	function sendGetBankListHttp(){
 		g.httpTip.show();
@@ -264,13 +318,13 @@ $(function(){
 			}
 		});
 	}
-
 	function changeBankSelectHtml(obj){
 		var data = obj.obj || {};
 		var option = [];
+		option.push('<option>请选择发卡银行</option>');
 		for(var k in data){
 			var code = k;
-			var name = data[k];
+			var name = data[k];		
 			option.push('<option value="' + code + '">' + name + '</option>');
 		}
 		$("#bankCode").html(option.join(''));
