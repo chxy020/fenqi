@@ -19,7 +19,43 @@
         	分期计算器
         </div>
         <div class="sub-main">
-        	<div class="common-inp-cont1">
+        	<div class="yellow_bg">
+				<div class="yb_div1 yb_div1_1">
+					<span class="lable">分期总额</span>
+					<input id="allprice" type="text" class="input_text" placeholder="请输入分期金额" />
+					<span class="yuan">（元）</span>
+				</div>
+				<div class="yb_div1">分期期限（月）</div>
+				<div class="yb_div1">
+					<ul id="stagingtime" class="ul">
+						<li value="1" class="active">6期</li>
+						<li value="3">12期</li>
+						<li value="4">18期</li>
+						<li value="5">24期</li>
+						<li value="6" class="last">36期</li>
+					</ul>				
+				</div>
+				<div class="yb_div1 yb_div1_3">服务费率</div>
+				<div class="yb_div1">
+					<ul id="ratelist" class="ul ul2">
+						<li class="active">4%</li>
+						<li>7%</li>
+						<li>10%</li>
+						<li>13%</li>
+						<li class="last">16%</li>
+					</ul>				
+				</div>				
+			</div>
+			<div class="result_list">
+				<span class="left"><em id="feetext">0</em><br>服务费用(一次性支付）</span>
+				<span class="right"><em id="mouthtext" class="">0</em><br>每月还款(元）</span>
+			</div>
+			<div class="cal-result">
+            	<div class="btn-box" style="margin:15px 0px;">
+                    <a href="mystaging.html" class="common-btn btn-green btn_yellow" >我要分期</a>
+                </div>
+			</div>	
+			<!-- <div class="common-inp-cont1">
             	<div class="inp-item">
                 	<label>分期总额</label>
                     <input id="allprice" type="text" class="common-input-text" placeholder="请输入分期金额" />
@@ -29,9 +65,9 @@
                 	<i class="trigger common-select-trigger"></i>
                 	<label>分期期限</label>
                     <select id="stagingtime" class="common-select">
-				<!-- <option value=0 >3个月</option> -->
+				<option value=0 >3个月</option>
 				<option value=1 >6个月</option>
-				<!--<option value=2 >9个月</option>-->
+				<option value=2 >9个月</option>
 				<option value=3 >12个月</option>
 				<option value=4 >18个月</option>
 				<option value=5 >24个月</option>
@@ -43,12 +79,15 @@
                     <input id="ratetext" type="text" value=4 class="common-input-text" placeholder="" readonly />
                     <div  class="unit-item">%</div>
                 </div>
-            </div>
-            <div class="btn-box">
+            </div> -->
+            <!-- <div class="btn-box">
             	<a id="countbtn" href="javascript:void(0)" class="common-btn btn-green">开始计算</a>
-            </div>
-            <div class="cal-result">
-            	<div class="common-title">
+            </div> -->
+           <!--  <div class="cal-result">
+            	<div class="btn-box" style="margin:15px 0px;">
+                    <a href="mystaging.html" class="common-btn btn-green" >我要分期</a>
+                </div>
+				<div class="common-title">
                 	分期明细
                 </div>
                 <div class="cal-result-box">
@@ -85,10 +124,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn-box" style="margin:15px 0px;">
-                    <a href="mystaging.html" class="common-btn btn-green" >我要分期</a>
-                </div>
-            </div>
+                
+            </div> -->
         </div>
     </div>
 

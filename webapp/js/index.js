@@ -12,7 +12,9 @@ $(function(){
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.httpTip = new Utils.httpTip({});
 	g.channel = Utils.getQueryString("channel") || "";
+	g.company = Utils.getQueryString("company") || "";
 	if(g.channel != ""){Utils.offLineStore.set("channel",g.channel,false);}	
+	typePageId_compare();
 	//验证登录状态
 	g.loginStatus = Utils.getUserInfo();
 	if(!g.loginStatus){
@@ -28,7 +30,30 @@ $(function(){
 
 	$("#person-btn").bind("click",personBtnUp);
 	$("#bottom-ul > li").bind("click",bottomBtnUp);
-
+	$("#staging_a_btn").bind("click",staging_step);
+	
+	function typePageId_compare(){
+		var company1 = g.company || "9";
+		var company = "";
+		if(company1 == "5"){
+			company = "20150901000001";
+		}else if(company1 == "6"){
+			company = "20150901000002";
+		}else if(company1 == "7"){
+			company = "20150901";
+		}//传城市 德维-20150901，生活家-20150901000001，朗润-20150901000002
+		Utils.offLineStore.set("company",company,false);
+	}
+	/* 家装分期 */
+	function staging_step(){
+		url = location.href = "../mystaging/mystaging.html";
+		if(g.loginStatus){
+			location.href = url;
+		}
+		else{
+			location.href = "../login/login.html?p=1";
+		}
+	}
 	//获取个人资料
 	function getUserInfo(){
 		var info = Utils.offLineStore.get("userinfo",false) || "";
@@ -37,6 +62,16 @@ $(function(){
 			console.log("getUserInfo",obj);
 			setUserInfoHtml(obj);
 		}
+	}
+	/* 校准首页最下面中间图片位置 */
+	resize_img();
+	$(window).resize(function(){
+		resize_img();
+	})
+	function resize_img(){
+		var img_width = $(".index_div_part2 .middle_img").width();
+		var img_Pbottom = -img_width/2;
+		$(".index_div_part2 .middle_img").css("bottom",img_Pbottom+"px");
 	}
 	//修改个人资料
 	function setUserInfoHtml(data){
@@ -179,7 +214,7 @@ $(function(){
 		//~ });
 
 	}
-
+	window.resize_img = resize_img;
 });
 
 

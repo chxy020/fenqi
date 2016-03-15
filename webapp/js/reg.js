@@ -18,6 +18,7 @@ $(function(){
 	g.dengmi = Utils.offLineStore.get("dengmi",false) || "";
 	g.openid = Utils.offLineStore.get("openid",false) || "";
 	g.coupons_id = Utils.offLineStore.get("coupons_id",false) || "";
+	g.company = Utils.offLineStore.get("company",false) || "";
 	//获取图形验证码
 	//sendGetImgCodeHttp();
 
@@ -247,7 +248,7 @@ $(function(){
 	function sendRegHttp(condi){
 		var url = Base.serverUrl + "user/registerCustomerController";
 		var url = Base.serverUrl + "user/registerCustomerController";
-		var company ="";
+		var company = g.company || "";
 		var platform = 0;
 		platform = g.platform || 0;
 		g.city = Utils.offLineStore.get("curCity",false) || "";

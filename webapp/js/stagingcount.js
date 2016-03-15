@@ -9,9 +9,27 @@ $(function(){
 	g.tout = null;
 	g.httpTip = new Utils.httpTip({});
 
-	$("#countbtn").bind("click",countBtnUp);
+	$("#allprice").bind("keyup blur",countBtnUp);
+	
 	$("#stagingtime").bind("change",stagingTimeChange);
-
+	
+	/* 选择分期事件 */
+	$("#stagingtime li").each(function(n){
+		$(this).click(function(){
+			var a = n+1;
+			$(this).addClass("active").siblings("li").removeClass("active");
+			$("#ratelist li:nth-child("+a+")").addClass("active").siblings("li").removeClass("active");
+			countBtnUp();
+		})
+	});
+	$("#ratelist li").each(function(n){
+		$(this).click(function(){
+			var a = n+1;
+			$(this).addClass("active").siblings("li").removeClass("active");
+			$("#stagingtime li:nth-child("+a+")").addClass("active").siblings("li").removeClass("active");
+			countBtnUp();
+		})
+	});
 	function countFee(allprice,time){
 		var numarr = [3,6,6,12,18,24,36];
 		var ratearr = [0,0.04,0.04,0.07,0.1,0.13,0.16];
@@ -34,21 +52,27 @@ $(function(){
 		$("#ratetext").val((r*100).toFixed(0));
 	}
 
+	
 	function countBtnUp(){
 		var allprice = $("#allprice").val() - 0 || 0;
-		allprice = allprice * 10000;
-		var time = $("#stagingtime").val() - 0 || 0;
+		//allprice = allprice * 10000;
+		var time = 0;
+		$("#stagingtime li").each(function(n){
+			if($(this).hasClass("active")){
+				time = $(this).attr("value");
+			}
+		})
+		//var time = $("#stagingtime").val() - 0 || 0;
 
 		if(allprice > 0){
 			var obj = countFee(allprice,time);
-
-			$("#capitaltext").html(allprice.toFixed(2));
-			$("#alltext").html(obj.all.toFixed(2));
+			//$("#capitaltext").html(allprice.toFixed(2));
+			//$("#alltext").html(obj.all.toFixed(2));
 			$("#feetext").html(obj.rate);
 			$("#mouthtext").html(obj.mouth);
 		}
 		else{
-			Utils.alert("请输入贷款金额");
+			//alert("请输入分期金额");
 		}
 	}
 });

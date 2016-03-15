@@ -850,3 +850,45 @@ a{cursor:pointer;}
 
 .ui-item-box li .usercenter_a,.ui-item-box li .usercenter_a:hover{color:#969696;cursor:unset;}
 .order-list-ul li  .order-state.state-grey.yuqi_color{color:#ea0606;}
+
+/* 首页与家装分期页合并 */
+div.bottom_line{z-index:9999;position:absolute;left:0;right:0;bottom:0;height:30px;background-color:#fff;opacity: 0.4;filter:alpha(opacity=40);-moz-opacity:0.4;-khtml-opacity:0.4;}
+div.index_div_part1{margin-bottom:41px;position:relative;background-color:#fff;border-bottom:4px solid #f3f3f3;text-align:center;}
+div.index_div_part1 img{max-width:100%;margin-bottom:59px;}
+div.index_div_part1 a.btn{margin: 0 auto;position:absolute;left:0;right:0;bottom:-92px;display:inline-block;width:137px;height:184px;background:url('../images/mystaging_btn.png') no-repeat center center;background-size:contain;}
+div.am-slider-default .am-control-nav{z-index:99999;}
+.index_div_part2{background-color:#fff;}
+.index_div_part2 .top{height:81px;position:relative;margin:0 auto;margin-top:30px;width:70%;border-radius:10px;border:1px solid #9f9f9f;border-top:none;}
+.index_div_part2  img.left{position:absolute;left:-11px;}
+.index_div_part2  span.left{width:45%;display:block;position:absolute;left:12px;}
+.index_div_part2  img.right{position:absolute;right:-11px;}
+.index_div_part2  span.right{width:45%;text-align:right;display:block;position:absolute;right:12px;}
+.index_div_part2  i.title{font-size:16px;color:#767676;line-height:22px;}
+.index_div_part2  i.text{font-size:14px;color:#989898;line-height:16px;}
+.index_div_part2 .bottom{height:81px;position:relative;margin:0 auto;margin-bottom:50px;width:70%;border-radius:10px;border:1px solid #9f9f9f;border-bottom:none;}
+.index_div_part2 .bottom  img.left,.index_div_part2 .bottom  img.right{bottom:0;}
+.index_div_part2 .bottom span.left,.index_div_part2 .bottom span.right{top:57px;}
+.index_div_part2 .top span.left,.index_div_part2 .top span.right{top:-1px;}
+.index_div_part2 .middle_img{z-index:1;width:23%;position:absolute;margin:0 auto;left:0;right:0;bottom:-64px;}
+div.ui-nav{z-index:2;}
+html.html{background-color:#fff;}
+div.ui-index-main{background-color:#fff;}
+div.staging_div1{border-top:1px solid #fff;border-bottom:1px solid #d5d5d5;}
+
+/* 分期计算器 */
+.yellow_bg{font-size:16px;background-color:#ffac0c;padding:20px 5%;color:#fff;}
+.yellow_bg  .yb_div1{position:relative;margin:10px 0;overflow:hidden;}
+.yellow_bg .yb_div1_1{margin:15px 0 20px;}
+.yellow_bg .yb_div1_3{margin:20px 0 10px;}
+.yellow_bg  .yb_div1 span.lable{float:left;display:inline-block;}
+.yellow_bg  .yb_div1 .input_text{padding-left:3px;color:#fff;background:none;float:right;display:inline-block;width:72%;border:none;border-bottom:2px solid #fff;}
+.yellow_bg  .yb_div1 span.yuan{position:absolute;right:0;}
+.yellow_bg  .yb_div1 .ul li{cursor:pointer;font-size:14px;text-align:center;color:#fff;line-height:40px;height:40px;width:20%;background:url('../images/radio_bg1_1.jpg') no-repeat center center;background-size:contain;float:left;display:inline-block;}
+.yellow_bg  .yb_div1 .ul li.active{color:#ffac0c;background:url('../images/radio_bg1_2.jpg') no-repeat center center;background-size:contain;}
+
+.yellow_bg  .yb_div1 .ul2 li{margin:0 1%;width:18%;background:url('../images/radio_bg2_1.jpg') no-repeat center center;background-size:contain;}
+.yellow_bg  .yb_div1 .ul2 li.active{background:url('../images/radio_bg2_2.jpg') no-repeat center center;background-size:contain;}
+.result_list{margin:30px 0;overflow:hidden;line-height:30px;font-size:14px;}
+.result_list span.left,.result_list span.right{display:inline-block;width:49%;text-align:center;}
+
+a.common-btn.btn-green.btn_yellow{background-color:#fe781f;}
