@@ -12,7 +12,7 @@ $(function(){
 
 	g.totalPage = 1;
 	g.currentPage = 1;
-	g.pageSize = 5;
+	g.pageSize = 15;
 
 	g.qorderstatus = "";
 	g.orderInfo = {};
