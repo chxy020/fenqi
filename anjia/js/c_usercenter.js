@@ -2484,7 +2484,8 @@ function sendGetPayOrderListHttp12(condi){
 			var loanMaxMoney = d.loanMaxMoney - 0 || 0;
 			var expectLoanTime = d.expectLoanTime || "";
 			//var now = new Date().format("yyyy-MM-dd");
-			var now = new Date($.ajax({async: false}).getResponseHeader("Date")).format("yyyy-MM-dd");
+			//var now = new Date($.ajax({async: false}).getResponseHeader("Date")).format("yyyy-MM-dd");
+			var now  =  data.other || "";
 			var status = d.status;
 
 			var days = 100000;

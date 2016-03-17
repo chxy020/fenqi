@@ -151,9 +151,9 @@ $(function(){
 			var loanResidueMoney = d.loanResidueMoney || 0;
 			var loanMaxMoney = d.loanMaxMoney - 0 || 0;
 			var expectLoanTime = d.expectLoanTime || "";
-			var now = new Date().format("yyyy-MM-dd");
+			//var now = new Date().format("yyyy-MM-dd");
 			var status = d.status;
-
+			var now  =  data.other || "";
 			var days = 100000;
 			if(expectLoanTime !== ""){
 				days = getDays(now,expectLoanTime);
