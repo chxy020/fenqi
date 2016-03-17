@@ -113,7 +113,7 @@ $(function(){
 		var loanTime2 = data.expectRepaymentStartTime || "";
 		var loanTime = loanTime2.split("-") || "";
 		var monthMoney = (data.packageMoney / data.fenQiTimes).toFixed(2) || "";
-		$("#new_applicantMessage1").html('1.债权转让金额为：<b>' + packageMoney + '</b>元，甲方应当自<b>' + loanTime[0] + '</b>年<b>' + loanTime[1] + '</b>月开始向丙方支付装修款，分<b>' + fenQiTimes + '</b>月付清，分期利率为&nbsp;&nbsp;，甲方每月应向丙方支付的装修款为人民币<b>' + monthMoney + '</b>元，每月付款日为当月<b>' + loanTime[2] + '</b>日24点之前。');
+		$("#new_applicantMessage1").html('1.债权转让金额为：<b>' + packageMoney + '</b>元，甲方应当自<b>' + loanTime[0] + '</b>年<b>' + loanTime[1] + '</b>月开始向丙方支付装修款，分<b>' + fenQiTimes + '</b>月付清，分期利率为_____，甲方每月应向丙方支付的装修款为人民币<b>' + monthMoney + '</b>元，每月付款日为当月<b>' + loanTime[2] + '</b>日24点之前。');
 		var modifyTime = data.modifyTime || "";
 		//modifyTime  = "2015-10-16";
 		if (modifyTime !== "") {
