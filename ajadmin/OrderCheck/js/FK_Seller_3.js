@@ -51,7 +51,7 @@ $(function () {
                 $("#fk1_approve_nameSpan").text(RowData.fk1_approve_name);
                 $("#fk1_approve_remarks").val(RowData.fk1_approve_remarks);
                 $("#fk2_approve_report").val(RowData.fk2_approve_report);
-                $("#fk3_approve_nameSpan").text(RowData.fk3_approve_name);
+                $("#fk2_approve_nameSpan").text(RowData.fk2_approve_name);
                 g.httpTip.hide();
             },
             error: function (data) {

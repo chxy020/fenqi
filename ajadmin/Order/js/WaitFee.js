@@ -227,8 +227,9 @@ $(function () {
 
             if (status == "100505") {
                 //html.push('<td><a href="ViewOrderDetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">代缴费</a></td>');
-                //html.push('<td><a class="btn btn-primary" href="javascript:ShowWin(\'' + d.orderId +  '\',\'' + d.customerId + '\',\'' + d.poundage + '\')">代缴费</a>&nbsp;&nbsp;<a class="btn btn-success" href="javascript:ShowWin(\'' + d.orderId +  '\',\'' + d.customerId + '\',\'' + d.poundage + '\')">发优惠券</a></td>');
-                html.push('<td><a class="btn btn-primary" href="javascript:ShowWin(\'' + d.orderId +  '\',\'' + d.customerId + '\',\'' + d.poundage + '\')">代缴费</a></td>');
+                var buttonStr = '<a class="btn btn-primary" href="javascript:ShowWin(\'' + d.orderId +  '\',\'' + d.customerId + '\',\'' + d.poundage + '\')">代缴费</a>&nbsp;&nbsp;';
+                buttonStr += '<a class="btn btn-success" href="javascript:SendWin(\'' + d.customerId + '\',' +  d.poundage + ')">发优惠券</a>';
+                html.push('<td>' + buttonStr + '</td>');
             }
             html.push('</tr>');
         }
@@ -373,10 +374,12 @@ $(function () {
                     var obj = data.list || [];
                     var RadioHtml = [];
                     for(var i = 0 ; i < obj.length ; i ++){
-                        if(obj[i].couponType == "0"){
-                            RadioHtml.push('<li><input type="radio" value="' + obj[i].id + '" />&nbsp;&nbsp;<label>名称:' + obj[i].title + '&nbsp;&nbsp;金额:' + obj[i].money +  '</label></li>');
+                        if(obj[i].couponType == "0" || (obj[i].couponType == "2") ){
+                            RadioHtml.push('<li><input name="couponList" type="radio" value="' + obj[i].id + '" />&nbsp;&nbsp;<label>名称:' + obj[i].title + '&nbsp;&nbsp;金额:' + obj[i].money +  '</label></li>');
+                        //}else if(obj[i].couponType == "2") {
+                        //    RadioHtml.push('<li><input type="radio" value="' + obj[i].id + '" />&nbsp;&nbsp;<label>名称:' + obj[i].title + '&nbsp;&nbsp;金额:' + obj[i].money +  '</label></li>');
                         }else{
-                            RadioHtml.push('<li><input type="radio" value="' + obj[i].id + '" />&nbsp;&nbsp;<label>名称:' + obj[i].title + '&nbsp;&nbsp;折扣:' + obj[i].discount +  '</label></li>');
+                            RadioHtml.push('<li><input  name="couponList" type="radio" value="' + obj[i].id + '" />&nbsp;&nbsp;<label>名称:' + obj[i].title + '&nbsp;&nbsp;折扣:' + obj[i].discount +  '</label></li>');
                         }
 
                     }
@@ -410,8 +413,8 @@ $(function () {
         if(confirm("你确认要执行代交操作吗?")) {
             g.httpTip.show();
             var condi = {};
-            condi.orderId = $("ul input[id='orderId']").val();
-            condi.customerCouponId = $("li input[type='radio']:checked").val();
+            condi.orderId = $("#ul input[id='orderId']").val();
+            condi.customerCouponId = $("#ul li input[type='radio']:checked").val();
             condi.login_token = g.login_token;
             var url = Base.serverUrl + "order/helpPayPoundage";
             $.ajax({
@@ -421,7 +424,7 @@ $(function () {
                     if (status) {
                         Utils.alert(data.message);
                     } else {
-                        var msg = data.message || "删除订单数据失败";
+                        var msg = data.message || "使用优惠券失败";
                         Utils.alert(msg);
                     }
                     g.httpTip.hide();
@@ -432,4 +435,87 @@ $(function () {
             });
         }
     };
+    //显示下发优惠券窗口
+    window.SendWin = function (customerId,poundage){//用户ID，订单手续费
+        GetExistCoupon(customerId,poundage);//获取用户存在的优惠券数据
+        $('#SendCoupon').modal('show');
+    };
+    //获取该用户存在的优惠券数据
+    function GetExistCoupon(customerId,poundage){
+        var url = Base.serverUrl + "coupon/getReceivableCoupons";
+        var condi = {};
+        condi.login_token = g.login_token;
+        condi.customerId = customerId;
+        condi.useMoney = poundage;
+        $.ajax({
+            url: url, data: condi,type: "POST", dataType: "json", context: this,
+            success: function (data) {
+                var status = data.success || false;
+                if (status) {
+                    var obj = data.list || [];
+                    var RadioHtml = [];
+                    for(var i = 0 ; i < obj.length ; i ++){
+                        var rowData = obj[i];
+                        if(rowData.couponType == "0"){
+                            RadioHtml.push('<li><input name="sendCouponList" type="radio" id="couponId" value="' + rowData.id + '" />&nbsp;&nbsp;<label>名称:' + rowData.title + '&nbsp;&nbsp;金额:' + rowData.money +  '</label></li>');
+                        }else{
+                            RadioHtml.push('<li><input name="sendCouponList" type="radio" id="couponId" value="' + rowData.id + '" />&nbsp;&nbsp;<label>名称:' + rowData.title + '&nbsp;&nbsp;折扣:' + rowData.discount +  '</label></li>');
+                        }
+                    }
+                    RadioHtml.push('<li><input name="sendCouponList" type="radio" id="couponId" value="0" /><label>&nbsp;&nbsp;自定义金额:</label><input style="margin-top: 10px;" type="text" id="couponMoney"></li>');
+                    RadioHtml.push('<input type="hidden" id="customerId" value="' + customerId + '" />');
+                    RadioHtml.push('<input type="hidden" id="poundage"  value="' + poundage + '" />');
+                    $("#CoponUl").html(RadioHtml.join(''));
+                } else {
+                    var msg = data.message || "获取用户优惠券失败！";
+                    Utils.alert(msg);
+                }
+            }
+        });
+    }
+    //保存下发优惠券
+    window.SaveSendCoupon=function(customerId){
+        var condi = {};
+        condi.customerId = $("#CoponUl > input[id='customerId']").val();
+        condi.couponId = $("#CoponUl li input[type='radio']:checked").val();
+        condi.couponMoney = $("#CoponUl li input[id='couponMoney']").val();
+        condi.poundage = $("#CoponUl > input[id='poundage']").val();
+        condi.login_token = g.login_token;
+        if(typeof(condi.couponId) === "undefined"){
+            alert("请选择您要下发的优惠券！");
+            return false;
+        }
+        if(condi.couponId == 0){
+            if(condi.couponMoney == "") {
+                alert("您选择的是自定义优惠券,请输入自定义金额！");
+                return false;
+            }
+            if(isNaN(condi.couponMoney)){
+                alert("自定义金额必须为数字,请重新输入！");
+                $("li input[id='couponMoney']").focus();
+                return false;
+            }
+        }
+        if(confirm("你确认要执行下发优惠券操作吗?")) {
+            g.httpTip.show();
+            $('#SendCoupon').modal('hide');
+            var url = Base.serverUrl + "coupon/sendDownCoupon";
+            $.ajax({
+                url: url, data: condi, type: "POST", dataType: "json", context: this,
+                success: function (data) {
+                    var status = data.success || false;
+                    if (status) {
+                        Utils.alert(data.message);
+                    } else {
+                        var msg = data.message || "下发优惠券失败";
+                        Utils.alert(msg);
+                    }
+                    g.httpTip.hide();
+                },
+                error: function (data) {
+                    g.httpTip.hide();
+                }
+            });
+        }
+    }
 });

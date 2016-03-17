@@ -251,10 +251,10 @@ $(function(){
 			html.push('<td>' + noRepaymentTimes + '期</td>');
 
 			if(status != "100504"){
-				html.push('<td><a href="javascript:Hmgx.openWin(\'ViewOrderDetail.html?orderid=' + orderId + '\')">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a href="javascript:void(0)" onclick="ViewOrder(' + orderId +')">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
 			}
 			else{
-				html.push('<td><a href="ViewOrderDetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp</td>');
+				html.push('<td><a href="javascript:void(0)" onclick="ViewOrder(' + orderId +')">查看</a>&nbsp&nbsp</td>');
 			}
 			if(status == "100501"){
 				//html.push('<td><a href="/anjia/mystaging.html?orderid=' + orderId + '">编辑</a><a href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
@@ -452,5 +452,9 @@ $(function(){
 
 
 	window.deleteOrderById = deleteOrderById;
+
+	window.ViewOrder = function (OrderId){
+		Hmgx.openWin("ViewOrderDetail.html?orderid=" + OrderId );
+	}
 
 });

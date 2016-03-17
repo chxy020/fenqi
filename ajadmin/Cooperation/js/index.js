@@ -154,7 +154,7 @@ $(function(){
 
 		html.push('<table class="table table-bordered table-hover definewidth m10" ><thead>');
 		html.push('<tr>');
-		html.push('<th>角色ID</th>');
+		html.push('<th>编号</th>');
 		html.push('<th>所在城市</th>');
 		html.push('<th>公司名称</th>');
 		html.push('<th>公司简称</th>');

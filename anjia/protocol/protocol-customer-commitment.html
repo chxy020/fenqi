@@ -13,12 +13,12 @@
 	  <h1 class="protocol-title">客户承诺函 </h1>
 	  <p >北京德维投资管理有限公司： </p>
 	  <p >&nbsp;</p>
-	  <p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><span id="applicantName"></span></b>(承诺人)通过贵方燕子安家平台向第三方商户申请的分期付款,现本人郑重承诺： </p>
-	  <p >1、申请人提供的分期付款信息和资料真实、有效、合法,，并未提供虚假信息或隐瞒重要事实，并且申请人对该笔款项的偿付无争议。 </p>
+	  <p >鉴于贵司受让了装修公司对本人<b><span id="applicantName"></span></b>(承诺人)享有的债权，为保障贵司合法权益，现本人向贵司郑重承诺如下：</p>
+	  <p >1、申请人承诺：本人向贵司提供的信息和资料均真实、有效、合法，并未提供任何虚假信息或隐瞒任何事实，并且本人对欠付装修公司的款项及付款期限等无任何异议，并同意装修公司将其对本人的债权转让给贵司。</p>
 	  <p >&nbsp; </p>
-	  <p >2、声明债务分期期限内本人无明显重大事项影响分期付款的偿还。 </p>
+	  <p >2、申请人声明：在贵我双方履约期间，本人不会出现对本人向贵司偿还债务构成不利影响的事项。</p>
 	  <p >&nbsp;</p>
-	  <p >3、本人承诺不得以第三方商户的装修问题、装修材料问题、商品质量问题、服务问题等装修相关问题以及任何与第三方商户的纠纷为由而拖延甚至拒绝偿还北京德维投资管理有限公司受让的分期债权及所有相关费用，包括分期本金、分期利息、服务费用、逾期费用等。 </p>
+	  <p >3、申请人承诺：本人不得以装修公司的装修问题、装修材料问题、商品质量问题、服务问题等与装修相关问题以及任何与装修公司之间的纠纷为由而拖延甚至拒绝偿还贵司受让的债权及所有费用，包括本金、利息、相关费用等。</p>
 	  <p >&nbsp;</p>
 	  <p >&nbsp;</p>
 	  <p >&nbsp;&nbsp;&nbsp;特此承诺&nbsp; </p>
@@ -26,6 +26,8 @@
 	  <p >&nbsp;</p>
 	  <p >&nbsp;</p>
 	  <p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;承诺人:<b><span id="applicantName2"></span></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+	  <p >&nbsp;</p>
+	  <p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份证号码:<b><span id="applicantIdcard"></span></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
 	  <p >&nbsp;</p>
 	  <p id="sdate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日 </p>
 	</div>
@@ -50,13 +52,14 @@ $(function(){
 		var applicantName = obj.applicantName || "";
 		var applicantIdentity = obj.applicantIdentity || "";
 		var applicantAddress = obj.applicantAddress || "";
-
+		var applicantIdentity = obj.applicantIdentity || "";
 		$("#applicantName").html(applicantName);
 		$("#applicantName2").html(applicantName);
-		var modifyTime = obj.modifyTime || "";
+		$("#applicantIdcard").html(applicantIdentity);
+		var poundageRepaymentTime = obj.poundageRepaymentTime || "";
 		//modifyTime  = "2015-10-16";
-		if(modifyTime !== ""){
-			var d = modifyTime.split("-") || [];
+		if(poundageRepaymentTime !== ""){
+			var d = poundageRepaymentTime.split("-") || [];//缴纳服务费日期
 			$("#sdate").html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>' + d[0] + '</b>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>' + d[1] + '</b>月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>' + d[2] + '</b>日 ');
 		}
 	}

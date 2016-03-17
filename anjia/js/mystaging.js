@@ -979,20 +979,52 @@ $(function(){
 		condi.applicantHouseWorth = 0;
 		condi.applicantCarNumber = 0;
 		condi.applicantCarWorth = 0;
+		condi.login_token = g.login_token;
+		condi.orderId = g.orderId;
+		
+		sendSetCustomerInfoHttp1(condi);
+		//g.orderUserInfo = condi;
 
-		g.orderUserInfo = condi;
-
-		//显示三步,里面的第二步
-		$("#userinfotab li").removeClass("selected");
-		$("#tab1").addClass("selected");
-		$("#step31").hide();
-		$("#step32").show();
-		$("#step33").hide();
-
-		window.scrollTo(0,170);
+		
 	}
 
 
+	/* 个人信息提交 */
+	function sendSetCustomerInfoHttp1(condi){
+		var url = Base.serverUrl + "customer/editCustomerPersonalInfoController";
+		g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				//console.log("sendSetCustomerInfoHttp",data);
+				var status = data.success || false;
+				if(status){
+					//显示三步,里面的第二步
+					$("#userinfotab li").removeClass("selected");
+					$("#tab1").addClass("selected");
+					$("#step31").hide();
+					$("#step32").show();
+					$("#step33").hide();
+
+					window.scrollTo(0,170);
+				}
+				else{
+					//var msg = data.error || "";
+					var msg = data.message || "提交个人信息失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
+	
 	function preBtnUp31(){
 		$("#userinfotab li").removeClass("selected");
 		$("#tab0").addClass("selected");
@@ -1040,28 +1072,57 @@ $(function(){
 			return;
 		}
 
-		var condi = g.orderUserInfo;
-		g.orderUserInfo.applicantJobNature = applicantJobNature;
-		g.orderUserInfo.applicantCompany = applicantCompany;
-		g.orderUserInfo.applicantCompanyNature = applicantCompanyNature;
-		g.orderUserInfo.applicantCompanyIndustry = applicantCompanyIndustry;
-		g.orderUserInfo.applicantWorkYears = applicantWorkYears;
-		g.orderUserInfo.applicantDuties = applicantDuties;
-		g.orderUserInfo.applicantCompanyAddress = applicantCompanyAddress;
-		g.orderUserInfo.applicantCompanyPhone = applicantCompanyPhone;
-		g.orderUserInfo.applicantWages = applicantWages;
-
-
-		//显示三步,里面的第三步
-		$("#userinfotab li").removeClass("selected");
-		$("#tab2").addClass("selected");
-		$("#step31").hide();
-		$("#step32").hide();
-		$("#step33").show();
-
-		window.scrollTo(0,170);
+		var condi = {};
+		condi.applicantJobNature = applicantJobNature;
+		condi.applicantCompany = applicantCompany;
+		condi.applicantCompanyNature = applicantCompanyNature;
+		condi.applicantCompanyIndustry = applicantCompanyIndustry;
+		condi.applicantWorkYears = applicantWorkYears;
+		condi.applicantDuties = applicantDuties;
+		condi.applicantCompanyAddress = applicantCompanyAddress;
+		condi.applicantCompanyPhone = applicantCompanyPhone;
+		condi.applicantWages = applicantWages;
+		condi.login_token = g.login_token;
+		condi.orderId = g.orderId;
+		sendSetCustomerInfoHttp2(condi);
+		
 	}
 
+	/* 工作信息提交 */
+	function sendSetCustomerInfoHttp2(condi){
+		var url = Base.serverUrl + "customer/editCustomerWorkInfoController";
+		g.httpTip.show();
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				//console.log("sendSetCustomerInfoHttp",data);
+				var status = data.success || false;
+				if(status){
+					//显示三步,里面的第三步
+					$("#userinfotab li").removeClass("selected");
+					$("#tab2").addClass("selected");
+					$("#step31").hide();
+					$("#step32").hide();
+					$("#step33").show();
+
+					window.scrollTo(0,170);
+				}
+				else{
+					//var msg = data.error || "";
+					var msg = data.message || "提交个人信息失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+	}
 
 	function preBtnUp32(){
 		$("#userinfotab li").removeClass("selected");
@@ -1206,21 +1267,21 @@ $(function(){
 				return;
 			}
 		} */
+		var condi = {};
+		condi.familyName = familyName;
+		condi.familyPhone = familyPhone;
+		//condi.familyRelation = familyRelation;
+		condi.familyTwoName = familyTwoName;
+		condi.familyTwoPhone = familyTwoPhone;
+		condi.familyTwoRelation = familyTwoRelation;
 
-		g.orderUserInfo.familyName = familyName;
-		g.orderUserInfo.familyPhone = familyPhone;
-		g.orderUserInfo.familyRelation = familyRelation;
-		g.orderUserInfo.familyTwoName = familyTwoName;
-		g.orderUserInfo.familyTwoPhone = familyTwoPhone;
-		g.orderUserInfo.familyTwoRelation = familyTwoRelation;
-
-		g.orderUserInfo.friendName = friendName;
-		g.orderUserInfo.friendPhone = friendPhone;
+		condi.friendName = friendName;
+		condi.friendPhone = friendPhone;
 		//g.orderUserInfo.friendTwoName = friendTwoName;
 		//g.orderUserInfo.friendTwoPhone = friendTwoPhone;
 
-		g.orderUserInfo.workmateName = workmateName;
-		g.orderUserInfo.workmatePhone = workmatePhone;
+		condi.workmateName = workmateName;
+		condi.workmatePhone = workmatePhone;
 		//g.orderUserInfo.workmateTwoName = workmateTwoName;
 		//g.orderUserInfo.workmateTwoPhone = workmateTwoPhone;
 
@@ -1232,15 +1293,15 @@ $(function(){
 		//~ $("#step33").show();
 
 
-		g.orderUserInfo.login_token = g.login_token;
-		g.orderUserInfo.orderId = g.orderId;
+		condi.login_token = g.login_token;
+		condi.orderId = g.orderId;
 
-		sendSetCustomerInfoHttp(g.orderUserInfo);
+		sendSetCustomerInfoHttp(condi);
 		window.scrollTo(0,170);
 	}
 
 	function sendSetCustomerInfoHttp(condi){
-		var url = Base.serverUrl + "order/editOrderCustomerInfoController";
+		var url = Base.serverUrl + "customer/editCustomerContactInfoController";
 		g.httpTip.show();
 		$.ajax({
 			url:url,

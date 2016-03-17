@@ -24,7 +24,8 @@ $(function () {
     //========================读取订单明细============================
     function ReadOrderInfo() {
         $.ajax({//处理字段、图片、并存放全局变量
-            url: Base.serverUrl + "order/queryOrdersByOrderIdController",
+            //url: Base.serverUrl + "order/queryOrdersByOrderIdController",
+            url: Base.serverUrl + "order/getCustomerOrderByOrderIdController",
             data: {login_token: g.login_token, orderId: g.orderId},
             type: "POST", async: false, dataType: "json", context: this,
             success: function (data) {
