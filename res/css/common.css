@@ -1664,9 +1664,9 @@ i.happy_body_ico{bottom: 47%;position: fixed;right: 0;width: 86px;height:133px;z
 .order-table tr .yuqi_color{color:#ea0606;}
 
 /* 首页改版 */
-.ui-short-head{background-color:#f7931e;}
-.ui-short-head .head-box a,.ui-short-head .head-box{color:#fff;}
-.header-line{background-color:#fff;}
+.ui-short-head{background-color:#f6f6f6;}
+.ui-short-head .head-box a,.ui-short-head .head-box{color:#313131;}
+.header-line{background-color:#313131;}
 .ui-nav li{border:none;padding:0;}
 .ui-nav li a:hover span, .ui-nav li a.selected span{color:#ff5f00;border-top:9px solid #ff5f00;}
 .ui-nav li a span{display:inline-block;border:none;padding:36px 0 0;border-top:9px solid #fff;transition:all ease-out .2s;}

@@ -477,7 +477,7 @@ if(typeof console == "undefined"){
 			//if(token !== ""){
 			//	str = "?token=" + token + "&p=0";
 			//}
-
+			html.push('<a style="margin-right:30px;">咨询热线：4006-616-896</a>');
 			html.push('<span >' + phoneNumber + '，您好！&nbsp;&nbsp;</span>');
 			html.push('[<a class="header-log-out" href="javascript:Utils.loginOut();">注销</a>]<s class="header-line"></s>');
 			html.push('<a href="/anjia/usercenter.html?item=1">个人中心</a><s class="header-line"></s>');
