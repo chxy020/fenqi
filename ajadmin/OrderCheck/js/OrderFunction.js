@@ -27,10 +27,16 @@ function getOrderStatus(StatusCode){
 			return "还款中";
 		case "100508": 
 			return"已还清";
-		case "100509": 
+		case "100509":
 			return"拒绝";
 		case "100510": 
-			return"退回";
+			return"已逾期";
+		case "100511":
+			return "已违约";
+		case "100512":
+			return "逾期已还清";
+		case "100513":
+			return "违约已还清";
         default :
             return "错误状态";
     }
