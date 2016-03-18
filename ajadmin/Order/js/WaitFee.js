@@ -182,8 +182,8 @@ $(function () {
         html.push('<th>审批分期期数</th>');
         html.push('<th>订单状态</th>');
         html.push('<th>真实姓名</th>');
-        //html.push('<th>联系电话</th>');
         html.push('<th>未还期数</th>');
+        html.push('<th>服务费</th>');
         html.push('<th>操作</th>');
         html.push('</tr>');
         var obj = data.list || [];
@@ -221,9 +221,8 @@ $(function () {
             html.push('<td>' + statusDes + '</td>');
 
             html.push('<td>' + applicantName + '</td>');
-            //html.push('<td>' + applicantPhone + '</td>');
-
             html.push('<td>' + noRepaymentTimes + '期</td>');
+            html.push('<td>' + d.poundage + '</td>');
 
             if (status == "100505") {
                 //html.push('<td><a href="ViewOrderDetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">代缴费</a></td>');
