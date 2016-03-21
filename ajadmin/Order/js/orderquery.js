@@ -202,6 +202,7 @@ $(function(){
 		html.push('<tr>');
 		html.push('<th>订单编号</th>');
 		html.push('<th>合同编号</th>');
+		html.push('<th>合同金额</th>');
 		html.push('<th>所属公司</th>');
 		html.push('<th>产品名称</th>');
 		html.push('<th>申请分期金额</th>');
@@ -238,6 +239,7 @@ $(function(){
 			html.push('<tr>');
 			html.push('<td>' + orderId + '</td>');
 			html.push('<td>' + contractNo + '</td>');
+			html.push('<td>' + d.contractMoney + '元</td>');
 			html.push('<td>' + subsidiary + '</td>');//所属公司
 			html.push('<td>' + packageName + '</td>');
 			html.push('<td>' + d.applyPackageMoney + '元</td>');
