@@ -1748,3 +1748,21 @@ div.staging_div5 .ul li p{color:#0f0f0f;font-size:14px;line-height:23px;}
 div.staging_div5 .ul li {width:178px;border:none;height:337px;}
 div.staging_div5 .ul li.last{border:none;}
 div.body_div,div.index-main1{background-color:#fff;}
+
+/* 按钮颜色 */
+#orderlist  table.order-table tr td a,#orderstaginglist table.order-table tr td a.a4{font-size:14px;color:#fff;padding:5px 12px;border-radius:6px;background-color:#539d34;transition:all .25s ease-out;}
+#orderlist  table.order-table tr td a:hover,#orderstaginglist table.order-table tr td a.a4:hover{text-decoration:none;transition:all .25s ease-in-out;}
+#orderlist table.order-table tr td a.a1:hover{background-color:#ef7c00;}/* 查看 申请支付 */
+#orderlist table.order-table tr td a.a1{background-color:#ff8400;}/* 查看 申请支付 */
+
+#orderlist table.order-table tr td a.a2:hover{background-color:#8b8b8b;}/* 删除 */
+#orderlist table.order-table tr td a.a2{background-color:#a0a0a0;}/* 删除 */
+
+#orderlist table.order-table tr td a.a3:hover{background-color:#478a2a;}/* 编辑 */
+#orderlist table.order-table tr td a.a3{background-color:#539d34;}/* 编辑 */
+
+#orderlist table.order-table tr td a.a4:hover,#orderstaginglist table.order-table tr td a.a4:hover{background-color:#8baf31;}/* 支付 我要付款*/
+#orderlist table.order-table tr td a.a4,#orderstaginglist table.order-table tr td a.a4{background-color:#99c52a;}/* 支付 我要付款*/
+
+#orderlist  table.order-table tr td a.order_a{background:url("../images/order_up.png") no-repeat scroll center -61px;}
+

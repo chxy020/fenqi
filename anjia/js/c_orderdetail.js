@@ -403,7 +403,7 @@ $(function(){
 				html.push('<td class="yuqi_color">已违约</td>');
 				if(showRepay && yuqi_number == overdueCount){
 					showRepay = false;
-					html.push('<td><a href="javascript:repayment(\'' + repaymentRecordId + '\')">还款</a></td>');
+					html.push('<td><a class="a4" href="javascript:repayment(\'' + repaymentRecordId + '\')">还款</a></td>');
 				}
 				else{
 					html.push('<td><a href="javascript:void(0)"></a></td>');
@@ -415,7 +415,7 @@ $(function(){
 				html.push('<td class="yuqi_color">已逾期</td>');
 				if(showRepay && yuqi_number == overdueCount){
 					showRepay = false;
-					html.push('<td><a href="javascript:repayment(\'' + repaymentRecordId + '\')">还款</a></td>');
+					html.push('<td><a class="a4" href="javascript:repayment(\'' + repaymentRecordId + '\')">还款</a></td>');
 				}
 				else{
 					html.push('<td><a href="javascript:void(0)"></a></td>');
@@ -426,7 +426,7 @@ $(function(){
 				html.push('<td>待还款</td>');
 				if(showRepay){
 					showRepay = false;
-					html.push('<td><a href="javascript:repayment(\'' + repaymentRecordId + '\')">还款</a></td>');
+					html.push('<td><a class="a4" href="javascript:repayment(\'' + repaymentRecordId + '\')">还款</a></td>');
 				}
 				else{
 					html.push('<td><a href="javascript:void(0)"></a></td>');
