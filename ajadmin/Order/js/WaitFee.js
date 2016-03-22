@@ -227,7 +227,8 @@ $(function () {
             if (status == "100505") {
                 //html.push('<td><a href="ViewOrderDetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">代缴费</a></td>');
                 var buttonStr = '<a class="btn btn-primary" href="javascript:ShowWin(\'' + d.orderId +  '\',\'' + d.customerId + '\',\'' + d.poundage + '\')">代缴费</a>&nbsp;&nbsp;';
-                buttonStr += '<a class="btn btn-success" href="javascript:SendWin(\'' + d.customerId + '\',' +  d.poundage + ')">发优惠券</a>';
+                buttonStr += '<a class="btn btn-success" href="javascript:SendWin(\'' + d.customerId + '\',' +  d.poundage + ')">发优惠券</a>&nbsp;&nbsp;';
+                buttonStr += '<a class="btn btn-warning" href="javascript:Cancel(' + d.orderId + ')">取消</a>';
                 html.push('<td>' + buttonStr + '</td>');
             }
             html.push('</tr>');
@@ -517,4 +518,19 @@ $(function () {
             });
         }
     }
+    //取消订单
+    window.Cancel = function(orderId){
+        if(!confirm("您确定要取消此订单吗?")){return;}
+        var url = Base.serverUrl + "order/cancelOrderController";
+        var condi = {};
+        condi.login_token = g.login_token;
+        condi.orderId = orderId;
+        $.ajax({
+            url: url, data: condi,type: "POST", dataType: "json", context: this,
+            success: function (data) {
+                var msg = data.message || "取消订单失败！";
+                Utils.alert(msg);
+            }
+        });
+    };
 });
