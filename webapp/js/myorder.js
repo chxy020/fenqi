@@ -379,7 +379,7 @@ $(function(){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',1)" class="item-btn item-btn-green">查看</a>');
-				//html.push('<td><a href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
+				html.push('<a href="javascript:cancelOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">取消</a>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
@@ -418,6 +418,10 @@ $(function(){
 				//违约已还清
 				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',1)" class="item-btn item-btn-green">查看</a>');
 				html.push('<a href="javascript:deleteOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">删除</a>');
+			}
+			else if(status == "100514"){
+				//已取消
+				
 			}
 			html.push('</div>');
 			html.push('</li>');
@@ -591,7 +595,45 @@ $(function(){
 			alert("当前是最后一页");
 		}
 	}
+/* 取消订单 */
+	function cancelOrderById(id){
+		layer.confirm('你确认要取消订单吗', {icon: 3}, function(index){
+			layer.close(index);
+			g.httpTip.show();
+			var condi = {};
+			condi.orderId = id;
+			condi.login_token = g.login_token;
 
+			var url = Base.serverUrl + "order/cancelOrderController";
+			$.ajax({
+				url:url,
+				data:condi,
+				type:"POST",
+				dataType:"json",
+				context:this,
+				success: function(data){
+					//console.log("deleteOrderById",data);
+					var status = data.success || false;
+					if(status){
+						getUserOrderList();
+						//window.scrollTo(0,0);
+					}
+					else{
+						var msg = data.message || "取消订单数据失败";
+						alert(msg);
+					}
+					g.httpTip.hide();
+				},
+				error:function(data){
+					g.httpTip.hide();
+				}
+			});
+		});
+		//~ if(confirm("你确认要删除订单吗?")){
+			//~
+		//~ }
+	}
+	
 	function deleteOrderById(id){
 		layer.confirm('你确认要删除订单吗', {icon: 3}, function(index){
 			layer.close(index);
@@ -655,6 +697,7 @@ $(function(){
 	
 	//window.sendGetOrderInfoHttp = sendGetOrderInfoHttp;
 	window.showOrderDetail = showOrderDetail;
+	window.cancelOrderById = cancelOrderById;
 	window.deleteOrderById = deleteOrderById;
 });
 

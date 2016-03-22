@@ -191,6 +191,17 @@ __html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100513">违约已�
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
 /*  */
+if(__ostatus__ == "100514"){
+	__html__.push('<dd class="selected">');
+}
+else{
+	__html__.push('<dd>');
+}
+__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100514">已取消</a>');
+__html__.push('<i class="common-ico ico-selected-flag"></i>');
+__html__.push('</dd>');
+
+/*  */
 __html__.push('</dl>');
 __html__.push('</li>');
 
@@ -269,7 +280,7 @@ __html__.push('<a href="/anjia/card-center.html?item=4">我的银行卡</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</div>');
 __html__.push('</li>');
-/* __html__.push('<li>');
+__html__.push('<li>');
 
 if(__item__ == 6){
 	__html__.push('<div class="nav-main-item selected">');
@@ -277,10 +288,10 @@ if(__item__ == 6){
 else{
 	__html__.push('<div class="nav-main-item">');
 }
-__html__.push('<a href="/anjia/usercenter.html?item=6&ostatus=100504">回收站</a>');
+__html__.push('<a href="/anjia/coupons.html?item=6">我的优惠券</a>');
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</div>');
-__html__.push('</li>'); */
+__html__.push('</li>');
 __html__.push('</ul>');
 document.write(__html__.join(''));
 

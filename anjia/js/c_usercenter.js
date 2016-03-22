@@ -404,7 +404,9 @@ $(function(){
 
 	function changeOrderStatus(){
 		g.currentPage = 1;
-		getUserOrderList();
+		var state = $("#orderstatus").val() || "";
+		location.href="/anjia/usercenter.html?item=1&ostatus="+state;
+		//getUserOrderList();
 	}
 
 
@@ -539,7 +541,7 @@ $(function(){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
-				html.push('<td><a class="a4" href="javascript:repayment(\'' + poundageRecordId + '\',\'' + orderId + '\')">支付</a><a class="a2" href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a class="a4" href="javascript:repayment(\'' + poundageRecordId + '\',\'' + orderId + '\')">支付</a><a class="a2" href="javascript:cancelOrderById(\'' + orderId + '\')">取消</a></td>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
@@ -567,6 +569,10 @@ $(function(){
 			else if(status == "100513"){
 				//违约已还清
 				html.push('<td><a class="a1" href="javascript:showOrderDetail(\'' + orderId + '\',0)">查看</a></td>');
+			}
+			else if(status == "100514"){
+				//已还清
+				html.push('<td></td>');
 			}
 			html.push('</tr>');
 		}
@@ -671,7 +677,7 @@ function sendGetPayOrderListHttp(condi){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
-				html.push('<td><a class="a4" href="javascript:repayment(\'' + poundageRecordId + '\',\'' + orderId + '\')">支付</a><a class="a2" href="javascript:deleteOrderById(\'' + orderId + '\')">删除</a></td>');
+				html.push('<td><a class="a4" href="javascript:repayment(\'' + poundageRecordId + '\',\'' + orderId + '\')">支付</a><a class="a2" href="javascript:cancelOrderById(\'' + orderId + '\')">取消</a></td>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
@@ -2304,7 +2310,39 @@ function sendGetPayOrderListHttp12(condi){
 		}
 	}
 
+/* 取消订单 */
+	function cancelOrderById(id){
+		if(confirm("你确认要取消订单吗?")){
+			g.httpTip.show();
+			var condi = {};
+			condi.orderId = id;
+			condi.login_token = g.login_token;
 
+			var url = Base.serverUrl + "order/cancelOrderController";
+			$.ajax({
+				url:url,
+				data:condi,
+				type:"POST",
+				dataType:"json",
+				context:this,
+				success: function(data){
+					//console.log("deleteOrderById",data);
+					var status = data.success || false;
+					if(status){
+						getUserOrderList();
+					}
+					else{
+						var msg = data.message || "取消订单数据失败";
+						Utils.alert(msg);
+					}
+					g.httpTip.hide();
+				},
+				error:function(data){
+					g.httpTip.hide();
+				}
+			});
+		}
+	}
 
 
 	function deleteOrderById(id){
@@ -2900,6 +2938,7 @@ function OrderLeftProtocolClick(){
 			}
 		});
 	}
+	window.cancelOrderById = cancelOrderById;
 	window.confirmRepayment = confirmRepayment;
 	window.loanByLoanRecord = loanByLoanRecord;
 	window.hidePop = hidePop;
