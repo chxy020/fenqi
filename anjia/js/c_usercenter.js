@@ -2900,7 +2900,6 @@ function OrderLeftProtocolClick(){
 			}
 		});
 	}
-	window.yuqi_message_fuc2 = yuqi_message_fuc2;
 	window.confirmRepayment = confirmRepayment;
 	window.loanByLoanRecord = loanByLoanRecord;
 	window.hidePop = hidePop;

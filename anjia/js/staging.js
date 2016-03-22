@@ -112,15 +112,17 @@ $(document).ready(function(){
 
 	function countBtnUp2(){
 		var allprice = $("#allprice3").val() - 0 || 0;
-		var time = $("#select-option2 option:selected").attr("value");
+		var time = $("#select-option2 option:selected").attr("value") || "";
 
-		if(allprice > 0){
+		if(allprice > 0 && time != ""){
 			var obj = countFee2(allprice,time);
 
 			//$("#capitaltext").html(allprice.toFixed(2));
 			//$("#alltext").html(obj.all);
 			$("#feetext3").html(obj.rate+"元");
 			$("#mouthtext3").html(obj.mouth+"元");
+		}else{
+			Utils.alert("请输入分期金额并选择分期期数!");
 		}
 	}
 		/* 添加千位分隔符 */
