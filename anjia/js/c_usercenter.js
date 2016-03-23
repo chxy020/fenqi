@@ -541,7 +541,7 @@ $(function(){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
-				html.push('<td><a class="a4" href="javascript:repayment(\'' + poundageRecordId + '\',\'' + orderId + '\')">支付</a><a class="a2" href="javascript:cancelOrderById(\'' + orderId + '\')">取消</a></td>');
+				html.push('<td><a class="a4" href="javascript:repayment(\'' + poundageRecordId + '\',\'' + orderId + '\')">支付</a></td>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
@@ -677,7 +677,7 @@ function sendGetPayOrderListHttp(condi){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				//html.push('<td><a href="/anjia/orderdetail.html?orderId=' + orderId + '">查看</a></td>');
-				html.push('<td><a class="a4" href="javascript:repayment(\'' + poundageRecordId + '\',\'' + orderId + '\')">支付</a><a class="a2" href="javascript:cancelOrderById(\'' + orderId + '\')">取消</a></td>');
+				html.push('<td><a class="a4" href="javascript:repayment(\'' + poundageRecordId + '\',\'' + orderId + '\')">支付</a></td>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"

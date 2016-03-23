@@ -379,7 +379,7 @@ $(function(){
 			else if(status == "100505"){
 				//100505: "待缴手续费"showOrderDetail
 				html.push('<a href="javascript:showOrderDetail(\'' + orderId + '\',1)" class="item-btn item-btn-green">查看</a>');
-				html.push('<a href="javascript:cancelOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">取消</a>');
+				//html.push('<a href="javascript:cancelOrderById(\'' + orderId + '\')" class="item-btn item-btn-red">取消</a>');
 			}
 			else if(status == "100506"){
 				//100506: "待放款"
