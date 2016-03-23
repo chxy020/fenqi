@@ -1147,10 +1147,16 @@ h1,h2,h3,h4,h5{font-weight:500;}
 .slide-right-part div,.slide-right-part a,.slide-right-part{opacity:0;filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;}
 
 /* 身份证提示 */
-.upload-inf-title span.idcard{position:relative;cursor:default;color:#5e7e0c;}
-.upload-inf-title span.idcard img{transition:all .5s ease-in-out;position:absolute;top:22px;left:0;display:none;}
-.upload-inf-title span.idcard:hover{color:inherit;}
-.upload-inf-title span.idcard:hover img{display:inline;}
-.upload-inf-title span.idcard4 img{left:auto;right:0;}
+div.shili {overflow:hidden;}
+div.shili span.idcard{float:left;display:inline-block;vertical-align:top;cursor:default;color:#5e7e0c;}
+div.shili span.idcard img.img{transition:all .25s ease-out;width:138px;height:88px;vertical-align:top;}
+div.shili span.idcard i.i{display:inline-block;position:relative;padding:3px;border:1px solid #c3e4b5;margin-right:15px;}
+div.shili span.idcard img.ico{position:absolute;bottom:0;right:0;}
+div.shili span.idcard:hover img.img{width:297px;height:189px;}
+div.shili span.idcard:hover i.i{padding:5px;}
+div.shili span.idcard:hover img.ico,div.shili span.idcard:hover i.i2{display:none;}
+div.shili h4.h4{font-size:16px;color:#5e7e0c;line-height:46px;}
+div.shili2 span.idcard:hover img.img{width:400px;height:350px;}
+
 
 
