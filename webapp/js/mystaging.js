@@ -76,6 +76,15 @@ $(function(){
 	//头像
 	$(document).on("change","#orderMaterialFile",orderMaterialFileBtnUp);
 	
+	/* 身份证等示例点击查看效果 */
+	$("div.shili span.idcard").click(function(){
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+		}else{
+			$(this).addClass("active");
+		}
+		$(this).siblings("span.idcard").removeClass("active");
+	});
 	/* 获取合作商户列表 */
 	function sendGetcompanys(){
 		g.httpTip.show();

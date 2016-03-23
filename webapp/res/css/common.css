@@ -892,3 +892,16 @@ div.staging_div1{border-top:1px solid #fff;border-bottom:1px solid #d5d5d5;}
 .result_list span.left,.result_list span.right{display:inline-block;width:49%;text-align:center;}
 
 a.common-btn.btn-green.btn_yellow{background-color:#fe781f;}
+
+/* 身份证提示 */
+div.shili {overflow:hidden;font-size:12px;}
+div.shili span.idcard{float:left;display:inline-block;vertical-align:top;cursor:default;color:#5e7e0c;}
+div.shili span.idcard img.img{transition:all .25s ease-out;width:97px;height:60px;vertical-align:top;}
+div.shili span.idcard i.i{display:inline-block;position:relative;padding:1px;border:1px solid #c3e4b5;margin-right:5px;}
+div.shili span.idcard img.ico{position:absolute;bottom:0;right:0;}
+div.shili span.idcard.active img.img{width:270px;height:176px;}
+div.shili span.idcard.active i.i{padding:3px;}
+div.shili span.idcard.active img.ico,div.shili span.idcard.active i.i2{display:none;}
+div.shili h4.h4{font-size:13px;color:#5e7e0c;line-height:46px;}
+div.shili2 span.idcard.active img.img{width:270px;height:250px;}
+div.shili span.idcard i.i2{font-style:normal;}
