@@ -108,11 +108,46 @@ else{
 		OrderLeftProtocolClick();
 	},false);
 }
+
+/* 根据版本获取协议信息 */
+	var g={};
+	function showOrderDetailByHistory(orderId){
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = orderId || "";
+		var url = Base.serverUrl + "order/getProtocolInfoByOrderId";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var obj = data.obj || [];
+					g.H = obj.version || "";
+				}
+				else{
+					var msg = data.message || "获取用户订单失败";
+				}
+			},
+			error:function(data){
+			}
+		});
+	}
+
 function OrderLeftProtocolClick(){
+	showOrderDetailByHistory(__orderId__);
 	$("#orderleftbtn > dd").bind("click",function(evt){
 		var id = this.id || "";
 		var t = id.split("_")[1] || "";
-		var pages = ["","../anjia/protocol/protocol-fenqi.html","../anjia/protocol/protocol-authorization.html","../anjia/protocol/protocol-customer-commitment.html","../anjia/protocol/protocol-credit-counseling.html","../anjia/protocol/protocol-transfer.html"];
+		var H = g.H || "";//判断是否有版本
+		if(H != ""){
+			var pages = ["","../anjia/protocol_"+H+"/protocol-fenqi.html","../anjia/protocol_"+H+"/protocol-authorization.html","../anjia/protocol_"+H+"/protocol-customer-commitment.html","../anjia/protocol_"+H+"/protocol-credit-counseling.html","../anjia/protocol_"+H+"/protocol-transfer.html"];
+		}else{
+			var pages = ["","../anjia/protocol/protocol-fenqi.html","../anjia/protocol/protocol-authorization.html","../anjia/protocol/protocol-customer-commitment.html","../anjia/protocol/protocol-credit-counseling.html","../anjia/protocol/protocol-transfer.html"];
+		}
 		var titles = ["","分期付款协议","个人征信等信息查询及使用授权书","客户承诺函","信用咨询及居间服务协议","债权转让协议"];
 		var url = pages[t] || "";
 		if(url !== ""){

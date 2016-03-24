@@ -16,7 +16,7 @@ $(function(){
 	if(g.orderInfo != ""){
 		//console.log("g.orderInfo",g.orderInfo);
 		changeOrderInfoHtml(g.orderInfo);
-		sendGetOrderInfoHttp(g.orderId);
+		showOrderDetailByHistory(g.orderId);
 		//sendGetOrderInfoHttp(g.orderId);
 	}
 	else{
@@ -48,7 +48,37 @@ $(function(){
 	//$(document).on("change","#avatar",avatarBtnUp);
 	//$("#orderstatus").bind("change",changeOrderStatus);
 
-	//以下为订单编辑
+	
+	/* 根据版本获取协议信息 */
+	function showOrderDetailByHistory(orderId){
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = orderId || "";
+		var url = Base.serverUrl + "order/getProtocolInfoByOrderId";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var info = JSON.stringify(data);
+					Utils.offLineStore.set("userorderinfo_detail",info,false);
+				}
+				else{
+					var msg = data.message || "获取用户订单失败";
+					sendGetOrderInfoHttp(g.orderId);
+				}
+			},
+			error:function(data){
+				sendGetOrderInfoHttp(g.orderId);
+			}
+		});
+	}
+	
+	//显示协议
 	function sendGetOrderInfoHttp(orderId){
 		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
 		var condi = {};

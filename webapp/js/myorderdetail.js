@@ -36,7 +36,7 @@ $(function(){
 		getUserInfo();
 		//获取订单列表
 		getUserOrderStagingList();
-
+		OrderLeftProtocolClick();
 		//获取订单状态
 		//sendGetUserInfoDicHttp();
 	}
@@ -73,19 +73,105 @@ $(function(){
 		}
 		*/
 	}
+	
+	/* 根据版本获取协议信息 */
+	function showOrderDetailByHistory2(orderId){
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = orderId || "";
+		var url = Base.serverUrl + "order/getProtocolInfoByOrderId";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var obj = data.obj || [];
+					g.H = obj.version || "";
+				}
+				else{
+					var msg = data.message || "获取用户订单失败";
+				}
+			},
+			error:function(data){
+			}
+		});
+	}
+
+function OrderLeftProtocolClick(){
+	showOrderDetailByHistory2(g.orderId);
+	$("#staging_Protocol  a").bind("click",function(evt){
+		var id = this.id || "";
+		var t = id.split("_")[1] || "";
+		var H = g.H || "";//判断是否有版本
+		if(H != ""){
+			var pages = ["","../protocol_"+H+"/protocol-fenqi.html","../protocol_"+H+"/protocol-authorization.html","../protocol_"+H+"/protocol-customer-commitment.html","../protocol_"+H+"/protocol-credit-counseling.html","../protocol_"+H+"/protocol-transfer.html"];
+		}else{
+			var pages = ["","../protocol/protocol-fenqi.html","../protocol/protocol-authorization.html","../protocol/protocol-customer-commitment.html","../protocol/protocol-credit-counseling.html","../protocol/protocol-transfer.html"];
+		}
+		var titles = ["","分期付款协议","个人征信等信息查询及使用授权书","客户承诺函","信用咨询及居间服务协议","债权转让协议"];
+		var url = pages[t] || "";
+		if(url !== ""){
+			/* $(".selected").removeClass("selected");
+			$(this).addClass("selected");
+			$("#protocoldiv").addClass("selected"); */
+
+			var title = titles[t] || "";
+			//订单数据,在协议页面可以同意引入utils.js,调用此方法获取数据
+			//var orderInfo = Utils.offLineStore.get("userorderinfo_list",false) || "";
+			//console.log("orderInfo",orderInfo);
+			$.fn.showProtocolPop(url,title);
+		}
+	});
+}
+	
 //判断是否为还款中  显示协议
 	function show_pro(){
 		var pa = g.pa || "";
 		if(pa=="2"){
-			sendGetOrderInfoHttp(g.orderId);
+			showOrderDetailByHistory(g.orderId);
 			$("#staging_Protocol").fadeIn(0);
 		}else{
 			$("#staging_Protocol").fadeOut(0);
 		}
 	}
 
+	/* 根据版本获取协议信息 */
+	function showOrderDetailByHistory(orderId){
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.orderId = orderId || "";
+		var url = Base.serverUrl + "order/getProtocolInfoByOrderId";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var info = JSON.stringify(data);
+					Utils.offLineStore.set("userorderinfo_detail",info,false);
+				}
+				else{
+					var msg = data.message || "获取用户订单失败";
+					sendGetOrderInfoHttp(g.orderId);
+				}
+			},
+			error:function(data){
+				sendGetOrderInfoHttp(g.orderId);
+			}
+		});
+	}
+	
+	
+	
 	//显示协议
-		
+				
 	function sendGetOrderInfoHttp(orderId){
 		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
 		var condi = {};
@@ -788,7 +874,7 @@ $(function(){
 		});
 	}
 
-
+	window.OrderLeftProtocolClick = OrderLeftProtocolClick;
 	window.confirmRepayment = confirmRepayment;
 	window.repayment = repayment;
 });
