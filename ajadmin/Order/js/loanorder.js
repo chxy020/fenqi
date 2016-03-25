@@ -208,9 +208,9 @@ $(function(){
 		html.push('<th>合作公司</th>');
 		html.push('<th>所属公司</th>');
 		html.push('<th>用户姓名</th>');
-		//html.push('<th>用户电话</th>');
 		html.push('<th>合同金额</th>');
 		html.push('<th>分期金额</th>');
+		html.push('<th>分期期数</th>');
 		html.push('<th>支付金额</th>');
 		html.push('<th>分笔支付状态</th>');
 		html.push('<th>申请支付时间</th>');
@@ -242,6 +242,7 @@ $(function(){
 			//html.push('<td>' + customerPhone + '</td>');
 			html.push('<td>' + contractMoney + '元</td>');
 			html.push('<td>' + packageMoney + '元</td>');
+			html.push('<td>' + d.fenQiTimes + '期</td>');
 			html.push('<td>' + loanMoney + '元</td>');
 			html.push('<td>' + statusDesc + '</td>');
 			html.push('<td>' + applicationTime + '</td>');
