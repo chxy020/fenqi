@@ -1936,7 +1936,8 @@ $(".protocol_slideToggle").click(function(){
 		for(var i = 0, len = list.length; i < len; i++){
 			var data = list[i] || {};
 
-			var src = data.orderMaterialUrl + "?t=" + (new Date() - 0);
+			//var src = data.orderMaterialUrl + "?t=" + (new Date() - 0);
+			var src = data.thumbnailUrl + "?t=" + (new Date() - 0);
 			var id = data.orderMaterialId || "";
 			var orderMaterialType = data.orderMaterialType || "";
 			var slen = orderMaterialType.length - 1;
