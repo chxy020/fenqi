@@ -158,7 +158,7 @@ $(function(){
 				var bankType = d.bankType || "";
 				bankType = bankType.toLowerCase();
 				//if(i == 0){bankType = "icbc";}//测试工商银行
-				var bankCard = d.bankCard || "";
+				var bankCard = d.bankCardLast || "";
 				bankCard = "****" + bankCard.substring(bankCard.length - 4);
 
 				var logo = "../res/images/bank-logo/" + bankType + ".gif";
