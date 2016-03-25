@@ -228,7 +228,7 @@ $(function () {
                 //html.push('<td><a href="ViewOrderDetail.html?orderid=' + orderId + '">查看</a>&nbsp&nbsp<a href="javascript:deleteOrderById(\'' + orderId + '\')">代缴费</a></td>');
                 var buttonStr = '<a class="btn btn-primary" href="javascript:ShowWin(\'' + d.orderId +  '\',\'' + d.customerId + '\',\'' + d.poundage + '\')">代缴费</a>&nbsp;&nbsp;';
                 buttonStr += '<a class="btn btn-success" href="javascript:SendWin(\'' + d.customerId + '\',' +  d.poundage + ')">发优惠券</a>&nbsp;&nbsp;';
-                buttonStr += '<a class="btn btn-warning" href="javascript:Cancel(' + d.orderId + ')">取消</a>';
+                buttonStr += '<a class="btn btn-warning" href="javascript:ShowCancelWin(' + d.orderId + ')">取消</a>';
                 html.push('<td>' + buttonStr + '</td>');
             }
             html.push('</tr>');
@@ -517,17 +517,34 @@ $(function () {
                 }
             });
         }
-    }
-    //取消订单
-    window.Cancel = function(orderId){
+    };
+
+    //显示取消订单窗口
+    window.ShowCancelWin = function(orderId){
+        $("#cancelReason").attr("orderId",orderId);
+        $('#CancelWin').modal('show');
+    };
+    window.SaveCancel = function(orderId){
         if(!confirm("您确定要取消此订单吗?")){return;}
+        var orderId = $("#cancelReason").attr("orderId");
+        var cancelReason = $("#cancelReason").val();
+        if(orderId==""){
+            alert("订单号非法请检查！");
+            return false;
+        }
+        if(cancelReason==""){
+            alert("取消原因不能为空！");
+            return false;
+        }
         var url = Base.serverUrl + "order/cancelOrderController";
         var condi = {};
         condi.login_token = g.login_token;
         condi.orderId = orderId;
+        condi.cancelReason = cancelReason;
         $.ajax({
             url: url, data: condi,type: "POST", dataType: "json", context: this,
             success: function (data) {
+                $('#CancelWin').modal('hide');
                 var msg = data.message || "取消订单失败！";
                 Utils.alert(msg);
             }
