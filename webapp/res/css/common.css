@@ -905,3 +905,83 @@ div.shili span.idcard.active img.ico,div.shili span.idcard.active i.i2{display:n
 div.shili h4.h4{font-size:13px;color:#5e7e0c;line-height:46px;}
 div.shili2 span.idcard.active img.img{width:270px;height:250px;}
 div.shili span.idcard i.i2{font-style:normal;}
+
+/* 问与答改版页面 */
+.ask_body{}
+.ask_body .top_div{}
+.ask_body .top_div img.img{width:100%;}
+.ask_body .top_div .top_row{position:absolute;}
+.ask_body .top_div .top_row1{top:13%;left:6%;width:14%;}/* left:6%; */
+.ask_body .top_div .top_row2{top:19%;left:30%;width:10%;}/* left:30%; */
+.ask_body .top_div .top_row3{top:7%;right:4%;width:17%;}/* right:4%; */
+.ask_body .Q_A{}
+.ask_body .Q_A  .Q_div{overflow:hidden;color:#fff;margin:20px 0;position:relative;}
+.ask_body .Q_A  .Q_div i.i{position:absolute;left:0;bottom:30%;display:inline-block;width:21px;height:26px;background:url('../images/ask_Q.png') no-repeat center top;}
+.ask_body .Q_A  .Q_div span.text{max-width:70%;margin-left:21px;padding:19px 14px;background-color:#35a6ce;border-radius:6px;float:left;display:inline-block;height:auto;}
+.ask_body .Q_A  .A_div{overflow:hidden;position:relative;font-size:15px;margin:20px 0;}
+.ask_body .Q_A  .A_div i.i{position:absolute;right:2px;bottom:30%;display:inline-block;width:35px;height:44px;background:url('../images/ask_A.png') no-repeat center top;background-color:#fff;}
+.ask_body .Q_A  .A_div span.text{margin-right:35px;border:2px dashed #35a6ce;line-height:24px;padding:10px;float:right;display:inline-block;width:70%;height:auto;}
+.ask_body .Q_A  i.color1{color:#fa0000;vertical-align:middle;}
+.ask_body .Q_A  .color2{display:inline-block;color:#2f354f;font-size:14px;margin-top:7px;}
+.ask_body .part{display:none;}
+.ask_body .part0{display:block;}
+
+/* 云彩动画 */
+/* .ask_body .top_div .top_row1{
+	animation:row1_move 15s linear 7s infinite;
+	-webkit-animation:row1_move 15s linear 7s infinite;
+	-moz-animation:row1_move 15s linear 7s infinite;
+	-ms-animation:row1_move 15s linear 7s infinite;
+	-o-animation:row1_move 15s linear 7s infinite;
+}
+.ask_body .top_div .top_row2{
+	animation:row1_move 15s linear 5s infinite;
+	-webkit-animation:row1_move 15s linear 5s infinite;
+	-moz-animation:row1_move 15s linear 5s infinite;
+	-ms-animation:row1_move 15s linear 5s infinite;
+	-o-animation:row1_move 15s linear 5s infinite;
+}
+.ask_body .top_div .top_row3{
+	animation:row1_move 15s linear infinite;
+	-webkit-animation:row1_move 15s linear infinite;
+	-moz-animation:row1_move 15s linear infinite;
+	-ms-animation:row1_move 15s linear infinite;
+	-o-animation:row1_move 15s linear infinite;
+}	 */
+/* 1 */
+@keyframes row1_move{
+	0%{left:-20%;}	
+	100%{left:120%;}
+}
+@-webkit-keyframes row1_move{
+	0%{left:-20%;}
+	100%{left:120%;}
+}
+@-moz-keyframes row1_move{
+	0%{left:-20%;}
+	100%{left:120%;}
+}
+@-ms-keyframes row1_move{
+	0%{left:-20%;}
+	100%{left:120%;}
+}
+@-o-keyframes row1_move{
+	0%{left:-20%;}
+	100%{left:120%;}
+}	
+/* 适配云彩位置 */
+@media only screen and (min-width:320px){
+	.ask_body .top_div .top_row1{top:6%;}
+	.ask_body .top_div .top_row2{top:18%;}
+	.ask_body .top_div .top_row3{top:4%;}
+}
+@media only screen and (min-width:375px){
+	.ask_body .top_div .top_row2{top:18%;}
+}
+@media only screen and (min-width:375px){
+	.ask_body .top_div .top_row2{top:18%;}
+}
+@media only screen and (min-width:1024px){
+	.ask_body .top_div .top_row1{top:12%;}
+	.ask_body .top_div .top_row2{top:27%;}
+}
