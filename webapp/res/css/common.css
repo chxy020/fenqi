@@ -103,7 +103,7 @@ input[type="search"],input[type="number"],input[type="text"],input[type="button"
 	border-bottom:none!important;
 }
 .high-light{
-	color:#61dd43!important;
+	color:#61dd43;
 }
 .table-cell{
 	display:table-cell;
@@ -993,7 +993,8 @@ div.shili span.idcard i.i2{font-style:normal;}
 .loadimg span { display:block; width:20px; height:20px; margin:0; background:url(../images/loading1.gif) no-repeat center top;  -webkit-transform: rotate(0deg) translateZ(0); -webkit-transition-duration: 0ms; -webkit-animation-name: inpload; -webkit-animation-duration: 2.4s; -webkit-animation-iteration-count: infinite; -webkit-animation-timing-function: linear; }
 .loadtext { width:99px; height:20px; line-height:20px; float:left; color:#fff; font-size:15px; }
 .loadqx { float:left; width:50px; height:50px; background-color:#ff5500; border-left:1px solid #999; background:url(../images/dpi2/ld.png) no-repeat 20px -30px; }
-@-webkit-keyframes inpload { 0% {
+@-webkit-keyframes inpload {
+0% {
 -webkit-transform:rotate(0deg);
 }
 5% {
@@ -1056,3 +1057,42 @@ div.shili span.idcard i.i2{font-style:normal;}
 100% {
 -webkit-transform:rotate(360deg);
 }
+}
+/* 登录页改版 */
+.login_body{background-color:#f1f1f1;}
+.login_box{background:url('../images/login_t_img2.png') no-repeat right bottom;background-size:18% auto;}
+.login_box .top_img{}
+.login_box .top_img .top_row{margin:10% 10% 0 10%;width:20%;}
+
+.login_box .login_form{margin:0 10%;}
+.login_box .login_form .input_item{width:100%;overflow:hidden;}
+.login_box .login_form .input_item input{padding-left:1%;margin-top:20px;display:inline-block;width:100%;background:none;height:30px;line-height:30px;border:none;border-bottom:1px solid #445b6b;}
+.login_box .login_form .input_user{}
+.login_box .login_form .input_user:focus{background:url('../images/login_U.png') no-repeat 10px center;background-size:auto 70%;}
+.login_box .login_form .input_password:focus{background:url('../images/login_P.png') no-repeat 10px center;background-size:auto 70%;}
+
+.login_html .block-tip{color:#666666;padding:10px 10%;}
+.login_html .btn-box{margin:25px 16%;}
+.login_html .common-btn.btn-white{background:none;border:1px solid #4cc51a;border-radius:50px;}
+.login_html .common-btn.btn-green{border-radius:50px;}
+.login_body img.bottom_img{width:100%;vertical-align:bottom;}
+.login_body .ui-main{padding:0;}
+
+/* 注册页改版 引用登录页样式*/
+
+.regist_body{}
+.regist_body .login_box{background:url('../images/login_t_img2.png') no-repeat right 200px;background-size:18% auto;}
+.regist_body a.high-light{color:#5da33f;} 
+.regist_body .block-tip.high-light.color_inhert{color:#666666;font-size:13px;}
+.login_box .login_form .input_code:focus{background:url('../images/login_E.png') no-repeat 10px center;background-size:auto 50%;}
+.regist_body .regist_sms{overflow:hidden;position:relative;}
+.regist_body .regist_sms .input_item2{width:57%;float:left;display:inline-block;vertical-align:bottom;}
+.regist_body .regist_sms .float_right{position:absolute;right:0;width:42%;bottom:0;display:inline-block;}
+.regist_body  .login_form  .regist_sms .send_code{vertical-align:bottom;color:#fff;display:inline-block;width:100%;text-align:center;line-height:35px;border-radius:5px;background-color:#445b6b;}
+/* 忘记密码改版 引用登录与注册页样式*/
+.forget_body .login_form .input_code2:focus{background:url('../images/login_T.png') no-repeat 10px center;background-size:auto 50%;}
+.forget_body.regist_body  .login_form  .regist_sms .send_code{background-color:#126a83;}
+.regist_body .login_box{background:url('../images/login_t_img2.png') no-repeat right bottom;background-size:18% auto;}
+
+/* 修改成功 */
+.forget_body .result-div .result-text{color:#445b6b;font-size:30px;}

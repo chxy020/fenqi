@@ -271,6 +271,8 @@ $(function(){
 					$("#setup3").show();
 					$("#setup3_line").show();
 					$("#setup3_num").addClass("active");
+					$(".login_body img.bottom_img1").fadeOut(0);
+					$(".login_body img.bottom_img2").fadeIn(0);
 					setTimeout(function(){
 						location.href = "login.html";
 					},2000);

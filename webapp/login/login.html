@@ -1,36 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html class="login_body">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
 	<meta name="format-detection" content="telephone=no"/>
-    <link rel="stylesheet" href="../res/css/common.css?234" />
+    <link rel="stylesheet" href="../res/css/common.css?328" />
     <link rel="stylesheet" href="../res/css/core.css?12537" />
 	<title>用户登录</title>
 </head>
 <body>
-	<div class="ui-main">
+	<div class="ui-main login_html">
     	<div class="ui-header">
         	<a id="backbtn" class="ui-back" href="javascript:void(0);">
             	<i class="trigger"></i>
             </a>
         	登录
         </div>
+		<div class="login_box">
+			<div class="top_img">
+				<img class='top_row' src="../res/images/login_t_img1.png"/>
+			</div>
+			 <div class="login_form">
+				<div class="input_item">
+                	<input class="input_user" id="inputphone" maxLength=11 type="text" onfocus='this.placeholder=""' onblur='this.placeholder="请输入手机号码"'  placeholder="请输入手机号码" />
+                </div>
+                <div class="input_item">
+                	<input class="input_password" id="inputpwd" type="password" onfocus='this.placeholder=""' onblur='this.placeholder="请输入密码"' placeholder="请输入密码" />
+                </div>
+            </div>
+		</div>
         <div class="sub-main">
         	<!--div class="login-logo">
             	<img src="../res/images/logo.png" />
             </div--> <!--haitao modify-->
             
-            <div class="common-inp-cont">
+           <!--  <div class="common-inp-cont">
             	<div class="inp-item">
                 	<input id="inputphone" maxLength=11 type="text" class="common-input-text input-type type-phone" placeholder="请输入手机号码" />
                 </div>
                 <div class="inp-item">
                 	<input id="inputpwd" type="password" class="common-input-text input-type type-password" placeholder="请输入密码" />
                 </div>
-            </div>
+            </div> -->
             <div class="block-tip">
             	<a class="high-light f-right" href="../login/forget-password1.html">忘记密码？</a>
             	<input type="checkbox" id="chkphone" checked=true class="ui-checkbox" name="long" style="margin-right:10px;margin-bottom:5px;" />记住账户
@@ -40,6 +53,7 @@
                 <p><a href="../login/regist.html" class="common-btn btn-white">注册</a></p>
             </div>
         </div>
+		<div class="bottom"><img class='bottom_img' src="../res/images/login_img_b.png"/></div>	
     </div>
 
 	<script type="text/javascript" src="../res/js/jquery.min.js"></script>
