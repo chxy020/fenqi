@@ -79,7 +79,7 @@ $(function(){
 			var bmUrl = d.bmUrl || "";
 			var bmClickUrl = d.bmClickUrl || "javascript:void(0);";
 			if(bmUrl !== ""){
-				html.push('<li style="background:url(' + bmUrl + ') top center no-repeat"><a href="' + bmClickUrl + '"><div class="ui-wrap"></div></a></li>');
+				html.push('<li style="background:url(' + bmUrl + ') top center no-repeat"><a target="_blank" href="' + bmClickUrl + '"><div class="ui-wrap"></div></a></li>');
 			}
 		}
 		$("#bannerSlider").html(html.join(''));
