@@ -11,6 +11,8 @@
     <script type="text/javascript" src="../Js/bootstrap.js"></script>
     <script src="../libs/base.js"></script>
     <script src="../libs/utils.js"></script>
+    <script language="javascript" type="text/javascript" src="../Js/My97DatePicker/WdatePicker.js"></script>
+    <script src="../libs/ajaxfileupload.js"></script>
     <script src="js/ModifyOrder.js"></script>
 
     <style type="text/css">
@@ -20,6 +22,10 @@
 
         .sidebar-nav {
             padding: 9px 0;
+        }
+
+        textarea{
+            width: 90%;
         }
 
         @media (max-width: 980px) {
@@ -35,49 +41,54 @@
 <form id="editform" name="editform" action="" method="post">
     <table id="orderinfotable" class="table table-bordered table-hover definewidth m10">
         <tr>
-            <td width="16%" class="tableleft">订单号</td>
+            <td class="tableleft" colspan="2" style="text-align: center; background-image:url('../Images/con_bg.png')">
+                <h4>申 请 情 况</h4></td>
+        </tr>
+        <tr>
+            <td class="tableleft" width="200">订单编号</td>
             <td><input readonly id="orderId" type="text" name="orderId"/></td>
         </tr>
         <tr>
-            <td width="16%" class="tableleft">品牌</td>
-            <td><select id="companyId" name="companyId" class="common-select">
-                <option value="20150901000001">生活家家居</option>
-                <option value="20150901000002">朗润装饰</option>
-            </select></td>
-        </tr>
-        <tr>
-            <td width="16%" class="tableleft">合作商户</td>
-            <td><select id="subsidiaryId" name="subsidiaryId" class="common-select"></select></td>
-        </tr>
-        <tr>
-            <td width="16%" class="tableleft">设计师</td>
-            <td><input id="designer" type="text" name="designer"/></td>
-        </tr>
-        <tr>
-            <td width="16%" class="tableleft">合同编号</td>
+            <td class="tableleft">合同编号</td>
             <td><input id="contractNo" type="text" name="contractNo"/></td>
         </tr>
         <tr>
-            <td width="16%" class="tableleft">合同总金额</td>
-            <td><input id="contractMoney" type="text" name="contractMoney"/></td>
-        </tr>
-
-        <tr>
             <td class="tableleft">产品类型</td>
+            <td><select id="packageType" name="packageType" class="common-select"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">合作商家</td>
+            <td><select id="subsidiaryId" name="subsidiaryId" class="common-select"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">所属公司</td>
             <td>
-                <select id="packageType" name="packageType" class="common-select">
+                <select id="companyId" name="companyId" class="common-select">
+                    <option value="20150901000001">生活家家居</option>
+                    <option value="20150901000002">朗润装饰</option>
                 </select>
             </td>
+        </tr>
+        <tr>
+            <td class="tableleft">合同金额</td>
+            <td><input id="contractMoney" type="text" name="contractMoney"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">设计师姓名</td>
+            <td><input id="designer" type="text" name="designer"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">设计师电话</td>
+            <td><input id="designerPhone" type="text" name="designerPhone"/></td>
         </tr>
         <tr>
             <td class="tableleft">申请分期金额</td>
             <td><input id="applyPackageMoney" type="text" name="applyPackageMoney"/></td>
         </tr>
         <tr>
-            <td class="tableleft">申请分期期数</td>
+            <td class="tableleft">申请分期期限</td>
             <td>
                 <select id="applyFenQiTimes" name="applyFenQiTimes" class="common-select">
-                    <option value='3'>3期 (免费)</option>
                     <option value='6'>6期 (服务费率4%)</option>
                     <option value='12'>12期 (服务费率7%)</option>
                     <option value='18'>18期 (服务费率10%)</option>
@@ -87,30 +98,32 @@
             </td>
         </tr>
         <tr>
-            <td class="tableleft">服务手续费</td>
+            <td class="tableleft">服务费</td>
             <td><input readonly id="poundage" type="text" name="poundage"/></td>
         </tr>
         <tr>
-            <td class="tableleft">月还款本金</td>
-            <td><input readonly id="moneyMonth" type="text" name="moneyMonth"/></td>
+            <td class="tableleft">已装修款</td>
+            <td><input id="decorateMoney" type="text" name="decorateMoney"/></td>
         </tr>
-
         <tr>
             <td class="tableleft">还款方式</td>
-            <td><select id="repaymentType" name="repaymentType" class="common-select"></select></td>
+            <td>
+                <select id="repaymentType" name="repaymentType" class="common-select">
+                    <option value='100801'>按月等额本金</option>
+                </select>
+            </td>
         </tr>
-
+        <tr>
+            <td class="tableleft" colspan="2" style="text-align: center; background-image:url('../Images/con_bg.png')">
+                <h4>个 人 信 息</h4></td>
+        </tr>
         <tr>
             <td class="tableleft">申请人姓名</td>
             <td><input id="applicantName" type="text" name="applicantName"/></td>
         </tr>
         <tr>
-            <td class="tableleft">申请人电话</td>
-            <td><input id="applicantPhone" type="text" name="applicantPhone" /></td>
-        </tr>
-        <tr>
-            <td class="tableleft">年龄</td>
-            <td><input id="applicantAge" type="text" name="applicantAge" /></td>
+            <td class="tableleft">身份证号</td>
+            <td><input id="applicantIdentity" type="text" name="applicantIdentity"/></td>
         </tr>
         <tr>
             <td class="tableleft">性别</td>
@@ -122,28 +135,12 @@
             </td>
         </tr>
         <tr>
-            <td class="tableleft">身份证号</td>
-            <td><input id="applicantIdentity" type="text" name="applicantIdentity"/></td>
+            <td class="tableleft">年龄</td>
+            <td><input id="applicantAge" type="text" name="applicantAge"/></td>
         </tr>
         <tr>
             <td class="tableleft">婚姻状况</td>
             <td><select class="common-select" name="applicantMarital" id="applicantMarital"></select></td>
-        </tr>
-        <tr>
-            <td class="tableleft">现居住地址</td>
-            <td><input id="applicantAddress" type="text" name="applicantAddress"/></td>
-        </tr>
-        <tr>
-            <td class="tableleft">最高学历</td>
-            <td><select class="common-select" name="applicantStudyStatus" id="applicantStudyStatus"></select></td>
-        </tr>
-        <tr>
-            <td class="tableleft">学校名称</td>
-            <td><input id="applicantSchool" type="text" name="applicantSchool"/></td>
-        </tr>
-        <tr>
-            <td class="tableleft">所学专业</td>
-            <td><input id="applicantMajor" type="text" name="applicantMajor"/></td>
         </tr>
         <tr>
             <td class="tableleft">资产信息</td>
@@ -156,51 +153,86 @@
                 </select></td>
         </tr>
         <tr>
-            <td class="tableleft">工作性质</td>
-            <td><select class="common-select" name="applicantJobNature" id="applicantJobNature"></select></td>
+            <td class="tableleft">学历</td>
+            <td><select class="common-select" name="applicantStudyStatus" id="applicantStudyStatus"></select></td>
         </tr>
         <tr>
-            <td class="tableleft">工作单位全称</td>
-            <td><input id="applicantCompany" type="text" name="applicantCompany"/></td>
+            <td class="tableleft">学校名称</td>
+            <td><input id="applicantSchool" type="text" name="applicantSchool"/></td>
         </tr>
         <tr>
-            <td class="tableleft">工作单位性质</td>
-            <td><select class="common-select" name="applicantCompanyNature" id="applicantCompanyNature"></select></td>
+            <td class="tableleft">所学专业</td>
+            <td><input id="applicantMajor" type="text" name="applicantMajor"/></td>
         </tr>
         <tr>
-            <td class="tableleft">所属行业</td>
-            <td><select class="common-select" name="applicantCompanyIndustry" id="applicantCompanyIndustry"></select></td>
+            <td class="tableleft">民族</td>
+            <td>
+                <input id="nation" type="text" name="nation"/>
+            </td>
         </tr>
         <tr>
-            <td class="tableleft">担当职务</td>
-            <td><select class="common-select" name="applicantDuties" id="applicantDuties"></select></td>
+            <td class="tableleft">申请人电话</td>
+            <td><input id="applicantPhone" type="text" name="applicantPhone"/></td>
         </tr>
         <tr>
-            <td class="tableleft">工作年限</td>
-            <td><select class="common-select" name="applicantWorkYears" id="applicantWorkYears"></select></td>
+            <td class="tableleft">微信号码</td>
+            <td><input id="weChat" type="text" name="weChat"/></td>
         </tr>
         <tr>
-            <td class="tableleft">公司地址</td>
-            <td><input id="applicantCompanyAddress" type="text" name="applicantCompanyAddress"/></td>
+            <td class="tableleft">申请邮箱</td>
+            <td><input id="email" type="text" name="email"/></td>
         </tr>
         <tr>
-            <td class="tableleft">单位电话</td>
-            <td><input id="applicantCompanyPhone" type="text" name="applicantCompanyPhone"/></td>
+            <td class="tableleft">装修地址</td>
+            <td><input id="decorateAddress" type="text" name="decorateAddress" style="width: 90%"/></td>
         </tr>
         <tr>
-            <td class="tableleft">税后收入</td>
-            <td><input id="applicantWages" type="text" name="applicantWages"/></td>
+            <td class="tableleft">装修时间</td>
+            <td><input id="decorateTime" type="text" name="decorateTime" onClick="WdatePicker()"/></td>
         </tr>
-
+        <tr>
+            <td class="tableleft">现居住地址</td>
+            <td><input id="applicantAddress" type="text" name="applicantAddress" style="width: 90%"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">住宅性质</td>
+            <td>
+                <select class="common-select" name="houseNature" id="houseNature">
+                    <option value="102801">自有</option>
+                    <option value="102802">租赁</option>
+                    <option value="102803">亲戚拥有</option>
+                    <option value="102804">宿舍</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">房贷月还款/房租</td>
+            <td><input id="houseRent" type="text" name="houseRent"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">此城市生活年限</td>
+            <td><input id="cityYear" type="text" name="cityYear"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">调查情况概述</td>
+            <td><textarea id="personalInfoSituation" name="personalInfoSituation"></textarea></td>
+        </tr>
+        <tr>
+            <td class="tableleft" colspan="2" style="text-align: center; background-image:url('../Images/con_bg.png')">
+                <h4>联 系 人 信 息</h4>
+            </td>
+        </tr>
         <tr>
             <td class="tableleft">配偶姓名</td>
             <td><input id="familyName" type="text" name="familyName"/></td>
         </tr>
-        <tr>
-            <td class="tableleft">配偶手机号码</td>
-            <td><input id="familyPhone" type="text" name="familyPhone"/></td>
+        <td class="tableleft">配偶手机号码</td>
+        <td><input id="familyPhone" type="text" name="familyPhone"/></td>
         </tr>
-
+        </tr>
+        <td class="tableleft">核实情况</td>
+        <td><textarea id="mateSituation" name="mateSituation"></textarea></td>
+        </tr>
         <tr>
             <td class="tableleft">亲属姓名</td>
             <td><input id="familyTwoName" type="text" name="familyTwoName"/></td>
@@ -214,12 +246,8 @@
             <td><select class="common-select" name="familyTwoRelation" id="familyTwoRelation"></select></td>
         </tr>
         <tr>
-            <td class="tableleft">朋友姓名</td>
-            <td><input id="friendName" type="text" name="friendName"/></td>
-        </tr>
-        <tr>
-            <td class="tableleft">朋友手机号码</td>
-            <td><input id="friendPhone" type="text" name="friendPhone"/></td>
+            <td class="tableleft">核实情况</td>
+            <td><textarea id="relationSituation" name="relationSituation"></textarea></td>
         </tr>
         <tr>
             <td class="tableleft">同事姓名</td>
@@ -229,64 +257,173 @@
             <td class="tableleft">同事手机号码</td>
             <td><input id="workmatePhone" type="text" name="workmatePhone"/></td>
         </tr>
-
         <tr>
-            <td class="tableleft">身份证</td>
+            <td class="tableleft">核实情况</td>
+            <td><textarea id="workmateSituation" name="workmateSituation"></textarea></td>
+        </tr>
+        <tr>
+            <td class="tableleft">朋友姓名</td>
+            <td><input id="friendName" type="text" name="friendName"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">朋友手机号码</td>
+            <td><input id="friendPhone" type="text" name="friendPhone"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">核实情况</td>
+            <td><textarea id="friendSituation" name="friendSituation"></textarea></td>
+        </tr>
+        <tr>
+            <td class="tableleft" colspan="2" style="text-align: center; background-image:url('../Images/con_bg.png')">
+                <h4>工 作 信 息</h4>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">公司名称</td>
+            <td><input id="applicantCompany" type="text" name="applicantCompany"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">工作单位性质</td>
+            <td><select class="common-select" name="applicantCompanyNature" id="applicantCompanyNature"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">所属行业</td>
+            <td><select class="common-select" name="applicantCompanyIndustry" id="applicantCompanyIndustry"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">部门</td>
+            <td><input id="department" type="text" name="department"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">担任职务</td>
+            <td><input id="applicantDuties" type="text" name="applicantDuties"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">工作性质</td>
+            <td><select class="common-select" name="applicantJobNature" id="applicantJobNature"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">工作年限</td>
+            <td><select class="common-select" name="applicantWorkYears" id="applicantWorkYears"></select></td>
+        </tr>
+        <tr>
+            <td class="tableleft">公司地址</td>
+            <td><input id="applicantCompanyAddress" type="text" name="applicantCompanyAddress" style="width: 90%"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">公司电话</td>
+            <td><input id="applicantCompanyPhone" type="text" name="applicantCompanyPhone"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">税后收入</td>
+            <td><input id="applicantWages" type="text" name="applicantWages"/></td>
+        </tr>
+            <td class="tableleft">工资发放方式</td>
+            <td>
+                <select id="wageDeliverWay" name="wageDeliverWay" class="common-select">
+                    <option value="102902">现金</option>
+                    <option value="102301">银行代发</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">调查情况概述</td>
+            <td><textarea id="workInfoSituation" name="workInfoSituation"></textarea></td>
+        </tr>
+        <tr>
+            <td class="tableleft" colspan="2" style="text-align: center; background-image:url('../Images/con_bg.png')">
+                <h4>收 入 信 息</h4>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">流水数量</td>
+            <td><input id="statementCount" type="text" name="statementCount"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">
+                流水（png,jpg)&nbsp;&nbsp;
+                <button type="button" class="btn btn-success upType" upType="100705">上传</button></td>
+            <td id="Img100705"> </td>
+        </tr>
+        <tr>
+            <td class="tableleft">备注</td>
+            <td><textarea id="incomeInfoRemark" name="incomeInfoRemark"></textarea></td>
+        </tr>
+        <tr>
+            <td class="tableleft" colspan="2" style="text-align: center; background-image:url('../Images/con_bg.png')">
+                <h4>信 用 信 息</h4>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">开始日期</td>
+            <td><input id="beginDate" type="text" name="beginDate" onClick="WdatePicker()"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">结束日期</td>
+            <td><input id="endDate" type="text" name="endDate" onClick="WdatePicker()"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">人民银行贷款审批查询次数</td>
+            <td><input id="bankLoanCount" type="text" name="bankLoanCount"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">人民银行信用卡申请查询次数</td>
+            <td><input id="bankCreditApplyCount" type="text" name="bankCreditApplyCount"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">人民银行个人查询次数</td>
+            <td><input id="bankPersonalCount" type="text" name="bankPersonalCount"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">征信（png,jpg)&nbsp;&nbsp;
+                <button type="button" class="btn btn-success upType" upType="100712">上传</button></td>
+            <td id="Img100712"> </td>
+        </tr>
+        <tr>
+            <td class="tableleft">备注</td>
+            <td><textarea id="creditInfoRemark" name="creditInfoRemark"></textarea></td>
+        </tr>
+        <tr>
+            <td class="tableleft" colspan="2" style="text-align: center; background-image:url('../Images/con_bg.png')">
+                <h4>其 它 信 息</h4>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">其他信息</td>
+            <td><textarea id="otherInfo" name="otherInfo"></textarea></td>
+        </tr>
+        <tr>
+            <td class="tableleft" colspan="2" style="text-align: center; background-image:url('../Images/con_bg.png')">
+                <h4>客 户 资 料</h4>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">身份证（png,jpg)
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success upType" upType="100701">上传</button></td>
             <td id="Img100701"></td>
         </tr>
         <tr>
-            <td class="tableleft">房产证</td>
+            <td class="tableleft">房产证（png,jpg)
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success upType" upType="100702">上传</button></td>
             <td id="Img100702"></td>
         </tr>
         <tr>
-            <td class="tableleft">户口本</td>
-            <td id="Img100703"></td>
-        </tr>
-        <tr>
-            <td class="tableleft">结婚证/单身证明</td>
-            <td id="Img100704">
-            </td>
-        </tr>
-
-        <tr>
-            <td class="tableleft">流水证明</td>
-            <td id="Img100705"></td>
-        </tr>
-
-        <tr>
-            <td class="tableleft">在职证明</td>
-            <td id="Img100709"></td>
-        </tr>
-
-        <tr>
-            <td class="tableleft">连带责任人身份证照片</td>
-            <td id="Img100706"></td>
-        </tr>
-        <tr>
-            <td class="tableleft">企业用户营业执照照片</td>
-            <td id="Img100707"></td>
-        </tr>
-        <tr>
-            <td class="tableleft">企业用户组织结构代码证</td>
-            <td id="Img100708"></td>
-        </tr>
-        <tr>
-            <td class="tableleft">企业用户税务登记证</td>
-            <td id="Img100710"></td>
-        </tr>
-        <tr>
-            <td class="tableleft">企业用户企业经营场所照片</td>
-            <td id="Img100711"></td>
-        </tr>
-        <tr>
-            <td class="tableleft">用户协议</td>
-            <td id="protocol"></td>
+            <td class="tableleft">其它信息(zip,rar)
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success upFile" upType="100713">上传</button></td>
+            <td id="Img100713"></td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: center">
+                <input type="hidden" id="customerId" name="customerId" value="">
+                <input type="file" style="display: none" name="orderMaterialFile" id="orderMaterialFile" />
+                <input type="file" style="display: none" name="uploadFile" id="uploadFile" />
                 <button id="but_edit" type="button" class="btn btn-success" type="button">修改资料</button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" class="btn" name="backid" id="backid">返回列表</button>
+                <button type="button" class="btn" name="backid" id="backid">关闭窗口</button>
             </td>
         </tr>
     </table>

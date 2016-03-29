@@ -50,6 +50,7 @@ $(function () {
                 g.familyTwoRelation = data.obj.familyTwoRelation;//亲属关系
                 g.designer = data.obj.designer;//设计师
                 g.packageName = data.obj.packageName;//产品名称
+                g.customerId = data.obj.customerId;//客户编号
                 //字段值
                 for (a in data.obj) {
                     //console.log(a + "=" + data.obj[a]);
@@ -58,15 +59,7 @@ $(function () {
                     }
                 }
                 //图片
-                for (var i = 0; i < data.list.length; i++) {
-                    var ImgType = data.list[i].orderMaterialType.toString();
-                    var ImgUrl = data.list[i].orderMaterialUrl.toString();
-                    if ($("#Img" + ImgType).length == 1) {//图片的宽度和宽度不起作用，暂不处理
-                        $("#Img" + ImgType).append("<a href='" + ImgUrl + "' target='_blank' title='点击查看大图'><img src='" + ImgUrl + "' width='200' height='150' style='margin: 5px'></a>");
-                    } else {
-                        alert("[" + ImgType + "]类型图片，暂未处理!");
-                    }
-                }
+                ShowPic(data.list);
                 //电子协议
                 var phtml = [];
                 phtml.push('<a href="../protocol/protocol-fenqi.html?orderId=' + g.orderId + '" target="_blank">借款协议</a>&nbsp;&nbsp;');
@@ -84,6 +77,56 @@ $(function () {
             }
         });
     }
+
+    //处理显示图片
+    function ShowPic(picData) {
+        for (var i = 0; i < picData.length; i++) {
+            var ImgType = picData[i].orderMaterialType.toString();
+            var ImgUrl = picData[i].orderMaterialUrl.toString();
+            var orderMaterialId = picData[i].orderMaterialId.toString();
+            if(ImgType == 100713){//资源文件
+                var divHtml = '<div class="' + orderMaterialId + '" style=" float:left; margin:5px; pading:5px;background:#ccc;">';
+                divHtml += "<a href='" + ImgUrl + "' target='_blank' title='点击下载此资源文件'><img src='../Images/Save.png' style='margin: 5px'></a>";
+                divHtml += "<img src='../Images/del.png' width='20' height='20' onclick='DelPic(" + orderMaterialId + ")' style='margin: 5px; vertical-align: bottom;cursor: pointer '>";
+                divHtml += "</div>";
+                $("#Img" + ImgType).append(divHtml);
+            }else {
+                if ($("#Img" + ImgType).length == 1) {//图片的宽度和宽度不起作用，暂不处理
+                    var divHtml = '<div class="' + orderMaterialId + '" style=" float:left; margin:5px; pading:5px;background:#ccc;">';
+                    divHtml += "<a href='" + ImgUrl + "' target='_blank' title='点击查看大图'><img src='" + ImgUrl + "' width='200' height='150' style='margin: 5px'></a>";
+                    divHtml += "<img src='../Images/del.png' width='20' height='20' onclick='DelPic(" + orderMaterialId + ")' style='margin: 5px; vertical-align: bottom;cursor: pointer '>";
+                    divHtml += "</div>";
+                    $("#Img" + ImgType).append(divHtml);
+                } else {
+                    alert("[" + ImgType + "]类型图片，暂未处理!");
+                }
+            }
+        }
+    }
+
+    //删除图片
+    window.DelPic = function (orderMaterialId) {
+        if (!confirm("您确定要删除此资源吗？")) {
+            return
+        }
+        var url = Base.serverUrl + "order/deleteOrderMaterial";
+        $.ajax({
+            url: url,
+            data: {login_token: g.login_token, orderMaterialId: orderMaterialId},
+            type: "POST",
+            dataType: "json",
+            context: this,
+            success: function (data) {
+                var status = data.success || false;
+                if (status) {
+                    $("." + orderMaterialId).remove();
+                }
+                var msg = data.message || "删除资源失败！";
+                Utils.alert(msg);
+            }
+        });
+    }
+
 
     //========================获取产品信息============================
     function sendGetProductHttp(companyId) {
@@ -231,7 +274,7 @@ $(function () {
     }
 
     //========================根据身份证号计算年龄 ============================
-    function discriCard(){
+    function discriCard() {
         var UUserCard = $("#applicantIdentity").val();
         //获取出生日期
         UUserCard.substring(6, 10) + "-" + UUserCard.substring(10, 12) + "-" + UUserCard.substring(12, 14);
@@ -250,19 +293,19 @@ $(function () {
             age++;
         }
         //alert(age);
-        $("#applicantAge").val( Math.abs(age)>100?"身份号号输入错误，请检查！":age);
+        $("#applicantAge").val(Math.abs(age) > 100 ? "身份号号输入错误，请检查！" : age);
     }
 
     //========================保存数据 ============================
     function SaveData(e) {
-        if($("#packageType").val() == "" || $("#packageType").val() == null){
+        if ($("#packageType").val() == "" || $("#packageType").val() == null) {
             Utils.alert("请选择产品类型！");
-            $("#packageType").focus() ;
+            $("#packageType").focus();
             return false;
         }
-        if($("#subsidiaryId").val() == "" || $("#subsidiaryId").val() == null){
+        if ($("#subsidiaryId").val() == "" || $("#subsidiaryId").val() == null) {
             Utils.alert("请选择分公司！");
-            $("#subsidiaryId").focus() ;
+            $("#subsidiaryId").focus();
             return false;
         }
         g.httpTip.show();
@@ -270,42 +313,137 @@ $(function () {
         var condi = {};
         condi.login_token = g.login_token;
         condi.companyId = g.companyId;
-        condi.designer =   g.designer||"" ;
+        condi.designer = g.designer || "";
         condi.packageName = $("#packageType").find("option:selected").text();
-        var parm = function getQueryParameters1(Obj,FormId){
-            $.each($("#" + FormId).serializeArray(),function(index,param) {
+        var parm = function getQueryParameters1(Obj, FormId) {
+            $.each($("#" + FormId).serializeArray(), function (index, param) {
                 Obj[param.name] = param.value;
             });
             return Obj;
         };
-        condi = parm(condi,"editform");
+        condi = parm(condi, "editform");
         //console.log(condi);
         $.ajax({
-            url:url, data:condi,type:"POST",	dataType:"json",context:this,
-            success: function(data){
+            url: url, data: condi, type: "POST", dataType: "json", context: this,
+            success: function (data) {
                 //console.log("sendQueryRiskOrderListHttp",data);
                 var status = data.success || false;
                 var msg = data.message || "修改基本资料失败！";
                 Utils.alert(msg);
                 g.httpTip.hide();
             },
-            error:function(data){
+            error: function (data) {
                 g.httpTip.hide();
             }
         });
     }
 
+    //触发上传图片
+    function orderMaterialFileBtnUp() {
+        var orderMaterialFile = $("#orderMaterialFile").val() || "";
+        var upType = $('#orderMaterialFile').attr("upType");
+        if (orderMaterialFile !== "") {
+            uploadBtnUp(upType);
+        }
+    }
+    //触发上传压缩包
+    function yaSuoBtnUp() {
+        var uploadFile = $("#uploadFile").val() || "";
+        var upType = $('#uploadFile').attr("upType");
+        if (uploadFile !== "") {
+            saveUploadFile(upType);
+        }
+    }
+
+    //上传图片
+    function uploadBtnUp(upType) {
+        var condi = {};
+        condi.login_token = g.login_token;
+        condi.customerId = g.customerId;
+        condi.orderId = g.orderId;
+        condi.orderMaterialType = upType;
+        var url = Base.serverUrl + "order/uploadOrderMaterial";
+        $.ajaxFileUpload({
+            url: url, data: condi,
+            secureuri: false, //一般设置为false
+            fileElementId: 'orderMaterialFile', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+            dataType: 'jsonp', //返回值类型 一般设置为json
+            success: function (data, status) {
+                //重新获新上传的资源文件，解决跨域的问题
+                RefreshImage(g.orderId,upType);
+            },
+            error: function (data, status, e) {
+                Utils.alert("图片上传失败");
+            }
+        });
+    }
+    //上传文件
+    function saveUploadFile(upType) {
+        var condi = {};
+        condi.login_token = g.login_token;
+        condi.customerId = g.customerId;
+        condi.orderId = g.orderId;
+        condi.orderMaterialType = upType;
+        var url = Base.serverUrl + "order/uploadOrderMaterialFile";
+        $.ajaxFileUpload({
+            url: url, data: condi,
+            secureuri: false, //一般设置为false
+            fileElementId: 'uploadFile', //文件上传控件的id属性  <input type="file" id="file" name="file" />
+            dataType: 'jsonp', //返回值类型 一般设置为json
+            success: function (data, status) {
+                //重新获新上传的资源文件，解决跨域的问题
+                RefreshImage(g.orderId,upType);
+            },
+            error: function (data, status, e) {
+                Utils.alert("文件上传失败");
+            }
+        });
+    }
+
+    //刷新图片
+    function RefreshImage(orderId,upType) {
+        $.ajax({
+            url: Base.serverUrl + "order/getOrderMaterialsByOrderId",
+            data: {login_token: g.login_token, orderId:orderId,orderMaterialType:upType},
+            type: "POST", async: false, dataType: "json", context: this,
+            success: function (data) {
+                $("td[id^='Img" + upType +"']").each(function(){
+                   $(this).html('');
+                });
+                ShowPic(data.list);
+            }
+        });
+    }
+
+
     //========================绑定事件 ============================
-    $("#companyId").bind("change",function(){
+    $("#companyId").bind("change", function () {
         var companyId = $("#companyId").val();
-        sendGetProductHttp(companyId );
-        sendGetcompanys( companyId );
+        sendGetProductHttp(companyId);
+        sendGetcompanys(companyId);
     });
     $("#applyFenQiTimes").bind("change", countFee);
     $("#applyPackageMoney").bind("change", countFee);
     $("#applicantIdentity").bind("change", discriCard);
     $("#but_edit").bind("click", SaveData);
     $('#backid').click(function () {
-        window.location.href = "Fk_OrderList_1.html";
+        window.close()
     });
+
+    //打开选择图片窗口
+    $(".upType").bind("click", function () {
+        var upType = $(this).attr("upType");
+        $('#orderMaterialFile').attr("upType", upType);
+        $('#orderMaterialFile').click();
+    });
+    //打开文件上传窗口
+    $(".upFile").bind("click", function () {
+        var upType = $(this).attr("upType");
+        $('#uploadFile').attr("upType", upType);
+        $('#uploadFile').click();
+    });
+    //上传图片
+    $(document).on("change", "#orderMaterialFile", orderMaterialFileBtnUp);
+    //上传压缩包
+    $(document).on("change", "#uploadFile", yaSuoBtnUp);
 });
