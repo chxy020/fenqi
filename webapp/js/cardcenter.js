@@ -97,7 +97,6 @@ $(function(){
 
 
 	function sendGetBindBankCardByCustomerId(){
-		g.httpTip.show();
 		var url = Base.serverUrl + "payPc/getBindBankCardByCustomerId";
 		var condi = {};
 		condi.login_token = g.login_token;
@@ -120,10 +119,8 @@ $(function(){
 
 					changeBankCardHtml(data);
 				}
-				g.httpTip.hide();
 			},
 			error:function(data){
-				g.httpTip.hide();
 			}
 		});
 	}
