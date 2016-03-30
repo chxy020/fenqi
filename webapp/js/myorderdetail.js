@@ -528,7 +528,7 @@ function OrderLeftProtocolClick(){
 				if(showRepay && yuqi_number == overdueCount){
 					showRepay = false;
 					html.push('<div class="order-item-btn-box">');
-					html.push('<a href="javascript:repayment(\'' + repaymentRecordId + '\')" class="item-btn item-btn-green">马上还款</a>');
+					html.push('<a href="javascript:repayment(\'' + repaymentRecordId + '\')" class="item-btn item-btn-green">支付</a>');
 					html.push('</div>');
 				}
 			}
@@ -538,7 +538,7 @@ function OrderLeftProtocolClick(){
 				if(showRepay && yuqi_number == overdueCount){
 					showRepay = false;
 					html.push('<div class="order-item-btn-box">');
-					html.push('<a href="javascript:repayment(\'' + repaymentRecordId + '\')" class="item-btn item-btn-green">马上还款</a>');
+					html.push('<a href="javascript:repayment(\'' + repaymentRecordId + '\')" class="item-btn item-btn-green">支付</a>');
 					html.push('</div>');
 				}
 			}
@@ -547,7 +547,7 @@ function OrderLeftProtocolClick(){
 				if(showRepay){
 					showRepay = false;
 					html.push('<div class="order-item-btn-box">');
-					html.push('<a href="javascript:repayment(\'' + repaymentRecordId + '\')" class="item-btn item-btn-green">马上还款</a>');
+					html.push('<a href="javascript:repayment(\'' + repaymentRecordId + '\')" class="item-btn item-btn-green">支付</a>');
 					html.push('</div>');
 				}
 			}
