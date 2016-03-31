@@ -58,6 +58,27 @@ $(function(){
 	$("#countbtn").bind("click",countBtnUp);
 	$("#more_question").bind("click",more_question_f);
 	
+	/* 家装分期底部显示答案 */
+	$("#Q_A_list_a li").each(function(n){
+		var a = n+1;
+		$(this).hover(function(){			
+			$("#Q_A_list .p"+a).fadeIn(0).siblings('p').fadeOut(0);
+		})
+	});
+	/* 选择一次性支付 还是分期支付 */	
+		/* 单选 */
+	$(".radio_common").click(function(){
+			$(this).siblings(".radio_common").removeClass("checked").find("input").attr("checked",false);
+			$(this).addClass("checked");
+			$(this).find("input").attr("checked","checked");
+			g.choise = $(this).find("input").val() || "1";
+			if($(this).find("input").val() == "2"){
+				$("#one_or_other_c").addClass("one_or_other_show");
+			}
+			else if($(this).find("input").val() == "1"){
+				$("#one_or_other_c").removeClass("one_or_other_show");
+			}
+	})
 	//了解更多
 	function more_question_f(){
 		location.href = "/anjia/questions.html?typePageId=m";
@@ -107,6 +128,10 @@ $(document).ready(function(){
 		obj.mouth = mouthprice.toFixed(2);
 		obj.rate = rate.toFixed(2);
 		obj.stagnum = numarr[time];
+		obj.interestRate = ratearr[time];//服务费率
+		obj.monthInterestRate = 0.7/100;//月服务费率
+		obj.monthPoundage = (allprice*obj.monthInterestRate).toFixed(2);//月服务费
+		obj.monthRepay = (mouthprice+allprice*obj.monthInterestRate).toFixed(2);//月还款
 		return obj;
 	}
 
@@ -121,6 +146,11 @@ $(document).ready(function(){
 			//$("#alltext").html(obj.all);
 			$("#feetext3").html(obj.rate+"元");
 			$("#mouthtext3").html(obj.mouth+"元");
+			$("#mouthtext4").html(obj.mouth+"元");
+			//$("#interestRate").html(obj.interestRate);//服务费率
+			//$("#monthInterestRate").html('0.7');//月服务费率
+			$("#monthPoundage").html(obj.monthPoundage+"元");//月服务费
+			$("#monthRepay").html(obj.monthRepay+"元");//月还款
 		}else{
 			Utils.alert("请输入分期金额并选择分期期数!");
 		}

@@ -31,50 +31,9 @@
 		</div>
 	</div>
 
-	<!--<div class="ui-header">
-    	<div class="ui-wrap">
-        	<div class="ui-head-left f-left clearfix">
-        		<a href="/anjia/index.html"><img class="ui-logo" src="../res/images/logo.png" /></a>
-                <div class="ui-head-left-l f-left">
-                    <span class="cur-pos"><i class="common-ico ico-position"></i><em id="curCity">&nbsp;&nbsp;&nbsp;&nbsp;</em></span>
-                    <div class="select-city-box">
-                        <a href="javascript" class="select-city-btn">[切换]</a>
-                        <div class="select-city-area">
-                            <ul class="select-city-area-ul clearfix">
-                                <li>
-                                    <a href="###">北京</a>
-                                </li>
-                                <li>
-                                    <a href="###">上海</a>
-                                </li>
-                                <li>
-                                    <a href="###">成都</a>
-                                </li>
-                                <li>
-                                    <a href="###">福建</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ui-phone-service">
-                <p class="phone-service">全国统一免费咨询热线</p>
-                <img src="../res/images/phone-number.png" width="168" height="14">
-            </div>
-            <div class="ui-nav">
-            	<ul>
-                	<li><a href="/anjia/index.html">首页</a></li>
-			<li><a href="/anjia/staging.html" class="selected">家装分期</a></li>
-			<li><a href="/anjia/business.html">合作商家</a></li>
-			<li class="no-right-border"><a href="/anjia/about.html">关于我们</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>-->
     <!--加载通用头部-->
 	<script type="text/javascript" src="../anjia/js/head.js"></script>
-    <div class="sub-page-banner improve-banner">
+    <div class="sub-page-banner improve-banner new_banner_div">
     	<div class="ui-wrap">
             <div class="slide-right-part" style="background:none;">
                 <div class="slide-btn-box">                 
@@ -85,21 +44,50 @@
         </div>
 		<div class="bottom_line"></div>
     </div>
-    <div class="staging_div">
-    	<h4>燕子安家？家装分期？</h4>
+    <div class="staging_div">   	
+		<h4>燕子安家？家装分期？</h4>
     	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;燕子安家是由北京德维投资管理有限公司推出的互联网金融服务平台，我们向广大用户提供<span class="color">额度高、费率低、申请便捷、期限灵活、免担保免抵押</span>的消费分期服务，解决您的装修资金需求问题。
-		</p>
-    	<img class="weixin_img" src="../res/images/weixin_img.png"/>
+		</p>		
+    	<img class="weixin_img weixin_img1" src="../res/images/weixin_fenqi_img.png"/>
+		<img class="weixin_img weixin_img2" src="../res/images/weixin_body_img.png"/>
     </div>
     <div class="index-divn index-divn2 staging_divn2">
+    	<div id="one_or_other_c" class="content ">
+	    	<h4>其实不用算<br/><span class="color">￥服务费每月低至58.3元</span></h4>
+	    	<div class="ul_div">
+				<ul class="ul_left">
+					<li class="li1">
+						<span class="title">还款方式：</span>
+						<i class="radio_common checked"><input type="radio" value='1' checked="checked" name="radio1"/></i><span class="size">一次性支付服务费</span>
+						<i class="radio_common"><input type="radio" value='2' name="radio1"/></i><span class="size">分期支付服务费</span>
+					</li>
+					<li class="li2 one_pay">分期数（月）    6期&nbsp;&nbsp;12期&nbsp;&nbsp;18期&nbsp;&nbsp;24期&nbsp;&nbsp;36期&nbsp;&nbsp;</li>
+					<li class="li2 other_pay" style="text-align:center;">月费率0.7%</li>
+					<li class="li3 one_pay">费率&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4%&nbsp;&nbsp;&nbsp;&nbsp;7%&nbsp;&nbsp;&nbsp;10%&nbsp;&nbsp;&nbsp;13%&nbsp;&nbsp;16%&nbsp;&nbsp;</li>			
+				</ul>
+				<ul class="ul_right">
+					<li class="rela"><input id="allprice3" type="text" placeholder='0.00' onfocus="placeholder=''" onblur="placeholder='0.00'" class="input1"/><span class="position">元</span></li>
+					<li><select id="select-option2"><option>请选择分期期数</option><option value='1'>6期</option><option value='2'>12期</option><option value='3'>18期</option><option value='4'>24期</option><option value='5'>36期</option></select></li>
+					<li><a class="do" id="do_btn2">计算</a></li>
+				</ul>
+			</div>	
+	    	<div class="id_bt one_pay">每月还款<span id="mouthtext3" class="font2">￥000000.00  元</span>服务费（一次性支付）<span id="feetext3" class="font2">￥000000.00  元</span></div>
+    		<div class="id_bt other_pay">每月还款<span id="monthRepay" class="font2">￥000000.00  元</span>月还款本金<span id="mouthtext4" class="font2">￥000000.00  元</span>月服务费<span id="monthPoundage" class="font2">￥000000.00  元</span></div>
+			<!-- <div class="bttom_btn"><a class="btn" id="fenqi_btn4" href="javascript:void(0)"></a></div> -->
+    	</div>
+    </div>   
+    <div class="staging_div3">
     	<div class="content">
-	    	<h4>其实不用算</h4>
-	    	<ul class="ul"><li class="rela">分期金额： <input id="allprice3" type="text" placeholder='0.00' onfocus="placeholder=''" onblur="placeholder='0.00'" class="input1"/><span class="position">（元）</span></li><li>分期期数： <select id="select-option2"><option>请选择分期期数</option><!-- <option value='0'>3期（免费）</option> --><option value='1'>6期（服务费率4%）</option><option value='2'>12期（服务费率7%）</option><option value='3'>18期（服务费率10%）</option><option value='4'>24期（服务费率13%）</option><option value='5'>36期（服务费率16%）</option></select></li><li><a class="do" id="do_btn2">计算</a></li></ul>
-	    	<div class="id_bt">每月还款<span id="mouthtext3" class="font2">￥000000.00  元</span>服务费（一次性支付）<span id="feetext3" class="font2">￥000000.00  元</span></div>
-    		<div class="bttom_btn"><a class="btn" id="fenqi_btn4" href="javascript:void(0)"></a></div>
+    		<h4><span class="title">轻松分期  仅需4步</span><br>无担保装修分期流程</h4>
+    		<ul class="ul">
+	    		<li class="li1"><img src="../res/images/sd3_img_1.png"/><br><a class="btn btn1">Step1&nbsp;&nbsp;<br/>提交资料申请分期</a></li>
+	    		<li class="li2"><img src="../res/images/sd3_img_2.png"/><br><a class="btn">Step2<br/>审核通过</a></li>
+	    		<li class="li3"><img src="../res/images/sd3_img_3.png"/><br><a class="btn">Step3<br/>缴纳服务费</a></li>
+				<li class="li4 last"><img src="../res/images/sd3_img_4.png"/><br><a class="btn">&nbsp;Step4<br/>开始放款</a></li>
+    		</ul>
     	</div>
     </div>
-    <div class="staging_div2">
+	 <div class="staging_div2">
     	<div class="content">
     		<ul class="ul1">
     			<li class="li1">满足条件</li>
@@ -113,24 +101,32 @@
     		</ul>
     	</div>
     </div>
-    <div class="staging_div3">
-    	<div class="content">
-    		<h4><span class="title">轻松分期 仅需3步</span></h4>
-    		<ul class="ul">
-	    		<li><img src="../res/images/sd3_img1.png"/><br><a class="btn btn1">在线提交资料，申请分期</a></li>
-	    		<li><img src="../res/images/sd3_img2.png"/><br><a class="btn">审核通过</a></li>
-	    		<li><img src="../res/images/sd3_img3.png"/><br><a class="btn">开始放款</a></li>
-    		</ul>
-    	</div>
-    </div>
-    <div class="staging_div4">
+    <!-- <div class="staging_div4">
     	<div class="content">
     		<h4 class="h4"><span class="title">燕子安家家装分期<img src="../res/images/sd4_img1.jpg"/>其他平台</span></h4>
     		<div class="middle"><img src="../res/images/sd4_img2.jpg"></div>
     		<h4><span class="title">问与答</span><br>解答您心中疑惑<br><a id="more_question" class="more" href="javascript:void(0)">了解更多</a></h4>
     	</div>
+    </div> -->
+	<div class="staging_div4">
+    	<div class="content">
+    		<ul class="ul_left">
+				<li class="li1"><span class="font">多种周期选择<br>最长可达3年</span><img class="ico" src="../res/images/fenqi_div4_img1.jpg"/></li>
+				<li class="li2"><span class="font">支付服务费即可开始<br>装修  每期偿还本金</span><img class="ico" src="../res/images/fenqi_div4_img2.jpg"/></li>
+				<li class="li3"><span class="font">低至58.3元<br>（1万12期）</span><img class="ico" src="../res/images/fenqi_div4_img3.jpg"/></li>
+				<li class="li4"><span class="font">免担保<br>免抵押</span><img class="ico" src="../res/images/fenqi_div4_img4.jpg"/></li>
+			</ul>
+			<img class="middle_ico" src="../res/images/fenqi_div4_img.jpg"/>
+			<ul class="ul_right">
+				<li class="li1"><img class="ico" src="../res/images/fenqi_div4_img11.jpg"/><span class="font">周期选择有限<br>最长一般两年</span></li>
+				<li class="li2"><img class="ico" src="../res/images/fenqi_div4_img12.jpg"/><span class="font">支付本金+服务费<br>第一期后开始装修</span></li>
+				<li class="li3"><img class="ico" src="../res/images/fenqi_div4_img13.jpg"/><span class="font">一般不低于100元<br>（1万12期）</span></li>
+				<li class="li4"><img class="ico" src="../res/images/fenqi_div4_img14.jpg"/><span class="font">须不动产抵押<br>需要上门面签</span></li>
+			</ul>
+    		
+    	</div>
     </div>
-    <div class="staging_div5">
+    <!-- <div class="staging_div5">
     	<div class="content">
     		<ul class="ul">
     			<li><h4>问：燕子安家家装分期是什么？</h4><br><p>答：您好，燕子安家推出的家装分期是一款专门为有家装需求的客户解决装修资金紧张问题的金融服务产品，可以帮助客户轻松实现分期付款装修。我们的产品具有“额度高、费率低、申请便捷、期限灵活、免担保、免抵押”等特点，最大程度满足客户分期付款需求，为客户提供便利。</p></li>
@@ -138,61 +134,32 @@
     			<li><h4>问：如何申请燕子安家装修分期？</h4><br><p>答：您好，在燕子安家官网家点击“家装分期”按钮即可进入申请环节，根据系统提示填写个人信息、上传资料点击确认申请即可。</p></li>
     			<li><h4>问：申请家装分期需要准备什么材料？</h4><br><p>答：您好，申请家装分期需要准备以下材料：身份证（正反面照片、本人持身份证照片）、房产证明、现住址证明、工作证明、收入证明等证明文件。</p></li>
     			<li><h4>问：燕子安家家装分期的最高审批额度是多少？</h4><br><p>答：您好，燕子安家家装分期产品目前最高的申请额度为人民币50万元。用户申请额度不能超过装修合同的总金额。我们会根据用户申请需要和个人还款能力等情况综合评定您的授信额度，尽量满足您的分期需求。</p></li>
-    			<li class="last"><h4>问：燕子安家家装分期的费率高吗？</h4><br><p>答：您好，燕子安家家装分期产品服务费率在市场当中是极具竞争力的，尤其是在长期分期费率上占有绝对优势，几乎与银行费率持平，具体服务费率请关注“家装分期”详情页面。 </p></li>
-    		
+    			<li class="last"><h4>问：燕子安家家装分期的费率高吗？</h4><br><p>答：您好，燕子安家家装分期产品服务费率在市场当中是极具竞争力的，尤其是在长期分期费率上占有绝对优势，几乎与银行费率持平，具体服务费率请关注“家装分期”详情页面。 </p></li>    		
     		</ul>
     	</div>
+    </div> -->
+     <div class="staging_div5">
+    	<div class="content">
+			<h4><span class="title">问与答</span><br>解答您心中疑惑<a id="more_question" class="more" href="javascript:void(0)">了解更多</a></h4>
+    		<ul id="Q_A_list_a" class="ul_left">
+				<li><i>问</i>燕子安家家装分期是什么？</li>
+				<li><i class="i">问</i>燕子安家家装分期的申请条件？</li>
+				<li><i>问</i>如何申请燕子安家装修分期？</li>
+				<li><i class="i">问</i>申请家装分期的申请条件需要准备什么材料？</li>
+				<li><i>问</i>燕子安家装修分期的最高审批额度是多少？</li>
+				<li><i class="i">问</i>燕子安家家装分期的费率高吗？</li>
+			</ul>
+			<div id="Q_A_list" class="right">
+				<p class="p1 active">答：您好，燕子安家推出的家装分期是一款专门为有家装需求的客户解决装修资金紧张问题的金融服务产品，可以帮助客户轻松实现分期付款装修。我们的产品具有“额度高、费率低、申请便捷、期限灵活、免担保、免抵押”等特点，最大程度满足客户分期付款需求，为客户提供便利。</p>
+				<p class="p2">答：您好，申请条件为：燕子安家注册用户，与已合作商家签约了装修正式合同，即可在线申请家装分期。</p>
+				<p class="p3">答：您好，在燕子安家官网家点击“家装分期”按钮即可进入申请环节，根据系统提示填写个人信息、上传资料点击确认申请即可。</p>
+				<p class="p4">答：您好，申请家装分期需要准备以下材料：身份证（正反面照片、本人持身份证照片）、房产证明、现住址证明、工作证明、收入证明等证明文件。</p>
+				<p class="p5">答：您好，燕子安家家装分期产品目前最高的申请额度为人民币50万元。用户申请额度不能超过装修合同的总金额。我们会根据用户申请需要和个人还款能力等情况综合评定您的授信额度，尽量满足您的分期需求。</p>
+				<p class="p6">答：您好，燕子安家家装分期产品服务费率在市场当中是极具竞争力的，尤其是在长期分期费率上占有绝对优势，几乎与银行费率持平，具体服务费率请关注“家装分期”详情页面。</p>
+			</div>
+    	</div>
     </div>
-    
     <div class="ui-bottom">
-	    <!--
-        <div class="ui-wrap clearfix">
-            <div class="f-link">
-                <p>了解生活家</p>
-                <ul>
-                    <li><a href="#" class="active">公司简介</a></li>
-                    <li><a href="#">公司荣誉</a></li>
-                    <li><a href="#">发展历程</a></li>
-                    <li><a href="#">企业文化</a></li>
-                    <li><a href="#">联系我们</a></li>
-                </ul>
-            </div>
-
-            <div class="f-link">
-                <p>家装知识</p>
-                <ul class="">
-                    <li><a href="#" class="active">设计知识</a></li>
-                    <li><a href="#">家装风水</a></li>
-                    <li><a href="#">材料知识</a></li>
-                    <li><a href="#">家专攻略</a></li>
-                </ul>
-            </div>
-
-            <div class="f-link">
-                <p>热装小区</p>
-                <ul class="">
-                    <li><a href="#" class="active">热装小区</a></li>
-                    <li><a href="#">在建工地</a></li>
-                    <li><a href="#">客户见证</a></li>
-                </ul>
-            </div>
-
-            <div class="f-link">
-                <p>悦享家其他官方渠道</p>
-                <ul class="">
-                    <li><a class="weixin" href="#">悦享家官方微信</a></li>
-                    <li><a class="weibo" href="#">悦享家官方微播</a></li>
-                    <li><a class="tianmao" href="#">悦享家天猫旗舰店</a></li>
-                </ul>
-            </div>
-
-            <div class="f-phone">
-                <span class="a">全国统一免费咨询热线</span>
-                <img src="../res/images/phone-number.png" width="168" height="14">
-                <span class="b">总裁办投诉电话 400-402-000</span>
-            </div>
-        </div>
-        -->
     </div>
 
 	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
