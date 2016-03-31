@@ -34,7 +34,20 @@ $(function(){
 			location.href = "/anjia/mystaging.html";
 		}
 	}
-	
+	/* 选择一次性支付 还是分期支付 */	
+		/* 单选 */
+	$(".radio_common").click(function(){
+			$(this).siblings(".radio_common").removeClass("checked").find("input").attr("checked",false);
+			$(this).addClass("checked");
+			$(this).find("input").attr("checked","checked");
+			g.choise = $(this).find("input").val() || "1";
+			if($(this).find("input").val() == "2"){
+				$("#one_or_other_c").addClass("one_or_other_show");
+			}
+			else if($(this).find("input").val() == "1"){
+				$("#one_or_other_c").removeClass("one_or_other_show");
+			}
+	})
 	//获取轮播图数据
 	sendGetBannerImageByNavigationKey();
 	function sendGetBannerImageByNavigationKey(){
@@ -124,11 +137,15 @@ $(document).ready(function(){
 		obj.mouth = mouthprice.toFixed(2);
 		obj.rate = rate.toFixed(2);
 		obj.stagnum = numarr[time];
+		obj.interestRate = ratearr[time];//服务费率
+		obj.monthInterestRate = 0.7/100;//月服务费率
+		obj.monthPoundage = (allprice*obj.monthInterestRate).toFixed(2);//月服务费
+		obj.monthRepay = (mouthprice+allprice*obj.monthInterestRate).toFixed(2);//月还款
 		return obj;
 	}
 
 	function countBtnUp2(){
-		var allprice = $("#allprice2").val() - 0 || 0;
+		var allprice = $("#allprice").val() - 0 || 0;
 		var time = $("#select-option option:selected").attr("value") || "";
 
 		if(allprice > 0 && time != ""){
@@ -138,6 +155,11 @@ $(document).ready(function(){
 			//$("#alltext").html(obj.all);
 			$("#feetext2").html(obj.rate+"元");
 			$("#mouthtext2").html(obj.mouth+"元");
+			$("#mouthtext4").html(obj.mouth+"元");
+			//$("#interestRate").html(obj.interestRate);//服务费率
+			//$("#monthInterestRate").html('0.7');//月服务费率
+			$("#monthPoundage").html(obj.monthPoundage+"元");//月服务费
+			$("#monthRepay").html(obj.monthRepay+"元");//月还款
 		}else{
 			Utils.alert("请输入分期金额并选择分期期数!");
 		}
