@@ -8,11 +8,25 @@ $(function(){
 	g.codeId = "";
 	g.tout = null;
 	g.httpTip = new Utils.httpTip({});
-
+	g.choise = "1";
 	$("#allprice").bind("keyup blur",countBtnUp);
 	
 	$("#stagingtime").bind("change",stagingTimeChange);
+	/* 选择一次性支付 还是分期支付 */
 	
+		/* 单选 */
+	$(".radio_common").click(function(){
+			$(this).siblings(".radio_common").removeClass("checked").find("input").attr("checked",false);
+			$(this).addClass("checked");
+			$(this).find("input").attr("checked","checked");
+			g.choise = $(this).find("input").val() || "1";
+			if($(this).find("input").val() == "1"){
+				$("#show_hidden_c").addClass("show_hidden_choise");
+			}
+			else if($(this).find("input").val() == "2"){
+				$("#show_hidden_c").removeClass("show_hidden_choise");
+			}
+	})
 	/* 选择分期事件 */
 	$("#stagingtime li").each(function(n){
 		$(this).click(function(){
@@ -42,6 +56,10 @@ $(function(){
 		obj.mouth = mouthprice.toFixed(2);
 		obj.rate = rate.toFixed(2);
 		obj.stagnum = numarr[time];
+		obj.interestRate = ratearr[time];//服务费率
+		obj.monthInterestRate = 0.7/100;//月服务费率
+		obj.monthPoundage = (allprice*obj.monthInterestRate).toFixed(2);//月服务费
+		obj.monthRepay = (mouthprice+allprice*obj.monthInterestRate).toFixed(2);//月还款
 		return obj;
 	}
 
@@ -70,6 +88,11 @@ $(function(){
 			//$("#alltext").html(obj.all.toFixed(2));
 			$("#feetext").html(obj.rate);
 			$("#mouthtext").html(obj.mouth);
+			$("#mouthtext2").html(obj.mouth);
+			//$("#interestRate").html(obj.interestRate);//服务费率
+			//$("#monthInterestRate").html('0.7');//月服务费率
+			$("#monthPoundage").html(obj.monthPoundage);//月服务费
+			$("#monthRepay").html(obj.monthRepay);//月还款
 		}
 		else{
 			//alert("请输入分期金额");

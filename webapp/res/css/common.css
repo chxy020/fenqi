@@ -877,7 +877,8 @@ div.staging_div1{border-top:1px solid #fff;border-bottom:1px solid #d5d5d5;}
 
 /* 分期计算器 */
 .yellow_bg{font-size:16px;background-color:#ffac0c;padding:20px 5%;color:#fff;}
-.yellow_bg  .yb_div1{position:relative;margin:10px 0;overflow:hidden;}
+.yellow_bg  .yb_div1{position:relative;margin:17px 0;overflow:hidden;}
+.yellow_bg  .yb_div1 .size{font-size:14px;}
 .yellow_bg .yb_div1_1{margin:15px 0 20px;}
 .yellow_bg .yb_div1_3{margin:20px 0 10px;}
 .yellow_bg  .yb_div1 span.lable{float:left;display:inline-block;}
@@ -890,8 +891,13 @@ div.staging_div1{border-top:1px solid #fff;border-bottom:1px solid #d5d5d5;}
 .yellow_bg  .yb_div1 .ul2 li.active{background:url('../images/radio_bg2_2.jpg') no-repeat center center;background-size:contain;}
 .result_list{margin:30px 0;overflow:hidden;line-height:30px;font-size:14px;}
 .result_list span.left,.result_list span.right{display:inline-block;width:49%;text-align:center;}
-
+.show_hidden_choise .one_pay_div, .other_pay_div{display:block;}
+.one_pay_div,.show_hidden_choise  .other_pay_div{display:none;}
 a.common-btn.btn-green.btn_yellow{background-color:#fe781f;}
+
+i.radio_common ,i.check_common{margin:0 2%;display:inline-block;vertical-align:middle;width:14px;height:14px;background:url('../images/w_radio0.png') no-repeat center center;background-size:cover;}
+i.radio_common.checked,i.check_common.checked{background:url('../images/w_radio1.png') no-repeat center center;background-size:cover;}
+i.radio_common  input,i.check_common input{display:none;}
 
 /* 身份证提示 */
 div.shili {overflow:hidden;font-size:12px;}
@@ -1096,3 +1102,4 @@ div.shili span.idcard i.i2{font-style:normal;}
 
 /* 修改成功 */
 .forget_body .result-div .result-text{color:#445b6b;font-size:30px;}
+
