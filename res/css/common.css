@@ -1739,7 +1739,7 @@ div.staging_divn2 .ul_left .li1 span.title{font-size:22px;color:#ff5f01;}
 div.staging_divn2 .ul_left .li2,div.staging_divn2 .ul_left .li3{width:360px;color:#fff;line-height:40px;margin-top:3px;background-color:#f4a81d;}
 div.staging_divn2 .ul_right .input1, div.staging_divn2 .ul_right select{width:240px;height:50px;padding-left:3px;font-size:20px;margin-bottom:17px;}
 div.staging_divn2 .do{background-color:#fd680e;width:240px;height:50px;font-size:20px;}
-div.staging_divn2 .ul_right select{width:242px;height:52px;}
+div.staging_divn2 .ul_right select{width:242px;height:52px;line-height:50px;}
 div.staging_divn2 .ul_right .rela{position:relative;}
 div.staging_divn2 .ul_right span.position{position:absolute;right:10px;top:14px;color:#000;font-size:20px;}
 div.staging_divn2 .id_bt .font2{color:#ff5f01;}
@@ -1819,5 +1819,4 @@ i.radio_common  input,i.check_common input{display:none;}
 #orderlist table.order-table tr td a.a4,#orderstaginglist table.order-table tr td a.a4{background-color:#99c52a;}/* 支付 我要付款*/
 
 #orderlist  table.order-table tr td a.order_a{background:url("../images/order_up.png") no-repeat scroll center -61px;}
-
 
