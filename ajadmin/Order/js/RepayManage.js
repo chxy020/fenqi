@@ -6,9 +6,9 @@
 $(function () {
     //处理滚动条
     var DivIframes = $(".tab-content", window.parent.document);
-    for(var i = 0 ; i < DivIframes.length; i++){
-        if($(DivIframes[i]).find("iframe").attr("src") == "Order/RepayManage.html"){
-            $(DivIframes[i]).css({overflow:"hidden"});
+    for (var i = 0; i < DivIframes.length; i++) {
+        if ($(DivIframes[i]).find("iframe").attr("src") == "Order/RepayManage.html") {
+            $(DivIframes[i]).css({overflow: "hidden"});
             break;
         }
     }
@@ -53,9 +53,9 @@ $(function () {
         var condi = {};
         condi.login_token = g.login_token;
         condi.currentPageNum = g.currentPage;
-        condi = Hmgx.getQueryParamet("CX",condi);
+        condi = Hmgx.getQueryParamet("CX", condi);
         $.ajax({
-            url: url, data: condi,  type: "POST", dataType: "json", context: this,
+            url: url, data: condi, type: "POST", dataType: "json", context: this,
             success: function (data) {
                 var status = data.success || false;
                 if (status) {
@@ -81,41 +81,58 @@ $(function () {
         html.push('<th width="100">订单编号</th>');
         html.push('<th width="300">所属公司</th>');
         html.push('<th width="100">用户姓名</th>');
+        html.push('<th width="130">身份证号码</th>');
         html.push('<th width="100">审批分期金额</th>');
         html.push('<th width="100">审批分期期数</th>');
         html.push('<th width="80">待还期数</th>');
         html.push('<th width="80">订单状态</th>');
         html.push('<th width="80">手机号</th>');
         html.push('<th width="80">逾期笔数</th>');
+        html.push('<th width="80">服务费支付方式</th>');
         html.push('<th width="150">操作</th>');
         html.push('</tr>');
         var obj = data.list || [];
         for (var i = 0, len = obj.length; i < len; i++) {
             var d = obj[i];
-            //console.log(d);
             var aStr = "";
             html.push('<tr id="Tr' + d.orderId + '" >');
-            html.push('<td style="padding: 0px; margin: 0px; text-align: center; vertical-align: middle;"><a href="javascript:void(0)" onclick="ShowTableSub(' +  d.orderId  + ')" title="展开或关闭"><img id="but' + d.orderId + '" src="js/open.png"></a></td>');
+            html.push('<td style="padding: 0px; margin: 0px; text-align: center; vertical-align: middle;"><a href="javascript:void(0)" onclick="ShowTableSub(' + d.orderId + ')" title="展开或关闭"><img id="but' + d.orderId + '" src="js/open.png"></a></td>');
             html.push('<td>' + d.orderId + '</td>');
-            html.push('<td>' + (d.subsidiary||"") + '</td>');
+            html.push('<td>' + (d.subsidiary || "") + '</td>');
             html.push('<td>' + d.applicantName + '</td>');
+            html.push('<td>' + d.applicantIdentity + '</td>');
             html.push('<td>' + d.packageMoney + '元</td>');
             html.push('<td>' + d.fenQiTimes + '期</td>');
-            html.push('<td>' +  (d.fenQiTimes - d.noRepaymentTimes + 1) + '期</td>');
-            if(d.status == "100507"){
+            html.push('<td>' + (d.noRepaymentTimes==0?0:(d.fenQiTimes - d.noRepaymentTimes + 1) )+ '期</td>');
+
+            //订单状态
+            if (d.status == "100507") {
                 html.push('<td id="F_Status' + d.orderId + '">还款中</td>');
                 aStr = '<a href="javascript:void(0)" onclick="YiCiHuanQing(' + d.totalCurrentBalance + ',\'' + d.orderId + '\')">一次还清</a>';
-            }else if(d.status == "100510"){
+            } else if (d.status == "100508") {
+                html.push('<td id="F_Status' + d.orderId + '">已还清</td>');
+                aStr = '';
+            } else if (d.status == "100510") {
                 html.push('<td id="F_Status' + d.orderId + '">已逾期</td>');
-                aStr = '<a href="javascript:void(0)" onclick="DaiHuanKuan(' +  d.currentBalance + ',\'' + d.orderId + '\')">代还款</a>';
-            }else{
+                aStr = '<a href="javascript:void(0)" onclick="DaiHuanKuan(' + d.currentBalance + ',\'' + d.orderId + '\')">代还款</a>';
+            } else {
                 html.push('<td id="F_Status' + d.orderId + '">未知状态</td>');
+                console.log(d.status);
             }
+
             html.push('<td>' + d.applicantPhone + '</td>');
             html.push('<td>' + d.overdueCount + '期</td>');
-            html.push('<td><a href="javascript:void(0)" onclick="popZhhzWin(' + d.orderId + ')">终止合同</a> &nbsp;&nbsp;' + aStr + '</td>');
+            html.push('<td>' + (d.poundageRepaymentType == "103001" ? "一次性付款" : "分期付款") + '</td>');
+
+            //操作列
+            if (d.status == "100508") {
+                html.push('<td>' + aStr + '</td>');
+            } else {
+                html.push('<td><a href="javascript:void(0)" onclick="popZhhzWin(' + d.orderId + ')">终止合同</a> &nbsp;&nbsp;' + aStr + '</td>');
+            }
+
             html.push('</tr>');
-            html.push('<tr><td id="Sub' + d.orderId + '" OrderStatus="' + d.status + '" colspan="11" style="display: none;background-color: #FAFAD2;margin: 0px;padding:5px 5px 5px 40px;"></td></tr>');
+            html.push('<tr><td id="Sub' + d.orderId + '" OrderStatus="' + d.status + '" colspan="13" style="display: none;background-color: #FAFAD2;margin: 0px;padding:5px 5px 5px 40px;"></td></tr>');
         }
         html.push('</table>');
 
@@ -131,21 +148,21 @@ $(function () {
     }
 
     //显示子表格处理
-    window.ShowTableSub = function(OrderId,Status){
+    window.ShowTableSub = function (OrderId, Status) {
         var TdObj = $("#Sub" + OrderId);//TD容器放子表使用
         //获取当前子表格的状态:显示=true/隐藏=false
-        if(typeof(Status) === "undefined"){
-            if(TdObj.is(":hidden")){
+        if (typeof(Status) === "undefined") {
+            if (TdObj.is(":hidden")) {
                 Status = false;
-            }else{
+            } else {
                 Status = true;
             }
         }
-        if(Status){//隐藏
+        if (Status) {//隐藏
             TdObj.hide(0);
-            $("#but" + OrderId).attr("src","js/open.png");
-        }else{//显示
-            if(TdObj.html() == "") {//后台获取数据
+            $("#but" + OrderId).attr("src", "js/open.png");
+        } else {//显示
+            if (TdObj.html() == "") {//后台获取数据
                 var OrderStatus = $(TdObj).attr("OrderStatus");
                 paramObj = {};
                 paramObj.login_token = g.login_token;
@@ -155,19 +172,19 @@ $(function () {
                 paramObj.overdueDay = $("#overdueDay").val();
                 paramObj.expectRepaymentTimeBegin = $("#expectRepaymentTimeBegin").val();
                 paramObj.expectRepaymentTimeEnd = $("#expectRepaymentTimeEnd").val();
-                CreateSubHtml(paramObj,TdObj,OrderStatus);
+                CreateSubHtml(paramObj, TdObj, OrderStatus);
             }
             TdObj.show(0);
-            $("#but" + OrderId).attr("src","js/close.png");
+            $("#but" + OrderId).attr("src", "js/close.png");
         }
     };
 
     //创建子表表格 [paramObj=查询参数 ,TdObj=子表格的TD容器, OrderStatus 订单状态]
-    function CreateSubHtml(paramObj,TdObj,OrderStatus){
+    function CreateSubHtml(paramObj, TdObj, OrderStatus) {
         g.httpTip.show();
         var url = Base.serverUrl + "order/queryRepaymentOrderDetail";
         $.ajax({
-            url: url, data: paramObj,  type: "POST", dataType: "json", context: this,
+            url: url, data: paramObj, type: "POST", dataType: "json", context: this,
             success: function (data) {
                 var status = data.success || false;
                 var List = data.list;
@@ -186,9 +203,14 @@ $(function () {
                     SubHtml.push('<th>实还金额</th>');
                     SubHtml.push('<th>逾期天数</th>');
                     SubHtml.push('<th>还款状态</th>');
+                    if (List.length > 0) {
+                        if (List[0].monthPoundage > 0) {
+                            SubHtml.push('<th>分期服务费</th>');
+                        }
+                    }
                     SubHtml.push('<th>操作</th>');
                     SubHtml.push('</tr>');
-                    for(var i=0; i < List.length ; i++) {
+                    for (var i = 0; i < List.length; i++) {
                         var row = List[i];
                         SubHtml.push('<tr>');
                         SubHtml.push('<td>' + row.repaymentTimes + '</td>');
@@ -201,22 +223,26 @@ $(function () {
                         SubHtml.push('<td>' + row.realRepaymentMoney + '</td>');
                         SubHtml.push('<td>' + row.overdueTime + '</td>');
                         SubHtml.push('<td>' + row.statusDesc + '</td>');
-                        if(OrderStatus == "100510"){//订单状态=已逾期
+                        if (row.monthPoundage > 0) {
+                            SubHtml.push('<td>' + row.monthPoundage + '元</td>');
+                        }
+
+                        if (OrderStatus == "100510" || OrderStatus == "100508") {//订单状态=已逾期 或者 已还清
                             if (row.status == "101902") {//已还款
                                 SubHtml.push('<td></td>');
-                            }else{
-                                SubHtml.push('<td><a href="javascript:SMSTips('+ row.orderId +',' + row.repaymentRecordId + ')">提醒</a></td>');
+                            } else {
+                                SubHtml.push('<td><a href="javascript:SMSTips(' + row.orderId + ',' + row.repaymentRecordId + ')">提醒</a></td>');
                             }
-                        }else if(OrderStatus == "100507") {//订单状态=还款中
+                        } else if (OrderStatus == "100507") {//订单状态=还款中
                             if (row.status == "101902") {//已还款
                                 SubHtml.push('<td></td>');
                             } else if (row.status == "101903") {//已逾期
-                                SubHtml.push('<td><a href="javascript:SMSTips('+ row.orderId +',' + row.repaymentRecordId + ')">提醒</a></td>');
+                                SubHtml.push('<td><a href="javascript:SMSTips(' + row.orderId + ',' + row.repaymentRecordId + ')">提醒</a></td>');
                             } else if (row.status == "101901") {//还款中
-                                if(First){
-                                    SubHtml.push('<td><a href="javascript:SMSTips('+ row.orderId +',' + row.repaymentRecordId + ')">提醒</a></td>');
-                                }else{
-                                    SubHtml.push('<td><a href="javascript:SMSTips('+ row.orderId +',' + row.repaymentRecordId + ')">提醒</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="popFqlb_dhkWin(' + row.currentBalance + ',' + row.repaymentRecordId + ')">代还款</a></td>');
+                                if (First) {
+                                    SubHtml.push('<td><a href="javascript:SMSTips(' + row.orderId + ',' + row.repaymentRecordId + ')">提醒</a></td>');
+                                } else {
+                                    SubHtml.push('<td><a href="javascript:SMSTips(' + row.orderId + ',' + row.repaymentRecordId + ')">提醒</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="popFqlb_dhkWin(' + row.currentBalance + ',' + row.repaymentRecordId + ')">代还款</a></td>');
                                     First = true;
                                 }
                             } else {
@@ -228,7 +254,7 @@ $(function () {
                     SubHtml.push('</table>');
                     TdObj.html(SubHtml.join(''));
                 } else {
-                    var msg = data.message || "获取订单逾期数据失败";
+                    var msg = data.message || "获取订单数据失败!";
                     Utils.alert(msg);
                 }
                 g.httpTip.hide();
@@ -238,18 +264,19 @@ $(function () {
             }
         });
     }
+
     //展开全部
-    function Expand(){
+    function Expand() {
         var TdList = $("td[id^='Sub']");
         var TdId = null;
-        for(var i=0;i<TdList.length;i++){
+        for (var i = 0; i < TdList.length; i++) {
             TdId = $(TdList[i]).attr("id").toString().substring(3);
-            ShowTableSub(TdId,ExpandState);
+            ShowTableSub(TdId, ExpandState);
         }
-        if(ExpandState) {
+        if (ExpandState) {
             $("#ExpandBtn").text("展开");
             ExpandState = false;
-        }else{
+        } else {
             $("#ExpandBtn").text("折叠");
             ExpandState = true;
         }
@@ -257,22 +284,25 @@ $(function () {
 
     //*****************************************************功能操作
     //订单状态=已逾期 代还款
-    window.DaiHuanKuan=function(Amount,OrderId){
-        if(confirm( '是否确定执行代还款? ')==false){return false;}
+    window.DaiHuanKuan = function (Amount, OrderId) {
+        if (confirm('是否确定执行代还款? ') == false) {
+            return false;
+        }
         $("#dhk_Amount").text(Amount);
-        $("#dhk_Amount").attr("OrderId",OrderId);
+        $("#dhk_Amount").attr("OrderId", OrderId);
         $('#dhkDiv').modal('show');
     };
-    window.SaveDhk=function(){
-        var OrderId =  $("#dhk_Amount").attr("OrderId");
+    window.SaveDhk = function () {
+        var OrderId = $("#dhk_Amount").attr("OrderId");
         var realRepaymentTime = $("#dhkTime");
-        if(OrderId == "" || typeof(OrderId) == "undefined"){
+        if (OrderId == "" || typeof(OrderId) == "undefined") {
             alert("订单号非法！");
             return false;
         }
-        if(realRepaymentTime.val() == ""){
+        if (realRepaymentTime.val() == "") {
             alert("请选择还款时间！");
-            return false;;
+            return false;
+            ;
         }
         g.httpTip.show();
         var url = Base.serverUrl + "order/helpPayOverdueFenqi";
@@ -281,7 +311,7 @@ $(function () {
         condi.orderId = OrderId;
         condi.realRepaymentTime = realRepaymentTime.val();
         $.ajax({
-            url: url, data: condi,  type: "POST", dataType: "json", context: this,
+            url: url, data: condi, type: "POST", dataType: "json", context: this,
             success: function (data) {
                 console.log(data);
                 var msg = data.message || "代还款失败!";
@@ -295,22 +325,25 @@ $(function () {
         });
     };
     //订单状态=还款中 一次还清
-    window.YiCiHuanQing=function(Amount,OrderId){
-        if(confirm( '是否确定执行一次还清? ')==false){return false;}
+    window.YiCiHuanQing = function (Amount, OrderId) {
+        if (confirm('是否确定执行一次还清? ') == false) {
+            return false;
+        }
         $("#ychq_Amount").text(Amount);
-        $("#ychq_Amount").attr("OrderId",OrderId);
+        $("#ychq_Amount").attr("OrderId", OrderId);
         $('#ychqDiv').modal('show');
     };
-    window.SaveYchq=function(){
+    window.SaveYchq = function () {
         var OrderId = $("#ychq_Amount").attr("OrderId");
         var realRepaymentTime = $("#ychqTime");
-        if(OrderId == "" || typeof(OrderId) == "undefined"){
+        if (OrderId == "" || typeof(OrderId) == "undefined") {
             alert("订单号非法！");
             return false;
         }
-        if(realRepaymentTime.val() == ""){
+        if (realRepaymentTime.val() == "") {
             alert("请选择还款时间！");
-            return false;;
+            return false;
+            ;
         }
         g.httpTip.show();
         var url = Base.serverUrl + "order/updateRepaymentRecordsByOncepaidFinish";
@@ -319,7 +352,7 @@ $(function () {
         condi.orderId = OrderId;
         condi.realRepaymentTime = realRepaymentTime.val();
         $.ajax({
-            url: url, data: condi,  type: "POST", dataType: "json", context: this,
+            url: url, data: condi, type: "POST", dataType: "json", context: this,
             success: function (data) {
                 var msg = data.message || "一次还清失败!";
                 Utils.alert(msg);
@@ -332,21 +365,22 @@ $(function () {
         });
     };
     //终止合同
-    window.popZhhzWin=function(OrderId){
-        $("#reason").attr("OrderId",OrderId);
+    window.popZhhzWin = function (OrderId) {
+        $("#reason").attr("OrderId", OrderId);
         $('#zzhtDiv').modal('show');
     };
-    window.ZhongZhi = function(){
-        var OrderId =  $("#reason").attr("OrderId");
+    window.ZhongZhi = function () {
+        var OrderId = $("#reason").attr("OrderId");
         var Reason = $("#reason");
-        if(OrderId == "" || typeof(OrderId) == "undefined"){
+        if (OrderId == "" || typeof(OrderId) == "undefined") {
             alert("订单号非法！");
             return false;
         }
-        if(Reason.val() == ""){
+        if (Reason.val() == "") {
             alert("请填写终止合同的原因！");
             Reason.focus();
-            return false;;
+            return false;
+            ;
         }
         g.httpTip.show();
         var url = Base.serverUrl + "order/finishContractController";
@@ -355,7 +389,7 @@ $(function () {
         condi.orderId = OrderId;
         condi.reason = Reason.val();
         $.ajax({
-            url: url, data: condi,  type: "POST", dataType: "json", context: this,
+            url: url, data: condi, type: "POST", dataType: "json", context: this,
             success: function (data) {
                 var msg = data.message || "终止合同失败!";
                 Utils.alert(msg);
@@ -368,22 +402,25 @@ $(function () {
         });
     };
     //分期列表 - 代还款
-    window.popFqlb_dhkWin=function(Amount,repaymentRecordId){
-        if(confirm( '是否确定执行代还款? ')==false){return false;}
+    window.popFqlb_dhkWin = function (Amount, repaymentRecordId) {
+        if (confirm('是否确定执行代还款? ') == false) {
+            return false;
+        }
         $("#fqlb_Amount").text(Amount);
-        $("#fqlb_Amount").attr("repaymentRecordId",repaymentRecordId);
+        $("#fqlb_Amount").attr("repaymentRecordId", repaymentRecordId);
         $('#fqlb_dhkDiv').modal('show');
     };
-    window.SafeFqlb_Dhk = function(){
-        var repaymentRecordId =  $("#fqlb_Amount").attr("repaymentRecordId");
+    window.SafeFqlb_Dhk = function () {
+        var repaymentRecordId = $("#fqlb_Amount").attr("repaymentRecordId");
         var realRepaymentTime = $("#realRepaymentTime");
-        if(repaymentRecordId == "" || typeof(repaymentRecordId) == "undefined"){
+        if (repaymentRecordId == "" || typeof(repaymentRecordId) == "undefined") {
             alert("还款编号非法！");
             return false;
         }
-        if(realRepaymentTime.val() == ""){
+        if (realRepaymentTime.val() == "") {
             alert("请选择还款时间！");
-            return false;;
+            return false;
+            ;
         }
         g.httpTip.show();
         var url = Base.serverUrl + "order/helpPayFenqi";
@@ -392,7 +429,7 @@ $(function () {
         condi.repaymentRecordId = repaymentRecordId;
         condi.realRepaymentTime = realRepaymentTime.val();
         $.ajax({
-            url: url, data: condi,  type: "POST", dataType: "json", context: this,
+            url: url, data: condi, type: "POST", dataType: "json", context: this,
             success: function (data) {
                 var msg = data.message || "代还款操作失败!";
                 Utils.alert(msg);
@@ -405,15 +442,15 @@ $(function () {
         });
     };
     //分期列表 - 提醒
-    window.SMSTips=function(OrderId,repaymentRecordId){
+    window.SMSTips = function (OrderId, repaymentRecordId) {
         g.httpTip.show();
         var url = Base.serverUrl + "order/sendRepaymentMessage";
         var condi = {};
         condi.login_token = g.login_token;
         condi.orderId = OrderId;
-        condi.repaymentRecordId = repaymentRecordId ;
+        condi.repaymentRecordId = repaymentRecordId;
         $.ajax({
-            url: url, data: condi,  type: "POST", dataType: "json", context: this,
+            url: url, data: condi, type: "POST", dataType: "json", context: this,
             success: function (data) {
                 var msg = data.message || "提醒操作失败!";
                 Utils.alert(msg);
@@ -532,10 +569,10 @@ $(function () {
     }
 
     //*****************************************************模拟框事件
-    window.OutXls = function(){
-        var ParamObj={};
+    window.OutXls = function () {
+        var ParamObj = {};
         ParamObj.login_token = g.login_token;
-        Hmgx.serializeDownload(Base.serverUrl  + "order/queryRepaymentOrdersControllerExport","CX",ParamObj);
+        Hmgx.serializeDownload(Base.serverUrl + "order/queryRepaymentOrdersControllerExport", "CX", ParamObj);
     }
 });
 
