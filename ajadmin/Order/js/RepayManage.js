@@ -196,6 +196,11 @@ $(function () {
                     SubHtml.push('<th>分期编号</th>');
                     SubHtml.push('<th>应还时间</th>');
                     SubHtml.push('<th>分期本金</th>');
+                    if (List.length > 0) {
+                        if (List[0].monthPoundage > 0) {
+                            SubHtml.push('<th>分期服务费</th>');
+                        }
+                    }
                     SubHtml.push('<th>逾期管理费</th>');
                     SubHtml.push('<th>逾期罚息</th>');
                     SubHtml.push('<th>应还金额</th>');
@@ -203,11 +208,6 @@ $(function () {
                     SubHtml.push('<th>实还金额</th>');
                     SubHtml.push('<th>逾期天数</th>');
                     SubHtml.push('<th>还款状态</th>');
-                    if (List.length > 0) {
-                        if (List[0].monthPoundage > 0) {
-                            SubHtml.push('<th>分期服务费</th>');
-                        }
-                    }
                     SubHtml.push('<th>操作</th>');
                     SubHtml.push('</tr>');
                     for (var i = 0; i < List.length; i++) {
@@ -216,6 +216,9 @@ $(function () {
                         SubHtml.push('<td>' + row.repaymentTimes + '</td>');
                         SubHtml.push('<td>' + row.expectRepaymentTime + '</td>');
                         SubHtml.push('<td>' + (row.residuePrincipal || "") + '</td>');
+                        if (row.monthPoundage > 0) {
+                            SubHtml.push('<td>' + row.monthPoundage + '元</td>');
+                        }
                         SubHtml.push('<td>' + (row.managementFee || "") + '</td>');
                         SubHtml.push('<td>' + (row.overdueInterest || "") + '</td>');
                         SubHtml.push('<td>' + row.currentBalance + '</td>');
@@ -223,9 +226,6 @@ $(function () {
                         SubHtml.push('<td>' + row.realRepaymentMoney + '</td>');
                         SubHtml.push('<td>' + row.overdueTime + '</td>');
                         SubHtml.push('<td>' + row.statusDesc + '</td>');
-                        if (row.monthPoundage > 0) {
-                            SubHtml.push('<td>' + row.monthPoundage + '元</td>');
-                        }
 
                         if (OrderStatus == "100510" || OrderStatus == "100508") {//订单状态=已逾期 或者 已还清
                             if (row.status == "101902") {//已还款
