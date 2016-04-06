@@ -73,6 +73,17 @@ $(function(){
 	$("#prebtn3").bind("click",preBtnUp3);
 	$("#nextbtn5").bind("click",nextBtnUp5);
 
+	/* 分期支付判断是一次性支付 还是 分期支付服务费 */
+	$("#one_pay_input").bind("change",show_hidden_one_pay);
+	function show_hidden_one_pay(){
+		if($("#one_pay_input").val() == "103001"){
+			$("#show_or_hidden").addClass("one_pay");
+		}
+		else if($("#one_pay_input").val() == "103002"){
+			$("#show_or_hidden").removeClass("one_pay");
+		}
+	}
+	
 	//头像
 	$(document).on("change","#orderMaterialFile",orderMaterialFileBtnUp);
 	
@@ -632,7 +643,7 @@ $(function(){
 			context:this,
 			async: false,
 			success: function(data){
-				console.log("sendGetProductHttp",data);
+				//console.log("sendGetProductHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeProductSelectHtml(data);
@@ -662,7 +673,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetDicHttp",data);
+				//console.log("sendGetDicHttp",data);
 				var status = data.success || false;
 				if(status){
 					var obj = data.obj || {};
@@ -735,7 +746,7 @@ $(function(){
 		var info = Utils.offLineStore.get("userinfo",false) || "";
 		if(info !== ""){
 			var obj = JSON.parse(info) || {};
-			console.log("getUserInfo",obj);
+			//console.log("getUserInfo",obj);
 			setUserInfoHtml(obj);
 		}
 	}
@@ -794,6 +805,10 @@ $(function(){
 		obj.mouth = mouthprice.toFixed(2);
 		obj.rate = rate.toFixed(2);
 		obj.stagnum = numarr[time];
+		obj.interestRate =(ratearr[time]*100).toFixed(0);//服务费率
+		obj.monthInterestRate = 0.7/100;//月服务费率
+		obj.monthPoundage = (allprice*obj.monthInterestRate).toFixed(2);//月服务费
+		obj.monthRepay = (mouthprice+allprice*obj.monthInterestRate).toFixed(2);//月还款
 		return obj;
 	}
 
@@ -844,7 +859,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetOrderIdHttp",data);
+				//console.log("sendGetOrderIdHttp",data);
 				var status = data.success || false;
 				if(status){
 					g.orderId = data.obj || "";
@@ -868,9 +883,17 @@ $(function(){
 			var time = $("#fenQiTimes").val() - 0 || 0;
 			var obj = countFee(packageMoney,time);
 
-			$("#poundage").html(obj.rate > 0 ? (obj.rate + "元") : "免费");
+			$("#poundage").html(obj.rate > 0 ? obj.rate : "免费");
 			$("#moneyMonth").html(obj.mouth);
-
+			$("#interestRate").html(obj.interestRate+"%");//服务费率
+			$("#monthInterestRate").html(obj.monthInterestRate*100);//月服务费率
+			$("#monthPoundage").html(obj.monthPoundage);//月服务费
+			$("#monthRepay").html(obj.monthRepay);//月还款
+			
+			g.interestRate = obj.interestRate + "";
+			//g.monthInterestRate = obj.monthInterestRate + "";
+			g.monthPoundage = obj.monthPoundage + "";
+			g.monthRepay = obj.monthRepay + "";
 			g.poundage = obj.rate + "";
 			g.moneyMonth = obj.mouth + "";
 			g.stagnum = obj.stagnum;
@@ -894,7 +917,7 @@ $(function(){
 		ptype = packageType.split("_");
 		packageType = ptype[0] || "";
 		var companyId = ptype[1] || "";
-
+		var poundageRepaymentType = $("#one_pay_input").val() || "";
 		if(!sendValidNoChinese(contractNo,$("#contractNo"),"合同编号")){
 			return;
 		}
@@ -932,6 +955,11 @@ $(function(){
 						condi.applyPackageMoney = packageMoney;//提交到申请金额2016-1-26
 						condi.applyFenQiTimes = g.stagnum;//提交到申请分期期数2016-1-26
 						condi.poundage =  g.poundage;
+						condi.interestRate = g.interestRate;
+						condi.monthPoundage = g.monthPoundage;
+						condi.monthRepay = g.monthRepay;
+						condi.monthInterestRate = '0.7';//月服务费率
+						condi.poundageRepaymentType = poundageRepaymentType;
 						condi.repaymentType = g.repaymentType;
 						condi.moneyMonth = g.moneyMonth;
 						condi.subsidiaryId = subsidiaryId;
@@ -962,7 +990,7 @@ $(".protocol_slideToggle").click(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendSetOrderPackageHttp",data);
+				//console.log("sendSetOrderPackageHttp",data);
 				var status = data.success || false;
 				if(status){
 					//显示第二步
@@ -1414,7 +1442,7 @@ $(".protocol_slideToggle").click(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendSetCustomerInfoHttp",data);
+				//console.log("sendSetCustomerInfoHttp",data);
 				var status = data.success || false;
 				if(status){
 					//显示第4步
@@ -1465,7 +1493,7 @@ $(".protocol_slideToggle").click(function(){
 			condi.customerId = g.customerId;
 			condi.orderId = g.orderId;
 			condi.orderMaterialType  = g.uploadImgType[g.uploadIndex];
-			console.log("uploadBtnUp",condi);
+			//console.log("uploadBtnUp",condi);
 
 			//document.domain = "partywo.com";
 			$.ajaxFileUpload({
@@ -1560,7 +1588,7 @@ $(".protocol_slideToggle").click(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("deleteUploadImg",data);
+				//console.log("deleteUploadImg",data);
 				var status = data.success || false;
 				if(status){
 					$("#img_" + id).hide();
@@ -1631,7 +1659,7 @@ $(".protocol_slideToggle").click(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendSetOrderCompleteHttp",data);
+				//console.log("sendSetOrderCompleteHttp",data);
 				var status = data.success || false;
 				if(status){
 					//显示第5步
@@ -1701,7 +1729,7 @@ $(".protocol_slideToggle").click(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetOrderInfoHttp",data);
+				//console.log("sendGetOrderInfoHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeOrderInfoHtml(data);
@@ -1734,7 +1762,7 @@ $(".protocol_slideToggle").click(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetOrderInfoHttp",data);
+				//console.log("sendGetOrderInfoHttp",data);
 				var status = data.success || false;
 				if(status){
 					$("#imgdiv_0,#imgdiv_1").html("");
@@ -1773,12 +1801,21 @@ $(".protocol_slideToggle").click(function(){
 		var poundage = obj.poundage || "0";
 		var moneyMonth = obj.moneyMonth || "0";
 		var subsidiaryId = obj.subsidiaryId || "";
+		var interestRate = obj.interestRate || "0";
+		var monthPoundage = obj.monthPoundage || "0";
+		var monthRepay = obj.monthRepay || "0";
+		var poundageRepaymentType = obj.poundageRepaymentType || "";
+		var monthInterestRate = obj.monthInterestRate || "0";
 		g.packageType = packageType;
 
+		g.monthInterestRate = monthInterestRate;
 		g.stagnum = fenQiTimes;
 		g.poundage = poundage;
 		g.moneyMonth = moneyMonth;
-
+		g.interestRate = interestRate;
+		g.monthPoundage = monthPoundage;
+		g.monthRepay = monthRepay;
+		
 		var fenarr = {"3":0,"6":1,"9":2,"12":3,"18":4,"24":5,"36":6};
 		fenQiTimes = fenarr[(fenQiTimes + "")];
 
@@ -1790,11 +1827,19 @@ $(".protocol_slideToggle").click(function(){
 		$("#contractMoney").val(contractMoney);
 		$("#packageMoney").val(packageMoney);
 		$("#fenQiTimes").val(fenQiTimes);
-		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元")));
+		$("#poundage").html((poundage == "0" ? "免费" : poundage));
 		$("#moneyMonth").html((moneyMonth));
+		$("#interestRate").html(interestRate+"%");//服务费率
+		$("#monthPoundage").html(monthPoundage);//月服务费
+		$("#monthRepay").html(monthRepay);//月还款
+		$("#monthInterestRate").html(monthInterestRate);//月服务费率
 		$("#agreeck").attr("checked",true);
 		$($("#agreeck").parent()).addClass("chk-bg-checked");
-
+		$("#one_pay_input").val(poundageRepaymentType);
+		if(poundageRepaymentType == "103002"){
+			$("#show_or_hidden").removeClass("one_pay");
+		}
+		
 		//第三步数据,个人信息
 		//3.1
 		var applicantName = obj.applicantName || "";

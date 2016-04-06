@@ -15,10 +15,12 @@ $(function(){
 	g.yinghuanjine = "";
 	g.get_coupons_money = 0;
 	g.useLeastMoney = 0;//优惠券限制使用最低金额
+	g.couponId = Utils.getQueryString("co") || "";//判断是否有减免服务费
 	g.totalPage = 1;
 	g.currentPage = 1;
 	g.pageSize = 10;
 	g.coupons = [];
+	g.month_Poundage = false;//判断是否是分期服务费还款
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -124,7 +126,8 @@ $(function(){
 		var userorderinfo_list = Utils.offLineStore.get("userorderinfo_list",false) || "";
 		var dd = JSON.parse(userorderinfo_list) || {};
 		var poundage = dd.poundage - 0 || 0;
-		get_coupons_money(poundage);
+		var orderId = dd.orderId || "";
+		get_coupons_money(poundage,orderId);
 		setTimeout(function(){
 		var d = JSON.parse(data);
 		var orderId = d.orderId || "";
@@ -136,7 +139,9 @@ $(function(){
 		var realRepaymentTime = d.realRepaymentTime || "无";
 		var totalCurrentBalance = d.totalCurrentBalance || 0;		
 		var firstOverdueTime = d.firstOverdueTime || 0;	
-		
+		var monthPoundage = d.monthPoundage || "";
+		var i = d.repaymentTimes || "";//判断是第几笔付款
+		g.month_Poundage = monthPoundage == "" ?  false : true ;		
 		/* var userorderinfo_list = Utils.offLineStore.get("userorderinfo_list",false) || "";
 		var dd = JSON.parse(userorderinfo_list) || {}; */
 		var orderId = dd.orderId || "";
@@ -149,8 +154,7 @@ $(function(){
 		var poundage = dd.poundage - 0 || 0;
 		var moneyMonth = dd.moneyMonth - 0 || 0;
 		var noRepaymentTimes = dd.noRepaymentTimes || 0;	
-		g.repaymentRecordId = repaymentRecordId;
-		g.yinghuanjine = totalCurrentBalance;
+		g.repaymentRecordId = repaymentRecordId;		
 		var html = [];
 		html.push('<li>');
 		html.push('<div class="order-item-top">');
@@ -169,6 +173,19 @@ $(function(){
 		html.push('<p><i class="common-ico product-tip1"></i>还款本金：<span class="color-green">' +totalResiduePrincipal + '</span>元</p>');
 		html.push('</div>');
 		html.push('</div>');
+		if(g.month_Poundage && i == "1" && g.couponId == "8"){
+			html.push('<div class="box-item">');
+			html.push('<div class="box-item-text">');
+			html.push('<p><i class="common-ico product-tip1"></i>还款服务费：<span style="color:#ff5f00;" class="color-green">享贴息活动已减免</span></p>');
+			html.push('</div>');
+			html.push('</div>');
+		}else if(g.month_Poundage){
+			html.push('<div class="box-item">');
+			html.push('<div class="box-item-text">');
+			html.push('<p><i class="common-ico product-tip1"></i>还款服务费：<span class="color-green">' +monthPoundage + '</span>元</p>');
+			html.push('</div>');
+			html.push('</div>');
+		}
 		html.push('<div class="box-item">');
 		html.push('<div class="box-item-text">');
 		html.push('<p><i class="common-ico product-tip1"></i>应还时间：<span class="color-green">' + firstExpectRepaymentTime + '</span></p>');
@@ -184,6 +201,9 @@ $(function(){
 		html.push('<p><i class="common-ico product-tip2"></i>逾期利息：<span class="color-green">' + totalOverdueFee + '</span>元</p>');
 		html.push('</div>');
 		html.push('</div>');
+		if(g.month_Poundage && i == "1" && g.couponId == "8"){
+			totalCurrentBalance = (totalCurrentBalance-monthPoundage).toFixed(2) || 0;
+		}
 		html.push('<div class="box-item">');
 		html.push('<div class="box-item-text">');
 		html.push('<p><i class="common-ico product-tip2"></i>应还金额：<span class="color-green">' + totalCurrentBalance + '</span>元</p>');
@@ -249,6 +269,7 @@ $(function(){
 		html.push('</div>');
 		html.push('</div>'); */
 		//}
+		g.yinghuanjine = totalCurrentBalance;
 		if(g.pa == "1"){
 			for(var i = 0; i < g.coupons.length; i++){
 				var coupons_money_span = g.coupons[i][0] || "";
@@ -281,11 +302,12 @@ $(function(){
 			}					
 		})
 	}
-	function get_coupons_money(poundage){
+	function get_coupons_money(poundage,orderId){
 		g.coupons = [];
 		var condi = {};
 			condi.login_token = g.login_token;
 			condi.customerId = g.customerId;
+			condi.orderId = orderId;
 			condi.useMoney = poundage || "";			
 		var url = Base.serverUrl + "coupon/getAvailableCouponsByCustomerId";
 		$.ajax({
@@ -389,11 +411,11 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendIsExistBindBankCardHttp",data);
+				//console.log("sendIsExistBindBankCardHttp",data);
+				if(g.couponId == "8"){get_coupons_couponId = g.couponId;}//判断是否是还款抵券
 				var status = data.success || false;
 				if(status){
-					//用户绑定银行卡
-					
+					//用户绑定银行卡					
 					location.href = "../card-pay/card-pay2.html?recordId=" + repaymentRecordId + "&p=" + yinghuanjine+ "&id=" + get_coupons_couponId;
 				}
 				else{

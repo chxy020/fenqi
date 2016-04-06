@@ -67,6 +67,16 @@ __html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100502100503">审�
 __html__.push('<i class="common-ico ico-selected-flag"></i>');
 __html__.push('</dd>');
 
+/*  */
+if(__ostatus__ == "100515"){
+	__html__.push('<dd class="selected">');
+}
+else{
+	__html__.push('<dd>');
+}
+__html__.push('<a href="/anjia/usercenter.html?item=1&ostatus=100515">待确认</a>');
+__html__.push('<i class="common-ico ico-selected-flag"></i>');
+__html__.push('</dd>');
 
 if(__ostatus__ == "100505"){
 	__html__.push('<dd class="selected">');

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>客户信息分析报表</title>
+    <title>待确认订单</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../Css/base.css"/>
     <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css"/>
@@ -45,26 +45,33 @@
 <body>
 <form id="CX" name="CX" class="form-inline definewidth m20" action="" method="get">
     订单编号：<input type="text" style="width:206px;" name="orderId" id="orderId">&nbsp;&nbsp;
-    订单状态：<select id="status" name="status" style="width:210px;"></select>&nbsp;&nbsp;
     客户姓名：<input type="text" id="applicantName" name="applicantName" style="width:120px;" />&nbsp;&nbsp;
-    开始时间：<input type="text" id="createTimeBegin" name="createTimeBegin" style="width:120px;" />&nbsp;&nbsp;
-    结束时间：<input type="text" id="createTimeEnd" name="createTimeEnd" style="width:120px;" />&nbsp;&nbsp;
-    分公司：
-    <select id="subsidiaryId" name="subsidiaryId" style="width:300px;"></select>&nbsp;&nbsp;
-    <button id="querybtn" type="button" class="btn btn-primary">查询</button>&nbsp;&nbsp;
-    <button id="outBut" type="button" class="btn btn-success">导出</button>
+    进件开始时间：<input type="text" id="applicationTimeBegin" name="applicationTimeBegin" style="width:120px;" />&nbsp;&nbsp;
+    进件结束时间：<input type="text" id="applicationTimeEnd" name="applicationTimeEnd" style="width:120px;" />&nbsp;&nbsp;
+    <button id="querybtn" type="button" class="btn btn-primary">查询</button>
 </form>
 <div id="orderlist"></div>
 <script src="../libs/json.js"></script>
 <script src="../libs/base.js"></script>
 <script src="../libs/utils.js"></script>
 <script src="../libs/calendar.js"></script>
-<script src="js/customerInfoAnalysis.js"></script>
+<script src="js/waitingConfirmationOrders.js"></script>
+
+
+<!--取消订单 -->
+<div id="CancelWin" class="modal hide fade" tabindex="-1" role="dialog" align="center" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header" align="left">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4>取消原因</h4>
+    </div>
+    <br>
+    <textarea id="cancelReason" name="cancelReason" style="width: 95% ; height: 100%;"></textarea>
+    <div class="modal-footer" style="text-align: center">
+        <button class="btn btn-warning" onclick="SaveCancel()">取消</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn " data-dismiss="modal" aria-hidden="true">关闭</button>
+    </div>
+</div>
 
 </body>
 </html>
-
-
-
-
-

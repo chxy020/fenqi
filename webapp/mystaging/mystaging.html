@@ -67,7 +67,7 @@
 			<!--装修信息-->
 			<div id="step2" class="staging-main" style="display:none;">
 				<div class="common-title2">套餐信息</div>
-				<div class="common-inp-cont1" style="margin-top:0px;">
+				<div class="common-inp-cont1" style="margin:0px;border-bottom:none;">
 					<div class="inp-item">
 						<label><em></em>合同编号</label>
 						<input id="contractNo" type="text" class="common-input-text" placeholder="请输入合同编号" />
@@ -101,7 +101,7 @@
 						<div class="unit-item">元</div>
 					</div>
 				</div>
-				<div class="common-inp-cont1">
+				<div class="common-inp-cont1" style="margin-top:0px;">
 					<div class="inp-item">
 						<i class="trigger common-select-trigger"></i>
 						<label><em>*</em>分期时间</label>
@@ -115,15 +115,46 @@
 							<option value=6 >36个月</option>
 						</select>
 					</div>
+				<div id="show_or_hidden" class="one_pay"> 					
 					<div class="inp-item">
-						<label><em>*</em>服务手续费</label>
-						<div id="poundage" class="common-text high-light">0元</div>
+						<i class="trigger common-select-trigger"></i>
+						<label><em>*</em>服务费支付方式</label>
+						<select id="one_pay_input" class="common-select">
+							<option value="103001">一次性支付</option>
+							<option value="103002">分期支付</option>
+						</select>
+					</div>
+					<div class="inp-item one_pay_div">
+						<label><em>*</em>服务费率</label>
+						<div id="interestRate" class="common-text high-light">4%</div>
+						<div class="unit-item"></div>
+					</div>
+					<div class="inp-item one_pay_div">
+						<label><em>*</em>服务费</label>
+						<div id="poundage" class="common-text high-light">0</div>
+						<div class="unit-item">元</div>
+					</div>
+					<div class="inp-item other_pay_div">
+						<label><em>*</em>月服务费率</label>
+						<div id="monthInterestRate" class="common-text high-light">0.07</div>
+						<div class="unit-item">%</div>
+					</div>
+					<div class="inp-item other_pay_div">
+						<label><em>*</em>月服务费</label>
+						<div id="monthPoundage" class="common-text high-light">0</div>
+						<div class="unit-item">元</div>
 					</div>
 					<div class="inp-item">
 						<label><em>*</em>月还款本金</label>
-						<div id="moneyMonth" class="common-text">0</div>
+						<div id="moneyMonth" class="common-text high-light">0</div>
 						<div class="unit-item">元</div>
-					</div>				
+					</div>
+					<div class="inp-item other_pay_div">
+						<label><em>*</em>月还款</label>
+						<div id="monthRepay" class="common-text">0</div>
+						<div class="unit-item">元</div>
+					</div>
+				</div>	
 					<div class="inp-item inp-item_protocol">
 						<label><em>*</em>协议</label>						
 						 <p class="protocol_slideToggle_a" style="font-size:14px;line-height:22px;"><input id="agreeck" checked="checked" type="checkbox" class="common-checkbox" />同意

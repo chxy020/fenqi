@@ -9,7 +9,8 @@ $(function(){
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.orderId = Utils.getQueryString("orderId");
 	g.httpTip = new Utils.httpTip({});
-
+	g.month_Poundage = false;//判断是否是分期服务费还款
+	g.couponId = "";//判断是否有减免服务费
 	g.orderDetailInfo = {};
 
 	g.orderInfo = Utils.offLineStore.get("userorderinfo_list",false) || "";
@@ -386,12 +387,19 @@ $(function(){
 
 	function changeOrderStagingListHtml(data){
 
-		var html = [];
-
+		var html = [];		
+		var obj = data.list || [];
+		var other = data.other || [];
+		var d = obj[1].monthPoundage || "";		
+		g.couponId = other.couponId || "";
+		g.month_Poundage = d == "" ?  false : true ;
 		html.push('<table class="order-table" cellpadding="0" cellspacing="0">');
 		html.push('<tr>');
 		html.push('<th width="130">还款期数</th>');
 		html.push('<th width="100">还款本金</th>');
+		if(g.month_Poundage){
+			html.push('<th width="105">还款服务费</th>');
+		}		
 		html.push('<th width="110">应还时间</th>');
 		html.push('<th width="90">逾期天数</th>');
 		html.push('<th width="90">逾期费用</th>');
@@ -400,7 +408,7 @@ $(function(){
 		html.push('<th width="80">状态</th>');
 		html.push('<th width="80">操作</th>');
 		html.push('</tr>');
-		var obj = data.list || [];
+		//var obj = data.list || [];
 
 		var showRepay = true;
 		var yuqi_number = 0;//统计已逾期个数
@@ -413,18 +421,27 @@ $(function(){
 			var expectRepaymentTime = d.expectRepaymentTime || "";
 			var overdueTime = d.overdueTime || 0;
 			var overdueFee = d.overdueFee || 0;
-			var currentBalance = d.currentBalance || 0;
+			var currentBalance = d.currentBalance || 0;			
 			var realRepaymentTime = d.realRepaymentTime || "无";
 			var status = d.status || "";
 			var repaymentType = d.repaymentType || "";
 			var overdueCount = d.overdueCount || "";
+			var monthPoundage = d.monthPoundage || "";			
 			if(status == "101903" || status == "101904"){html.push('<tr class="yuqi1">');}else{html.push('<tr>');}
 			
 			html.push('<td>' + repaymentTypeDesc + '</td>');
 			html.push('<td>' + residuePrincipal + '元</td>');
+			if(g.month_Poundage && i == 0 && g.couponId == "8"){
+				html.push('<td style="color:#ff5f00;">享贴息活动已减免</td>');
+			}else if(g.month_Poundage){
+				html.push('<td>' + monthPoundage + '元</td>');
+			}
 			html.push('<td>' + expectRepaymentTime + '</td>');
 			html.push('<td>' + overdueTime + '天</td>');
 			html.push('<td>' + overdueFee + '元</td>');
+			if(g.month_Poundage && i == 0 && g.couponId == "8"){
+				currentBalance = (currentBalance - monthPoundage).toFixed(2) || 0;
+			}
 			html.push('<td>' + currentBalance + '元</td>');
 			html.push('<td>' + realRepaymentTime + '</td>');
 			if(status == "101904"){
@@ -615,7 +632,8 @@ $(function(){
 		var totalOverdueFee = d.totalOverdueFee || 0;
 		var totalCurrentBalance = d.totalCurrentBalance || 0 ;
 		var realRepaymentTime = d.realRepaymentTime || "无";
-
+		var monthPoundage = d.monthPoundage || "";//还款服务费
+		var i = d.repaymentTimes || "";//判断是第几笔付款	
 		var dd = JSON.parse(g.orderInfo) || {};
 		var orderId = dd.orderId || "";
 		var contractNo = dd.contractNo || "";
@@ -662,7 +680,10 @@ $(function(){
 		html.push('</tr>'); */
 		html.push('<tr>');
 		html.push('<td class="odd">本期应还金额</td>');
-		html.push('<td class="even">' + moneyMonth + '元</td>');
+		if(g.month_Poundage && i == "1" && g.couponId == "8"){
+			totalCurrentBalance = (totalCurrentBalance - monthPoundage).toFixed(2) || 0;
+		}
+		html.push('<td class="even">' + totalCurrentBalance + '元</td>');
 		html.push('</tr>');
 		/* html.push('<tr>');
 		html.push('<td class="odd">当前状态</td>');
@@ -685,6 +706,9 @@ $(function(){
 		html.push('<tr>');
 		html.push('<th>还款方式</th>');
 		html.push('<th>还款本金</th>');
+		if(g.month_Poundage){
+			html.push('<th>还款服务费</th>');
+		}
 		html.push('<th>应还时间</th>');
 		html.push('<th>逾期天数</th>');
 		html.push('<th>逾期费用</th>');
@@ -693,9 +717,14 @@ $(function(){
 		html.push('<tr>');
 		html.push('<td>' +repaymentTypeDesc + '</td>');
 		html.push('<td>' + totalResiduePrincipal + '元</td>');
+		if(g.month_Poundage && i == "1" && g.couponId == "8"){
+			html.push('<td style="color:#ff5f00;">享贴息活动已减免</td>');
+		}else if(g.month_Poundage){
+			html.push('<td>' + monthPoundage + '元</td>');
+		}
 		html.push('<td>' + firstExpectRepaymentTime + '</td>');
 		html.push('<td>' + firstOverdueTime + '天</td>');
-		html.push('<td>' + totalOverdueFee + '元</td>');
+		html.push('<td>' + totalOverdueFee + '元</td>');		
 		html.push('<td>' + totalCurrentBalance + '元</td>');
 		html.push('</tr>');
 		html.push('</table>');
@@ -763,11 +792,11 @@ $(function(){
 				var status = data.success || false;
 				if(status){
 					//用户绑定银行卡
-					location.href = "/anjia/card-pay2.html?recordId=" + repaymentRecordId + "&p=" + yinghuanjine;
+					location.href = "/anjia/card-pay2.html?recordId=" + repaymentRecordId + "&p=" + yinghuanjine+"&id=" + g.couponId;
 				}
 				else{
 					//用户没有绑定银行卡
-					location.href = "/anjia/bind-card.html?recordId=" + repaymentRecordId + "&p=" + yinghuanjine;
+					location.href = "/anjia/bind-card.html?recordId=" + repaymentRecordId + "&p=" + yinghuanjine+"&id=" + g.couponId;
 				}
 				g.httpTip.hide();
 			},

@@ -59,7 +59,9 @@ $(function () {
                 //var obj = countFee(RowData.applyPackageMoney, fenQiTimes);
                 $("#poundage").html(RowData.poundage > 0 ? (RowData.poundage + "元") : "免费"); //$("#poundage").html(obj.rate > 0 ? (obj.rate + "元") : "免费");
                 $("#moneyMonth").html(RowData.moneyMonth + "元"); //$("#moneyMonth").html(obj.mouth + "元");
-                g.httpTip.hide();
+                $("#poundageRepaymentType").val(RowData.poundageRepaymentType);
+				changePoundageRepaymentType(RowData.poundageRepaymentType)				
+			   g.httpTip.hide();
             },
             error: function (data) {
                 g.httpTip.hide();
@@ -78,8 +80,10 @@ $(function () {
     $("#but_tg").bind("click", {approveResult: 0}, fkSellerBtnUp);
     $("#but_jj").bind("click", {approveResult: 1}, fkSellerBtnUp);
     $("#but_th").bind("click", {approveResult: 2}, fkSellerBtnUp);
-    $("#packageMoney").bind("blur", fenQiTimesChange);
-    $("#fenQiTimes").bind("change", fenQiTimesChange);
+    $("#packageMoney").bind("blur", changePoundageRepaymentType);
+    $("#fenQiTimes").bind("change", changePoundageRepaymentType);
+	$("#packageMoney").bind("blur", countFee);
+    $("#fenQiTimes").bind("change", countFee);
 
     $('#backid').click(function () {
         window.location.href = "Fk_OrderList_1.html";
@@ -117,7 +121,7 @@ $(function () {
             }
             condi.packageMoney = $("#packageMoney").val();
             condi.poundage = g.poundage;
-            condi.fenQiTimes = g.stagnum;
+            condi.fenQiTimes = $("#fenQiTimes").val() || "";//g.stagnum;
             condi.moneyMonth = g.moneyMonth;
         }else{
             condi.packageMoney = 0;
@@ -162,47 +166,43 @@ $(function () {
         });
     }
 
-    //计算手续费和还款金额[allprice=金额][time=期数, 前台选择下拉控件对应的索引值]
-    function countFee(allprice, time) {
-        //console.log("金额:" + allprice);
-        //console.log("期数:" + time);
-        var numarr = [3, 6, 9, 12, 18, 24, 36]; //前台选择下拉控件 值 对应的 期数
-        var ratearr = [0, 0.04, 0.04, 0.07, 0.1, 0.13, 0.16];//期数对应的费率
-        var rate = ratearr[time] * allprice; //手续费 = 对应的期数的对应的费率 * 金额
-        //console.log("手续费:" + rate);
-        var all = allprice + rate; //全部费用
-        var mouthprice = allprice / numarr[time]; //月还款
-        var obj = {};
-        obj.all = all;
-        obj.mouth = mouthprice.toFixed(2);
-        obj.rate = rate.toFixed(2);
-        obj.stagnum = numarr[time]; //获取期数
-
-        g.poundage = obj.rate + "";
-        g.moneyMonth = obj.mouth + "";
-        g.stagnum = obj.stagnum;
-        //console.log(obj);
-        return obj;
+    //改变 服务费支付方式 时触发
+    function changePoundageRepaymentType(V){
+        if(V == 103001){
+            $(".ZF103001").show();
+            $(".ZF103002").hide();
+        }
+        if(V == 103002){
+            $(".ZF103001").hide();
+            $(".ZF103002").show();
+        }
+        countFee();//重新计算费率
     }
 
-    function fenQiTimesChange() {
-        var packageMoney = $("#packageMoney").val() - 0 || 0;
-        if (packageMoney > 500000) {
-            Utils.alert("最大审批额度不能大于50万");
-            return false;
+    //费率计算
+    function countFee() {
+        var poundageRepaymentType = $("#poundageRepaymentType option:selected").attr("value");//服务费分期方式
+        var qs = $("#fenQiTimes option:selected").attr("value") == "" ? $("#applyFenQiTimes").val() : $("#fenQiTimes option:selected").attr("value"); //期数
+		 var AppAmount = $("#packageMoney").val() == "" ?  $("#applyPackageMoney").val() : $("#packageMoney").val();//申请金额
+		 console.log(AppAmount);
+		 console.log(qs);
+		if(poundageRepaymentType == "103001") {//一次性支付
+            var fl = {6: 0.04, 12: 0.07, 18: 0.1, 24: 0.13, 36: 0.16}; //费率          
+            var ServerCost = (AppAmount * fl[qs]).toFixed(2); //服务费
+            var moneyMonth = (AppAmount / qs).toFixed(2);//月还本金
+            $("#interestRate").val(fl[qs]);//更新 服务费率
+            $("#poundage").val(ServerCost);
+            $("#moneyMonth").val(moneyMonth);
+            $("#monthRepay").val(moneyMonth);//月还款
         }
-        if (packageMoney > 0) {
-            //不能提高
-            //if(g.packageMoney >= packageMoney){
-            var time = $("#fenQiTimes").val() - 0 || 0;
-            var obj = countFee(packageMoney, time);
-            $("#poundage").html(obj.rate > 0 ? (obj.rate + "元") : "免费");
-            $("#moneyMonth").html(obj.mouth + "元");
-            //}else{
-            //	Utils.alert("最大审批额度为" + packageMoney + "元");
-            //}
-        } else {
-            Utils.alert("最大审批额度必须大于0元");
+        if(poundageRepaymentType == "103002") {//分期支付
+            $("#monthInterestRate").val(0.007);
+            var monthPoundage = ( parseFloat(AppAmount) * 0.007).toFixed(2); //月服务费
+            var moneyMonth = (parseFloat(AppAmount) / qs).toFixed(2);//月还本金
+            var monthRepay = (parseFloat(monthPoundage) + parseFloat(moneyMonth)).toFixed(2) ; //月还款
+            $("#monthPoundage").val(monthPoundage);
+            $("#moneyMonth").val(moneyMonth);
+            $("#monthRepay").val(monthRepay);//月还款
         }
     }
 });

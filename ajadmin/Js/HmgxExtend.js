@@ -2,6 +2,7 @@
  * Created by wlx on 2016/2/19.
  */
 var Hmgx = {
+    showParam:false,
     openWin: function (url, name, iWidth, iHeight) {
         if (typeof(iWidth) === "undefined") {
             iWidth = 720;
@@ -36,11 +37,13 @@ var Hmgx = {
         }).appendTo('body');
         //处理表单参数
         $.each($('#' + FormId).serializeArray(), function (index) {
+            if(Hmgx.showParam)alert( this['name']  + "=" + this['value']);
             form.append('<input type="hidden" name="' + this['name'] + '" value="' + this['value'] + '" />');
         });
         //处理附加参数
         if (typeof(AddedParam) === "object") {
             for (var Key in AddedParam) {
+                if(Hmgx.showParam)alert( Key  + "=" + AddedParam[Key]);
                 form.append('<input type="hidden" name="' + Key + '" value="' + AddedParam[Key] + '" />');
             }
         }

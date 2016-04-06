@@ -292,7 +292,13 @@
 .order-table tr td a.up{background-position:center -34px;}
 
 
-
-
+/* 待确认结果查看 */
+.bind-result-box .div{}
+.show_or_hidden .bind-result-box{display:none;}
+.bind_result_box{display:none;}
+.show_or_hidden  .bind_result_box{display:block;padding-top:40px;font-weight:500;}
+.bind-result-box .div{color:#000;line-height:36px;margin-bottom:60px;margin-left:356px;text-align:left;}
+.bind-result-box span.color{color:#ff8400;}
+.bind-result-box p.text{color:#424242;font-size:20px;}
 
 

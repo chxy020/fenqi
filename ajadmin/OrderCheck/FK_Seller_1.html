@@ -47,7 +47,8 @@
         </tr>
         <tr>
             <td class="tableleft">审核人员</td>
-            <td><input id="usersId" type="hidden" name="phoneNumber"/><input id="usersName" readonly type="text"  name="usersName"/></td>
+            <td><input id="usersId" type="hidden" name="phoneNumber"/><input id="usersName" readonly type="text"
+                                                                             name="usersName"/></td>
         </tr>
         <tr>
             <td class="tableleft">合同总金额</td>
@@ -76,23 +77,52 @@
             <td>
                 <select id="fenQiTimes" name="fenQiTimes" style="width:210px; margin: 0px;">
                     <option value="">请选择审批分期期数！</option>
-                    <option value=0>3个月</option>
-                    <option value=1>6个月</option>
-                    <option value=3>12个月</option>
-                    <option value=4>18个月</option>
-                    <option value=5>24个月</option>
-                    <option value=6>36个月</option>
+                    <option value=6>6个月</option>
+                    <option value=12>12个月</option>
+                    <option value=18>18个月</option>
+                    <option value=24>24个月</option>
+                    <option value=36>36个月</option>
                 </select>
             </td>
         </tr>
+		 <tr>
+            <td class="tableleft">服务费支付方式</td>
+            <td>
+                <select style="width:210px; margin: 0px;" readonly disabled="disabled" id="poundageRepaymentType" name="poundageRepaymentType" class="common-select" >
+                    <option value="103001">一次性支付</option>
+                    <option value="103002">分期支付</option>
+                </select>
+            </td>
+        </tr>
+
+        <!--一次性支付-->
+        <tr class="ZF103001">
+            <td class="tableleft">服务费率</td>
+            <td><input readonly id="interestRate" type="text" name="interestRate"/></td>
+        </tr>
+        <tr class="ZF103001">
+            <td class="tableleft">服务费</td>
+            <td><input readonly id="poundage" type="text" name="poundage"/></td>
+        </tr>
+        <!--分期支付-->
+        <tr class="ZF103002">
+            <td class="tableleft">月服务费率</td>
+            <td><input readonly id="monthInterestRate" type="text" name="monthInterestRate"/></td>
+        </tr>
+        <tr class="ZF103002">
+            <td class="tableleft">月服务费</td>
+            <td><input readonly id="monthPoundage" type="text" name="monthPoundage"/></td>
+        </tr>
+
         <tr>
-            <td class="tableleft">手续费</td>
-            <td><span id="poundage">0元</span></td>
+            <td class="tableleft">月还款本金</td>
+            <td><input readonly id="moneyMonth" type="text" name="moneyMonth"/></td>
         </tr>
         <tr>
-            <td class="tableleft">月还款金额</td>
-            <td><span id="moneyMonth">0元</span></td>
+            <td class="tableleft">月还款</td>
+            <td><input readonly id="monthRepay" type="text" name="monthRepay"/></td>
         </tr>
+
         <tr>
             <td class="tableleft">初审报告</td>
             <td><textarea id="approveReport" name="approveReport" style="width:99%;height:80px;"></textarea></td>

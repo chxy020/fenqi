@@ -197,6 +197,17 @@ $(function(){
 	$("#liableIdentity").bind("blur",validIsIdentity);
 	$("#liableAddress").bind("blur",validNoEmpty);
 	*/
+	/* 分期支付判断是一次性支付 还是 分期支付服务费 */
+	$("#show_or_hidden .sign-item .sign-right-cont .radio-bg").bind("click",show_hidden_one_pay);
+	function show_hidden_one_pay(){
+		if($("#one_pay_input").attr("checked") == "checked"){
+			$("#show_or_hidden").addClass("one_pay");
+		}
+		else if($("#other_pay_input").attr("checked") == "checked"){
+			$("#show_or_hidden").removeClass("one_pay");
+		}
+	}
+	
 	/* 判断是否大于50万 */
 	function sendValidIsBig(txt,dom){
 		txt=$("#packageMoney").val();
@@ -699,6 +710,10 @@ $(function(){
 		obj.mouth = mouthprice.toFixed(2);
 		obj.rate = rate.toFixed(2);
 		obj.stagnum = numarr[time];
+		obj.interestRate = (ratearr[time]*100).toFixed(0);//服务费率
+		obj.monthInterestRate = 0.7/100;//月服务费率
+		obj.monthPoundage = (allprice*obj.monthInterestRate).toFixed(2);//月服务费
+		obj.monthRepay = (mouthprice+allprice*obj.monthInterestRate).toFixed(2);//月还款
 		return obj;
 	}
 
@@ -769,9 +784,17 @@ $(function(){
 			var time = $("#fenQiTimes").val() - 0 || 0;
 			var obj = countFee(packageMoney,time);
 
-			$("#poundage").html(obj.rate > 0 ? (obj.rate + "元（通过审批后需一次性偿还）") : "免费");
-			$("#moneyMonth").html(obj.mouth + "元");
-
+			$("#poundage").html(obj.rate > 0 ? (obj.rate + "元") : "免费");//服务费
+			$("#moneyMonth").html(obj.mouth + "元");//月还款本金
+			$("#interestRate").html(obj.interestRate+"%");//服务费率
+			$("#monthInterestRate").html(obj.monthInterestRate*100+'%');//月服务费率
+			$("#monthPoundage").html(obj.monthPoundage + "元");//月服务费
+			$("#monthRepay").html(obj.monthRepay + "元");//月还款
+			
+			g.interestRate = obj.interestRate + "";
+			//g.monthInterestRate = obj.monthInterestRate + "";
+			g.monthPoundage = obj.monthPoundage + "";
+			g.monthRepay = obj.monthRepay + "";
 			g.poundage = obj.rate + "";
 			g.moneyMonth = obj.mouth + "";
 			g.stagnum = obj.stagnum;
@@ -795,7 +818,11 @@ $(function(){
 		ptype = packageType.split("_");
 		packageType = ptype[0] || "";
 		var companyId = ptype[1] || "";
-
+		var poundageRepaymentType = "";
+		$("[name='choice_pay']").each(function(){
+			if($(this).attr("checked") == "checked"){poundageRepaymentType = $(this).val()}
+		})
+		
 		if(!sendValidNoChinese(contractNo,$("#contractNo"))){
 			return;
 		}
@@ -829,6 +856,11 @@ $(function(){
 						condi.contractMoney = contractMoney;
 						condi.applyPackageMoney = packageMoney;//提交到申请分期金额
 						condi.applyFenQiTimes = g.stagnum;//提交到申请分期期数
+						condi.interestRate = g.interestRate;
+						condi.monthPoundage = g.monthPoundage;
+						condi.monthRepay = g.monthRepay;
+						condi.monthInterestRate = '0.7';//月服务费率
+						condi.poundageRepaymentType = poundageRepaymentType;
 						condi.poundage =  g.poundage;
 						condi.repaymentType = g.repaymentType;
 						condi.moneyMonth = g.moneyMonth;
@@ -1419,7 +1451,7 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetOrderInfoHttp",data);
+				//console.log("sendGetOrderInfoHttp",data);
 				var status = data.success || false;
 				if(status){
 					$("#imgdiv_0,#imgdiv_1").html("");
@@ -1741,13 +1773,22 @@ $(function(){
 		var poundage = obj.poundage || "0";
 		var moneyMonth = obj.moneyMonth || "0";
 		var designer = obj.designer || "";
+		var interestRate = obj.interestRate || "0";
+		var monthPoundage = obj.monthPoundage || "0";
+		var monthRepay = obj.monthRepay || "0";
+		var poundageRepaymentType = obj.poundageRepaymentType || "";
+		var monthInterestRate = obj.monthInterestRate || "0";
 		g.subsidiaryId=obj.subsidiaryId || "";
 		g.packageType = packageType;
 
+		g.monthInterestRate = monthInterestRate;
 		g.stagnum = fenQiTimes;
 		g.poundage = poundage;
 		g.moneyMonth = moneyMonth;
-
+		g.interestRate = interestRate;
+		g.monthPoundage = monthPoundage;
+		g.monthRepay = monthRepay;
+		
 		var fenarr = {"3":0,"6":1,"9":2,"12":3,"18":4,"24":5,"36":6};
 		fenQiTimes = fenarr[(fenQiTimes + "")];
 
@@ -1759,11 +1800,21 @@ $(function(){
 		$("#designer").val(designer);
 		$("#packageMoney").val(packageMoney);
 		$("#fenQiTimes").val(fenQiTimes);
-		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元（通过审批后需一次性偿还）")));
+		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元")));
+		$("#interestRate").html(interestRate+"%");//服务费率
+		$("#monthPoundage").html(monthPoundage + "元");//月服务费
+		$("#monthRepay").html(monthRepay + "元");//月还款
+		$("#monthInterestRate").html(monthInterestRate + "%");//月服务费率
 		$("#moneyMonth").html((moneyMonth + "元"));
 		$("#agreeck").attr("checked",true);
 		$($("#agreeck").parent()).addClass("chk-bg-checked");
-
+		/* 判断选中的是一次性付 还是分期付服务费 */
+		if(poundageRepaymentType == "103002"){
+			$("#other_pay_input").attr("checked",true);
+			$($("#one_pay_input").parent()).removeClass("radio-bg-checked");
+			$($("#other_pay_input").parent()).addClass("radio-bg-checked");
+			$("#show_or_hidden").removeClass("one_pay");
+		}
 		//第三步数据,个人信息
 		//3.1
 		var applicantName = obj.applicantName || "";
@@ -1924,6 +1975,7 @@ $(".protocol_slideToggle").click(function(){
 	$(".protocol_slideToggle_a .protocol_slideToggle").html("更多>>");	
 	$(".protocol_slideToggle_a.active .protocol_slideToggle").html("收起>>");	
 })
+	window.show_hidden_one_pay = show_hidden_one_pay;
 	window.deleteUploadImg = deleteUploadImg;
 });
 

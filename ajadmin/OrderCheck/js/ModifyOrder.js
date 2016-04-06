@@ -69,6 +69,7 @@ $(function () {
                 phtml.push('<a href="../protocol/protocol-transfer.html?orderId=' + g.orderId + '" target="_blank">债权转让协议</a>');
                 $("#protocol").html(phtml.join(''));
                 g.httpTip.hide();
+                changePoundageRepaymentType( data.obj.poundageRepaymentType );//改变 服务费支付方式 显示的 TR
                 sendGetProductHttp(g.companyId);//读取产品类型
                 sendGetcompanys(g.companyId); //合作商户
                 sendGetDicHttp();//获取其它字典数据(绑定)
@@ -208,17 +209,6 @@ $(function () {
         }
         $("#subsidiaryId").html(option.join(''));
         $("#subsidiaryId").val(g.subsidiaryId);
-    }
-
-    //========================费率计算 ============================
-    function countFee() {
-        var qs = $("#applyFenQiTimes option:selected").attr("value"); //期数
-        var fl = {3: 0, 6: 0.04, 12: 0.07, 18: 0.1, 24: 0.13, 36: 0.16}; //费率
-        var AppAmount = $("#applyPackageMoney").val();//申请金额
-        var ServerCost = (AppAmount * fl[qs]).toFixed(2); //服务费
-        var mouthprice = (AppAmount / qs).toFixed(2);//月还金额
-        $("#poundage").val(ServerCost);
-        $("#moneyMonth").val(mouthprice);
     }
 
     //========================获取字典信息 ============================
@@ -447,3 +437,42 @@ $(function () {
     //上传压缩包
     $(document).on("change", "#uploadFile", yaSuoBtnUp);
 });
+
+//改变 服务费支付方式 时触发
+function changePoundageRepaymentType(V){
+    if(V == 103001){
+        $(".ZF103001").show();
+        $(".ZF103002").hide();
+    }
+    if(V == 103002){
+        $(".ZF103001").hide();
+        $(".ZF103002").show();
+    }
+    countFee();//重新计算费率
+}
+
+//费率计算
+function countFee() {
+    var poundageRepaymentType = $("#poundageRepaymentType option:selected").attr("value");//服务费分期方式
+    var qs = $("#applyFenQiTimes option:selected").attr("value"); //期数
+    if(poundageRepaymentType == "103001") {//一次性支付
+        var fl = {6: 0.04, 12: 0.07, 18: 0.1, 24: 0.13, 36: 0.16}; //费率
+        var AppAmount = $("#applyPackageMoney").val();//申请金额
+        var ServerCost = (AppAmount * fl[qs]).toFixed(2); //服务费
+        var moneyMonth = (AppAmount / qs).toFixed(2);//月还本金
+        $("#interestRate").val(fl[qs]);//更新 服务费率
+        $("#poundage").val(ServerCost);
+        $("#moneyMonth").val(moneyMonth);
+        $("#monthRepay").val(moneyMonth);//月还款
+    }
+    if(poundageRepaymentType == "103002") {//分期支付
+        $("#monthInterestRate").val(0.007);
+        var AppAmount = $("#applyPackageMoney").val();//申请金额
+        var monthPoundage = ( parseFloat(AppAmount) * 0.007).toFixed(2); //月服务费
+        var moneyMonth = (parseFloat(AppAmount) / qs).toFixed(2);//月还本金
+        var monthRepay = (parseFloat(monthPoundage) + parseFloat(moneyMonth)).toFixed(2) ; //月还款
+        $("#monthPoundage").val(monthPoundage);
+        $("#moneyMonth").val(moneyMonth);
+        $("#monthRepay").val(monthRepay);//月还款
+    }
+}

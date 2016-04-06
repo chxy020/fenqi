@@ -38,6 +38,13 @@ $(function () {
     }
 
     $("#querybtn").bind("click", queryOrderList);
+    $("#outBut").bind("click", function(){
+        var ParamObj={};
+        ParamObj.login_token = g.login_token;
+        ParamObj.currentPageNum = 1;
+        ParamObj.pageSize = 10000;
+        Hmgx.serializeDownload(Base.serverUrl  + "oplog/selectClentRegisterReportExport","CX",ParamObj);
+    });
 
     function queryOrderList() {
         g.currentPage = 1;

@@ -9,13 +9,13 @@ $(function () {
     if (typeof eui !== "undefined") {
         eui.calendar({
             startYear: 1900,
-            input: document.getElementById('createTimeBegin'),
-            id: "createTimeBegin"
+            input: document.getElementById('applicationTimeBegin'),
+            id: "applicationTimeBegin"
         });
         eui.calendar({
             startYear: 1900,
-            input: document.getElementById('createTimeEnd'),
-            id: "createTimeEnd"
+            input: document.getElementById('applicationTimeEnd'),
+            id: "applicationTimeEnd"
         });
     }
     var g = {};
@@ -30,105 +30,96 @@ $(function () {
     if (!loginStatus) {
         alert("您未登陆！");
     } else {
-        sendGetUserInfoDicHttp();//订单状态
-        getBranchCompany();//分公司
+        //sendGetUserInfoDicHttp();//订单状态
+        //getBranchCompany();//分公司
         queryOrderList();//查询数据
     }
 
     $("#querybtn").bind("click", queryOrderList);
-    $("#outBut").bind("click", function(){
-        var ParamObj={};
-        ParamObj.login_token = g.login_token;
-        ParamObj.currentPageNum = 1;
-        ParamObj.pageSize = 10000;
-        //Hmgx.showParam = true;//提示参数
-        Hmgx.serializeDownload(Base.serverUrl  + "oplog/selectClentInfoReportExport","CX",ParamObj);
-    });
-
 
     function queryOrderList() {
         g.currentPage = 1;
         sendQueryOrderListHttp();
     }
 
-    //处理订单状态
-    function sendGetUserInfoDicHttp(){
-        g.httpTip.show();
-        var url = Base.serverUrl + "baseCodeController/getBaseCodeByParents";
-        var condi = {};
-        condi.parents = "1005";
-        $.ajax({
-            url:url,
-            data:condi,
-            type:"POST",
-            dataType:"json",
-            context:this,
-            success: function(data){
-                //console.log("sendGetUserInfoDicHttp",data);
-                var status = data.success || false;
-                if(status){
-                    var obj = data.obj || {};
-                    changeSelectHtml(obj);
-                }
-                else{
-                    var msg = data.message || "获取用户信息字典数据失败";
-                    Utils.alert(msg);
-                }
-                g.httpTip.hide();
-            },
-            error:function(data){
-                g.httpTip.hide();
-            }
-        });
-    }
-
-    function changeSelectHtml(obj){
-        var parents = ["1005"];
-        var ids = ["status"];
-        for(var i = 0,len = parents.length; i < len; i++){
-            var data = obj[parents[i]] || {};
-            var option = [];
-            option.push('<option value="">全部订单</option>');
-            for(var k in data){
-                var id = k || "";
-                var name = data[k] || "";
-                option.push('<option value="' + id + '">' + name + '</option>');
-            }
-            $("#" + ids[i]).html(option.join(''));
-        }
-        if(g.orderStatus !== ""){
-            $("#orderstatus").val(g.orderStatus);
-        }
-    }
-
-    //获取分公司
-    function getBranchCompany() {
-        g.httpTip.show();
-        var url = Base.serverUrl + "subsidiary/getSubsidiarys";
-        var condi = {};
-        condi.pageSize = 1000;
-        $.ajax({
-            url: url, data: condi, type: "POST", dataType: "json", context: this,
-            success: function (data) {
-                var list = data.list || {};
-                var option = [];
-                option.push('<option value="">全部</option>');
-                for (var i = 0; i < list.length; i++) {
-                    var d = list[i];
-                    option.push('<option value="' + d.id + '">' + d.name + '</option>');
-                }
-                $("#subsidiaryId").html(option.join(''));
-                g.httpTip.hide();
-            }, error: function (data) {
-                g.httpTip.hide();
-            }
-        });
-    }
+    ////处理订单状态
+    //function sendGetUserInfoDicHttp(){
+    //    g.httpTip.show();
+    //    var url = Base.serverUrl + "baseCodeController/getBaseCodeByParents";
+    //    var condi = {};
+    //    condi.parents = "1005";
+    //    $.ajax({
+    //        url:url,
+    //        data:condi,
+    //        type:"POST",
+    //        dataType:"json",
+    //        context:this,
+    //        success: function(data){
+    //            //console.log("sendGetUserInfoDicHttp",data);
+    //            var status = data.success || false;
+    //            if(status){
+    //                var obj = data.obj || {};
+    //                changeSelectHtml(obj);
+    //            }
+    //            else{
+    //                var msg = data.message || "获取用户信息字典数据失败";
+    //                Utils.alert(msg);
+    //            }
+    //            g.httpTip.hide();
+    //        },
+    //        error:function(data){
+    //            g.httpTip.hide();
+    //        }
+    //    });
+    //}
+    //
+    //function changeSelectHtml(obj){
+    //    var parents = ["1005"];
+    //    var ids = ["status"];
+    //    for(var i = 0,len = parents.length; i < len; i++){
+    //        var data = obj[parents[i]] || {};
+    //        var option = [];
+    //        option.push('<option value="">全部订单</option>');
+    //        for(var k in data){
+    //            var id = k || "";
+    //            var name = data[k] || "";
+    //            option.push('<option value="' + id + '">' + name + '</option>');
+    //        }
+    //        $("#" + ids[i]).html(option.join(''));
+    //    }
+    //    if(g.orderStatus !== ""){
+    //        $("#orderstatus").val(g.orderStatus);
+    //    }
+    //}
+    //
+    ////获取分公司
+    //function getBranchCompany() {
+    //    g.httpTip.show();
+    //    var url = Base.serverUrl + "subsidiary/getSubsidiarys";
+    //    var condi = {};
+    //    condi.pageSize = 1000;
+    //    $.ajax({
+    //        url: url, data: condi, type: "POST", dataType: "json", context: this,
+    //        success: function (data) {
+    //            var list = data.list || {};
+    //            var option = [];
+    //            option.push('<option value="">全部</option>');
+    //            for (var i = 0; i < list.length; i++) {
+    //                var d = list[i];
+    //                option.push('<option value="' + d.id + '">' + d.name + '</option>');
+    //            }
+    //            $("#subsidiaryId").html(option.join(''));
+    //            g.httpTip.hide();
+    //        }, error: function (data) {
+    //            g.httpTip.hide();
+    //        }
+    //    });
+    //}
 
     //获取订单数据
     function sendQueryOrderListHttp() {
         g.httpTip.show();
-        var url = Base.serverUrl + "oplog/selectClentInfoReport";
+        var url = Base.serverUrl + "order/selectWaitingForConfirmationOrders";
         var condi = {};
         condi.login_token = g.login_token;
         condi.currentPageNum = g.currentPage;
@@ -152,79 +143,45 @@ $(function () {
         });
     }
 
+
     function changeOrderListHtml(data) {
         var html = [];
         html.push('<table class="table table-bordered table-hover definewidth m10" ><thead>');
         html.push('<tr>');
-        html.push('<th>订单号</th>');
-        html.push('<th>客户姓名</th>');
-        html.push('<th>身份证号</th>');
-        html.push('<th>订单状态</th>');
-        html.push('<th>合作商家</th>');
+        html.push('<th>订单编号</th>');
+        html.push('<th>合同编号</th>');
+        html.push('<th>所属公司</th>');
         html.push('<th>产品名称</th>');
-        html.push('<th>合同金额</th>');
         html.push('<th>申请分期金额</th>');
         html.push('<th>申请分期期数</th>');
         html.push('<th>审批分期金额</th>');
         html.push('<th>审批分期期数</th>');
-        html.push('<th>放款日期</th>');
-        html.push('<th>每期还款金额</th>');
-        html.push('<th>剩余期数</th>');
-        html.push('<th>剩余本金</th>');
-        html.push('<th>逾期日期</th>');
-        html.push('<th>逾期期数</th>');
-        html.push('<th>逾期天数</th>');
-        html.push('<th>逾期利息</th>');
-        html.push('<th>逾期管理费</th>');
-        html.push('<th>应还本金</th>');
-        html.push('<th>初审人员</th>');
-        html.push('<th>复审人员</th>');
-        html.push('<th>终审人员</th>');
-        html.push('<th>性别</th>');
-        html.push('<th>年龄</th>');
-        html.push('<th>婚姻状况</th>');
-        html.push('<th>学历</th>');
-        html.push('<th>工作性质</th>');
-        html.push('<th>单位性质</th>');
-        html.push('<th>职务</th>');
-        html.push('<th>税后月收入</th>');
+        html.push('<th>订单状态</th>');
+        html.push('<th>用户姓名</th>');
+        html.push('<th>服务费支付方式</th>');
+        html.push('<th>服务费</th>');
+        html.push('<th>操作</th>');
         html.push('</tr>');
 
         var obj = data.list || [];
         for (var i = 0, len = obj.length; i < len; i++) {
             var d = obj[i];
-            html.push('<td>' + ( d.orderId || "") + '</td>');
-            html.push('<td>' + ( d.applicantName || "") + '</td>');
-            html.push('<td>' + ( d.applicantIdentity || "") + '</td>');
-            html.push('<td>' + ( d.status || "") + '</td>');
-            html.push('<td>' + ( d.company || "") + '</td>');
-            html.push('<td>' + ( d.packageName || "") + '</td>');
-            html.push('<td>' + ( d.contractMoney || "") + '</td>');
-            html.push('<td>' + ( d.applyPackageMoney || "") + '</td>');
-            html.push('<td>' + ( d.applyFenqiTimes || "") + '</td>');
-            html.push('<td>' + ( d.packageMoney || "") + '</td>');
-            html.push('<td>' + ( d.fenqiTimes || "") + '</td>');
-            html.push('<td>' + ( d.loanTime || "") + '</td>');
-            html.push('<td>' + ( d.moneyMonth || "") + '</td>');
-            html.push('<td>' + ( d.overfenqiTimes || "") + '</td>');
-            html.push('<td>' + ( d.residuePrincipal || "") + '</td>');
-            html.push('<td>' + ( d.expectRepaymentTime || "") + '</td>');
-            html.push('<td>' + ( d.overdueCount || "") + '</td>');
-            html.push('<td>' + ( d.overdueTime || "") + '</td>');
-            html.push('<td>' + ( d.overdueInterest || "") + '</td>');
-            html.push('<td>' + ( d.managementFee || "") + '</td>');
-            html.push('<td>' + ( d.residuePrincipal || "") + '</td>');
-            html.push('<td>' + ( d.firstApprovePerson || "") + '</td>');
-            html.push('<td>' + ( d.SecondApprovePerson || "") + '</td>');
-            html.push('<td>' + ( d.LastApprovePerson || "") + '</td>');
-            html.push('<td>' + ( d.applicantSex || "") + '</td>');
-            html.push('<td>' + ( d.applicantAge || "") + '</td>');
-            html.push('<td>' + ( d.applicantMarital || "") + '</td>');
-            html.push('<td>' + ( d.applicantStudyStatus || "") + '</td>');
-            html.push('<td>' + ( d.applicantJobNature || "") + '</td>');
-            html.push('<td>' + ( d.applicantCompanyNature || "") + '</td>');
-            html.push('<td>' + ( d.applicantDuties || "") + '</td>');
-            html.push('<td>' + ( d.applicantWages || "") + '</td>');
+            html.push('<td>' + ( d.orderId || "" ) + '</td>');
+            html.push('<td>' + ( d.contractNo || "" ) + '</td>');
+            html.push('<td>' + ( d.subsidiaryName || "" ) + '</td>');
+            html.push('<td>' + ( d.packageName || "" ) + '</td>');
+            html.push('<td>' + ( d.applyPackageMoney || "" ) + '</td>');
+            html.push('<td>' + ( d.applyFenqiTimes || "" ) + '</td>');
+            html.push('<td>' + ( d.packageMoney || "" ) + '</td>');
+            html.push('<td>' + ( d.fenqiTimes || "" ) + '</td>');
+            html.push('<td>' + ( d.status || "" ) + '</td>');
+            html.push('<td>' + ( d.applicantName || "" ) + '</td>');
+            html.push('<td>' + ( d.poundageRepaymentType || "" ) + '</td>');
+            html.push('<td>' + ( d.poundage || "" ) + '</td>');
+
+            var buttonStr = '<a class="btn btn-success" href="javascript:SaveAccept(' + d.orderId + ')">接受</a>  &nbsp;&nbsp;';
+            buttonStr += '<a class="btn btn-warning" href="javascript:ShowCancelWin(' + d.orderId + ')">取消</a>';
+            html.push('<td>' + buttonStr + '</td>');
 
             html.push('</tr>');
         }
@@ -357,4 +314,55 @@ $(function () {
         }
     }
 
+    //显示取消订单窗口
+    window.ShowCancelWin = function(orderId){
+        $("#cancelReason").attr("orderId",orderId);
+        $('#CancelWin').modal('show');
+    };
+    window.SaveCancel = function(orderId){
+        if(!confirm("您确定要取消此订单吗?")){return;}
+        var orderId = $("#cancelReason").attr("orderId");
+        var cancelReason = $("#cancelReason").val();
+        if(orderId==""){
+            alert("订单号非法请检查！");
+            return false;
+        }
+        if(cancelReason==""){
+            alert("取消原因不能为空！");
+            return false;
+        }
+        var url = Base.serverUrl + "order/cancelOrderController";
+        var condi = {};
+        condi.login_token = g.login_token;
+        condi.orderId = orderId;
+        condi.cancelReason = cancelReason;
+        $.ajax({
+            url: url, data: condi,type: "POST", dataType: "json", context: this,
+            success: function (data) {
+                $('#CancelWin').modal('hide');
+                var msg = data.message || "取消订单失败！";
+                Utils.alert(msg);
+            }
+        });
+    };
+
+    //接受订单
+    window.SaveAccept = function(orderId){
+        if(!confirm("您确定要接受此订单吗?")){return;}
+        if(orderId==""){
+            alert("订单号非法请检查！");
+            return false;
+        }
+        var url = Base.serverUrl + "order/confirmOrder";
+        var condi = {};
+        condi.login_token = g.login_token;
+        condi.orderId = orderId;
+        $.ajax({
+            url: url, data: condi,type: "POST", dataType: "json", context: this,
+            success: function (data) {
+                var msg = data.message || "接受订单失败！";
+                Utils.alert(msg);
+            }
+        });
+    };
 });

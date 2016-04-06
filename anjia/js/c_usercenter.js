@@ -574,6 +574,10 @@ $(function(){
 				//已还清
 				html.push('<td></td>');
 			}
+			else if(status == "100515"){
+				//待确认
+				html.push('<td><a class="a1" href="javascript:showOrderDetail(\'' + orderId + '\',-1)">查看</a><a class="a3" href="javascript:confirmOrder_fun(\'' + orderId + '\')">接受</a></td>');
+			}
 			html.push('</tr>');
 		}
 		html.push('</table>');
@@ -591,6 +595,38 @@ $(function(){
 		$("#orderlist").html(html.join(''));
 
 		$("#orderlistpage a").bind("click",pageClick);
+	}
+	function confirmOrder_fun(orderId){
+		if(confirm("确认接受订单审批款项")){
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.customerId = g.customerId;
+		condi.orderId = orderId;
+		g.httpTip.show();
+		var url = Base.serverUrl + "order/confirmOrder";//修改之前queryOrdersController
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				//console.log("sendGetUserOrderListHttp",data);
+				var status = data.success || false;
+				if(status){
+					location.href = "/anjia/usercenter.html?item=1";
+				}
+				else{
+					var msg = data.message || "确认失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+		}
 	}
 		//待缴费
 function sendGetPayOrderListHttp(condi){
@@ -1229,7 +1265,7 @@ function sendGetPayOrderListHttp5(condi){
 			var fenQiTimes = d.fenQiTimes || 0;
 			var noRepaymentTimes = d.noRepaymentTimes || 0;
 			var nextRepaymentMoney= d.nextRepaymentMoney || 0;
-			var daihuan=(nextRepaymentMoney*noRepaymentTimes).toFixed(0) || 0;
+			var daihuan= d.currentBalance || 0;
 			
 			html.push('<tr>');
 			html.push('<td>' + orderId + '</td>');
@@ -2387,9 +2423,12 @@ function sendGetPayOrderListHttp12(condi){
 		if(t == 0){
 			location.href = "/anjia/orderdetail.html?orderId=" + orderId ;
 		}
+		else if(t == -1){
+			location.href = "/anjia/orderaudit.html?orderId=" + orderId + "&C=1";
+		}
 		else{
 			location.href = "/anjia/orderaudit.html?orderId=" + orderId ;
-		}
+		}		
 	}
 
 
@@ -2620,7 +2659,7 @@ function sendGetPayOrderListHttp12(condi){
 	function repayment(id,orderId,weiyue){
 		var dd = g.orderInfo[orderId] || {};
 		var poundage = dd.poundage - 0 || 0;
-		get_coupons_money(poundage);
+		get_coupons_money(poundage,orderId);
 		setTimeout(function(){
 		Utils.offLineStore.remove("userorderinfo_detail",false);//清除协议缓存数据
 		sendGetOrderInfoHttp(orderId);
@@ -2783,10 +2822,11 @@ function sendGetPayOrderListHttp12(condi){
 		})
 	}
 	
-	function get_coupons_money(poundage){
+	function get_coupons_money(poundage,orderId){
 		g.coupons = [];
 		var condi = {};
 			condi.login_token = g.login_token;
+			condi.orderId = orderId;
 			condi.customerId = g.customerId;
 			condi.useMoney = poundage || "";
 		var url = Base.serverUrl + "coupon/getAvailableCouponsByCustomerId";
@@ -2938,6 +2978,7 @@ function OrderLeftProtocolClick(){
 			}
 		});
 	}
+	window.confirmOrder_fun = confirmOrder_fun ;
 	window.cancelOrderById = cancelOrderById;
 	window.confirmRepayment = confirmRepayment;
 	window.loanByLoanRecord = loanByLoanRecord;

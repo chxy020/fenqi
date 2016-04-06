@@ -10,7 +10,8 @@ $(function(){
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	//g.page = Utils.getQueryString("p") - 0;
 	g.httpTip = new Utils.httpTip({});
-
+	g.orderId = Utils.getQueryString("orderId") || "";
+	g.C = Utils.getQueryString("C") || "";
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
@@ -18,8 +19,9 @@ $(function(){
 		location.replace("/anjia/login.html");
 	}
 	else{
+		if(g.C == "1"){confirmOrder();$("#confirmOrder_id").addClass('show_or_hidden');}
 		Utils.offLineStore.remove("userorderinfo_detail",false);
-		getUserInfo();		
+		getUserInfo();
 	}
 
 
@@ -27,7 +29,42 @@ $(function(){
 	//头像
 	$(document).on("change","#avatar",avatarBtnUp);
 
-
+	/* 查询待确认页面信息 */
+	function confirmOrder(){
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.customerId = g.customerId;
+		condi.orderId = g.orderId;
+		var url = Base.serverUrl + "order/queryOrdersByOrderIdController";
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				//console.log("sendGetUserOrderListHttp",data);
+				var status = data.success || false;
+				if(status){
+					var b = data.obj || {};
+					var packageMoney = b.packageMoney || "";
+					var fenQiTimes = b.fenQiTimes || "";
+					if(packageMoney != "" && fenQiTimes != ""){						
+						$("#packageMoney").html(packageMoney + "元");
+						$("#fenQiTimes").html(fenQiTimes + "期");
+					}else{
+						Utils.alert("获取信息失败！");
+					}
+				}
+				else{
+					var msg = data.message || "获取用户订单失败";
+					Utils.alert(msg);
+				}
+			},
+			error:function(data){
+			}
+		});
+	}
 	//获取个人资料
 	function getUserInfo(){
 		var info = Utils.offLineStore.get("userinfo",false) || "";

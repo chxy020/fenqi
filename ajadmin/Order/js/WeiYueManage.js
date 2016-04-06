@@ -93,8 +93,10 @@ $(function () {
         html.push('<th width="100">审批金额</th>');
         html.push('<th width="80">审批期数</th>');
         html.push('<th width="80">应还日</th>');
-        html.push('<th width="80">每期还款金额</th>');
+        html.push('<th width="80">每期还款本金</th>');
+        html.push('<th width="80">每期服务费</th>');
         html.push('<th width="80">剩余本金</th>');
+        html.push('<th width="80">剩余服务费</th>');
         html.push('<th width="80">已还期数</th>');
         html.push('<th width="80">逾期时间</th>');
         html.push('<th width="80">逾期期数</th>');
@@ -105,6 +107,8 @@ $(function () {
         html.push('<th width="80">实还时间</th>');
         html.push('<th width="80">违约原因</th>');
         html.push('<th width="80">违约时间</th>');
+        html.push('<th width="80">服务费支付方式</th>');
+
         html.push('<th width="300">操作</th>');
         html.push('</tr>');
         var obj = data.list || [];
@@ -117,8 +121,10 @@ $(function () {
             html.push('<td>' + d.packageMoney + '元</td>');
             html.push('<td>' + (d.fenQiTimes || "") + '</td>');
             html.push('<td>' + (d.loanTime.substr(8) )+ '</td>');
-            html.push('<td>' + (d.moneyMonth || "") + '</td>');
-            html.push('<td>' + (d.residuePrincipal|| "") + '</td>');
+            html.push('<td>' + (d.moneyMonth || "") + '</td>'); //每期还款本金
+            html.push('<td>' +  (d.monthPoundage) + '元</td>');
+            html.push('<td>' +  (d.residuePrincipal ) + '元</td>');
+            html.push('<td>' + (d.residuePoundage || 0) + '元</td>');//剩余服务费
             //html.push('<td>' + (d.noRepaymentTimes==0?0:(d.fenQiTimes - d.noRepaymentTimes + 1) )+ '期</td>');
             html.push('<td>' + (d.fenQiTimes - d.noRepaymentTimes )+ '期</td>');
             html.push('<td>' + (d.overdueDate  ||"" )+ '</td>');
@@ -130,6 +136,8 @@ $(function () {
             html.push('<td>' + (d.lastRealRepaymentTime ||"" )+ '</td>');
             html.push('<td>' + (d.finishContractReason ||"" )+ '</td>');
             html.push('<td>' + (d.finishContractTime ||"" )+ '</td>');
+            html.push('<td>' +  (d.poundageRepaymentType=="103001"?"一次性付款":"分期付款") + '</td>');
+
             //if(d.status == "100511"){
             //    html.push('<td>已违约</td>');
             //}else if(d.status == "100513"){

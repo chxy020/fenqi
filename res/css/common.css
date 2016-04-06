@@ -1820,3 +1820,7 @@ i.radio_common  input,i.check_common input{display:none;}
 
 #orderlist  table.order-table tr td a.order_a{background:url("../images/order_up.png") no-repeat scroll center -61px;}
 
+/* 本额本金 */
+.sign-item.one_pay_div,.one_pay .sign-item.other_pay_div{display:none;}
+.one_pay .sign-item.one_pay_div,.sign-item.other_pay_div{display:block;}
+

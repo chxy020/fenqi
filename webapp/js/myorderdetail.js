@@ -11,7 +11,8 @@ $(function(){
 	g.httpTip = new Utils.httpTip({});
 	g.pa = Utils.getQueryString("pa");
 	g.orderDetailInfo = {};
-
+	g.month_Poundage = false;//判断是否是分期服务费还款
+	g.couponId = "";//判断是否有减免服务费
 	g.orderInfo = Utils.offLineStore.get("userorderinfo_list",false) || "";
 	if(g.orderInfo != ""){
 		//changeOrderInfoHtml(g.orderInfo);
@@ -454,7 +455,10 @@ function OrderLeftProtocolClick(){
 
 		var html = [];
 		var obj = data.list || [];
-
+		var d = obj[1].monthPoundage || "";
+		var other = data.other || [];	
+		g.couponId = other.couponId || "";
+		g.month_Poundage = d == "" ?  false : true ;
 		var showRepay = true;
 		var yuqi_number = 0;//统计已逾期个数
 		for(var i = 0,len = obj.length; i < len; i++){
@@ -467,7 +471,7 @@ function OrderLeftProtocolClick(){
 			var overdueTime = d.overdueTime || 0;
 			var overdueFee = d.overdueFee || 0;
 			var realRepaymentTime = d.realRepaymentTime || "无";
-
+			var monthPoundage = d.monthPoundage || "";
 			var status = d.status || "";
 			var repaymentType = d.repaymentType || "";
 			var overdueCount = d.overdueCount || "";
@@ -506,6 +510,19 @@ function OrderLeftProtocolClick(){
 			html.push('<p><i class="common-ico product-tip2"></i>还款本金：<span class="color-green">' + residuePrincipal + '</span>元</p>');
 			html.push('</div>');
 			html.push('</div>');
+			if(g.month_Poundage && i == 0 && g.couponId == "8"){
+				html.push('<div class="box-item">');
+				html.push('<div class="box-item-text">');
+				html.push('<p><i class="common-ico product-tip2"></i>还款服务费：<span style="color:#ff5f00;" class="color-green">享贴息活动已减免</span></p>');
+				html.push('</div>');
+				html.push('</div>');								
+			}else if(g.month_Poundage){
+				html.push('<div class="box-item">');
+				html.push('<div class="box-item-text">');
+				html.push('<p><i class="common-ico product-tip2"></i>还款服务费：<span class="color-green">' + monthPoundage + '</span>元</p>');
+				html.push('</div>');
+				html.push('</div>');
+			}
 			html.push('<div class="box-item">');
 			html.push('<div class="box-item-text">');
 			html.push('<p><i class="common-ico product-tip3"></i>应还时间：<span class="color-green">' + expectRepaymentTime + '</span></p>');
@@ -704,8 +721,8 @@ function OrderLeftProtocolClick(){
 		var d = g.orderDetailInfo[id];
 		var info = JSON.stringify(d);
 		Utils.offLineStore.set("repay_userorderinfo_list",info,false);
-		if(g.pa==1){location.href = "repayment-list-detail.html?pa=1"}
-		else{location.href = "repayment-list-detail.html"}
+		if(g.pa==1){location.href = "repayment-list-detail.html?pa=1&co="+g.couponId}
+		else{location.href = "repayment-list-detail.html?co="+g.couponId}
 		return;
 
 		/*以下不用*/

@@ -1103,3 +1103,7 @@ div.shili span.idcard i.i2{font-style:normal;}
 /* 修改成功 */
 .forget_body .result-div .result-text{color:#445b6b;font-size:30px;}
 
+/* 本额本金 */
+.inp-item.one_pay_div,.one_pay .inp-item.other_pay_div{display:none;}
+.one_pay .inp-item.one_pay_div,.inp-item.other_pay_div{display:-webkit-box;}
+.one_pay .inp-item.one_pay_div,.inp-item.other_pay_div{display:-moz-box;width:100%;}

@@ -46,12 +46,14 @@ $(function () {
                 $("#applyFenQiTimes").val(RowData.applyFenQiTimes);
                 $("#packageMoney").val(RowData.packageMoney || "");
                 $("#fenQiTimes").val(RowData.fenQiTimes || "请选择审批期数！");
-                fenQiTimesChange();//绑定分期期数后， 要计算一下，否则在不修改的时候 审批通过取不到值
+                //fenQiTimesChange();//绑定分期期数后， 要计算一下，否则在不修改的时候 审批通过取不到值
                 $("#fk1_approve_report").val(RowData.fk1_approve_report);
                 $("#fk1_approve_nameSpan").text(RowData.fk1_approve_name);
                 $("#fk1_approve_remarks").val(RowData.fk1_approve_remarks);
                 $("#fk2_approve_report").val(RowData.fk2_approve_report);
                 $("#fk2_approve_nameSpan").text(RowData.fk2_approve_name);
+				$("#poundageRepaymentType").val(RowData.poundageRepaymentType);
+				changePoundageRepaymentType(RowData.poundageRepaymentType)
                 g.httpTip.hide();
             },
             error: function (data) {
@@ -73,9 +75,10 @@ $(function () {
     $('#backid').click(function () {
         window.location.href = "Fk_OrderList_3.html";
     });
-    $("#packageMoney").bind("blur", fenQiTimesChange);
-    $("#fenQiTimes").bind("change", fenQiTimesChange);
-
+    /* $("#packageMoney").bind("blur", fenQiTimesChange);
+    $("#fenQiTimes").bind("change", fenQiTimesChange); */
+	$("#packageMoney").bind("blur", countFee);
+    $("#fenQiTimes").bind("change", countFee);
 
     function fkSellerBtnUp(e) {
         var ActType = e.data.approveResult;
@@ -109,7 +112,7 @@ $(function () {
             }
             condi.packageMoney = $("#packageMoney").val();
             condi.poundage = g.poundage;
-            condi.fenQiTimes = g.stagnum;
+            condi.fenQiTimes = $("#fenQiTimes").val() || "";//g.stagnum;
             condi.moneyMonth = g.moneyMonth;
         } else if (ActType == 1) {
             condi.packageMoney = 0;
@@ -149,7 +152,7 @@ $(function () {
 
     }
 
-    //计算费率
+/*     //计算费率
     function countFee(allprice, time) {
         //var numarr = [3, 6, 9, 12, 18, 24, 36];
         //var ratearr = [0, 0.04, 0.04, 0.07, 0.1, 0.13, 0.16];
@@ -196,6 +199,45 @@ $(function () {
             }
         } else {
             Utils.alert("最大审批额度必须大于0元");
+        }
+    } */
+	//改变 服务费支付方式 时触发
+    function changePoundageRepaymentType(V){
+        if(V == 103001){
+            $(".ZF103001").show();
+            $(".ZF103002").hide();
+        }
+        if(V == 103002){
+            $(".ZF103001").hide();
+            $(".ZF103002").show();
+        }
+        countFee();//重新计算费率
+    }
+
+    //费率计算
+    function countFee() {
+        var poundageRepaymentType = $("#poundageRepaymentType option:selected").attr("value");//服务费分期方式
+        var qs = $("#fenQiTimes option:selected").attr("value") == "" ? $("#applyFenQiTimes").val() : $("#fenQiTimes option:selected").attr("value"); //期数
+		 var AppAmount = $("#packageMoney").val() == "" ?  $("#applyPackageMoney").val() : $("#packageMoney").val();//申请金额
+		 console.log(AppAmount);
+		 console.log(qs);
+		if(poundageRepaymentType == "103001") {//一次性支付
+            var fl = {6: 0.04, 12: 0.07, 18: 0.1, 24: 0.13, 36: 0.16}; //费率          
+            var ServerCost = (AppAmount * fl[qs]).toFixed(2); //服务费
+            var moneyMonth = (AppAmount / qs).toFixed(2);//月还本金
+            $("#interestRate").val(fl[qs]);//更新 服务费率
+            $("#poundage").val(ServerCost);
+            $("#moneyMonth").val(moneyMonth);
+            $("#monthRepay").val(moneyMonth);//月还款
+        }
+        if(poundageRepaymentType == "103002") {//分期支付
+            $("#monthInterestRate").val(0.007);
+            var monthPoundage = ( parseFloat(AppAmount) * 0.007).toFixed(2); //月服务费
+            var moneyMonth = (parseFloat(AppAmount) / qs).toFixed(2);//月还本金
+            var monthRepay = (parseFloat(monthPoundage) + parseFloat(moneyMonth)).toFixed(2) ; //月还款
+            $("#monthPoundage").val(monthPoundage);
+            $("#moneyMonth").val(moneyMonth);
+            $("#monthRepay").val(monthRepay);//月还款
         }
     }
 });

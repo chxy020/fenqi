@@ -423,6 +423,11 @@ $(function(){
 				//已取消
 				
 			}
+			else if(status == "100515"){
+				//待确认				
+				html.push('<a href="javascript:showOrderWait(\'' + packageMoney + '\',\''+fenQiTimes+'\')" class="item-btn item-btn-green">查看</a>');
+				html.push('<a href="javascript:confirmOrder_fun(\'' + orderId + '\')" class="item-btn item-btn-red">接受</a>');
+			}
 			html.push('</div>');
 			html.push('</li>');
 		}
@@ -455,6 +460,42 @@ $(function(){
 		$("#orderlist").html(html.join(''));
 
 		//$("#orderlistpage a").bind("click",pageClick);
+	}
+	function showOrderWait(packageMoney,fenQiTimes){
+		var tip = '审批金额：'+ packageMoney +'元；审批期数：'+ fenQiTimes +'期;';
+		alert(tip);
+	}
+	function confirmOrder_fun(orderId){
+		if(confirm("确认接受订单审批款项")){
+		var condi = {};
+		condi.login_token = g.login_token;
+		condi.customerId = g.customerId;
+		condi.orderId = orderId;
+		g.httpTip.show();
+		var url = Base.serverUrl + "order/confirmOrder";//修改之前queryOrdersController
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				//console.log("sendGetUserOrderListHttp",data);
+				var status = data.success || false;
+				if(status){
+					location.href = "/webapp/order/index.html";
+				}
+				else{
+					var msg = data.message || "确认失败";
+					Utils.alert(msg);
+				}
+				g.httpTip.hide();
+			},
+			error:function(data){
+				g.httpTip.hide();
+			}
+		});
+		}
 	}
 
 	function countListPage(data){
@@ -696,6 +737,8 @@ $(function(){
 
 	
 	//window.sendGetOrderInfoHttp = sendGetOrderInfoHttp;
+	window.confirmOrder_fun = confirmOrder_fun;
+	window.showOrderWait = showOrderWait;
 	window.showOrderDetail = showOrderDetail;
 	window.cancelOrderById = cancelOrderById;
 	window.deleteOrderById = deleteOrderById;
