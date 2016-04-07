@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+	<title>招募城市代言人</title>
+	<meta name="keywords"    content="燕子安家，家装分期，装修，装修怎么申请，家庭消费">
+	<meta name="description"   content="燕子安家—致力于打造“家消费”领域的互联网金融服务平台，向3亿中国家庭提供低利率、高额度、长期限、纯信用的的家装分期等金融服务">
+	<link href="../res/css/spokesman.css" rel="stylesheet"/>
+	<link href="../res/css/common.css" rel="stylesheet">
+</head>
+<body>
+	<div class="ui-short-head">
+		<div class="ui-wrap">
+			<div id="loginstatus" class="head-box">
+				<a style="margin-right:30px;">咨询热线：4006-616-896</a>
+				<a href="/anjia/login.html">登录</a>
+				<s class="header-line"></s>
+				<a href="/anjia/reg.html">注册</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">个人中心</a>
+				<s class="header-line"></s>
+				<a href="/anjia/login.html">我要还款</a>
+				<s class="header-line"></s>
+				<a href="/anjia/guide.html">新手引导</a>
+			</div>
+		</div>
+	</div>
+	<!--加载通用头部-->
+	<script type="text/javascript" src="../anjia/js/head.js"></script>	
+	<div class="T_body">
+		<div class="top_banner">
+			<p class="p">活动时间：4月8日-4月30日</p>
+		</div>
+		<div class="s_div1">
+			<p class="p p1"><i></i>分公司所有设计师、品推和营销端所有成员。</p>
+			<p class="p"><i></i>熟悉<span class="color">燕子安家家装分期</span>产品知识和分期申请流程。</p>
+		</div>
+		<div class="s_div2">
+			<p class="p">
+				<img src="../res/images/spokesman/weixin_1.png" /><br/>
+				关注燕子安家微信服务号，<br>点击【<span class="color">最新活动</span>】—【<span class="color">城市代言人</span>】<br>进入专属页面申请。
+			</p>
+			<p class="p">
+				<img src="../res/images/spokesman/weixin_2.png" /><br/>
+				关于燕子安家微信订阅号，<br>点击“<span class="color">燕子安家代言人</span>”菜单，<br>进入专属申请页面申请。
+			</p>
+		</div>
+		<div class="s_div3">
+			<p class="p p1">报名时间截至4月15日24：00</p>
+			<p class="p">
+				我们将对所有报名者进行审核并进行编号，4月16日起在燕子<br>安家微信订阅号号发送“投票”查看报名的信息并为自己在您<br>的城市生活家拉票。
+			</p>
+		</div>
+		<div class="bt_bg">
+			<div class="s_div4">
+				<div class="part1">
+					<div class="height"></div>
+					<h4>一等奖（1名）：</h4>
+					<p class="p1">将获得佳能手机便携相片打印机一部和由燕子安家提供的免息现金消费分期（额度最高<span class="color1">2W</span>，期限12期）机会一次，并成为燕子安家代言人。</p>
+					<p class="p2">注：免息现金消费分期最高额度为2W，期限12期。具体额度由燕子安家根据风控审核后给出。仅限本人使用。</p>
+					<h4>二等奖（2名）：</h4>
+					<p class="p1">   将获得小米体重秤一台</p>
+					<h4>参与奖：</h4>
+					<p class="p1">对其他符合条件的报名者都将获得燕子安家提供的<span class="color2">50元</span>手机话费。</p>
+				</div>
+				<div class="part2">
+					<p class="p">
+						<img src="../res/images/spokesman/image_1.png" /><br/>
+						<span class="color">佳能手机便携相片打印机</span><br>价值1099元
+					</p>
+					<p class="p">
+						<img src="../res/images/spokesman/image_2.png" /><br/>
+						<span class="color">小米体重秤</span><br>价值99元
+					</p>			
+				</div>		
+			</div>
+			<!-- <div class="bottom_img"><img src="../res/images/spokesman/bottom_img.jpg" /></div> -->
+		</div>
+		
+	</div>
+	
+	
+	
+    <div class="ui-bottom">
+    </div>
+	<script type="text/javascript" src="../res/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../res/js/ui.js"></script>
+	<script src="libs/json.js"></script>
+	<script src="libs/base.js"></script>
+	<script src="libs/utils.js"></script>
+	<script src="libs/layer.js"></script>
+	<script src="libs/calendar.js"></script>
+	<script src="libs/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="../res/js/spokesman.js"></script>
+    <!--BAIDU定位JS 开始-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9Z4yvIoj9jnpKfPA4igxxbLP"></script>
+    <script type="text/javascript">
+	$(function(){
+		// 百度地图API功能
+        function myFun(result){
+            var cityName = result.name;
+            $("#curCity").html(cityName);
+			Utils.offLineStore.set("curCity",cityName,false);
+        }
+        var myCity = new BMap.LocalCity();
+        myCity.get(myFun);
+		createSnow('', 30);
+	})
+
+    </script>
+</body>
+</html>
