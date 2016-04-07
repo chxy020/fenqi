@@ -24,6 +24,7 @@ html,body{font-size:14px;font-family:microsoft yahei;background-color:#2b2039;}
 .s_div3{width:1208px;height:444px;margin:0 auto;background:url('../images/spokesman/s_div3_bg.jpg') no-repeat center center;}
 .s_div3 p.p{font-size:26px;color:#000000;line-height:56px;margin-left:327px;margin-top:24px;display:inline-block;}
 .s_div3 p.p1{font-size:40px;color:#f1e300;margin-top:50px;} 
+.s_div3 span.color1{color:#b80000;}
 /*  */
 .s_div4{width:1142px;height:1782px;margin:0 auto;background:url('../images/spokesman/s_div4_bg.png') no-repeat center center;}
 
