@@ -225,13 +225,13 @@ $(function () {
             var fl = {6: 0.04, 12: 0.07, 18: 0.1, 24: 0.13, 36: 0.16}; //费率          
             var ServerCost = (AppAmount * fl[qs]).toFixed(2); //服务费
             var moneyMonth = (AppAmount / qs).toFixed(2);//月还本金
-            $("#interestRate").val(fl[qs]);//更新 服务费率
+            $("#interestRate").val((fl[qs]*100).toFixed(0)+"%");//更新 服务费率
             $("#poundage").val(ServerCost);
             $("#moneyMonth").val(moneyMonth);
             $("#monthRepay").val(moneyMonth);//月还款
         }
         if(poundageRepaymentType == "103002") {//分期支付
-            $("#monthInterestRate").val(0.007);
+            $("#monthInterestRate").val(0.7+"%");
             var monthPoundage = ( parseFloat(AppAmount) * 0.007).toFixed(2); //月服务费
             var moneyMonth = (parseFloat(AppAmount) / qs).toFixed(2);//月还本金
             var monthRepay = (parseFloat(monthPoundage) + parseFloat(moneyMonth)).toFixed(2) ; //月还款
