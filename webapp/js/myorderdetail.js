@@ -425,7 +425,6 @@ function OrderLeftProtocolClick(){
 	}
 
 	function sendGetUserOrderStagingListHttp(condi){
-		g.httpTip.show();
 		var url = Base.serverUrl + "order/getAllRepaymentRecordByOrderId";
 		$.ajax({
 			url:url,
@@ -434,7 +433,6 @@ function OrderLeftProtocolClick(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetUserOrderStagingListHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeOrderStagingListHtml(data);
@@ -443,10 +441,8 @@ function OrderLeftProtocolClick(){
 					var msg = data.message || "获取用户还款订单失败";
 					Utils.alert(msg);
 				}
-				g.httpTip.hide();
 			},
 			error:function(data){
-				g.httpTip.hide();
 			}
 		});
 	}
@@ -455,10 +451,13 @@ function OrderLeftProtocolClick(){
 
 		var html = [];
 		var obj = data.list || [];
-		var d = obj[1].monthPoundage || "";
-		var other = data.other || [];	
+		var dd = "";
+		if(g.pa != 1){
+			dd = obj[1].monthPoundage || "";
+		}
+		var other = data.other || [];
 		g.couponId = other.couponId || "";
-		g.month_Poundage = d == "" ?  false : true ;
+		g.month_Poundage = dd == "" ?  false : true ;
 		var showRepay = true;
 		var yuqi_number = 0;//统计已逾期个数
 		for(var i = 0,len = obj.length; i < len; i++){
