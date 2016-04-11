@@ -123,7 +123,7 @@ $(function(){
 			html.push('<td>' + getOrderStatus(d.status)   + '</td>');
 			//根据订单状态 判断 终审
 			if(d.status == "10050303"){
-				html.push('<td><a href="javascript:Hmgx.openWin(\'ViewOrder.html?orderid=' + d.orderId + '\')">查看订单</a>&nbsp&nbsp<a href="javascript:Hmgx.openWin(\'FK_Seller_3.html?orderid=' + d.orderId + '\')">终审</a></td>');
+				html.push('<td><a href="javascript:Hmgx.openWin(\'ModifyOrder_only.html?orderid=' + d.orderId + '\')">查看订单</a>&nbsp&nbsp<a href="javascript:Hmgx.openWin(\'FK_Seller_3.html?orderid=' + d.orderId + '\')">终审</a></td>');
 			}else{
 				html.push('<td><a href=""javascript:Hmgx.openWin(\'ViewOrder.html?orderid=' + d.orderId + '\')">查看订单</a></td>');
 			}
