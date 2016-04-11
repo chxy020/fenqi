@@ -1100,19 +1100,19 @@ $(".protocol_slideToggle").click(function(){
 		/* if(!sendValidNoEmpty(nation,$("#nation"))){
 			return;
 		} */
-		if(!sendValidChineseName(nation,$("#nation"))){
+		if(!sendValidChineseName(nation,$("#nation"),"民族")){
 			return;
 		}
 		/* if(!sendValidNoEmpty(weChat,$("#weChat"))){
 			return;
 		} */
-		if(!sendValidEmail(email,$("#email"))){
+		if(!sendValidEmail(email,$("#email"),"邮箱")){
 			return;
 		}
-		if(!sendValidNoEmpty(decorateAddress,$("#decorateAddress"))){
+		if(!sendValidNoEmpty(decorateAddress,$("#decorateAddress"),"装修地址")){
 			return;
 		}
-		if(!sendValidChineseName(decorateAddress,$("#decorateAddress"))){
+		if(!sendValidChineseName(decorateAddress,$("#decorateAddress"),"装修地址")){
 			return;
 		}
 		if(!sendValidNoEmpty(applicantAge,$("#applicantAge"),"年龄")){
@@ -1240,16 +1240,16 @@ $(".protocol_slideToggle").click(function(){
 		if(!sendValidChineseName(department,$("#department"),"所属部门")){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantCompanyIndustry,$("#applicantCompanyIndustry"))){
+		if(!sendValidNoEmpty(applicantCompanyIndustry,$("#applicantCompanyIndustry"),"所属行业")){
 			return;
 		}
-		if(!sendValidChineseName(applicantCompanyIndustry,$("#applicantCompanyIndustry"))){
+		if(!sendValidChineseName(applicantCompanyIndustry,$("#applicantCompanyIndustry"),"所属行业")){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantDuties,$("#applicantDuties"))){
+		if(!sendValidNoEmpty(applicantDuties,$("#applicantDuties"),"担当职务")){
 			return;
 		}
-		if(!sendValidChineseName(applicantDuties,$("#applicantDuties"))){
+		if(!sendValidChineseName(applicantDuties,$("#applicantDuties"),"担当职务")){
 			return;
 		}		
 		if(!sendValidNoEmpty(applicantCompanyAddress,$("#applicantCompanyAddress"),"公司地址")){
