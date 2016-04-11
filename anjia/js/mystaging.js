@@ -141,6 +141,15 @@ $(function(){
 	$("#applicantName").bind("blur",validNoEmpty);
 	$("#applicantName").bind("blur",validChineseName);
 
+	//$("#nation").bind("blur",validNoEmpty);
+	$("#nation").bind("blur",validChineseName);
+	$("#designerPhone").bind("blur",validIsPhone);
+	$("#email").bind("blur",validIsEmail);	
+	/* $("#weChat").bind("blur",validNoEmpty); */
+	
+	$("#decorateAddress").bind("blur",validNoEmpty);
+	$("#decorateAddress").bind("blur",validChineseName);
+	
 	$("#applicantAge").bind("blur",validNoEmpty);
 	$("#applicantAge").bind("blur",validIsNumber);
 	$("#applicantIdentity").bind("blur",validNoEmpty);
@@ -149,15 +158,20 @@ $(function(){
 	$("#applicantAddress").bind("blur",validChineseName);
 	$("#applicantSchool").bind("blur",validNoEmpty);
 	$("#applicantSchool").bind("blur",validChineseName);
-	$("#applicantMajor").bind("blur",validNoEmpty);
-	$("#applicantMajor").bind("blur",validChineseName);
+	/* $("#applicantMajor").bind("blur",validNoEmpty);
+	$("#applicantMajor").bind("blur",validChineseName); */
 
 	$("#applicantCompany").bind("blur",validNoEmpty);
 	$("#applicantCompany").bind("blur",validChineseName);
-	$("#applicantCompanyAddress").bind("blur",validNoEmpty);
 	$("#applicantCompanyAddress").bind("blur",validChineseName);
+	$("#applicantCompanyAddress").bind("blur",validNoEmpty);
+	$("#department").bind("blur",validChineseName);	
 	$("#applicantCompanyPhone").bind("blur",validNoEmpty);
 	$("#applicantCompanyPhone").bind("blur",validChineseTel);
+	$("#applicantCompanyIndustry").bind("blur",validNoEmpty);
+	$("#applicantCompanyIndustry").bind("blur",validChineseName);
+	$("#applicantDuties").bind("blur",validNoEmpty);
+	$("#applicantDuties").bind("blur",validChineseName);
 	$("#applicantWages").bind("blur",validNoEmpty);
 	$("#applicantWages").bind("blur",validIsNumber);
 
@@ -288,6 +302,29 @@ $(function(){
 		}
 	}
 
+	/* 校验邮箱blur */
+	function validIsEmail(evt){
+		var t = $(this).val() || "";
+		var reg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		var next = $(this).next();
+		if(t !== ""){
+			if(reg.test(t)){
+				$(next).html('<i class="common-ico validate-ico"></i>填写正确');
+				$(next).removeClass("validate-error");
+				$(next).addClass("validate-success");
+				$(next).show();
+			}
+			else{
+				$(next).html('<i class="common-ico validate-ico"></i>邮箱输入错误');
+				$(next).removeClass("validate-success");
+				$(next).addClass("validate-error");
+				$(next).show();
+			}
+		}
+		else{
+			$(next).hide();
+		}
+	}
 	function validIsIdentity(evt){
 		var txt = $(this).val() || "";
 		var valid = new ValidCard({txt:txt});
@@ -551,6 +588,30 @@ $(function(){
 		return b;
 	}
 
+	/* 校验邮箱 */
+		function sendValidEmail(txt,dom){
+		var b = false;
+		if(txt == ""){
+			return true;
+		}
+		var next = dom.next();
+		var reg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		if(reg.test(txt)){
+			$(next).html('<i class="common-ico validate-ico"></i>填写正确');
+			$(next).removeClass("validate-error");
+			$(next).addClass("validate-success");
+			$(next).show();
+			b = true;
+		}
+		else{
+			$(next).html('<i class="common-ico validate-ico"></i>邮箱格式错误');
+			$(next).removeClass("validate-success");
+			$(next).addClass("validate-error");
+			$(next).show();
+			b = false;
+		}
+		return b;
+	}
 	//获取产品信息
 	function sendGetProductHttp(companyId){
 		g.httpTip.show();
@@ -587,7 +648,7 @@ $(function(){
 		g.httpTip.show();
 		var url = Base.serverUrl + "baseCodeController/getBaseCodeByParents";
 		var condi = {};
-		condi.parents = "1003,1008,1009,1012,1013,1014,1015,1016";
+		condi.parents = "1003,1008,1009,1012,1015,1016,1028";
 		$.ajax({
 			url:url,
 			data:condi,
@@ -628,9 +689,8 @@ $(function(){
 			g.repaymentType = k;
 		}
 
-		var parents = ["1003","1009","1012","1013","1014","1015","1016","1016","1016"];
-		var ids = ["applicantMarital","applicantStudyStatus","applicantCompanyNature","applicantCompanyIndustry",
-			"applicantDuties","applicantWorkYears","familyRelation","familyTwoRelation","liableRelation"];
+		var parents = ["1003","1009","1012","1015","1016","1016","1016","1028"];
+		var ids = ["applicantMarital","applicantStudyStatus","applicantCompanyNature","applicantWorkYears","familyRelation","familyTwoRelation","liableRelation","houseNature"];
 
 		for(var i = 0,len = parents.length; i < len; i++){
 			var data = obj[parents[i]] || {};
@@ -804,6 +864,7 @@ $(function(){
 	function nextBtnUp3(){
 		var contractNo = $("#contractNo").val() || "";
 		var designer = $("#designer").val() || "";
+		var designerPhone = $("#designerPhone").val() || "";
 		if($("#packageType")[0].selectedIndex == - 1){
 			Utils.alert("请选择产品类型");
 			return;
@@ -822,7 +883,9 @@ $(function(){
 		$("[name='choice_pay']").each(function(){
 			if($(this).attr("checked") == "checked"){poundageRepaymentType = $(this).val()}
 		})
-		
+		if(!sendValidIsPhone(designerPhone,$("#designerPhone"))){
+			return;
+		}
 		if(!sendValidNoChinese(contractNo,$("#contractNo"))){
 			return;
 		}
@@ -865,6 +928,7 @@ $(function(){
 						condi.repaymentType = g.repaymentType;
 						condi.moneyMonth = g.moneyMonth;
 						condi.designer=designer;//设计师
+						condi.designerPhone = designerPhone;
 						condi.subsidiaryId = subsidiaryId;//合作商户
 						sendSetOrderPackageHttp(condi);
 					}
@@ -942,6 +1006,12 @@ $(function(){
 
 	function nextBtnUp32(){
 		var applicantName = $("#applicantName").val() || "";
+		var nation = $("#nation").val() || "";
+		var weChat = $("#weChat").val() || "";
+		var email = $("#email").val() || "";
+		var houseNature = $("#houseNature").val() || "";
+		var decorateAddress = $("#decorateAddress").val() || "";
+		var decorateTime = $("#decorateTime").val() || "";
 		var applicantAge = $("#applicantAge").val() || "";
 		var applicantSex = "";
 		$("[name='rsex']").each(function(){
@@ -951,8 +1021,6 @@ $(function(){
 		var applicantMarital = $("#applicantMarital").val() || "";
 		var applicantAddress = $("#applicantAddress").val() || "";
 		var applicantStudyStatus = $("#applicantStudyStatus").val() || "";
-		var applicantSchool = $("#applicantSchool").val() || "";
-		var applicantMajor = $("#applicantMajor").val() || "";
 		var applicantAsset = "";
 		$("[name='zcradio']").each(function(){
 			if($(this).attr("checked") == "checked"){applicantAsset = $(this).val()}
@@ -961,6 +1029,24 @@ $(function(){
 			return;
 		}
 		if(!sendValidChineseName(applicantName,$("#applicantName"))){
+			return;
+		}
+		/* if(!sendValidNoEmpty(nation,$("#nation"))){
+			return;
+		} */
+		if(!sendValidChineseName(nation,$("#nation"))){
+			return;
+		}
+		/* if(!sendValidNoEmpty(weChat,$("#weChat"))){
+			return;
+		} */
+		if(!sendValidEmail(email,$("#email"))){
+			return;
+		}		
+		if(!sendValidNoEmpty(decorateAddress,$("#decorateAddress"))){
+			return;
+		}
+		if(!sendValidChineseName(decorateAddress,$("#decorateAddress"))){
 			return;
 		}
 		if(!sendValidNoEmpty(applicantAge,$("#applicantAge"))){
@@ -981,30 +1067,30 @@ $(function(){
 		if(!sendValidChineseName(applicantAddress,$("#applicantAddress"))){
 			return;
 		}
-		if(!sendValidNoEmpty(applicantSchool,$("#applicantSchool"))){
+/* 		if(!sendValidNoEmpty(applicantSchool,$("#applicantSchool"))){
 			return;
 		}
 		if(!sendValidChineseName(applicantSchool,$("#applicantSchool"))){
 			return;
-		}
-		if(!sendValidNoEmpty(applicantMajor,$("#applicantMajor"))){
-			return;
-		}
-		if(!sendValidChineseName(applicantMajor,$("#applicantMajor"))){
-			return;
-		}
+		} */
 
 		var condi = {};
 		condi.applicantIdentity = applicantIdentity;
 		condi.applicantName = applicantName;
+		condi.nation = nation;
+		condi.weChat = weChat;
+		condi.email = email;
+		condi.houseNature = houseNature;
+		condi.decorateAddress = decorateAddress;
+		condi.decorateTime = decorateTime;
 		condi.applicantPhone = g.userPhone;
 		condi.applicantAge = applicantAge;
 		condi.applicantSex = applicantSex;
 		condi.applicantMarital = applicantMarital;
 		condi.applicantAddress = applicantAddress;
 		condi.applicantStudyStatus = applicantStudyStatus;
-		condi.applicantSchool = applicantSchool;
-		condi.applicantMajor = applicantMajor;
+		//condi.applicantSchool = applicantSchool;
+		//condi.applicantMajor = applicantMajor;
 		condi.applicantAsset = applicantAsset;
 
 		condi.applicantHouseNumber = 0;
@@ -1075,6 +1161,7 @@ $(function(){
 		var applicantCompanyIndustry = $("#applicantCompanyIndustry").val() || "";
 		var applicantDuties = $("#applicantDuties").val() || "";
 		var applicantWorkYears = $("#applicantWorkYears").val() || "";
+		var department = $("#department").val() || "";
 		var applicantCompanyAddress = $("#applicantCompanyAddress").val() || "";
 		var applicantCompanyPhone = $("#applicantCompanyPhone").val() || "";
 		var applicantWages = $("#applicantWages").val() || "";
@@ -1085,10 +1172,25 @@ $(function(){
 		if(!sendValidChineseName(applicantCompany,$("#applicantCompany"))){
 			return;
 		}
+		if(!sendValidNoEmpty(applicantCompanyIndustry,$("#applicantCompanyIndustry"))){
+			return;
+		}
+		if(!sendValidChineseName(applicantCompanyIndustry,$("#applicantCompanyIndustry"))){
+			return;
+		}
+		if(!sendValidNoEmpty(applicantDuties,$("#applicantDuties"))){
+			return;
+		}
+		if(!sendValidChineseName(applicantDuties,$("#applicantDuties"))){
+			return;
+		}		
 		if(!sendValidNoEmpty(applicantCompanyAddress,$("#applicantCompanyAddress"))){
 			return;
 		}
 		if(!sendValidChineseName(applicantCompanyAddress,$("#applicantCompanyAddress"))){
+			return;
+		}
+		if(!sendValidChineseName(department,$("#department"))){
 			return;
 		}
 		if(!sendValidNoEmpty(applicantCompanyPhone,$("#applicantCompanyPhone"))){
@@ -1111,6 +1213,7 @@ $(function(){
 		condi.applicantCompanyIndustry = applicantCompanyIndustry;
 		condi.applicantWorkYears = applicantWorkYears;
 		condi.applicantDuties = applicantDuties;
+		condi.department = department;
 		condi.applicantCompanyAddress = applicantCompanyAddress;
 		condi.applicantCompanyPhone = applicantCompanyPhone;
 		condi.applicantWages = applicantWages;
@@ -1773,6 +1876,7 @@ $(function(){
 		var poundage = obj.poundage || "0";
 		var moneyMonth = obj.moneyMonth || "0";
 		var designer = obj.designer || "";
+		var designerPhone = obj.designerPhone || "";
 		var interestRate = obj.interestRate || "0";
 		var monthPoundage = obj.monthPoundage || "0";
 		var monthRepay = obj.monthRepay || "0";
@@ -1798,6 +1902,7 @@ $(function(){
 		$("#packageType").val((packageType + "_" + companyId));
 		$("#contractMoney").val(contractMoney);
 		$("#designer").val(designer);
+		$("#designerPhone").val(designerPhone);
 		$("#packageMoney").val(packageMoney);
 		$("#fenQiTimes").val(fenQiTimes);
 		$("#poundage").html((poundage == "0" ? "免费" : (poundage + "元")));
@@ -1818,14 +1923,20 @@ $(function(){
 		//第三步数据,个人信息
 		//3.1
 		var applicantName = obj.applicantName || "";
+		var nation = obj.nation || "";
+		var weChat = obj.weChat || "";
+		var email = obj.email || "";
+		var houseNature = obj.houseNature || "";
+		var decorateAddress = obj.decorateAddress || "";
+		var decorateTime = obj.decorateTime || "";
 		var applicantAge = obj.applicantAge || "";
 		var applicantSex = obj.applicantSex || "";
 		var applicantIdentity = obj.applicantIdentity || "";
 		var applicantMarital = obj.applicantMarital || "";
 		var applicantAddress = obj.applicantAddress || "";
 		var applicantStudyStatus = obj.applicantStudyStatus || "";
-		var applicantSchool = obj.applicantSchool || "";
-		var applicantMajor = obj.applicantMajor || "";
+		//var applicantSchool = obj.applicantSchool || "";
+		//var applicantMajor = obj.applicantMajor || "";
 		var applicantAsset = obj.applicantAsset || "";
 
 		var applicantJobNature = obj.applicantJobNature || "";
@@ -1834,11 +1945,18 @@ $(function(){
 		var applicantCompanyIndustry = obj.applicantCompanyIndustry || "";
 		var applicantDuties = obj.applicantDuties || "";
 		var applicantWorkYears = obj.applicantWorkYears || "";
+		var department = obj.department || "";
 		var applicantCompanyAddress = obj.applicantCompanyAddress || "";
 		var applicantCompanyPhone = obj.applicantCompanyPhone || "";
 		var applicantWages = obj.applicantWages || "";
 
 		$("#applicantName").val(applicantName);
+		$("#nation").val(nation);
+		$("#weChat").val(weChat);
+		$("#email").val(email);
+		$("#houseNature").val(houseNature);
+		$("#decorateAddress").val(decorateAddress);
+		$("#decorateTime").val(decorateTime);
 		$("#applicantAge").val(applicantAge);
 		if(applicantSex == "100102"){
 			$("#applicantSex").attr("checked",true);
@@ -1853,8 +1971,8 @@ $(function(){
 		if(applicantStudyStatus !== ""){
 			$("#applicantStudyStatus").val(applicantStudyStatus);
 		}
-		$("#applicantSchool").val(applicantSchool);
-		$("#applicantMajor").val(applicantMajor);
+		//$("#applicantSchool").val(applicantSchool);
+		//$("#applicantMajor").val(applicantMajor);
 
 		if(applicantAsset !== ""){
 			$("#r_" + applicantAsset).attr("checked",true);
@@ -1879,7 +1997,8 @@ $(function(){
 		}
 		if(applicantWorkYears !== ""){
 			$("#applicantWorkYears").val(applicantWorkYears);
-		}
+		}		
+		$("#department").val(department);
 		$("#applicantCompanyAddress").val(applicantCompanyAddress);
 		$("#applicantCompanyPhone").val(applicantCompanyPhone);
 		$("#applicantWages").val(applicantWages);

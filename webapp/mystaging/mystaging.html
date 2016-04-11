@@ -84,6 +84,10 @@
 						<input id="designer" type="text" class="common-input-text" placeholder="请输入设计师" />
 					</div>
 					<div class="inp-item">
+						<label><em></em>设计师电话</label>
+						<input id="designerPhone" type="text" maxlength=11 class="common-input-text" placeholder="请输入设计师电话" />
+					</div>
+					<div class="inp-item">
 						<i class="trigger common-select-trigger"></i>
 						<label><em>*</em>合作商户</label>
 						<select id="subsidiaryId" class="common-select">
@@ -211,9 +215,28 @@
 							<input id="applicantIdentity" maxLength=18 type="text" class="common-input-text" placeholder="请输入身份证号" />
 						</div>
 						<div class="inp-item">
+							<label><em></em>民族</label>
+							<input id="nation" type="text" class="common-input-text" placeholder="请输入民族" />
+						</div>
+						<div class="inp-item">
+							<label><em></em>微信号</label>
+							<input id="weChat" type="text" class="common-input-text" placeholder="请输入微信号" />
+						</div>
+						<div class="inp-item">
+							<label><em></em>邮箱</label>
+							<input id="email" type="text" class="common-input-text" placeholder="请输入邮箱" />
+						</div>
+						<div class="inp-item">
 							<i class="trigger common-select-trigger"></i>
 							<label><em>*</em>婚姻状况</label>
 							<select id="applicantMarital" class="common-select">
+								<option>请选择</option>
+							</select>
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>住宅性质</label>
+							<select id="houseNature" class="common-select">
 								<option>请选择</option>
 							</select>
 						</div>
@@ -222,20 +245,34 @@
 							<input id="applicantAddress" type="text" class="common-input-text" placeholder="请输入居住地址" />
 						</div>
 						<div class="inp-item">
+							<label><em>*</em>装修地址</label>
+							<input id="decorateAddress" type="text" class="common-input-text" placeholder="请输入装修地址" />
+						</div>
+						<div class="inp-item">
+							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>预计装修时间</label>
+							<select id="decorateTime" class="common-select">
+								<option value="正在装修">正在装修</option>
+								<option value="一个月内">一个月内</option>
+								<option value="三个月内">三个月内</option>
+								<option value="三个月后">三个月后</option>
+							</select>
+						</div>
+						<div class="inp-item">
 							<i class="trigger common-select-trigger"></i>
 							<label><em>*</em>最高学历</label>
 							<select id="applicantStudyStatus" class="common-select">
 								<option>请选择</option>
 							</select>
 						</div>
-						<div class="inp-item">
+						<!-- <div class="inp-item">
 							<label><em>*</em>学校名称</label>
 							<input id="applicantSchool" type="text" class="common-input-text" placeholder="请输入学校名称" />
 						</div>
 						<div class="inp-item">
 							<label><em>*</em>所学专业</label>
 							<input id="applicantMajor" type="text" class="common-input-text" placeholder="请输入专业名称" />
-						</div>
+						</div> -->
 						<div class="inp-item">
 							<i class="trigger common-select-trigger"></i>
 							<label><em>*</em>资产信息</label>
@@ -284,18 +321,24 @@
 							</select>
 						</div>
 						<div class="inp-item">
-							<i class="trigger common-select-trigger"></i>
+							<!-- <i class="trigger common-select-trigger"></i> -->
 							<label><em>*</em>所属行业</label>
-							<select id="applicantCompanyIndustry" class="common-select">
+							<!-- <select id="applicantCompanyIndustry" class="common-select">
 								<option>请选择</option>
-							</select>
+							</select> -->
+							<input id="applicantCompanyIndustry" type="text" class="common-input-text" placeholder="请输入所属行业" />
 						</div>
 						<div class="inp-item">
-							<i class="trigger common-select-trigger"></i>
+							<label><em>*</em>所属部门</label>
+							<input id="department" type="text" class="common-input-text" placeholder="请输入所属部门" />
+						</div>
+						<div class="inp-item">
+							<!-- <i class="trigger common-select-trigger"></i> -->
 							<label><em>*</em>担当职务</label>
-							<select id="applicantDuties" class="common-select">
+							<!-- <select id="applicantDuties" class="common-select">
 								<option>请选择</option>
-							</select>
+							</select> -->
+							<input id="applicantDuties" type="text" class="common-input-text" placeholder="请输入担当职务" />
 						</div>
 						<div class="inp-item">
 							<i class="trigger common-select-trigger"></i>

@@ -105,6 +105,13 @@
                         </div>
                     </div>
 					<div class="sign-item clearfix">
+                        <label>设计师电话</label>
+                        <div class="sign-right-cont">
+                            <input id="designerPhone" type="text" maxLength=11 placeholder="请输入设计师电话" class="common-input-text" style="width:380px;vertical-align:middle;" />
+							<span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
+						</div>
+                    </div>
+					<div class="sign-item clearfix">
                         <label><em>*</em>合作商户</label>
                         <div class="sign-right-cont">
                             <select id="subsidiaryId" class="common-select" style="width:413px;">
@@ -291,11 +298,41 @@
                                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
                                         </div>
                                     </div>
+									<div class="sign-item clearfix">
+                                        <label><em></em>民族</label>
+                                        <div class="sign-right-cont">
+                                            <input id="nation" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">
+                                            <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
+                                        </div>
+                                    </div>
+									<div class="sign-item clearfix">
+                                        <label><em></em>微信号</label>
+                                        <div class="sign-right-cont">
+                                            <input id="weChat" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">
+                                            <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
+                                        </div>
+                                    </div>
+									<div class="sign-item clearfix">
+                                        <label><em></em>邮箱</label>
+                                        <div class="sign-right-cont">
+                                            <input id="email" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">
+                                            <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
+                                        </div>
+                                    </div>
                                     <div class="sign-item clearfix">
                                         <label><em>*</em>婚姻状况</label>
                                         <div class="sign-right-cont">
                                             <select id="applicantMarital" class="common-select" style="width:413px;">
-						    <option>请选择</option>
+											<option>请选择</option>
+                                            </select>
+                                            <span class="form-validate-tip validate-success" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
+                                        </div>
+                                    </div>
+									 <div class="sign-item clearfix">
+                                        <label><em>*</em>住宅性质</label>
+                                        <div class="sign-right-cont">
+                                            <select id="houseNature" class="common-select" style="width:413px;">
+											<option>请选择</option>
                                             </select>
                                             <span class="form-validate-tip validate-success" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
                                         </div>
@@ -307,6 +344,25 @@
                                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
                                         </div>
                                     </div>
+									<div class="sign-item clearfix">
+                                        <label><em>*</em>装修地址</label>
+                                        <div class="sign-right-cont">
+                                            <input id="decorateAddress" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">
+                                            <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
+                                        </div>
+                                    </div>
+									<div class="sign-item clearfix">
+                                        <label><em>*</em>预计装修时间</label>
+                                        <div class="sign-right-cont">
+                                            <select id="decorateTime" class="common-select" style="width:413px;">
+                                                <option selected value="正在装修">正在装修</option>
+												<option value="一个月内">一个月内</option>
+												<option value="三个月内">三个月内</option>
+												<option value="三个月后">三个月后</option>
+                                            </select>
+                                            <span class="form-validate-tip validate-success" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
+                                        </div>
+                                    </div>
                                     <div class="sign-item clearfix">
                                         <label><em>*</em>最高学历</label>
                                         <div class="sign-right-cont">
@@ -316,7 +372,7 @@
                                             <span class="form-validate-tip validate-success" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
                                         </div>
                                     </div>
-                                    <div class="sign-item clearfix">
+                                    <!-- <div class="sign-item clearfix">
                                         <label><em>*</em>学校名称</label>
                                         <div class="sign-right-cont">
                                             <input id="applicantSchool" ype="text" class="common-input-text" style="width:380px;vertical-align:middle;">
@@ -329,7 +385,7 @@
                                             <input id="applicantMajor" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">
                                             <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="sign-item clearfix">
                                         <label><em>*</em>资产信息</label>
                                         <div class="sign-right-cont">
@@ -389,18 +445,27 @@
                                     <div class="sign-item clearfix">
                                         <label><em>*</em>所属行业</label>
                                         <div class="sign-right-cont">
-                                            <select id="applicantCompanyIndustry" class="common-select" style="width:413px;">
+                                            <!-- <select id="applicantCompanyIndustry" class="common-select" style="width:413px;">
                                                 <option>请选择</option>
-                                            </select>
+                                            </select> -->
+											 <input id="applicantCompanyIndustry" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">
                                             <span class="form-validate-tip validate-success" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
                                         </div>
                                     </div>
+									<div class="sign-item clearfix">
+                                        <label><em>*</em>所属部门</label>
+                                        <div class="sign-right-cont">
+                                            <input id="department" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">
+                                            <span class="form-validate-tip validate-error" style="display:none;"><i class="common-ico validate-ico"></i>不能为空</span>
+                                        </div>
+                                    </div>						
                                     <div class="sign-item clearfix">
                                         <label><em>*</em>担当职务</label>
                                         <div class="sign-right-cont">
-                                            <select id="applicantDuties" class="common-select" style="width:413px;">
+                                            <!-- <select id="applicantDuties" class="common-select" style="width:413px;">
                                                 <option>请选择</option>
-                                            </select>
+                                            </select> -->
+											 <input id="applicantDuties" type="text" class="common-input-text" style="width:380px;vertical-align:middle;">
                                             <span class="form-validate-tip validate-success" style="display:none;"><i class="common-ico validate-ico"></i>填写正确</span>
                                         </div>
                                     </div>
