@@ -58,6 +58,8 @@ function getCheckResult(CheckCode){
 
 function getCheckStatus(CheckCode){
 	switch(CheckCode){
+		case "":
+			return "";
 		case null:
 			return "";
 		case "101701":
