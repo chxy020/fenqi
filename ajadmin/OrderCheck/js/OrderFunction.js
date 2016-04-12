@@ -75,6 +75,7 @@ function getCheckStatus(CheckCode){
 	}
 }
 
+
 function getQueryParameters1(Obj,FormId){
 	$.each($("#" + FormId).serializeArray(),function(index,param) {
 		Obj[param.name] = param.value;
