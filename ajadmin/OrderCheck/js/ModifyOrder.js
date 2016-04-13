@@ -21,6 +21,12 @@ $(function () {
         ReadOrderInfo();
     }
 
+    //自动行高
+    $('textarea').bind('keyup', function () {
+        var line =  $(this).val().split("\n").length + 1;
+        $(this).attr("rows",line);
+    });
+
     //========================读取订单明细============================
     function ReadOrderInfo() {
         $.ajax({//处理字段、图片、并存放全局变量

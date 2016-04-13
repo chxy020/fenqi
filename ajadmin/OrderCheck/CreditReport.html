@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>91征信报告</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../Css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/calendar.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="js/table.css"/>
+    <script type="text/javascript" src="../Js/jquery.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../Js/ckform.js"></script>
+    <script type="text/javascript" src="../Js/common.js"></script>
+    <script src="../libs/json.js"></script>
+    <script src="../libs/base.js"></script>
+    <script src="../libs/utils.js"></script>
+    <script src="../libs/calendar.js"></script>
+
+    <script src="js/CreditReport.js"></script>
+
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<form id="CX" style="display: none">
+    <table class="table table-bordered definewidth m10">
+        <tbody>
+        <tr>
+            <td bgcolor="#F1F1F1">订单编号</td>
+            <td><input type="text" id="orderId" name="orderId" maxlength="20"/></td>
+            <td bgcolor="#F1F1F1">申请人姓名</td>
+            <td><input id="applicantName" type="text" name="applicantName"/></td>
+            <td bgcolor="#F1F1F1">申请人电话</td>
+            <td><input id="applicantPhone" type="text" name="applicantPhone"/></td>
+        </tr>
+        <tr>
+            <td bgcolor="#F1F1F1">开始时间</td>
+            <td><input type="text" id="createTimeBegin" name="createTimeBegin"/></td>
+            <td bgcolor="#F1F1F1">结束时间</td>
+            <td><input type="text" id="createTimeEnd" name="createTimeEnd"/></td>
+            <td colspan="2" style="text-align: center">
+                <button id="querybtn" type="button" class="btn btn-primary">查询</button>
+                <br>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<div id="orderlist"></div>
+
+</body>
+</html>

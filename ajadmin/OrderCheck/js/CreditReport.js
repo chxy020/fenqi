@@ -1,23 +1,11 @@
 /**
- * function:风控初审列表
+ * function:征信报告
  * author:hmgx
- * date:2015-12-15
+ * date:2016-4-13
 */
 
 //页面初始化
 $(function(){
-	if(typeof eui !== "undefined"){
-		eui.calendar({
-			startYear: 1900,
-			input: document.getElementById('createTimeBegin'),
-			id:"createTimeBegin"
-		});
-		eui.calendar({
-			startYear: 1900,
-			input: document.getElementById('createTimeEnd'),
-			id:"createTimeEnd"
-		});
-	}
 
 	var g = {};
 	g.phone = "";
@@ -26,22 +14,17 @@ $(function(){
 	g.sendTime = 60;
 	g.login_token = Utils.offLineStore.get("token",false) || "";
 	g.httpTip = new Utils.httpTip({});
+	g.orderId = Utils.getQueryString("orderId") || "";
 
 	g.totalPage = 1;
 	g.currentPage = 1;
 	g.pageSize = 10;
 
-	//window.DataList = []; //存放可以申请的订单列表数据
-
-	//加载订单方法
-	$.getScript("js/OrderFunction.js").done(function() {}).fail(function() {Utils.alert("@_@加载订单状态方法失败<br>请检查！");});
 
 	//验证登录状态
 	var loginStatus = Utils.getUserInfo();
 	if(!loginStatus){
-		//未登录
-		//location.replace("/login.html");
-		//window.parent.location.href = "../Public/login.html";
+		alert("请登陆系统！");
 	}else{
 		//获取数据列表
 		setTimeout(sendQueryRiskOrderListHttp(),500);
@@ -54,16 +37,14 @@ $(function(){
 		sendQueryRiskOrderListHttp();
 	}
 
-	//获取订单数据
+	//获取数据
 	function sendQueryRiskOrderListHttp(){
 		g.httpTip.show();
-		var url = Base.serverUrl + "order/queryOrdersMapController";
+		var url = Base.serverUrl + "credit/getCreditLoanInfoByOrderId";
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.currentPageNum = g.currentPage;
-		condi.status = "10050301";
-		condi = getQueryParameters1(condi,"CX");
-		//console.log(condi);
+		condi.orderId = g.orderId;
 		$.ajax({
 			url:url, data:condi,type:"POST",	dataType:"json",context:this,
 			success: function(data){
@@ -72,7 +53,7 @@ $(function(){
 				if(status){
 					changeOrderListHtml(data);
 				}else{
-					var msg = data.message || "获取订单列表数据失败";
+					var msg = data.message || "获取征信报告数据失败!";
 					Utils.alert(msg);
 				}
 				g.httpTip.hide();
@@ -83,10 +64,9 @@ $(function(){
 		});
 	}
 
-	//创建订单列表内容
+	//创建列表内容
 	function changeOrderListHtml(data){
 		var html = [];
-
 		html.push('<table class="table table-bordered table-hover definewidth m10" ><thead>');
 		html.push('<tr>');
 		html.push('<th>订单编号</th>');
@@ -115,7 +95,6 @@ $(function(){
 			html.push('<td>' + getOrderStatus(d.status)  + '</td>');
 			//根据订单状态 判断 初审
 			if(d.status == "10050301"){
-
 
 				var credit = '&nbsp&nbsp<a href="javascript:Hmgx.openWin(\'CreditReport.html?orderid=' + d.orderId + '\')">91征信</a>';
 				html.push('<td><a href="javascript:Hmgx.openWin(\'ModifyOrder.html?orderid=' + d.orderId + '\')">编辑</a>&nbsp&nbsp<a href="javascript:Hmgx.openWin(\'FK_Seller_1.html?orderid=' + d.orderId + '\')">初审</a>' + credit + '</td>');
@@ -244,27 +223,4 @@ $(function(){
 			Utils.alert("当前是最后一页");
 		}
 	}
-
-	//显示审核窗口
-	//window.ShowWin = function (OrderID){
-	//	var RowData = null;
-	//	for(var i = 0 ; i < DataList.length ; i++){
-	//		if(DataList[i].orderId == OrderID){
-	//			RowData = DataList[i];
-	//			break;
-	//		}
-	//	}
-	//	if(RowData == null){
-	//		alert("数据错误!");
-	//		return false;
-	//	}
-	//	$("#s_orderId").val(RowData.orderId);
-	//	$('#pass').modal('show').css({
-	//		width: '1000',
-	//		'margin-left': function () {
-	//			return -($(this).width() / 2);
-	//			//return 20;
-	//		}
-	//	});
-	//}
 });

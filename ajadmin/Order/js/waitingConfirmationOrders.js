@@ -158,8 +158,11 @@ $(function () {
         html.push('<th>审批分期期数</th>');
         html.push('<th>订单状态</th>');
         html.push('<th>用户姓名</th>');
+        html.push('<th>手机号</th>');
         html.push('<th>服务费支付方式</th>');
         html.push('<th>服务费</th>');
+        html.push('<th>月还款本金</th>');
+        html.push('<th>月还款</th>');
         html.push('<th>操作</th>');
         html.push('</tr>');
 
@@ -176,8 +179,11 @@ $(function () {
             html.push('<td>' + ( d.fenqiTimes || "" ) + '</td>');
             html.push('<td>' + ( d.status || "" ) + '</td>');
             html.push('<td>' + ( d.applicantName || "" ) + '</td>');
+            html.push('<td>' + ( d.applicantPhone || "" ) + '</td>');
             html.push('<td>' + ( d.poundageRepaymentType || "" ) + '</td>');
             html.push('<td>' + ( d.poundage || "" ) + '</td>');
+            html.push('<td>' + ( d.moneyMonth   || "" ) + '</td>');
+            html.push('<td>' + ( d.monthRepay   || "" ) + '</td>');
 
             var buttonStr = '<a class="btn btn-success" href="javascript:SaveAccept(' + d.orderId + ')">接受</a>  &nbsp;&nbsp;';
             buttonStr += '<a class="btn btn-warning" href="javascript:ShowCancelWin(' + d.orderId + ')">取消</a>';

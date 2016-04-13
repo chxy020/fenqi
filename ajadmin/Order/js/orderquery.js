@@ -457,7 +457,6 @@ $(function(){
 
 	window.ViewOrder = function (OrderId){
 		Hmgx.openWin("ViewOrderDetail.html?orderid=" + OrderId );
-		//Hmgx.openWin("ModifyOrder_only.html?orderid=" + OrderId );
 	}
 
 });
