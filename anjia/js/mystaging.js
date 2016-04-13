@@ -1881,7 +1881,7 @@ $(function(){
 		var monthPoundage = obj.monthPoundage || "0";
 		var monthRepay = obj.monthRepay || "0";
 		var poundageRepaymentType = obj.poundageRepaymentType || "";
-		var monthInterestRate = obj.monthInterestRate || "0";
+		var monthInterestRate = 0.7;//obj.monthInterestRate || "0";
 		g.subsidiaryId=obj.subsidiaryId || "";
 		g.packageType = packageType;
 
