@@ -322,6 +322,7 @@ $(function(){
 		//g.currentPage = 1;
 		html.push('<div id="listpage" class="inline pull-right page">');
 		html.push(data.totalRowNum + ' 条记录' + g.currentPage + '/' + g.totalPage + ' 页');
+		html.push('<a href="javascript:void(0);" class="page-pre">上一页</a>');
 		html.push('<a href="javascript:void(0);" class="page-next">下一页</a>');
 
 		if(g.totalPage > 10){
@@ -423,7 +424,8 @@ $(function(){
 		}
 
 		if(g.currentPage <= g.totalPage){
-			sendQueryListHttp();
+			var condi = {};
+			sendQueryListHttp(condi);
 		}
 		else{
 			Utils.alert("当前是最后一页");
