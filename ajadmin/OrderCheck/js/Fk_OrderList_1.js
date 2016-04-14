@@ -245,7 +245,7 @@ $(function(){
 
 	window.OpenCredit = function(OrderId,e){
 		Hmgx.openWin("CreditReport.html?orderid=" + OrderId );
-		$(e).attr("onclick","alert('征信报告不能重复获取！')");
+		//$(e).attr("onclick","alert('征信报告不能重复获取！')");
 	};
 
 	//显示审核窗口
