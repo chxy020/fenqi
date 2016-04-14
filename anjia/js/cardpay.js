@@ -23,7 +23,8 @@ $(function(){
 	g.playCondi = {};
 	g.payId = "";
 	g.paidMoney = 0;
-
+	g.codelist = [];
+	g.nowPayMoney = "";
 	//获取图形验证码
 	sendGetImgCodeHttp();
 
@@ -34,7 +35,7 @@ $(function(){
 		location.replace("/anjia/login.html");
 	}
 	else{
-		serchRepaymentRecordByRepaymentRecordId();
+		sendGetBankXianeListHttp();//获取银行限额信息
 		getUserInfo();
 		//
 		changeOrderInfoHtml();
@@ -62,7 +63,6 @@ $(function(){
 	//获取个人资料
 	function getUserInfo(){
 		var info = Utils.offLineStore.get("userinfo",false) || "";
-		console.log("getUserInfo",info);
 		if(info !== ""){
 			var obj = JSON.parse(info) || {};
 			g.customerId = obj.customerId || "";
@@ -71,11 +71,13 @@ $(function(){
 	}
 	
 		//查询已支付金额
-	function serchRepaymentRecordByRepaymentRecordId(){
+	function serchRepaymentRecordByRepaymentRecordId(bankType,bankCardTop,bankCardLast){
 		var url = Base.serverUrl + "order/getRepaymentRecordByRepaymentRecordId";
 		var condi = {};
 		condi.login_token = g.login_token;
 		condi.repaymentRecordId = g.repaymentRecordId;
+		condi.bankCardTop = bankCardTop;
+		condi.bankCardLast = bankCardLast;
 		$.ajax({
 			url:url,
 			type:"POST",
@@ -87,10 +89,13 @@ $(function(){
 				if(status){
 					//请求成功
 					var obj = data.obj || [];
-					var paidMoney = obj.paidMoney || 0;
-					g.paidMoney = paidMoney;
-					g.price2 = g.price - paidMoney || 0 ;
-					
+					g.paidMoney = obj.paidMoney || 0;
+					g.historyTimes = obj.historyTimes || 0;
+					g.historyMoney = obj.historyMoney || 0;
+					g.todayMoney = obj.todayMoney || 0;
+					g.todayTimes = obj.todayTimes || 0;
+					//g.price2 = g.price - paidMoney || 0 ;
+					breakUp(bankType);
 				}
 				else{
 					var msg = data.message || "查询已支付金额失败";					
@@ -123,7 +128,6 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetBindBankCardByCustomerId",data);
 				var status = data.success || false;
 				if(status){
 					changeBankCardHtml(data);
@@ -156,9 +160,11 @@ $(function(){
 			for(var i = 0,len = list.length; i < len; i++){
 				var d = list[i] || {};
 				var bankType = d.bankType || "";
-				bankType = bankType.toLowerCase();
-				//if(i == 0){bankType = "icbc";}//测试工商银行
+				//if(i == 0){bankType = "ABC";}//测试银行
+				bankType = bankType.toLowerCase();				
 				var bankCard = d.bankCardLast || "";
+				var bankCardTop = d.bankCardTop || "";
+				var bankCardLast = d.bankCardLast || "";
 				bankCard = "****" + bankCard.substring(bankCard.length - 4);
 
 				var logo = "../res/images/bank-logo/" + bankType + ".gif";
@@ -169,15 +175,13 @@ $(function(){
 					html.push('<span class="bank-card-inf-num">' + bankCard + '</span>');
 					html.push('<img src="' + logo + '" class="bank-card-inf-logo" />');
 					html.push('</div>');					
-					if(bankType == "icbc"){
-						html.push('<input type="radio" name="bindcardradio" class="common-radio common-radio_ccb" checked="checked" />');
-					}else{
-						html.push('<input type="radio" name="bindcardradio" class="common-radio" checked="checked" />');
-					}
+					html.push('<input type="radio" bankCardTop="'+bankCardTop+'" bankCardLast="'+bankCardLast+'" bankType="'+bankType+'" name="bindcardradio" class="common-radio" checked="checked" />');
 					html.push('</label>');
 					html.push('</li>');
-					/* 判断银行卡是不是工商银行 */
-					if(bankType == "icbc"){breakUp();}else{sendPlayBindRequest(bankCardTop,bankCardLast);}
+					g.bankType = bankType;
+					g.bankCardTop = bankCardTop;
+					g.bankCardLast = bankCardLast;
+					serchRepaymentRecordByRepaymentRecordId(g.bankType,g.bankCardTop,g.bankCardLast);
 				}
 				else{
 					html.push('<li style="height: 30px;">');
@@ -186,11 +190,7 @@ $(function(){
 					html.push('<span class="bank-card-inf-num">' + bankCard + '</span>');
 					html.push('<img src="' + logo + '" class="bank-card-inf-logo" />');
 					html.push('</div>');
-					if(bankType == "icbc"){
-						html.push('<input type="radio" name="bindcardradio" class="common-radio  common-radio_ccb" />');
-					}else{
-						html.push('<input type="radio" name="bindcardradio" class="common-radio" />');
-					}	
+					html.push('<input type="radio" bankCardTop="'+bankCardTop+'" bankCardLast="'+bankCardLast+'" bankType="'+bankType+'"  name="bindcardradio" class="common-radio" />');
 					html.push('</label>');
 					html.push('</li>');
 				}
@@ -201,17 +201,151 @@ $(function(){
 			addClick_div();
 		}
 	}
-	//判断选中的支付方式是不是工商银行
+	//判断选中的支付方式银行
 	function addClick_div(){
 		$(".radio-bg").click(function(){
-			if($(".common-radio_ccb").attr("checked") == "checked"){
-				g.breakUp = true;breakUp();
-			}else{
-				g.breakUp = false;$(".sign-item.fenbi,.sign-item.tip,.sign-item.tip2").fadeOut(0);sendGetBindBankCardByCustomerId2();
-			}
+			g.bankType = $(this).children("input.common-radio").attr("bankType") || "";
+			g.bankCardTop = $(this).children("input.common-radio").attr("bankCardTop") || "";
+			g.bankCardLast = $(this).children("input.common-radio").attr("bankCardLast") || "";
+			serchRepaymentRecordByRepaymentRecordId(g.bankType,g.bankCardTop,g.bankCardLast);
 			 return false;//防止冒泡
 		})
 	}
+	
+
+/* 分析处理银行卡限额问题 及分笔支付总逻辑 */
+	function breakUp(bankType){
+		bankType = bankType.toUpperCase();
+		var codexiane = g.codelist[bankType] || "";
+		if(codexiane == ""){
+			alert('燕子安家不支持此银行卡，请更换银行卡');
+			return false;
+		}
+		/* 银行限制信息 */
+		var bankName = codexiane[0] || "";//银行名称
+		var per_time_num = codexiane[1]*10000 || "";//单笔限额
+		var per_day_num = codexiane[2]*10000 || "";//单日限额
+		var per_month_num = codexiane[3]*10000 || "";//单月限额
+		var per_day_times = Number(codexiane[4]) || "";//单日限次
+		var per_month_times = Number(codexiane[5]) || "";//单月限次				
+		var historyMoney = g.historyMoney || 0;//之前已经支付的金额总和
+		var historyTimes = g.historyTimes || 0;//之前已经完成的支付次数总和
+		var todayMoney = g.todayMoney || 0;//今天已经支付的金额
+		var todayTimes = g.todayTimes || 0;//今天已经支付的次数		
+		/* 计算相应字段 */
+		var money2 = g.price || 0;//总共需要支付的金额
+		var D = per_day_times*per_time_num <= per_day_num ? true : false;//判断单日限额 与 单笔限额*单日次数 哪个小
+		var C = per_day_times*per_time_num >= per_day_num ? per_day_num : per_day_times*per_time_num;//判断单日限额 与 单笔限额*单日次数 哪个小		
+		var needTims = Math.ceil(money2/per_time_num) || 0;//总共需要支付的笔数
+		var todayPayTimes = D ? per_day_times : Math.ceil(per_day_num/per_time_num);//当天可以进行支付的最大次数
+		var canPayTimes = needTims >= todayPayTimes ? todayPayTimes : needTims;//判断一天能否付款完成 得到第一天需要支付的次数
+		var todayPayMoney = (todayPayTimes*per_time_num).toFixed(2);//一天可以进行支付的最大金额
+		var needDays = Math.ceil(money2/todayPayMoney) || 0;//总共需要支付的天数
+		var nowNeedDays = Math.ceil((money2 - historyMoney + todayMoney)/todayPayMoney) || 0;//总共需要支付的天数
+		var lastPayTimes = needTims - (historyTimes - todayTimes);//最后一天可以支付的最大次数等于 总共需要支付的次数减 今天之前支付的次数
+		var nowPayTimes = (money2 - (historyMoney - todayMoney) - todayPayMoney <= 0) ? needTims - historyTimes : todayPayTimes - todayTimes;
+		var string_HTML = [];
+			string_HTML.push( bankName+": 单笔限额:"+per_time_num+"元；单日限额："+per_day_num+"元；单月限额："+per_month_num+"元；单日限次："+per_day_times+"次；单月限次: "+per_month_times+"次；<br>");
+			string_HTML.push( "注：由于"+bankName+"限额问题，系统为您自动转为分笔支付。您要缴纳的费用为"+money2+"元，今天剩余支付"+nowPayTimes+"次，可以"+nowNeedDays+"天内完成支付。已经支付"+historyTimes+"次总计"+historyMoney+"元。");			
+			string_HTML.push("您还可以选择在合作商家处线下缴费或直接把费用打至燕子安家公司账户，账户号请拨打客服电话4006-616-896。");
+		$("#bank_tips").html(string_HTML.join(''));
+		//待付款金额小于单笔限额
+		var con1 = money2 <= per_time_num;
+		//支付金额大于月限额 或者 总需要支付的次数大于月限次数
+		var con2 = money2 > per_time_num && (money2 > per_month_num || needTims > per_month_times);
+		//满足限额需求可以进行分笔支付
+		var con3 = money2 > per_time_num && money2 <= per_month_num && needTims <= per_month_times;
+		if(con1){//正常支付
+			$(".sign-item.fenbi,.sign-item.tip,.sign-item.tip2").fadeOut(0);
+			g.breakUp = false;
+			sendGetBindBankCardByCustomerId2();
+		}
+		else if(con2){//提示无法支付
+			$(".sign-item.tip2").fadeIn(0);
+			g.breakUp = false;
+			var msg = "银行限额，无法完成支付！";
+				Utils.alert(msg);
+		}
+		else if(con3){//可以分笔支付
+			var money = (money2 - historyMoney).toFixed(2) || 0;
+			var can = money2 - (historyMoney - todayMoney) - todayPayMoney || 0;//判断今天是不是最后一天			
+			g.canPayTimes = canPayTimes - todayTimes || "";//今天还需要支付的次数 = 今天总共需要支付的次数 - 今天已经支付的次数 
+			if(can <= 0){//如果是最后一天 不管是由于支付拖拉 导致的多天 还是系统自动计算的多天
+				g.canPayTimes = needTims - historyTimes || 0;//最后一天还需要支付的次数 = 今天总共需要支付的次数 - 今天已经支付的次数 
+			}
+			if(g.canPayTimes == 1){//最后一笔
+				$(".sign-item.fenbi,.sign-item.tip").fadeIn(0);$(".sign-item.tip2").fadeOut(0);
+				if(money >= per_time_num){//多天支付的最后一笔
+					$(".form_input .form_input1").attr("value",per_time_num).fadeIn(0);				
+					money -= per_time_num;
+					$(".form_input .form_input2").attr("value",money.toFixed(2)).fadeIn(0);	
+					sendGetBindBankCardByCustomerId2(per_time_num);//支付请求
+				}else{//一天支付的最后一笔
+					$(".form_input .form_input1").attr("value",money).fadeIn(0);
+					var pay2 = (money - per_time_num < 0) ? 0 : money - per_time_num;
+					$(".form_input .form_input2").attr("value",pay2.toFixed(2)).fadeIn(0);
+					sendGetBindBankCardByCustomerId2(money);//支付请求
+				}					
+				g.breakUp = false;//最后一笔完成后 终止分笔支付
+			}else if(g.canPayTimes > 1){//正常支付
+				$(".sign-item.fenbi,.sign-item.tip").fadeIn(0);$(".sign-item.tip2").fadeOut(0);
+				$(".form_input .form_input1").attr("value",per_time_num).fadeIn(0);
+				money -= per_time_num;
+				$(".form_input .form_input2").attr("value",money.toFixed(2)).fadeIn(0);		
+				sendGetBindBankCardByCustomerId2(per_time_num);//支付请求
+				g.breakUp = true;
+			}else{
+				g.breakUp = false;//今天支付完成或者所有支付完成 终止分笔支付
+				var M = money2 <= historyMoney ? true : false;
+				if(M){
+					Utils.alert("已经支付完成");
+				}else{
+					Utils.alert("今天已经支付完成，请明天继续支付剩余款项");
+				}
+			}
+		}
+	
+	}
+
+	//获取银行限额信息
+	function sendGetBankXianeListHttp(){
+		var url = Base.serverUrl + "bank/getBanks";
+		var condi = {};
+		$.ajax({
+			url:url,
+			data:condi,
+			type:"POST",
+			dataType:"json",
+			context:this,
+			success: function(data){
+				var status = data.success || false;
+				if(status){
+					var list = data.list || {};
+					var option = [];
+					for(var i = 0; i < list.length ; i++ ){
+						var d = list[i] || [];						
+						var code = d.code || "";//银行编码
+						var name = d.name || "";
+						var per_time_num = d.per_time_num || "";//单笔限额
+						var per_day_num = d.per_day_num || "";//单日限额
+						var per_month_num = d.per_month_num || "";//单月限额
+						var per_day_times = d.per_day_times || "";//单日限次
+						var per_month_times = d.per_month_times || "";//单月限次
+						var a = [];
+						a = [name,per_time_num,per_day_num,per_month_num,per_day_times,per_month_times];
+						g.codelist[code] = a;
+					}
+				}
+				else{
+					var msg = data.message || "获取银行限额失败";
+					Utils.alert(msg);
+				}
+			},
+			error:function(data){
+			}
+		});
+	}
+	
 
 	/* 12-25 */
 	//单独发送支付请求
@@ -228,7 +362,6 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetBindBankCardByCustomerId",data);
 				var status = data.success || false;
 				if(status){
 					var list = data.list || [];
@@ -237,6 +370,7 @@ $(function(){
 					var bankCardLast = obj.bankCardLast || "";
 				//触发支付请求
 					sendPlayBindRequest(bankCardTop,bankCardLast,xiane);
+					g.nowPayMoney = xiane || "";
 				}
 				else{
 					var msg = data.message || "获取绑定银行卡失败";
@@ -271,7 +405,6 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendPlayBindRequest",data);
 				var status = data.success || false;
 				if(status){
 					//请求成功
@@ -315,7 +448,7 @@ $(function(){
 		//condi.bindBankCardId = g.bindBankCardId;
 		condi.img_validate_code = img_validate_code;
 		//condi.repaymentRecordId = g.repaymentRecordId;
-		condi.orderid = g.payId;
+		condi.orderid = g.payId;		
 		g.playCondi = condi;
 
 		sendSmsByRepaymentRecordIdHttp(condi);
@@ -331,7 +464,6 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendSmsByRepaymentRecordIdHttp",data);
 				var status = data.success || false;
 				if(status){
 					Utils.alert("验证码已发送,请注意查收");
@@ -362,7 +494,7 @@ $(function(){
 		g.sendTime = g.sendTime - 1;
 		if(g.sendTime > 0){
 			$("#getcodebtn").val(g.sendTime + "秒后重新发送");
-			setTimeout(function(){
+			g.time = setTimeout(function(){
 				resetGetValidCode();
 			},1000);
 		}
@@ -390,7 +522,7 @@ $(function(){
 
 	//确认支付
 	function sendConfirmPlayHttp(condi){
-		var url = Base.serverUrl + "payPc/smsConfirm";
+		var url = Base.serverUrl + "payPc/smsConfirm";		
 		g.httpTip.show();
 		$.ajax({
 			url:url,
@@ -399,7 +531,6 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendConfirmPlayHttp",data);
 				var status = data.success || false;
 				if(status){
 					showPayTip();
@@ -422,11 +553,10 @@ $(function(){
 	function showPayTip(){
 		layer.alert('支付中...', {icon: 4,closeBtn: 0}, function(index){
 			layer.close(index);
-			if(g.price2 > 10000 && g.price2 <= 20000 && g.breakUp){//分笔支付方式
-				g.price2 -= 10000;
-				$(".form_input .form_input1,.form_input .fenbi_step2").fadeOut(0);
-				sendGetBindBankCardByCustomerId2(g.price2);
+			if(g.breakUp){//分笔支付方式
+				serchRepaymentRecordByRepaymentRecordId(g.bankType,g.bankCardTop,g.bankCardLast);
 			}else{
+				g.breakUp = false;
 				location.href = "/anjia/usercenter.html";
 			}			
 		});
@@ -447,17 +577,21 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetPayStatus",data);
 				var status = data.success || false;
 				if(status){
 					//{"success":true,"obj":{支付对象,status:0失败 1成功 2未处理 3处理中 ,errorcode:错误代码,errormsg:错误信息},"list":[],"message":"","code":null,"token":“”}
 					var status = data.obj.status - 0;
 					if(status == 1){
-						$(".layui-layer-btn").show();						
-						if(g.price2 > 10000 && g.price2 <= 20000 && g.breakUp){//分笔支付
-							$(".layui-layer-content").html('<i class="layui-layer-ico layui-layer-ico1"></i>支付成功,请继续支付剩余金额！');		
+						$(".layui-layer-btn").show();
+						if(g.breakUp){//分笔支付
+							g.sendTime = 1;clearTimeout(g.time);resetGetValidCode();$("#validcode").val("");//清除图形验证码 及验证码框内容 变为重新发送
+							$(".layui-layer-content").html('<i class="layui-layer-ico layui-layer-ico1"></i>支付成功,请继续支付剩余金额！');									
 						}else {
-							$(".layui-layer-content").html('<i class="layui-layer-ico layui-layer-ico1"></i>支付成功');
+							if((g.price > (g.historyMoney + g.nowPayMoney)) && g.nowPayMoney != ""){
+								$(".layui-layer-content").html('<i class="layui-layer-ico layui-layer-ico1"></i>支付成功,今天已经达到支付限额，请明天继续支付剩余金额！');							
+							}else{
+								$(".layui-layer-content").html('<i class="layui-layer-ico layui-layer-ico1"></i>支付成功');
+							}
 						}
 						//消除优惠券
 					}
@@ -485,39 +619,6 @@ $(function(){
 			}
 		});
 	}
-
-
-/* 拆分金额计算器 */
-	function breakUp(){		
-		var money = g.price || 0;
-		var money2 = g.price || 0;
-		var xiane = 10000;		
-		var i = 1;
-		if(money2 > xiane && money2 <= xiane*2){
-			while(money2 > xiane){
-				$(".form_input .form_input"+i+"").attr("value",xiane).fadeIn(0);
-				money2 -= xiane;i++;
-				if(money2 > xiane ){continue;}else{$(".form_input .form_input"+i+"").attr("value",money2.toFixed(2)).fadeIn(0);break;}
-			}
-		}
-		if(money > xiane && money <= xiane*2){
-			$(".sign-item.fenbi,.sign-item.tip").fadeIn(0);$(".sign-item.tip2").fadeOut(0);
-			g.breakUp = true;
-			if(g.paidMoney > 0){
-				xiane = (g.price - g.paidMoney).toFixed(2);g.breakUp = false;			
-				$(".form_input .form_input1,.form_input .fenbi_step2").fadeOut(0);
-				$(".form_input .form_input2").attr("value",xiane).fadeIn(0);
-			}//判断如果已经支付过一部分 则不分笔支付		
-			sendGetBindBankCardByCustomerId2(xiane);//支付请求
-			
-		}else if(money > xiane*2){
-			$(".sign-item.tip2").fadeIn(0);g.breakUp = false;sendGetBindBankCardByCustomerId2();
-		}else{
-			$(".sign-item.fenbi,.sign-item.tip,.sign-item.tip2").fadeOut(0);g.breakUp = false;sendGetBindBankCardByCustomerId2();
-		}
-		
-	}
-
 
 
 
@@ -559,7 +660,6 @@ $(function(){
 			dataType:"json",
 			context:this,
 			success: function(data){
-				console.log("sendGetBankListHttp",data);
 				var status = data.success || false;
 				if(status){
 					changeBankSelectHtml(data);
@@ -586,8 +686,9 @@ $(function(){
 		}
 		$("#bankCode").html(option.join(''));
 	}
-
-	window.addClick_div = addClick_div;
+	//window.sendGetBankXianeListHttp = sendGetBankXianeListHttp;
 	window.breakUp = breakUp;
+	window.serchRepaymentRecordByRepaymentRecordId = serchRepaymentRecordByRepaymentRecordId;
+	window.addClick_div = addClick_div;	
 	window.sendGetBindBankCardByCustomerId2 = sendGetBindBankCardByCustomerId2;
 });
