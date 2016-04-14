@@ -67,7 +67,7 @@ $(function(){
 	//创建列表内容
 	function changeOrderListHtml(data){
 		var html = [];
-		html.push('查询结果[' + data.list.length + ']条数据<br><table class="table table-bordered table-hover definewidth m10" ><thead>');
+		html.push('<h4 style="text-align: center">查询结果[' + data.list.length + ']条数据</h4><br><table class="table table-bordered table-hover definewidth m10" ><thead>');
 		html.push('<tr>');
 		html.push('<th>借贷类型</th>');
 		html.push('<th>借贷状态</th>');
