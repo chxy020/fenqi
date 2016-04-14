@@ -114,8 +114,8 @@ $(function(){
 			html.push('<td>' + d.applyFenQiTimes  + '</td>');
 			html.push('<td>' + getOrderStatus(d.status)  + '</td>');
 			//根据订单状态 判断 初审
+			var credit = '&nbsp&nbsp<a href="javascript:void(0)" onclick="OpenCredit(' + d.orderId + ',this)">91征信</a>';
 			if(d.status == "10050301"){
-				var credit = '&nbsp&nbsp<a href="javascript:void(0)" onclick="OpenCredit(' + d.orderId + ',this)">91征信</a>';
 				html.push('<td><a href="javascript:Hmgx.openWin(\'ModifyOrder.html?orderid=' + d.orderId + '\')">编辑</a>&nbsp&nbsp<a href="javascript:Hmgx.openWin(\'FK_Seller_1.html?orderid=' + d.orderId + '\')">初审</a>' + credit + '</td>');
 
 				//html.push('<td><a href="fkuan_detail.html?orderid=' + d.orderId + '">编辑</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-warning" href="javascript:ShowWin(\'' + d.orderId +  '\')">初审</a></td>');

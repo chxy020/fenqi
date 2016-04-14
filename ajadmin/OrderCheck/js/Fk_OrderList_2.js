@@ -119,11 +119,12 @@ $(function(){
 			html.push('<td>' + (d.fk1_approve_name || "")  + '</td>');
 			html.push('<td>' + (d.fk1_approve_time || "")  + '</td>');
 			html.push('<td>' + getOrderStatus(d.status)   + '</td>');
+			var credit = '&nbsp&nbsp<a href="javascript:void(0)" onclick="OpenCredit(' + d.orderId + ',this)">91征信</a>';
 			//根据订单状态 判断 复审
 			if(d.status == "10050302" ){
-				html.push('<td><a href="javascript:Hmgx.openWin(\'ModifyOrder_only.html?orderid=' + d.orderId + '\')">查看订单</a>&nbsp&nbsp<a href="javascript:Hmgx.openWin(\'FK_Seller_2.html?orderid=' + d.orderId + '\')">复审</a></td>');
+				html.push('<td><a href="javascript:Hmgx.openWin(\'ModifyOrder_only.html?orderid=' + d.orderId + '\')">查看订单</a>&nbsp&nbsp<a href="javascript:Hmgx.openWin(\'FK_Seller_2.html?orderid=' + d.orderId + '\')">复审</a>' + credit + '</td>');
 			}else{
-				html.push('<td><a href="javascript:Hmgx.openWin(\'ViewOrder.html?orderid=' + d.orderId + '\')">查看订单</a></td>');
+				html.push('<td><a href="javascript:Hmgx.openWin(\'ViewOrder.html?orderid=' + d.orderId + '\')">查看订单</a> ' + credit + '</td>');
 			}
 			html.push('</tr>');
 		}
@@ -244,4 +245,9 @@ $(function(){
 			Utils.alert("当前是最后一页");
 		}
 	}
+
+	window.OpenCredit = function(OrderId,e){
+		Hmgx.openWin("CreditReport.html?orderid=" + OrderId );
+		//$(e).attr("onclick","alert('征信报告不能重复获取！')");
+	};
 });

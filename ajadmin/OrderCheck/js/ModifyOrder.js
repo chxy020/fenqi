@@ -21,6 +21,8 @@ $(function () {
         ReadOrderInfo();
     }
 
+    $("*").bind('keydown.Ctrl_q',function (evt){SaveData(); return false});
+
     //自动行高
     $('textarea').bind('keyup', function () {
         var line =  $(this).val().split("\n").length + 1;
