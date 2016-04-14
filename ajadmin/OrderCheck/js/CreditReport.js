@@ -96,10 +96,10 @@ $(function(){
 
 		var pobj = data.obj || {};
 		if(obj.length > 0){
-			var page = countListPage(pobj);
-			html.push(page);
+			//var page = countListPage(pobj);
+			//html.push(page);
 		}else{
-			Utils.alert("没有订单数据");
+			Utils.alert("没有征信数据！");
 		}
 
 		$("#orderlist").html(html.join(''));
